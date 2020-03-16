@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="08803907-db91-4299-bfbe-ecbb0032d7c0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
+  <component name="ProjectId" id="1Z1IRsuifHpGQ8FBRNJPQMKLYH1" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="C:/autres/SiteWeb/projet_shodhana" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="web.server" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Gestion-vm" type="PhpBuiltInWebServerConfigurationType" factoryName="PHP Built-in Web Server" document_root="$PROJECT_DIR$" port="9921">
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="08803907-db91-4299-bfbe-ecbb0032d7c0" name="Default Changelist" comment="" />
+      <created>1584000168820</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584000168820</updated>
+      <workItem from="1584000170249" duration="20525000" />
+      <workItem from="1584083581914" duration="13918000" />
+      <workItem from="1584343374158" duration="4324000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="3547" y="-62" key="#PHP" timestamp="1584000755461">
+      <screen x="1920" y="-361" width="2560" height="1410" />
+    </state>
+    <state x="3547" y="-62" key="#PHP/0.0.1536.834/4480.-372.2560.1410/1920.-361.2560.1410@1920.-361.2560.1410" timestamp="1584000755461" />
+    <state x="3294" y="2" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584000763272">
+      <screen x="1920" y="-361" width="2560" height="1410" />
+    </state>
+    <state x="3294" y="2" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834/4480.-372.2560.1410/1920.-361.2560.1410@1920.-361.2560.1410" timestamp="1584000763272" />
+    <state x="2290" y="94" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584020266653">
+      <screen x="1920" y="-361" width="2560" height="1410" />
+    </state>
+    <state x="2290" y="94" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834/1920.-361.2560.1410/4480.-372.2560.1410@1920.-361.2560.1410" timestamp="1584020266653" />
+    <state x="2980" y="98" key="FileChooserDialogImpl" timestamp="1584089973094">
+      <screen x="1920" y="-361" width="2560" height="1410" />
+    </state>
+    <state x="2980" y="98" key="FileChooserDialogImpl/0.0.1536.834/4480.-372.2560.1410/1920.-361.2560.1410@1920.-361.2560.1410" timestamp="1584089973094" />
+    <state width="1493" height="38" key="GridCell.Tab.0.bottom" timestamp="1584351516718">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="2517" height="403" key="GridCell.Tab.0.bottom/0.0.1536.834/1920.-361.2560.1410/4480.-372.2560.1410@1920.-361.2560.1410" timestamp="1584028770643" />
+    <state width="1493" height="38" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1584351516718" />
+    <state width="1493" height="38" key="GridCell.Tab.0.center" timestamp="1584351516718">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="2517" height="403" key="GridCell.Tab.0.center/0.0.1536.834/1920.-361.2560.1410/4480.-372.2560.1410@1920.-361.2560.1410" timestamp="1584028770643" />
+    <state width="1493" height="38" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1584351516718" />
+    <state width="1493" height="38" key="GridCell.Tab.0.left" timestamp="1584351516718">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="2517" height="403" key="GridCell.Tab.0.left/0.0.1536.834/1920.-361.2560.1410/4480.-372.2560.1410@1920.-361.2560.1410" timestamp="1584028770643" />
+    <state width="1493" height="38" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1584351516718" />
+    <state width="1493" height="38" key="GridCell.Tab.0.right" timestamp="1584351516718">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="2517" height="403" key="GridCell.Tab.0.right/0.0.1536.834/1920.-361.2560.1410/4480.-372.2560.1410@1920.-361.2560.1410" timestamp="1584028770643" />
+    <state width="1493" height="38" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1584351516718" />
+    <state x="3674" y="270" key="NewPhpFileDialog" timestamp="1584084227796">
+      <screen x="1920" y="-361" width="2560" height="1410" />
+    </state>
+    <state x="3674" y="270" key="NewPhpFileDialog/0.0.1536.834/4480.-372.2560.1410/1920.-361.2560.1410@1920.-361.2560.1410" timestamp="1584084227796" />
+    <state x="3341" y="-11" key="SettingsEditor" timestamp="1584000831582">
+      <screen x="1920" y="-361" width="2560" height="1410" />
+    </state>
+    <state x="3341" y="-11" key="SettingsEditor/0.0.1536.834/4480.-372.2560.1410/1920.-361.2560.1410@1920.-361.2560.1410" timestamp="1584000831582" />
+    <state x="586" y="312" key="com.intellij.ide.util.TipDialog" timestamp="1584351906423">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="2896" y="167" key="com.intellij.ide.util.TipDialog/0.0.1536.834/4480.-372.2560.1410/1920.-361.2560.1410@1920.-361.2560.1410" timestamp="1584083656181" />
+    <state x="586" y="312" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1584351906423" />
+    <state x="2856" y="152" key="run.anything.popup" timestamp="1584111592802">
+      <screen x="1920" y="-361" width="2560" height="1410" />
+    </state>
+    <state x="2856" y="152" key="run.anything.popup/0.0.1536.834/4480.-372.2560.1410/1920.-361.2560.1410@1920.-361.2560.1410" timestamp="1584111592802" />
+    <state x="2863" y="-44" width="672" height="678" key="search.everywhere.popup" timestamp="1584091331308">
+      <screen x="1920" y="-361" width="2560" height="1410" />
+    </state>
+    <state x="2863" y="-44" width="672" height="678" key="search.everywhere.popup/0.0.1536.834/4480.-372.2560.1410/1920.-361.2560.1410@1920.-361.2560.1410" timestamp="1584091331308" />
+  </component>
+</project>
