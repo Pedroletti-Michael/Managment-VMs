@@ -28,4 +28,3 @@ if(isset($_GET['action'])){
 }else{
     displayAccueil();
 }
-return $action;
