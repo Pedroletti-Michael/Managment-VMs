@@ -1,6 +1,9 @@
 <?php
 /**
- **/
+* Authors : Théo Cook and Thomas Huguet
+* CreationFile date : 17.03.2020
+* ModifFile date : 17.03.2020
+**/
 session_start();
 
 // Require all controler files

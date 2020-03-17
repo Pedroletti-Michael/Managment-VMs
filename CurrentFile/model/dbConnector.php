@@ -8,12 +8,12 @@ function openDBConnexion (){
   $tempConnexion = null;
 
   $sqlDriver = 'mysql';
-  $hostname = ''; // Field to complete
+  $hostname = 'eips19.heig-vd.ch'; // Field to complete
   $port = 3306;
   $charset = 'utf8';
-  $dbName = ''; // Field to complete
-  $userName = ''; // Field to complete
-  $userPwd = ''; // Field to complete
+  $dbName = 'heigvdch_vmman'; // Field to complete
+  $userName = 'heigvdch_vmman'; // Field to complete
+  $userPwd = 'G8zP4MN2T9'; // Field to complete
   $dsn = $sqlDriver . 'host=' . $hostname . ';dbname=' . $dbName . ';port=' . $port . ';charset=' . $charset;
 
   try{
