@@ -6,6 +6,7 @@
 // TODO Check all var field with the conf of the DB and complete empty field.
 function openDBConnexion (){
   $tempConnexion = null;
+  require 'model/encryption.php';
 
   $sqlDriver = 'mysql';
   $hostname = 'eips19.heig-vd.ch'; // Field to complete
@@ -13,7 +14,7 @@ function openDBConnexion (){
   $charset = 'utf8';
   $dbName = 'heigvdch_vmman'; // Field to complete
   $userName = 'heigvdch_vmman'; // Field to complete
-  $userPwd = 'G8zP4MN2T9'; // Field to complete
+  $userPwd = decrypt("mkHndhU83csnUia.Dhjc73jhRzh6UDRNTjJUOQ=="); // Field to complete
   $dsn = $sqlDriver . 'host=' . $hostname . ';dbname=' . $dbName . ';port=' . $port . ';charset=' . $charset;
 
   try{
