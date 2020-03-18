@@ -30,6 +30,6 @@ function formVM($formVMRequest)
       $memory = $formVMRequest['inputMemory'];
       $department = $formVMRequest['disFormControlSelect'];
       $OS = $formVMRequest['osFormControlSelect'];
-      $comissionDate = $formVMRequest['$comissionDate']
+      $comissionDate = $formVMRequest['$comissionDate'];
   }
 }
