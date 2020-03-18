@@ -44,8 +44,8 @@ ob_start();
         <div class="d-inline-block w-100">
             <div class="form-group w-50 float-left pr-4">
                 <!--RAM-->
-                <label for="cpu" class="font-weight-bold mr-2">Nombre de RAM</label>
-                <input type="number" class="form-control form form mr-3" id="inputCPU" aria-describedby="cpuHelp">
+                <label for="ram" class="font-weight-bold mr-2">Nombre de RAM</label>
+                <input type="number" class="form-control form form mr-3" id="inputRAM" aria-describedby="ramHelp">
             </div>
                 <!--Name of the responsible administrator-->
             <div class="form-group w-50 float-right pl-4">
@@ -57,8 +57,8 @@ ob_start();
         <div class="d-inline-block w-100">
             <div class="form-group w-50 float-left pr-4">
                 <!--Stockages-->
-                <label for="cpu" class="font-weight-bold mr-2">Mémoire (SSD)</label>
-                <input type="number" class="form-control form form" id="inputCPU" aria-describedby="cpuHelp">
+                <label for="memory" class="font-weight-bold mr-2">Mémoire (SSD)</label>
+                <input type="number" class="form-control form form" id="inputMemory" aria-describedby="memoryHelp">
             </div>
             <!--Department / Institution / Service-->
             <div class="form-group w-50 float-right pl-4">
