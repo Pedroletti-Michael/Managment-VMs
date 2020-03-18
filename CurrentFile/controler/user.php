@@ -19,3 +19,8 @@ function login($loginRequest)
          $userPsw = $loginRequest['password'];
      }
 }
+
+function displaySignIn()
+{
+    require 'view/signIn.php';
+}

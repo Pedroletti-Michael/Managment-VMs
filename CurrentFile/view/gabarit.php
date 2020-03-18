@@ -28,7 +28,7 @@
     <input class="form-control form-control-light" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3 px-lg-5 text-right">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#" style="color: white">Sign out</a>
+            <a class="nav-link" href="index.php?action=signIn" style="color: white">Sign In</a>
         </li>
     </ul>
 </nav>
