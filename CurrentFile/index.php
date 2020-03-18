@@ -22,6 +22,12 @@ if(isset($_GET['action'])){
         case 'form':
             displayForm();
             break;
+        case 'RequestLogin':
+            login($_POST);
+            break;
+        case 'RequestVM':
+            formVM($_POST); 
+            break;
         default:
             displayAccueil();
     }
