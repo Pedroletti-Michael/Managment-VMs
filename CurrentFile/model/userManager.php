@@ -13,13 +13,18 @@
 * If this two field are correct, the function return true, else she return false
 */
 function adVerification($userLogin, $userPwd){
-  return true;
+  $ldap_dn = "uid=" . $userLogin . ",dc=example,dc=com";
+	$ldap_password = $userPwd;
 
-  //TODO
-  // foreach user in ad
-  // if $userlogin == userAD && userADPwd == $userPwd
-  // return true
-  // else return false
+	$ldap_con = ldap_connect("ldap.heig-vd.ch", 389);
+	ldap_set_option($ldap_con, LDAP_OPT_PROTOCOL_VERSION, 3);
+
+	if(@ldap_bind($ldap_con,$ldap_dn,$ldap_password)){
+    return true;
+  }
+	else{
+    return false;
+  }
 }
 
 /**
