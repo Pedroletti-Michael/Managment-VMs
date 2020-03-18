@@ -2,7 +2,7 @@
 /**
 * Authors : Théo Cook and Thomas Huguet
 * CreationFile date : 17.03.2020
-* ModifFile date : 17.03.2020
+* ModifFile date : 18.03.2020
 **/
 session_start();
 
@@ -21,6 +21,9 @@ if(isset($_GET['action'])){
             break;
         case 'form':
             displayForm();
+            break;
+        case 'login':
+            displaySignIn();
             break;
         case 'RequestLogin':
             login($_POST);
