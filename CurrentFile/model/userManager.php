@@ -33,7 +33,7 @@ function adVerification($userLogin, $userPwd){
 */
 function getUserFromDB(){
   //TODO get all users form db stock them in table and return them
-  return $users
+  return $users;
 }
 
 /**

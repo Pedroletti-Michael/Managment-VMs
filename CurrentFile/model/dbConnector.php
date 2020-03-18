@@ -1,4 +1,10 @@
 <?php
+/**
+* Author : Pedroletti Michael
+* CreationFile date : 17.03.2020
+* ModificationFile date : 18.03.2020
+* Description : File used to create a connection with the db and send query
+*/
 
 /**
 * Function used to open connexion with an DB.
