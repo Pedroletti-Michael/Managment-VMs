@@ -27,13 +27,13 @@ function login($loginRequest)
          }
          else
          {
-             $_GET['action'] = "login";
+             $_GET['action'] = "signIn";
              require "view/signIn.php";
          }
      }
      else
      {
-         $_GET['action'] = "login";
+         $_GET['action'] = "signIn";
          require "view/signIn.php";
      }
 }
