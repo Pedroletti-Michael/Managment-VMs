@@ -15,8 +15,26 @@ function login($loginRequest)
 {
   if (isset($loginRequest['login']) && isset($loginRequest['password']))
      {
-         $userLog= $loginRequest['login'];
-         $userPsw = $loginRequest['password'];
+         $userLogin= $loginRequest['login'];
+         $userPwd = $loginRequest['password'];
+
+         require_once "model/userManager.php";
+
+         if (userLogin($userLogin, $userPwd))
+         {
+             $_GET['action'] = "home";
+             require "view/home.php";
+         }
+         else
+         {
+             $_GET['action'] = "login";
+             require "view/signIn.php";
+         }
+     }
+     else
+     {
+         $_GET['action'] = "login";
+         require "view/signIn.php";
      }
 }
 

@@ -20,5 +20,16 @@ function formVM($formVMRequest)
           $_GET['action'] = "form";
           require "view/form.php";
       }
+
+      $vmName = $formVMRequest['inputVMName'];
+      $requestName = $formVMRequest['inputResquesterName'];
+      $numberCPU = $formVMRequest['inputCPU'];
+      $tmName = $formVMRequest['inputTMName'];
+      $numberRAM = $formVMRequest['inputRAM'];
+      $raName = $formVMRequest['inputRAName'];
+      $memory = $formVMRequest['inputMemory'];
+      $department = $formVMRequest['disFormControlSelect'];
+      $OS = $formVMRequest['osFormControlSelect'];
+      $comissionDate = $formVMRequest['$comissionDate']
   }
 }
