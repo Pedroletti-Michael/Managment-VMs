@@ -20,16 +20,27 @@ function formVM($formVMRequest)
           $_GET['action'] = "form";
           require "view/form.php";
       }
-
-      $vmName = $formVMRequest['inputVMName'];
-      $requestName = $formVMRequest['inputResquesterName'];
-      $numberCPU = $formVMRequest['inputCPU'];
-      $tmName = $formVMRequest['inputTMName'];
-      $numberRAM = $formVMRequest['inputRAM'];
-      $raName = $formVMRequest['inputRAName'];
-      $memory = $formVMRequest['inputMemory'];
-      $department = $formVMRequest['disFormControlSelect'];
-      $OS = $formVMRequest['osFormControlSelect'];
-      $comissionDate = $formVMRequest['$comissionDate'];
   }
+
+        $vmName = $formVMRequest['inputVMName'];
+        $numberCPU = $formVMRequest['inputCPU'];
+        $numberRAM = $formVMRequest['inputRAM'];
+        $memory = $formVMRequest['inputMemory'];
+        $OS = $formVMRequest['osFormControlSelect'];
+        $network = $formVMRequest['networkFormControlSelect'];
+
+        $requestName = $formVMRequest['inputResquesterName'];
+        $tmName = $formVMRequest['inputTMName'];
+        $raName = $formVMRequest['inputRAName'];
+        $department = $formVMRequest['disFormControlSelect'];
+        $comissionDate = $formVMRequest['comissionDate'];
+        $endDate = $formVMRequest['inputEndDate'];
+
+        $usingVM = $formVMRequest['usingFormControlSelect'];
+        $description = $formVMRequest['objective'];
+        $snapshot = $formVMRequest['snapshotsFormControlSelect'];
+        $backup = $formVMRequest['backupFormControlSelect'];
+        $domaineEinet = $formVMRequest['domainEINET'];
+        $security = $formVMRequest['securityFormControlSelect'];
+        $technicalInformations = $formVMRequest['ti'];
 }
