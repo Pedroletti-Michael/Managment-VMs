@@ -14,6 +14,11 @@ ob_start();
     </head>
     <body>
     <div class="container-fluid pt-3">
+      <form method="POST" action="..\index?action=RequestLogin" >
+        <input type="text" name="login">
+        <input type="password" name="password">
+        <input type="submit">
+      </form>
     </div>
 
 <?php

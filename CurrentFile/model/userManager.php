@@ -16,10 +16,12 @@ function adVerification($userLogin, $userPwd){
   $ldap_dn = "uid=" . $userLogin . ",dc=example,dc=com";
 	$ldap_password = $userPwd;
 
-	$ldap_con = ldap_connect("ldap.heig-vd.ch", 389);
-	ldap_set_option($ldap_con, LDAP_OPT_PROTOCOL_VERSION, 3);
+	$ldap_con = ldap_connect("http://ldap.heig-vd.ch/", 636)
+    or die ("Connexion failed");
 
-	if(@ldap_bind($ldap_con,$ldap_dn,$ldap_password)){
+  ldap_set_option($ldap_con, LDAP_OPT_PROTOCOL_VERSION, 3);
+
+	if(ldap_bind($ldap_con,$ldap_dn,$ldap_password)){
     return true;
   }
 	else{
