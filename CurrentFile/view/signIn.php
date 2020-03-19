@@ -27,13 +27,13 @@ ob_start();
                             <div class="input-group-prepend">
                                 <div class="input-group-text">einet \</div>
                             </div>
-                            <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="login AAI">
+                            <input type="text" class="form-control" id="userLogin" placeholder="login AAI">
                         </div>
                     </div>
                     <div class="d-inline-block w-100">
                         <label for="inputPassword" class="font-weight-bold">Mot de passe</label>
                         <div class="input-group mb-2 mr-sm-2">
-                            <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                            <input type="password" class="form-control" id="userPassword" placeholder="Password">
                             <div class="input-group-prepend">
                                 <button type="button" class="input-group btn btn-success disabled rounded-right">
                                     --->

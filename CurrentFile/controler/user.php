@@ -13,10 +13,10 @@ function displayAccueil()
 
 function login($loginRequest)
 {
-  if (isset($loginRequest['login']) && isset($loginRequest['password']))
+  if (isset($loginRequest['userLogin']) && isset($loginRequest['userPassword']))
      {
-         $userLogin= $loginRequest['login'];
-         $userPwd = $loginRequest['password'];
+         $userLogin= $loginRequest['userLogin'];
+         $userPwd = $loginRequest['userPassword'];
 
          require_once "model/userManager.php";
 
