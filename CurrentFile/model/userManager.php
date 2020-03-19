@@ -13,10 +13,35 @@
 * If this two field are correct, the function return true, else she return false
 */
 function adVerification($userLogin, $userPwd){
-  $ldap_dn = "uid=" . $userLogin . ",dc=example,dc=com";
+
+  $ldapconfig['host'] = 'dceinet1.einet.ad.eivd.ch';//CHANGE THIS TO THE CORRECT LDAP SERVER
+  $ldapconfig['port'] = '389';
+  $ldapconfig['basedn'] = 'dc=einet,dc=ad,dc=eivd,dc=ch';//CHANGE THIS TO THE CORRECT BASE DN
+  $ldapconfig['usersdn'] = 'cn=einetjoin';//CHANGE THIS TO THE CORRECT USER OU/CN
+  $ds=ldap_connect($ldapconfig['host'], $ldapconfig['port']);
+
+  ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+  ldap_set_option($ds, LDAP_OPT_REFERRALS, 0);
+  ldap_set_option($ds, LDAP_OPT_NETWORK_TIMEOUT, 10);
+
+  $dn="uid=".$userLogin.",".$ldapconfig['usersdn'].",".$ldapconfig['basedn'];
+  if(isset($_POST['username'])){
+    if ($bind=ldap_bind($ds, $dn, $userPwd))
+      echo("Login correct");//REPLACE THIS WITH THE CORRECT FUNCTION LIKE A REDIRECT;
+      return true;
+    }
+    else {
+      echo "Login Failed: Please check your username or password";
+      return false
+    }
+  }
+
+
+/**
+  $ldap_dn = "uid=" . $userLogin . ", dc=einet, dc=ad, dc=eivd, dc=ch";
 	$ldap_password = $userPwd;
 
-	$ldap_con = ldap_connect("http://ldap.heig-vd.ch/", 636)
+	$ldap_con = ldap_connect("dceinet1.einet.ad.eivd.ch", 389)
     or die ("Connexion failed");
 
   ldap_set_option($ldap_con, LDAP_OPT_PROTOCOL_VERSION, 3);
@@ -26,7 +51,7 @@ function adVerification($userLogin, $userPwd){
   }
 	else{
     return false;
-  }
+  }*/
 }
 
 /**
