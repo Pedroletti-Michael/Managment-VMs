@@ -19,7 +19,7 @@ ob_start();
                 <img src="../images/logo-heig-vd.png" style="max-height: 230px">
             </div>
             <div class="float-right pl-3">
-                <form>
+                <form method="post" action="RequestLogin" >
                     <h3 class="text-center border border-danger border-left-0 border-right-0 border-top-0 pb-2 pt-1">Se connecter</h3>
                     <div class="d-inline-block w-100 pt-2 mb-2">
                         <label for="inputLogin" class="font-weight-bold">Nom d'utilisateur</label>
@@ -35,7 +35,7 @@ ob_start();
                         <div class="input-group mb-2 mr-sm-2">
                             <input type="password" class="form-control" id="userPassword" placeholder="Password">
                             <div class="input-group-prepend">
-                                <button type="button" class="input-group btn btn-success disabled rounded-right">
+                                <button type="submit" class="input-group btn btn-success disabled rounded-right">
                                     --->
                             </div>
                         </div>
