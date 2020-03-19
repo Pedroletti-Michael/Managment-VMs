@@ -9,7 +9,6 @@
 /**
 * Function used to open connexion with an DB.
 */
-// TODO Check all var field with the conf of the DB and complete empty field.
 function openDBConnexion (){
   $tempConnexion = null;
   require 'model/encryption.php';

@@ -14,44 +14,24 @@
 */
 function adVerification($userLogin, $userPwd){
 
-  $ldapconfig['host'] = 'dceinet1.einet.ad.eivd.ch';//CHANGE THIS TO THE CORRECT LDAP SERVER
-  $ldapconfig['port'] = '389';
-  $ldapconfig['basedn'] = 'dc=einet,dc=ad,dc=eivd,dc=ch';//CHANGE THIS TO THE CORRECT BASE DN
-  $ldapconfig['usersdn'] = 'cn=einetjoin';//CHANGE THIS TO THE CORRECT USER OU/CN
-  $ds=ldap_connect($ldapconfig['host'], $ldapconfig['port']);
+  putenv('LDAPTLS_REQCERT=never');
+​
+  $uri = 'ldaps://einet.ad.eivd.ch:636';
+  $user = 'cn=einet,ou=SCCM,ou=Admin-Svcs,dc=einet,dc=ad,dc=eivd,dc=ch';
+  $password = 'HLp+SUp*';
 
-  ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
-  ldap_set_option($ds, LDAP_OPT_REFERRALS, 0);
-  ldap_set_option($ds, LDAP_OPT_NETWORK_TIMEOUT, 10);
+  $ad = ldap_connect($uri);// or die('Could not connect to LDAP server.');
 
-  $dn="uid=".$userLogin.",".$ldapconfig['usersdn'].",".$ldapconfig['basedn'];
-  if(isset($_POST['username'])){
-    if ($bind=ldap_bind($ds, $dn, $userPwd))
-      echo("Login correct");//REPLACE THIS WITH THE CORRECT FUNCTION LIKE A REDIRECT;
-      return true;
-    }
-    else {
-      echo "Login Failed: Please check your username or password";
-      return false
-    }
-  }
+  $result = @ldap_bind($ad, $user, $password);// or die('Could not bind to AD. Check your credentials.');
 
-
-/**
-  $ldap_dn = "uid=" . $userLogin . ", dc=einet, dc=ad, dc=eivd, dc=ch";
-	$ldap_password = $userPwd;
-
-	$ldap_con = ldap_connect("dceinet1.einet.ad.eivd.ch", 389)
-    or die ("Connexion failed");
-
-  ldap_set_option($ldap_con, LDAP_OPT_PROTOCOL_VERSION, 3);
-
-	if(ldap_bind($ldap_con,$ldap_dn,$ldap_password)){
+  //ldap_unbind($ad);
+  ​
+  if ($result){
     return true;
   }
-	else{
-    return false;
-  }*/
+  else{
+    return true;
+  }
 }
 
 /**
@@ -85,20 +65,25 @@ function dbVerification($userLogin){
 * connect or not.
 * If all things pass -> function return true
 * Else -> return false
+
+
+
+if(!dbVerification()){
+  if(addUserInDB()){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+else{
+  return true;
+}
+
 */
 function userLogin($userLogin, $userPwd){
-  if(adVerification){
-    if(!dbVerification){
-      if(addUserInDB()){
-        return true;
-      }
-      else{
-        return false;
-      }
-    }
-    else{
-      return true;
-    }
+  if(adVerification()){
+    return true;
   }
   else{
     return false;

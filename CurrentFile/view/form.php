@@ -15,7 +15,7 @@ ob_start();
 <body>
 <div class="container-fluid pt-3">
     <h3 class="text-center border border-danger border-left-0 border-right-0 border-top-0 pb-3">Formulaire de demande de VM</h3>
-    <form method="post" action="RequestVM" class="mb-4">
+    <form method="post" action="\?action=RequestVM" class="mb-4">
         <div class="d-inline-block w-100">
             <!--Name of the VM-->
             <div class="form-group w-50 float-left pr-4">
