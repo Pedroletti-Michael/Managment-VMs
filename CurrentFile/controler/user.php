@@ -8,7 +8,7 @@
 
 function displayAccueil()
 {
-    require 'view/accueil.php';
+    require 'view/home.php';
 }
 
 function login($loginRequest)
