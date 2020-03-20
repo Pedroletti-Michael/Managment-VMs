@@ -13,6 +13,31 @@ function displayForm()
 
 function formVM($formVMRequest)
 {
+  if(isset($formVMRequest['Academique']))
+  {
+    $formVMRequest['usingVM'] = $formVMRequest['Academique'];
+
+    unset($formVMRequest['RaD']);
+    unset($formVMRequest['Operationnel']);
+    unset($formVMRequest['Academique']);
+  }
+  elseif (isset($formVMRequest['RaD']))
+  {
+    $formVMRequest['usingVM'] = $formVMRequest['RaD'];
+
+    unset($formVMRequest['RaD']);
+    unset($formVMRequest['Operationnel']);
+    unset($formVMRequest['Academique']);
+  }
+  elseif (isset($formVMRequest['Operationnel']))
+  {
+    $formVMRequest['usingVM'] = $formVMRequest['Operationnel'];
+
+    unset($formVMRequest['RaD']);
+    unset($formVMRequest['Operationnel']);
+    unset($formVMRequest['Academique']);
+  }
+
   foreach ($formVMRequest as $field)
   {
       if(!isset($formVMRequest[$field]))
@@ -22,25 +47,17 @@ function formVM($formVMRequest)
       }
   }
 
-        $vmName = $formVMRequest['inputVMName'];
-        $numberCPU = $formVMRequest['inputCPU'];
-        $numberRAM = $formVMRequest['inputRAM'];
-        $memory = $formVMRequest['inputMemory'];
-        $OS = $formVMRequest['osFormControlSelect'];
-        $network = $formVMRequest['networkFormControlSelect'];
+  require_once 'model/vmManager.php';
 
-        $requestName = $formVMRequest['inputResquesterName'];
-        $tmName = $formVMRequest['inputTMName'];
-        $raName = $formVMRequest['inputRAName'];
-        $department = $formVMRequest['disFormControlSelect'];
-        $comissionDate = $formVMRequest['comissionDate'];
-        $endDate = $formVMRequest['inputEndDate'];
+  if(addVMToDB($formVMRequest))
+  {
+    $_GET['action'] = "home";
+    require "view/home.php";
+  }
+  else
+  {
+    $_GET['action'] = "form";
+    require "view/form.php";
+  }
 
-        $usingVM = $formVMRequest['usingFormControlSelect'];
-        $description = $formVMRequest['objective'];
-        $snapshot = $formVMRequest['snapshotsFormControlSelect'];
-        $backup = $formVMRequest['backupFormControlSelect'];
-        $domaineEinet = $formVMRequest['domainEINET'];
-        $security = $formVMRequest['securityFormControlSelect'];
-        $technicalInformations = $formVMRequest['ti'];
 }

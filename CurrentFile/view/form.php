@@ -52,7 +52,7 @@ ob_start();
                 <!--Name of the responsible administrator-->
                 <div class="form-group w-50 float-right pl-4">
                     <label for="inputRAName" class="font-weight-bold">Responsable administrateur</label>
-                    <input type="raName" class="form-control form form" id="inputRAName" aria-describedby="raNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" required>
+                    <input type="raName" class="form-control form form" id="inputAMName" aria-describedby="raNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" required>
                     <small id="raNameHelp" class="form-text text-muted">Direction, Doyen , Directeur d'institut oou Chef de service</small>
                 </div>
             </div>
