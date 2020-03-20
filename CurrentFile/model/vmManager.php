@@ -37,7 +37,7 @@ function addVMToDB($formVMRequest)
  $security = $formVMRequest['securityFormControlSelect'];
  $technicalInformations = $formVMRequest['ti'];
 
-  $addVMQuery = 'INSERT INTO 'vm' (name, cluster, dateStart, dateEnd, description, usageType, cpu, ram, disk, network) VALUES ('.$vmName.','.$department.','.$comissionDate.','.$endDate.','.$description.','.$usingVM.','.$numberCPU.','.$numberRAM.','.$sizeSSD.','.$network.')';
+  $addVMQuery = "INSERT INTO 'vm' (name, cluster, dateStart, dateEnd, description, usageType, cpu, ram, disk, network) VALUES ('.$vmName.','.$department.','.$comissionDate.','.$endDate.','.$description.','.$usingVM.','.$numberCPU.','.$numberRAM.','.$sizeSSD.','.$network.')";
 
   executeQueryInsert($addVMQuery);
 
