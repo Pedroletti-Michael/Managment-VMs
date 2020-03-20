@@ -14,8 +14,6 @@
 */
 function adVerification($userLogin, $userPwd){
   $uri = 'ldaps://einet.ad.eivd.ch:636';
-  //$user = 'cn=EinetJoin,ou=SCCM,ou=Admin-Svcs,dc=einet,dc=ad,dc=eivd,dc=ch';
-  $user = 'uid=michael.pedrolet,dc=einet,dc=ad,dc=eivd,dc=ch';
   $password = $userPwd;
 
   $ad = ldap_connect($uri)
@@ -23,7 +21,7 @@ function adVerification($userLogin, $userPwd){
 
   ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
 
-  $result = @ldap_bind($ad, $user, $password)
+  $result = @ldap_bind($ad, $userLogin . '@einet.ad.eivd.ch', $password)
             or die('Could not bind to AD. Check your credentials.');
 
   ldap_unbind($ad);
@@ -67,21 +65,6 @@ function dbVerification($userLogin){
 * connect or not.
 * If all things pass -> function return true
 * Else -> return false
-
-
-
-if(!dbVerification()){
-  if(addUserInDB()){
-    return true;
-  }
-  else{
-    return false;
-  }
-}
-else{
-  return true;
-}
-
 */
 function userLogin($userLogin, $userPwd){
   if(adVerification($userLogin, $userPwd)){

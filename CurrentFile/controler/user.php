@@ -23,7 +23,7 @@ function login($loginRequest)
          if (userLogin($userLogin, $userPwd))
          {
              $_GET['action'] = "home";
-             require "view/accueil.php";
+             require "view/home.php";
          }
          else
          {
