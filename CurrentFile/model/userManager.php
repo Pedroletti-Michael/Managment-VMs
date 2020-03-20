@@ -13,24 +13,26 @@
 * If this two field are correct, the function return true, else she return false
 */
 function adVerification($userLogin, $userPwd){
-
-  putenv('LDAPTLS_REQCERT=never');
-​
   $uri = 'ldaps://einet.ad.eivd.ch:636';
-  $user = 'cn=einet,ou=SCCM,ou=Admin-Svcs,dc=einet,dc=ad,dc=eivd,dc=ch';
-  $password = 'HLp+SUp*';
+  //$user = 'cn=EinetJoin,ou=SCCM,ou=Admin-Svcs,dc=einet,dc=ad,dc=eivd,dc=ch';
+  $user = 'uid=michael.pedrolet,dc=einet,dc=ad,dc=eivd,dc=ch';
+  $password = $userPwd;
 
-  $ad = ldap_connect($uri);// or die('Could not connect to LDAP server.');
+  $ad = ldap_connect($uri)
+        or die('Could not connect to LDAP server.');
 
-  $result = @ldap_bind($ad, $user, $password);// or die('Could not bind to AD. Check your credentials.');
+  ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
 
-  //ldap_unbind($ad);
-  ​
-  if ($result){
+  $result = @ldap_bind($ad, $user, $password)
+            or die('Could not bind to AD. Check your credentials.');
+
+  ldap_unbind($ad);
+
+  if($result){
     return true;
   }
   else{
-    return true;
+    return false;
   }
 }
 
@@ -82,7 +84,7 @@ else{
 
 */
 function userLogin($userLogin, $userPwd){
-  if(adVerification()){
+  if(adVerification($userLogin, $userPwd)){
     return true;
   }
   else{
