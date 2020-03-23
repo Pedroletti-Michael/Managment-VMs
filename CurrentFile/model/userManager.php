@@ -2,7 +2,7 @@
 /**
 * Author : Pedroletti Michael
 * CreationFile date : 17.03.2020
-* ModificationFile date : 18.03.2020
+* ModificationFile date : 23.03.2020
 * Description : This file contains things about user, like the verification of
 * the connexion with the server.
 */
@@ -14,33 +14,34 @@
 */
 function adVerification($userLogin, $userPwd){
   $uri = 'ldaps://einet.ad.eivd.ch:636';
+  $baseDN = "dc=einet,dc=ad,dc=eivd,dc=ch";
   $password = $userPwd;
+  $data = null;
 
   $ad = ldap_connect($uri)
         or die('Could not connect to LDAP server.');
 
-  ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+  ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
+  ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
 
   $result = @ldap_bind($ad, $userLogin . '@einet.ad.eivd.ch', $password)
             or die('Could not bind to AD. Check your credentials.');
 
-  ldap_unbind($ad);
-
   if($result){
-    return true;
+    $filter = "samaccountname=" . $userLogin;
+    $justThese = array('sn', 'givenname', 'mail');
+
+    $read = ldap_search($ad, $baseDN, $filter, $justThese)
+            or die('ptdr ça marche');
+    $data = ldap_get_entries($ad, $read);
+
+    ldap_unbind($ad);
+    return $data;
   }
   else{
-    return false;
+    ldap_unbind($ad);
+    return $data;
   }
-}
-
-/**
-* Function to return all users from db.
-* Return all users from db.
-*/
-function getUserFromDB(){
-  //TODO get all users form db stock them in table and return them
-  return $users;
 }
 
 /**
@@ -48,14 +49,32 @@ function getUserFromDB(){
 * If the user exist -> function return true
 * Else -> function return false
 */
-function dbVerification($userLogin){
-  return true;
+function dbVerification($userMail){
+  require 'model/dbConnector.php';
+  $query = "SELECT `mail` FROM `user`";
 
-  //TODO
-  // foreach user in db
-  // if $userLogin == userDB
-  // return true
-  // else return false
+  $queryResult = executeQuerySelect($query);
+
+  foreach ($mail as $queryResult) {
+    if($mail == $userMail){
+      return true;
+    }
+  }
+
+  return false;
+}
+
+/**
+* Function used to add an user into data base
+* return the query result
+*/
+function adUserToDB($lastname, $firstname, $mail){
+  //echo $lastname . " " . $firstname . " " . $mail;
+
+  require 'model/dbConnector.php';
+  $query = "INSERT INTO `user` `lastname`, `firstname`, `mail` VALUES " . $lastname . "," . $firstname . ", " . $mail;
+
+  return executeQueryInsert($query);
 }
 
 /**
@@ -67,8 +86,19 @@ function dbVerification($userLogin){
 * Else -> return false
 */
 function userLogin($userLogin, $userPwd){
-  if(adVerification($userLogin, $userPwd)){
-    return true;
+  $result = adVerification($userLogin, $userPwd);
+  if($result != null){
+    if(!dbVerification($result['mail'])){
+        if(adUserToDB($result['sn'], $result['givenname'], $result['mail'])){
+          return true;
+        }
+        else{
+          return false;
+        }
+    }
+    else{
+      return true;
+    }
   }
   else{
     return false;
