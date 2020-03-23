@@ -38,6 +38,14 @@ function login($loginRequest)
      }
 }
 
+function signOut()
+{
+    $_SESSION = array();
+    session_destroy();
+    $_GET["action"] = "home";
+    displayHome();
+}
+
 function displaySignIn()
 {
     require 'view/signIn.php';
