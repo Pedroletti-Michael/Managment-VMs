@@ -28,6 +28,9 @@ if(isset($_GET['action'])){
         case 'signIn':
             displaySignIn();
             break;
+        case 'signOut':
+            signOut();
+            break;
         case 'RequestLogin':
             login($_POST);
             break;
@@ -56,8 +59,8 @@ if(isset($_GET['action'])){
             displayUser();
             break;
         default:
-            displayAccueil();
+            displayHome();
     }
 }else{
-    displayAccueil();
+    displayHome();
 }

@@ -41,10 +41,10 @@
                 </h6>
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <?php if ($_GET['action'] == "accueil"): ?>
-                        <a class="nav-link active" href="index.php?action=accueil">
+                        <?php if ($_GET['action'] == "home"): ?>
+                        <a class="nav-link active" href="index.php?action=home">
                             <?php else : ?>
-                            <a class="nav-link" href="index.php?action=accueil">
+                            <a class="nav-link" href="index.php?action=home">
                                 <?php endif; ?>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                                 Accueil
