@@ -6,9 +6,10 @@
 * Description : Contains all functions related to the user
 **/
 
-function displayAccueil()
+function displayHome()
 {
-    require 'view/home.php';
+    $_GET['action'] = "home";
+    require "view/home.php";
 }
 
 function login($loginRequest)

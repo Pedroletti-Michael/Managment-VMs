@@ -59,8 +59,8 @@ if(isset($_GET['action'])){
             displayUser();
             break;
         default:
-            displayAccueil();
+            displayHome();
     }
 }else{
-    displayAccueil();
+    displayHome();
 }
