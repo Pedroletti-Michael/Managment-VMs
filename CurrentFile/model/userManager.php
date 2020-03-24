@@ -6,6 +6,7 @@
 * Description : This file contains things about user, like the verification of
 * the connexion with the server.
 */
+require 'model/dbConnector.php';
 
 /**
 * This function is used to know if the userLogin exist and if the password of
@@ -17,7 +18,7 @@ function adVerification($userLogin, $userPwd){
   $baseDN = "dc=einet,dc=ad,dc=eivd,dc=ch";
   $password = $userPwd;
   $data = null;
-
+/*
   $ad = ldap_connect($uri)
         or die('Could not connect to LDAP server.');
 
@@ -25,22 +26,27 @@ function adVerification($userLogin, $userPwd){
   ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
 
   $result = @ldap_bind($ad, $userLogin . '@einet.ad.eivd.ch', $password)
-            or die('Could not bind to AD. Check your credentials.');
+            or die('Could not bind to AD. Check your credentials.');*/
+  $result = true;
 
   if($result){
+    /*
     $filter = "samaccountname=" . $userLogin;
     $justThese = array('sn', 'givenname', 'mail');
 
     $read = ldap_search($ad, $baseDN, $filter, $justThese)
-            or die('ptdr ça marche');
+            or die('research does not work !');
     $data = ldap_get_entries($ad, $read);
+            or die('research does not work 2 !');
 
     ldap_unbind($ad);
-    return $data;
+    return $data;*/
+    //ldap_unbind($ad);
+    return true;
   }
   else{
     ldap_unbind($ad);
-    return $data;
+    return false;
   }
 }
 
@@ -50,13 +56,13 @@ function adVerification($userLogin, $userPwd){
 * Else -> function return false
 */
 function dbVerification($userMail){
-  require 'model/dbConnector.php';
-  $query = "SELECT `mail` FROM `user`";
+  $query = "SELECT mail FROM user";
 
-  $queryResult = executeQuerySelect($query);
+  $queryResult = executeQuery($query);
 
-  foreach ($mail as $queryResult) {
-    if($mail == $userMail){
+  // À vérifier que ça fonctionne
+  foreach($queryResult as $user){
+    if ($user['mail'] == $userMail){
       return true;
     }
   }
@@ -69,12 +75,11 @@ function dbVerification($userMail){
 * return the query result
 */
 function adUserToDB($lastname, $firstname, $mail){
-  //echo $lastname . " " . $firstname . " " . $mail;
+  $strSep = '\'';
 
-  require 'model/dbConnector.php';
-  $query = "INSERT INTO `user` `lastname`, `firstname`, `mail` VALUES " . $lastname . "," . $firstname . ", " . $mail;
+  $query = "INSERT INTO user (lastname, firstname, mail) VALUES(".$strSep.$lastname.$strSep.",".$strSep.$firstname.$strSep.",".$strSep.$mail.$strSep.")";
 
-  return executeQueryInsert($query);
+  return executeQuery($query);
 }
 
 /**
@@ -87,14 +92,16 @@ function adUserToDB($lastname, $firstname, $mail){
 */
 function userLogin($userLogin, $userPwd){
   $result = adVerification($userLogin, $userPwd);
-  if($result != null){
-    if(!dbVerification($result['mail'])){
-        if(adUserToDB($result['sn'], $result['givenname'], $result['mail'])){
+  if($result){
+    if(!dbVerification("michael.pedroletti@heig-vd.ch")){
+      return false;/*
+        if(adUserToDB("Pedroletti", "Michael", "michael.pedroletti@heig-vd.ch")){
           return true;
         }
         else{
           return false;
-        }
+        }*/
+
     }
     else{
       return true;
