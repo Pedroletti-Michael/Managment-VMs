@@ -23,8 +23,7 @@ function openDBConnexion(){
   $dsn = $sqlDriver . ':host=' . $hostname . ';dbname=' . $dbName . ';port=' . $port . ';charset=' . $charset;
 
   try{
-    $tempDbConnexion = new PDO($dsn, $userName, $userPwd);$
-    echo 'Salem, ta réussi a te co';
+    $tempDbConnexion = new PDO($dsn, $userName, $userPwd);
   }
   catch (PDOException $exception){
     echo 'Connection failed: ' . $exception->getMessage() . ' ' . $userPwd;
@@ -48,6 +47,43 @@ function executeQuery($query){
     $queryResult = $statement->fetchAll();
   }
 
+  $dbConnexion = null;
+  return $queryResult;
+}
+
+
+/**
+* Function used to execute a selet query.
+* $query = query needed
+* return = result of the query
+*/
+function executeQuerySelect($query){
+  $queryResult = null;
+
+  $dbConnexion = openDBConnexion();
+  if ($$dbConnexion != null){
+    $statement = $dbConnexion->prepare($query);
+    $statement->execute();
+    $queryResult = $statement->fetchAll();
+  }
+
+  $dbConnexion = null;
+  return $queryResult;
+}
+
+/**
+* Function ued to execute a insert query
+* $query = query needed
+* return = result of the query
+*/
+function executeQueryInsert($query){
+  $queryResult = null;
+
+  $dbConnexion = openDBConnexion();
+  if($dbConnexion != null){
+    $statement = $dbConnexion->prepare($query);
+    $queryResult = $statement->execute();
+  }
   $dbConnexion = null;
   return $queryResult;
 }

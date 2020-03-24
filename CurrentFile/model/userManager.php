@@ -45,7 +45,7 @@ function adVerification($userLogin, $userPwd){
     return true;
   }
   else{
-    ldap_unbind($ad);
+    //ldap_unbind($ad);
     return false;
   }
 }
@@ -58,13 +58,10 @@ function adVerification($userLogin, $userPwd){
 function dbVerification($userMail){
   $query = "SELECT mail FROM user";
 
-  $queryResult = executeQuery($query);
+  $queryResult = executeQuerySelect($query); //array('banane', 'orange', 'mandarine');
 
-  // À vérifier que ça fonctionne
-  foreach($queryResult as $user){
-    if ($user['mail'] == $userMail){
-      return true;
-    }
+  foreach ($queryResult as $value) {
+    echo $value['mail'];
   }
 
   return false;
