@@ -68,10 +68,8 @@ ob_start();
                 <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service</label>
                 <select class="form-control" id="disFormControlSelect" required>
                     <?php
-                    $i = 0;
                     foreach ($entityNames as $value) {
                         echo "<option>".$value['entityName']."</option>";
-                        $i ++;
                     }
                     ?>
                 </select>
