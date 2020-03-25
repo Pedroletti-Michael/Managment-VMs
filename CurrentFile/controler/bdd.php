@@ -14,7 +14,7 @@ function displayBackup(){
     require 'view/backup.php';
 }
 
-function displayEntity(){
+function displayBDDEntity(){
     require 'view/entity.php';
 }
 

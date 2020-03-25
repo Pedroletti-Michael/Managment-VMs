@@ -67,27 +67,11 @@ ob_start();
             <div class="form-group w-50 float-right pl-4">
                 <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service</label>
                 <select class="form-control" id="disFormControlSelect" required>
-                    <option>S-ISI</option>
-                    <option>SIPA</option>
-                    <option>COMEM+</option>
-                    <option>EC+G</option>
-                    <option>FORMATION CONTINUE</option>
-                    <option>HEG</option>
-                    <option>TIC</option>
-                    <option>TIN</option>
-                    <option>HE&E</option>
-                    <option>COMATEC</option>
-                    <option>INSIT</option>
-                    <option>IAI</option>
-                    <option>IESE</option>
-                    <option>IDE</option>
-                    <option>IGT</option>
-                    <option>IICT</option>
-                    <option>MECATRONIX</option>
-                    <option>MEI</option>
-                    <option>MEI</option>
-                    <option>REDS</option>
-                    <option>SWI</option>
+                    <?php
+                    foreach ($entityNames as $value) {
+                        echo "<option>'.$value.'</option>";
+                    }
+                    ?>
                 </select>
             </div>
         </div>

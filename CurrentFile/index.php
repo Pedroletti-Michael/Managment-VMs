@@ -22,6 +22,9 @@ if(isset($_GET['action'])){
         case 'form':
             displayForm();
             break;
+        case 'formManagement':
+            displayFormManagement();
+            break;
         case 'allVM':
             displayAllVM();
             break;
@@ -44,7 +47,7 @@ if(isset($_GET['action'])){
             displayBackup();
             break;
         case 'entity':
-            displayEntity();
+            displayBDDEntity();
             break;
         case 'os':
             displayOS();
