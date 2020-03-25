@@ -11,7 +11,7 @@ require 'model/encryption.php';
 * Function used to open connexion with an DB.
 */
 function openDBConnexion(){
-  $tempConnexion = null;
+  $tempDbConnexion = null;
 
   $sqlDriver = 'mysql';
   $hostname = 'eips19.heig-vd.ch'; // Field to complete
@@ -23,12 +23,12 @@ function openDBConnexion(){
   $dsn = $sqlDriver . ':host=' . $hostname . ';dbname=' . $dbName . ';port=' . $port . ';charset=' . $charset;
 
   try{
-    $tempDbConnexion = new PDO($dsn, $userName, $userPwd);
+      $tempDbConnexion = new PDO($dsn, $userName, $userPwd);
   }
   catch (PDOException $exception){
     echo 'Connection failed: ' . $exception->getMessage() . ' ' . $userPwd;
   }
-  return $tempConnexion;
+  return $tempDbConnexion;
 }
 
 /**
@@ -61,7 +61,7 @@ function executeQuerySelect($query){
   $queryResult = null;
 
   $dbConnexion = openDBConnexion();
-  if ($$dbConnexion != null){
+  if ($dbConnexion != null){
     $statement = $dbConnexion->prepare($query);
     $statement->execute();
     $queryResult = $statement->fetchAll();

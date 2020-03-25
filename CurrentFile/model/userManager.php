@@ -56,7 +56,7 @@ function adVerification($userLogin, $userPwd){
 * Else -> function return false
 */
 function dbVerification($userMail){
-  $query = "SELECT mail FROM user";
+  $query = 'SELECT mail FROM user';
 
   $queryResult = executeQuerySelect($query); //array('banane', 'orange', 'mandarine');
 
