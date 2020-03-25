@@ -29,8 +29,8 @@ function adVerification($userLogin, $userPwd){
             or die('Could not bind to AD. Check your credentials.');
 
   if($result){
-    $filter = "(&(objectClass=user)(samaccountname=". $userLogin ."))";
-    $justThese = array('sn', 'givenname', 'mail');
+    $filter = "(&(objectClass=user)(sAMAccountName=". $userLogin ."))";
+    $justThese = array('sn', 'givenName', 'mail');
 
     $read = ldap_search($ad, $baseDN, $filter, $justThese)
             or die('research does not work !');
