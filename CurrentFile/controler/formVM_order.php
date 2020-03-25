@@ -8,6 +8,9 @@
 
 function displayForm()
 {
+    require_once 'model/displayManager.php';
+    $entityNames = displayEntity();
+    $_GET['action'] = "form";
     require 'view/form.php';
 }
 
