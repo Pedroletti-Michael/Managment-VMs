@@ -14,37 +14,42 @@ require 'model/dbConnector.php';
 * If this two field are correct, the function return true, else she return false
 */
 function adVerification($userLogin, $userPwd){
-  $uri = 'ldaps://einet.ad.eivd.ch:636';
-  $baseDN = "ou=SI,ou=Personnel,dc=einet,dc=ad,dc=eivd,dc=ch";
-  $password = $userPwd;
-  $data = null;
+    putenv('LDAPTLS_REQCERT=never');
+    $result = null;
 
-  $ad = ldap_connect($uri)
-        or die('Could not connect to LDAP server.');
+    $ds=ldap_connect("ldaps://einet.ad.eivd.ch:636");
 
-  ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
-  ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
+    ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+    ldap_set_option($ds, LDAP_OPT_REFERRALS, 0);
 
-  $result = @ldap_bind($ad, $userLogin . '@einet.ad.eivd.ch', $password)
-            or die('Could not bind to AD. Check your credentials.');
+    if ($ds) {
+        $r=ldap_bind($ds, $userLogin."@einet.ad.eivd.ch", $userPwd); // Connection of the user
 
-  if($result){
-    $filter = "(&(objectClass=user)(sAMAccountName=". $userLogin ."))";
-    $justThese = array('sn', 'givenName', 'mail');
+        if($r){
+            $result = array();
 
-    $read = ldap_search($ad, $baseDN, $filter, $justThese)
-            or die('research does not work !');
-    $data = ldap_get_entries($ad, $read)
-            or die('research does not work !');
+            // Search samaccountname of the user
+            $sr=ldap_search($ds, "dc=einet,dc=ad,dc=eivd,dc=ch", "samaccountname=".$userLogin);
 
-    ldap_unbind($ad);
-    return $data;
-    //return true;
-  }
-  else{
-    ldap_unbind($ad);
-    return $data;
-  }
+            $info = ldap_get_entries($ds, $sr);
+
+            array_push($result, $info[0]["sn"][0]);
+            array_push($result, $info[0]["givenname"][0]);
+            array_push($result, $info[0]["mail"][0]);
+
+            ldap_close($ds);
+
+            return $result;
+        }
+        else{
+            return $result;
+        }
+
+
+
+    } else {
+        return $result;
+    }
 }
 
 /**
@@ -88,9 +93,9 @@ function adUserToDB($lastname, $firstname, $mail){
 */
 function userLogin($userLogin, $userPwd){
   $result = adVerification($userLogin, $userPwd);
-  if($result){
-    if(!dbVerification($result[3])){
-        adUserToDB($result[1], $result[2], $result[3]);
+  if($result != null){
+    if(!dbVerification($result[2])){
+        adUserToDB($result[0], $result[1], $result[2]);
         return true;
     }
     else{
