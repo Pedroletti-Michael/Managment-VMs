@@ -63,7 +63,7 @@ function dbVerification($userMail){
   $queryResult = executeQuerySelect($query);
 
   foreach ($queryResult as $value) {
-    if ($userMail == $value){
+    if ($userMail == $value[0]){
         return true;
     }
   }
