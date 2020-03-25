@@ -15,10 +15,10 @@ require 'model/dbConnector.php';
 */
 function adVerification($userLogin, $userPwd){
   $uri = 'ldaps://einet.ad.eivd.ch:636';
-  $baseDN = "dc=einet,dc=ad,dc=eivd,dc=ch";
+  $baseDN = "ou=SI,ou=Personnel,dc=einet,dc=ad,dc=eivd,dc=ch";
   $password = $userPwd;
   $data = null;
-/*
+
   $ad = ldap_connect($uri)
         or die('Could not connect to LDAP server.');
 
@@ -26,27 +26,24 @@ function adVerification($userLogin, $userPwd){
   ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
 
   $result = @ldap_bind($ad, $userLogin . '@einet.ad.eivd.ch', $password)
-            or die('Could not bind to AD. Check your credentials.');*/
-  $result = true;
+            or die('Could not bind to AD. Check your credentials.');
 
   if($result){
-    /*
-    $filter = "samaccountname=" . $userLogin;
+    $filter = "(&(objectClass=user)(samaccountname=". $userLogin ."))";
     $justThese = array('sn', 'givenname', 'mail');
 
     $read = ldap_search($ad, $baseDN, $filter, $justThese)
             or die('research does not work !');
-    $data = ldap_get_entries($ad, $read);
-            or die('research does not work 2 !');
+    $data = ldap_get_entries($ad, $read)
+            or die('research does not work !');
 
     ldap_unbind($ad);
-    return $data;*/
-    //ldap_unbind($ad);
-    return true;
+    return $data;
+    //return true;
   }
   else{
-    //ldap_unbind($ad);
-    return false;
+    ldap_unbind($ad);
+    return $data;
   }
 }
 
@@ -58,10 +55,12 @@ function adVerification($userLogin, $userPwd){
 function dbVerification($userMail){
   $query = 'SELECT mail FROM user';
 
-  $queryResult = executeQuerySelect($query); //array('banane', 'orange', 'mandarine');
+  $queryResult = executeQuerySelect($query);
 
   foreach ($queryResult as $value) {
-    echo $value['mail'];
+    if ($userMail == $value){
+        return true;
+    }
   }
 
   return false;
@@ -90,15 +89,9 @@ function adUserToDB($lastname, $firstname, $mail){
 function userLogin($userLogin, $userPwd){
   $result = adVerification($userLogin, $userPwd);
   if($result){
-    if(!dbVerification("michael.pedroletti@heig-vd.ch")){
-      return false;/*
-        if(adUserToDB("Pedroletti", "Michael", "michael.pedroletti@heig-vd.ch")){
-          return true;
-        }
-        else{
-          return false;
-        }*/
-
+    if(!dbVerification($result[3])){
+        adUserToDB($result[1], $result[2], $result[3]);
+        return true;
     }
     else{
       return true;
