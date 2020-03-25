@@ -2,7 +2,7 @@
 /**
 * Author : Pedroletti Michael
 * CreationFile date : 17.03.2020
-* ModificationFile date : 23.03.2020
+* ModificationFile date : 25.03.2020
 * Description : This file contains things about user, like the verification of
 * the connexion with the server.
 */

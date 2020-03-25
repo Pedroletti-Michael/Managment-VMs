@@ -40,6 +40,14 @@ ob_start();
                             </div>
                         </div>
                         </div>
+                    <?php
+                        if(isset($_POST['error']) && $_POST['error'] == "credentials"){
+                            echo "<div>Identifiant ou mot de passe faux !</div>";
+                        }
+                        if(isset($_POST['error']) && $_POST['error'] == "fieldEmpty"){
+                            echo "<div>Veuillez renseigner tous les champs !</div>";
+                        }
+                    ?>
                     </div>
                 </form>
             </div>

@@ -29,12 +29,14 @@ function login($loginRequest)
          else
          {
              $_GET['action'] = "signIn";
+             $_POST['error'] = "credentials";
              require "view/signIn.php";
          }
      }
      else
      {
          $_GET['action'] = "signIn";
+         $_POST['error'] = "fieldEmpty";
          require "view/signIn.php";
      }
 }
