@@ -17,11 +17,3 @@ function deleteAttribute($tableName, $attributeName){
 
     executeQuery($query);
 }
-
-function addTable(){
-
-}
-
-function deleteTable(){
-    
-}

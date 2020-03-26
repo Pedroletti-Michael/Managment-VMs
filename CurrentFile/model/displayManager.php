@@ -26,3 +26,42 @@ function displayBSS_Backup(){
     $query = "SELECT policy FROM backup";
     return executeQuery($query);
 }
+
+
+/**
+ * Region contains all function to display information about columns for every table of the db
+ */
+function displayColumnsFromUser(){
+    $query = "SHOW COLUMNS FROM user";
+    return executeQuery($query);
+}
+
+function displayColumnsFromVm(){
+    $query = "SHOW COLUMNS FROM vm";
+    return executeQuery($query);
+}
+
+function displayColumnsFromBackup(){
+    $query = "SHOW COLUMNS FROM backup";
+    return executeQuery($query);
+}
+
+function displayColumnsFromEntity(){
+    $query = "SHOW COLUMNS FROM Entity";
+    return executeQuery($query);
+}
+
+function displayColumnsFromOs(){
+    $query = "SHOW COLUMNS FROM os";
+    return executeQuery($query);
+}
+
+function displayColumnsFromPricing(){
+    $query = "SHOW COLUMNS FROM pricing";
+    return executeQuery($query);
+}
+
+function displayColumnsFromSnapshot(){
+    $query = "SHOW COLUMNS FROM snapshot";
+    return executeQuery($query);
+}
