@@ -9,11 +9,15 @@
 function displayForm()
 {
     require_once 'model/displayManager.php';
-    $entityNames = displayEntity();
+    $entityNames = displayBDD_Entity();
+    $osNames = displayBDD_OS();
+    $snapshotPolicy = displayBSS_Snapshots();
+    $backupPolicy = displayBSS_Backup();
 
     $_GET['action'] = "form";
     require 'view/form.php';
 }
+
 
 function formVM($formVMRequest)
 {

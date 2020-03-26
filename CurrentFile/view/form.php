@@ -34,7 +34,6 @@ ob_start();
                 <!--CPU-->
                 <label for="cpu" class="font-weight-bold">Nombre de CPU</label>
                 <input type="number" class="form-control form form" id="inputCPU" aria-describedby="cpuHelp" min="1" max="99" required>
-                <small id="cpuHelp" class="form-text text-muted">Maximum : 99</small>
             </div>
             <!--Name of the technical manager-->
             <div class="form-group w-50 float-right pl-4">
@@ -46,22 +45,20 @@ ob_start();
             <div class="form-group w-50 float-left pr-4">
                 <!--RAM-->
                 <label for="RAM" class="font-weight-bold mr-2">Nombre de RAM (GB)</label>
-                <input type="number" class="form-control form form mr-3" id="inputRAM" aria-describedby="ramHelp" min="2" max="256" required>
-                <small id="ramHelp" class="form-text text-muted">Maximum : 256 GB</small>
+                <input type="number" class="form-control form form mr-3" id="inputRAM" aria-describedby="ramHelp" min="1" max="256" required>
             </div>
-                <!--Name of the responsible administrator-->
+            <!--Name of the responsible administrator-->
             <div class="form-group w-50 float-right pl-4">
-                <label for="inputRAName" class="font-weight-bold">Responsable administrateur</label>
+                <label for="inputRAName" class="font-weight-bold">Responsable administratif</label>
                 <input type="raName" class="form-control form form" id="inputRAName" aria-describedby="raNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" required>
-                <small id="raNameHelp" class="form-text text-muted">Direction, Doyen , Directeur d'institut oou Chef de service</small>
+                <small id="raNameHelp" class="form-text text-muted">Direction, Doyen , Directeur d'institut ou Chef de service</small>
             </div>
         </div>
         <div class="d-inline-block w-100">
             <div class="form-group w-50 float-left pr-4">
                 <!--Stockages-->
                 <label for="SSD" class="font-weight-bold mr-2">Stockage SSD (GB)</label>
-                <input type="number" class="form-control form form" id="inputSSD" aria-describedby="ssdHelp" min="0" max="1000" required>
-                <small id="ssdHelp" class="form-text text-muted">Maximum : 1000 GB</small>
+                <input type="number" class="form-control form form" id="inputSSD" aria-describedby="ssdHelp" min="20" max="1000" required>
             </div>
             <!--Department / Institution / Service-->
             <div class="form-group w-50 float-right pl-4">
@@ -80,11 +77,11 @@ ob_start();
             <div class="form-group w-50 float-left pr-4">
                 <label for="osFormControlSelect" class="font-weight-bold">Système d'exploitation</label>
                 <select class="form-control" id="osFormControlSelect" required>
-                    <option>Windows Server 2016</option>
-                    <option>Windows Server 2019</option>
-                    <option>Windows Server 2019 Core</option>
-                    <option>Linux Ubuntu Server 16.04 LTS</option>
-                    <option>Linux Ubuntu Server 18.04 LTS</option>
+                    <?php
+                    foreach ($osNames as $value) {
+                        echo "<option>".$value['osType']." ".$value['osName']."</option>";
+                    }
+                    ?>
                 </select>
                 <small id="osHelp" class="form-text text-muted">Toutes les OS sont en anglais, 64 bits</small>
             </div>
@@ -105,33 +102,31 @@ ob_start();
                     <option>DMZ avec adressage privé</option>
                 </select>
                 <small id="networkHelp" class="form-text text-muted">LAN : Machine accessible en interne ou via le VPN</small>
-                <small id="networkHelp" class="form-text text-muted">DMZ : Accessible depuis l'extérieur via une IP publique (à justifier)</small>
+                <small id="networkHelp" class="form-text text-muted">DMZ Privée : Accessible depuis l'extérieur mais uniquement par son nom DNS (exemple : vm-01.heig-vd.ch)</small>
             </div>
             <!--End Date-->
             <div class="form-group w-50 float-right pl-4">
                 <label for="inputEndDate" class="font-weight-bold">Date de fin</label>
                 <input type="date" class="form-control form form" id="inputEndDate" aria-describedby="EndDateHelp" placeholder="Entrer un nom ou une addresse de messagerie" required>
-                <small id="EndDateHelp" class="form-text text-muted">Date de fin du projet, à laquelle la VM peut être arrêté puis supprimée.</small>
+                <small id="EndDateHelp" class="form-text text-muted">Date de fin du projet, à laquelle la VM peut être arrêtée puis supprimée.</small>
                 <small id="EndDateHelp" class="form-text text-muted">S'il n'y a pas d'échéance, une demande de renouvellement sera envoyée chaque année.</small>
             </div>
         </div>
         <!--Using-->
-        <label for="inputDIS" class="font-weight-bold">Département / Institution / Service</label>
-        <div class="d-inline-block w-100">
-            <div class="form-group form-check-inline" style="width: 32%;">
-                <input type="checkbox" class="form-check-input" id="Academique" required>
-                <label class="form-check-label" for="Academique">Académique</label>
-            </div>
+        <label for="inputDIS" class="font-weight-bold">Type d'utilisation</label>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="Academique">
+            <label class="form-check-label" for="Academique">Académique</label>
+        </div>
 
-            <div class="form-group form-check-inline" style="width: 32%;">
-                <input type="checkbox" class="form-check-input" id="RaD" required>
-                <label class="form-check-label" for="RaD">Ra&D</label>
-            </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="RaD">
+            <label class="form-check-label" for="RaD">Ra&D</label>
+        </div>
 
-            <div class="form-group form-check-inline" style="width: 32%;">
-                <input type="checkbox" class="form-check-input" id="Operationnel" required>
-                <label class="form-check-label" for="Operationnel">Opérationnel - Production</label>
-            </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="Operationnel">
+            <label class="form-check-label" for="Operationnel">Opérationnel - Production</label>
         </div>
         <!--Objective-->
         <div class="form-group">
@@ -143,10 +138,11 @@ ob_start();
         <div class="form-group">
             <label for="snapshotsFormControlSelect" class="font-weight-bold">Snapshots</label>
             <select class="form-control" id="snapshotsFormControlSelect" required>
-                <option>1) 1 fois/heure - rétention 1 jour, 1 fois/jour - rétention 7 jours, site local & site distant</option>
-                <option>2) 1 fois/jour - rétention 7 jours, site local & site distant</option>
-                <option>3) 2 fois/semaine - rétention 7 jours, site local & site distant</option>
-                <option>4) Aucune snapshot</option>
+                <?php
+                foreach ($snapshotPolicy as $value) {
+                    echo "<option>".$value['policy']."</option>";
+                }
+                ?>
             </select>
             <small id="snapshotsHelp" class="form-text text-muted">Non disponible sur l'infrastructure de DEV</small>
         </div>
@@ -154,7 +150,11 @@ ob_start();
         <div class="form-group">
             <label for="backupFormControlSelect" class="font-weight-bold">Backup</label>
             <select class="form-control" id="backupFormControlSelect" required>
-                <option>Quotidien / backup local & backup distant / Rétention de 4 semaines</option>
+                <?php
+                foreach ($backupPolicy as $value) {
+                    echo "<option>".$value['policy']."</option>";
+                }
+                ?>
             </select>
             <small id="backupHelp" class="form-text text-muted">Non disponible sur l'infrastructure de DEV</small>
         </div>
@@ -162,7 +162,6 @@ ob_start();
         <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="domainEINET">
             <label class="form-check-label font-weight-bold" for="domainEINET">Domaine EINET</label>
-            <small id="domainHelp" class="form-text text-muted">Uniquement si réseau LAN</small>
         </div>
         <!--Security-->
         <div class="form-group">
