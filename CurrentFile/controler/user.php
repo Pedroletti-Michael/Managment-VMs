@@ -14,7 +14,7 @@ function displayHome()
 
 function login($loginRequest)
 {
-  if (isset($loginRequest['userLogin']) && isset($loginRequest['userPassword']))
+  if (isset($loginRequest['userLogin']) && $loginRequest['userLogin'] != null && isset($loginRequest['userPassword']) && $loginRequest['userPassword'] != null)
      {
          $userLogin= $loginRequest['userLogin'];
          $userPwd = $loginRequest['userPassword'];
