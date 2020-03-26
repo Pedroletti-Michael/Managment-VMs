@@ -61,6 +61,18 @@ if(isset($_GET['action'])){
         case 'user':
             displayUser();
             break;
+        case 'editEntity':
+            editEntity($_POST);
+            break;
+        case 'editOS':
+            editOS($_POST);
+            break;
+        case 'editSnapshots':
+            editSnapshots($_POST);
+            break;
+        case 'editBackup':
+            editBackup($_POST);
+            break;
         default:
             displayHome();
     }
