@@ -22,3 +22,45 @@ function displayFormManagement()
     $_GET['action'] = "formManagement";
     require 'view/formManagement.php';
 }
+
+function editEntity($entityName){
+    require_once 'model/displayManager.php';
+    if($entityName['add']){
+        $nameEntity = $entityName['txt'];
+        addEntity($nameEntity);
+    }
+    if($entityName['delete']){
+        $nameEntity = $entityName['value'];
+        deleteEntity($nameEntity);
+    }
+    displayFormManagement();
+}
+
+function editOS($osName){
+    require_once 'model/displayManager.php';
+    if($osName['add']){
+        $nameOS = $osName['txt'];
+        $typeOS = $osName['type'];
+        addOS($nameOS,$typeOS);
+    }
+    displayFormManagement();
+}
+
+function editSnapshots($snapshotsName){
+    require_once 'model/displayManager.php';
+    if($snapshotsName['add']){
+        $nameSnapshots = $snapshotsName['txt'];
+        addSnapshots($nameSnapshots);
+    }
+    displayFormManagement();
+}
+
+function editBackup($backupName){
+    require_once 'model/displayManager.php';
+    if($backupName['add']){
+        $nameBackup = $backupName['txt'];
+        addBackup($nameBackup);
+    }
+    displayFormManagement();
+}
+
