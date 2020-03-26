@@ -2,7 +2,7 @@
 /**
 * Author : Thomas Huguet
 * CreationFile date : 17.03.2020
-* ModifFile date : 17.03.2020
+* ModifFile date : 26.03.2020
 * Description : Contains all functions related to the user
 **/
 
@@ -45,11 +45,12 @@ function signOut()
 {
     $_SESSION = array();
     session_destroy();
-    $_GET["action"] = "home";
+
     displayHome();
 }
 
 function displaySignIn()
 {
+    $_GET['action'] = "signIn";
     require 'view/signIn.php';
 }
