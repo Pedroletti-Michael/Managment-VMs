@@ -11,3 +11,14 @@ function displayAllVM()
     $_GET['action'] = "allVM";
     require 'view/allVM.php';
 }
+
+function displayFormManagement()
+{
+    require_once 'model/displayManager.php';
+    $entityNames = displayBDD_Entity();
+    $osNames = displayBDD_OS();
+    $snapshotPolicy = displayBSS_Snapshots();
+    $backupPolicy = displayBSS_Backup();
+    $_GET['action'] = "formManagement";
+    require 'view/formManagement.php';
+}
