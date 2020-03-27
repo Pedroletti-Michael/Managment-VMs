@@ -8,8 +8,37 @@
 
 function displayAllVM()
 {
-    $_GET['action'] = "allVM";
-    require 'view/allVM.php';
+    if(isset($_SESSION['userType']))
+    {
+        switch ($_SESSION['userType'])
+        {
+            case 1:
+                $_GET['action'] = "home";
+                require 'view/home.php';
+                break;
+            case 2:
+                $_GET['action'] = "allVM";
+                require 'view/allVM.php';
+                break;
+            case 3:
+                $_GET['action'] = "allVM";
+                require 'view/allVM.php';
+                break;
+            case 4:
+                $_GET['action'] = "allVM";
+                require 'view/allVM.php';
+                break;
+            default:
+            $_GET['action'] = "home";
+            require 'view/home.php';
+            break;
+        }
+    }
+    else
+    {
+        $_GET['action'] = "home";
+        require 'view/home.php';
+    }
 }
 
 function displayFormManagement()
@@ -19,8 +48,38 @@ function displayFormManagement()
     $osNames = displayBDD_OS();
     $snapshotPolicy = displayBSS_Snapshots();
     $backupPolicy = displayBSS_Backup();
-    $_GET['action'] = "formManagement";
-    require 'view/formManagement.php';
+
+    if(isset($_SESSION['userType']))
+    {
+        switch ($_SESSION['userType'])
+        {
+            case 1:
+                $_GET['action'] = "home";
+                require 'view/home.php';
+                break;
+            case 2:
+                $_GET['action'] = "formManagement";
+                require 'view/formManagement.php';
+                break;
+            case 3:
+                $_GET['action'] = "formManagement";
+                require 'view/formManagement.php';
+                break;
+            case 4:
+                $_GET['action'] = "formManagement";
+                require 'view/formManagement.php';
+                break;
+            default:
+                $_GET['action'] = "home";
+                require 'view/home.php';
+                break;
+        }
+    }
+    else
+    {
+        $_GET['action'] = "home";
+        require 'view/home.php';
+    }
 }
 
 function editEntity($entityName){

@@ -27,8 +27,11 @@ function login($loginRequest)
 
          require_once "model/userManager.php";
 
-         if (userLogin($userLogin, $userPwd))
+         $userEmail = userLogin($userLogin, $userPwd);
+
+         if ($userEmail!=null || $userEmail!=false)
          {
+             createSession($userEmail);
              $_GET['action'] = "home";
              require "view/home.php";
          }
@@ -47,11 +50,11 @@ function login($loginRequest)
      }
 }
 
-/*function createSession()
+function createSession($userEmail)
 {
-    $_SESSION['userEmailAddress'] = getUserEmailAddress();
-    $_SESSION['userType'] = getUserType();
-}*/
+    $_SESSION['userEmail'] = $userEmail;
+    $_SESSION['userType'] = getUserType($userEmail);
+}
 
 function signOut()
 {
