@@ -12,6 +12,12 @@ function displayHome()
     require "view/home.php";
 }
 
+function displaySignIn()
+{
+    $_GET['action'] = "signIn";
+    require 'view/signIn.php';
+}
+
 function login($loginRequest)
 {
   if (isset($loginRequest['userLogin']) && $loginRequest['userLogin'] != null && isset($loginRequest['userPassword']) && $loginRequest['userPassword'] != null)
@@ -41,16 +47,16 @@ function login($loginRequest)
      }
 }
 
+/*function createSession()
+{
+    $_SESSION['userEmailAddress'] = getUserEmailAddress();
+    $_SESSION['userType'] = getUserType();
+}*/
+
 function signOut()
 {
     $_SESSION = array();
     session_destroy();
 
     displayHome();
-}
-
-function displaySignIn()
-{
-    $_GET['action'] = "signIn";
-    require 'view/signIn.php';
 }
