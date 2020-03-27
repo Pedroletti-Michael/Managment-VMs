@@ -96,13 +96,22 @@ function userLogin($userLogin, $userPwd){
   if($result != null){
     if(!dbVerification($result[2])){
         adUserToDB($result[0], $result[1], $result[2]);
-        return true;
+        return $result[2];
     }
     else{
-      return true;
+      return $result[2];
     }
   }
   else{
     return false;
   }
+}
+
+
+function getUserType($userMail){
+    $strSep = '\'';
+
+    $query = "SELECT type FROM `user` WHERE mail = ". $strSep.$userMail.$strSep;
+
+    return executeQuery($query);
 }
