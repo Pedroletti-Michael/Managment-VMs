@@ -23,7 +23,7 @@ function formVM($formVMRequest)
 {
     if(isset($formVMRequest['Academique']))
     {
-        $formVMRequest['usingVM'] = $formVMRequest['Academique'];
+        $formVMRequest['usingVM'] = "Academique";
 
         unset($formVMRequest['RaD']);
         unset($formVMRequest['Operationnel']);
@@ -31,7 +31,7 @@ function formVM($formVMRequest)
     }
     elseif (isset($formVMRequest['RaD']))
     {
-        $formVMRequest['usingVM'] = $formVMRequest['RaD'];
+        $formVMRequest['usingVM'] = "RaD";
 
         unset($formVMRequest['RaD']);
         unset($formVMRequest['Operationnel']);
@@ -39,19 +39,29 @@ function formVM($formVMRequest)
     }
     elseif (isset($formVMRequest['Operationnel']))
     {
-        $formVMRequest['usingVM'] = $formVMRequest['Operationnel'];
+        $formVMRequest['usingVM'] = "Operationnel";
 
         unset($formVMRequest['RaD']);
         unset($formVMRequest['Operationnel']);
         unset($formVMRequest['Academique']);
     }
 
+    if(isset($formVMRequest['domainEINET']))
+    {
+        $formVMRequest['domainEINET'] = "true";
+    }
+    else
+    {
+        $formVMRequest['domainEINET'] = "false";
+    }
+
     foreach ($formVMRequest as $field)
     {
-        if(!isset($formVMRequest[$field]))
+        if(!isset($field))
         {
             $_GET['action'] = "form";
             require "view/form.php";
+            break;
         }
     }
 
