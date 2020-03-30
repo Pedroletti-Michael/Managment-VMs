@@ -7,52 +7,45 @@
 * from db.
 */
 
-require 'model/dbConnector.php';
+require_once 'model/dbConnector.php';
+require_once 'model/userManager.php';
 
 /**
 * This function add a VM into the db
 */
 function addVMToDB($formVMRequest)
 {
-    // Here i need to create the query to send to db connector
     $vmName = $formVMRequest['inputVMName'];
-    $cluster = null; //à demander à Benj
+    $cluster = null;
     $dateStart = $formVMRequest['inputComissioningDate'];
-    $dateAnniversary = null; //regarder Benj
+    $dateAnniversary = null;
     $dateEnd = $formVMRequest['inputEndDate'];
     $description = $formVMRequest['objective'];
-    $ip = null; //regarder avec Benj
-    $dnsName = null; //regarder avec Benj
-    $redundance = null; //regarder avec Benj
+    $ip = null;
+    $dnsName = null;
+    $redundance = null;
     $usageType = $formVMRequest['usingVM'];
-    $criticity = $formVMRequest['securityFormControlSelect']; //regarder avec Benj
+    $criticity = $formVMRequest['securityFormControlSelect'];
     $cpu = $formVMRequest['inputCPU'];
     $ram = $formVMRequest['inputRAM'];
     $disk = $formVMRequest['inputSSD'];
     $network = $formVMRequest['networkFormControlSelect'];
     $domain = $formVMRequest['domainEINET'];
-    $patch = null; //regarder avec Benj
+    $patch = null;
     $comment = $formVMRequest['ti'];
-    $datacenter = null; //regarder avec Benj
-    $user_id = null;
-    $entity_id = $formVMRequest['disFormControlSelect']; //departement
+    $datacenter = null;
+    $requestName = $formVMRequest['inputResquesterName'];
+    $tmName = $formVMRequest['inputTMName'];
+    $raName = $formVMRequest['inputAMName'];
+    $entity_id = $formVMRequest['disFormControlSelect'];
     $os_id = $formVMRequest['osFormControlSelect'];
     $snapshot_id = $formVMRequest['snapshotsFormControlSelect'];
     $backup_id = $formVMRequest['backupFormControlSelect'];
     $cost_id = null;
 
-
-    /**
-     * A regarder comment on va s'organiser pour les users si on rajoute des liaison ou si on les classes juste avec une séparation par des ;
-     */
-    $requestName = $formVMRequest['inputResquesterName']; //requérant
-    $tmName = $formVMRequest['inputTMName']; // responsable technique
-    $raName = $formVMRequest['inputAMName']; // responsable administratif
-
-
     $strSep = '\'';
 
-    $query = "INSERT INTO vm (name, cluster, dateStart, dateAnniversary, dateEnd, descritpion, ip, dnsName, redundance, usageType, criticity, cpu, ram, disk, network, domain, patch, comment, datacenter, user_id, entity_id, os_id, snapshot_id, backup_id, cost_id) 
+    $query = "INSERT INTO vm (name, cluster, dateStart, dateAnniversary, dateEnd, descritpion, ip, dnsName, redundance, usageType, criticity, cpu, ram, disk, network, domain, patch, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
   
               VALUES(
               ".$strSep.$vmName.$strSep.",
@@ -74,7 +67,9 @@ function addVMToDB($formVMRequest)
               ".$strSep.$patch.$strSep.",
               ".$strSep.$comment.$strSep.",
               ".$strSep.$datacenter.$strSep.",
-              ".$strSep.$user_id.$strSep.",
+              ".$strSep.$requestName.$strSep.",
+              ".$strSep.$raName.$strSep.",
+              ".$strSep.$tmName.$strSep.",
               ".$strSep.$entity_id.$strSep.",
               ".$strSep.$os_id.$strSep.",
               ".$strSep.$snapshot_id.$strSep.",

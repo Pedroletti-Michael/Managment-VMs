@@ -107,11 +107,28 @@ function userLogin($userLogin, $userPwd){
   }
 }
 
-
+/**
+ * Get the type of the user
+ * @param $userMail = mail of the user
+ * @return = type of the user
+ */
 function getUserType($userMail){
     $strSep = '\'';
 
     $query = "SELECT type FROM `user` WHERE mail = ". $strSep.$userMail.$strSep;
+
+    return executeQuery($query);
+}
+
+/**
+ * Get the id of the user
+ * @param $userMail = mail of the user
+ * @return = id of the user
+ */
+function getUserId($userMail){
+    $strSep = '\'';
+
+    $query = "SELECT user_id FROM `user` WHERE mail = ". $strSep.$userMail.$strSep;
 
     return executeQuery($query);
 }
