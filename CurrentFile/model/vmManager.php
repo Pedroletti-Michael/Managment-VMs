@@ -35,7 +35,7 @@ function addVMToDB($formVMRequest)
     $datacenter = null;
     $requestName = getUserId($formVMRequest['inputResquesterName']);
     $tmName = getUserId($formVMRequest['inputTMName']);
-    $raName = getUserId($formVMRequest['inputAMName']);
+    $raName = getUserId($formVMRequest['inputRAName']);
     $entity_id = $formVMRequest['disFormControlSelect'];
     $os_id = $formVMRequest['osFormControlSelect'];
     $snapshot_id = $formVMRequest['snapshotsFormControlSelect'];
