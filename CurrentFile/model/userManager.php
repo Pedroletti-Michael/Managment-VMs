@@ -6,7 +6,7 @@
 * Description : This file contains things about user, like the verification of
 * the connexion with the server.
 */
-require 'model/dbConnector.php';
+require_once 'model/dbConnector.php';
 
 /**
 * This function is used to know if the userLogin exist and if the password of
