@@ -131,5 +131,5 @@ function getUserId($userMail){
     $query = "SELECT user_id FROM `user` WHERE mail = ". $strSep.$userMail.$strSep;
 
     $result = executeQuery($query);
-    return $result[0];
+    return $result[0][0];
 }
