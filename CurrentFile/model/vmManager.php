@@ -7,14 +7,13 @@
 * from db.
 */
 
-require_once 'model/dbConnector.php';
-require_once 'model/userManager.php';
-
 /**
 * This function add a VM into the db
 */
 function addVMToDB($formVMRequest)
 {
+    require_once 'model/dbConnector.php';
+    require_once 'model/userManager.php';
     $vmName = $formVMRequest['inputVMName'];
     $cluster = null;
     $dateStart = $formVMRequest['inputComissioningDate'];
@@ -34,9 +33,9 @@ function addVMToDB($formVMRequest)
     $patch = null;
     $comment = $formVMRequest['ti'];
     $datacenter = null;
-    $requestName = $formVMRequest['inputResquesterName'];
-    $tmName = $formVMRequest['inputTMName'];
-    $raName = $formVMRequest['inputAMName'];
+    $requestName = getUserId($formVMRequest['inputResquesterName']);
+    $tmName = getUserId($formVMRequest['inputTMName']);
+    $raName = getUserId($formVMRequest['inputAMName']);
     $entity_id = $formVMRequest['disFormControlSelect'];
     $os_id = $formVMRequest['osFormControlSelect'];
     $snapshot_id = $formVMRequest['snapshotsFormControlSelect'];

@@ -28,8 +28,8 @@ function adVerification($userLogin, $userPwd){
         if($r){
             $result = array();
 
-            // Search samaccountname of the user
-            $sr=ldap_search($ds, "dc=einet,dc=ad,dc=eivd,dc=ch", "samaccountname=".$userLogin);
+            // Search samaccountname of the user in OU personnel
+            $sr=ldap_search($ds, "ou=personnel,dc=einet,dc=ad,dc=eivd,dc=ch", "samaccountname=".$userLogin);
 
             $info = ldap_get_entries($ds, $sr);
 

@@ -41,43 +41,49 @@ function validateRequestMail($userMail){
 /**
  * This function used to send the declined validation for a request of vm to an user
  */
-function deniedRequestMail($userMail){
-    //TODO Modifier la fonciton afin qu'elle correspondent aux attentes.
-
+function deniedRequestMail($userMail, $requestName){
     // multiple recipients
     $to  = $userMail . ', ' . 'michael.pedroletti@heig-vd.ch';
 
     // subject
-        $subject = 'Demande pour votre VM refusée';
+    $subject = 'Demande pour votre VM refusée';
 
     // message
         $message = '
     <html>
     <head>
-      <title>Demande pour votre VM <bold>refusée</bold></title>
+        <title>Demande pour votre VM <bold>refusée</bold></title>
     </head>
     <body>
-      <p>Votre demande pour une VM a été refusée.</p>
-      <table>
-        <tr>
-          <th>Person</th><th>Day</th><th>Month</th><th>Year</th>
-        </tr>
-        <tr>
-          <td>Joe</td><td>3rd</td><td>August</td><td>1970</td>
-        </tr>
-        <tr>
-          <td>Sally</td><td>17th</td><td>August</td><td>1973</td>
-        </tr>
-      </table>
+        <p>Nom de la demande : '. $requestName .' </p>
+        <br>
+        <p>Votre demande pour une VM a été refusée.</p>
+        <br>
+        <p>
+            Nous ne pouvons malheureusement pas accéder à votre requête.
+        </p>
+        <br>
+        <p>
+            Meilleures salutations.
+            VmManager
+        </p>
     </body>
     </html>
     ';
 
     // To send HTML mail, the Content-type header must be set
-        $headers  = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
     // Additional headers
-        $headers .= 'To: '. $userMail ."\r\n";
-        $headers .= 'From: VMManager <vmManager@heig-vd.ch>' . "\r\n";
+    $headers .= 'To: '. $userMail ."\r\n";
+    $headers .= 'From: VMManager <vmManager@heig-vd.ch>' . "\r\n";
+
+    if(sendMail($to, $subject, $message, $headers)){
+        return true;
+    }
+    else{
+        return false;
+    }
+
 }
