@@ -37,7 +37,7 @@ function addVMToDB($formVMRequest)
     $tmName = getUserId($formVMRequest['inputTMName']);
     $raName = getUserId($formVMRequest['inputRAName']);
     $entity_id = getEntityId($formVMRequest['disFormControlSelect']);
-    $os_id = getOsId($formVMRequest['osFormControlSelect']);
+    $os_id = 2;//getOsId($formVMRequest['osFormControlSelect']);
     $snapshot_id = getSnapshotId($formVMRequest['snapshotsFormControlSelect']);
     $backup_id = getBackupId($formVMRequest['backupFormControlSelect']);
     $cost_id = null;

@@ -69,6 +69,15 @@ function formVM($formVMRequest)
 
     if(addVMToDB($formVMRequest))
     {
+        require_once 'model/mailSender';
+
+        if (requestMail($formVMRequest['inputResquesterName'], $formVMRequest['inputVMName'])){
+            echo "<script>alert('success!');</script>";
+        }
+        else{
+            echo "<script>alert('failure!');</script>";
+        }
+
         $_GET['action'] = "home";
         require "view/home.php";
     }
