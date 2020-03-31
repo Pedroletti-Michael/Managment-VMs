@@ -24,7 +24,7 @@ function addVMToDB($formVMRequest)
     $dnsName = null;
     $redundance = null;
     $usageType = $formVMRequest['usingVM'];
-    $criticity = $formVMRequest['securityFormControlSelect'];
+    $criticity = null;
     $cpu = $formVMRequest['inputCPU'];
     $ram = $formVMRequest['inputRAM'];
     $disk = $formVMRequest['inputSSD'];
@@ -77,4 +77,44 @@ function addVMToDB($formVMRequest)
 
 
      return executeQueryInsert($query);
+}
+
+
+function getEntityId($entityName){
+    $strSep = '\'';
+
+    $query = "SELECT entity_id FROM `entity` WHERE entityName = ". $strSep.$entityName.$strSep;
+
+    $result = executeQuery($query);
+    return $result[0][0];
+}
+
+
+function getOsId($osName){
+    $strSep = '\'';
+
+    $query = "SELECT os_id FROM `os` WHERE osName = ". $strSep.$osName.$strSep;
+
+    $result = executeQuery($query);
+    return $result[0][0];
+}
+
+
+function getSnapshotId($snapshotName){
+    $strSep = '\'';
+
+    $query = "SELECT snapshot_id FROM `snapshot` WHERE policy = ". $strSep.$snapshotName.$strSep;
+
+    $result = executeQuery($query);
+    return $result[0][0];
+}
+
+
+function getBackupId($backupId){
+    $strSep = '\'';
+
+    $query = "SELECT backup_id FROM `backup` WHERE policy = ". $strSep.$backupId.$strSep;
+
+    $result = executeQuery($query);
+    return $result[0][0];
 }
