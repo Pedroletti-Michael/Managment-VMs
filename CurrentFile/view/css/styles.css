@@ -7,13 +7,62 @@
     user-select: none;
 }
 
+@media screen and (min-width: 1050px) {
+    .responsive-menu-min{
+        visibility: hidden;
+    }
+    .padding-left{
+        padding-left: 215px;
+    }
+    .logo-responsive{
+        max-width: 200px;
+        min-width: 200px;
+    }
+    .signIn-responsive{
+        max-width: 100px;
+        min-width: 100px;
+    }
+}
+@media screen and (max-width: 1050px) {
+    .responsive-menu-max{
+        visibility: hidden;
+    }
+    .padding-left{
+        padding-left: 0;
+    }
+    .logo-responsive{
+        max-width: 200px;
+        min-width: 200px;
+    }
+    .signIn-responsive{
+        max-width: 100px;
+        min-width: 100px;
+    }
+    .search-responsive{
+        width: 50%;
+    }
+}
 @media (min-width: 768px) {
     .bd-placeholder-img-lg {
         font-size: 3.5rem;
     }
-    [role="main"] {
-        padding-top: 40px; /* Space for fixed navbar */
-    }
 }
 
+.animate{-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;transition:all .3s ease-in-out}
 
+/* The side navigation menu */
+.sidenav {
+    margin-top: 48px;
+    height: 100%; /* 100% Full-height */
+    width: 200px; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+}
+@media (min-width: 1050px) {
+    .sidenav{
+        visibility: hidden;
+    }
+}
