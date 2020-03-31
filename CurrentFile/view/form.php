@@ -19,37 +19,37 @@ ob_start();
         <div class="d-inline-block w-100">
             <!--Name of the VM-->
             <div class="form-group w-50 float-left pr-4">
-                <label for="inputVMName" class="font-weight-bold">Nom de la VM</label>
+                <label for="inputVMName" class="font-weight-bold">Nom de la VM<a style="color: red"> *</a></label>
                 <input type="vmName" class="form-control form form" id="inputVMName" name="inputVMName" aria-describedby="vmNameHelp" maxlength="15" required>
                 <small id="vmNameHelp" class="form-text text-muted">15 caractères maximum. Lettres, chiffres et trait d'union uniquement (Ex: VM-01)</small>
             </div>
             <!--Name of the requester-->
             <div class="form-group w-50 float-right pl-4">
-                <label for="inputResquesterName" class="font-weight-bold">Demandeur</label>
+                <label for="inputResquesterName" class="font-weight-bold">Demandeur<a style="color: red"> *</a></label>
                 <input type="requesterName" class="form-control form form" id="inputResquesterName" name="inputResquesterName" aria-describedby="requesterNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" required>
             </div>
         </div>
         <div class="d-inline-block w-100">
             <div class="form-group w-50 float-left pr-4">
                 <!--CPU-->
-                <label for="cpu" class="font-weight-bold">Nombre de CPU</label>
+                <label for="cpu" class="font-weight-bold">Nombre de CPU<a style="color: red"> *</a></label>
                 <input type="number" class="form-control form form" id="inputCPU" name="inputCPU" aria-describedby="cpuHelp" min="1" max="99" required>
             </div>
             <!--Name of the technical manager-->
             <div class="form-group w-50 float-right pl-4">
-                <label for="inputTMName" class="font-weight-bold">Responable technique</label>
+                <label for="inputTMName" class="font-weight-bold">Responable technique<a style="color: red"> *</a></label>
                 <input type="tmName" class="form-control form form" id="inputTMName" name="inputTMName" aria-describedby="tmNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" required>
             </div>
         </div>
         <div class="d-inline-block w-100">
             <div class="form-group w-50 float-left pr-4">
                 <!--RAM-->
-                <label for="RAM" class="font-weight-bold mr-2">Nombre de RAM (GB)</label>
+                <label for="RAM" class="font-weight-bold mr-2">Nombre de RAM (GB)<a style="color: red"> *</a></label>
                 <input type="number" class="form-control form form mr-3" id="inputRAM" name="inputRAM" aria-describedby="ramHelp" min="1" max="256" required>
             </div>
             <!--Name of the responsible administrator-->
             <div class="form-group w-50 float-right pl-4">
-                <label for="inputRAName" class="font-weight-bold">Responsable administratif</label>
+                <label for="inputRAName" class="font-weight-bold">Responsable administratif<a style="color: red"> *</a></label>
                 <input type="raName" class="form-control form form" id="inputRAName" name="inputRAName" aria-describedby="raNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" required>
                 <small id="raNameHelp" class="form-text text-muted">Direction, Doyen , Directeur d'institut ou Chef de service</small>
             </div>
@@ -57,12 +57,12 @@ ob_start();
         <div class="d-inline-block w-100">
             <div class="form-group w-50 float-left pr-4">
                 <!--Stockages-->
-                <label for="SSD" class="font-weight-bold mr-2">Stockage SSD (GB)</label>
+                <label for="SSD" class="font-weight-bold mr-2">Stockage SSD (GB)<a style="color: red"> *</a></label>
                 <input type="number" class="form-control form form" id="inputSSD" name="inputSSD" aria-describedby="ssdHelp" min="20" max="1000" required>
             </div>
             <!--Department / Institution / Service-->
             <div class="form-group w-50 float-right pl-4">
-                <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service</label>
+                <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service<a style="color: red"> *</a></label>
                 <select class="form-control" id="disFormControlSelect" name="disFormControlSelect" required>
                     <?php
                     foreach ($entityNames as $value) {
@@ -75,7 +75,7 @@ ob_start();
         <div class="d-inline-block w-100">
             <!--OS-->
             <div class="form-group w-50 float-left pr-4">
-                <label for="osFormControlSelect" class="font-weight-bold">Système d'exploitation</label>
+                <label for="osFormControlSelect" class="font-weight-bold">Système d'exploitation<a style="color: red"> *</a></label>
                 <select class="form-control" id="osFormControlSelect" name="osFormControlSelect" required>
                     <?php
                     foreach ($osNames as $value) {
@@ -87,7 +87,7 @@ ob_start();
             </div>
             <!--Date of commissioning-->
             <div class="form-group w-50 float-right pl-4">
-                <label for="inputComissioningDate" class="font-weight-bold">Date de mise en service</label>
+                <label for="inputComissioningDate" class="font-weight-bold">Date de mise en service<a style="color: red"> *</a></label>
                 <input type="date" class="form-control form form" id="inputComissioningDate" name="inputComissioningDate" aria-describedby="comissioningDateHelp" placeholder="Entrer un nom ou une addresse de messagerie" required>
                 <small id="comissioningDateHelp" class="form-text text-muted">Délai d'une semaine pour les VM de type Silver &amp; Gold. Deux semaines pour les autres configurations.</small>
             </div>
@@ -95,7 +95,7 @@ ob_start();
         <div class="d-inline-block w-100">
             <!--Network-->
             <div class="form-group w-50 float-left pr-4">
-                <label for="networkFormControlSelect" class="font-weight-bold">Réseau</label>
+                <label for="networkFormControlSelect" class="font-weight-bold">Réseau<a style="color: red"> *</a></label>
                 <select class="form-control" id="networkFormControlSelect" name="networkFormControlSelect" required>
                     <option>LAN</option>
                     <option>DMZ</option>
@@ -113,7 +113,7 @@ ob_start();
             </div>
         </div>
         <!--Using-->
-        <label for="inputDIS" class="font-weight-bold">Type d'utilisation</label>
+        <label for="inputDIS" class="font-weight-bold">Type d'utilisation<a style="color: red"> *</a></label>
         <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="Academique" name="Academique">
             <label class="form-check-label" for="Academique">Académique</label>
@@ -136,7 +136,7 @@ ob_start();
         </div>
         <!--Snapshots-->
         <div class="form-group">
-            <label for="snapshotsFormControlSelect" class="font-weight-bold">Snapshots</label>
+            <label for="snapshotsFormControlSelect" class="font-weight-bold">Snapshots<a style="color: red"> *</a></label>
             <select class="form-control" id="snapshotsFormControlSelect" name="snapshotsFormControlSelect" required>
                 <?php
                 foreach ($snapshotPolicy as $value) {
@@ -148,7 +148,7 @@ ob_start();
         </div>
         <!--Backup-->
         <div class="form-group">
-            <label for="backupFormControlSelect" class="font-weight-bold">Backup</label>
+            <label for="backupFormControlSelect" class="font-weight-bold">Backup<a style="color: red"> *</a></label>
             <select class="form-control" id="backupFormControlSelect" name="backupFormControlSelect" required>
                 <?php
                 foreach ($backupPolicy as $value) {
@@ -165,7 +165,7 @@ ob_start();
         </div>
         <!--Security-->
         <div class="form-group">
-            <label for="securityFormControlSelect" class="font-weight-bold">Sécurité</label>
+            <label for="securityFormControlSelect" class="font-weight-bold">Sécurité<a style="color: red"> *</a></label>
             <select class="form-control" id="securityFormControlSelect" name="securityFormControlSelect" required>
                 <option>OS mis à jour par le responsable technique</option>
                 <option>OS mis à jour par le SI (update automatiques)</option>
