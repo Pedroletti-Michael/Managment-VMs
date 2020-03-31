@@ -36,15 +36,15 @@ function addVMToDB($formVMRequest)
     $requestName = getUserId($formVMRequest['inputResquesterName']);
     $tmName = getUserId($formVMRequest['inputTMName']);
     $raName = getUserId($formVMRequest['inputRAName']);
-    $entity_id = $formVMRequest['disFormControlSelect'];
-    $os_id = $formVMRequest['osFormControlSelect'];
-    $snapshot_id = $formVMRequest['snapshotsFormControlSelect'];
-    $backup_id = $formVMRequest['backupFormControlSelect'];
+    $entity_id = getEntityId($formVMRequest['disFormControlSelect']);
+    $os_id = getOsId($formVMRequest['osFormControlSelect']);
+    $snapshot_id = getSnapshotId($formVMRequest['snapshotsFormControlSelect']);
+    $backup_id = getBackupId($formVMRequest['backupFormControlSelect']);
     $cost_id = null;
 
     $strSep = '\'';
 
-    $query = "INSERT INTO vm (name, cluster, dateStart, dateAnniversary, dateEnd, descritpion, ip, dnsName, redundance, usageType, criticity, cpu, ram, disk, network, domain, patch, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
+    $query = "INSERT INTO vm (name, cluster, dateStart, dateAnniversary, dateEnd, description, ip, dnsName, redundance, usageType, criticity, cpu, ram, disk, network, domain, patch, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
   
               VALUES(
               ".$strSep.$vmName.$strSep.",
