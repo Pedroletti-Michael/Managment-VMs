@@ -48,11 +48,11 @@ function formVM($formVMRequest)
 
     if(isset($formVMRequest['domainEINET']))
     {
-        $formVMRequest['domainEINET'] = "true";
+        $formVMRequest['domainEINET'] = 1;
     }
     else
     {
-        $formVMRequest['domainEINET'] = "false";
+        $formVMRequest['domainEINET'] = 0;
     }
 
     foreach ($formVMRequest as $field)
@@ -69,6 +69,10 @@ function formVM($formVMRequest)
 
     if(addVMToDB($formVMRequest))
     {
+        require_once 'model/mailSender.php';
+
+        requestMail($formVMRequest['inputResquesterName'], $formVMRequest['inputVMName']);
+
         $_GET['action'] = "home";
         require "view/home.php";
     }

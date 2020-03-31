@@ -27,8 +27,49 @@ function sendMail($to, $subject, $message, $headers){
  * Function used to send a request to the administrator of the SI.
  * This mail contains a direct link to the request of the user and some basic information about the request.
  */
-function requestMail($userMail){
-    // Mise en page du mail
+function requestMail($userMail, $requestName){
+    // multiple recipients
+    $to  = $userMail . ', ' . 'michael.pedroletti@heig-vd.ch';
+
+    // subject
+    $subject = 'Résumé de votre demande pour une VM';
+
+    // message
+    $message = "Résumé de votre demande pour une VM. Nom de la demande : " . $requestName;
+
+    /**
+    $message = '
+    <html>
+    <head>
+        <title>Résumé de votre demande pour une VM<title>
+    </head>
+    <body>
+        <p>Nom de la demande : '. $requestName .' </p>
+        <br>
+        <p>Votre demande pour une VM est en cours de validation, vous recevrez bientôt un mail de confirmation avec toutes les informations nécessaires.</p>
+        <br>
+        <p>
+            Meilleures salutations.
+            VmManager
+        </p>
+    </body>
+    </html>
+    ';*/
+
+    // To send HTML mail, the Content-type header must be set
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+
+    // Additional headers
+    $headers .= 'To: '. $userMail ."\r\n";
+    $headers .= 'From: VMManager <vmManager@heig-vd.ch>' . "\r\n";
+
+    if(sendMail($to, $subject, $message, $headers)){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 /**
