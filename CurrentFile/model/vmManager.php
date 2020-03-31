@@ -15,24 +15,24 @@ function addVMToDB($formVMRequest)
     require_once 'model/dbConnector.php';
     require_once 'model/userManager.php';
     $vmName = $formVMRequest['inputVMName'];
-    $cluster = null;
+    $cluster = 'null';
     $dateStart = $formVMRequest['inputComissioningDate'];
-    $dateAnniversary = null;
+    $dateAnniversary = 'null';
     $dateEnd = $formVMRequest['inputEndDate'];
     $description = $formVMRequest['objective'];
-    $ip = null;
-    $dnsName = null;
-    $redundance = null;
+    $ip = 'null';
+    $dnsName = 'null';
+    $redundance = 'null';
     $usageType = $formVMRequest['usingVM'];
-    $criticity = null;
+    $criticity = 'null';
     $cpu = $formVMRequest['inputCPU'];
     $ram = $formVMRequest['inputRAM'];
     $disk = $formVMRequest['inputSSD'];
     $network = $formVMRequest['networkFormControlSelect'];
     $domain = $formVMRequest['domainEINET'];
-    $patch = null;
+    $patch = 'null';
     $comment = $formVMRequest['ti'];
-    $datacenter = null;
+    $datacenter = 'null';
     $requestName = getUserId($formVMRequest['inputResquesterName']);
     $tmName = getUserId($formVMRequest['inputTMName']);
     $raName = getUserId($formVMRequest['inputRAName']);
@@ -40,7 +40,7 @@ function addVMToDB($formVMRequest)
     $os_id = 2;//getOsId($formVMRequest['osFormControlSelect']);
     $snapshot_id = getSnapshotId($formVMRequest['snapshotsFormControlSelect']);
     $backup_id = getBackupId($formVMRequest['backupFormControlSelect']);
-    $cost_id = null;
+    $cost_id = 1;
 
     $strSep = '\'';
 

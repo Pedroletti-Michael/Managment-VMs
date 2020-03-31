@@ -48,11 +48,11 @@ function formVM($formVMRequest)
 
     if(isset($formVMRequest['domainEINET']))
     {
-        $formVMRequest['domainEINET'] = "true";
+        $formVMRequest['domainEINET'] = 1;
     }
     else
     {
-        $formVMRequest['domainEINET'] = "false";
+        $formVMRequest['domainEINET'] = 0;
     }
 
     foreach ($formVMRequest as $field)
