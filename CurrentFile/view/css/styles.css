@@ -74,7 +74,7 @@
 }
 
 /* ------------------------------------------- Responsive for phone -------------------------------------------------*/
-@media handheld and (max-device-width: 1000px),(max-device-height: 2000px){
+@media handheld,(max-device-width: 500px){
     .display-laptop{
         display: none!important;
     }
