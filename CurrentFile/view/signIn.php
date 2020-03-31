@@ -15,14 +15,14 @@ ob_start();
         <meta charset="UTF-8">
         <title>Sign In- HEIG-VD</title>
     </head>
-    <body>
-    <div class="mr-auto ml-auto mb-auto" style="width: 700px; margin-top: 17%">
+    <body class="responsive-phone-bg">
+    <div class="mr-auto ml-auto mb-auto responsive-phone" style="width: 700px; margin-top: 17%">
         <div class="d-inline-block bg-light pr-3 m-auto">
-            <div class="float-left border-right">
+            <div class="float-left border-right display-laptop">
                 <img src="../images/logo-heig-vd.png" style="max-height: 230px">
             </div>
             <div class="float-right pl-3">
-                <form method="post" action="../index.php?action=RequestLogin" >
+                <form method="post" action="../index.php?action=RequestLogin">
                     <h3 class="text-center border border-danger border-left-0 border-right-0 border-top-0 pb-2 pt-1">Se connecter</h3>
                     <div class="d-inline-block w-100 pt-2 mb-2">
                         <label for="inputLogin" class="font-weight-bold">Nom d'utilisateur</label>

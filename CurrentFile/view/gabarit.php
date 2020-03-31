@@ -33,9 +33,17 @@
     <div id="mySidenav" class="sidenav">
         <!----------------- signIn ---------------->
         <?php if ($_GET['action'] == "signIn"): ?>
-            <a href="index.php?action=signIn" class="alert-link active float-right pr-4">signIn</a>
+            <?php if(isset($_SESSION['userType'])): ?>
+                <a href="index.php?action=signOut" class="alert-link active float-right pr-4">Sign Out</a>
+            <?php else : ?>
+                <a href="index.php?action=signIn" class="alert-link active float-right pr-4">Sign In</a>
+            <?php endif; ?>
         <?php else : ?>
-            <a href="index.php?action=signIn" class="float-right pr-4">signIn</a>
+            <?php if(isset($_SESSION['userType'])): ?>
+                <a href="index.php?action=signOut" class="float-right pr-4">Sign Out</a>
+            <?php else : ?>
+                <a href="index.php?action=signIn" class="float-right pr-4">Sign In</a>
+            <?php endif; ?>
         <?php endif; ?>
         <a class="title">Public</a>
         <!----------------- home ---------------->

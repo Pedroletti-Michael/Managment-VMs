@@ -66,6 +66,7 @@
     top: 0; /* Stay at the top */
     left: 0;
     overflow-x: hidden; /* Disable horizontal scroll */
+    opacity: 0.95; /* Background are translucent */
 }
 @media screen and (min-width: 1050px) {
     .sidenav{
@@ -74,7 +75,7 @@
 }
 
 /* ------------------------------------------- Responsive for phone -------------------------------------------------*/
-@media handheld,(max-device-width: 768px){
+@media handheld,(max-device-width: 500px){
     .display-laptop{
         display: none!important;
     }
@@ -95,6 +96,15 @@
     .navbar-toggler-icon{
         width: 50px!important;
         heigt: 50px!important;
+    }
+
+    .responsive-phone{
+        width: 100%!important;
+        padding: 25% 5px 0px;
+    }
+
+    .responsive-phone-bg{
+        background-color: #272727;
     }
 
 
