@@ -17,20 +17,17 @@ function addVMToDB($formVMRequest)
     $vmName = $formVMRequest['inputVMName'];
     $cluster = 'null';
     $dateStart = $formVMRequest['inputComissioningDate'];
-    $dateAnniversary = null;
     $dateEnd = $formVMRequest['inputEndDate'];
     $description = $formVMRequest['objective'];
     $ip = 'null';
     $dnsName = 'null';
     $redundance = 'null';
     $usageType = $formVMRequest['usingVM'];
-    $criticity = null;
     $cpu = $formVMRequest['inputCPU'];
     $ram = $formVMRequest['inputRAM'];
     $disk = $formVMRequest['inputSSD'];
     $network = $formVMRequest['networkFormControlSelect'];
     $domain = $formVMRequest['domainEINET'];
-    $patch = null;
     $comment = $formVMRequest['ti'];
     $datacenter = 'null';
     $requestName = getUserId($formVMRequest['inputResquesterName']);
@@ -44,26 +41,23 @@ function addVMToDB($formVMRequest)
 
     $strSep = '\'';
 
-    $query = "INSERT INTO vm (name, cluster, dateStart, dateAnniversary, dateEnd, description, ip, dnsName, redundance, usageType, criticity, cpu, ram, disk, network, domain, patch, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
+    $query = "INSERT INTO vm (name, cluster, dateStart, dateEnd, description, ip, dnsName, redundance, usageType, cpu, ram, disk, network, domain, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
   
               VALUES(
               ".$strSep.$vmName.$strSep.",
               ".$strSep.$cluster.$strSep.",
               ".$strSep.$dateStart.$strSep.",
-              ".$strSep.$dateAnniversary.$strSep.",
               ".$strSep.$dateEnd.$strSep.",
               ".$strSep.$description.$strSep.",
               ".$strSep.$ip.$strSep.",
               ".$strSep.$dnsName.$strSep.",
               ".$strSep.$redundance.$strSep.",
               ".$strSep.$usageType.$strSep.",
-              ".$strSep.$criticity.$strSep.",
               ".$strSep.$cpu.$strSep.",
               ".$strSep.$ram.$strSep.",
               ".$strSep.$disk.$strSep.",
               ".$strSep.$network.$strSep.",
               ".$strSep.$domain.$strSep.",
-              ".$strSep.$patch.$strSep.",
               ".$strSep.$comment.$strSep.",
               ".$strSep.$datacenter.$strSep.",
               ".$strSep.$requestName.$strSep.",
