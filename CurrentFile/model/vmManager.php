@@ -76,7 +76,8 @@ function addVMToDB($formVMRequest)
               ".$strSep.$cost_id.$strSep.")";
 
 
-     return executeQueryInsert($query);
+    executeQueryInsert($query);
+    return true;
 }
 
 
