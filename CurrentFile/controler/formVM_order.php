@@ -59,8 +59,7 @@ function formVM($formVMRequest)
     {
         if(!isset($field))
         {
-            $_GET['action'] = "form";
-            require "view/form.php";
+            displayForm();
             break;
         }
     }
@@ -78,7 +77,6 @@ function formVM($formVMRequest)
     }
     else
     {
-        $_GET['action'] = "form";
-        require "view/form.php";
+        displayForm();
     }
 }
