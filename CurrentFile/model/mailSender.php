@@ -35,8 +35,8 @@ function requestMail($userMail, $requestName){
     $subject = 'Résumé de votre demande pour une VM';
 
     // message
-    $message = "Bonjour,\n\nNom de la demande : ". $requestName ."\n\n
-    Votre demande est en cours de validation, vous recevrez bientôt un mail de confirmation avec toutes les informations nécessaires.\n\n
+    $message = "Bonjour,<br><br>Nom de la demande : ". $requestName ."<br><br>
+    Votre demande est en cours de validation, vous recevrez bientôt un mail de confirmation avec toutes les informations nécessaires.<br><br>
     Meilleures salutations.
     VmManager
     ";
