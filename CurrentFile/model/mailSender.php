@@ -35,7 +35,7 @@ function requestMail($userMail, $requestName){
     $subject = 'Résumé de votre demande pour une VM';
 
     // message
-    $message = "Résumé de votre demande pour une VM. Nom de la demande : " . $requestName;
+    $message = "Bonjour,\nVotre demande Résumé de votre demande pour une VM. Nom de la demande : " . $requestName;
 
     /**
     $message = '

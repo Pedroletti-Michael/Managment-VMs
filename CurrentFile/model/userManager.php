@@ -117,7 +117,8 @@ function getUserType($userMail){
 
     $query = "SELECT type FROM `user` WHERE mail = ". $strSep.$userMail.$strSep;
 
-    return executeQuery($query);
+    $result = executeQuery($query);
+    return $result[0][0];s
 }
 
 /**
