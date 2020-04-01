@@ -117,8 +117,64 @@ function getBackupId($backupId){
 function getAllVM()
 {
     require_once 'model/dbConnector.php';
-    $querySelect = "SELECT `name`, `dateStart`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`  FROM `vm`";
+    $querySelect = "SELECT `name`, `dateStart`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`  FROM `vm`";
 
     $resultSelect = executeQuerySelect($querySelect);
+    foreach ($resultSelect as $vm){
+        $vm['customer'] = getInfoUser($vm['customer']);
+        $vm['userRa'] = getInfoUser($vm['userRa']);
+        $vm['userRt'] = getInfoUser($vm['userRt']);
+        $vm['entity_id'] = getInfoEntity($vm['entity_id']);
+        $vm['os_id'] = getInfoOs($vm['os_id']);
+        $vm['snapshot_id'] = getInfoSnapshot($vm['snapshot_id']);
+        $vm['backup_id'] = getInfoBackup($vm['backup_id']);
+    }
+
+
     return $resultSelect;
+}
+
+function getInfoUser($id){
+    $strSep = '\'';
+
+    $query = "SELECT mail FROM `user` WHERE user_id = ". $strSep.$id.$strSep;
+
+    $result = executeQuery($query);
+    return $result[0][0];
+}
+
+function getInfoEntity($id){
+    $strSep = '\'';
+
+    $query = "SELECT entityName FROM `entity` WHERE entity_id = ". $strSep.$id.$strSep;
+
+    $result = executeQuery($query);
+    return $result[0][0];
+}
+
+function getInfoOs($id){
+    $strSep = '\'';
+
+    $query = "SELECT osName, osType FROM `os` WHERE os_id = ". $strSep.$id.$strSep;
+
+    $result = executeQuery($query);
+    return $result[0][1] . " " .$result[0][0];
+}
+
+function getInfoSnapshot($id){
+    $strSep = '\'';
+
+    $query = "SELECT policy FROM `snapshot` WHERE snapshot_id = ". $strSep.$id.$strSep;
+
+    $result = executeQuery($query);
+    return $result[0][0];
+}
+
+function getInfoBackup($id){
+    $strSep = '\'';
+
+    $query = "SELECT policy FROM `backup` WHERE backup_id = ". $strSep.$id.$strSep;
+
+    $result = executeQuery($query);
+    return $result[0][0];
 }
