@@ -12,32 +12,31 @@ function displayAllVM()
     {
         switch ($_SESSION['userType'])
         {
-            case 1:
+            case 0:
                 $_GET['action'] = "home";
                 require 'view/home.php';
                 break;
-            case 2:
-                $_GET['action'] = "allVM";
-                require 'view/allVM.php';
-                break;
-            case 3:
-                $_GET['action'] = "allVM";
-                require 'view/allVM.php';
-                break;
-            case 4:
+            case 1:
+                require_once 'model/vmManager.php';
+                $allVM = getAllVM();
                 $_GET['action'] = "allVM";
                 require 'view/allVM.php';
                 break;
             default:
-            $_GET['action'] = "home";
-            require 'view/home.php';
+                $_GET['action'] = "signIn";
+                require 'view/signIn.php';
             break;
         }
     }
     else
     {
-        $_GET['action'] = "home";
-        require 'view/home.php';
+        require_once 'model/vmManager.php';
+        $allVM = getAllVM();
+        $_GET['action'] = "allVM";
+        require 'view/allVM.php';
+
+        /*$_GET['action'] = "signIn";
+        require 'view/signIn.php';*/
     }
 }
 
@@ -53,32 +52,24 @@ function displayFormManagement()
     {
         switch ($_SESSION['userType'])
         {
-            case 1:
+            case 0:
                 $_GET['action'] = "home";
                 require 'view/home.php';
                 break;
-            case 2:
-                $_GET['action'] = "formManagement";
-                require 'view/formManagement.php';
-                break;
-            case 3:
-                $_GET['action'] = "formManagement";
-                require 'view/formManagement.php';
-                break;
-            case 4:
+            case 1:
                 $_GET['action'] = "formManagement";
                 require 'view/formManagement.php';
                 break;
             default:
-                $_GET['action'] = "home";
-                require 'view/home.php';
+                $_GET['action'] = "signIn";
+                require 'view/signIn.php';
                 break;
         }
     }
     else
     {
-        $_GET['action'] = "home";
-        require 'view/home.php';
+        $_GET['action'] = "signIn";
+        require 'view/signIn.php';
     }
 }
 

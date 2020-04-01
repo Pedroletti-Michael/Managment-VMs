@@ -74,6 +74,13 @@ function addVMToDB($formVMRequest)
     return true;
 }
 
+function getAllVM()
+{
+    $querySelect = "SELECT `name`, `dateStart`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`  FROM `vm`";
+
+    $resultSelect = executeQuerySelect($querySelect);
+    return $resultSelect;
+}
 
 function getEntityId($entityName){
     $strSep = '\'';
@@ -84,7 +91,6 @@ function getEntityId($entityName){
     return $result[0][0];
 }
 
-
 function getOsId($osName){
     $strSep = '\'';
 
@@ -94,7 +100,6 @@ function getOsId($osName){
     return $result[0][0];
 }
 
-
 function getSnapshotId($snapshotName){
     $strSep = '\'';
 
@@ -103,7 +108,6 @@ function getSnapshotId($snapshotName){
     $result = executeQuery($query);
     return $result[0][0];
 }
-
 
 function getBackupId($backupId){
     $strSep = '\'';
