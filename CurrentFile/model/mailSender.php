@@ -35,26 +35,11 @@ function requestMail($userMail, $requestName){
     $subject = 'Résumé de votre demande pour une VM';
 
     // message
-    $message = "Bonjour,\nVotre demande Résumé de votre demande pour une VM. Nom de la demande : " . $requestName;
-
-    /**
-    $message = '
-    <html>
-    <head>
-        <title>Résumé de votre demande pour une VM<title>
-    </head>
-    <body>
-        <p>Nom de la demande : '. $requestName .' </p>
-        <br>
-        <p>Votre demande pour une VM est en cours de validation, vous recevrez bientôt un mail de confirmation avec toutes les informations nécessaires.</p>
-        <br>
-        <p>
-            Meilleures salutations.
-            VmManager
-        </p>
-    </body>
-    </html>
-    ';*/
+    $message = "Bonjour,\n\nNom de la demande : ". $requestName ."\n\n
+    Votre demande est en cours de validation, vous recevrez bientôt un mail de confirmation avec toutes les informations nécessaires.\n\n
+    Meilleures salutations.
+    VmManager
+    ";
 
     // To send HTML mail, the Content-type header must be set
     $headers  = 'MIME-Version: 1.0' . "\r\n";
