@@ -120,14 +120,17 @@ function getAllVM()
     $querySelect = "SELECT `name`, `dateStart`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`  FROM `vm`";
 
     $resultSelect = executeQuerySelect($querySelect);
+    $i = 0;
+
     foreach ($resultSelect as $vm){
-        $vm['customer'] = getInfoUser($vm['customer']);
-        $vm['userRa'] = getInfoUser($vm['userRa']);
-        $vm['userRt'] = getInfoUser($vm['userRt']);
-        $vm['entity_id'] = getInfoEntity($vm['entity_id']);
-        $vm['os_id'] = getInfoOs($vm['os_id']);
-        $vm['snapshot_id'] = getInfoSnapshot($vm['snapshot_id']);
-        $vm['backup_id'] = getInfoBackup($vm['backup_id']);
+        $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
+        $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
+        $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
+        $resultSelect[$i]['os_id'] = getInfoOs($vm['os_id']);
+        $resultSelect[$i]['snapshot_id'] = getInfoSnapshot($vm['snapshot_id']);
+        $resultSelect[$i]['backup_id'] = getInfoBackup($vm['backup_id']);
+        $i++;
     }
 
 
