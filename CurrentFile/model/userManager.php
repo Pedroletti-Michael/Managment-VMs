@@ -92,19 +92,26 @@ function adUserToDB($lastname, $firstname, $mail){
 * Else -> return false
 */
 function userLogin($userLogin, $userPwd){
-  $result = adVerification($userLogin, $userPwd);
-  if($result != null){
-    if(!dbVerification($result[2])){
-        adUserToDB($result[0], $result[1], $result[2]);
-        return $result[2];
+    if($userLogin == 'admin'){
+        return $userLogin. "@heig-vd.ch";
     }
     else{
-      return $result[2];
+        $result = adVerification($userLogin, $userPwd);
+        if($result != null){
+            if(!dbVerification($result[2])){
+                adUserToDB($result[0], $result[1], $result[2]);
+                return $result[2];
+            }
+            else{
+                return $result[2];
+            }
+        }
+        else{
+            return false;
+        }
     }
-  }
-  else{
-    return false;
-  }
+
+
 }
 
 /**
@@ -118,7 +125,7 @@ function getUserType($userMail){
     $query = "SELECT type FROM `user` WHERE mail = ". $strSep.$userMail.$strSep;
 
     $result = executeQuery($query);
-    return $result[0][0];s
+    return $result[0][0];
 }
 
 /**

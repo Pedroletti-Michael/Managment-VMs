@@ -74,14 +74,8 @@ function addVMToDB($formVMRequest)
     return true;
 }
 
-function getAllVM()
-{
-    $querySelect = "SELECT `name`, `dateStart`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`  FROM `vm`";
 
-    $resultSelect = executeQuerySelect($querySelect);
-    return $resultSelect;
-}
-
+/**===GET-ID FROM TABLE===**/
 function getEntityId($entityName){
     $strSep = '\'';
 
@@ -116,4 +110,15 @@ function getBackupId($backupId){
 
     $result = executeQuery($query);
     return $result[0][0];
+}
+
+
+/**===GET INFO OF ALL VM FORM VM TABLE===**/
+function getAllVM()
+{
+    require_once 'model/dbConnector.php';
+    $querySelect = "SELECT `name`, `dateStart`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`  FROM `vm`";
+
+    $resultSelect = executeQuerySelect($querySelect);
+    return $resultSelect;
 }
