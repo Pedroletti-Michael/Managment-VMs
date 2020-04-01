@@ -125,7 +125,11 @@
     </div>
     <input class="search-responsive form-control form-control-light" type="text" placeholder="Search" aria-label="Search">
     <div class="signIn-responsive float-right text-center">
-        <a class="nav-link responsive-phone-hidden" href="index.php?action=signIn" style="color: white">Sign In</a>
+        <?php if(isset($_SESSION['userType'])): ?>
+            <a class="nav-link responsive-phone-hidden" href="index.php?action=signOut" style="color: white">Sign Out</a>
+        <?php else : ?>
+            <a class="nav-link responsive-phone-hidden" href="index.php?action=signIn" style="color: white">Sign In</a>
+        <?php endif; ?>
     </div>
 
     <nav class="col-md-2 d-none d-md-block sidebar bg-dark sidenav animate pt-0" id="SideBar" style="max-width: 200px; z-index: 1;display: block!important;">

@@ -1,4 +1,8 @@
 flag = 0;
+
+var today = new Date();
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
 function Sidebar() {
     if(flag == 1){
         document.getElementById("SideBar").style.width = "0px";

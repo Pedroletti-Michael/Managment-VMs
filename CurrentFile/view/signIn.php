@@ -19,7 +19,7 @@ ob_start();
     <div class="mr-auto ml-auto mb-auto responsive-phone" style="width: 700px; margin-top: 17%">
         <div class="d-inline-block bg-light pr-3 m-auto">
             <div class="float-left border-right display-laptop">
-                <img src="../images/logo-heig-vd.png" style="max-height: 230px">
+                <img src="../images/logo-heig-vd.png" style="max-height: 250px">
             </div>
             <div class="float-right pl-3">
                 <form method="post" action="../index.php?action=RequestLogin">
@@ -45,10 +45,10 @@ ob_start();
                         </div>
                     <?php
                         if(isset($_POST['error']) && $_POST['error'] == "credentials"){
-                            echo "<div>Identifiant ou mot de passe faux !</div>";
+                            echo "<div style='color: red'>Identifiant ou mot de passe faux !</div>";
                         }
                         if(isset($_POST['error']) && $_POST['error'] == "fieldEmpty"){
-                            echo "<div>Veuillez renseigner tous les champs !</div>";
+                            echo "<div style='color: red'>Veuillez renseigner tous les champs !</div>";
                         }
                     ?>
                     </div>
