@@ -22,7 +22,7 @@
 </head>
 <body>
 <!-------------------------- Gabarit phone ------------------------------->
-<nav class="display-phone navbar navbar-dark header-top sticky-top fixed-top flex-lg-nowrap p-0 shadow w-100 navbar-expand-lg" style="background-color: #e30613;flex-wrap: nowrap !important; height: 48px">
+<nav class="display-phone navbar navbar-dark header-top fixed-top flex-lg-nowrap p-0 shadow w-100 navbar-expand-lg" style="background-color: #e30613;flex-wrap: nowrap !important; height: 48px">
     <div class="logo-responsive navbar-brand mr-0 pl-3 pr-3 font-weight-bold float-left" href="#" style="font-family: 'Century Gothic'">
         <a>HEIG-VD</a>
     </div>
@@ -118,7 +118,7 @@
     </div>
 </nav>
 <!-------------------------- Gabarit responsive ------------------------------->
-<nav class="display-laptop navbar navbar-dark header-top sticky-top fixed-top flex-lg-nowrap p-0 shadow w-100 navbar-expand-lg" style="background-color: #e30613;flex-wrap: nowrap !important; ">
+<nav class="display-laptop navbar navbar-dark header-top fixed-top flex-lg-nowrap p-0 shadow w-100 navbar-expand-lg" style="background-color: #e30613;flex-wrap: nowrap !important; ">
     <div class="logo-responsive navbar-brand mr-0 pl-3 pr-3 font-weight-bold" href="#" style="font-family: 'Century Gothic'">
         <a>HEIG-VD</a>
         <span class="responsive-menu-min navbar-toggler-icon float-right m-0" onclick="Sidebar()"></span>
@@ -434,7 +434,7 @@
         </nav>
     </div>
 </div>
-<main id="main" role="main" class="padding-left h-100 w-100">
+<main id="main" role="main" class="padding-left h-100 w-100 mt-5">
     <?= $contenu; ?>
 </main>
 </body>

@@ -10,14 +10,16 @@
 .display-phone{
     display: none!important;
 }
-
+.allVM th, .allVM td{
+    width: auto;
+}
 /* ------------------------------------------- Responsive correction -------------------------------------------------*/
 @media screen and (min-width: 1050px) {
     .responsive-menu-min{
         visibility: hidden;
     }
     .padding-left{
-        padding-left: 215px;
+        padding-left: 200px;
     }
     .logo-responsive{
         max-width: 200px;
