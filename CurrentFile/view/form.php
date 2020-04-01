@@ -88,7 +88,7 @@ ob_start();
             <!--Date of commissioning-->
             <div class="form-group w-50 float-right pl-4">
                 <label for="inputComissioningDate" class="font-weight-bold">Date de mise en service<a style="color: red"> *</a></label>
-                <input type="date" class="form-control form form" id="inputComissioningDate" name="inputComissioningDate" aria-describedby="comissioningDateHelp" placeholder="Entrer un nom ou une addresse de messagerie" required>
+                <input type="date" min="<?php date("Y-m-d") ?>" class="form-control form form" id="inputComissioningDate" name="inputComissioningDate" aria-describedby="comissioningDateHelp" placeholder="Entrer un nom ou une addresse de messagerie"  required>
                 <small id="comissioningDateHelp" class="form-text text-muted">Délai d'une semaine pour les VM de type Silver &amp; Gold. Deux semaines pour les autres configurations.</small>
             </div>
         </div>
@@ -130,7 +130,7 @@ ob_start();
         </div>
         <!--Objective-->
         <div class="form-group">
-            <label for="objective" class="font-weight-bold">Description</label>
+            <label for="objective" class="font-weight-bold">Description<a style="color: red"> *</a></label>
             <textarea class="form-control" rows="5" id="objective" name="objective" required></textarea>
             <small id="objectiveHelp" class="form-text text-muted">But du projet</small>
         </div>

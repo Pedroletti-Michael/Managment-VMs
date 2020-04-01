@@ -75,7 +75,7 @@
 }
 
 /* ------------------------------------------- Responsive for phone -------------------------------------------------*/
-@media handheld,(max-device-width: 500px){
+@media handheld,(max-device-width: 1000px){
     .display-laptop{
         display: none!important;
     }
@@ -118,6 +118,7 @@
         left: 0;
         background-color: #111; /* Black*/
         overflow-x: hidden; /* Disable horizontal scroll */
+        overflow-y: initial;
         transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
         padding-top: 20px;
     }
@@ -167,5 +168,11 @@
     @media screen and (max-height: 450px) {
         .sidenav {padding-top: 15px;}
         .sidenav a {font-size: 18px;}
+    }
+}
+@media handheld and (min-device-width: 600px){
+    .responsive-phone{
+        width: 100%;
+        padding: 0% 15% 0px;
     }
 }
