@@ -30,8 +30,13 @@ function displayAllVM()
     }
     else
     {
-        $_GET['action'] = "signIn";
-        require 'view/signIn.php';
+        require_once 'model/vmManager.php';
+        $allVM = getAllVM();
+        $_GET['action'] = "allVM";
+        require 'view/allVM.php';
+
+        /*$_GET['action'] = "signIn";
+        require 'view/signIn.php';*/
     }
 }
 
