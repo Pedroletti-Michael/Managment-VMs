@@ -13,8 +13,9 @@ ob_start();
         <title>Gestion VM - HEIG-VD</title>
     </head>
     <body>
-    <table class="table table-striped">
-        <thead class="thead-dark">
+    <div class="table-responsive-xl">
+        <table class="table table-striped allVM">
+        <thead class="thead-dark sticky-top">
         <tr>
             <th scope="col">name</th>
             <th scope="col">dateStart</th>
@@ -40,8 +41,8 @@ ob_start();
             <?php foreach ($allVM as $value): ?>
                 <tr>
                     <td><?php echo $value['name']?></td>
-                    <td><?php echo $value['dateStart']?></td>
-                    <td><?php echo $value['dateEnd']?></td>
+                    <td style="min-width: 100px"><?php echo $value['dateStart']?></td>
+                    <td style="min-width: 100px"><?php echo $value['dateEnd']?></td>
                     <td><?php echo $value['description']?></td>
                     <td><?php echo $value['usageType']?></td>
                     <td><?php echo $value['cpu']?></td>
@@ -54,13 +55,14 @@ ob_start();
                     <td><?php echo $value['userRa']?></td>
                     <td><?php echo $value['userRt']?></td>
                     <td><?php echo $value['entity_id']?></td>
-                    <td><?php echo $value['os_id']?></td>
-                    <td><?php echo $value['snapshot_id']?></td>
-                    <td><?php echo $value['backup_id']?></td>
+                    <td style="min-width: 100px"><?php echo $value['os_id']?></td>
+                    <td style="min-width: 250px"><?php echo $value['snapshot_id']?></td>
+                    <td style="min-width: 250px"><?php echo $value['backup_id']?></td>
                 </tr>
             <?php endforeach;?>
         </tbody>
     </table>
+    </div>
 <?php
 $contenu = ob_get_clean();
 require "gabarit.php";
