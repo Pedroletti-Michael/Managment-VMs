@@ -8,8 +8,23 @@
 
 function displayHome()
 {
-    $_GET['action'] = "home";
-    require "view/home.php";
+    if(isset($_SESSION['userEmail']))
+    {
+        require_once 'model/userManager.php';
+        $userId = getUserId($_SESSION['userEmail']);
+
+        require_once "model/vmManager.php";
+        $userVM = getUserVM($userId);
+
+        $_GET['action'] = "home";
+        require_once "view/home.php";
+    }
+    else
+    {
+        $userVM = "";
+        $_GET['action'] = "home";
+        require_once "view/home.php";
+    }
 }
 
 function displaySignIn()
@@ -32,8 +47,7 @@ function login($loginRequest)
          if ($userEmail!=null || $userEmail!=false)
          {
              createSession($userEmail);
-             $_GET['action'] = "home";
-             require "view/home.php";
+             displayHome();
          }
          else
          {
