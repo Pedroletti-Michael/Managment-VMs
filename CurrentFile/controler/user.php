@@ -8,7 +8,7 @@
 
 function displayHome()
 {
-    if(isset($_SESSION['userEmail']))
+    if(isset($_SESSION['userEmail'])&& $_SESSION['userEmail'] != null)
     {
         require_once 'model/userManager.php';
         $userId = getUserId($_SESSION['userEmail']);
@@ -21,9 +21,8 @@ function displayHome()
     }
     else
     {
-        $userVM = "";
-        $_GET['action'] = "home";
-        require_once "view/home.php";
+        $_GET['action'] = "signIn";
+        require "view/signIn.php";
     }
 }
 
