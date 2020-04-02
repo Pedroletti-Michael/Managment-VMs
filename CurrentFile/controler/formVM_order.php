@@ -18,7 +18,6 @@ function displayForm()
     require 'view/form.php';
 }
 
-
 function formVM($formVMRequest)
 {
     if(isset($formVMRequest['Academique']))

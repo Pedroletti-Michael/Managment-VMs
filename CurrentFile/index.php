@@ -28,6 +28,9 @@ if(isset($_GET['action'])){
         case 'allVM':
             displayAllVM();
             break;
+        case 'confirmationVM':
+            displayConfirmationVM();
+            break;
         case 'signIn':
             displaySignIn();
             break;
