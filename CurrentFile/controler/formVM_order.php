@@ -18,7 +18,6 @@ function displayForm()
     require 'view/form.php';
 }
 
-
 function formVM($formVMRequest)
 {
     if(isset($formVMRequest['Academique']))
@@ -72,8 +71,8 @@ function formVM($formVMRequest)
 
         requestMail($formVMRequest['inputResquesterName'], $formVMRequest['inputVMName']);
 
-        $_GET['action'] = "home";
-        require "view/home.php";
+        require_once 'controler/user.php';
+        displayHome();
     }
     else
     {

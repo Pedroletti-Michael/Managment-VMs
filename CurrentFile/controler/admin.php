@@ -13,8 +13,8 @@ function displayAllVM()
         switch ($_SESSION['userType'])
         {
             case 0:
-                $_GET['action'] = "home";
-                require 'view/home.php';
+                require_once 'controler/user.php';
+                displayHome();
                 break;
             case 1:
                 require_once 'model/vmManager.php';
@@ -40,6 +40,40 @@ function displayAllVM()
     }
 }
 
+function displayConfirmationVM()
+{
+    if(isset($_SESSION['userType']))
+    {
+        switch ($_SESSION['userType'])
+        {
+            case 0:
+                require_once 'controler/user.php';
+                displayHome();
+                break;
+            case 1:
+                require_once 'model/vmManager.php';
+                $confirmationVM = getConfirmationVM();
+                $_GET['action'] = "confirmationVM";
+                require 'view/confirmationVM.php';
+                break;
+            default:
+                $_GET['action'] = "signIn";
+                require 'view/signIn.php';
+                break;
+        }
+    }
+    else
+    {
+        require_once 'model/vmManager.php';
+        $confirmationVM = getConfirmationVM();
+        $_GET['action'] = "confirmationVM";
+        require 'view/confirmationVM.php';
+
+        /*$_GET['action'] = "signIn";
+        require 'view/signIn.php';*/
+    }
+}
+
 function displayFormManagement()
 {
     require_once 'model/displayManager.php';
@@ -53,8 +87,8 @@ function displayFormManagement()
         switch ($_SESSION['userType'])
         {
             case 0:
-                $_GET['action'] = "home";
-                require 'view/home.php';
+                require_once 'controler/user.php';
+                displayHome();
                 break;
             case 1:
                 $_GET['action'] = "formManagement";

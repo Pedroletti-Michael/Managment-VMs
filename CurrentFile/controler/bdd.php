@@ -13,8 +13,8 @@ function displayVM()
         switch ($_SESSION['userType'])
         {
             case 0:
-                $_GET['action'] = "home";
-                require 'view/home.php';
+                require_once 'controler/user.php';
+                displayHome();
                 break;
             case 1:
                 $_GET['action'] = "vm";
@@ -40,8 +40,8 @@ function displayBackup()
         switch ($_SESSION['userType'])
         {
             case 0:
-                $_GET['action'] = "home";
-                require 'view/home.php';
+                require_once 'controler/user.php';
+                displayHome();
                 break;
             case 1:
                 $_GET['action'] = "backup";
@@ -67,8 +67,8 @@ function displayBDDEntity()
         switch ($_SESSION['userType'])
         {
             case 0:
-                $_GET['action'] = "home";
-                require 'view/home.php';
+                require_once 'controler/user.php';
+                displayHome();
                 break;
             case 1:
                 $_GET['action'] = "entity";
@@ -94,8 +94,8 @@ function displayOS()
         switch ($_SESSION['userType'])
         {
             case 0:
-                $_GET['action'] = "home";
-                require 'view/home.php';
+                require_once 'controler/user.php';
+                displayHome();
                 break;
             case 1:
                 $_GET['action'] = "os";
@@ -121,8 +121,8 @@ function displayPricing()
         switch ($_SESSION['userType'])
         {
             case 0:
-                $_GET['action'] = "home";
-                require 'view/home.php';
+                require_once 'controler/user.php';
+                displayHome();
                 break;
             case 1:
                 $_GET['action'] = "pricing";
@@ -148,8 +148,8 @@ function displaySnapshot()
         switch ($_SESSION['userType'])
         {
             case 0:
-                $_GET['action'] = "home";
-                require 'view/home.php';
+                require_once 'controler/user.php';
+                displayHome();
                 break;
             case 1:
                 $_GET['action'] = "snapshot";
@@ -175,8 +175,8 @@ function displayUser()
         switch ($_SESSION['userType'])
         {
             case 0:
-                $_GET['action'] = "home";
-                require 'view/home.php';
+                require_once 'controler/user.php';
+                displayHome();
                 break;
             case 1:
                 $_GET['action'] = "user";
