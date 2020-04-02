@@ -13,8 +13,8 @@ function displayAllVM()
         switch ($_SESSION['userType'])
         {
             case 0:
-                $_GET['action'] = "home";
-                require 'view/home.php';
+                require_once 'controler/user.php';
+                displayHome();
                 break;
             case 1:
                 require_once 'model/vmManager.php';
@@ -53,8 +53,8 @@ function displayFormManagement()
         switch ($_SESSION['userType'])
         {
             case 0:
-                $_GET['action'] = "home";
-                require 'view/home.php';
+                require_once 'controler/user.php';
+                displayHome();
                 break;
             case 1:
                 $_GET['action'] = "formManagement";
