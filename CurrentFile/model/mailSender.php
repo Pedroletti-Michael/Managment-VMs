@@ -160,11 +160,6 @@ function deniedRequestMail($userMail, $requestName){
 
     // message
         $message = '
-    <html>
-    <head>
-        <title>Demande pour votre VM <bold>refusée</bold></title>
-    </head>
-    <body>
         <p>Nom de la demande : '. $requestName .' </p>
         <br>
         <p>Votre demande pour une VM a été refusée.</p>
@@ -177,8 +172,6 @@ function deniedRequestMail($userMail, $requestName){
             Meilleures salutations.
             VmManager
         </p>
-    </body>
-    </html>
     ';
 
     // To send HTML mail, the Content-type header must be set
