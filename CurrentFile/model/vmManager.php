@@ -203,3 +203,25 @@ function getUserVM($userId)
     }
     return $resultSelect;
 }
+
+/**===Get Information from VM's who need to be confirmed===**/
+function getConfirmationVM(){
+    require_once 'model/dbConnector.php';
+
+    $querySelect = "SELECT `name`, `dateStart`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`  FROM `vm` WHERE vmStatus = 0";
+
+    $resultSelect = executeQuerySelect($querySelect);
+    $i = 0;
+
+    foreach ($resultSelect as $vm){
+        $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
+        $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
+        $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
+        $resultSelect[$i]['os_id'] = getInfoOs($vm['os_id']);
+        $resultSelect[$i]['snapshot_id'] = getInfoSnapshot($vm['snapshot_id']);
+        $resultSelect[$i]['backup_id'] = getInfoBackup($vm['backup_id']);
+        $i++;
+    }
+    return $resultSelect;
+}

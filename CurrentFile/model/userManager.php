@@ -141,3 +141,38 @@ function getUserId($userMail){
     $result = executeQuery($query);
     return $result[0][0];
 }
+
+/**
+ * This would check if a user is not already in our DB. For that, this function will get all entries if the ou=Personnel
+ * in the active directory and check if the mail is already on the db. If not, they will be added
+ */
+function verificationUserFromDb(){
+    putenv('LDAPTLS_REQCERT=never');
+    $result = null;
+
+    $ds=ldap_connect("ldaps://einet.ad.eivd.ch:636");
+
+    ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+    ldap_set_option($ds, LDAP_OPT_REFERRALS, 0);
+
+    if ($ds) {
+        $result = array();
+
+        // Get all user from ou=Personnel
+        $sr = ldap_search($ds, "ou=personnel,dc=einet,dc=ad,dc=eivd,dc=ch", "samaccountname=*");
+
+        $info = ldap_get_entries($ds, $sr);
+
+        $usersFromDb = null; //Get all users from db
+
+        foreach ($info as $user){
+            //before array push verify if user is already in db if the user is not so add the user into db.
+            array_push($result, $user["sn"][0]);
+            array_push($result, $user["givenname"][0]);
+            array_push($result, $user["mail"][0]);
+        }
+
+
+        ldap_close($ds);
+    }
+}
