@@ -63,10 +63,14 @@ ob_start();
             <!--Department / Institution / Service-->
             <div class="form-group w-50 float-right pl-4">
                 <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service<a style="color: red"> *</a></label>
-                <select class="form-control" value="<?php echo $dataVM[0]['entity'] ?>" id="disFormControlSelect" name="disFormControlSelect" required>
+                <select class="form-control" id="disFormControlSelect" name="disFormControlSelect" required>
                     <?php
                     foreach ($entityNames as $value) {
-                        echo "<option>".$value['entityName']."</option>";
+                        if($dataVM[0]['entity_id'] == $value['entityName']){
+                                echo "<option selected>".$value['entityName']."</option>";}
+                            else{
+                                echo "<option>".$value['entityName']."</option>";
+                        }
                     }
                     ?>
                 </select>
@@ -79,7 +83,11 @@ ob_start();
                 <select class="form-control"  value="<?php echo $dataVM[0]['os'] ?>" id="osFormControlSelect" name="osFormControlSelect" required>
                     <?php
                     foreach ($osNames as $value) {
-                        echo "<option>".$value['osType']." ".$value['osName']."</option>";
+                        if($dataVM[0]['os_id'] == $value['osType']." ".$value['osName']){
+                            echo "<option selected>".$value['osType']." ".$value['osName']."</option>";}
+                        else{
+                            echo "<option>".$value['osType']." ".$value['osName']."</option>";
+                        }
                     }
                     ?>
                 </select>
@@ -96,10 +104,17 @@ ob_start();
             <!--Network-->
             <div class="form-group w-50 float-left pr-4">
                 <label for="networkFormControlSelect" class="font-weight-bold">Réseau<a style="color: red"> *</a></label>
-                <select class="form-control"  value="<?php echo $dataVM[0]['network'] ?>" id="networkFormControlSelect" name="networkFormControlSelect" required>
-                    <option>LAN</option>
-                    <option>DMZ</option>
-                    <option>DMZ avec adressage privé</option>
+                <select class="form-control" id="networkFormControlSelect" name="networkFormControlSelect" required>
+                    <?php
+                    $networkNames = array("LAN", "DMZ", "DMZ avec adressage privé");
+                    for($i = 0; $i<3; $i++){
+                        if($dataVM[0]['network'] == $networkNames[$i]){
+                            echo "<option selected>".$networkNames[$i]."</option>";}
+                        else{
+                            echo "<option>".$networkNames[$i]."</option>";
+                        }
+                    }
+                    ?>
                 </select>
                 <small id="networkHelp" class="form-text text-muted">LAN : Machine accessible en interne ou via le VPN</small>
                 <small id="networkHelp" class="form-text text-muted">DMZ Privée : Accessible depuis l'extérieur mais uniquement par son nom DNS (exemple : vm-01.heig-vd.ch)</small>
@@ -115,32 +130,36 @@ ob_start();
         <!--Using-->
         <label for="inputDIS" class="font-weight-bold">Type d'utilisation<a style="color: red"> *</a></label>
         <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" checked="<?php if($dataVM[0]['usageType']=="Academique"){echo "true";} ?>" id="Academique" name="Academique">
+            <input type="checkbox" class="form-check-input" <?php if($dataVM[0]['usageType']=="Academique"){echo "checked";} ?> id="Academique" name="Academique">
             <label class="form-check-label" for="Academique">Académique</label>
         </div>
 
         <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" checked="<?php if($dataVM[0]['usageType']=="RaD"){echo "true";} ?>" id="RaD" name="RaD">
+            <input type="checkbox" class="form-check-input" <?php if($dataVM[0]['usageType']=="RaD"){echo "checked";} ?> id="RaD" name="RaD">
             <label class="form-check-label" for="RaD">Ra&D</label>
         </div>
 
         <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" checked="<?php if($dataVM[0]['usageType']=="Operationnel"){echo "true";} ?>" id="Operationnel" name="Operationnel">
+            <input type="checkbox" class="form-check-input" <?php if($dataVM[0]['usageType']=="Operationnel"){echo "checked";} ?> id="Operationnel" name="Operationnel">
             <label class="form-check-label" for="Operationnel">Opérationnel - Production</label>
         </div>
         <!--Objective-->
         <div class="form-group">
             <label for="objective" class="font-weight-bold">Description<a style="color: red"> *</a></label>
-            <textarea class="form-control" value="<?php echo $dataVM[0]['description'] ?>" rows="5" id="objective" name="objective" required></textarea>
+            <textarea class="form-control" rows="5" id="objective" name="objective" required><?php echo $dataVM[0]['description'] ?></textarea>
             <small id="objectiveHelp" class="form-text text-muted">But du projet</small>
         </div>
         <!--Snapshots-->
         <div class="form-group">
             <label for="snapshotsFormControlSelect" class="font-weight-bold">Snapshots<a style="color: red"> *</a></label>
-            <select class="form-control" value="<?php echo $dataVM[0]['snapshot'] ?>" id="snapshotsFormControlSelect" name="snapshotsFormControlSelect" required>
+            <select class="form-control" id="snapshotsFormControlSelect" name="snapshotsFormControlSelect" required>
                 <?php
                 foreach ($snapshotPolicy as $value) {
-                    echo "<option>".$value['policy']."</option>";
+                    if ($dataVM[0]['snapshot_id'] == $value['policy']) {
+                        echo "<option selected>" . $value['policy'] . "</option>";
+                    } else {
+                        echo "<option>" . $value['policy'] . "</option>";
+                    }
                 }
                 ?>
             </select>
@@ -149,10 +168,14 @@ ob_start();
         <!--Backup-->
         <div class="form-group">
             <label for="backupFormControlSelect" class="font-weight-bold">Backup<a style="color: red"> *</a></label>
-            <select class="form-control" value="<?php echo $dataVM[0]['backup'] ?>" id="backupFormControlSelect" name="backupFormControlSelect" required>
+            <select class="form-control" id="backupFormControlSelect" name="backupFormControlSelect" required>
                 <?php
                 foreach ($backupPolicy as $value) {
-                    echo "<option>".$value['policy']."</option>";
+                    if($dataVM[0]['backup_id'] == $value['policy']){
+                        echo "<option selected>".$value['policy']."</option>";}
+                    else{
+                        echo "<option>".$value['policy']."</option>";
+                    }
                 }
                 ?>
             </select>
@@ -160,22 +183,30 @@ ob_start();
         </div>
         <!--Checkbox domain EINET-->
         <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" checked="<?php if($dataVM[0]['domain']==1){echo "true";} ?>" id="domainEINET" name="domainEINET">
+            <input type="checkbox" class="form-check-input" <?php if($dataVM[0]['domain']==1){echo "checked";} ?> id="domainEINET" name="domainEINET">
             <label class="form-check-label font-weight-bold" for="domainEINET">Domaine EINET</label>
         </div>
         <!--Security-->
         <div class="form-group">
             <label for="securityFormControlSelect" class="font-weight-bold">Sécurité<a style="color: red"> *</a></label>
-            <select class="form-control" value="<?php echo $dataVM[0]['security'] ?>" id="securityFormControlSelect" name="securityFormControlSelect" required>
-                <option>OS mis à jour par le responsable technique</option>
-                <option>OS mis à jour par le SI (update automatiques)</option>
+            <select class="form-control" id="securityFormControlSelect" name="securityFormControlSelect" required>
+                <?php
+                $securityNames = array("OS mis à jour par le responsable technique", "OS mis à jour par le SI (update automatiques)");
+                for($i = 0; $i<2; $i++){
+                    if($dataVM[0]['network'] == $securityNames[$i]){
+                        echo "<option selected>".$securityNames[$i]."</option>";}
+                    else{
+                        echo "<option>".$securityNames[$i]."</option>";
+                    }
+                }
+                ?>
             </select>
             <small id="securityHelp" class="form-text text-muted">Le S-ISI recommande de patcher les VM tous les 90 jours au moins.</small>
         </div>
         <!--technical information-->
         <div class="form-group">
             <label for="ti" class="font-weight-bold">Informations techniques</label>
-            <textarea class="form-control" value="<?php echo $dataVM[0]['comment'] ?>" rows="5" id="ti" name="ti"></textarea>
+            <textarea class="form-control" rows="5" id="ti" name="ti"><?php echo $dataVM[0]['comment'] ?></textarea>
             <small id="tiHelp" class="form-text text-muted">Règles firewall, type de compte, justification DMZ ou configuration personnalisée, etc...</small>
         </div>
         <!--Save the modifications-->
