@@ -32,7 +32,7 @@ if(isset($_GET['action'])){
             displayConfirmationVM();
             break;
         case 'detailsVM':
-            displayDetailsVM($_POST);
+            displayDetailsVM($_GET['id']);
             break;
         case 'signIn':
             displaySignIn();

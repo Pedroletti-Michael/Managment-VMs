@@ -64,8 +64,11 @@ function displayConfirmationVM()
     }
 }
 
-function displayDetailsVM($dataVM)
+function displayDetailsVM($idVM)
 {
+    require_once 'model/vmManager.php';
+    $dataVM = getDataVM($idVM);
+    
     $_GET['action'] = "detailsVM";
     require 'view/detailsVM.php';
 }
