@@ -66,6 +66,12 @@
         <?php else : ?>
             <a href="index.php?action=allVM">Toutes les VM</a>
         <?php endif; ?>
+        <!----------------- confirmationVM ---------------->
+        <?php if ($_GET['action'] == "confirmationVM"): ?>
+            <a href="index.php?action=confirmationVM" class="alert-link active">VM à confirmer</a>
+        <?php else : ?>
+            <a href="index.php?action=confirmationVM">VM à confirmer</a>
+        <?php endif; ?>
         <!----------------- formManagement ---------------->
         <?php if ($_GET['action'] == "formManagement"): ?>
             <a class="last alert-link active" href="index.php?action=formManagement">Gestion du formulaire</a>
@@ -174,6 +180,19 @@
                             <?php endif; ?>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                             Toutes les VM
+                        </a>
+                </li>
+            </ul>
+
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <?php if ($_GET['action'] == "confirmationVM"): ?>
+                    <a class="nav-link active" href="index.php?action=confirmationVM">
+                        <?php else : ?>
+                        <a class="nav-link" href="index.php?action=confirmationVM">
+                            <?php endif; ?>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                            VM à confirmer
                         </a>
                 </li>
             </ul>
@@ -326,6 +345,19 @@
                                 <?php endif; ?>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                                 Toutes les VM
+                            </a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <?php if ($_GET['action'] == "confirmationVM"): ?>
+                        <a class="nav-link active" href="index.php?action=confirmationVM">
+                            <?php else : ?>
+                            <a class="nav-link" href="index.php?action=confirmationVM">
+                                <?php endif; ?>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                                VM à confirmer
                             </a>
                     </li>
                 </ul>
