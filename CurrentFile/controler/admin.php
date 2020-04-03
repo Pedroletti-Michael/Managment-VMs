@@ -64,6 +64,12 @@ function displayConfirmationVM()
     }
 }
 
+function displayDetailsVM($dataVM)
+{
+    $_GET['action'] = "detailsVM";
+    require 'view/detailsVM.php';
+}
+
 function displayFormManagement()
 {
     require_once 'model/displayManager.php';

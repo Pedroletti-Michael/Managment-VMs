@@ -31,6 +31,9 @@ if(isset($_GET['action'])){
         case 'confirmationVM':
             displayConfirmationVM();
             break;
+        case 'detailsVM':
+            displayDetailsVM($_POST);
+            break;
         case 'signIn':
             displaySignIn();
             break;
