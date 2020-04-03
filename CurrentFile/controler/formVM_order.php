@@ -8,7 +8,7 @@
 
 function displayForm()
 {
-    if(isset($_SESSION['userEmail'])&& $_SESSION['userEmail'] != null)
+    if(isset($_SESSION['userType'])&& $_SESSION['userType'] != null)
     {
         require_once 'model/displayManager.php';
         $entityNames = displayBDD_Entity();

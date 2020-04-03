@@ -8,7 +8,7 @@
 
 function displayVM()
 {
-    if(isset($_SESSION['userType']))
+    if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
         switch ($_SESSION['userType'])
         {
@@ -35,7 +35,7 @@ function displayVM()
 
 function displayBackup()
 {
-    if(isset($_SESSION['userType']))
+    if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
         switch ($_SESSION['userType'])
         {
@@ -62,7 +62,7 @@ function displayBackup()
 
 function displayBDDEntity()
 {
-    if(isset($_SESSION['userType']))
+    if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
         switch ($_SESSION['userType'])
         {
@@ -89,7 +89,7 @@ function displayBDDEntity()
 
 function displayOS()
 {
-    if(isset($_SESSION['userType']))
+    if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
         switch ($_SESSION['userType'])
         {
@@ -116,7 +116,7 @@ function displayOS()
 
 function displayPricing()
 {
-    if(isset($_SESSION['userType']))
+    if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
         switch ($_SESSION['userType'])
         {
@@ -143,7 +143,7 @@ function displayPricing()
 
 function displaySnapshot()
 {
-    if(isset($_SESSION['userType']))
+    if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
         switch ($_SESSION['userType'])
         {
@@ -170,7 +170,7 @@ function displaySnapshot()
 
 function displayUser()
 {
-    if(isset($_SESSION['userType']))
+    if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
         switch ($_SESSION['userType'])
         {

@@ -13,8 +13,8 @@ function displayAllVM()
         switch ($_SESSION['userType'])
         {
             case 0:
-                $_GET['action'] = "signIn";
-                require 'view/signIn.php';
+                require_once 'controler/user.php';
+                displayHome();
                 break;
             case 1:
                 require_once 'model/vmManager.php';
@@ -37,7 +37,7 @@ function displayAllVM()
 
 function displayConfirmationVM()
 {
-    if(isset($_SESSION['userType']))
+    if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
         switch ($_SESSION['userType'])
         {
@@ -77,7 +77,7 @@ function displayFormManagement()
     $snapshotPolicy = displayBSS_Snapshots();
     $backupPolicy = displayBSS_Backup();
 
-    if(isset($_SESSION['userType']))
+    if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
         switch ($_SESSION['userType'])
         {
