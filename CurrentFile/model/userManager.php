@@ -156,8 +156,6 @@ function verificationUserFromDb(){
     ldap_set_option($ds, LDAP_OPT_REFERRALS, 0);
 
     if ($ds) {
-        $result = array();
-
         // Get all user from ou=Personnel
         $sr = ldap_search($ds, "ou=personnel,dc=einet,dc=ad,dc=eivd,dc=ch", "samaccountname=*");
 
@@ -167,12 +165,14 @@ function verificationUserFromDb(){
 
         foreach ($info as $user){
             //before array push verify if user is already in db if the user is not so add the user into db.
-            array_push($result, $user["sn"][0]);
-            array_push($result, $user["givenname"][0]);
-            array_push($result, $user["mail"][0]);
+            if (!dbVerification($user['mail'][0])){
+                adUserToDB($user["sn"][0], $user["givenname"][0], $user["mail"][0]);
+            }
         }
 
 
         ldap_close($ds);
     }
+
+    return true;
 }
