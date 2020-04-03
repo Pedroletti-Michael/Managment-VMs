@@ -59,13 +59,8 @@ function displayConfirmationVM()
     }
     else
     {
-        require_once 'model/vmManager.php';
-        $confirmationVM = getConfirmationVM();
-        $_GET['action'] = "confirmationVM";
-        require 'view/confirmationVM.php';
-
-        /*$_GET['action'] = "signIn";
-        require 'view/signIn.php';*/
+        $_GET['action'] = "signIn";
+        require 'view/signIn.php';
     }
 }
 
