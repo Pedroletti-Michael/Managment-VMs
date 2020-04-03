@@ -68,9 +68,27 @@ function displayDetailsVM($idVM)
 {
     require_once 'model/vmManager.php';
     $dataVM = getDataVM($idVM);
-    
+
     $_GET['action'] = "detailsVM";
     require 'view/detailsVM.php';
+}
+
+function updateVM($vmInformation)
+{
+    require_once 'model/vmManager.php';
+
+    if(updateVMInformation($vmInformation))
+    {
+        $allVM = getAllVM();
+        $_GET['action'] = "allVM";
+        require 'view/allVM.php';
+    }
+    else
+    {
+        $confirmationVM = getConfirmationVM();
+        $_GET['action'] = "confirmationVM";
+        require 'view/confirmationVM.php';
+    }
 }
 
 function displayFormManagement()
