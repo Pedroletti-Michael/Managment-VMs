@@ -225,3 +225,66 @@ function getConfirmationVM(){
     }
     return $resultSelect;
 }
+
+/**===GET A SPECIFIC VM VIA THE ID OF THIS VM**/
+function getDataVM($idVM){
+    require_once 'model/dbConnector.php';
+
+    $querySelect = "SELECT `name`, `cluster`, `dateStart`, `dateAnniversary`, `dateEnd`, `description`, `ip`, `dnsName`, `redundance`, `usageType`, `criticity`, `cpu`, `ram`, `disk`, `network`, `domain`, `patch`, comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus`  FROM `vm` WHERE id = ". $idVM;
+
+    $resultSelect = executeQuerySelect($querySelect);
+    $i = 0;
+
+    foreach ($resultSelect as $vm){
+        $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
+        $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
+        $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
+        $resultSelect[$i]['os_id'] = getInfoOs($vm['os_id']);
+        $resultSelect[$i]['snapshot_id'] = getInfoSnapshot($vm['snapshot_id']);
+        $resultSelect[$i]['backup_id'] = getInfoBackup($vm['backup_id']);
+        $i++;
+    }
+    return $resultSelect;
+}
+
+/**===Update VM in DB===**/
+function updateVMInformation($vmInformation, $id){
+    require_once 'model/dbConnector.php';
+
+    $strSep = '\'';
+
+    $query = "UPDATE vm SET
+              name = ". $strSep.$vmInformation[''].$strSep. ",
+              dateStart = ". $strSep.$vmInformation[''].$strSep. ",
+              cluster = ". $strSep.$vmInformation[''].$strSep. ",
+              dateStart = ". $strSep.$vmInformation[''].$strSep. ",
+              dateAnniversary = ". $strSep.$vmInformation[''].$strSep. ",
+              dateEnd = ". $strSep.$vmInformation[''].$strSep. ",
+              description = ". $strSep.$vmInformation[''].$strSep. ",
+              ip = ". $strSep.$vmInformation[''].$strSep. ",
+              dnsName = ". $strSep.$vmInformation[''].$strSep. ",
+              redundance = ". $strSep.$vmInformation[''].$strSep. ",
+              usageType = ". $strSep.$vmInformation[''].$strSep. ",
+              criticity = ". $strSep.$vmInformation[''].$strSep. ",
+              cpu = ". $strSep.$vmInformation[''].$strSep. ",
+              ram = ". $strSep.$vmInformation[''].$strSep. ",
+              disk = ". $strSep.$vmInformation[''].$strSep. ",
+              network = ". $strSep.$vmInformation[''].$strSep. ",
+              domain = ". $strSep.$vmInformation[''].$strSep. ",
+              patch = ". $strSep.$vmInformation[''].$strSep. ",
+              comment = ". $strSep.$vmInformation[''].$strSep. ",
+              customer = ". $strSep.$vmInformation[''].$strSep. ",
+              userRa = ". $strSep.$vmInformation[''].$strSep. ",
+              userRt = ". $strSep.$vmInformation[''].$strSep. ",
+              entity_id = ". $strSep.$vmInformation[''].$strSep. ",
+              os_id = ". $strSep.$vmInformation[''].$strSep. ",
+              snapshot_id = ". $strSep.$vmInformation[''].$strSep. ",
+              backup_id = ". $strSep.$vmInformation[''].$strSep. ",
+              vmStatus = ". $strSep.$vmInformation[''].$strSep. "
+              WHERE id = ". $id;
+
+    executeQuery($query);
+
+    return true;
+}
