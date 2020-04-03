@@ -8,7 +8,7 @@
 
 function displayAllVM()
 {
-    if(isset($_SESSION['userType']))
+    if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
         switch ($_SESSION['userType'])
         {
@@ -30,19 +30,14 @@ function displayAllVM()
     }
     else
     {
-        require_once 'model/vmManager.php';
-        $allVM = getAllVM();
-        $_GET['action'] = "allVM";
-        require 'view/allVM.php';
-
-        /*$_GET['action'] = "signIn";
-        require 'view/signIn.php';*/
+        $_GET['action'] = "signIn";
+        require 'view/signIn.php';
     }
 }
 
 function displayConfirmationVM()
 {
-    if(isset($_SESSION['userType']))
+    if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
         switch ($_SESSION['userType'])
         {
@@ -64,13 +59,8 @@ function displayConfirmationVM()
     }
     else
     {
-        require_once 'model/vmManager.php';
-        $confirmationVM = getConfirmationVM();
-        $_GET['action'] = "confirmationVM";
-        require 'view/confirmationVM.php';
-
-        /*$_GET['action'] = "signIn";
-        require 'view/signIn.php';*/
+        $_GET['action'] = "signIn";
+        require 'view/signIn.php';
     }
 }
 
@@ -82,7 +72,7 @@ function displayFormManagement()
     $snapshotPolicy = displayBSS_Snapshots();
     $backupPolicy = displayBSS_Backup();
 
-    if(isset($_SESSION['userType']))
+    if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
         switch ($_SESSION['userType'])
         {

@@ -8,14 +8,22 @@
 
 function displayForm()
 {
-    require_once 'model/displayManager.php';
-    $entityNames = displayBDD_Entity();
-    $osNames = displayBDD_OS();
-    $snapshotPolicy = displayBSS_Snapshots();
-    $backupPolicy = displayBSS_Backup();
+    if(isset($_SESSION['userType'])&& $_SESSION['userType'] != null)
+    {
+        require_once 'model/displayManager.php';
+        $entityNames = displayBDD_Entity();
+        $osNames = displayBDD_OS();
+        $snapshotPolicy = displayBSS_Snapshots();
+        $backupPolicy = displayBSS_Backup();
 
-    $_GET['action'] = "form";
-    require 'view/form.php';
+        $_GET['action'] = "form";
+        require 'view/form.php';
+    }
+    else
+    {
+        $_GET['action'] = "signIn";
+        require "view/signIn.php";
+    }
 }
 
 function formVM($formVMRequest)

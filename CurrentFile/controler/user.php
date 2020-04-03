@@ -8,7 +8,7 @@
 
 function displayHome()
 {
-    if(isset($_SESSION['userEmail'])&& $_SESSION['userEmail'] != null)
+    if(isset($_SESSION['userType'])&& $_SESSION['userType'] != null)
     {
         require_once 'model/userManager.php';
         $userId = getUserId($_SESSION['userEmail']);
