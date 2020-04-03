@@ -75,6 +75,40 @@ function displayDetailsVM($idVM)
 
 function updateVM($vmInformation)
 {
+    if(isset($formVMRequest['Academique']))
+    {
+        $formVMRequest['usingVM'] = "Academique";
+
+        unset($formVMRequest['RaD']);
+        unset($formVMRequest['Operationnel']);
+        unset($formVMRequest['Academique']);
+    }
+    elseif (isset($formVMRequest['RaD']))
+    {
+        $formVMRequest['usingVM'] = "RaD";
+
+        unset($formVMRequest['RaD']);
+        unset($formVMRequest['Operationnel']);
+        unset($formVMRequest['Academique']);
+    }
+    elseif (isset($formVMRequest['Operationnel']))
+    {
+        $formVMRequest['usingVM'] = "Operationnel";
+
+        unset($formVMRequest['RaD']);
+        unset($formVMRequest['Operationnel']);
+        unset($formVMRequest['Academique']);
+    }
+
+    if(isset($formVMRequest['domainEINET']))
+    {
+        $formVMRequest['domainEINET'] = 1;
+    }
+    else
+    {
+        $formVMRequest['domainEINET'] = 0;
+    }
+    
     require_once 'model/vmManager.php';
 
     if(updateVMInformation($vmInformation))
