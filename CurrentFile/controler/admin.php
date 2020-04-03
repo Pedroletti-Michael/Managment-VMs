@@ -8,13 +8,13 @@
 
 function displayAllVM()
 {
-    if(isset($_SESSION['userType']))
+    if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
         switch ($_SESSION['userType'])
         {
             case 0:
-                require_once 'controler/user.php';
-                displayHome();
+                $_GET['action'] = "signIn";
+                require 'view/signIn.php';
                 break;
             case 1:
                 require_once 'model/vmManager.php';
@@ -30,13 +30,8 @@ function displayAllVM()
     }
     else
     {
-        require_once 'model/vmManager.php';
-        $allVM = getAllVM();
-        $_GET['action'] = "allVM";
-        require 'view/allVM.php';
-
-        /*$_GET['action'] = "signIn";
-        require 'view/signIn.php';*/
+        $_GET['action'] = "signIn";
+        require 'view/signIn.php';
     }
 }
 
