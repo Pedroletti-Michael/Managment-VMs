@@ -69,6 +69,12 @@ function displayDetailsVM($idVM)
     require_once 'model/vmManager.php';
     $dataVM = getDataVM($idVM);
 
+    require_once 'model/displayManager.php';
+    $entityNames = displayBDD_Entity();
+    $osNames = displayBDD_OS();
+    $snapshotPolicy = displayBSS_Snapshots();
+    $backupPolicy = displayBSS_Backup();
+
     $_GET['action'] = "detailsVM";
     require 'view/detailsVM.php';
 }
