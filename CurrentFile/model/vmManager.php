@@ -34,7 +34,7 @@ function addVMToDB($formVMRequest)
     $tmName = getUserId($formVMRequest['inputTMName']);
     $raName = getUserId($formVMRequest['inputRAName']);
     $entity_id = getEntityId($formVMRequest['disFormControlSelect']);
-    $os_id = 2;//getOsId($formVMRequest['osFormControlSelect']);
+    $os_id = getOsId($formVMRequest['osFormControlSelect']);
     $snapshot_id = getSnapshotId($formVMRequest['snapshotsFormControlSelect']);
     $backup_id = getBackupId($formVMRequest['backupFormControlSelect']);
     $cost_id = 1;
@@ -87,6 +87,7 @@ function getEntityId($entityName){
 
 function getOsId($osName){
     $strSep = '\'';
+    // CORRIGER LA FONCTION
 
     $query = "SELECT os_id FROM `os` WHERE osName = ". $strSep.$osName.$strSep;
 
@@ -255,32 +256,31 @@ function updateVMInformation($vmInformation, $id){
     $strSep = '\'';
 
     $query = "UPDATE vm SET
-              name = ". $strSep.$vmInformation[''].$strSep. ",
-              dateStart = ". $strSep.$vmInformation[''].$strSep. ",
+              name = ". $strSep.$vmInformation['inputVMName'].$strSep. ",
               cluster = ". $strSep.$vmInformation[''].$strSep. ",
-              dateStart = ". $strSep.$vmInformation[''].$strSep. ",
+              dateStart = ". $strSep.$vmInformation['inputComissioningDate'].$strSep. ",
               dateAnniversary = ". $strSep.$vmInformation[''].$strSep. ",
-              dateEnd = ". $strSep.$vmInformation[''].$strSep. ",
-              description = ". $strSep.$vmInformation[''].$strSep. ",
+              dateEnd = ". $strSep.$vmInformation['inputEndDate'].$strSep. ",
+              description = ". $strSep.$vmInformation['objective'].$strSep. ",
               ip = ". $strSep.$vmInformation[''].$strSep. ",
               dnsName = ". $strSep.$vmInformation[''].$strSep. ",
               redundance = ". $strSep.$vmInformation[''].$strSep. ",
-              usageType = ". $strSep.$vmInformation[''].$strSep. ",
+              usageType = ". $strSep.$vmInformation['usingVM'].$strSep. ",
               criticity = ". $strSep.$vmInformation[''].$strSep. ",
-              cpu = ". $strSep.$vmInformation[''].$strSep. ",
-              ram = ". $strSep.$vmInformation[''].$strSep. ",
-              disk = ". $strSep.$vmInformation[''].$strSep. ",
-              network = ". $strSep.$vmInformation[''].$strSep. ",
-              domain = ". $strSep.$vmInformation[''].$strSep. ",
-              patch = ". $strSep.$vmInformation[''].$strSep. ",
-              comment = ". $strSep.$vmInformation[''].$strSep. ",
-              customer = ". $strSep.$vmInformation[''].$strSep. ",
-              userRa = ". $strSep.$vmInformation[''].$strSep. ",
-              userRt = ". $strSep.$vmInformation[''].$strSep. ",
-              entity_id = ". $strSep.$vmInformation[''].$strSep. ",
-              os_id = ". $strSep.$vmInformation[''].$strSep. ",
-              snapshot_id = ". $strSep.$vmInformation[''].$strSep. ",
-              backup_id = ". $strSep.$vmInformation[''].$strSep. ",
+              cpu = ". $strSep.$vmInformation['inputCPU'].$strSep. ",
+              ram = ". $strSep.$vmInformation['inputRAM'].$strSep. ",
+              disk = ". $strSep.$vmInformation['inputSSD'].$strSep. ",
+              network = ". $strSep.$vmInformation['networkFormControlSelect'].$strSep. ",
+              domain = ". $strSep.$vmInformation['domainEINET'].$strSep. ",
+              patch = ". $strSep.$vmInformation['securityFormControlSelect'].$strSep. ",
+              comment = ". $strSep.$vmInformation['ti'].$strSep. ",
+              customer = ". $strSep.getUserId($vmInformation['inputResquesterName']).$strSep. ",
+              userRa = ". $strSep.getUserId($vmInformation['inputRAName']).$strSep. ",
+              userRt = ". $strSep.getUserId($vmInformation['inputTMName']).$strSep. ",
+              entity_id = ". $strSep.getEntityId($vmInformation['disFormControlSelect']).$strSep. ",
+              os_id = ". $strSep.getOsId($vmInformation['osFormControlSelect']).$strSep. ",
+              snapshot_id = ". $strSep.getSnapshotId($vmInformation['snapshotsFormControlSelect']).$strSep. ",
+              backup_id = ". $strSep.getBackupId($vmInformation['backupFormControlSelect']).$strSep. ",
               vmStatus = ". $strSep.$vmInformation[''].$strSep. "
               WHERE id = ". $id;
 
