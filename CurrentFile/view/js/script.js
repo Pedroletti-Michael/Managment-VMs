@@ -1,7 +1,6 @@
 flag = 0;
 
 var today = new Date();
-var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
 function Sidebar() {
     if(flag == 1){
@@ -21,4 +20,8 @@ function openNav() {
         document.getElementById("mySidenav").style.width = "100%";
         flag = 1;
     }
+}
+
+function smartListAutomatic(){
+    if(document.getElementsByTagName(""))
 }

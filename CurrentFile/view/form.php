@@ -76,13 +76,36 @@ ob_start();
             <!--OS-->
             <div class="form-group w-50 float-left pr-4">
                 <label for="osFormControlSelect" class="font-weight-bold">Système d'exploitation<a style="color: red"> *</a></label>
-                <select class="form-control" id="osFormControlSelect" name="osFormControlSelect" required>
-                    <?php
-                    foreach ($osNames as $value) {
-                        echo "<option>".$value['osType']." ".$value['osName']."</option>";
-                    }
-                    ?>
-                </select>
+                <div class="w-100 d-inline-block">
+                    <div class="pr-2">
+                        <select class="form-control w-50 float-left" id="osFormControlSelect" name="osFormControlSelect" required>
+                            <?php
+                            $windows = 0;
+                            $linux = 0;
+                            foreach ($osNames as $value) {
+                                if (($value['osType']=="Linux / Ubuntu ")&&$linux<1){
+                                    echo "<option>".$value['osType']."</option>";
+                                    $linux++;
+                                }
+                                if (($value['osType']=="Windows")&&$windows<1){
+                                    echo "<option>".$value['osType']."</option>";
+                                    $windows++;
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="pl-2">
+                        <select class="form-control w-50 float-right" id="osFormControlSelect" name="osFormControlSelect" required>
+                            <?php
+                            foreach ($osNames as $value) {
+                                if($value['osType'])
+                                echo "<option>".$value['osName']."</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
                 <small id="osHelp" class="form-text text-muted">Toutes les OS sont en anglais, 64 bits</small>
             </div>
             <!--Date of commissioning-->
