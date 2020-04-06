@@ -320,8 +320,8 @@ function updateVMInformation($vmInformation, $id){
               customer = ". $strSep.getUserId($vmInformation['inputResquesterName']).$strSep. ",
               userRa = ". $strSep.getUserId($vmInformation['inputRAName']).$strSep. ",
               userRt = ". $strSep.getUserId($vmInformation['inputTMName']).$strSep. ",
-              entity_id = ". $strSep. 2 /*getEntityId($vmInformation['disFormControlSelect'])*/.$strSep. ",
-              os_id = ". $strSep.getOsId($vmInformation['osFormControlSelect']).$strSep. ",
+              entity_id = ". $strSep. getEntityId($vmInformation['disFormControlSelect']).$strSep. ",
+              os_id = ". $strSep.getOsId($vmInformation['osFormNameControlSelect'], $vmInformation['osTypeFormControlSelect']).$strSep. ",
               snapshot_id = ". $strSep.getSnapshotId($vmInformation['snapshotsFormControlSelect']).$strSep. ",
               backup_id = ". $strSep.getBackupId($vmInformation['backupFormControlSelect']).$strSep. ",
               vmStatus = ". $strSep.$vmInformation[''].$strSep. "
