@@ -26,7 +26,7 @@ if(isset($_GET['action'])){
             displayFormManagement();
             break;
         case 'allVM':
-            displayAllVM();
+            displayAllVM($_POST);
             break;
         case 'confirmationVM':
             displayConfirmationVM();
