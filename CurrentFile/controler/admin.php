@@ -10,7 +10,7 @@ function displayAllVM($searchFilter)
 {
     if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
-        if(isset($searchFilter['']) && $searchFilter[''] != null)
+        if(isset($searchFilter['vmFilter']) && $searchFilter['vmFilter'] != null)
         {
             switch ($_SESSION['userType'])
             {
@@ -21,30 +21,23 @@ function displayAllVM($searchFilter)
                 case 1:
                     require_once 'model/vmManager.php';
 
-                    if($searchFilter[''] == "")
+                    if($searchFilter['vmFilter'] == "Toutes les vm")
                     {
                         $allVM = getAllVM();
                     }
-                    elseif($searchFilter[''] == "")
+                    elseif($searchFilter['vmFilter'] == "VM confirmées")
                     {
-
+                        $allVM = getValidatedVM();
                     }
-                    elseif($searchFilter[''] == "")
+                    elseif($searchFilter['vmFilter'] == "VM à confirmer")
                     {
-
+                        $allVM = getConfirmationVM();
                     }
-                    elseif($searchFilter[''] == "")
+                    elseif($searchFilter['vmFilter'] == "VM à renouveler")
                     {
-
+                        $allVM = getVmToRenew();
                     }
-                    elseif($searchFilter[''] == "")
-                    {
 
-                    }
-                    elseif($searchFilter[''] == "")
-                    {
-
-                    }
                     $_GET['action'] = "allVM";
                     require 'view/allVM.php';
                     break;
