@@ -78,7 +78,7 @@ ob_start();
                 <label for="osFormControlSelect" class="font-weight-bold">Système d'exploitation<a style="color: red"> *</a></label>
                 <div class="w-100 d-inline-block">
                     <div class="pr-2">
-                        <select class="form-control w-50 float-left" id="osFormControlSelect" name="osFormControlSelect" required>
+                        <select class="form-control w-50 float-left" id="osTypeFormControlSelect" name="osTypeFormControlSelect" required>
                             <?php
                             $windows = 0;
                             $linux = 0;
@@ -96,7 +96,7 @@ ob_start();
                         </select>
                     </div>
                     <div class="pl-2">
-                        <select class="form-control w-50 float-right" id="osFormControlSelect" name="osFormControlSelect" required>
+                        <select class="form-control w-50 float-right" id="osFormNameControlSelect" name="osFormNameControlSelect" required>
                             <?php
                             foreach ($osNames as $value) {
                                 if($value['osType'])
