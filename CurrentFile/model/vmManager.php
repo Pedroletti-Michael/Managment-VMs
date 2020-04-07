@@ -339,25 +339,26 @@ function updateVMInformation($vmInformation, $id){
 function updateStatusVM($id, $vmStatus){
     require_once 'model/dbConnector.php';
     require_once 'model/mailSender.php';
+    $status = 1;
 
     if($vmStatus){
-        $vmStatus = 2;
+        $status = 2;
     }
     else{
-        $vmStatus = 1;
+        $status = 1;
     }
 
     $strSep = '\'';
 
     $query = "UPDATE vm SET
-              vmStatus = ". $strSep.$vmStatus.$strSep. "
+              vmStatus = ". $strSep.$status.$strSep. "
               WHERE id = ". $id;
 
     executeQuery($query);
 
     $link = 'http://vmman.heig-vd.ch/action=detailedVM&ID='.$id;
     $info = getInformationForMailAboutVM($id);
-    if($vmStatus == 1){
+    if($status == 1){
         deniedRequestMail($info[1], $info[0]);
     }
     elseif($vmStatus == 2){
