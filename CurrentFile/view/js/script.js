@@ -23,5 +23,5 @@ function openNav() {
 }
 
 function smartListAutomatic(){
-    if(document.getElementsByTagName(""))
+    if(document.getElementsByTagName(""));
 }

@@ -151,6 +151,11 @@ ob_start();
             <input type="checkbox" class="form-check-input" id="Operationnel" name="Operationnel">
             <label class="form-check-label" for="Operationnel">Opérationnel - Production</label>
         </div>
+
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="Test" name="Test">
+            <label class="form-check-label" for="Test">Test - Dev</label>
+        </div>
         <!--Objective-->
         <div class="form-group">
             <label for="objective" class="font-weight-bold">Description<a style="color: red"> *</a></label>

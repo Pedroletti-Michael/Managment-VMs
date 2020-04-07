@@ -143,6 +143,11 @@ ob_start();
             <input type="checkbox" class="form-check-input" <?php if($dataVM[0]['usageType']=="Operationnel"){echo "checked";} ?> id="Operationnel" name="Operationnel">
             <label class="form-check-label" for="Operationnel">Opérationnel - Production</label>
         </div>
+
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" <?php if($dataVM[0]['usageType']=="Test"){echo "checked";} ?> id="Test" name="Test">
+            <label class="form-check-label" for="Test">Test - Dev</label>
+        </div>
         <!--Objective-->
         <div class="form-group">
             <label for="objective" class="font-weight-bold">Description<a style="color: red"> *</a></label>
@@ -209,12 +214,57 @@ ob_start();
             <textarea class="form-control" rows="5" id="ti" name="ti"><?php echo $dataVM[0]['comment'] ?></textarea>
             <small id="tiHelp" class="form-text text-muted">Règles firewall, type de compte, justification DMZ ou configuration personnalisée, etc...</small>
         </div>
+        <!------------------ Admin informations ---------------------->
+        <div class="w-100 text-center mt-5"><h5>Info admin</h5></div>
+        <hr class="">
+        <div class="d-inline-block w-100">
+            <!--Cluster-->
+            <div class="form-group w-50 float-left pr-4">
+                <label for="editCluster" class="font-weight-bold">Cluster</label>
+                <input type="cluster" class="form-control form form" value="<?php echo $dataVM[0]['cluster'] ?>" id="editCluster" name="editCluster" aria-describedby="clusterHelp">
+            </div>
+            <!--Date anniversary-->
+            <div class="form-group w-50 float-right pl-4">
+                <label for="inputEndDate" class="font-weight-bold">Date d'anniversaire</label>
+                <input type="date" class="form-control form form" value="<?php echo $dataVM[0]['dateAnniversary'] ?>" id="editDateAnniversary" name="editDateAnniversary" aria-describedby="anniversaryDateHelp">
+            </div>
+        </div>
+
+        <div class="d-inline-block w-100">
+            <!--IP-->
+            <div class="form-group w-50 float-left pr-4">
+                <label for="editIP" class="font-weight-bold">IP</label>
+                <input class="form-control form form" value="<?php echo $dataVM[0]['ip'] ?>" id="editIP" name="editIP" aria-describedby="ipHelp">
+            </div>
+            <!--dnsName-->
+            <div class="form-group w-50 float-right pl-4">
+                <label for="inputEndDate" class="font-weight-bold">Nom du DNS</label>
+                <input class="form-control form form" value="<?php echo $dataVM[0]['dnsName'] ?>" id="editDnsName" name="editDnsName" aria-describedby="dnsNameHelp">
+            </div>
+        </div>
+
+        <div class="d-inline-block w-100">
+            <!--Redundance-->
+            <div class="form-group w-50 float-left pr-4">
+                <label for="editRedundance" class="font-weight-bold">Redondance</label>
+                <input class="form-control form form" value="<?php echo $dataVM[0]['redundance'] ?>" id="editRedundance" name="editRedundance" aria-describedby="redundanceHelp">
+            </div>
+            <!--Criticity-->
+            <div class="form-group w-50 float-right pl-4">
+                <label for="editCriticity" class="font-weight-bold">Critique</label>
+                <input class="form-control form form" value="<?php echo $dataVM[0]['criticity'] ?>" id="editCriticity" name="editCriticity" aria-describedby="criticityHelp">
+            </div>
+        </div>
+
+
         <!--Save the modifications-->
         <button type="submit" class="btn btn-primary m-auto d-inline">Enregistrer les modifications</button>
+        <?php if($dataVM[0]['vmStatus']==0): ?>
         <!--Accepted-->
         <button type="submit" class="btn btn-success float-right ml-1">Confirmer la demande</button>
         <!--Refused-->
         <button type="submit" class="btn btn-danger float-right">Refuser la demande</button>
+        <?php endif; ?>
     </form>
 </div>
 <?php

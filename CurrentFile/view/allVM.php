@@ -16,14 +16,20 @@ ob_start();
     <form method="post" action="../index.php?action=allVM">
         <!------------- Choix ------------>
         <div class="form-group">
-            <label for="disFormControlSelect" class="font-weight-bold text-center w-100">Filtrer les VM</label>
+            <label for="disFormControlSelect" class="font-weight-bold text-center w-100 pt-3">Filtrer les VM</label>
             <div class="w-25 m-auto">
                 <div class="btn-group w-100 m-auto">
                     <select class="form-control w-75 float-left" id="vmFilter" name="vmFilter" required>
-                        <option>Toutes les vm</option>
-                        <option>VM confirmées</option>
-                        <option>VM à confirmer</option>
-                        <option>VM à renouveler</option>
+                        <?php
+                        $filterName = array("Toutes les vm", "VM confirmées","VM à confirmer","VM à renouveler");
+                        for($i = 0; $i<4; $i++){
+                            if($checkFilter == $filterName[$i]){
+                                echo "<option selected>".$filterName[$i]."</option>";}
+                            else{
+                                echo "<option>".$filterName[$i]."</option>";
+                            }
+                        }
+                        ?>
                     </select>
                     <button type="submit" class="btn btn-success">Trier</button>
                 </div>
