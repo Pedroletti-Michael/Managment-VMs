@@ -88,10 +88,10 @@ function getEntityId($entityName){
 function getOsId($osName, $osType){
     $strSep = '\'';
 
-    $query = "SELECT os_id FROM `os` WHERE osName = ". $strSep.$osName.$strSep ." AND osType = ". $strSep.$osType.$strSep;
+    $query = "SELECT os_id FROM `os` WHERE osName = ". $strSep.$osName.$strSep;
 
     $result = executeQuery($query);
-    return $result[0];
+    return $result[0][0];
 }
 
 function getSnapshotId($snapshotName){
