@@ -88,7 +88,7 @@ function getEntityId($entityName){
 function getOsId($osName, $osType){
     $strSep = '\'';
 
-    $query = "SELECT os_id FROM `os` WHERE osName = ". $strSep.$osName.$strSep;
+    $query = "SELECT os_id FROM `os` WHERE osName = ". $strSep.$osName.$strSep ." AND osType = ". $strSep.$osType.$strSep;
 
     $result = executeQuery($query);
     return $result[0][0];
