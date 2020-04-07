@@ -130,38 +130,38 @@ function displayDetailsVM($idVM)
 
 function updateVM($vmInformation)
 {
-    if(isset($formVMRequest['Academique']))
+    if(isset($vmInformation['Academique']))
     {
-        $formVMRequest['usingVM'] = "Academique";
+        $vmInformation['usingVM'] = "Academique";
 
-        unset($formVMRequest['RaD']);
-        unset($formVMRequest['Operationnel']);
-        unset($formVMRequest['Academique']);
+        unset($vmInformation['RaD']);
+        unset($vmInformation['Operationnel']);
+        unset($vmInformation['Academique']);
     }
-    elseif (isset($formVMRequest['RaD']))
+    elseif (isset($vmInformation['RaD']))
     {
-        $formVMRequest['usingVM'] = "RaD";
+        $vmInformation['usingVM'] = "RaD";
 
-        unset($formVMRequest['RaD']);
-        unset($formVMRequest['Operationnel']);
-        unset($formVMRequest['Academique']);
+        unset($vmInformation['RaD']);
+        unset($vmInformation['Operationnel']);
+        unset($vmInformation['Academique']);
     }
-    elseif (isset($formVMRequest['Operationnel']))
+    elseif (isset($vmInformation['Operationnel']))
     {
-        $formVMRequest['usingVM'] = "Operationnel";
+        $vmInformation['usingVM'] = "Operationnel";
 
-        unset($formVMRequest['RaD']);
-        unset($formVMRequest['Operationnel']);
-        unset($formVMRequest['Academique']);
+        unset($vmInformation['RaD']);
+        unset($vmInformation['Operationnel']);
+        unset($vmInformation['Academique']);
     }
 
-    if(isset($formVMRequest['domainEINET']))
+    if(isset($vmInformation['domainEINET']))
     {
-        $formVMRequest['domainEINET'] = 1;
+        $vmInformation['domainEINET'] = 1;
     }
     else
     {
-        $formVMRequest['domainEINET'] = 0;
+        $vmInformation['domainEINET'] = 0;
     }
     
     require_once 'model/vmManager.php';
