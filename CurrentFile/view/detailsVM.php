@@ -26,7 +26,7 @@ ob_start();
             <!--Name of the requester-->
             <div class="form-group w-50 float-right pl-4">
                 <label for="inputRequesterName" class="font-weight-bold">Demandeur<a style="color: red"> *</a></label>
-                <input type="requesterName" class="form-control form form" value="<?php echo $dataVM[0]['customer'] ?>" id="inputRequesterName" name="inputRequesterName" aria-describedby="requesterNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" disabled>
+                <input type="requesterName" class="form-control form form" value="<?php echo $dataVM[0]['customer'] ?>" id="inputRequesterName" name="inputRequesterName" aria-describedby="requesterNameHelp" placeholder="Entrer un nom ou une addresse de messagerie">
             </div>
         </div>
         <div class="d-inline-block w-100">
