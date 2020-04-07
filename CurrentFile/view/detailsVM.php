@@ -15,7 +15,7 @@ ob_start();
 <body>
 <div class="container-fluid pt-3">
     <h3 class="text-center border border-danger border-left-0 border-right-0 border-top-0 pb-3">Formulaire de demande de VM</h3>
-    <form method="post" action="../index.php?action=RequestVM" class="mb-4">
+    <form method="post" action="../index.php?action=updateVM" class="mb-4">
         <div class="d-inline-block w-100">
             <!--Name of the VM-->
             <div class="form-group w-50 float-left pr-4">
@@ -258,14 +258,14 @@ ob_start();
 
 
         <!--Save the modifications-->
-        <a href="index.php?action=updateVM&id=<?php echo $idVM?>"><button type="submit" class="btn btn-primary m-auto d-inline">Enregistrer les modifications</button></a>
+        <a href="index.php?action=updateVM"><button type="submit" class="btn btn-primary m-auto d-inline">Enregistrer les modifications</button></a>
 
 
         <?php if($dataVM[0]['vmStatus']==0): ?>
         <!--Accepted-->
-        <a href="index.php?action=vmAccepted&id=<?php echo $idVM?>"><button type="submit" class="btn btn-success float-right ml-1">Confirmer la demande</button></a>
+        <a href="index.php?action=vmAccepted"><button type="submit" class="btn btn-success float-right ml-1">Confirmer la demande</button></a>
         <!--Refused-->
-        <a href="index.php?action=vmRefused&id=<?php echo $idVM?>"><button type="submit" class="btn btn-danger float-right">Refuser la demande</button></a>
+        <a href="index.php?action=vmRefused"><button type="submit" class="btn btn-danger float-right">Refuser la demande</button></a>
         <?php endif; ?>
     </form>
 </div>
