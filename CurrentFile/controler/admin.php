@@ -126,7 +126,7 @@ function displayDetailsVM($idVM)
     require 'view/detailsVM.php';
 }
 
-function updateVM($vmInformation)
+function updateVM($vmInformation, $id)
 {
     if(isset($formVMRequest['Academique']))
     {
@@ -164,7 +164,7 @@ function updateVM($vmInformation)
     
     require_once 'model/vmManager.php';
 
-    if(updateVMInformation($vmInformation))
+    if(updateVMInformation($vmInformation, $id))
     {
         $allVM = getAllVM();
         $_GET['action'] = "allVM";
@@ -176,6 +176,16 @@ function updateVM($vmInformation)
         $_GET['action'] = "confirmationVM";
         require 'view/confirmationVM.php';
     }
+}
+
+function vmAccepted()
+{
+
+}
+
+function vmRefused()
+{
+
 }
 
 function displayFormManagement()
