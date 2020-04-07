@@ -258,12 +258,14 @@ ob_start();
 
 
         <!--Save the modifications-->
-        <button type="submit" class="btn btn-primary m-auto d-inline">Enregistrer les modifications</button>
+        <a href="index.php?action=updateVM"><button type="submit" class="btn btn-primary m-auto d-inline">Enregistrer les modifications</button></a>
+
+
         <?php if($dataVM[0]['vmStatus']==0): ?>
         <!--Accepted-->
-        <button type="submit" class="btn btn-success float-right ml-1">Confirmer la demande</button>
+        <a href="index.php?action=vmAccepted"><button type="submit" class="btn btn-success float-right ml-1">Confirmer la demande</button></a>
         <!--Refused-->
-        <button type="submit" class="btn btn-danger float-right">Refuser la demande</button>
+        <a href="index.php?action=vmRefused"><button type="submit" class="btn btn-danger float-right">Refuser la demande</button></a>
         <?php endif; ?>
     </form>
 </div>
