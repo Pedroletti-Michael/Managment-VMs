@@ -323,8 +323,21 @@ function updateVMInformation($vmInformation, $id){
               entity_id = ". $strSep. getEntityId($vmInformation['disFormControlSelect']).$strSep. ",
               os_id = ". $strSep.getOsId($vmInformation['osFormNameControlSelect'], $vmInformation['osTypeFormControlSelect']).$strSep. ",
               snapshot_id = ". $strSep.getSnapshotId($vmInformation['snapshotsFormControlSelect']).$strSep. ",
-              backup_id = ". $strSep.getBackupId($vmInformation['backupFormControlSelect']).$strSep. ",
-              vmStatus = ". $strSep.$vmInformation[''].$strSep. "
+              backup_id = ". $strSep.getBackupId($vmInformation['backupFormControlSelect']).$strSep. "
+              WHERE id = ". $id;
+
+    executeQuery($query);
+
+    return true;
+}
+
+function updateStatusVM($id, $vmStatus){
+    require_once 'model/dbConnector.php';
+
+    $strSep = '\'';
+
+    $query = "UPDATE vm SET
+              vmStatus = ". $strSep.$vmStatus.$strSep. "
               WHERE id = ". $id;
 
     executeQuery($query);
