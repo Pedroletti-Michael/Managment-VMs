@@ -79,48 +79,57 @@
             <a class="last" href="index.php?action=formManagement">Gestion du formulaire</a>
         <?php endif; ?>
         <!----------------- vm ---------------->
+        <!--
         <a class="title">Base de données</a>
         <?php if ($_GET['action'] == "vm"): ?>
             <a href="index.php?action=vm" class="alert-link active">vm</a>
         <?php else : ?>
             <a href="index.php?action=vm">vm</a>
         <?php endif; ?>
+        -->
         <!----------------- user ---------------->
+        <!--
         <?php if ($_GET['action'] == "user"): ?>
             <a href="index.php?action=user" class="alert-link active">user</a>
         <?php else : ?>
             <a href="index.php?action=user">user</a>
         <?php endif; ?>
         <!----------------- entity ---------------->
+        <!--
         <?php if ($_GET['action'] == "entity"): ?>
             <a href="index.php?action=entity" class="alert-link active">entity</a>
         <?php else : ?>
             <a href="index.php?action=entity">entity</a>
         <?php endif; ?>
         <!----------------- os ---------------->
+        <!--
         <?php if ($_GET['action'] == "os"): ?>
             <a href="index.php?action=os" class="alert-link active">os</a>
         <?php else : ?>
             <a href="index.php?action=os">os</a>
         <?php endif; ?>
         <!----------------- snapshot ---------------->
+        <!--
         <?php if ($_GET['action'] == "snapshot"): ?>
             <a href="index.php?action=snapshot" class="alert-link active">snapshot</a>
         <?php else : ?>
             <a href="index.php?action=snapshot">snapshot</a>
         <?php endif; ?>
         <!----------------- backup ---------------->
+        <!--
         <?php if ($_GET['action'] == "backup"): ?>
             <a href="index.php?action=backup" class="alert-link active">backup</a>
         <?php else : ?>
             <a href="index.php?action=backup">backup</a>
         <?php endif; ?>
         <!----------------- pricing ---------------->
+        <!--
         <?php if ($_GET['action'] == "pricing"): ?>
             <a href="index.php?action=pricing" class="alert-link active">pricing</a>
         <?php else : ?>
             <a href="index.php?action=pricing">pricing</a>
         <?php endif; ?>
+        -->
     </div>
 </nav>
 <!-------------------------- Gabarit responsive ------------------------------->
@@ -213,6 +222,7 @@
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                 <span>Base de données</span>
             </h6>
+            <!--
             <ul class="nav flex-column mb-2">
                 <li class="nav-item">
                     <?php if ($_GET['action'] == "vm"): ?>
@@ -297,6 +307,7 @@
                         </a>
                 </li>
             </ul>
+            -->
         </div>
     </nav>
 </nav>
@@ -378,6 +389,7 @@
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                     <span>Base de données</span>
                 </h6>
+                <!--
                 <ul class="nav flex-column mb-2">
                     <li class="nav-item">
                         <?php if ($_GET['action'] == "vm"): ?>
@@ -462,6 +474,7 @@
                             </a>
                     </li>
                 </ul>
+                -->
             </div>
         </nav>
     </div>
