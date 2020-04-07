@@ -194,7 +194,7 @@ function vmAccepted()
     $vmStatus = true;
 
     require_once "model/vmManager.php";
-    updateStatusVM($_SESSION['idVM'], $vmStatus);
+    updateStatusVM(6, $vmStatus);
 }
 
 function vmRefused()
@@ -202,7 +202,7 @@ function vmRefused()
     $vmStatus = false;
 
     require_once "model/vmManager.php";
-    updateStatusVM($_SESSION['idVM'], $vmStatus);
+    updateStatusVM(6, $vmStatus);
 }
 
 function displayFormManagement()

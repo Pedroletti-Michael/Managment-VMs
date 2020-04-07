@@ -348,11 +348,7 @@ function updateStatusVM($id, $vmStatus){
         $status = 1;
     }
 
-    $strSep = '\'';
-
-    $query = "UPDATE vm SET
-              vmStatus = ". $strSep.$status.$strSep. "
-              WHERE id = ". $id;
+    $query = "UPDATE vm SET vmStatus = ". $status ." WHERE id = ". $id;
 
     executeQuery($query);
 
