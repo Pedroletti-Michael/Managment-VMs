@@ -13,7 +13,7 @@ ob_start();
         <title>Gestion VM - HEIG-VD</title>
     </head>
     <body>
-    <form method="post" action="../index.php?action=??">
+    <form method="post" action="../index.php?action=allVM">
         <!------------- Choix ------------>
         <div class="form-group">
             <label for="disFormControlSelect" class="font-weight-bold text-center w-100">Filtrer les VM</label>
