@@ -340,6 +340,13 @@ function updateStatusVM($id, $vmStatus){
     require_once 'model/dbConnector.php';
     require_once 'model/mailSender.php';
 
+    if($vmStatus){
+        $vmStatus = 2;
+    }
+    else{
+        $vmStatus = 1;
+    }
+
     $strSep = '\'';
 
     $query = "UPDATE vm SET
