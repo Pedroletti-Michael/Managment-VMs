@@ -160,8 +160,8 @@ function getInfoOs($id){
 
     $result = executeQuery($query);
     $returnResult = array();
-    array_push($returnResult, $result[0][1]);
     array_push($returnResult, $result[0][0]);
+    array_push($returnResult, $result[0][1]);
     return $returnResult;
 }
 
