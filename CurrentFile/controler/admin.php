@@ -122,11 +122,13 @@ function displayDetailsVM($idVM)
     require_once 'model/vmManager.php';
     $dataVM = getDataVM($idVM);
 
+    $_SESSION['idVM'] = $idVM;
+
     $_GET['action'] = "detailsVM";
     require 'view/detailsVM.php';
 }
 
-function updateVM($vmInformation, $id)
+function updateVM($vmInformation)
 {
     if(isset($formVMRequest['Academique']))
     {
@@ -164,7 +166,7 @@ function updateVM($vmInformation, $id)
     
     require_once 'model/vmManager.php';
 
-    if(updateVMInformation($vmInformation, $id))
+    if(updateVMInformation($vmInformation, $_SESSION['idVM']))
     {
         $allVM = getAllVM();
         $_GET['action'] = "allVM";
@@ -178,20 +180,20 @@ function updateVM($vmInformation, $id)
     }
 }
 
-function vmAccepted($id)
+function vmAccepted()
 {
     $vmStatus = true;
 
     require_once "model/vmManager.php";
-    updateStatusVM($id, $vmStatus);
+    updateStatusVM($_SESSION['idVM'], $vmStatus);
 }
 
-function vmRefused($id)
+function vmRefused()
 {
     $vmStatus = false;
 
     require_once "model/vmManager.php";
-    updateStatusVM($id, $vmStatus);
+    updateStatusVM($_SESSION['idVM'], $vmStatus);
 }
 
 function displayFormManagement()
