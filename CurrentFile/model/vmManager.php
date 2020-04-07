@@ -91,7 +91,7 @@ function getOsId($osName, $osType){
     $query = "SELECT os_id FROM `os` WHERE osName = ". $strSep.$osName.$strSep ." AND osType = ". $strSep.$osType.$strSep;
 
     $result = executeQuery($query);
-    return $result[0][0];
+    return $result[0];
 }
 
 function getSnapshotId($snapshotName){
