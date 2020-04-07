@@ -180,12 +180,14 @@ function updateVM($vmInformation, $id)
 
 function vmAccepted()
 {
-
+    $vmStatus = true;
+    vmStatus($vmStatus);
 }
 
 function vmRefused()
 {
-
+    $vmStatus = false;
+    vmStatus($vmStatus);
 }
 
 function displayFormManagement()
