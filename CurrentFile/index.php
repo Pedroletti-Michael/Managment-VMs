@@ -38,10 +38,10 @@ if(isset($_GET['action'])){
             updateVM($_POST, $_GET['id']);
             break;
         case 'vmAccepted':
-            vmAccepted();
+            vmAccepted($_GET['id']);
             break;
         case 'vmRefused':
-            vmRefused();
+            vmRefused($_GET['id']);
             break;
         case 'signIn':
             displaySignIn();
