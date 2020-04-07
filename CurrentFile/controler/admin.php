@@ -23,18 +23,22 @@ function displayAllVM($searchFilter)
 
                     if($searchFilter['vmFilter'] == "Toutes les vm")
                     {
+                        $checkFilter = 0;
                         $allVM = getAllVM();
                     }
                     elseif($searchFilter['vmFilter'] == "VM confirmées")
                     {
+                        $checkFilter = 1;
                         $allVM = getValidatedVM();
                     }
                     elseif($searchFilter['vmFilter'] == "VM à confirmer")
                     {
+                        $checkFilter = 2;
                         $allVM = getConfirmationVM();
                     }
                     elseif($searchFilter['vmFilter'] == "VM à renouveler")
                     {
+                        $checkFilter = 3;
                         $allVM = getVmToRenew();
                     }
 
