@@ -335,8 +335,10 @@ function updateVMInformation($vmInformation, $id){
     return true;
 }
 
+/**===UPDATE STATUS OF THE VM===**/
 function updateStatusVM($id, $vmStatus){
     require_once 'model/dbConnector.php';
+    require_once 'model/mailSender.php';
 
     $strSep = '\'';
 
@@ -346,5 +348,30 @@ function updateStatusVM($id, $vmStatus){
 
     executeQuery($query);
 
+    $link = 'http://vmman.heig-vd.ch/action=detailedVM&ID='.$id;
+    $info = getInformationForMailAboutVM($id);
+    if($vmStatus == 1){
+        deniedRequestMail($info[1], $info[0]);
+    }
+    elseif($vmStatus == 2){
+        validateRequestMail($info[1], $info[0], $link, $info[3], $info[2]);
+    }
+
     return true;
+}
+
+/**===GET INFORMATION FOR THE UPDATE OF THE STATUS VM===**/
+function getInformationForMailAboutVM($id){
+    $querySelect = "SELECT `name`, `customer`, `userRa`, `userRt` FROM `vm` WHERE id = ". $id;
+
+    $resultSelect = executeQuerySelect($querySelect);
+    $i = 0;
+
+    foreach ($resultSelect as $vm){
+        $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
+        $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
+        $i++;
+    }
+    return $resultSelect;
 }

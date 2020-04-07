@@ -124,7 +124,7 @@ function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
     Nom de la demande : ". $requestName ."
     <br><br>
     Votre commande a été validée. Vous pouvez donc vous rendre sous le lien ci-dessous pour obtenir toutes les informations nécessaires pour votre machine :<br>
-    ". $link ."
+    ". $link ."  |  Lien pas encore fonctionnel, mise en place sous-peu.
     <br><br>
     Meilleures salutations.
     VmManager
@@ -149,11 +149,11 @@ function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
 /**
  * This function used to send the declined validation for a request of vm to an user
  */
-function deniedRequestMail($userMail, $requestName, $rtMail, $raMail){
+function deniedRequestMail($userMail, $requestName){
     // multiple recipients
     $administratorMail = 'michael.pedroletti@heig-vd.ch';
 
-    $to  = $userMail . ', ' . $rtMail . ', ' . $raMail . ', ' . $administratorMail;
+    $to  = $userMail . ', ' . $administratorMail;
 
     // subject
     $subject = 'Demande pour votre VM refusée';
