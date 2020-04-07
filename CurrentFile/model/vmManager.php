@@ -318,7 +318,7 @@ function updateVMInformation($vmInformation, $id){
               domain = ". $strSep.$vmInformation['domainEINET'].$strSep. ",
               patch = ". $strSep.$vmInformation['securityFormControlSelect'].$strSep. ",
               comment = ". $strSep.$vmInformation['ti'].$strSep. ",
-              customer = ". $strSep.getUserId($vmInformation['inputResquesterName']).$strSep. ",
+              customer = ". $strSep.getUserId($vmInformation['inputRequesterName']).$strSep. ",
               userRa = ". $strSep.getUserId($vmInformation['inputRAName']).$strSep. ",
               userRt = ". $strSep.getUserId($vmInformation['inputTMName']).$strSep. ",
               entity_id = ". $strSep. getEntityId($vmInformation['disFormControlSelect']).$strSep. ",
