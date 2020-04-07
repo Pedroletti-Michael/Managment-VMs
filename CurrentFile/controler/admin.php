@@ -163,6 +163,15 @@ function updateVM($vmInformation)
     {
         $vmInformation['domainEINET'] = 0;
     }
+
+    if($vmInformation['securityFormControlSelect'] == "OS mis à jour par le responsable technique")
+    {
+        $vmInformation['securityFormControlSelect'] = 1;
+    }
+    elseif($vmInformation['securityFormControlSelect'] == "OS mis à jour par le SI (update automatiques)")
+    {
+        $vmInformation['securityFormControlSelect'] = 0;
+    }
     
     require_once 'model/vmManager.php';
 
