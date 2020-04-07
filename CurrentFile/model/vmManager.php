@@ -295,14 +295,15 @@ function getDataVM($idVM){
 /**===Update VM in DB===**/
 function updateVMInformation($vmInformation, $id){
     require_once 'model/dbConnector.php';
+    require_once  'model/userManager.php';
 
     $strSep = '\'';
 
     $query = "UPDATE vm SET
               name = ". $strSep.$vmInformation['inputVMName'].$strSep. ",
-              cluster = ". $strSep.$vmInformation['displayCluster'].$strSep. ",
+              cluster = ". $strSep.$vmInformation['editCluster'].$strSep. ",
               dateStart = ". $strSep.$vmInformation['inputComissioningDate'].$strSep. ",
-              dateAnniversary = ". $strSep.$vmInformation['displayDateAnniversary'].$strSep. ",
+              dateAnniversary = ". $strSep.$vmInformation['editDateAnniversary'].$strSep. ",
               dateEnd = ". $strSep.$vmInformation['inputEndDate'].$strSep. ",
               description = ". $strSep.$vmInformation['objective'].$strSep. ",
               ip = ". $strSep.$vmInformation['editIP'].$strSep. ",
