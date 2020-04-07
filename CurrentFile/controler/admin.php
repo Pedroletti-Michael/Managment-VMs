@@ -178,16 +178,20 @@ function updateVM($vmInformation, $id)
     }
 }
 
-function vmAccepted()
+function vmAccepted($id)
 {
     $vmStatus = true;
-    vmStatus($vmStatus);
+
+    require_once "model/vmManager.php";
+    updateStatusVM($id, $vmStatus);
 }
 
-function vmRefused()
+function vmRefused($id)
 {
     $vmStatus = false;
-    vmStatus($vmStatus);
+
+    require_once "model/vmManager.php";
+    updateStatusVM($id, $vmStatus);
 }
 
 function displayFormManagement()
