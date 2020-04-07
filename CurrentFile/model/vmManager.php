@@ -159,7 +159,10 @@ function getInfoOs($id){
     $query = "SELECT osName, osType FROM `os` WHERE os_id = ". $strSep.$id.$strSep;
 
     $result = executeQuery($query);
-    return $result[0][1] . " " .$result[0][0];
+    $returnResult = array();
+    array_push($result[0][1]);
+    array_push($result[0][0]);
+    return $returnResult;
 }
 
 function getInfoSnapshot($id){
