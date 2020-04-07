@@ -124,7 +124,7 @@ function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
     Nom de la demande : ". $requestName ."
     <br><br>
     Votre commande a été validée. Vous pouvez donc vous rendre sous le lien ci-dessous pour obtenir toutes les informations nécessaires pour votre machine :<br>
-    ". $link ."  |  Lien pas encore fonctionnel, mise en place sous-peu.
+    ". $link ."  / Lien pas encore fonctionnel, mise en place sous-peu.
     <br><br>
     Meilleures salutations.
     VmManager

@@ -369,13 +369,15 @@ function getInformationForMailAboutVM($id){
     $querySelect = "SELECT `name`, `customer`, `userRa`, `userRt` FROM `vm` WHERE id = ". $id;
 
     $resultSelect = executeQuerySelect($querySelect);
+    $arrayResult = array();
     $i = 0;
 
     foreach ($resultSelect as $vm){
-        $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
-        $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
-        $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
+        array_push($arrayResult, $vm['name']);
+        array_push($arrayResult, getInfoUser($vm['customer']));
+        array_push($arrayResult, getInfoUser($vm['userRa']));
+        array_push($arrayResult, getInfoUser($vm['userRt']));
         $i++;
     }
-    return $resultSelect;
+    return $arrayResult;
 }
