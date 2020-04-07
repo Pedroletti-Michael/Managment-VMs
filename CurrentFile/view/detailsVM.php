@@ -258,7 +258,7 @@ ob_start();
 
 
         <!--Save the modifications-->
-        <a href="index.php?action=updateVM"><button type="submit" class="btn btn-primary m-auto d-inline">Enregistrer les modifications</button></a>
+        <a href="index.php?action=updateVM&id=<?php echo $idVM?>"><button type="submit" class="btn btn-primary m-auto d-inline">Enregistrer les modifications</button></a>
 
 
         <?php if($dataVM[0]['vmStatus']==0): ?>
