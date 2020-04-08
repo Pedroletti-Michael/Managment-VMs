@@ -197,7 +197,7 @@ function vmAccepted()
 
     if(updateStatusVM($_SESSION['idVM'], $vmStatus))
     {
-        displayAllVM();
+        displayAllVM("");
     }
     else
     {
