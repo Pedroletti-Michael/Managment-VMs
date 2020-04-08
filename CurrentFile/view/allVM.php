@@ -57,6 +57,7 @@ ob_start();
                 <th scope="col">os_id</th>
                 <th scope="col">snapshot_id</th>
                 <th scope="col">backup_id</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -80,6 +81,11 @@ ob_start();
                         <td style="min-width: 100px"><?php echo $value['os_id']['1']." ".$value['os_id']['0']?></td>
                         <td style="min-width: 250px"><?php echo $value['snapshot_id']?></td>
                         <td style="min-width: 250px"><?php echo $value['backup_id']?></td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-warning">détail</button></a>
+                            </div>
+                        </td>
                     </tr>
                 <?php endforeach;?>
             </tbody>

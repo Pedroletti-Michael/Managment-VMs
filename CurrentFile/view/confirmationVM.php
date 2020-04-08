@@ -56,7 +56,7 @@ ob_start();
                 <td><?php echo $value['userRa']?></td>
                 <td><?php echo $value['userRt']?></td>
                 <td><?php echo $value['entity_id']?></td>
-                <td style="min-width: 100px"><?php echo $value['os_id']?></td>
+                <td style="min-width: 100px"><?php echo $value['os_id']['1']." ".$value['os_id']['0']?></td>
                 <td style="min-width: 250px"><?php echo $value['snapshot_id']?></td>
                 <td style="min-width: 250px"><?php echo $value['backup_id']?></td>
                 <td>
