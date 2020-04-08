@@ -79,7 +79,6 @@ function formVM($formVMRequest)
 
         requestMail($formVMRequest['inputResquesterName'], $formVMRequest['inputVMName'], $formVMRequest['inputTMName'], $formVMRequest['inputRAName']);
 
-        require_once 'controler/user.php';
         displayHome();
     }
     else
