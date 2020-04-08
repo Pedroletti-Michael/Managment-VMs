@@ -189,7 +189,7 @@ function getUserVM($userId)
     $strSep = '\'';
 
     require_once 'model/dbConnector.php';
-    $querySelect = "SELECT `name`, `dateStart`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`  FROM `vm` WHERE customer = ". $strSep.$userId.$strSep;
+    $querySelect = "SELECT `id`, `name`, `dateStart`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`  FROM `vm` WHERE customer = ". $strSep.$userId.$strSep;
 
     $resultSelect = executeQuerySelect($querySelect);
     $i = 0;
