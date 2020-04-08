@@ -73,7 +73,7 @@ function mailAdministrator($userMail, $requestName, $link){
     $to  = $administratorMail;
 
     // subject
-    $subject = 'Résumé de votre demande pour une VM';
+    $subject = 'Résumé de la demande pour une VM : '. $requestName;
 
     // message
     $message = "
@@ -194,12 +194,13 @@ function deniedRequestMail($userMail, $requestName){
 
 /**
  * This function used to send an advert mail to the technical manager, administrator manager and the admin of the VMManager
+ * When the vm need to be renew.
  */
 function advertMail($userMail, $requestName, $link, $rtMail, $raMail){
     // multiple recipients
     $administratorMail = 'michael.pedroletti@heig-vd.ch';
 
-    $to  = $rtMail . ', ' . $raMail . ', ' . $administratorMail;
+    $to  = $userMail . ', ' . $rtMail . ', ' . $raMail . ', ' . $administratorMail;
 
     // subject
     $subject = 'Résumé de votre demande pour une VM';
