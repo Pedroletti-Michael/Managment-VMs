@@ -46,7 +46,15 @@ function login($loginRequest)
          if ($userEmail!=null || $userEmail!=false)
          {
              createSession($userEmail);
-             displayHome();
+
+             if(isset($_SESSION['actionUser']) && $_SESSION['actionUser'] == "detailsVM")
+             {
+                 displayDetailsVM($_SESSION['idVM']);
+             }
+             else
+             {
+                 displayHome();
+             }
          }
          else
          {

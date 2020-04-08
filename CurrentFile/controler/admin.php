@@ -77,9 +77,6 @@ function displayAllVM($searchFilter)
         $_GET['action'] = "signIn";
         require 'view/signIn.php';
     }
-
-
-
 }
 
 function displayConfirmationVM()
@@ -113,19 +110,41 @@ function displayConfirmationVM()
 
 function displayDetailsVM($idVM)
 {
-    require_once 'model/displayManager.php';
-    $entityNames = displayBDD_Entity();
-    $osNames = displayBDD_OS();
-    $snapshotPolicy = displayBSS_Snapshots();
-    $backupPolicy = displayBSS_Backup();
+    if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
+    {
+        switch ($_SESSION['userType'])
+        {
+            case 0:
+                require_once 'controler/user.php';
+                displayHome();
+                break;
+            case 1:
+                require_once 'model/displayManager.php';
+                $entityNames = displayBDD_Entity();
+                $osNames = displayBDD_OS();
+                $snapshotPolicy = displayBSS_Snapshots();
+                $backupPolicy = displayBSS_Backup();
 
-    require_once 'model/vmManager.php';
-    $dataVM = getDataVM($idVM);
+                require_once 'model/vmManager.php';
+                $dataVM = getDataVM($idVM);
 
-    $_SESSION['idVM'] = $idVM;
+                $_SESSION['idVM'] = $idVM;
 
-    $_GET['action'] = "detailsVM";
-    require 'view/detailsVM.php';
+                $_GET['action'] = "detailsVM";
+                require 'view/detailsVM.php';
+                break;
+            default:
+                $_GET['action'] = "signIn";
+                require 'view/signIn.php';
+                break;
+        }
+    }
+    else
+    {
+        $_SESSION['actionUser'] = "detailsVM";
+        $_GET['action'] = "signIn";
+        require 'view/signIn.php';
+    }
 }
 
 function updateVM($vmInformation)
