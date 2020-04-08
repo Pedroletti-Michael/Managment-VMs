@@ -80,32 +80,37 @@ ob_start();
             <!--OS-->
             <div class="form-group w-50 float-left pr-4">
                 <label for="osFormControlSelect" class="font-weight-bold">Système d'exploitation<a style="color: red"> *</a></label>
-                <select class="form-control w-50 float-left" id="osTypeFormControlSelect" name="osTypeFormControlSelect" required>
-                    <?php
-                    $windows = 0;
-                    $linux = 0;
-                    foreach ($osNames as $value) {
-                        if (($value['osType']=="Linux / Ubuntu ")&&$linux<1){
-                            echo "<option>".$value['osType']."</option>";
-                            $linux++;
-                        }
-                        if (($value['osType']=="Windows")&&$windows<1){
-                            echo "<option>".$value['osType']."</option>";
-                            $windows++;
-                        }
-                    }
-                    ?>
-                </select>
-            </div>
-            <div class="pl-2">
-                <select class="form-control w-50 float-right" id="osFormNameControlSelect" name="osFormNameControlSelect" required>
-                    <?php
-                    foreach ($osNames as $value) {
-                        if($value['osType'])
-                            echo "<option>".$value['osName']."</option>";
-                    }
-                    ?>
-                </select>
+                <div class="w-100 d-inline-block">
+                    <div class="float-left w-50 pr-2">
+                        <select class="form-control w-100 float-left mr-2" id="osTypeFormControlSelect" name="osTypeFormControlSelect" required>
+                            <?php
+                            $windows = 0;
+                            $linux = 0;
+                            foreach ($osNames as $value) {
+                                if (($value['osType']=="Linux / Ubuntu ")&&$linux<1){
+
+                                    echo "<option>".$value['osType']."</option>";
+                                    $linux++;
+                                }
+                                if (($value['osType']=="Windows")&&$windows<1){
+                                    echo "<option>".$value['osType']."</option>";
+                                    $windows++;
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="float-right w-50 pl-2">
+                        <select class="form-control w-100 float-right ml-2" id="osFormNameControlSelect" name="osFormNameControlSelect" required>
+                            <?php
+                            foreach ($osNames as $value) {
+                                if($value['osType'])
+                                    echo "<option>".$value['osName']."</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
                 <small id="osHelp" class="form-text text-muted">Toutes les OS sont en anglais, 64 bits</small>
             </div>
             <!--Date of commissioning-->
@@ -278,9 +283,9 @@ ob_start();
 
         <?php if($dataVM[0]['vmStatus']==0): ?>
         <!--Accepted-->
-        <a href="index.php?action=vmAccepted">Confirmer la demande<button type="submit" class="btn btn-success float-right ml-1">Confirmer la demande</button></a>
+        <a href="index.php?action=vmAccepted"><button type="button" class="btn btn-success float-right ml-1">Confirmer la demande</button></a>
         <!--Refused-->
-        <a href="index.php?action=vmRefused">Refuser la demande<button type="submit" class="btn btn-danger float-right">Refuser la demande</button></a>
+        <a href="index.php?action=vmRefused"><button type="button" class="btn btn-danger float-right">Refuser la demande</button></a>
         <?php endif; ?>
     </form>
 </div>
