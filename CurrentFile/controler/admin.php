@@ -283,6 +283,11 @@ function editEntity($entityName){
         $nameEntity = $entityName['value'];
         deleteEntity($nameEntity);
     }
+    if($entityName['modify']){
+        $nameEntity = $entityName['value'];
+        $newName = $entityName['txt'];
+        modifyEntity($nameEntity,$newName);
+    }
     displayFormManagement();
 }
 
@@ -292,6 +297,16 @@ function editOS($osName){
         $nameOS = $osName['txt'];
         $typeOS = $osName['type'];
         addOS($nameOS,$typeOS);
+    }
+    if($osName['delete']){
+        $nameOS = $osName['value'];
+        deleteOS($nameOS);
+    }
+    if($osName['modify']){
+        $nameOS = $osName['value'];
+        $newName = $osName['txt'];
+        $newType = $osName['type'];
+        modifyOS($nameOS,$newName,$newType);
     }
     displayFormManagement();
 }

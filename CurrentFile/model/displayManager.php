@@ -7,23 +7,9 @@
 
 require 'model/dbConnector.php';
 
+/********************** Entity **************************/
 function displayBDD_Entity(){
     $query = "SELECT entityName FROM entity";
-    return executeQuery($query);
-}
-
-function displayBDD_OS(){
-    $query = "SELECT osName, osType FROM os";
-    return executeQuery($query);
-}
-
-function displayBSS_Snapshots(){
-    $query = "SELECT policy FROM snapshot";
-    return executeQuery($query);
-}
-
-function displayBSS_Backup(){
-    $query = "SELECT policy FROM backup";
     return executeQuery($query);
 }
 
@@ -39,6 +25,16 @@ function deleteEntity($nameEntity){
     return executeQuery($query);
 }
 
+function modifyEntity($nameEntity,$newName){
+    $query = "UPDATE `entity` SET `entityName` = '$newName' WHERE `entity`.`entityName` = '$nameEntity';";
+    return executeQuery($query);
+}
+/********************** OS **************************/
+function displayBDD_OS(){
+    $query = "SELECT osName, osType FROM os";
+    return executeQuery($query);
+}
+
 function addOS($nameOS,$typeOS){
     $strSep = '\'';
 
@@ -46,10 +42,30 @@ function addOS($nameOS,$typeOS){
     return executeQuery($query);
 }
 
+function deleteOS($nameOS){
+    $query = "DELETE FROM os WHERE os.osName = '$nameOS'";
+    return executeQuery($query);
+}
+
+function modifyOS($nameOS,$newName,$newType){
+    $query = "UPDATE `os` SET `osName` = '$newName', `osType` = '$newType' WHERE `os`.`osName` = '$nameOS';";
+    return executeQuery($query);
+}
+/********************** Snapshots **************************/
+function displayBSS_Snapshots(){
+    $query = "SELECT policy FROM snapshot";
+    return executeQuery($query);
+}
+
 function addSnapshots($nameSnapshots){
     $strSep = '\'';
 
     $query = "INSERT INTO snapshot (policy) VALUES (".$strSep.$nameSnapshots.$strSep.")";
+    return executeQuery($query);
+}
+/********************** Backup **************************/
+function displayBSS_Backup(){
+    $query = "SELECT policy FROM backup";
     return executeQuery($query);
 }
 
@@ -60,7 +76,7 @@ function addBackup($nameBackup){
     return executeQuery($query);
 }
 
-
+/********************** Columns **************************/
 /**
  * Region contains all function to display information about columns for every table of the db
  */

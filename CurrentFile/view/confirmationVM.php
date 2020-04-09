@@ -61,7 +61,7 @@ ob_start();
                 <td style="min-width: 250px"><?php echo $value['backup_id']?></td>
                 <td>
                     <div class="btn-group" role="group">
-                        <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="submit" class="btn btn-warning">détail</button></a>
+                        <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="submit" class="btn btn-warning">détails</button></a>
                         <button type="submit" class="btn btn-success">confirmer</button>
                     </div>
                 </td>

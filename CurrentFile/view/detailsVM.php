@@ -38,7 +38,7 @@ ob_start();
             <!--Name of the technical manager-->
             <div class="form-group w-50 float-right pl-4">
                 <label for="inputTMName" class="font-weight-bold">Responable technique<a style="color: red"> *</a></label>
-                <input type="tmName" class="form-control form form"  value="<?php echo $dataVM[0]['userRt'] ?>" id="inputTMName" name="inputTMName" aria-describedby="tmNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
+                <input type="tmName" class="form-control form form"  value="<?php echo $dataVM[0]['userRt'] ?>" id="inputTMName" name="inputTMName" aria-describedby="tmNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" required>
             </div>
         </div>
         <div class="d-inline-block w-100">
@@ -50,7 +50,7 @@ ob_start();
             <!--Name of the responsible administrator-->
             <div class="form-group w-50 float-right pl-4">
                 <label for="inputRAName" class="font-weight-bold">Responsable administratif<a style="color: red"> *</a></label>
-                <input type="raName" class="form-control form form" value="<?php echo $dataVM[0]['userRa'] ?>" id="inputRAName" name="inputRAName" aria-describedby="raNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
+                <input type="raName" class="form-control form form" value="<?php echo $dataVM[0]['userRa'] ?>" id="inputRAName" name="inputRAName" aria-describedby="raNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" required>
                 <small id="raNameHelp" class="form-text text-muted">Direction, Doyen , Directeur d'institut ou Chef de service</small>
             </div>
         </div>
