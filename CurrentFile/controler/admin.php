@@ -115,8 +115,27 @@ function displayDetailsVM($idVM)
         switch ($_SESSION['userType'])
         {
             case 0:
-                require_once 'controler/user.php';
-                displayHome();
+                require_once 'model/vmManager.php';
+                $userId = getUserId($_SESSION['userEmail']);
+                $dataVM = getDataVM($idVM);
+
+                if($userId == $dataVM['customer'])
+                {
+                    require_once 'model/displayManager.php';
+                    $entityNames = displayBDD_Entity();
+                    $osNames = displayBDD_OS();
+                    $snapshotPolicy = displayBSS_Snapshots();
+                    $backupPolicy = displayBSS_Backup();
+
+                    $_SESSION['idVM'] = $idVM;
+
+                    $_GET['action'] = "detailsVM";
+                    require 'view/detailsVM.php';
+                }
+                else
+                {
+                    displayHome();
+                }
                 break;
             case 1:
                 require_once 'model/displayManager.php';
