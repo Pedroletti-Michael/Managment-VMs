@@ -53,7 +53,7 @@ function modifyOS($nameOS,$newName,$newType){
 }
 /********************** Snapshots **************************/
 function displayBSS_Snapshots(){
-    $query = "SELECT policy FROM snapshot";
+    $query = "SELECT policy, name FROM snapshot";
     return executeQuery($query);
 }
 
@@ -65,7 +65,7 @@ function addSnapshots($nameSnapshots){
 }
 /********************** Backup **************************/
 function displayBSS_Backup(){
-    $query = "SELECT policy FROM backup";
+    $query = "SELECT policy, name FROM backup";
     return executeQuery($query);
 }
 

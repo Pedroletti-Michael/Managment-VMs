@@ -5,6 +5,7 @@
  * Time: 10:39
  */
 
+
 /**
  * function used to send the mail and return true or false
  * @param $to = the user who receive the mail
@@ -22,6 +23,7 @@ function sendMail($to, $subject, $message, $headers){
         return false;
     }
 }
+
 
 /**
  * Function used to send a request to the administrator of the SI.
@@ -145,6 +147,7 @@ function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
         return false;
     }
 }
+
 
 /**
  * This function used to send the declined validation for a request of vm to an user
