@@ -275,15 +275,15 @@ function displayFormManagement()
 
 function editEntity($entityName){
     require_once 'model/displayManager.php';
-    if($entityName['add']){
+    if(isset($entityName['add'])){
         $nameEntity = $entityName['txt'];
         addEntity($nameEntity);
     }
-    if($entityName['delete']){
+    if(isset($entityName['delete'])){
         $nameEntity = $entityName['value'];
         deleteEntity($nameEntity);
     }
-    if($entityName['modify']){
+    if(isset($entityName['modify'])){
         $nameEntity = $entityName['value'];
         $newName = $entityName['txt'];
         modifyEntity($nameEntity,$newName);
@@ -293,16 +293,16 @@ function editEntity($entityName){
 
 function editOS($osName){
     require_once 'model/displayManager.php';
-    if($osName['add']){
+    if(isset($osName['add'])){
         $nameOS = $osName['txt'];
         $typeOS = $osName['type'];
         addOS($nameOS,$typeOS);
     }
-    if($osName['delete']){
+    if(isset($osName['delete'])){
         $nameOS = $osName['value'];
         deleteOS($nameOS);
     }
-    if($osName['modify']){
+    if(isset($osName['modify'])){
         $nameOS = $osName['value'];
         $newName = $osName['txt'];
         $newType = $osName['type'];

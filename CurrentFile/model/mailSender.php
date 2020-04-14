@@ -238,3 +238,50 @@ function advertMail($userMail, $requestName, $link, $rtMail, $raMail){
         return false;
     }
 }
+
+
+/**
+ * This function used to send an advert mail to the technical manager, administrator manager and the admin of the VMManager
+ * When the vm need to be renew.
+ */
+function nonrenewalMailAdvert($userMail, $requestName, $link, $rtMail, $raMail){
+    // multiple recipients
+    $administratorMail = 'michael.pedroletti@heig-vd.ch';
+
+    $to  = $userMail . ', ' . $rtMail . ', ' . $raMail . ', ' . $administratorMail;
+
+    // subject
+    $subject = 'Non-renouvellement de votre VM : '. $requestName;
+
+    // message
+    $message = "
+    Bonjour,<br><br>
+    
+    Nous vous envoyons ce mail pour vous informer que la date limite de votre VM est échue.<br>
+     
+    Nom de la demande : ". $requestName ."<br>
+    
+    Étant donné que vous n'avez pas voulu la renouvelée via le lien précédent nous allons donc supprimer votre VM.<br>
+    Votre VM ne sera donc dès à présent plus disponible.
+    
+    Toutefois si vous avez une question vous pouvez nous contacter à cette adresse : vmmanger@heig-vd.ch<br><br>
+
+    Meilleures salutations.
+    VmManager
+    ";
+
+    // To send HTML mail, the Content-type header must be set
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+
+    // Additional headers
+    $headers .= 'To: '. $userMail ."\r\n";
+    $headers .= 'From: VMManager <vmManager@heig-vd.ch>' . "\r\n";
+
+    if(sendMail($to, $subject, $message, $headers)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
