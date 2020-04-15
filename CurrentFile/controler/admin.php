@@ -116,12 +116,11 @@ function displayDetailsVM($idVM)
         {
             case 0:
                 require_once 'model/vmManager.php';
-                $userId = getUserId($_SESSION['userEmail']);
+                require_once 'model/displayManager.php';
                 $dataVM = getDataVM($idVM);
 
-                if($userId == $dataVM['customer'])
+                if($_SESSION['userEmail'] == $dataVM[0]['customer'])
                 {
-                    require_once 'model/displayManager.php';
                     $entityNames = displayBDD_Entity();
                     $osNames = displayBDD_OS();
                     $snapshotPolicy = displayBSS_Snapshots();
