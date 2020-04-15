@@ -2,7 +2,6 @@
 /**
  * Author : Thomas Huguet
  * CreationFile date : 20.03.2020
- * ModifFile date : 26.03.2020
  * Description : Contains all functions related to the admin view
  */
 
@@ -115,8 +114,26 @@ function displayDetailsVM($idVM)
         switch ($_SESSION['userType'])
         {
             case 0:
-                require_once 'controler/user.php';
-                displayHome();
+                require_once 'model/vmManager.php';
+                require_once 'model/displayManager.php';
+                $dataVM = getDataVM($idVM);
+
+                if($_SESSION['userEmail'] == $dataVM[0]['customer'])
+                {
+                    $entityNames = displayBDD_Entity();
+                    $osNames = displayBDD_OS();
+                    $snapshotPolicy = displayBSS_Snapshots();
+                    $backupPolicy = displayBSS_Backup();
+
+                    $_SESSION['idVM'] = $idVM;
+
+                    $_GET['action'] = "detailsVM";
+                    require 'view/detailsVM.php';
+                }
+                else
+                {
+                    displayHome();
+                }
                 break;
             case 1:
                 require_once 'model/displayManager.php';
@@ -328,4 +345,3 @@ function editBackup($backupName){
     }
     displayFormManagement();
 }
-

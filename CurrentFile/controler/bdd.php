@@ -2,7 +2,6 @@
 /**
  * Author : Thomas Huguet
  * CreationFile date : 20.03.2020
- * ModifFile date : 26.03.2020
  * Description : Contains all functions related to the DB manager view
  */
 
@@ -13,7 +12,6 @@ function displayVM()
         switch ($_SESSION['userType'])
         {
             case 0:
-                require_once 'controler/user.php';
                 displayHome();
                 break;
             case 1:
@@ -40,7 +38,6 @@ function displayBackup()
         switch ($_SESSION['userType'])
         {
             case 0:
-                require_once 'controler/user.php';
                 displayHome();
                 break;
             case 1:
@@ -67,7 +64,6 @@ function displayBDDEntity()
         switch ($_SESSION['userType'])
         {
             case 0:
-                require_once 'controler/user.php';
                 displayHome();
                 break;
             case 1:
@@ -94,7 +90,6 @@ function displayOS()
         switch ($_SESSION['userType'])
         {
             case 0:
-                require_once 'controler/user.php';
                 displayHome();
                 break;
             case 1:
@@ -121,7 +116,6 @@ function displayPricing()
         switch ($_SESSION['userType'])
         {
             case 0:
-                require_once 'controler/user.php';
                 displayHome();
                 break;
             case 1:
@@ -148,7 +142,6 @@ function displaySnapshot()
         switch ($_SESSION['userType'])
         {
             case 0:
-                require_once 'controler/user.php';
                 displayHome();
                 break;
             case 1:
@@ -175,7 +168,6 @@ function displayUser()
         switch ($_SESSION['userType'])
         {
             case 0:
-                require_once 'controler/user.php';
                 displayHome();
                 break;
             case 1:
