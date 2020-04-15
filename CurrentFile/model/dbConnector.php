@@ -51,7 +51,6 @@ function executeQuery($query){
   return $queryResult;
 }
 
-
 /**
 * Function used to execute a selet query.
 * $query = query needed

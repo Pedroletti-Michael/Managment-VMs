@@ -74,7 +74,6 @@ function addVMToDB($formVMRequest)
     return true;
 }
 
-
 /**===GET-ID FROM TABLE===**/
 function getEntityId($entityName){
     $strSep = '\'';
@@ -112,8 +111,7 @@ function getBackupId($backupId){
     return $result[0][0];
 }
 
-
-/**===GET INFO OF ALL VM FORM VM TABLE===**/
+/**===GET INFO OF ALL VM===**/
 function getAllVM()
 {
     require_once 'model/dbConnector.php';
@@ -135,6 +133,7 @@ function getAllVM()
     return $resultSelect;
 }
 
+/**===GET INFO FROM TABLE===**/
 function getInfoUser($id){
     $strSep = '\'';
 
@@ -183,7 +182,7 @@ function getInfoBackup($id){
     return $result[0][0];
 }
 
-/**===GET-User's VM FROM TABLE===**/
+/**===GET USER'S VM INFO===**/
 function getUserVM($userId)
 {
     $strSep = '\'';
@@ -207,7 +206,7 @@ function getUserVM($userId)
     return $resultSelect;
 }
 
-/**===Get Information from VM's who need to be confirmed===**/
+/**===GET INFO FROM VM WHO NEED TO BE CONFIRMED===**/
 function getConfirmationVM(){
     require_once 'model/dbConnector.php';
 
@@ -229,7 +228,7 @@ function getConfirmationVM(){
     return $resultSelect;
 }
 
-/**===Get Information from VM's who are validated===**/
+/**===GET INFO FROM VM WHO ARE VALIDATED===**/
 function getValidatedVM(){
     require_once 'model/dbConnector.php';
 
@@ -251,7 +250,7 @@ function getValidatedVM(){
     return $resultSelect;
 }
 
-/**===Get Information from VM's who need to be renew===**/
+/**===GET INFO FROM VM WHO NEED TO BE RENEW===**/
 function getVmToRenew(){
     require_once 'model/dbConnector.php';
 
@@ -273,7 +272,7 @@ function getVmToRenew(){
     return $resultSelect;
 }
 
-/**===GET A SPECIFIC VM VIA THE ID OF THIS VM**/
+/**===GET INFO OF A SPECIFIC VM VIA THE ID OF THIS VM**/
 function getDataVM($idVM){
     require_once 'model/dbConnector.php';
 
@@ -295,7 +294,7 @@ function getDataVM($idVM){
     return $resultSelect;
 }
 
-/**===Update VM in DB===**/
+/**===UPDATE INFO OF A VM===**/
 function updateVMInformation($vmInformation, $id){
     require_once 'model/dbConnector.php';
     require_once  'model/userManager.php';

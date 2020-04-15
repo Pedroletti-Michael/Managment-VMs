@@ -5,7 +5,6 @@
  * Time: 10:39
  */
 
-
 /**
  * function used to send the mail and return true or false
  * @param $to = the user who receive the mail
@@ -24,9 +23,7 @@ function sendMail($to, $subject, $message, $headers){
     }
 }
 
-
 /**
- * Function used to send a request to the administrator of the SI.
  * This mail contains a direct link to the request of the user and some basic information about the request.
  * This mail is going to be send to the request user and in copy to the administrator.
  */
@@ -67,7 +64,9 @@ function requestMail($userMail, $requestName, $rtMail, $raMail){
     }
 }
 
-
+/**
+ * Function used to send a request with a direct link into the request to the administrator of the SI.
+ */
 function mailAdministrator($userMail, $requestName, $link){
     // multiple recipients
     $administratorMail = 'michael.pedroletti@heig-vd.ch';
@@ -106,7 +105,6 @@ function mailAdministrator($userMail, $requestName, $link){
         return false;
     }
 }
-
 
 /**
  * This function used to send the validation for a request of vm to an user.
@@ -148,9 +146,8 @@ function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
     }
 }
 
-
 /**
- * This function used to send the declined validation for a request of vm to an user
+ * This function used to send the denied validation for a request of vm to an user
  */
 function deniedRequestMail($userMail, $requestName){
     // multiple recipients
@@ -193,7 +190,6 @@ function deniedRequestMail($userMail, $requestName){
     }
 
 }
-
 
 /**
  * This function used to send an advert mail to the technical manager, administrator manager and the admin of the VMManager
@@ -241,7 +237,6 @@ function advertMail($userMail, $requestName, $link, $rtMail, $raMail){
         return false;
     }
 }
-
 
 /**
  * This function used to send an advert mail to the technical manager, administrator manager and the admin of the VMManager
