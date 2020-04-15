@@ -57,10 +57,20 @@ function displayBSS_Snapshots(){
     return executeQuery($query);
 }
 
-function addSnapshots($nameSnapshots){
+function addSnapshots($typeSnapshots,$policySnapshots){
     $strSep = '\'';
 
-    $query = "INSERT INTO snapshot (policy) VALUES (".$strSep.$nameSnapshots.$strSep.")";
+    $query = "INSERT INTO `snapshot` (`policy`, `name`) VALUES (".$strSep.$policySnapshots.$strSep.",".$strSep.$typeSnapshots.$strSep.");";
+    return executeQuery($query);
+}
+
+function deleteSnapshots($nameSnapshots){
+    $query = "DELETE FROM `snapshot` WHERE `snapshot`.`name` = '$nameSnapshots'";
+    return executeQuery($query);
+}
+
+function modifySnapshots($nameSnapshots,$newPolicy,$newType){
+    $query = "UPDATE `snapshot` SET `policy` = '$newPolicy', `name` = '$newType' WHERE `snapshot`.`name` = '$nameSnapshots';";
     return executeQuery($query);
 }
 /********************** Backup **************************/
@@ -69,13 +79,22 @@ function displayBSS_Backup(){
     return executeQuery($query);
 }
 
-function addBackup($nameBackup){
+function addBackup($typeBackup,$policyBackup){
     $strSep = '\'';
 
-    $query = "INSERT INTO backup (policy) VALUES (".$strSep.$nameBackup.$strSep.")";
+    $query = "INSERT INTO backup (`policy`, `name`) VALUES (".$strSep.$policyBackup.$strSep.",".$strSep.$typeBackup.$strSep.")";
     return executeQuery($query);
 }
 
+function deleteBackup($nameBackup){
+    $query = "DELETE FROM `backup` WHERE `backup`.`name` = '$nameBackup';";
+    return executeQuery($query);
+}
+
+function modifyBackup($nameBackup,$newPolicy,$newType){
+    $query = "UPDATE `backup` SET `policy` = '$newPolicy', `name` = '$newType' WHERE `backup`.`name` = '$nameBackup';";
+    return executeQuery($query);
+}
 /********************** Columns **************************/
 /**
  * Region contains all function to display information about columns for every table of the db

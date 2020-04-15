@@ -331,8 +331,19 @@ function editOS($osName){
 function editSnapshots($snapshotsName){
     require_once 'model/displayManager.php';
     if($snapshotsName['add']){
-        $nameSnapshots = $snapshotsName['txt'];
-        addSnapshots($nameSnapshots);
+        $typeSnapshots= $snapshotsName['type'];
+        $policySnapshots = $snapshotsName['txt'];
+        addSnapshots($typeSnapshots,$policySnapshots);
+    }
+    if(isset($snapshotsName['delete'])){
+        $nameSnapshots = $snapshotsName['value'];
+        deleteSnapshots($nameSnapshots);
+    }
+    if(isset($snapshotsName['modify'])){
+        $nameSnapshots = $snapshotsName['value'];
+        $newPolicy = $snapshotsName['txt'];
+        $newType = $snapshotsName['type'];
+        modifySnapshots($nameSnapshots,$newPolicy,$newType);
     }
     displayFormManagement();
 }
@@ -340,8 +351,19 @@ function editSnapshots($snapshotsName){
 function editBackup($backupName){
     require_once 'model/displayManager.php';
     if($backupName['add']){
-        $nameBackup = $backupName['txt'];
-        addBackup($nameBackup);
+        $typeBackup= $backupName['type'];
+        $policyBackup = $backupName['txt'];
+        addBackup($typeBackup,$policyBackup);
+    }
+    if(isset($backupName['delete'])){
+        $nameSnapshots = $backupName['value'];
+        deleteBackup($nameSnapshots);
+    }
+    if(isset($backupName['modify'])){
+        $nameBackup = $backupName['value'];
+        $newPolicy = $backupName['txt'];
+        $newType = $backupName['type'];
+        modifyBackup($nameBackup,$newPolicy,$newType);
     }
     displayFormManagement();
 }

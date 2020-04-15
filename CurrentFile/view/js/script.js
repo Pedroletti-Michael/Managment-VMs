@@ -21,7 +21,3 @@ function openNav() {
         flag = 1;
     }
 }
-
-function smartListAutomatic(){
-    if(document.getElementsByTagName(""));
-}

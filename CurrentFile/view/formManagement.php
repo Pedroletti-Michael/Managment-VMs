@@ -31,10 +31,10 @@ ob_start();
                 ?>
             </select>
 
-            <input type="text" class="form-control w-25 float-left" id="txt" name="txt" placeholder="Nom">
-            <button type="submit" class="btn btn-success float-left w-25" value="add" name="add" id="add">Ajouter</button>
-            <button type="submit" class="btn btn-danger float-left w-25" value="delete" name="delete" id="delete">Supprimer</button>
-            <button type="submit" class="btn btn-warning float-left w-25" value="modify" name="modify" id="modify">Modifier</button>
+            <input type="text" class="form-control float-left" style="width: 40%!important;" id="txt" name="txt" placeholder="Nom">
+            <button type="submit" class="btn btn-success float-left" style="width: 20%!important;" value="add" name="add" id="add">Ajouter</button>
+            <button type="submit" class="btn btn-danger float-left" style="width: 20%!important;" value="delete" name="delete" id="delete">Supprimer</button>
+            <button type="submit" class="btn btn-warning float-left" style="width: 20%!important;" value="modify" name="modify" id="modify">Modifier</button>
         </div>
     </form>
     <!--OS-->
@@ -48,34 +48,36 @@ ob_start();
                 }
                 ?>
             </select>
-            <div class="w-25">
-                <select class="form-control w-50 float-left" id="type" name="type">
+            <div style="width: 40%!important;">
+                <select class="form-control float-left" style="width: 30%!important;" id="type" name="type">
                     <option>Windows</option>
                     <option>Linux / Ubuntu</option>
                 </select>
-                <input type="text" class="form-control w-50 float-left" id="txt" name="txt" placeholder="Nom">
+                <input type="text" class="form-control float-left" style="width: 70%!important;" id="txt" name="txt" placeholder="Nom">
             </div>
-            <button type="submit" class="btn btn-success float-left w-25" value="add" name="add" id="add">Ajouter</button>
-            <button type="submit" class="btn btn-danger float-left w-25" value="delete" name="delete" id="delete">Supprimer</button>
-            <button type="submit" class="btn btn-warning float-left w-25" value="modify" name="modify" id="modify">Modifier</button>
+            <button type="submit" class="btn btn-success float-left" style="width: 20%!important;" value="add" name="add" id="add">Ajouter</button>
+            <button type="submit" class="btn btn-danger float-left" style="width: 20%!important;" value="delete" name="delete" id="delete">Supprimer</button>
+            <button type="submit" class="btn btn-warning float-left" style="width: 20%!important;" value="modify" name="modify" id="modify">Modifier</button>
         </div>
     </form>
     <!--Snapshots-->
     <form method="post" action="../index.php?action=editSnapshots">
         <div class="form-group pt-5 pb-5" name="formulaire" id="form_Snapshots">
             <label for="disFormControlSelect" class="font-weight-bold">Snapshots</label>
-            <select multiple class="form-control mb-3" id="disFormControlSelect">
+            <select multiple class="form-control mb-3" id="value" name='value'>
                 <?php
                 foreach ($snapshotPolicy as $value) {
-                    echo "<option>".$value['policy']."</option>";
+                    echo "<option value='".$value['name']."'>".$value['name']." : ".$value['policy']."</option>";
                 }
                 ?>
             </select>
-
-            <input type="text" class="form-control w-25 float-left" id="txt" name="txt" placeholder="Nom">
-            <button type="submit" class="btn btn-success float-left w-25" value="add" name="add" id="add">Ajouter</button>
-            <button type="submit" class="btn btn-danger float-left w-25" value="delete" name="delete" id="delete">Supprimer</button>
-            <button type="submit" class="btn btn-warning float-left w-25" value="modify" name="modify" id="modify">Modifier</button>
+            <div style="width: 40%!important;">
+                <input type="text" class="form-control float-left" style="width: 30%!important;" id="type" name="type" placeholder="Type">
+                <input type="text" class="form-control float-left" style="width: 70%!important;" id="txt" name="txt" placeholder="Nom">
+            </div>
+            <button type="submit" class="btn btn-success float-left" style="width: 20%!important;" value="add" name="add" id="add">Ajouter</button>
+            <button type="submit" class="btn btn-danger float-left" style="width: 20%!important;" value="delete" name="delete" id="delete">Supprimer</button>
+            <button type="submit" class="btn btn-warning float-left" style="width: 20%!important;" value="modify" name="modify" id="modify">Modifier</button>
         </div>
     </form>
 
@@ -83,17 +85,20 @@ ob_start();
     <form method="post" action="../index.php?action=editBackup">
         <div class="form-group pt-5 pb-5" name="formulaire" id="form_Backup">
             <label for="disFormControlSelect" class="font-weight-bold">Backup</label>
-            <select multiple class="form-control mb-3" id="disFormControlSelect">
+            <select multiple class="form-control mb-3" id="value" name='value'>
                 <?php
                 foreach ($backupPolicy as $value) {
-                    echo "<option>".$value['policy']."</option>";
+                    echo "<option value='".$value['name']."'>".$value['name']." : ".$value['policy']."</option>";
                 }
                 ?>
             </select>
-            <input type="text" class="form-control w-25 float-left" id="txt" name="txt" placeholder="Nom">
-            <button type="submit" class="btn btn-success float-left w-25" value="add" name="add" id="add">Ajouter</button>
-            <button type="submit" class="btn btn-danger float-left w-25" value="delete" name="delete" id="delete">Supprimer</button>
-            <button type="submit" class="btn btn-warning float-left w-25" value="modify" name="modify" id="modify">Modifier</button>
+            <div style="width: 40%!important;">
+                <input type="text" class="form-control float-left" style="width: 30%!important;" id="type" name="type" placeholder="Type">
+                <input type="text" class="form-control float-left" style="width: 70%!important;" id="txt" name="txt" placeholder="Nom">
+            </div>
+            <button type="submit" class="btn btn-success float-left" style="width: 20%!important;" value="add" name="add" id="add">Ajouter</button>
+            <button type="submit" class="btn btn-danger float-left" style="width: 20%!important;" value="delete" name="delete" id="delete">Supprimer</button>
+            <button type="submit" class="btn btn-warning float-left" style="width: 20%!important;" value="modify" name="modify" id="modify">Modifier</button>
         </div>
     </form>
 
