@@ -30,6 +30,30 @@ function modifyEntity($nameEntity,$newName){
     return executeQuery($query);
 }
 /********************** OS **************************/
+function displayBDD_OSNameWhereWindows(){
+    $strSep = '\'';
+
+    $query = "SELECT osName FROM os WHERE osType = ". $strSep."Windows".$strSep;
+
+    $result = array();
+    array_push($result, "Windows");
+    array_push($result, executeQuery($query));
+
+    return $result;
+}
+
+function displayBDD_OSNameWhereLinux(){
+    $strSep = '\'';
+
+    $query = "SELECT osName FROM os WHERE osType = ". $strSep."Linux / Ubuntu".$strSep;
+
+    $result = array();
+    array_push($result, "Linux / Ubuntu");
+    array_push($result, executeQuery($query));
+
+    return $result;
+}
+
 function displayBDD_OS(){
     $query = "SELECT osName, osType FROM os";
     return executeQuery($query);
