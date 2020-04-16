@@ -170,7 +170,12 @@ function getInfoSnapshot($id){
     $query = "SELECT policy, name FROM `snapshot` WHERE snapshot_id = ". $strSep.$id.$strSep;
 
     $result = executeQuery($query);
-    return $result[0][0];
+
+    $returnResult = array();
+    array_push($returnResult, $result[0][0]);
+    array_push($returnResult, $result[0][1]);
+
+    return $returnResult;
 }
 
 function getInfoBackup($id){
