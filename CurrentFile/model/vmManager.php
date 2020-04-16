@@ -167,7 +167,7 @@ function getInfoOs($id){
 function getInfoSnapshot($id){
     $strSep = '\'';
 
-    $query = "SELECT policy FROM `snapshot` WHERE snapshot_id = ". $strSep.$id.$strSep;
+    $query = "SELECT policy, name FROM `snapshot` WHERE snapshot_id = ". $strSep.$id.$strSep;
 
     $result = executeQuery($query);
     return $result[0][0];
@@ -176,10 +176,15 @@ function getInfoSnapshot($id){
 function getInfoBackup($id){
     $strSep = '\'';
 
-    $query = "SELECT policy FROM `backup` WHERE backup_id = ". $strSep.$id.$strSep;
+    $query = "SELECT policy, name FROM `backup` WHERE backup_id = ". $strSep.$id.$strSep;
 
     $result = executeQuery($query);
-    return $result[0][0];
+
+    $returnResult = array();
+    array_push($returnResult, $result[0][0]);
+    array_push($returnResult, $result[0][1]);
+
+    return $returnResult;
 }
 
 /**===GET USER'S VM INFO===**/
