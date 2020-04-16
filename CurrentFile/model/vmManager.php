@@ -334,6 +334,27 @@ function updateVMInformation($vmInformation, $id){
     return true;
 }
 
+/**===UPDATE INFO OF A VM===**/
+function updateVMInformationForUser($vmInformation, $id){
+    require_once 'model/dbConnector.php';
+    require_once  'model/userManager.php';
+
+    $strSep = '\'';
+
+    $query = "UPDATE vm SET
+              dateEnd = ". $strSep.$vmInformation['inputEndDate'].$strSep. ",
+              usageType = ". $strSep.$vmInformation['usingVM'].$strSep. ",
+              domain = ". $strSep.$vmInformation['domainEINET'].$strSep. ",
+              customer = ". $strSep.getUserId($vmInformation['inputRequesterName']).$strSep. ",
+              userRa = ". $strSep.getUserId($vmInformation['inputRAName']).$strSep. ",
+              userRt = ". $strSep.getUserId($vmInformation['inputTMName']).$strSep. "
+              WHERE id = ". $id;
+
+    executeQuery($query);
+
+    return true;
+}
+
 /**===UPDATE STATUS OF THE VM===**/
 function updateStatusVM($id, $vmStatus){
     require_once 'model/dbConnector.php';
