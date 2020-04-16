@@ -166,6 +166,49 @@ function displayDetailsVM($idVM)
 
 function updateVM($vmInformation)
 {
+    foreach($vmInformation as $field)
+    {
+        if(!isset($field) || $field == null || $field == " ")
+        {
+            if($_SESSION['userType'] == 0)
+            {
+                displayHome();
+            }
+            elseif($_SESSION['userType'] == 1)
+            {
+                $allVM = getAllVM();
+                $_GET['action'] = "allVM";
+                require 'view/allVM.php';
+            }
+            else
+            {
+                $_GET['action'] = "signIn";
+                require 'view/signIn.php';
+            }
+            break;
+        }
+
+    }
+
+    if (strtotime($vmInformation['inputComissioningDate']) > strtotime($vmInformation['inputEndDate']))
+    {
+        if($_SESSION['userType'] == 0)
+        {
+            displayHome();
+        }
+        elseif($_SESSION['userType'] == 1)
+        {
+            $allVM = getAllVM();
+            $_GET['action'] = "allVM";
+            require 'view/allVM.php';
+        }
+        else
+        {
+            $_GET['action'] = "signIn";
+            require 'view/signIn.php';
+        }
+    }
+
     if(isset($vmInformation['Academique']))
     {
         $vmInformation['usingVM'] = "Academique";
@@ -213,15 +256,39 @@ function updateVM($vmInformation)
 
     if(updateVMInformation($vmInformation, $_SESSION['idVM']))
     {
-        $allVM = getAllVM();
-        $_GET['action'] = "allVM";
-        require 'view/allVM.php';
+        if($_SESSION['userType'] == 0)
+        {
+            displayHome();
+        }
+        elseif($_SESSION['userType'] == 1)
+        {
+            $allVM = getAllVM();
+            $_GET['action'] = "allVM";
+            require 'view/allVM.php';
+        }
+        else
+        {
+            $_GET['action'] = "signIn";
+            require 'view/signIn.php';
+        }
     }
     else
     {
-        $confirmationVM = getConfirmationVM();
-        $_GET['action'] = "confirmationVM";
-        require 'view/confirmationVM.php';
+        if($_SESSION['userType'] == 0)
+        {
+            displayHome();
+        }
+        elseif($_SESSION['userType'] == 1)
+        {
+            $allVM = getAllVM();
+            $_GET['action'] = "allVM";
+            require 'view/allVM.php';
+        }
+        else
+        {
+            $_GET['action'] = "signIn";
+            require 'view/signIn.php';
+        }
     }
 }
 

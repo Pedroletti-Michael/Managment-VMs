@@ -27,6 +27,20 @@ function displayForm()
 
 function formVM($formVMRequest)
 {
+    foreach ($formVMRequest as $field)
+    {
+        if(!isset($field) || $field == null || $field == " ")
+        {
+            displayForm();
+            break;
+        }
+    }
+
+    if (strtotime($formVMRequest['inputComissioningDate']) > strtotime($formVMRequest['inputEndDate']))
+    {
+        displayForm();
+    }
+
     if(isset($formVMRequest['Academique']))
     {
         $formVMRequest['usingVM'] = "Academique";
@@ -59,15 +73,6 @@ function formVM($formVMRequest)
     else
     {
         $formVMRequest['domainEINET'] = 0;
-    }
-
-    foreach ($formVMRequest as $field)
-    {
-        if(!isset($field))
-        {
-            displayForm();
-            break;
-        }
     }
 
     require_once 'model/vmManager.php';
