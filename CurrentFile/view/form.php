@@ -38,7 +38,14 @@ ob_start();
             <!--Name of the technical manager-->
             <div class="form-group w-50 float-right pl-4">
                 <label for="inputTMName" class="font-weight-bold">Responable technique<a style="color: red"> *</a></label>
-                <input type="email" class="form-control form form" id="inputTMName" name="inputTMName" aria-describedby="tmNameHelp" placeholder="Entrer une adresse de messagerie" required>
+                <input type="email" class="form-control form form" id="inputTMName" name="inputTMName" aria-describedby="tmNameHelp" placeholder="Entrer une adresse de messagerie" required onkeyup="searchFunction(1)">
+                <ul id="tmNameUl">
+                    <?php
+                        foreach($users as $user){
+                            echo '<li><a onclick="displayIntoInput(this.text, 1)">'. $user .'</a></li>';
+                        }
+                    ?>
+                </ul>
             </div>
         </div>
         <div class="d-inline-block w-100">
@@ -50,8 +57,15 @@ ob_start();
             <!--Name of the responsible administrator-->
             <div class="form-group w-50 float-right pl-4">
                 <label for="inputRAName" class="font-weight-bold">Responsable administratif<a style="color: red"> *</a></label>
-                <input type="email" class="form-control form form" id="inputRAName" name="inputRAName" aria-describedby="raNameHelp" placeholder="Entrer une adresse de messagerie" required>
+                <input type="email" class="form-control form form" id="inputRAName" name="inputRAName" aria-describedby="raNameHelp" placeholder="Entrer une adresse de messagerie" required onkeyup="searchFunction(2)">
                 <small id="raNameHelp" class="form-text text-muted">Direction, Doyen , Directeur d'institut ou Chef de service</small>
+                <ul id="raNameUl">
+                    <?php
+                    foreach($users as $user){
+                        echo '<li><a onclick="displayIntoInput(this.text, 2)">'. $user .'</a></li>';
+                    }
+                    ?>
+                </ul>
             </div>
         </div>
         <div class="d-inline-block w-100">

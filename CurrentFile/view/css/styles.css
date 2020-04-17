@@ -13,6 +13,15 @@
 .allVM th, .allVM td{
     width: auto;
 }
+
+.searchBoxUser{
+    position: absolute;
+    overflow-y: scroll;
+    -webkit-overflow-y: scroll;
+    border: 2px solid #ccc;
+    height: 200px;
+}
+
 /* ------------------------------------------- Responsive correction -------------------------------------------------*/
 @media screen and (min-width: 1050px) {
     .responsive-menu-min{
