@@ -19,6 +19,7 @@
     <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
     <script rel="javascript" src="../view/js/jquery.js"></script>
     <script rel="javascript" src="../view/js/script.js"></script>
+    <script rel="javascript" src="../view/js/searchBox.js.js"></script>
 </head>
 <body>
 <!-------------------------- Gabarit phone ------------------------------->
