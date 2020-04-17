@@ -83,7 +83,7 @@ function mailAdministrator($userMail, $requestName, $link){
     Nom de la demande : ". $requestName ."
     <br><br>
     Une demande a été mise par l'utilisateur utilisant l'adresse mail : ". $userMail .".<br>
-    Voici le lien pour accéder à la demande : ". $link .".
+    Voici le lien pour accéder à la demande : <a href='". $link ."'>ici</a>
     <br><br>
     Meilleures salutations
     <br>
@@ -124,7 +124,7 @@ function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
     Nom de la demande : ". $requestName ."
     <br><br>
     Votre commande a été validée. Vous pouvez donc vous rendre sous le lien ci-dessous pour obtenir toutes les informations nécessaires pour votre machine :<br>
-    ". $link ."  / Lien pas encore fonctionnel, mise en place sous-peu.
+    <a href='". $link ."'>ici</a>
     <br><br>
     Meilleures salutations.
     VmManager
