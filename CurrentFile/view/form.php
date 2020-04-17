@@ -38,7 +38,7 @@ ob_start();
             <!--Name of the technical manager-->
             <div class="form-group w-50 float-right pl-4">
                 <label for="inputTMName" class="font-weight-bold">Responable technique<a style="color: red"> *</a></label>
-                <input type="tmName" class="form-control form form" id="inputTMName" name="inputTMName" aria-describedby="tmNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" required>
+                <input type="email" class="form-control form form" id="inputTMName" name="inputTMName" aria-describedby="tmNameHelp" placeholder="Entrer une adresse de messagerie" required>
             </div>
         </div>
         <div class="d-inline-block w-100">
@@ -50,7 +50,7 @@ ob_start();
             <!--Name of the responsible administrator-->
             <div class="form-group w-50 float-right pl-4">
                 <label for="inputRAName" class="font-weight-bold">Responsable administratif<a style="color: red"> *</a></label>
-                <input type="raName" class="form-control form form" id="inputRAName" name="inputRAName" aria-describedby="raNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" required>
+                <input type="email" class="form-control form form" id="inputRAName" name="inputRAName" aria-describedby="raNameHelp" placeholder="Entrer une adresse de messagerie" required>
                 <small id="raNameHelp" class="form-text text-muted">Direction, Doyen , Directeur d'institut ou Chef de service</small>
             </div>
         </div>
@@ -78,7 +78,7 @@ ob_start();
                 <label for="osFormControlSelect" class="font-weight-bold">Système d'exploitation<a style="color: red"> *</a></label>
                 <div class="w-100 d-inline-block">
                     <div class="pr-2">
-                        <select class="form-control w-50 float-left" id="osTypeFormControlSelect" name="osTypeFormControlSelect" required>
+                        <select class="form-control w-50 float-left" id="osTypeFormControlSelect" name="osTypeFormControlSelect" value="hello" onchange="smartList(this.value)" required>
                             <?php
                             $windows = 0;
                             $linux = 0;
@@ -96,11 +96,16 @@ ob_start();
                         </select>
                     </div>
                     <div class="pl-2">
-                        <select class="form-control w-50 float-right" id="osFormNameControlSelect" name="osFormNameControlSelect" required>
+                        <select class="form-control w-50 float-right" required>
                             <?php
+
                             foreach ($osNames as $value) {
-                                if($value['osType'])
-                                echo "<option>".$value['osName']."</option>";
+                                if($value['osType']=="Linux / Ubuntu "){
+                                    echo "<option ".$value['osName']."</option>";
+                                }
+                                if($value['osType']=="Windows"){
+                                    echo "<option >".$value['osName']."</option>";
+                                }
                             }
                             ?>
                         </select>
