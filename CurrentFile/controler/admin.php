@@ -158,6 +158,7 @@ function displayDetailsVM($idVM)
     }
     else
     {
+        $_SESSION['idVM'] = $idVM;
         $_SESSION['actionUser'] = "detailsVM";
         $_GET['action'] = "signIn";
         require 'view/signIn.php';

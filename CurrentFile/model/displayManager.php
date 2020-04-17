@@ -5,7 +5,7 @@
  * Time: 11:30
  */
 
-require 'model/dbConnector.php';
+require_once 'model/dbConnector.php';
 
 /********************** Entity **************************/
 function displayBDD_Entity(){
