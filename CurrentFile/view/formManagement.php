@@ -10,6 +10,10 @@ ob_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.bundle.js"></script>
+    <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+    <script rel="javascript" src="../view/js/jquery.js"></script>
+    <script rel="javascript" src="../view/js/script.js"></script>
     <meta charset="UTF-8">
     <title>Gestion form - HEIG-VD</title>
 </head>
@@ -20,21 +24,32 @@ ob_start();
     </h3>
 
     <!--Department / Institution / Service-->
-    <form method="post" action="../index.php?action=editEntity">
-        <div class="form-group pb-5" name="formulaire" id="form_Entity">
-            <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service</label>
-            <select multiple class="form-control mb-3" id="value" name="value">
-                <?php
-                foreach ($entityNames as $value) {
-                    echo "<option>".$value['entityName']."</option>";
-                }
-                ?>
-            </select>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Entity
+    </button>
 
-            <input type="text" class="form-control float-left" style="width: 40%!important;" id="txt" name="txt" placeholder="Nom">
-            <button type="submit" class="btn btn-success float-left" style="width: 20%!important;" value="add" name="add" id="add">Ajouter</button>
-            <button type="submit" class="btn btn-danger float-left" style="width: 20%!important;" value="delete" name="delete" id="delete">Supprimer</button>
-            <button type="submit" class="btn btn-warning float-left" style="width: 20%!important;" value="modify" name="modify" id="modify">Modifier</button>
+    <form method="post" action="../index.php?action=editEntity">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="form-group pb-5" name="formulaire" id="form_Entity">
+                        <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service</label>
+                        <select multiple class="form-control mb-3" id="value" name="value">
+                            <?php
+                            foreach ($entityNames as $value) {
+                                echo "<option>".$value['entityName']."</option>";
+                            }
+                            ?>
+                        </select>
+
+                        <input type="text" class="form-control float-left" style="width: 40%!important;" id="txt" name="txt" placeholder="Nom">
+                        <button type="submit" class="btn btn-success float-left" style="width: 20%!important;" value="add" name="add" id="add">Ajouter</button>
+                        <button type="submit" class="btn btn-danger float-left" style="width: 20%!important;" value="delete" name="delete" id="delete">Supprimer</button>
+                        <button type="submit" class="btn btn-warning float-left" style="width: 20%!important;" value="modify" name="modify" id="modify">Modifier</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
     <!--OS-->
