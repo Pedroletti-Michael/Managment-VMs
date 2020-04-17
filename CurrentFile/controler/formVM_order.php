@@ -27,15 +27,6 @@ function displayForm()
 
 function formVM($formVMRequest)
 {
-    foreach ($formVMRequest as $field)
-    {
-        if(!isset($field) || $field == null || $field == " ")
-        {
-            displayForm();
-            break;
-        }
-    }
-
     if (strtotime($formVMRequest['inputComissioningDate']) > strtotime($formVMRequest['inputEndDate']))
     {
         displayForm();
