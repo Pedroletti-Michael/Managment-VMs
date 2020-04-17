@@ -39,6 +39,7 @@ ob_start();
             <table class="table table-striped allVM">
             <thead class="thead-dark sticky-top">
             <tr>
+                <th scope="col" style="width: 50px"></th>
                 <th scope="col">name</th>
                 <th scope="col">dateStart</th>
                 <th scope="col">dateEnd</th>
@@ -57,12 +58,16 @@ ob_start();
                 <th scope="col">os_id</th>
                 <th scope="col">snapshot_id</th>
                 <th scope="col">backup_id</th>
-                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
                 <?php foreach ($allVM as $value): ?>
                     <tr>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-warning"><img src="view/icons/open-iconic-master/svg/plus.svg"></button></a>
+                            </div>
+                        </td>
                         <td><?php echo $value['name']?></td>
                         <td style="min-width: 100px"><?php echo $value['dateStart']?></td>
                         <td style="min-width: 100px"><?php echo $value['dateEnd']?></td>
@@ -81,11 +86,6 @@ ob_start();
                         <td style="min-width: 100px"><?php echo $value['os_id']['1']." ".$value['os_id']['0']?></td>
                         <td style="min-width: 250px"><?php echo $value['snapshot_id']['1']." : ".$value['snapshot_id']['0']?></td>
                         <td style="min-width: 250px"><?php echo $value['backup_id']['1']." : ".$value['backup_id']['0']?></td>
-                        <td>
-                            <div class="btn-group" role="group">
-                                <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-warning">détails</button></a>
-                            </div>
-                        </td>
                     </tr>
                 <?php endforeach;?>
             </tbody>

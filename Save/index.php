@@ -2,8 +2,9 @@
 /**
 * Authors : Théo Cook and Thomas Huguet
 * CreationFile date : 17.03.2020
-* ModifFile date : 31.03.2020
+* Description : Serve to redirect the user depending of his actions
 **/
+
 session_start();
 
 // Require all controler files
@@ -13,20 +14,14 @@ foreach ($files as $file)
     require($file);
 }
 
-if(isset($_GET['action'])){
+// Redirect the user depending of his actions
+if(isset($_GET['action']))
+{
     $action = $_GET['action'];
-    switch ($action) {
+    switch ($action)
+    {
         case 'home':
             displayHome();
-            break;
-        case 'form':
-            displayForm();
-            break;
-        case 'formManagement':
-            displayFormManagement();
-            break;
-        case 'allVM':
-            displayAllVM();
             break;
         case 'signIn':
             displaySignIn();
@@ -37,8 +32,32 @@ if(isset($_GET['action'])){
         case 'RequestLogin':
             login($_POST);
             break;
+        case 'form':
+            displayForm();
+            break;
         case 'RequestVM':
             formVM($_POST);
+            break;
+        case 'formManagement':
+            displayFormManagement();
+            break;
+        case 'allVM':
+            displayAllVM($_POST);
+            break;
+        case 'confirmationVM':
+            displayConfirmationVM();
+            break;
+        case 'detailsVM':
+            displayDetailsVM($_GET['id']);
+            break;
+        case 'updateVM':
+            updateVM($_POST);
+            break;
+        case 'vmAccepted':
+            vmAccepted();
+            break;
+        case 'vmRefused':
+            vmRefused();
             break;
         case 'vm':
             displayVM();
@@ -76,6 +95,8 @@ if(isset($_GET['action'])){
         default:
             displayHome();
     }
-}else{
+}
+else
+{
     displayHome();
 }

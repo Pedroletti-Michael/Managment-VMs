@@ -7,12 +7,19 @@
     user-select: none;
 }
 
+.display-phone{
+    display: none!important;
+}
+.allVM th, .allVM td{
+    width: auto;
+}
+/* ------------------------------------------- Responsive correction -------------------------------------------------*/
 @media screen and (min-width: 1050px) {
     .responsive-menu-min{
         visibility: hidden;
     }
     .padding-left{
-        padding-left: 215px;
+        padding-left: 200px;
     }
     .logo-responsive{
         max-width: 200px;
@@ -48,8 +55,9 @@
     }
 }
 
-.animate{-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;transition:all .3s ease-in-out}
+/* ------------------------------------------- sidebar (responsive menu) -------------------------------------------------*/
 
+.animate{-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;transition:all .3s ease-in-out}
 /* The side navigation menu */
 .sidenav {
     margin-top: 48px;
@@ -60,9 +68,113 @@
     top: 0; /* Stay at the top */
     left: 0;
     overflow-x: hidden; /* Disable horizontal scroll */
+    opacity: 0.95; /* Background are translucent */
 }
-@media (min-width: 1050px) {
+@media screen and (min-width: 1050px) {
     .sidenav{
         visibility: hidden;
+    }
+}
+
+/* ------------------------------------------- Responsive for phone -------------------------------------------------*/
+@media handheld,(max-device-width: 1000px){
+    .display-laptop{
+        display: none!important;
+    }
+    .display-phone{
+        display: inline-block!important;
+    }
+    .logo-responsive{
+        max-width: 100px;
+        min-width: 100px;
+    }
+    .signIn-responsive{
+        max-width: 80px;
+        min-width: 80px;
+    }
+    .search-responsive{
+        width: calc(100% - 100px - 80px)!important;
+    }
+    .navbar-toggler-icon{
+        width: 50px!important;
+        heigt: 50px!important;
+    }
+
+    .responsive-phone{
+        width: 100%!important;
+        padding: 25% 5px 0px;
+    }
+
+    .responsive-phone-bg{
+        background-color: #272727;
+    }
+
+
+    /* The side navigation menu */
+    .sidenav {
+        height: 100%; /* 100% Full-height */
+        width: 0; /* 0 width - change this with JavaScript */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Stay on top */
+        top: 0; /* Stay at the top */
+        left: 0;
+        background-color: #111; /* Black*/
+        overflow-x: hidden; /* Disable horizontal scroll */
+        overflow-y: initial;
+        transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+        padding-top: 20px;
+    }
+
+    /* The navigation menu links */
+    .sidenav a {
+        padding: 5px 5px 5px 32px;
+        text-decoration: none;
+        font-size: 20px;
+        color: lightgray;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidenav .title{
+        font-size: 25px;
+        color: #6c757d ;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        pointer-events: none;
+    }
+
+    .sidenav .last{
+        margin-bottom: 20px;
+    }
+
+    /* When you mouse over the navigation links, change their color */
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+    /* Position and style the close button (top right corner) */
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+    #main {
+        transition: margin-left .5s;
+    }
+
+    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+    @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+    }
+}
+@media handheld and (min-device-width: 600px){
+    .responsive-phone{
+        width: 100%;
+        padding: 0% 15% 0px;
     }
 }

@@ -2,25 +2,36 @@
 /**
  * Author : Thomas Huguet
  * CreationFile date : 17.03.2020
- * ModifFile date : 26.03.2020
  * Description : Contains all functions related to the formVM_order
  **/
 
 function displayForm()
 {
-    require_once 'model/displayManager.php';
-    $entityNames = displayBDD_Entity();
-    $osNames = displayBDD_OS();
-    $snapshotPolicy = displayBSS_Snapshots();
-    $backupPolicy = displayBSS_Backup();
+    if(isset($_SESSION['userType'])&& $_SESSION['userType'] != null)
+    {
+        require_once 'model/displayManager.php';
+        $entityNames = displayBDD_Entity();
+        $osNames = displayBDD_OS();
+        $snapshotPolicy = displayBSS_Snapshots();
+        $backupPolicy = displayBSS_Backup();
 
-    $_GET['action'] = "form";
-    require 'view/form.php';
+        $_GET['action'] = "form";
+        require 'view/form.php';
+    }
+    else
+    {
+        $_GET['action'] = "signIn";
+        require "view/signIn.php";
+    }
 }
-
 
 function formVM($formVMRequest)
 {
+    if (strtotime($formVMRequest['inputComissioningDate']) > strtotime($formVMRequest['inputEndDate']))
+    {
+        displayForm();
+    }
+
     if(isset($formVMRequest['Academique']))
     {
         $formVMRequest['usingVM'] = "Academique";
@@ -48,33 +59,25 @@ function formVM($formVMRequest)
 
     if(isset($formVMRequest['domainEINET']))
     {
-        $formVMRequest['domainEINET'] = "true";
+        $formVMRequest['domainEINET'] = 1;
     }
     else
     {
-        $formVMRequest['domainEINET'] = "false";
-    }
-
-    foreach ($formVMRequest as $field)
-    {
-        if(!isset($field))
-        {
-            $_GET['action'] = "form";
-            require "view/form.php";
-            break;
-        }
+        $formVMRequest['domainEINET'] = 0;
     }
 
     require_once 'model/vmManager.php';
 
     if(addVMToDB($formVMRequest))
     {
-        $_GET['action'] = "home";
-        require "view/home.php";
+        require_once 'model/mailSender.php';
+
+        requestMail($formVMRequest['inputResquesterName'], $formVMRequest['inputVMName'], $formVMRequest['inputTMName'], $formVMRequest['inputRAName']);
+
+        displayHome();
     }
     else
     {
-        $_GET['action'] = "form";
-        require "view/form.php";
+        displayForm();
     }
 }
