@@ -2,14 +2,27 @@
 /**
 * Author : Thomas Huguet
 * CreationFile date : 17.03.2020
-* ModifFile date : 26.03.2020
 * Description : Contains all functions related to the user
 **/
 
 function displayHome()
 {
-    $_GET['action'] = "home";
-    require "view/home.php";
+    if(isset($_SESSION['userType'])&& $_SESSION['userType'] != null)
+    {
+        require_once 'model/userManager.php';
+        $userId = getUserId($_SESSION['userEmail']);
+
+        require_once "model/vmManager.php";
+        $userVM = getUserVM($userId);
+
+        $_GET['action'] = "home";
+        require_once "view/home.php";
+    }
+    else
+    {
+        $_GET['action'] = "signIn";
+        require "view/signIn.php";
+    }
 }
 
 function displaySignIn()
@@ -32,8 +45,15 @@ function login($loginRequest)
          if ($userEmail!=null || $userEmail!=false)
          {
              createSession($userEmail);
-             $_GET['action'] = "home";
-             require "view/home.php";
+
+             if(isset($_SESSION['actionUser']) && $_SESSION['actionUser'] == "detailsVM")
+             {
+                 displayDetailsVM($_SESSION['idVM']);
+             }
+             else
+             {
+                 displayHome();
+             }
          }
          else
          {

@@ -1,23 +1,20 @@
 <?php
-
 /**
  * Authors : Théo Cook
  * CreationFile date : 17.03.2020
  * ModifFile date : 31.03.2020
  **/
-
 ob_start();
-
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Mes VM's - HEIG-VD</title>
-</head>
-<body>
-<div class="table-responsive-xl">
-    <table class="table table-striped allVM">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Gestion VM - HEIG-VD</title>
+    </head>
+    <body>
+    <div class="table-responsive-xl">
+        <table class="table table-striped allVM">
         <thead class="thead-dark sticky-top">
         <tr>
             <th scope="col">name</th>
@@ -42,9 +39,9 @@ ob_start();
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($userVM as $value): ?>
-            <tr>
-                <td><?php echo $value['name']?></td>
+            <?php foreach ($confirmationVM as $value): ?>
+           <tr>
+                <td><?php echo $value['name']?></a></td>
                 <td style="min-width: 100px"><?php echo $value['dateStart']?></td>
                 <td style="min-width: 100px"><?php echo $value['dateEnd']?></td>
                 <td><?php echo $value['description']?></td>
@@ -60,21 +57,20 @@ ob_start();
                 <td><?php echo $value['userRt']?></td>
                 <td><?php echo $value['entity_id']?></td>
                 <td style="min-width: 100px"><?php echo $value['os_id']['1']." ".$value['os_id']['0']?></td>
-                <td style="min-width: 250px"><?php echo $value['snapshot_id']['1']." : ".$value['snapshot_id']['0']?></td>
-                <td style="min-width: 250px"><?php echo $value['backup_id']['1']." : ".$value['backup_id']['0']?></td>
+                <td style="min-width: 250px"><?php echo $value['snapshot_id']?></td>
+                <td style="min-width: 250px"><?php echo $value['backup_id']?></td>
                 <td>
                     <div class="btn-group" role="group">
-                        <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-warning">détails</button></a>
+                        <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="submit" class="btn btn-warning">détails</button></a>
+                        <button type="submit" class="btn btn-success">confirmer</button>
                     </div>
                 </td>
             </tr>
-        <?php endforeach;?>
+            <?php endforeach;?>
         </tbody>
     </table>
-</div>
+    </div>
 <?php
-
 $contenu = ob_get_clean();
 require "gabarit.php";
-
 ?>

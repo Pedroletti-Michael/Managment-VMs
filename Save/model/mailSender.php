@@ -24,37 +24,142 @@ function sendMail($to, $subject, $message, $headers){
 }
 
 /**
- * Function used to send a request to the administrator of the SI.
  * This mail contains a direct link to the request of the user and some basic information about the request.
+ * This mail is going to be send to the request user and in copy to the administrator.
  */
-function requestMail($userMail){
-    // Mise en page du mail
+function requestMail($userMail, $requestName, $rtMail, $raMail){
+    // multiple recipients
+    $administratorMail = 'michael.pedroletti@heig-vd.ch';
+
+    $to  = $userMail . ', ' . $rtMail . ', ' . $raMail . ', ' . $administratorMail;
+
+    // subject
+    $subject = 'Résumé de votre demande pour une VM';
+
+    // message
+    $message = "
+    Bonjour,
+    <br><br>
+    Nom de la demande : ". $requestName ."
+    <br><br>
+    Votre demande est en cours de validation, vous recevrez bientôt un mail de confirmation avec toutes les informations nécessaires.
+    <br><br>
+    Meilleures salutations.
+    VmManager
+    ";
+
+    // To send HTML mail, the Content-type header must be set
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+
+    // Additional headers
+    $headers .= 'To: '. $userMail ."\r\n";
+    $headers .= 'From: VMManager <vmManager@heig-vd.ch>' . "\r\n";
+
+    if(sendMail($to, $subject, $message, $headers)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+/**
+ * Function used to send a request with a direct link into the request to the administrator of the SI.
+ */
+function mailAdministrator($userMail, $requestName, $link){
+    // multiple recipients
+    $administratorMail = 'michael.pedroletti@heig-vd.ch';
+
+    $to  = $administratorMail;
+
+    // subject
+    $subject = 'Résumé de la demande pour une VM : '. $requestName;
+
+    // message
+    $message = "
+    Bonjour,
+    <br><br>
+    Nom de la demande : ". $requestName ."
+    <br><br>
+    Une demande a été mise par l'utilisateur utilisant l'adresse mail : ". $userMail .".<br>
+    Voici le lien pour accéder à la demande : ". $link .".
+    <br><br>
+    Meilleures salutations
+    <br>
+    VmManager
+    ";
+
+    // To send HTML mail, the Content-type header must be set
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+
+    // Additional headers
+    $headers .= 'To: '. $administratorMail ."\r\n";
+    $headers .= 'From: VMManager <vmManager@heig-vd.ch>' . "\r\n";
+
+    if(sendMail($to, $subject, $message, $headers)){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 /**
  * This function used to send the validation for a request of vm to an user.
  */
-function validateRequestMail($userMail){
-    // Mise en page du mail
+function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
+    // multiple recipients
+    $administratorMail = 'michael.pedroletti@heig-vd.ch';
+
+    $to  = $userMail . ', ' . $rtMail . ', ' . $raMail . ', ' . $administratorMail;
+
+    // subject
+    $subject = 'Résumé de votre demande pour une VM';
+
+    // message
+    $message = "
+    Bonjour,<br><br>
+    Nom de la demande : ". $requestName ."
+    <br><br>
+    Votre commande a été validée. Vous pouvez donc vous rendre sous le lien ci-dessous pour obtenir toutes les informations nécessaires pour votre machine :<br>
+    ". $link ."  / Lien pas encore fonctionnel, mise en place sous-peu.
+    <br><br>
+    Meilleures salutations.
+    VmManager
+    ";
+
+    // To send HTML mail, the Content-type header must be set
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+
+    // Additional headers
+    $headers .= 'To: '. $userMail ."\r\n";
+    $headers .= 'From: VMManager <vmManager@heig-vd.ch>' . "\r\n";
+
+    if(sendMail($to, $subject, $message, $headers)){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 /**
- * This function used to send the declined validation for a request of vm to an user
+ * This function used to send the denied validation for a request of vm to an user
  */
 function deniedRequestMail($userMail, $requestName){
     // multiple recipients
-    $to  = $userMail . ', ' . 'michael.pedroletti@heig-vd.ch';
+    $administratorMail = 'michael.pedroletti@heig-vd.ch';
+
+    $to  = $userMail . ', ' . $administratorMail;
 
     // subject
     $subject = 'Demande pour votre VM refusée';
 
     // message
         $message = '
-    <html>
-    <head>
-        <title>Demande pour votre VM <bold>refusée</bold></title>
-    </head>
-    <body>
         <p>Nom de la demande : '. $requestName .' </p>
         <br>
         <p>Votre demande pour une VM a été refusée.</p>
@@ -67,13 +172,11 @@ function deniedRequestMail($userMail, $requestName){
             Meilleures salutations.
             VmManager
         </p>
-    </body>
-    </html>
     ';
 
     // To send HTML mail, the Content-type header must be set
     $headers  = 'MIME-Version: 1.0' . "\r\n";
-    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 
     // Additional headers
     $headers .= 'To: '. $userMail ."\r\n";
@@ -86,4 +189,97 @@ function deniedRequestMail($userMail, $requestName){
         return false;
     }
 
+}
+
+/**
+ * This function used to send an advert mail to the technical manager, administrator manager and the admin of the VMManager
+ * When the vm need to be renew.
+ */
+function advertMail($userMail, $requestName, $link, $rtMail, $raMail){
+    // multiple recipients
+    $administratorMail = 'michael.pedroletti@heig-vd.ch';
+
+    $to  = $userMail . ', ' . $rtMail . ', ' . $raMail . ', ' . $administratorMail;
+
+    // subject
+    $subject = 'Résumé de votre demande pour une VM';
+
+    // message
+    $message = "
+    Bonjour,<br><br>
+    
+    Nous vous envoyons ce mail pour vous informer que votre demande pour une VM arrive bientôt à échéance.<br>
+     
+    Nom de la demande : ". $requestName ."<br>
+    
+    Nous nous permettons ainsi de vous envoyez ce mail afin que vous puissiez si vous le souhaitez renouveller votre demande, en suivant le lien ci-dessous :<br><br>
+    
+    ". $link ."<br><br>
+    
+    Toutes les informations nécessaires au renouvellement se trouve sur le lien, toutefois si vous avez une question vous pouvez nous contacter à cette adresse : vmmanger@heig-vd.ch<br><br>
+
+    Meilleures salutations.
+    VmManager
+    ";
+
+    // To send HTML mail, the Content-type header must be set
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+
+    // Additional headers
+    $headers .= 'To: '. $userMail ."\r\n";
+    $headers .= 'From: VMManager <vmManager@heig-vd.ch>' . "\r\n";
+
+    if(sendMail($to, $subject, $message, $headers)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+/**
+ * This function used to send an advert mail to the technical manager, administrator manager and the admin of the VMManager
+ * When the vm need to be renew.
+ */
+function nonrenewalMailAdvert($userMail, $requestName, $link, $rtMail, $raMail){
+    // multiple recipients
+    $administratorMail = 'michael.pedroletti@heig-vd.ch';
+
+    $to  = $userMail . ', ' . $rtMail . ', ' . $raMail . ', ' . $administratorMail;
+
+    // subject
+    $subject = 'Non-renouvellement de votre VM : '. $requestName;
+
+    // message
+    $message = "
+    Bonjour,<br><br>
+    
+    Nous vous envoyons ce mail pour vous informer que la date limite de votre VM est échue.<br>
+     
+    Nom de la demande : ". $requestName ."<br>
+    
+    Étant donné que vous n'avez pas voulu la renouvelée via le lien précédent nous allons donc supprimer votre VM.<br>
+    Votre VM ne sera donc dès à présent plus disponible.
+    
+    Toutefois si vous avez une question vous pouvez nous contacter à cette adresse : vmmanger@heig-vd.ch<br><br>
+
+    Meilleures salutations.
+    VmManager
+    ";
+
+    // To send HTML mail, the Content-type header must be set
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+
+    // Additional headers
+    $headers .= 'To: '. $userMail ."\r\n";
+    $headers .= 'From: VMManager <vmManager@heig-vd.ch>' . "\r\n";
+
+    if(sendMail($to, $subject, $message, $headers)){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
