@@ -166,29 +166,7 @@ function displayDetailsVM($idVM)
 
 function updateVM($vmInformation)
 {
-    foreach($vmInformation as $field)
-    {
-        if(!isset($field) || $field == null || $field == " ")
-        {
-            if($_SESSION['userType'] == 0)
-            {
-                displayHome();
-            }
-            elseif($_SESSION['userType'] == 1)
-            {
-                $allVM = getAllVM();
-                $_GET['action'] = "allVM";
-                require 'view/allVM.php';
-            }
-            else
-            {
-                $_GET['action'] = "signIn";
-                require 'view/signIn.php';
-            }
-            break;
-        }
-
-    }
+    require_once "model/vmManager.php";
 
     if (strtotime($vmInformation['inputComissioningDate']) > strtotime($vmInformation['inputEndDate']))
     {
@@ -251,8 +229,15 @@ function updateVM($vmInformation)
     {
         $vmInformation['securityFormControlSelect'] = 0;
     }
-    
-    require_once 'model/vmManager.php';
+
+    if($vmInformation['editDateAnniversary'] == "" || $vmInformation['editDateAnniversary'] == " ")
+    {
+        $vmInformation['editDateAnniversary'] = 0000-00-00;
+    }
+    elseif($vmInformation['editCriticity'] == "" || $vmInformation['editCriticity'] == " ")
+    {
+        $vmInformation['editCriticity'] = 0;
+    }
 
     if(updateVMInformation($vmInformation, $_SESSION['idVM']))
     {
