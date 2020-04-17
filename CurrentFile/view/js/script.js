@@ -23,13 +23,13 @@ function openNav() {
 }
 function smartList(val){
     if(val=="Windows"){
-        document.getSelection("Linux").style.display="none";
-        document.getElementsByName("Windows").style.display="contents";
+        document.get
+        document.getElementById("Linux").style.visibility="hidden";
+        document.getElementById("Windows").style.visibility="visible";
         alert("The input value has changed. The new value is: " + val );
     }else if(val=="Linux / Ubuntu"){
-        document.getElementsByName("Windows").style.display="none";
-        document.getElementsByName("Linux").style.display="contents";
+        document.get("Windows").style.visibility="hidden";
+        document.getElementById("Linux").style.visibility="visible";
         alert("Pute pute pute tpeutpuet ueputpuet: " + val );
     }
-
 }

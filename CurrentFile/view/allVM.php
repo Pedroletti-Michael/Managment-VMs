@@ -65,7 +65,7 @@ ob_start();
                     <tr>
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-warning"><img src="view/icons/open-iconic-master/svg/plus.svg"></button></a>
+                                <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-warning"><strong>+</strong></button></a>
                             </div>
                         </td>
                         <td><?php echo $value['name']?></td>
