@@ -60,7 +60,7 @@
             <a class="last" href="index.php?action=form">Formulaire</a>
         <?php endif; ?>
 
-        <?php if($_SESSION['userType']==1 || !isset($_SESSION['userType'])):?>
+        <?php if(!isset($_SESSION['userType']) && $_SESSION['userType']==1):?>
             <a class="title">Admin</a>
             <!----------------- allVM ---------------->
             <?php if ($_GET['action'] == "allVM"): ?>
@@ -179,7 +179,7 @@
                         </a>
                 </li>
             </ul>
-            <?php if($_SESSION['userType']==1 || !isset($_SESSION['userType'])):?>
+            <?php if(isset($_SESSION['userType']) && $_SESSION['userType']==1):?>
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                 <span>Admin</span>
             </h6>
@@ -347,7 +347,7 @@
                             </a>
                     </li>
                 </ul>
-                <?php if(($_SESSION['userType']==1 )&& (isset($_SESSION['userType']))):?>
+                <?php if(isset($_SESSION['userType']) && $_SESSION['userType']==1):?>
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                     <span>Admin</span>
                 </h6>
