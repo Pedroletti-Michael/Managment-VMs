@@ -15,6 +15,9 @@ function displayForm()
         $snapshotPolicy = displayBSS_Snapshots();
         $backupPolicy = displayBSS_Backup();
 
+        require_once 'model/userManager.php';
+        $users = getAllUsers();
+
         $_GET['action'] = "form";
         require 'view/form.php';
     }

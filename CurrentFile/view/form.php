@@ -42,7 +42,7 @@ ob_start();
                 <ul id="tmNameUl">
                     <?php
                         foreach($users as $user){
-                            echo '<li><a onclick="displayIntoInput(this.text, 1)">'. $user .'</a></li>';
+                            echo '<li><a onclick="displayIntoInput(this.text, 1)">'. $user[0] .'</a></li>';
                         }
                     ?>
                 </ul>
@@ -62,7 +62,7 @@ ob_start();
                 <ul id="raNameUl">
                     <?php
                     foreach($users as $user){
-                        echo '<li><a onclick="displayIntoInput(this.text, 2)">'. $user .'</a></li>';
+                        echo '<li><a onclick="displayIntoInput(this.text, 2)">'. $user[0] .'</a></li>';
                     }
                     ?>
                 </ul>
