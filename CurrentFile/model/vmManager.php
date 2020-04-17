@@ -382,7 +382,7 @@ function updateStatusVM($id, $vmStatus){
 
     executeQuery($query);
 
-    $link = 'http://vmman.heig-vd.ch/action=detailedVM&ID='.$id;
+    $link = 'http://vmman.heig-vd.ch/index.php?action=detailsVM&id='.$id;
     $info = getInformationForMailAboutVM($id);
     if($status == 1){
         deniedRequestMail($info[1], $info[0]);
@@ -410,4 +410,13 @@ function getInformationForMailAboutVM($id){
         $i++;
     }
     return $arrayResult;
+}
+
+/**===GET ID BY NAME OF A VM===**/
+function getIdOfVmByName($vmName){
+    $querySelect = "SELECT `id` FROM `vm` WHERE name = ". $vmName;
+
+    $resultSelect = executeQuerySelect($querySelect);
+
+    return $resultSelect[0][0];
 }
