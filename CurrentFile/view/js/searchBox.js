@@ -6,6 +6,10 @@ function displayIntoInputTm(value) {
     document.getElementById("inputTMName").value = value;
 }
 
+function displayIntoInputRedundance(value) {
+    document.getElementById("editRedundance").value = value;
+}
+
 function searchFunctionRa() {
     var input, filter, ul, li, a, i, txtValue;
     input = document.getElementById("inputRAName");
@@ -28,6 +32,23 @@ function searchFunctionTm() {
     input = document.getElementById("inputTMName");
     filter = input.value.toUpperCase();
     ul = document.getElementById("tmNameUl");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
+function searchFunctionRedundance() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("editRedundance");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("redundanceUl");
     li = ul.getElementsByTagName("li");
     for (i = 0; i < li.length; i++) {
         a = li[i].getElementsByTagName("a")[0];

@@ -125,6 +125,9 @@ function displayDetailsVM($idVM)
                     $snapshotPolicy = displayBSS_Snapshots();
                     $backupPolicy = displayBSS_Backup();
 
+                    require_once 'model/userManager.php';
+                    $users = getAllUsers();
+
                     $_SESSION['idVM'] = $idVM;
 
                     $_GET['action'] = "detailsVM";
@@ -142,8 +145,12 @@ function displayDetailsVM($idVM)
                 $snapshotPolicy = displayBSS_Snapshots();
                 $backupPolicy = displayBSS_Backup();
 
+                require_once 'model/userManager.php';
+                $users = getAllUsers();
+
                 require_once 'model/vmManager.php';
                 $dataVM = getDataVM($idVM);
+                $vms = getAllVmName();
 
                 $_SESSION['idVM'] = $idVM;
 

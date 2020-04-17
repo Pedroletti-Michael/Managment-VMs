@@ -38,7 +38,14 @@ ob_start();
             <!--Name of the technical manager-->
             <div class="form-group w-50 float-right pl-4">
                 <label for="inputTMName" class="font-weight-bold">Responable technique<a style="color: red"> *</a></label>
-                <input type="tmName" class="form-control form form"  value="<?php echo $dataVM[0]['userRt'] ?>" id="inputTMName" name="inputTMName" aria-describedby="tmNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" required>
+                <input type="email" class="form-control form form" value="<?php echo $dataVM[0]['userRt'] ?>" id="inputTMName" name="inputTMName" aria-describedby="tmNameHelp" placeholder="Entrer une adresse de messagerie" required onkeyup="searchFunctionTm()">
+                <ul id="tmNameUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
+                    <?php
+                    foreach($users as $user){
+                        echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a href="#" onclick="displayIntoInputTm(this.text)">'. $user[0] .'</a></li>';
+                    }
+                    ?>
+                </ul>
             </div>
         </div>
         <div class="d-inline-block w-100">
@@ -50,8 +57,15 @@ ob_start();
             <!--Name of the responsible administrator-->
             <div class="form-group w-50 float-right pl-4">
                 <label for="inputRAName" class="font-weight-bold">Responsable administratif<a style="color: red"> *</a></label>
-                <input type="raName" class="form-control form form" value="<?php echo $dataVM[0]['userRa'] ?>" id="inputRAName" name="inputRAName" aria-describedby="raNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" required>
+                <input type="email" class="form-control form form" id="inputRAName" name="inputRAName" aria-describedby="raNameHelp" placeholder="Entrer une adresse de messagerie" required onkeyup="searchFunctionRa()">
                 <small id="raNameHelp" class="form-text text-muted">Direction, Doyen , Directeur d'institut ou Chef de service</small>
+                <ul id="raNameUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
+                    <?php
+                    foreach($users as $user){
+                        echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a href="#" onclick="displayIntoInputRa(this.text)">'. $user[0] .'</a></li>';
+                    }
+                    ?>
+                </ul>
             </div>
         </div>
         <div class="d-inline-block w-100">
@@ -268,7 +282,14 @@ ob_start();
             <!--Redundance-->
             <div class="form-group w-50 float-left pr-4">
                 <label for="editRedundance" class="font-weight-bold">Redondance</label>
-                <input class="form-control form form" value="<?php echo $dataVM[0]['redundance'] ?>" id="editRedundance" name="editRedundance" aria-describedby="redundanceHelp">
+                <input class="form-control form form" value="<?php echo $dataVM[0]['redundance'] ?>" id="editRedundance" name="editRedundance" aria-describedby="redundanceHelp" onkeyup="searchFunctionRedundance()">
+                <ul id="redundanceUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
+                    <?php
+                    foreach($vms as $vm){
+                        echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a onclick="displayIntoInputRedundance(this.text)">'. $vm[0] .'</a></li>';
+                    }
+                    ?>
+                </ul>
             </div>
             <!--Criticity-->
             <div class="form-group w-50 float-right pl-4">

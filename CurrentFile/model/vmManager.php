@@ -420,3 +420,9 @@ function getIdOfVmByName($vmName){
 
     return $resultSelect[0][0];
 }
+
+function getAllVmName(){
+    $querySelect = "SELECT `name` FROM `vm` ";
+
+    return executeQuerySelect($querySelect);
+}
