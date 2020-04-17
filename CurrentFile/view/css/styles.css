@@ -15,11 +15,9 @@
 }
 
 .searchBoxUser{
-    position: absolute;
     overflow-y: scroll;
     -webkit-overflow-y: scroll;
-    border: 2px solid #ccc;
-    height: 200px;
+    height: 100px;
 }
 
 /* ------------------------------------------- Responsive correction -------------------------------------------------*/
