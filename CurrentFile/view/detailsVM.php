@@ -42,7 +42,7 @@ ob_start();
                 <ul id="tmNameUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
                     <?php
                     foreach($users as $user){
-                        echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a href="#" onclick="displayIntoInputTm(this.text)">'. $user[0] .'</a></li>';
+                        echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputTm(this.text)">'. $user[0] .'</a></li>';
                     }
                     ?>
                 </ul>
@@ -62,7 +62,7 @@ ob_start();
                 <ul id="raNameUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
                     <?php
                     foreach($users as $user){
-                        echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a href="#" onclick="displayIntoInputRa(this.text)">'. $user[0] .'</a></li>';
+                        echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputRa(this.text)">'. $user[0] .'</a></li>';
                     }
                     ?>
                 </ul>
@@ -286,7 +286,7 @@ ob_start();
                 <ul id="redundanceUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
                     <?php
                     foreach($vms as $vm){
-                        echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a onclick="displayIntoInputRedundance(this.text)">'. $vm[0] .'</a></li>';
+                        echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputRedundance(this.text)">'. $vm[0] .'</a></li>';
                     }
                     ?>
                 </ul>

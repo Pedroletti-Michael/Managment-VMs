@@ -20,6 +20,16 @@
     height: 100px;
 }
 
+.unlink{
+    text-decoration: none;
+    color: black;
+}
+
+.unlink:hover{
+    color: black;
+    text-decoration: none;
+}
+
 /* ------------------------------------------- Responsive correction -------------------------------------------------*/
 @media screen and (min-width: 1050px) {
     .responsive-menu-min{
