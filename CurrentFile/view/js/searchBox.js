@@ -1,9 +1,13 @@
-function displayIntoInputRa(value) {
-    document.getElementById("inputRAName").value = value;
+function displayIntoInputRa(idNb, value) {
+    var id = "liRa" + idNb;
+    document.getElementById("inputRANam").value = value;
+    document.getElementById("inputRAName").value = document.getElementById(id).value;
 }
 
-function displayIntoInputTm(value) {
-    document.getElementById("inputTMName").value = value;
+function displayIntoInputTm(idNb, value) {
+    var id = "liTm" + idNb;
+    document.getElementById("inputTMNam").value = value;
+    document.getElementById("inputTMName").value = document.getElementById(id).value;
 }
 
 function displayIntoInputRedundance(value) {
@@ -12,7 +16,7 @@ function displayIntoInputRedundance(value) {
 
 function searchFunctionRa() {
     var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("inputRAName");
+    input = document.getElementById("inputRANam");
     filter = input.value.toUpperCase();
     ul = document.getElementById("raNameUl");
     li = ul.getElementsByTagName("li");
@@ -29,7 +33,7 @@ function searchFunctionRa() {
 
 function searchFunctionTm() {
     var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("inputTMName");
+    input = document.getElementById("inputTMNam");
     filter = input.value.toUpperCase();
     ul = document.getElementById("tmNameUl");
     li = ul.getElementsByTagName("li");

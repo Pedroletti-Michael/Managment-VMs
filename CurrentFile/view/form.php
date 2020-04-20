@@ -37,15 +37,23 @@ ob_start();
             </div>
             <!--Name of the technical manager-->
             <div class="form-group w-50 float-right pl-4">
-                <label for="inputTMName" class="font-weight-bold">Responable technique<a style="color: red"> *</a></label>
-                <input type="email" class="form-control form form" id="inputTMName" name="inputTMName" aria-describedby="tmNameHelp" placeholder="Entrer une adresse de messagerie" required onkeyup="searchFunctionTm()">
+                <label for="inputTMNam" class="font-weight-bold">Responsable technique<a style="color: red"> *</a></label>
+                <input type="text" class="form-control form form" id="inputTMNam" name="inputTMNam" aria-describedby="tmNameHelp" placeholder="Entrer une adresse de messagerie" required onkeyup="searchFunctionTm()">
                 <ul id="tmNameUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
                     <?php
+                    $id = 'liTm';
+                    $i = 0;
+                    $endSeparator = '';
+
                     foreach($users as $user){
-                        echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputTm(this.text)">'. $user[0] .'</a></li>';
+
+                        echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputTm('.$i.', this.text)">'. $user[1]. ' ' .$user[2] .'</a></li>';
+                        echo '<input type="hidden" value="'.$user[0].'" id="'.$id.$i.$endSeparator.'" required>';
+                        $i++;
                     }
                     ?>
                 </ul>
+                <input type="hidden" name="inputTMName" id="inputTMName" readonly>
             </div>
         </div>
         <div class="d-inline-block w-100">
@@ -56,16 +64,23 @@ ob_start();
             </div>
             <!--Name of the responsible administrator-->
             <div class="form-group w-50 float-right pl-4">
-                <label for="inputRAName" class="font-weight-bold">Responsable administratif<a style="color: red"> *</a></label>
-                <input type="email" class="form-control form form" id="inputRAName" name="inputRAName" aria-describedby="raNameHelp" placeholder="Entrer une adresse de messagerie" required onkeyup="searchFunctionRa()">
+                <label for="inputRANam" class="font-weight-bold">Responsable administratif<a style="color: red"> *</a></label>
+                <input type="email" class="form-control form form" id="inputRANam" name="inputRANam" aria-describedby="raNameHelp" placeholder="Entrer une adresse de messagerie" required onkeyup="searchFunctionRa()">
                 <small id="raNameHelp" class="form-text text-muted">Direction, Doyen , Directeur d'institut ou Chef de service</small>
                 <ul id="raNameUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
                     <?php
+                    $id = 'liRa';
+                    $i = 0;
+                    $endSeparator = '';
+
                     foreach($users as $user){
-                        echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputRa(this.text)">'. $user[0] .'</a></li>';
+                        echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputRa('.$i.', this.text)">'. $user[1]. ' ' .$user[2] .'</a></li>';
+                        echo '<input type="hidden" value="'.$user[0].'" id="'.$id.$i.$endSeparator.'" required>';
+                        $i++;
                     }
                     ?>
                 </ul>
+                <input type="hidden" name="inputRAName" id="inputRAName" readonly>
             </div>
         </div>
         <div class="d-inline-block w-100">
