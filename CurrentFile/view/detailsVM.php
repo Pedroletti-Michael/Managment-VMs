@@ -47,12 +47,12 @@ ob_start();
 
                     foreach($users as $user){
                         echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputTm('.$i.', this.text)">'. $user[1]. ' ' .$user[2] .'</a></li>';
-                        echo '<input type="hidden" value="'.$user[0].'" id="'.$id.$i.$endSeparator.'" required>';
+                        echo '<input type="hidden" value="'.$user[0].'" id="'.$id.$i.$endSeparator.'">';
                         $i++;
                     }
                     ?>
                 </ul>
-                <input type="hidden" name="inputTMName" id="inputTMName" readonly>
+                <input type="hidden" name="inputTMName" id="inputTMName" value="<?php echo $dataVM[0]['userRt'] ?>" readonly required>
             </div>
         </div>
         <div class="d-inline-block w-100">
@@ -64,7 +64,7 @@ ob_start();
             <!--Name of the responsible administrator-->
             <div class="form-group w-50 float-right pl-4">
                 <label for="inputRANam" class="font-weight-bold">Responsable administratif<a style="color: red"> *</a></label>
-                <input type="email" class="form-control form form" id="inputRANam" name="inputRANam" aria-describedby="raNameHelp" placeholder="Entrer une adresse de messagerie" required onkeyup="searchFunctionRa()">
+                <input type="email" class="form-control form form" value="<?php echo $dataVM[0]['userRa'] ?>" id="inputRANam" name="inputRANam" aria-describedby="raNameHelp" placeholder="Entrer une adresse de messagerie" required onkeyup="searchFunctionRa()">
                 <small id="raNameHelp" class="form-text text-muted">Direction, Doyen , Directeur d'institut ou Chef de service</small>
                 <ul id="raNameUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
                     <?php
@@ -74,12 +74,12 @@ ob_start();
 
                     foreach($users as $user){
                         echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputRa('.$i.', this.text)">'. $user[1]. ' ' .$user[2] .'</a></li>';
-                        echo '<input type="hidden" value="'.$user[0].'" id="'.$id.$i.$endSeparator.'" required>';
+                        echo '<input type="hidden" value="'.$user[0].'" id="'.$id.$i.$endSeparator.'">';
                         $i++;
                     }
                     ?>
                 </ul>
-                <input type="hidden" name="inputRAName" id="inputRAName" readonly>
+                <input type="hidden" name="inputRAName" id="inputRAName" value="<?php echo $dataVM[0]['userRa'] ?>" readonly required>
             </div>
         </div>
         <div class="d-inline-block w-100">

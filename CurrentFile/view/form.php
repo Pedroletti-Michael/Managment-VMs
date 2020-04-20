@@ -48,12 +48,12 @@ ob_start();
                     foreach($users as $user){
 
                         echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputTm('.$i.', this.text)">'. $user[1]. ' ' .$user[2] .'</a></li>';
-                        echo '<input type="hidden" value="'.$user[0].'" id="'.$id.$i.$endSeparator.'" required>';
+                        echo '<input type="hidden" value="'.$user[0].'" id="'.$id.$i.$endSeparator.'">';
                         $i++;
                     }
                     ?>
                 </ul>
-                <input type="hidden" name="inputTMName" id="inputTMName" readonly>
+                <input type="hidden" name="inputTMName" id="inputTMName" readonly required>
             </div>
         </div>
         <div class="d-inline-block w-100">
@@ -75,12 +75,12 @@ ob_start();
 
                     foreach($users as $user){
                         echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputRa('.$i.', this.text)">'. $user[1]. ' ' .$user[2] .'</a></li>';
-                        echo '<input type="hidden" value="'.$user[0].'" id="'.$id.$i.$endSeparator.'" required>';
+                        echo '<input type="hidden" value="'.$user[0].'" id="'.$id.$i.$endSeparator.'">';
                         $i++;
                     }
                     ?>
                 </ul>
-                <input type="hidden" name="inputRAName" id="inputRAName" readonly>
+                <input type="hidden" name="inputRAName" id="inputRAName" readonly required>
             </div>
         </div>
         <div class="d-inline-block w-100">
