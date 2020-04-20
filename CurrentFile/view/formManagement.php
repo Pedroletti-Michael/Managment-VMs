@@ -25,14 +25,12 @@ ob_start();
 
     <!--Department / Institution / Service-->
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEntity">
-        Entity
-    </button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEntity">Entity</button><br>
 
-    <form method="post" action="../index.php?action=editEntity">
         <div class="modal fade" id="modalEntity" tabindex="-1" role="dialog" aria-labelledby="modalEntity" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
+                    <form method="post" action="../index.php?action=editEntity">
                     <div class="form-group" name="formulaire" id="form_Entity">
                         <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service</label>
                         <select multiple class="form-control mb-3" id="value" name="value">
@@ -42,16 +40,37 @@ ob_start();
                             }
                             ?>
                         </select>
-
                         <input type="text" class="form-control float-left" style="width: 40%!important;" id="txt" name="txt" placeholder="Nom">
                         <button type="submit" class="btn btn-success float-left" style="width: 20%!important;" value="add" name="add" id="add">Ajouter</button>
                         <button type="submit" class="btn btn-danger float-left" style="width: 20%!important;" value="delete" name="delete" id="delete">Supprimer</button>
-                        <button type="submit" class="btn btn-warning float-left" style="width: 20%!important;" value="modify" name="modify" id="modify">Modifier</button>
+                        <button type="button" class="btn btn-warning float-left" data-toggle="modal" data-target="#displayUpdateView" style="width: 20%!important;">Modifier</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </form>
+
+         <div class="modal fade" id="displayUpdateView" tabindex="-1" role="dialog" aria-labelledby="displayUpdateView" aria-hidden="true" >
+            <div class="modal-dialog modal-lg" role="document">
+                 <div class="modal-content">
+                     <form method="post" action="../index.php?action=editEntity">
+                     <div class="form-group" name="formulaire" id="form_Entity">
+                         <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service</label>
+                         <select multiple class="form-control mb-3" id="value" name="value">
+                             <?php
+                             foreach ($entityNames as $value) {
+                                 echo "<option>".$value['entityName']."</option>";
+                             }
+                             ?>
+                         </select>
+                         <input type="text" class="form-control float-left" style="width: 40%!important;" id="txt" name="txt" placeholder="Nouvelle valeur">
+                         <button type="submit" class="btn btn-warning float-left" style="width: 18%!important;" value="modify" name="modify" id="modify">Confirmer</button>
+                     </div>
+                     </form>
+                 </div>
+            </div>
+         </div>
+
     <!--OS-->
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalOS">
