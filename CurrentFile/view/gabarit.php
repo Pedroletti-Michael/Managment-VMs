@@ -60,7 +60,7 @@
             <a class="last" href="index.php?action=form">Formulaire</a>
         <?php endif; ?>
 
-        <?php if(!isset($_SESSION['userType']) && $_SESSION['userType']==1):?>
+        <?php if(isset($_SESSION['userType']) && $_SESSION['userType']==1):?>
             <a class="title">Admin</a>
             <!----------------- allVM ---------------->
             <?php if ($_GET['action'] == "allVM"): ?>
