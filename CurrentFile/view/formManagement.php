@@ -67,10 +67,32 @@ ob_start();
                             ?>
                         </select>
 
-                        <input type="text" class="form-control float-left" style="width: 40%!important;" id="txt" name="txt" placeholder="Nom">
-                        <button type="submit" class="btn btn-success float-left" style="width: 20%!important;" value="add" name="add" id="add">Ajouter</button>
+                        <button type="button" class="btn btn-success float-left" data-toggle="modal" data-target="#addEntity" style="width: 20%!important;" value="add" name="add" id="add">Ajouter</button>
                         <button type="submit" class="btn btn-danger float-left" style="width: 20%!important;" value="delete" name="delete" id="delete">Supprimer</button>
                         <button type="button" class="btn btn-warning float-left" data-toggle="modal" data-target="#modifyEntity" style="width: 20%!important;" value="modify" name="modify" id="modify">Modifier</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--Department / Institution / Service (add modal)-->
+    <div class="modal fade" id="addEntity" tabindex="-1" role="dialog" aria-labelledby="addEntity" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content p-3">
+                <form method="post" action="../index.php?action=editEntity">
+                    <div class="form-group" name="formulaire" id="form_Entity">
+                        <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service</label>
+                        <select multiple class="form-control mb-3" id="value" name="value">
+                            <?php
+                            foreach ($entityNames as $value) {
+                                echo "<option>".$value['entityName']."</option>";
+                            }
+                            ?>
+                        </select>
+
+                        <input type="text" class="form-control float-left" style="width: 40%!important;" id="txt" name="txt" placeholder="Nom">
+                        <button type="submit" class="btn btn-success float-left" style="width: 20%!important;" value="add" name="add" id="add">Confirmer</button>
                     </div>
                 </form>
             </div>
