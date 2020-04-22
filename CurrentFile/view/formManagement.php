@@ -84,14 +84,15 @@ ob_start();
                 <form method="post" action="../index.php?action=editEntity">
                     <div class="form-group" name="formulaire" id="form_Entity">
                         <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service</label>
-                        <select multiple class="form-control mb-3" id="value" name="value">
+                        <select multiple class="form-control mb-3" id="value2" name="value2" onChange="affiche()">
                             <?php
                             foreach ($entityNames as $value) {
                                 echo "<option>".$value['entityName']."</option>";
                             }
                             ?>
                         </select>
-                        <input type="text" class="form-control float-left w-50" id="txt" name="txt" placeholder="Nouvelle valeur">
+                        <input type="text" class="form-control float-left w-50" id="txt2" name="txt2" placeholder="Nouvelle valeur">
+                        <script>function affiche() {document.getElementById("txt2").value = document.getElementById("value2").value}</script>
                         <button type="submit" class="btn btn-warning float-left w-25" value="modify" name="modify" id="modify">Confirmer</button>
                     </div>
                 </form>
