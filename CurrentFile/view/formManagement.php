@@ -53,7 +53,6 @@ ob_start();
     </div>
 
     <!--Department / Institution / Service-->
-    <!-- Button trigger modal -->
     <div class="modal fade" id="modalEntity" tabindex="-1" role="dialog" aria-labelledby="modalEntity" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content p-3">
@@ -68,17 +67,18 @@ ob_start();
                             ?>
                         </select>
 
-                        <input type="text" class="form-control float-left w-40 responsiveDisplay" id="txt" name="txt" placeholder="Nom">
-                        <button type="submit" class="btn btn-success float-left w-20 responsiveDisplay" value="add" name="add" id="add">Ajouter</button>
-                        <button type="submit" class="btn btn-danger float-left w-20 responsiveDisplay" value="delete" name="delete" id="delete">Supprimer</button>
-                        <button type="button" class="btn btn-warning float-left w-20 responsiveDisplay" data-toggle="modal" data-target="#displayUpdateView" value="modify" name="modify" id="modify">Modifier</button>
+                        <input type="text" class="form-control float-left" style="width: 40%!important;" id="txt" name="txt" placeholder="Nom">
+                        <button type="submit" class="btn btn-success float-left" style="width: 20%!important;" value="add" name="add" id="add">Ajouter</button>
+                        <button type="submit" class="btn btn-danger float-left" style="width: 20%!important;" value="delete" name="delete" id="delete">Supprimer</button>
+                        <button type="button" class="btn btn-warning float-left" data-toggle="modal" data-target="#modifyEntity" style="width: 20%!important;" value="modify" name="modify" id="modify">Modifier</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="displayUpdateView" tabindex="-1" role="dialog" aria-labelledby="displayUpdateView" aria-hidden="true" >
+    <!-- Department / Institution / Service (modify modal)-->
+    <div class="modal fade" id="modifyEntity" tabindex="-1" role="dialog" aria-labelledby="modifyEntity" aria-hidden="true" >
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content p-3">
                 <form method="post" action="../index.php?action=editEntity">
@@ -91,20 +91,20 @@ ob_start();
                             }
                             ?>
                         </select>
-                        <input type="text" class="form-control float-left w-50-m responsiveDisplay" id="txt2" name="txt2" placeholder="Nouvelle valeur">
+                        <input type="text" class="form-control float-left w-50" id="txt2" name="txt2" placeholder="Nouvelle valeur">
                         <script>function getSelectedValue() {document.getElementById("txt2").value = document.getElementById("value2").value}</script>
-                        <button type="submit" class="btn btn-warning float-left w-25-m responsiveDisplay" value="modify" name="modify" id="modify">Confirmer</button>
+                        <button type="submit" class="btn btn-warning float-left w-25" value="modify" name="modify" id="modify">Confirmer</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
     <!--OS-->
-    <!-- Button trigger modal -->
-    <form method="post" action="../index.php?action=editOS">
-        <div class="modal fade" id="modalOS" tabindex="-1" role="dialog" aria-labelledby="modalOS" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content p-3">
+    <div class="modal fade" id="modalOS" tabindex="-1" role="dialog" aria-labelledby="modalOS" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content p-3">
+                <form method="post" action="../index.php?action=editOS">
                     <div class="form-group" name="formulaire" id="form_OS">
                         <label for="disFormControlSelect" class="font-weight-bold">OS</label>
                         <select multiple class="form-control mb-3" id="value" name='value'>
@@ -114,27 +114,55 @@ ob_start();
                             }
                             ?>
                         </select>
-                        <div class="w-55 responsiveDisplay">
-                            <select class="form-control float-left w-45" id="type" name="type">
+                        <div style="width: 63.36%!important;">
+                            <select class="form-control float-left" style="width: 30%!important;" id="type" name="type">
                                 <option>Windows</option>
                                 <option>Linux / Ubuntu</option>
                             </select>
-                            <input type="text" class="form-control float-left w-55" id="txt" name="txt" placeholder="Nom">
+                            <input type="text" class="form-control float-left" style="width: 42.5%!important;" id="txt" name="txt" placeholder="Nom">
                         </div>
-                        <button type="submit" class="btn btn-success float-left w-15 responsiveDisplay" value="add" name="add" id="add">Ajouter</button>
-                        <button type="submit" class="btn btn-danger float-left w-15 responsiveDisplay" value="delete" name="delete" id="delete">Supprimer</button>
-                        <button type="button" class="btn btn-warning float-left w-15 responsiveDisplay" value="modify" name="modify" id="modify">Modifier</button>
+                        <button type="submit" class="btn btn-success float-left" style="width: 18%!important;" value="add" name="add" id="add">Ajouter</button>
+                        <button type="submit" class="btn btn-danger float-left" style="width: 18%!important;" value="delete" name="delete" id="delete">Supprimer</button>
+                        <button type="button" class="btn btn-warning float-left" data-toggle="modal" data-target="#modifyOS" style="width: 18%!important;" value="modify" name="modify" id="modify">Modifier</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
-    </form>
+    </div>
+
+    <!--OS (modify modal)-->
+    <div class="modal fade" id="modifyOS" tabindex="-1" role="dialog" aria-labelledby="modifyOS" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content p-3">
+                <form method="post" action="../index.php?action=editOS">
+                    <div class="form-group" name="formulaire" id="form_OS">
+                        <label for="disFormControlSelect" class="font-weight-bold">OS</label>
+                        <select multiple class="form-control mb-3" id="value2" name='value2'>
+                            <?php
+                            foreach ($osNames as $value) {
+                                echo "<option value='".$value['osName']."'>".$value['osType']." ".$value['osName']."</option>";
+                            }
+                            ?>
+                        </select>
+                        <div style="width: 63.36%!important;">
+                            <select class="form-control float-left" style="width: 30%!important;" id="type" name="type">
+                                <option>Windows</option>
+                                <option>Linux / Ubuntu</option>
+                            </select>
+                            <input type="text" class="form-control float-left w-50" id="txt2" name="txt2" placeholder="Nouvelle valeur">
+                        </div>
+                        <button type="submit" class="btn btn-warning float-left w-25" value="modify" name="modify" id="modify">Confirmer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!--Snapshots-->
-    <!-- Button trigger modal -->
-    <form method="post" action="../index.php?action=editSnapshots">
-        <div class="modal fade" id="modalSnapshots" tabindex="-1" role="dialog" aria-labelledby="modalSnapshots" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content p-3">
+    <div class="modal fade" id="modalSnapshots" tabindex="-1" role="dialog" aria-labelledby="modalSnapshots" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content p-3">
+                <form method="post" action="../index.php?action=editSnapshots">
                     <div class="form-group" name="formulaire" id="form_Snapshots">
                         <label for="disFormControlSelect" class="font-weight-bold">Snapshots</label>
                         <select multiple class="form-control mb-3" id="value" name='value'>
@@ -144,25 +172,49 @@ ob_start();
                             }
                             ?>
                         </select>
-                        <div class="w-55 responsiveDisplay">
-                            <input type="text" class="form-control float-left w-45" id="type" name="type" placeholder="Type">
-                            <input type="text" class="form-control float-left w-55" id="txt" name="txt" placeholder="Nom">
+                        <div style="width: 40%!important;">
+                            <input type="text" class="form-control float-left" style="width: 30%!important;" id="type" name="type" placeholder="Type">
+                            <input type="text" class="form-control float-left" style="width: 70%!important;" id="txt" name="txt" placeholder="Nom">
                         </div>
-                        <button type="submit" class="btn btn-success float-left w-15 responsiveDisplay" value="add" name="add" id="add">Ajouter</button>
-                        <button type="submit" class="btn btn-danger float-left w-15 responsiveDisplay" value="delete" name="delete" id="delete">Supprimer</button>
-                        <button type="button" class="btn btn-warning float-left w-15 responsiveDisplay" value="modify" name="modify" id="modify">Modifier</button>
+                        <button type="submit" class="btn btn-success float-left" style="width: 20%!important;" value="add" name="add" id="add">Ajouter</button>
+                        <button type="submit" class="btn btn-danger float-left" style="width: 20%!important;" value="delete" name="delete" id="delete">Supprimer</button>
+                        <button type="button" class="btn btn-warning float-left" data-toggle="modal" data-target="#modifySnapshots" style="width: 20%!important;" value="modify" name="modify" id="modify">Modifier</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
-    </form>
+    </div>
+
+    <!--Snapshots (modify modal)-->
+    <div class="modal fade" id="modifySnapshots" tabindex="-1" role="dialog" aria-labelledby="modifySnapshots" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content p-3">
+                <form method="post" action="../index.php?action=editSnapshots">
+                    <div class="form-group" name="formulaire" id="form_Snapshots">
+                        <label for="disFormControlSelect" class="font-weight-bold">Snapshots</label>
+                        <select multiple class="form-control mb-3" id="value" name='value'>
+                            <?php
+                            foreach ($snapshotPolicy as $value) {
+                                echo "<option value='".$value['name']."'>".$value['name']." : ".$value['policy']."</option>";
+                            }
+                            ?>
+                        </select>
+                        <div style="width: 40%!important;">
+                            <input type="text" class="form-control float-left" style="width: 30%!important;" id="type" name="type" placeholder="Type">
+                            <input type="text" class="form-control float-left w-50" id="txt2" name="txt2" placeholder="Nouvelle valeur">
+                        </div>
+                        <button type="submit" class="btn btn-warning float-left w-25" value="modify" name="modify" id="modify">Confirmer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!--Backup-->
-    <!-- Button trigger modal -->
-    <form method="post" action="../index.php?action=editBackup">
-        <div class="modal fade" id="modalBackup" tabindex="-1" role="dialog" aria-labelledby="modalBackup" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content p-3">
+    <div class="modal fade" id="modalBackup" tabindex="-1" role="dialog" aria-labelledby="modalBackup" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content p-3">
+                <form method="post" action="../index.php?action=editBackup">
                     <div class="form-group" name="formulaire" id="form_Backup">
                         <label for="disFormControlSelect" class="font-weight-bold">Backup</label>
                         <select multiple class="form-control mb-3" id="value" name='value'>
@@ -172,18 +224,43 @@ ob_start();
                             }
                             ?>
                         </select>
-                        <div class="w-55 responsiveDisplay">
-                            <input type="text" class="form-control float-left w-45" id="type" name="type" placeholder="Type">
-                            <input type="text" class="form-control float-left w-55" id="txt" name="txt" placeholder="Nom">
+                        <div style="width: 40%!important;">
+                            <input type="text" class="form-control float-left" style="width: 30%!important;" id="type" name="type" placeholder="Type">
+                            <input type="text" class="form-control float-left" style="width: 70%!important;" id="txt" name="txt" placeholder="Nom">
                         </div>
-                        <button type="submit" class="btn btn-success float-left w-15 responsiveDisplay" value="add" name="add" id="add">Ajouter</button>
-                        <button type="submit" class="btn btn-danger float-left w-15 responsiveDisplay" value="delete" name="delete" id="delete">Supprimer</button>
-                        <button type="button" class="btn btn-warning float-left w-15 responsiveDisplay" value="modify" name="modify" id="modify">Modifier</button>
+                        <button type="submit" class="btn btn-success float-left" style="width: 20%!important;" value="add" name="add" id="add">Ajouter</button>
+                        <button type="submit" class="btn btn-danger float-left" style="width: 20%!important;" value="delete" name="delete" id="delete">Supprimer</button>
+                        <button type="button" class="btn btn-warning float-left" data-toggle="modal" data-target="#modifyBackup" style="width: 20%!important;" value="modify" name="modify" id="modify">Modifier</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
-    </form>
+    </div>
+
+    <!--Backup (modify modal)-->
+    <div class="modal fade" id="modifyBackup" tabindex="-1" role="dialog" aria-labelledby="modifyBackup" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content p-3">
+                <form method="post" action="../index.php?action=editBackup">
+                    <div class="form-group" name="formulaire" id="form_Backup">
+                        <label for="disFormControlSelect" class="font-weight-bold">Backup</label>
+                        <select multiple class="form-control mb-3" id="value" name='value'>
+                            <?php
+                            foreach ($backupPolicy as $value) {
+                                echo "<option value='".$value['name']."'>".$value['name']." : ".$value['policy']."</option>";
+                            }
+                            ?>
+                        </select>
+                        <div style="width: 40%!important;">
+                            <input type="text" class="form-control float-left" style="width: 30%!important;" id="type" name="type" placeholder="Type">
+                            <input type="text" class="form-control float-left w-50" id="txt2" name="txt2" placeholder="Nouvelle valeur">
+                        </div>
+                        <button type="submit" class="btn btn-warning float-left w-25" value="modify" name="modify" id="modify">Confirmer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 <?php
 $contenu = ob_get_clean();
