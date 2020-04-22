@@ -361,18 +361,9 @@ function editEntity($entityName){
         deleteEntity($nameEntity);
     }
     if(isset($entityName['modify'])){
-        if(isset($entityName['value']) && isset($entityName['txt']))
-        {
-            $nameEntity = $entityName['value'];
-            $newName = $entityName['txt'];
-            modifyEntity($nameEntity,$newName);
-        }
-        else
-        {
-            $nameEntity = $entityName['value2'];
-            $newName = $entityName['txt2'];
-            modifyEntity($nameEntity,$newName);
-        }
+        $nameEntity = $entityName['value2'];
+        $newName = $entityName['txt2'];
+        modifyEntity($nameEntity,$newName);
     }
     displayFormManagement();
 }
