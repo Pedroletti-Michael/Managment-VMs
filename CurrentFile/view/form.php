@@ -18,25 +18,25 @@ ob_start();
     <form method="post" action="../index.php?action=RequestVM" class="mb-4">
         <div class="d-inline-block w-100">
             <!--Name of the VM-->
-            <div class="form-group w-50 float-left pr-4">
+            <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="inputVMName" class="font-weight-bold">Nom de la VM<a style="color: red"> *</a></label>
                 <input type="vmName" class="form-control form form" id="inputVMName" name="inputVMName" aria-describedby="vmNameHelp" maxlength="15" required>
                 <small id="vmNameHelp" class="form-text text-muted">15 caractères maximum. Lettres, chiffres et trait d'union uniquement (Ex: VM-01)</small>
             </div>
             <!--Name of the requester-->
-            <div class="form-group w-50 float-right pl-4">
+            <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="inputRequesterName" class="font-weight-bold">Demandeur<a style="color: red"> *</a></label>
                 <input type="requesterName" class="form-control form form" value="<?php echo $_SESSION['userEmail'] ?>" id="inputRequesterName" name="inputRequesterName" aria-describedby="requesterNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" readonly>
             </div>
         </div>
         <div class="d-inline-block w-100">
-            <div class="form-group w-50 float-left pr-4">
+            <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <!--CPU-->
                 <label for="cpu" class="font-weight-bold">Nombre de CPU<a style="color: red"> *</a></label>
                 <input type="number" class="form-control form form" id="inputCPU" name="inputCPU" aria-describedby="cpuHelp" min="1" max="99" required>
             </div>
             <!--Name of the technical manager-->
-            <div class="form-group w-50 float-right pl-4">
+            <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="inputTMNam" class="font-weight-bold">Responsable technique<a style="color: red"> *</a></label>
                 <input type="text" class="form-control form form" id="inputTMNam" name="inputTMNam" aria-describedby="tmNameHelp" placeholder="Entrer une adresse de messagerie" required onkeyup="searchFunctionTm()">
                 <ul id="tmNameUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
@@ -56,13 +56,13 @@ ob_start();
             </div>
         </div>
         <div class="d-inline-block w-100">
-            <div class="form-group w-50 float-left pr-4">
+            <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <!--RAM-->
                 <label for="RAM" class="font-weight-bold mr-2">Nombre de RAM (GB)<a style="color: red"> *</a></label>
                 <input type="number" class="form-control form form mr-3" id="inputRAM" name="inputRAM" aria-describedby="ramHelp" min="1" max="256" required>
             </div>
             <!--Name of the responsible administrator-->
-            <div class="form-group w-50 float-right pl-4">
+            <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="inputRANam" class="font-weight-bold">Responsable administratif<a style="color: red"> *</a></label>
                 <input type="email" class="form-control form form" id="inputRANam" name="inputRANam" aria-describedby="raNameHelp" placeholder="Entrer une adresse de messagerie" required onkeyup="searchFunctionRa()">
                 <small id="raNameHelp" class="form-text text-muted">Direction, Doyen , Directeur d'institut ou Chef de service</small>
@@ -83,13 +83,13 @@ ob_start();
             </div>
         </div>
         <div class="d-inline-block w-100">
-            <div class="form-group w-50 float-left pr-4">
+            <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <!--Stockages-->
                 <label for="SSD" class="font-weight-bold mr-2">Stockage SSD (GB)<a style="color: red"> *</a></label>
                 <input type="number" class="form-control form form" id="inputSSD" name="inputSSD" aria-describedby="ssdHelp" min="20" max="1000" required>
             </div>
             <!--Department / Institution / Service-->
-            <div class="form-group w-50 float-right pl-4">
+            <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service<a style="color: red"> *</a></label>
                 <select class="form-control" id="disFormControlSelect" name="disFormControlSelect" required>
                     <?php
@@ -102,7 +102,7 @@ ob_start();
         </div>
         <div class="d-inline-block w-100">
             <!--OS-->
-            <div class="form-group w-50 float-left pr-4">
+            <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="osFormControlSelect" class="font-weight-bold">Système d'exploitation<a style="color: red"> *</a></label>
                 <div class="w-100 d-inline-block">
                     <div class="pr-2">
@@ -142,7 +142,7 @@ ob_start();
                 <small id="osHelp" class="form-text text-muted">Toutes les OS sont en anglais, 64 bits</small>
             </div>
             <!--Date of commissioning-->
-            <div class="form-group w-50 float-right pl-4">
+            <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="inputComissioningDate" class="font-weight-bold">Date de mise en service<a style="color: red"> *</a></label>
                 <input type="date" min="<?php date("Y-m-d") ?>" class="form-control form form" id="inputComissioningDate" name="inputComissioningDate" aria-describedby="comissioningDateHelp" placeholder="Entrer un nom ou une addresse de messagerie"  required>
                 <small id="comissioningDateHelp" class="form-text text-muted">Délai d'une semaine pour les VM de type Silver &amp; Gold. Deux semaines pour les autres configurations.</small>
@@ -150,7 +150,7 @@ ob_start();
         </div>
         <div class="d-inline-block w-100">
             <!--Network-->
-            <div class="form-group w-50 float-left pr-4">
+            <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="networkFormControlSelect" class="font-weight-bold">Réseau<a style="color: red"> *</a></label>
                 <select class="form-control" id="networkFormControlSelect" name="networkFormControlSelect" required>
                     <option>LAN</option>
@@ -161,7 +161,7 @@ ob_start();
                 <small id="networkHelp" class="form-text text-muted">DMZ Privée : Accessible depuis l'extérieur mais uniquement par son nom DNS (exemple : vm-01.heig-vd.ch)</small>
             </div>
             <!--End Date-->
-            <div class="form-group w-50 float-right pl-4">
+            <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="inputEndDate" class="font-weight-bold">Date de fin</label>
                 <input type="date" class="form-control form form" id="inputEndDate" name="inputEndDate" aria-describedby="EndDateHelp" placeholder="Entrer un nom ou une addresse de messagerie" required>
                 <small id="EndDateHelp" class="form-text text-muted">Date de fin du projet, à laquelle la VM peut être arrêtée puis supprimée.</small>

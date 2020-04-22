@@ -30,6 +30,42 @@
     text-decoration: none;
 }
 
+
+
+
+.w-15{
+    width: 15% !important;
+}
+
+.w-20{
+    width: 20% !important;
+}
+
+.w-25-m{
+    width: 25% !important;
+}
+
+.w-40{
+    width: 40% !important;
+}
+
+.w-45{
+    width: 45% !important;
+}
+
+.w-50-m{
+    width: 50% !important;
+}
+
+.w-55{
+    width: 55% !important;
+}
+
+
+
+
+
+
 /* ------------------------------------------- Responsive correction -------------------------------------------------*/
 @media screen and (min-width: 1050px) {
     .responsive-menu-min{
@@ -100,6 +136,15 @@
     }
     .display-phone{
         display: inline-block!important;
+    }
+    #responsiveDisplay{
+        width: 100%!important;
+        padding-left: 0!important;
+        padding-right: 0!important;
+    }
+    .responsiveDisplay{
+        width: 100%!important;
+        margin: 2px 0px;
     }
     .logo-responsive{
         max-width: 100px;

@@ -15,9 +15,9 @@ ob_start();
     <body>
     <form method="post" action="../index.php?action=allVM">
         <!------------- Choix ------------>
-        <div class="form-group">
+        <div class="form-group p-2">
             <label for="disFormControlSelect" class="font-weight-bold text-center w-100 pt-3">Filtrer les VM</label>
-            <div class="w-25 m-auto">
+            <div class="w-25 m-auto" id="responsiveDisplay">
                 <div class="btn-group w-100 m-auto">
                     <select class="form-control w-75 float-left" id="vmFilter" name="vmFilter" required>
                         <?php
