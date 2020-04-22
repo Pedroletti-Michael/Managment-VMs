@@ -374,9 +374,13 @@ function updateStatusVM($id, $vmStatus){
     if($vmStatus){
         $status = 2;
     }
+    elseif($vmStatus == 4){
+        $status = 4;
+    }
     else{
         $status = 1;
     }
+
 
     $query = "UPDATE vm SET vmStatus = ". $status ." WHERE id = ". $id;
 

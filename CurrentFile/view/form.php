@@ -46,7 +46,6 @@ ob_start();
                     $endSeparator = '';
 
                     foreach($users as $user){
-
                         echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputTm('.$i.', this.text)">'. $user[1]. ' ' .$user[2] .'</a></li>';
                         echo '<input type="hidden" value="'.$user[0].'" id="'.$id.$i.$endSeparator.'">';
                         $i++;

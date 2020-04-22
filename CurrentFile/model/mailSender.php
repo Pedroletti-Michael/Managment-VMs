@@ -195,7 +195,7 @@ function deniedRequestMail($userMail, $requestName){
  * This function used to send an advert mail to the technical manager, administrator manager and the admin of the VMManager
  * When the vm need to be renew.
  */
-function advertMail($userMail, $requestName, $link, $rtMail, $raMail){
+function advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft){
     // multiple recipients
     $administratorMail = 'michael.pedroletti@heig-vd.ch';
 
@@ -208,7 +208,7 @@ function advertMail($userMail, $requestName, $link, $rtMail, $raMail){
     $message = "
     Bonjour,<br><br>
     
-    Nous vous envoyons ce mail pour vous informer que votre demande pour une VM arrive bientôt à échéance.<br>
+    Nous vous envoyons ce mail pour vous informer que votre demande pour une VM arrive bientôt à échéance, il vous reste ".$timeLeft." jours.<br>
      
     Nom de la demande : ". $requestName ."<br>
     
@@ -282,4 +282,95 @@ function nonrenewalMailAdvert($userMail, $requestName, $link, $rtMail, $raMail){
     else{
         return false;
     }
+}
+
+function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $raMail, $dateEndVm){
+    $link = 'http://vmman.heig-vd.ch/index.php?action=detailsVM&id='.$idVm;
+    $today = date('Y-m-d');
+
+    if($vmStatus == 3){
+        if($today > $dateEndVm){
+            updateStatusVM($idVm, 4);
+            nonrenewalMailAdvert($userMail, $requestName, $link, $rtMail, $raMail);
+            return true;
+        }
+        else{
+            $timeLeft = $dateEndVm - $today;
+
+            switch ($timeLeft){
+                case 1:
+                    advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                    break;
+                case 2:
+                    advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                    break;
+                case 3:
+                    advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                    break;
+                case 5:
+                    advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                    break;
+                case 10:
+                    advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                    break;
+                case 15:
+                    advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                    break;
+                case 20:
+                    advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                    break;
+                case 30:
+                    advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                    break;
+                default:
+                    if($timeLeft == 30){
+                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                        break;
+                    }
+                    break;
+            }
+            return true;
+        }
+    }
+    else{
+        if($today >= $dateEndVm){
+            updateStatusVM($idVm, 3);
+            $timeLeft = $dateEndVm - $today;
+
+            switch ($timeLeft){
+                case 1:
+                    advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                    break;
+                case 2:
+                    advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                    break;
+                case 3:
+                    advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                    break;
+                case 5:
+                    advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                    break;
+                case 10:
+                    advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                    break;
+                case 15:
+                    advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                    break;
+                case 20:
+                    advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                    break;
+                case 30:
+                    advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                    break;
+                default:
+                    if($timeLeft == 30){
+                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                        break;
+                    }
+                    break;
+            }
+            return true;
+        }
+    }
+
 }
