@@ -45,6 +45,10 @@
     width: 25% !important;
 }
 
+.w-33{
+    width: calc(100%/3)!important;
+}
+
 .w-40{
     width: 40% !important;
 }
@@ -59,6 +63,14 @@
 
 .w-55{
     width: 55% !important;
+}
+
+.w-66{
+    width: calc(100%/3*2)!important;
+}
+
+.w-75-m{
+    width: 75% !important;
 }
 
 

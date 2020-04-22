@@ -66,10 +66,9 @@ ob_start();
                             }
                             ?>
                         </select>
-
-                        <button type="button" class="btn btn-success float-left" data-toggle="modal" data-target="#addEntity" style="width: 20%!important;" value="add" name="add" id="add">Ajouter</button>
-                        <button type="submit" class="btn btn-danger float-left" style="width: 20%!important;" value="delete" name="delete" id="delete">Supprimer</button>
-                        <button type="button" class="btn btn-warning float-left" data-toggle="modal" data-target="#modifyEntity" style="width: 20%!important;" value="modify" name="modify" id="modify">Modifier</button>
+                        <button type="button" class="btn btn-success float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#addEntity" value="add" name="add" id="add">Ajouter</button>
+                        <button type="submit" class="btn btn-danger float-left w-33 responsiveDisplay" value="delete" name="delete" id="delete">Supprimer</button>
+                        <button type="button" class="btn btn-warning float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#modifyEntity" value="modify" name="modify" id="modify">Modifier</button>
                     </div>
                 </form>
             </div>
@@ -91,8 +90,8 @@ ob_start();
                             ?>
                         </select>
 
-                        <input type="text" class="form-control float-left" style="width: 40%!important;" id="txt" name="txt" placeholder="Nom">
-                        <button type="submit" class="btn btn-success float-left" style="width: 20%!important;" value="add" name="add" id="add">Confirmer</button>
+                        <input type="text" class="form-control float-left w-75-m responsiveDisplay" id="txt" name="txt" placeholder="Nom">
+                        <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
                     </div>
                 </form>
             </div>
@@ -113,9 +112,9 @@ ob_start();
                             }
                             ?>
                         </select>
-                        <input type="text" class="form-control float-left w-50" id="txt2" name="txt2" placeholder="Nouvelle valeur">
+                        <input type="text" class="form-control float-left w-75-m responsiveDisplay" id="txt2" name="txt2" placeholder="Nouvelle valeur">
                         <script>function getSelectedValue() {document.getElementById("txt2").value = document.getElementById("value2").value}</script>
-                        <button type="submit" class="btn btn-warning float-left w-25" value="modify" name="modify" id="modify">Confirmer</button>
+                        <button type="submit" class="btn btn-warning float-left w-25-m responsiveDisplay" value="modify" name="modify" id="modify">Confirmer</button>
                     </div>
                 </form>
             </div>
@@ -137,9 +136,9 @@ ob_start();
                             ?>
                         </select>
 
-                        <button type="button" class="btn btn-success float-left" data-toggle="modal" data-target="#addOS" style="width: 18%!important;" value="add" name="add" id="add">Ajouter</button>
-                        <button type="submit" class="btn btn-danger float-left" style="width: 18%!important;" value="delete" name="delete" id="delete">Supprimer</button>
-                        <button type="button" class="btn btn-warning float-left" data-toggle="modal" data-target="#modifyOS" style="width: 18%!important;" value="modify" name="modify" id="modify">Modifier</button>
+                        <button type="button" class="btn btn-success float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#addOS" value="add" name="add" id="add">Ajouter</button>
+                        <button type="submit" class="btn btn-danger float-left w-33 responsiveDisplay" value="delete" name="delete" id="delete">Supprimer</button>
+                        <button type="button" class="btn btn-warning float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#modifyOS" value="modify" name="modify" id="modify">Modifier</button>
                     </div>
                 </form>
             </div>
@@ -160,14 +159,14 @@ ob_start();
                             }
                             ?>
                         </select>
-                        <div style="width: 63.36%!important;">
-                            <select class="form-control float-left" style="width: 30%!important;" id="type" name="type">
+                        <div class="w-75-m responsiveDisplay">
+                            <select class="form-control float-left w-33 responsiveDisplay" id="type" name="type">
                                 <option>Windows</option>
                                 <option>Linux / Ubuntu</option>
                             </select>
-                            <input type="text" class="form-control float-left" style="width: 42.5%!important;" id="txt" name="txt" placeholder="Nom">
+                            <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txt" name="txt" placeholder="Nom">
                         </div>
-                        <button type="submit" class="btn btn-success float-left" style="width: 18%!important;" value="add" name="add" id="add">Confirmer</button>
+                        <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
                     </div>
                 </form>
             </div>
@@ -188,14 +187,14 @@ ob_start();
                             }
                             ?>
                         </select>
-                        <div style="width: 63.36%!important;">
-                            <select class="form-control float-left" style="width: 30%!important;" id="type" name="type">
+                        <div class="w-75-m responsiveDisplay">
+                            <select class="form-control float-left w-33 responsiveDisplay" id="type" name="type">
                                 <option>Windows</option>
                                 <option>Linux / Ubuntu</option>
                             </select>
-                            <input type="text" class="form-control float-left w-50" id="txt2" name="txt2" placeholder="Nouvelle valeur">
+                            <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txt2" name="txt2" placeholder="Nouvelle valeur">
                         </div>
-                        <button type="submit" class="btn btn-warning float-left w-25" value="modify" name="modify" id="modify">Confirmer</button>
+                        <button type="submit" class="btn btn-warning float-left w-25-m responsiveDisplay" value="modify" name="modify" id="modify">Confirmer</button>
                     </div>
                 </form>
             </div>
@@ -217,9 +216,9 @@ ob_start();
                             ?>
                         </select>
 
-                        <button type="button" class="btn btn-success float-left" data-toggle="modal" data-target="#addSnapshots" style="width: 20%!important;" value="add" name="add" id="add">Ajouter</button>
-                        <button type="submit" class="btn btn-danger float-left" style="width: 20%!important;" value="delete" name="delete" id="delete">Supprimer</button>
-                        <button type="button" class="btn btn-warning float-left" data-toggle="modal" data-target="#modifySnapshots" style="width: 20%!important;" value="modify" name="modify" id="modify">Modifier</button>
+                        <button type="button" class="btn btn-success float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#addSnapshots" value="add" name="add" id="add">Ajouter</button>
+                        <button type="submit" class="btn btn-danger float-left w-33 responsiveDisplay" value="delete" name="delete" id="delete">Supprimer</button>
+                        <button type="button" class="btn btn-warning float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#modifySnapshots" value="modify" name="modify" id="modify">Modifier</button>
                     </div>
                 </form>
             </div>
@@ -240,11 +239,11 @@ ob_start();
                             }
                             ?>
                         </select>
-                        <div style="width: 40%!important;">
-                            <input type="text" class="form-control float-left" style="width: 30%!important;" id="type" name="type" placeholder="Type">
-                            <input type="text" class="form-control float-left" style="width: 70%!important;" id="txt" name="txt" placeholder="Nom">
+                        <div class="w-75-m responsiveDisplay">
+                            <input type="text" class="form-control float-left w-33 responsiveDisplay" id="type" name="type" placeholder="Type">
+                            <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txt" name="txt" placeholder="Nom">
                         </div>
-                        <button type="submit" class="btn btn-success float-left" style="width: 20%!important;" value="add" name="add" id="add">Confirmer</button>
+                        <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
                     </div>
                 </form>
             </div>
@@ -265,11 +264,11 @@ ob_start();
                             }
                             ?>
                         </select>
-                        <div style="width: 40%!important;">
-                            <input type="text" class="form-control float-left" style="width: 30%!important;" id="type" name="type" placeholder="Type">
-                            <input type="text" class="form-control float-left w-50" id="txt2" name="txt2" placeholder="Nouvelle valeur">
+                        <div class="w-75-m responsiveDisplay">
+                            <input type="text" class="form-control float-left w-33 responsiveDisplay" id="type" name="type" placeholder="Type">
+                            <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txt2" name="txt2" placeholder="Nouvelle valeur">
                         </div>
-                        <button type="submit" class="btn btn-warning float-left w-25" value="modify" name="modify" id="modify">Confirmer</button>
+                        <button type="submit" class="btn btn-warning float-left w-25-m responsiveDisplay" value="modify" name="modify" id="modify">Confirmer</button>
                     </div>
                 </form>
             </div>
@@ -291,9 +290,9 @@ ob_start();
                             ?>
                         </select>
 
-                        <button type="button" class="btn btn-success float-left" data-toggle="modal" data-target="#addBackup" style="width: 20%!important;" value="add" name="add" id="add">Ajouter</button>
-                        <button type="submit" class="btn btn-danger float-left" style="width: 20%!important;" value="delete" name="delete" id="delete">Supprimer</button>
-                        <button type="button" class="btn btn-warning float-left" data-toggle="modal" data-target="#modifyBackup" style="width: 20%!important;" value="modify" name="modify" id="modify">Modifier</button>
+                        <button type="button" class="btn btn-success float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#addBackup" value="add" name="add" id="add">Ajouter</button>
+                        <button type="submit" class="btn btn-danger float-left w-33 responsiveDisplay" value="delete" name="delete" id="delete">Supprimer</button>
+                        <button type="button" class="btn btn-warning float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#modifyBackup" value="modify" name="modify" id="modify">Modifier</button>
                     </div>
                 </form>
             </div>
@@ -314,11 +313,11 @@ ob_start();
                             }
                             ?>
                         </select>
-                        <div style="width: 40%!important;">
-                            <input type="text" class="form-control float-left" style="width: 30%!important;" id="type" name="type" placeholder="Type">
-                            <input type="text" class="form-control float-left" style="width: 70%!important;" id="txt" name="txt" placeholder="Nom">
+                        <div class="w-75-m responsiveDisplay">
+                            <input type="text" class="form-control float-left w-33 responsiveDisplay" id="type" name="type" placeholder="Type">
+                            <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txt" name="txt" placeholder="Nom">
                         </div>
-                        <button type="submit" class="btn btn-success float-left" style="width: 20%!important;" value="add" name="add" id="add">Confirmer</button>
+                        <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
                     </div>
                 </form>
             </div>
@@ -339,11 +338,11 @@ ob_start();
                             }
                             ?>
                         </select>
-                        <div style="width: 40%!important;">
-                            <input type="text" class="form-control float-left" style="width: 30%!important;" id="type" name="type" placeholder="Type">
-                            <input type="text" class="form-control float-left w-50" id="txt2" name="txt2" placeholder="Nouvelle valeur">
+                        <div class="w-75-m responsiveDisplay">
+                            <input type="text" class="form-control float-left w-33 responsiveDisplay" id="type" name="type" placeholder="Type">
+                            <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txt2" name="txt2" placeholder="Nouvelle valeur">
                         </div>
-                        <button type="submit" class="btn btn-warning float-left w-25" value="modify" name="modify" id="modify">Confirmer</button>
+                        <button type="submit" class="btn btn-warning float-left w-25-m responsiveDisplay" value="modify" name="modify" id="modify">Confirmer</button>
                     </div>
                 </form>
             </div>
