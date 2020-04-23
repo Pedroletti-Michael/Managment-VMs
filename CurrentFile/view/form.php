@@ -26,7 +26,7 @@ ob_start();
             <!--Name of the requester-->
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="inputRequesterName" class="font-weight-bold">Demandeur<a style="color: red"> *</a></label>
-                <input type="requesterName" class="form-control form form" value="<?php echo $_SESSION['userEmail'] ?>" id="inputRequesterName" name="inputRequesterName" aria-describedby="requesterNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" readonly>
+                <input type="text" class="form-control form form" value="<?php echo $_SESSION['userEmail'] ?>" id="inputRequesterName" name="inputRequesterName" aria-describedby="requesterNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" readonly>
             </div>
         </div>
         <div class="d-inline-block w-100">
@@ -64,7 +64,7 @@ ob_start();
             <!--Name of the responsible administrator-->
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="inputRANam" class="font-weight-bold">Responsable administratif<a style="color: red"> *</a></label>
-                <input type="email" class="form-control form form" id="inputRANam" name="inputRANam" aria-describedby="raNameHelp" placeholder="Entrer une adresse de messagerie" required onkeyup="searchFunctionRa()">
+                <input type="text" class="form-control form form" id="inputRANam" name="inputRANam" aria-describedby="raNameHelp" placeholder="Entrer une adresse de messagerie" required onkeyup="searchFunctionRa()">
                 <small id="raNameHelp" class="form-text text-muted">Direction, Doyen , Directeur d'institut ou Chef de service</small>
                 <ul id="raNameUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
                     <?php
