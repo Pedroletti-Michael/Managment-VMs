@@ -333,7 +333,7 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
         }
     }
     else{
-        if($today >= $dateEndVm){
+        if($today >= $dateEndVm - 30){
             updateStatusVM($idVm, 3);
             $timeLeft = $dateEndVm - $today;
 
