@@ -162,7 +162,7 @@ ob_start();
                         <div class="w-75-m responsiveDisplay">
                             <select class="form-control float-left w-33 responsiveDisplay" id="typeOsAdd" name="typeOsAdd">
                                 <option>Windows</option>
-                                <option>Linux / Ubuntu</option>
+                                <option>Linux</option>
                             </select>
                             <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txtOsAdd" name="txtOsAdd" placeholder="Nom">
                         </div>
@@ -199,17 +199,17 @@ ob_start();
                                         var typeOsMod = "";
                                         var txtOsMod = "";
 
-                                        for(var firstCount = 0; firstCount < valueOsMod.length; firstCount++)
+                                        for(var count = 0; count < valueOsMod.length; count++)
                                         {
-                                            if(valueOsMod[firstCount] !== " ")
+                                            if(valueOsMod[count] !== " ")
                                             {
-                                                typeOsMod = typeOsMod + valueOsMod[firstCount];
+                                                typeOsMod = typeOsMod + valueOsMod[count];
                                             }
                                             else
                                             {
-                                                for(; firstCount < valueOsMod.length; firstCount++)
+                                                for(count += 1; count< valueOsMod.length; count++)
                                                 {
-                                                    txtOsMod = txtOsMod + valueOsMod[firstCount];
+                                                    txtOsMod = txtOsMod + valueOsMod[count];
                                                 }
                                                 break;
                                             }
@@ -298,17 +298,17 @@ ob_start();
                                     var typeSnapMod = "";
                                     var txtSnapMod = "";
 
-                                    for(var firstCount = 0; firstCount < valueSnapMod.length; firstCount++)
+                                    for(var count = 0; count < valueSnapMod.length; count++)
                                     {
-                                        if(valueSnapMod[firstCount] !== ":")
+                                        if(valueSnapMod[count] !== " ")
                                         {
-                                            typeSnapMod = typeSnapMod + valueSnapMod[firstCount];
+                                            typeSnapMod = typeSnapMod + valueSnapMod[count];
                                         }
                                         else
                                         {
-                                            for(firstCount += 1; firstCount < valueSnapMod.length; firstCount++)
+                                            for(count += 3; count < valueSnapMod.length; count++)
                                             {
-                                                txtSnapMod = txtSnapMod + valueSnapMod[firstCount];
+                                                txtSnapMod = txtSnapMod + valueSnapMod[count];
                                             }
                                             break;
                                         }
@@ -397,17 +397,17 @@ ob_start();
                                     var typeBackupMod = "";
                                     var txtBackupMod = "";
 
-                                    for(var firstCount = 0; firstCount < valueBackupMod.length; firstCount++)
+                                    for(var count = 0; count < valueBackupMod.length; count++)
                                     {
-                                        if(valueBackupMod[firstCount] !== ":")
+                                        if(valueBackupMod[count] !== " ")
                                         {
-                                            typeBackupMod = typeBackupMod + valueBackupMod[firstCount];
+                                            typeBackupMod = typeBackupMod + valueBackupMod[count];
                                         }
                                         else
                                         {
-                                            for(firstCount += 1; firstCount < valueBackupMod.length; firstCount++)
+                                            for(count += 3; count < valueBackupMod.length; count++)
                                             {
-                                                txtBackupMod = txtBackupMod + valueBackupMod[firstCount];
+                                                txtBackupMod = txtBackupMod + valueBackupMod[count];
                                             }
                                             break;
                                         }

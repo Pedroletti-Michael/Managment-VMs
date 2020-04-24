@@ -45,7 +45,7 @@ function displayBDD_OSNameWhereWindows(){
 function displayBDD_OSNameWhereLinux(){
     $strSep = '\'';
 
-    $query = "SELECT osName FROM os WHERE status = 0 AND osType = ". $strSep."Linux / Ubuntu".$strSep;
+    $query = "SELECT osName FROM os WHERE status = 0 AND osType = ". $strSep."Linux".$strSep;
 
     $result = array();
     array_push($result, "Linux / Ubuntu");
