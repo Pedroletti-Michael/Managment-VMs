@@ -28,7 +28,10 @@
     <div class="logo-responsive navbar-brand mr-0 pl-3 pr-3 font-weight-bold float-left" href="#" style="font-family: 'Century Gothic'">
         <a href="index.php?action=home" style="color: white; text-decoration: none">HEIG-VD</a>
     </div>
-    <input class="search-responsive form-control form-control-light float-left" style="margin-top: 5px" type="text" placeholder="Recherche" aria-label="Recherche">
+    <form method="post" action="../index.php?action=research" class="btn-group search-responsive float-left" style="padding-top: 5px">
+        <input class="form-control form-control-light" style="width: calc(100%-50px)" type="text" placeholder="Recherche" aria-label="Recherche">
+        <button type="submit" class="btn btn-success" style="width: 30px">></button>
+    </form>
     <div class="signIn-responsive float-right text-center float-left align-items-center" style="height: 48px;">
         <span class="navbar-toggler-icon float-right" style="margin: 14px" onclick="openNav()"></span>
     </div>
@@ -148,7 +151,12 @@
         <a href="index.php?action=home" style="color: white; text-decoration: none">HEIG-VD</a>
         <span class="responsive-menu-min navbar-toggler-icon float-right m-0" onclick="Sidebar()"></span>
     </div>
-    <input class="search-responsive form-control form-control-light" type="text" placeholder="Recherche" aria-label="Recherche">
+    <!------ Search ------->
+    <form method="post" action="../index.php?action=research" class="btn-group search-responsive">
+        <input class="form-control form-control-light" style="width: calc(100%-120px)" type="text" placeholder="Recherche" aria-label="Recherche">
+        <button type="submit" class="btn btn-success" style="width: 120px">Rechercher</button>
+    </form>
+    <!------ Sign In / Sign Out ------->
     <div class="signIn-responsive float-right text-center">
         <?php if(isset($_SESSION['userType'])): ?>
             <a class="nav-link responsive-phone-hidden" href="index.php?action=signOut" style="color: white">Déconnexion</a>
