@@ -59,16 +59,16 @@ ob_start();
                 <form method="post" action="../index.php?action=editEntity">
                     <div class="form-group" name="formulaire" id="form_Entity">
                         <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service</label>
-                        <select multiple class="form-control mb-3" id="value" name="value">
+                        <select multiple class="form-control mb-3" id="valueEntityDel" name="valueEntityDel">
                             <?php
                             foreach ($entityNames as $value) {
                                 echo "<option>".$value['entityName']."</option>";
                             }
                             ?>
                         </select>
-                        <button type="button" class="btn btn-success float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#addEntity" value="add" name="add" id="add">Ajouter</button>
+                        <button type="button" class="btn btn-success float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#addEntity">Ajouter</button>
                         <button type="submit" class="btn btn-danger float-left w-33 responsiveDisplay" value="delete" name="delete" id="delete">Supprimer</button>
-                        <button type="button" class="btn btn-warning float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#modifyEntity" value="modify" name="modify" id="modify">Modifier</button>
+                        <button type="button" class="btn btn-warning float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#modifyEntity">Modifier</button>
                     </div>
                 </form>
             </div>
@@ -82,7 +82,7 @@ ob_start();
                 <form method="post" action="../index.php?action=editEntity">
                     <div class="form-group" name="formulaire" id="form_Entity">
                         <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service</label>
-                        <select multiple class="form-control mb-3" id="value" name="value">
+                        <select multiple class="form-control mb-3" id="valueEntityAdd" name="valueEntityAdd">
                             <?php
                             foreach ($entityNames as $value) {
                                 echo "<option>".$value['entityName']."</option>";
@@ -90,7 +90,7 @@ ob_start();
                             ?>
                         </select>
 
-                        <input type="text" class="form-control float-left w-75-m responsiveDisplay" id="txt" name="txt" placeholder="Nom">
+                        <input type="text" class="form-control float-left w-75-m responsiveDisplay" id="txtEntityAdd" name="txtEntityAdd" placeholder="Nom">
                         <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
                     </div>
                 </form>
@@ -105,15 +105,15 @@ ob_start();
                 <form method="post" action="../index.php?action=editEntity">
                     <div class="form-group" name="formulaire" id="form_Entity">
                         <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service</label>
-                        <select multiple class="form-control mb-3" id="value2" name="value2" onChange="getSelectedValue()">
+                        <select multiple class="form-control mb-3" id="valueEntityMod" name="valueEntityMod" onChange="getSelectedValueEntityToModify()">
                             <?php
                             foreach ($entityNames as $value) {
                                 echo "<option>".$value['entityName']."</option>";
                             }
                             ?>
                         </select>
-                        <input type="text" class="form-control float-left w-75-m responsiveDisplay" id="txt2" name="txt2" placeholder="Nouvelle valeur">
-                        <script>function getSelectedValue() {document.getElementById("txt2").value = document.getElementById("value2").value}</script>
+                        <input type="text" class="form-control float-left w-75-m responsiveDisplay" id="txtEntityMod" name="txtEntityMod" placeholder="Nouvelle valeur">
+                        <script>function getSelectedValueEntityToModify() {document.getElementById("txtEntityMod").value = document.getElementById("valueEntityMod").value}</script>
                         <button type="submit" class="btn btn-warning float-left w-25-m responsiveDisplay" value="modify" name="modify" id="modify">Confirmer</button>
                     </div>
                 </form>
@@ -128,7 +128,7 @@ ob_start();
                 <form method="post" action="../index.php?action=editOS">
                     <div class="form-group" name="formulaire" id="form_OS">
                         <label for="disFormControlSelect" class="font-weight-bold">OS</label>
-                        <select multiple class="form-control mb-3" id="value" name='value'>
+                        <select multiple class="form-control mb-3" id="valueOsDel" name='valueOsDel'>
                             <?php
                             foreach ($osNames as $value) {
                                 echo "<option value='".$value['osName']."'>".$value['osType']." ".$value['osName']."</option>";
@@ -136,9 +136,9 @@ ob_start();
                             ?>
                         </select>
 
-                        <button type="button" class="btn btn-success float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#addOS" value="add" name="add" id="add">Ajouter</button>
+                        <button type="button" class="btn btn-success float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#addOS">Ajouter</button>
                         <button type="submit" class="btn btn-danger float-left w-33 responsiveDisplay" value="delete" name="delete" id="delete">Supprimer</button>
-                        <button type="button" class="btn btn-warning float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#modifyOS" value="modify" name="modify" id="modify">Modifier</button>
+                        <button type="button" class="btn btn-warning float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#modifyOS">Modifier</button>
                     </div>
                 </form>
             </div>
@@ -152,7 +152,7 @@ ob_start();
                 <form method="post" action="../index.php?action=editOS">
                     <div class="form-group" name="formulaire" id="form_OS">
                         <label for="disFormControlSelect" class="font-weight-bold">OS</label>
-                        <select multiple class="form-control mb-3" id="value" name='value'>
+                        <select multiple class="form-control mb-3" id="valueOsAdd" name='valueOsAdd'>
                             <?php
                             foreach ($osNames as $value) {
                                 echo "<option value='".$value['osName']."'>".$value['osType']." ".$value['osName']."</option>";
@@ -160,11 +160,11 @@ ob_start();
                             ?>
                         </select>
                         <div class="w-75-m responsiveDisplay">
-                            <select class="form-control float-left w-33 responsiveDisplay" id="type" name="type">
+                            <select class="form-control float-left w-33 responsiveDisplay" id="typeOsAdd" name="typeOsAdd">
                                 <option>Windows</option>
                                 <option>Linux / Ubuntu</option>
                             </select>
-                            <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txt" name="txt" placeholder="Nom">
+                            <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txtOsAdd" name="txtOsAdd" placeholder="Nom">
                         </div>
                         <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
                     </div>
@@ -180,7 +180,7 @@ ob_start();
                 <form method="post" action="../index.php?action=editOS">
                     <div class="form-group" name="formulaire" id="form_OS">
                         <label for="disFormControlSelect" class="font-weight-bold">OS</label>
-                        <select multiple class="form-control mb-3" id="value2" name='value2'>
+                        <select multiple class="form-control mb-3" id="valueOsMod" name='valueOsMod' onchange="getSelectedValueOsToModify()">
                             <?php
                             foreach ($osNames as $value) {
                                 echo "<option value='".$value['osName']."'>".$value['osType']." ".$value['osName']."</option>";
@@ -188,11 +188,17 @@ ob_start();
                             ?>
                         </select>
                         <div class="w-75-m responsiveDisplay">
-                            <select class="form-control float-left w-33 responsiveDisplay" id="type" name="type">
+                            <select class="form-control float-left w-33 responsiveDisplay" id="typeOsMod" name="typeOsMod">
                                 <option>Windows</option>
                                 <option>Linux / Ubuntu</option>
                             </select>
-                            <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txt2" name="txt2" placeholder="Nouvelle valeur">
+                            <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txtOsMod" name="txtOsMod" placeholder="Nouvelle valeur">
+                            <script>function getSelectedValueOsToModify()
+                                    {
+                                        document.getElementById("typeOsMod").value = "Windows";
+                                        document.getElementById("txtOsMod").value = "test";
+                                    }
+                            </script>
                         </div>
                         <button type="submit" class="btn btn-warning float-left w-25-m responsiveDisplay" value="modify" name="modify" id="modify">Confirmer</button>
                     </div>
@@ -208,7 +214,7 @@ ob_start();
                 <form method="post" action="../index.php?action=editSnapshots">
                     <div class="form-group" name="formulaire" id="form_Snapshots">
                         <label for="disFormControlSelect" class="font-weight-bold">Snapshots</label>
-                        <select multiple class="form-control mb-3" id="value" name='value'>
+                        <select multiple class="form-control mb-3" id="valueSnapDel" name='valueSnapDel'>
                             <?php
                             foreach ($snapshotPolicy as $value) {
                                 echo "<option value='".$value['name']."'>".$value['name']." : ".$value['policy']."</option>";
@@ -216,9 +222,9 @@ ob_start();
                             ?>
                         </select>
 
-                        <button type="button" class="btn btn-success float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#addSnapshots" value="add" name="add" id="add">Ajouter</button>
+                        <button type="button" class="btn btn-success float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#addSnapshots">Ajouter</button>
                         <button type="submit" class="btn btn-danger float-left w-33 responsiveDisplay" value="delete" name="delete" id="delete">Supprimer</button>
-                        <button type="button" class="btn btn-warning float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#modifySnapshots" value="modify" name="modify" id="modify">Modifier</button>
+                        <button type="button" class="btn btn-warning float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#modifySnapshots">Modifier</button>
                     </div>
                 </form>
             </div>
@@ -232,7 +238,7 @@ ob_start();
                 <form method="post" action="../index.php?action=editSnapshots">
                     <div class="form-group" name="formulaire" id="form_Snapshots">
                         <label for="disFormControlSelect" class="font-weight-bold">Snapshots</label>
-                        <select multiple class="form-control mb-3" id="value" name='value'>
+                        <select multiple class="form-control mb-3" id="valueSnapAdd" name='valueSnapAdd'>
                             <?php
                             foreach ($snapshotPolicy as $value) {
                                 echo "<option value='".$value['name']."'>".$value['name']." : ".$value['policy']."</option>";
@@ -240,8 +246,8 @@ ob_start();
                             ?>
                         </select>
                         <div class="w-75-m responsiveDisplay">
-                            <input type="text" class="form-control float-left w-33 responsiveDisplay" id="type" name="type" placeholder="Type">
-                            <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txt" name="txt" placeholder="Nom">
+                            <input type="text" class="form-control float-left w-33 responsiveDisplay" id="typeSnapAdd" name="typeSnapAdd" placeholder="Type">
+                            <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txtSnapAdd" name="txtSnapAdd" placeholder="Nom">
                         </div>
                         <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
                     </div>
@@ -257,7 +263,7 @@ ob_start();
                 <form method="post" action="../index.php?action=editSnapshots">
                     <div class="form-group" name="formulaire" id="form_Snapshots">
                         <label for="disFormControlSelect" class="font-weight-bold">Snapshots</label>
-                        <select multiple class="form-control mb-3" id="value" name='value'>
+                        <select multiple class="form-control mb-3" id="valueSnapMod" name='valueSnapMod' onchange="getSelectedValueSnapToModify()">
                             <?php
                             foreach ($snapshotPolicy as $value) {
                                 echo "<option value='".$value['name']."'>".$value['name']." : ".$value['policy']."</option>";
@@ -265,8 +271,14 @@ ob_start();
                             ?>
                         </select>
                         <div class="w-75-m responsiveDisplay">
-                            <input type="text" class="form-control float-left w-33 responsiveDisplay" id="type" name="type" placeholder="Type">
-                            <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txt2" name="txt2" placeholder="Nouvelle valeur">
+                            <input type="text" class="form-control float-left w-33 responsiveDisplay" id="typeSnapMod" name="typeSnapMod" placeholder="Type">
+                            <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txtSnapMod" name="txtSnapMod" placeholder="Nouvelle valeur">
+                            <script>function getSelectedValueSnapToModify()
+                                {
+                                    document.getElementById("typeSnapMod").value = "Gold";
+                                    document.getElementById("txtSnapMod").value = "test";
+                                }
+                            </script>
                         </div>
                         <button type="submit" class="btn btn-warning float-left w-25-m responsiveDisplay" value="modify" name="modify" id="modify">Confirmer</button>
                     </div>
@@ -282,7 +294,7 @@ ob_start();
                 <form method="post" action="../index.php?action=editBackup">
                     <div class="form-group" name="formulaire" id="form_Backup">
                         <label for="disFormControlSelect" class="font-weight-bold">Backup</label>
-                        <select multiple class="form-control mb-3" id="value" name='value'>
+                        <select multiple class="form-control mb-3" id="valueBackupDel" name='valueBackupDel'>
                             <?php
                             foreach ($backupPolicy as $value) {
                                 echo "<option value='".$value['name']."'>".$value['name']." : ".$value['policy']."</option>";
@@ -290,9 +302,9 @@ ob_start();
                             ?>
                         </select>
 
-                        <button type="button" class="btn btn-success float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#addBackup" value="add" name="add" id="add">Ajouter</button>
+                        <button type="button" class="btn btn-success float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#addBackup">Ajouter</button>
                         <button type="submit" class="btn btn-danger float-left w-33 responsiveDisplay" value="delete" name="delete" id="delete">Supprimer</button>
-                        <button type="button" class="btn btn-warning float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#modifyBackup" value="modify" name="modify" id="modify">Modifier</button>
+                        <button type="button" class="btn btn-warning float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#modifyBackup">Modifier</button>
                     </div>
                 </form>
             </div>
@@ -306,7 +318,7 @@ ob_start();
                 <form method="post" action="../index.php?action=editBackup">
                     <div class="form-group" name="formulaire" id="form_Backup">
                         <label for="disFormControlSelect" class="font-weight-bold">Backup</label>
-                        <select multiple class="form-control mb-3" id="value" name='value'>
+                        <select multiple class="form-control mb-3" id="valueBackupAdd" name='valueBackupAdd'>
                             <?php
                             foreach ($backupPolicy as $value) {
                                 echo "<option value='".$value['name']."'>".$value['name']." : ".$value['policy']."</option>";
@@ -314,8 +326,8 @@ ob_start();
                             ?>
                         </select>
                         <div class="w-75-m responsiveDisplay">
-                            <input type="text" class="form-control float-left w-33 responsiveDisplay" id="type" name="type" placeholder="Type">
-                            <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txt" name="txt" placeholder="Nom">
+                            <input type="text" class="form-control float-left w-33 responsiveDisplay" id="typeBackupAdd" name="typeBackupAdd" placeholder="Type">
+                            <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txtBackupAdd" name="txtBackupAdd" placeholder="Nom">
                         </div>
                         <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
                     </div>
@@ -331,7 +343,7 @@ ob_start();
                 <form method="post" action="../index.php?action=editBackup">
                     <div class="form-group" name="formulaire" id="form_Backup">
                         <label for="disFormControlSelect" class="font-weight-bold">Backup</label>
-                        <select multiple class="form-control mb-3" id="value" name='value'>
+                        <select multiple class="form-control mb-3" id="valueBackupMod" name='valueBackupMod' onchange="getSelectedValueBackupToModify()">
                             <?php
                             foreach ($backupPolicy as $value) {
                                 echo "<option value='".$value['name']."'>".$value['name']." : ".$value['policy']."</option>";
@@ -339,8 +351,14 @@ ob_start();
                             ?>
                         </select>
                         <div class="w-75-m responsiveDisplay">
-                            <input type="text" class="form-control float-left w-33 responsiveDisplay" id="type" name="type" placeholder="Type">
-                            <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txt2" name="txt2" placeholder="Nouvelle valeur">
+                            <input type="text" class="form-control float-left w-33 responsiveDisplay" id="typeBackupMod" name="typeBackupMod" placeholder="Type">
+                            <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txtBackupMod" name="txtBackupMod" placeholder="Nouvelle valeur">
+                            <script>function getSelectedValueBackupToModify()
+                                {
+                                    document.getElementById("typeBackupMod").value = "Gold";
+                                    document.getElementById("txtBackupMod").value = "test";
+                                }
+                            </script>
                         </div>
                         <button type="submit" class="btn btn-warning float-left w-25-m responsiveDisplay" value="modify" name="modify" id="modify">Confirmer</button>
                     </div>
