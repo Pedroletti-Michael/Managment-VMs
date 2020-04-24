@@ -36,28 +36,28 @@ ob_start();
             </div>
         </div>
         <div class="table-responsive-xl">
-            <table class="table table-striped allVM">
+            <table class="table table-striped allVM" id="tableInventoryVm">
             <thead class="thead-dark sticky-top">
             <tr>
                 <th scope="col" style="width: 50px"></th>
-                <th scope="col">name</th>
-                <th scope="col">dateStart</th>
-                <th scope="col">dateEnd</th>
-                <th scope="col">description</th>
-                <th scope="col">usageType</th>
-                <th scope="col">cpu</th>
-                <th scope="col">ram</th>
-                <th scope="col">disk</th>
-                <th scope="col">network</th>
-                <th scope="col">domain</th>
-                <th scope="col">comment</th>
-                <th scope="col">customer</th>
-                <th scope="col">userRa</th>
-                <th scope="col">userRt</th>
-                <th scope="col">entity_id</th>
-                <th scope="col">os_id</th>
-                <th scope="col">snapshot_id</th>
-                <th scope="col">backup_id</th>
+                <th scope="col" onclick="sortTable(1)">name</th>
+                <th scope="col" onclick="sortTable(2)">dateStart</th>
+                <th scope="col" onclick="sortTable(3)">dateEnd</th>
+                <th scope="col" onclick="sortTable(4)">description</th>
+                <th scope="col" onclick="sortTable(5)">usageType</th>
+                <th scope="col" onclick="sortNumberTable(6)">cpu</th>
+                <th scope="col" onclick="sortNumberTable(7)">ram</th>
+                <th scope="col" onclick="sortNumberTable(8)">disk</th>
+                <th scope="col" onclick="sortTable(9)">network</th>
+                <th scope="col" onclick="sortTable(10)">domain</th>
+                <th scope="col" onclick="sortTable(11)">comment</th>
+                <th scope="col" onclick="sortTable(12)">customer</th>
+                <th scope="col" onclick="sortTable(13)">userRa</th>
+                <th scope="col" onclick="sortTable(14)">userRt</th>
+                <th scope="col" onclick="sortTable(15)">entity_id</th>
+                <th scope="col" onclick="sortTable(16)">os_id</th>
+                <th scope="col" onclick="sortTable(17)">snapshot_id</th>
+                <th scope="col" onclick="sortTable(18)">backup_id</th>
             </tr>
             </thead>
             <tbody>
@@ -77,7 +77,7 @@ ob_start();
                         <td><?php echo $value['ram']?></td>
                         <td><?php echo $value['disk']?></td>
                         <td><?php echo $value['network']?></td>
-                        <td><?php echo $value['domain']?></td>
+                        <td><?php if($value['domain'] == 1){echo 'oui';}else{echo 'non';}?></td>
                         <td><?php echo $value['comment']?></td>
                         <td><?php echo $value['customer']?></td>
                         <td><?php echo $value['userRa']?></td>

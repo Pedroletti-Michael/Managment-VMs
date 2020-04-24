@@ -20,6 +20,7 @@
     <script rel="javascript" src="../view/js/jquery.js"></script>
     <script rel="javascript" src="../view/js/script.js"></script>
     <script rel="javascript" src="../view/js/searchBox.js"></script>
+    <script rel="javascript" src="../view/js/sortTable.js"></script>
 </head>
 <body>
 <!-------------------------- Gabarit phone ------------------------------->
