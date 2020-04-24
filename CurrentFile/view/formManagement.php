@@ -183,20 +183,39 @@ ob_start();
                         <select multiple class="form-control mb-3" id="valueOsMod" name='valueOsMod' onchange="getSelectedValueOsToModify()">
                             <?php
                             foreach ($osNames as $value) {
-                                echo "<option value='".$value['osName']."'>".$value['osType']." ".$value['osName']."</option>";
+                                echo "<option value='".$value['osType']." ".$value['osName']."'>".$value['osType']." ".$value['osName']."</option>";
                             }
                             ?>
                         </select>
                         <div class="w-75-m responsiveDisplay">
                             <select class="form-control float-left w-33 responsiveDisplay" id="typeOsMod" name="typeOsMod">
                                 <option>Windows</option>
-                                <option>Linux / Ubuntu</option>
+                                <option>Linux</option>
                             </select>
                             <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txtOsMod" name="txtOsMod" placeholder="Nouvelle valeur">
                             <script>function getSelectedValueOsToModify()
                                     {
-                                        document.getElementById("typeOsMod").value = "Windows";
-                                        document.getElementById("txtOsMod").value = "test";
+                                        var valueOsMod = document.getElementById("valueOsMod").value;
+                                        var typeOsMod = "";
+                                        var txtOsMod = "";
+
+                                        for(var firstCount = 0; firstCount < valueOsMod.length; firstCount++)
+                                        {
+                                            if(valueOsMod[firstCount] !== " ")
+                                            {
+                                                typeOsMod = typeOsMod + valueOsMod[firstCount];
+                                            }
+                                            else
+                                            {
+                                                for(; firstCount < valueOsMod.length; firstCount++)
+                                                {
+                                                    txtOsMod = txtOsMod + valueOsMod[firstCount];
+                                                }
+                                                break;
+                                            }
+                                        }
+                                        document.getElementById("typeOsMod").value = typeOsMod;
+                                        document.getElementById("txtOsMod").value = txtOsMod;
                                     }
                             </script>
                         </div>
@@ -266,7 +285,7 @@ ob_start();
                         <select multiple class="form-control mb-3" id="valueSnapMod" name='valueSnapMod' onchange="getSelectedValueSnapToModify()">
                             <?php
                             foreach ($snapshotPolicy as $value) {
-                                echo "<option value='".$value['name']."'>".$value['name']." : ".$value['policy']."</option>";
+                                echo "<option value='".$value['name']." : ".$value['policy']."'>".$value['name']." : ".$value['policy']."</option>";
                             }
                             ?>
                         </select>
@@ -275,8 +294,27 @@ ob_start();
                             <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txtSnapMod" name="txtSnapMod" placeholder="Nouvelle valeur">
                             <script>function getSelectedValueSnapToModify()
                                 {
-                                    document.getElementById("typeSnapMod").value = "Gold";
-                                    document.getElementById("txtSnapMod").value = "test";
+                                    var valueSnapMod = document.getElementById("valueSnapMod").value;
+                                    var typeSnapMod = "";
+                                    var txtSnapMod = "";
+
+                                    for(var firstCount = 0; firstCount < valueSnapMod.length; firstCount++)
+                                    {
+                                        if(valueSnapMod[firstCount] !== ":")
+                                        {
+                                            typeSnapMod = typeSnapMod + valueSnapMod[firstCount];
+                                        }
+                                        else
+                                        {
+                                            for(firstCount += 1; firstCount < valueSnapMod.length; firstCount++)
+                                            {
+                                                txtSnapMod = txtSnapMod + valueSnapMod[firstCount];
+                                            }
+                                            break;
+                                        }
+                                    }
+                                    document.getElementById("typeSnapMod").value = typeSnapMod;
+                                    document.getElementById("txtSnapMod").value = txtSnapMod;
                                 }
                             </script>
                         </div>
@@ -346,7 +384,7 @@ ob_start();
                         <select multiple class="form-control mb-3" id="valueBackupMod" name='valueBackupMod' onchange="getSelectedValueBackupToModify()">
                             <?php
                             foreach ($backupPolicy as $value) {
-                                echo "<option value='".$value['name']."'>".$value['name']." : ".$value['policy']."</option>";
+                                echo "<option value='".$value['name']." : ".$value['policy']."'>".$value['name']." : ".$value['policy']."</option>";
                             }
                             ?>
                         </select>
@@ -355,8 +393,27 @@ ob_start();
                             <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txtBackupMod" name="txtBackupMod" placeholder="Nouvelle valeur">
                             <script>function getSelectedValueBackupToModify()
                                 {
-                                    document.getElementById("typeBackupMod").value = "Gold";
-                                    document.getElementById("txtBackupMod").value = "test";
+                                    var valueBackupMod = document.getElementById("valueBackupMod").value;
+                                    var typeBackupMod = "";
+                                    var txtBackupMod = "";
+
+                                    for(var firstCount = 0; firstCount < valueBackupMod.length; firstCount++)
+                                    {
+                                        if(valueBackupMod[firstCount] !== ":")
+                                        {
+                                            typeBackupMod = typeBackupMod + valueBackupMod[firstCount];
+                                        }
+                                        else
+                                        {
+                                            for(firstCount += 1; firstCount < valueBackupMod.length; firstCount++)
+                                            {
+                                                txtBackupMod = txtBackupMod + valueBackupMod[firstCount];
+                                            }
+                                            break;
+                                        }
+                                    }
+                                    document.getElementById("typeBackupMod").value = typeBackupMod;
+                                    document.getElementById("txtBackupMod").value = txtBackupMod;
                                 }
                             </script>
                         </div>
