@@ -64,3 +64,22 @@ function searchFunctionRedundance() {
         }
     }
 }
+
+function filterForInventoryVm(which) {
+    var input, filter, table, tr, td, i, txtValue;
+    input = which;
+    filter = input.toUpperCase();
+    table = document.getElementById("tableInventoryVm");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[17];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}

@@ -1,3 +1,4 @@
+//These function (sortTable and sortNumberTable) can only be used in table with id == tableInventoryVm
 function sortTable(n) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("tableInventoryVm");

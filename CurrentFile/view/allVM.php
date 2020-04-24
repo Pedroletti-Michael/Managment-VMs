@@ -35,6 +35,20 @@ ob_start();
                 </div>
             </div>
         </div>
+        <!--Snapshot-->
+        <button type="button" class="btn btn-primary w-25 h-25" onclick="filterForInventoryVm('Gold')">
+            <h5>Snapshot - Gold</h5>
+        </button>
+        <button type="button" class="btn btn-primary w-25 h-25" onclick="filterForInventoryVm('Silver')">
+            <h5>Snapshot - Silver</h5>
+        </button>
+        <button type="button" class="btn btn-primary w-25 h-25" onclick="filterForInventoryVm('Bronze')">
+            <h5>Snapshot - Bronze</h5>
+        </button>
+        <button type="button" class="btn btn-primary w-25 h-25" onclick="filterForInventoryVm('Aucun')">
+            <h5>Snapshot - Aucun</h5>
+        </button>
+
         <div class="table-responsive-xl">
             <table class="table table-striped allVM" id="tableInventoryVm">
             <thead class="thead-dark sticky-top">
