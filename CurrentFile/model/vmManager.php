@@ -245,6 +245,28 @@ function getConfirmationVM(){
     return $resultSelect;
 }
 
+/**===GET INFO FROM VM WHO NEED TO BE CONFIRMED===**/
+function getRenewalVM(){
+    require_once 'model/dbConnector.php';
+
+    $querySelect = "SELECT `id`, `name`, `dateStart`, `dateAnniversary`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`  FROM `vm` WHERE vmStatus = 3";
+
+    $resultSelect = executeQuerySelect($querySelect);
+    $i = 0;
+
+    foreach ($resultSelect as $vm){
+        $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
+        $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
+        $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
+        $resultSelect[$i]['os_id'] = getInfoOs($vm['os_id']);
+        $resultSelect[$i]['snapshot_id'] = getInfoSnapshot($vm['snapshot_id']);
+        $resultSelect[$i]['backup_id'] = getInfoBackup($vm['backup_id']);
+        $i++;
+    }
+    return $resultSelect;
+}
+
 /**===GET INFO FROM VM WHO ARE VALIDATED===**/
 function getValidatedVM(){
     require_once 'model/dbConnector.php';
@@ -268,6 +290,7 @@ function getValidatedVM(){
 }
 
 /**===GET INFO FROM VM WHO NEED TO BE RENEW===**/
+/** A supprimer -> remplacer par getRenewalVM**/
 function getVmToRenew(){
     require_once 'model/dbConnector.php';
 

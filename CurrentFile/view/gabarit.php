@@ -26,9 +26,9 @@
 <!-------------------------- Gabarit phone ------------------------------->
 <nav class="display-phone navbar navbar-dark header-top fixed-top flex-lg-nowrap p-0 shadow w-100 navbar-expand-lg" style="background-color: #e30613;flex-wrap: nowrap !important; height: 48px">
     <div class="logo-responsive navbar-brand mr-0 pl-3 pr-3 font-weight-bold float-left" href="#" style="font-family: 'Century Gothic'">
-        <a>HEIG-VD</a>
+        <a href="index.php?action=home" style="color: white; text-decoration: none">HEIG-VD</a>
     </div>
-    <input class="search-responsive form-control form-control-light float-left" style="margin-top: 5px" type="text" placeholder="Search" aria-label="Search">
+    <input class="search-responsive form-control form-control-light float-left" style="margin-top: 5px" type="text" placeholder="Recherche" aria-label="Recherche">
     <div class="signIn-responsive float-right text-center float-left align-items-center" style="height: 48px;">
         <span class="navbar-toggler-icon float-right" style="margin: 14px" onclick="openNav()"></span>
     </div>
@@ -36,15 +36,15 @@
         <!----------------- signIn ---------------->
         <?php if ($_GET['action'] == "signIn"): ?>
             <?php if(isset($_SESSION['userType'])): ?>
-                <a href="index.php?action=signOut" class="alert-link active float-right pr-4">Sign Out</a>
+                <a href="index.php?action=signOut" class="alert-link active float-right pr-4">Déconnexion</a>
             <?php else : ?>
-                <a href="index.php?action=signIn" class="alert-link active float-right pr-4">Sign In</a>
+                <a href="index.php?action=signIn" class="alert-link active float-right pr-4">Se connecter</a>
             <?php endif; ?>
         <?php else : ?>
             <?php if(isset($_SESSION['userType'])): ?>
-                <a href="index.php?action=signOut" class="float-right pr-4">Sign Out</a>
+                <a href="index.php?action=signOut" class="float-right pr-4">Déconnexion</a>
             <?php else : ?>
-                <a href="index.php?action=signIn" class="float-right pr-4">Sign In</a>
+                <a href="index.php?action=signIn" class="float-right pr-4">Se connecter</a>
             <?php endif; ?>
         <?php endif; ?>
         <a class="title">Public</a>
@@ -65,15 +65,21 @@
             <a class="title">Admin</a>
             <!----------------- allVM ---------------->
             <?php if ($_GET['action'] == "allVM"): ?>
-                <a href="index.php?action=allVM" class="alert-link active">Toutes les VM</a>
+                <a href="index.php?action=allVM" class="alert-link active">Inventaire VM</a>
             <?php else : ?>
-                <a href="index.php?action=allVM">Toutes les VM</a>
+                <a href="index.php?action=allVM">Inventaire VM</a>
             <?php endif; ?>
             <!----------------- confirmationVM ---------------->
             <?php if ($_GET['action'] == "confirmationVM"): ?>
-                <a href="index.php?action=confirmationVM" class="alert-link active">VM à confirmer</a>
+                <a href="index.php?action=confirmationVM" class="alert-link active">Demandes</a>
             <?php else : ?>
-                <a href="index.php?action=confirmationVM">VM à confirmer</a>
+                <a href="index.php?action=confirmationVM">Demandes</a>
+            <?php endif; ?>
+            <!----------------- renewalVM ---------------->
+            <?php if ($_GET['action'] == "renewalVM"): ?>
+                <a href="index.php?action=renewalVM" class="alert-link active">Renouvellements</a>
+            <?php else : ?>
+                <a href="index.php?action=renewalVM">Renouvellements</a>
             <?php endif; ?>
             <!----------------- formManagement ---------------->
             <?php if ($_GET['action'] == "formManagement"): ?>
@@ -139,15 +145,15 @@
 <!-------------------------- Gabarit responsive ------------------------------->
 <nav class="display-laptop navbar navbar-dark header-top fixed-top flex-lg-nowrap p-0 shadow w-100 navbar-expand-lg" style="background-color: #e30613;flex-wrap: nowrap !important; ">
     <div class="logo-responsive navbar-brand mr-0 pl-3 pr-3 font-weight-bold" href="#" style="font-family: 'Century Gothic'">
-        <a>HEIG-VD</a>
+        <a href="index.php?action=home" style="color: white; text-decoration: none">HEIG-VD</a>
         <span class="responsive-menu-min navbar-toggler-icon float-right m-0" onclick="Sidebar()"></span>
     </div>
-    <input class="search-responsive form-control form-control-light" type="text" placeholder="Search" aria-label="Search">
+    <input class="search-responsive form-control form-control-light" type="text" placeholder="Recherche" aria-label="Recherche">
     <div class="signIn-responsive float-right text-center">
         <?php if(isset($_SESSION['userType'])): ?>
-            <a class="nav-link responsive-phone-hidden" href="index.php?action=signOut" style="color: white">Sign Out</a>
+            <a class="nav-link responsive-phone-hidden" href="index.php?action=signOut" style="color: white">Déconnexion</a>
         <?php else : ?>
-            <a class="nav-link responsive-phone-hidden" href="index.php?action=signIn" style="color: white">Sign In</a>
+            <a class="nav-link responsive-phone-hidden" href="index.php?action=signIn" style="color: white">Se connecter</a>
         <?php endif; ?>
     </div>
 
@@ -192,7 +198,7 @@
                         <a class="nav-link" href="index.php?action=allVM">
                             <?php endif; ?>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                            Toutes les VM
+                            Inventaire VM
                         </a>
                 </li>
             </ul>
@@ -205,7 +211,20 @@
                         <a class="nav-link" href="index.php?action=confirmationVM">
                             <?php endif; ?>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                            VM à confirmer
+                            Demandes
+                        </a>
+                </li>
+            </ul>
+
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <?php if ($_GET['action'] == "renewalVM"): ?>
+                    <a class="nav-link active" href="index.php?action=renewalVM">
+                        <?php else : ?>
+                        <a class="nav-link" href="index.php?action=renewalVM">
+                            <?php endif; ?>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                            Renouvellements
                         </a>
                 </li>
             </ul>
@@ -222,11 +241,11 @@
                         </a>
                 </li>
             </ul>
-
+                <!--
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                 <span>Base de données</span>
             </h6>
-            <!--
+
             <ul class="nav flex-column mb-2">
                 <li class="nav-item">
                     <?php if ($_GET['action'] == "vm"): ?>
@@ -360,7 +379,7 @@
                             <a class="nav-link" href="index.php?action=allVM">
                                 <?php endif; ?>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                Toutes les VM
+                                Inventaire VM
                             </a>
                     </li>
                 </ul>
@@ -373,7 +392,20 @@
                             <a class="nav-link" href="index.php?action=confirmationVM">
                                 <?php endif; ?>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                VM à confirmer
+                                Demandes
+                            </a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <?php if ($_GET['action'] == "renewalVM"): ?>
+                        <a class="nav-link active" href="index.php?action=renewalVM">
+                            <?php else : ?>
+                            <a class="nav-link" href="index.php?action=renewalVM">
+                                <?php endif; ?>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                                Renouvellements
                             </a>
                     </li>
                 </ul>
@@ -390,11 +422,11 @@
                             </a>
                     </li>
                 </ul>
-
+                    <!--
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                     <span>Base de données</span>
                 </h6>
-                <!--
+
                 <ul class="nav flex-column mb-2">
                     <li class="nav-item">
                         <?php if ($_GET['action'] == "vm"): ?>

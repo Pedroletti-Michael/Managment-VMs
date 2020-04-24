@@ -86,7 +86,14 @@ ob_start();
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <!--Stockages-->
                 <label for="SSD" class="font-weight-bold mr-2">Stockage SSD (GB)<a style="color: red"> *</a></label>
-                <input type="number" class="form-control form form" id="inputSSD" name="inputSSD" aria-describedby="ssdHelp" min="20" max="1000" required>
+                <div class="w-100 d-inline-block">
+                    <div class="pr-2">
+                        <input type="number" class="form-control form form w-25 float-left" id="inputSSD" name="inputSSD" aria-describedby="ssdHelp" min="20" max="1000" required>
+                    </div>
+                    <div class="pl-2">
+                        <input type="text" class="form-control form form w-75 float-right" id="infoSSD" name="infoSSD" aria-describedby="ssdHelp" placeholder="Exemple : disque 1 : 200, disque 2 : 50" required>
+                    </div>
+                </div>
             </div>
             <!--Department / Institution / Service-->
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">

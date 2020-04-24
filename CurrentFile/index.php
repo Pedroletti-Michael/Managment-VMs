@@ -44,6 +44,9 @@ if(isset($_GET['action']))
         case 'allVM':
             displayAllVM($_POST);
             break;
+        case 'renewalVM':
+            displayRenewalVM();
+            break;
         case 'confirmationVM':
             displayConfirmationVM();
             break;

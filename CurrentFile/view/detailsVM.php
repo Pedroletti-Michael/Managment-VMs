@@ -270,7 +270,18 @@ ob_start();
             <!--Cluster-->
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="editCluster" class="font-weight-bold">Cluster</label>
-                <input type="cluster" class="form-control form form" value="<?php echo $dataVM[0]['cluster'] ?>" id="editCluster" name="editCluster" aria-describedby="clusterHelp">
+                <select class="form-control form form" id="editCluster" name="editCluster" aria-describedby="clusterHelp">
+                    <?php
+                    $clusterNames = array("PROD-CH", "PROD-YP","DEV-CH");
+                    for($i = 0; $i<3; $i++){
+                        if($dataVM[0]['cluster'] == $clusterNames[$i]){
+                            echo "<option selected>".$clusterNames[$i]."</option>";}
+                        else{
+                            echo "<option>".$clusterNames[$i]."</option>";
+                        }
+                    }
+                    ?>
+                </select>
             </div>
             <!--Date anniversary-->
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
@@ -287,7 +298,7 @@ ob_start();
             </div>
             <!--dnsName-->
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
-                <label for="inputEndDate" class="font-weight-bold">Nom du DNS</label>
+                <label for="inputEndDate" class="font-weight-bold">Nom DNS</label>
                 <input class="form-control form form" value="<?php echo $dataVM[0]['dnsName'] ?>" id="editDnsName" name="editDnsName" aria-describedby="dnsNameHelp">
             </div>
         </div>
@@ -308,7 +319,18 @@ ob_start();
             <!--Criticity-->
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="editCriticity" class="font-weight-bold">Critique</label>
-                <input class="form-control form form" value="<?php echo $dataVM[0]['criticity'] ?>" id="editCriticity" name="editCriticity" aria-describedby="criticityHelp">
+                <select class="form-control form form" id="editCriticity" name="editCriticity" aria-describedby="criticityHelp">
+                    <?php
+                    $criticityNames = array("1", "2","3");
+                    for($i = 0; $i<3; $i++){
+                        if($dataVM[0]['criticity'] == $criticityNames[$i]){
+                            echo "<option selected>".$criticityNames[$i]."</option>";}
+                        else{
+                            echo "<option>".$criticityNames[$i]."</option>";
+                        }
+                    }
+                    ?>
+                </select>
             </div>
         </div>
         <?php endif; ?>

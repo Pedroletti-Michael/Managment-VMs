@@ -91,8 +91,8 @@
         min-width: 200px;
     }
     .signIn-responsive{
-        max-width: 100px;
-        min-width: 100px;
+        max-width: 110px;
+        min-width: 110px;
     }
 }
 @media screen and (max-width: 1050px) {
@@ -107,8 +107,8 @@
         min-width: 200px;
     }
     .signIn-responsive{
-        max-width: 100px;
-        min-width: 100px;
+        max-width: 110px;
+        min-width: 110px;
     }
     .search-responsive{
         width: 50%;
@@ -171,7 +171,6 @@
     }
     .navbar-toggler-icon{
         width: 50px!important;
-        heigt: 50px!important;
     }
 
     .responsive-phone{
@@ -182,7 +181,6 @@
     .responsive-phone-bg{
         background-color: #272727;
     }
-
 
     /* The side navigation menu */
     .sidenav {
