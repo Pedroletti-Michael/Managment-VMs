@@ -38,7 +38,7 @@ function displayAllVM($searchFilter)
                     elseif($searchFilter['vmFilter'] == "VM à renouveler")
                     {
                         $checkFilter = "VM à renouveler";
-                        $allVM = getVmToRenew();
+                        $allVM = getRenewalVM();
                     }
 
                     $_GET['action'] = "allVM";
@@ -93,6 +93,35 @@ function displayConfirmationVM()
                 $confirmationVM = getConfirmationVM();
                 $_GET['action'] = "confirmationVM";
                 require 'view/confirmationVM.php';
+                break;
+            default:
+                $_GET['action'] = "signIn";
+                require 'view/signIn.php';
+                break;
+        }
+    }
+    else
+    {
+        $_GET['action'] = "signIn";
+        require 'view/signIn.php';
+    }
+}
+
+function displayRenewalVM()
+{
+    if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
+    {
+        switch ($_SESSION['userType'])
+        {
+            case 0:
+                require_once 'controler/user.php';
+                displayHome();
+                break;
+            case 1:
+                require_once 'model/vmManager.php';
+                $renewalVM = getRenewalVM();
+                $_GET['action'] = "renewalVM";
+                require 'view/renewalVM.php';
                 break;
             default:
                 $_GET['action'] = "signIn";
