@@ -65,14 +65,14 @@ function searchFunctionRedundance() {
     }
 }
 
-function filterForInventoryVm(which) {
+function filterForInventoryVm(which, n) {
     var input, filter, table, tr, td, i, txtValue;
     input = which;
     filter = input.toUpperCase();
     table = document.getElementById("tableInventoryVm");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[17];
+        td = tr[i].getElementsByTagName("td")[n];
         if (td) {
             txtValue = td.textContent || td.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {

@@ -9,6 +9,10 @@ ob_start();
     <!DOCTYPE html>
     <html lang="en">
     <head>
+        <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.bundle.js"></script>
+        <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+        <script rel="javascript" src="../view/js/jquery.js"></script>
+        <script rel="javascript" src="../view/js/script.js"></script>
         <meta charset="UTF-8">
         <title>Gestion VM - HEIG-VD</title>
     </head>
@@ -35,19 +39,81 @@ ob_start();
                 </div>
             </div>
         </div>
-        <!--Snapshot-->
-        <button type="button" class="btn btn-primary w-25 h-25" onclick="filterForInventoryVm('Gold')">
-            <h5>Snapshot - Gold</h5>
-        </button>
-        <button type="button" class="btn btn-primary w-25 h-25" onclick="filterForInventoryVm('Silver')">
-            <h5>Snapshot - Silver</h5>
-        </button>
-        <button type="button" class="btn btn-primary w-25 h-25" onclick="filterForInventoryVm('Bronze')">
-            <h5>Snapshot - Bronze</h5>
-        </button>
-        <button type="button" class="btn btn-primary w-25 h-25" onclick="filterForInventoryVm('Aucun')">
-            <h5>Snapshot - Aucun</h5>
-        </button>
+
+
+        <div class="w-50 float-left p-3" style="height: 200px">
+            <!--Snapshot-->
+            <button type="button" class="btn btn-primary w-10 h-25" data-toggle="modal" data-target="#modalSnapshot">
+                <h5>Filtres pour Snapshot</h5>
+            </button>
+        </div>
+        <div class="w-50 float-left p-3" style="height: 200px">
+            <!--Backup-->
+            <button type="button" class="btn btn-primary w-10 h-25" data-toggle="modal" data-target="#modalBackup">
+                <h5>Filtres pour Backup</h5>
+            </button>
+        </div>
+
+
+        <!--Snapshot Modal Window-->
+        <div class="modal fade" id="modalSnapshot" tabindex="-1" role="dialog" aria-labelledby="modalSnapshot" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="w-100 p-3">
+                        <div class="w-50 float-left p-1" style="height: 200px">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Gold', 17)">
+                                <h5>Gold</h5>
+                            </button>
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Silver', 17)">
+                                <h5>Silver</h5>
+                            </button>
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Bronze', 17)">
+                                <h5>Bronze</h5>
+                            </button>
+                        </div>
+                        <div class="w-50 float-right p-1" style="height: 200px">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Aucun', 17)">
+                                <h5>Aucun</h5>
+                            </button>
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('', 17)">
+                                <h5>Tous</h5>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Backup Modal Window-->
+        <div class="modal fade" id="modalBackup" tabindex="-1" role="dialog" aria-labelledby="modalBackup" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="w-100 p-3">
+                        <div class="w-50 float-left p-1" style="height: 200px">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Gold', 18)">
+                                <h5>Gold</h5>
+                            </button>
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Silver', 18)">
+                                <h5>Silver</h5>
+                            </button>
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Bronze', 18)">
+                                <h5>Bronze</h5>
+                            </button>
+                        </div>
+                        <div class="w-25 float-right p-2" style="height: 200px">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Aucun', 18)">
+                                <h5>Aucun</h5>
+                            </button>
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('', 18)">
+                                <h5>Tous</h5>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
         <div class="table-responsive-xl">
             <table class="table table-striped allVM" id="tableInventoryVm">
