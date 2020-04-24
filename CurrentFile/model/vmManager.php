@@ -18,6 +18,12 @@ function addVMToDB($formVMRequest)
     $cluster = 'null';
     $dateStart = $formVMRequest['inputComissioningDate'];
     $dateEnd = $formVMRequest['inputEndDate'];
+    if($dateEnd == null || $dateEnd == ''){
+        $dateAnniversary = $dateStart + 183;
+    }
+    else{
+        $dateAnniversary = 'null';
+    }
     $description = $formVMRequest['objective'];
     $ip = 'null';
     $dnsName = 'null';
@@ -41,12 +47,13 @@ function addVMToDB($formVMRequest)
 
     $strSep = '\'';
 
-    $query = "INSERT INTO vm (name, cluster, dateStart, dateEnd, description, ip, dnsName, redundance, usageType, cpu, ram, disk, network, domain, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
+    $query = "INSERT INTO vm (name, cluster, dateStart, dateAnniversary, dateEnd, description, ip, dnsName, redundance, usageType, cpu, ram, disk, network, domain, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
   
               VALUES(
               ".$strSep.$vmName.$strSep.",
               ".$strSep.$cluster.$strSep.",
               ".$strSep.$dateStart.$strSep.",
+              ".$strSep.$dateAnniversary.$strSep.",
               ".$strSep.$dateEnd.$strSep.",
               ".$strSep.$description.$strSep.",
               ".$strSep.$ip.$strSep.",
