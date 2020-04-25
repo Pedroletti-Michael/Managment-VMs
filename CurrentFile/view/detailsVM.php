@@ -314,7 +314,6 @@ ob_start();
                         echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputRedundance(this.text)">'. $vm[0] .'</a></li>';
                     }
                     ?>
-                </ul>
             </div>
             <!--Criticity-->
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">

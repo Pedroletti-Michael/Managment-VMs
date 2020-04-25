@@ -29,7 +29,7 @@
         <a href="index.php?action=home" style="color: white; text-decoration: none">HEIG-VD</a>
     </div>
     <form method="post" action="../index.php?action=research" class="btn-group search-responsive float-left" style="padding-top: 5px">
-        <input class="form-control form-control-light" style="width: calc(100%-50px)" type="text" placeholder="Recherche" aria-label="Recherche">
+        <input class="form-control form-control-light" style="width: calc(100%-50px)" name="inputResearch" type="text" placeholder="Recherche" aria-label="Recherche">
         <button type="submit" class="btn btn-success" style="width: 30px">></button>
     </form>
     <div class="signIn-responsive float-right text-center float-left align-items-center" style="height: 48px;">
@@ -153,7 +153,7 @@
     </div>
     <!------ Search ------->
     <form method="post" action="../index.php?action=research" class="btn-group search-responsive">
-        <input class="form-control form-control-light" style="width: calc(100%-120px)" type="text" placeholder="Recherche" aria-label="Recherche">
+        <input class="form-control form-control-light" style="width: calc(100%-120px)" name="inputResearch" type="text" placeholder="Recherche" aria-label="Recherche">
         <button type="submit" class="btn btn-success" style="width: 120px">Rechercher</button>
     </form>
     <!------ Sign In / Sign Out ------->

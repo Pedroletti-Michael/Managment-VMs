@@ -95,6 +95,9 @@ if(isset($_GET['action']))
         case 'editBackup':
             editBackup($_POST);
             break;
+        case 'research':
+            displayResearch($_POST['inputResearch']);
+            break;
         default:
             displayHome();
     }

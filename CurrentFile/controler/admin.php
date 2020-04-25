@@ -501,3 +501,12 @@ function editBackup($backupName){
     }
     displayFormManagement();
 }
+
+function displayResearch($inputResearch){
+    require_once 'model/vmManager.php';
+    require_once 'model/dbConnector.php';
+    $researchResult = researchVm($inputResearch);
+
+    //display searchResultView
+    require 'view/searchResult.php';
+}

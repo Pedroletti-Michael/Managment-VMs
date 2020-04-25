@@ -100,7 +100,7 @@ ob_start();
                                 <h5>Bronze</h5>
                             </button>
                         </div>
-                        <div class="w-25 float-right p-2" style="height: 200px">
+                        <div class="w-50 float-right p-1" style="height: 200px">
                             <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Aucun', 18)">
                                 <h5>Aucun</h5>
                             </button>

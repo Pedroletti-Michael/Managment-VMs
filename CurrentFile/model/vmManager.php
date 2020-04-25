@@ -460,3 +460,18 @@ function getAllVmName(){
 
     return executeQuerySelect($querySelect);
 }
+
+function researchVm($inputResearch){
+    $query = "SELECT `id`, `name`, `dateStart`, `dateEnd`, `usageType`, `cpu`, `ram`, `disk`, `network`, `userRt`, `entity_id`, `os_id`  FROM `vm` WHERE vm.name LIKE '%".$inputResearch."%'";
+
+    $resultSelect = executeQuerySelect($query);
+    $i = 0;
+
+    foreach ($resultSelect as $vm){
+        $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
+        $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
+        $resultSelect[$i]['os_id'] = getInfoOs($vm['os_id']);
+        $i++;
+    }
+    return $resultSelect;
+}
