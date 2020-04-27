@@ -118,7 +118,7 @@ ob_start();
                             $windows = 0;
                             $linux = 0;
                             foreach ($osNames as $value) {
-                                if (($value['osType']=="Linux / Ubuntu")&&$linux<1){
+                                if (($value['osType']=="Linux")&&$linux<1){
                                     echo "<option>".$value['osType']."</option>";
                                     $linux++;
                                 }
@@ -135,7 +135,7 @@ ob_start();
                             <?php
 
                             foreach ($osNames as $value) {
-                                if($value['osType']=="Linux / Ubuntu"){
+                                if($value['osType']=="Linux"){
                                     echo "<option >".$value['osName']."</option>";
                                 }
                                 if($value['osType']=="Windows"){

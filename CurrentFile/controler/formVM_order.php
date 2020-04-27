@@ -12,6 +12,8 @@ function displayForm()
         require_once 'model/displayManager.php';
         $entityNames = displayBDD_Entity();
         $osNames = displayBDD_OS();
+        $windowsData = displayBDD_OSNameWhereWindows();
+        $linuxData = displayBDD_OSNameWhereLinux();
         $snapshotPolicy = displayBSS_Snapshots();
         $backupPolicy = displayBSS_Backup();
 
