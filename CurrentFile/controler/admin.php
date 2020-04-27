@@ -382,17 +382,26 @@ function displayFormManagement()
 function editEntity($entityName){
     require_once 'model/displayManager.php';
     if(isset($entityName['add'])){
-        $nameEntity = $entityName['txtEntityAdd'];
-        addEntity($nameEntity);
+        if(isset($entityName['txtEntityAdd']) && $entityName['txtEntityAdd'] != null)
+        {
+            $nameEntity = $entityName['txtEntityAdd'];
+            addEntity($nameEntity);
+        }
     }
     if(isset($entityName['delete'])){
-        $nameEntity = $entityName['valueEntityDel'];
-        deleteEntity($nameEntity);
+        if(isset($entityName['valueEntityDel']) && $entityName['valueEntityDel'] != null)
+        {
+            $nameEntity = $entityName['valueEntityDel'];
+            deleteEntity($nameEntity);
+        }
     }
     if(isset($entityName['modify'])){
-        $nameEntity = $entityName['valueEntityMod'];
-        $newName = $entityName['txtEntityMod'];
-        modifyEntity($nameEntity,$newName);
+        if(isset($entityName['valueEntityMod']) && $entityName['valueEntityMod'] != null && isset($entityName['txtEntityMod']) && $entityName['txtEntityMod'] != null)
+        {
+            $nameEntity = $entityName['valueEntityMod'];
+            $newName = $entityName['txtEntityMod'];
+            modifyEntity($nameEntity,$newName);
+        }
     }
     displayFormManagement();
 }
@@ -400,36 +409,45 @@ function editEntity($entityName){
 function editOS($osName){
     require_once 'model/displayManager.php';
     if(isset($osName['add'])){
-        $nameOS = $osName['txtOsAdd'];
-        $typeOS = $osName['typeOsAdd'];
-        addOS($nameOS,$typeOS);
-    }
-    if(isset($osName['delete'])){
-        $nameOS = $osName['valueOsDel'];
-        deleteOS($nameOS);
-    }
-    if(isset($osName['modify'])){
-        $nameOS = $osName['valueOsMod'];
-        $newName = $osName['txtOsMod'];
-        $newType = $osName['typeOsMod'];
-        $textOs = "";
-        $length = strlen($nameOS);;
-
-        for($count = 0; $count < $length; $count++)
+        if(isset($osName['txtOsAdd']) && $osName['txtOsAdd'] != null && isset($osName['typeOsAdd']) && $osName['typeOsAdd'] != null)
         {
-            if($nameOS[$count] !== " ")
-            {
-            }
-            else
-            {
-                for($count += 1; $count < $length; $count++)
-                {
-                    $textOs = "$textOs"."$nameOS[$count]";
-                }
-                break;
-            }
+            $nameOS = $osName['txtOsAdd'];
+            $typeOS = $osName['typeOsAdd'];
+            addOS($nameOS,$typeOS);
         }
-        modifyOS($textOs,$newName,$newType);
+    }
+    elseif(isset($osName['delete'])){
+        if(isset($osName['valueOsDel']) && $osName['valueOsDel'] != null)
+        {
+            $nameOS = $osName['valueOsDel'];
+            deleteOS($nameOS);
+        }
+    }
+    elseif(isset($osName['modify'])){
+        if(isset($osName['valueOsMod']) && $osName['valueOsMod'] != null && isset($osName['txtOsMod']) && $osName['txtOsMod'] != null && isset($osName['typeOsMod']) && $osName['typeOsMod'] != null)
+        {
+            $nameOS = $osName['valueOsMod'];
+            $newName = $osName['txtOsMod'];
+            $newType = $osName['typeOsMod'];
+            $textOs = "";
+            $length = strlen($nameOS);;
+
+            for($count = 0; $count < $length; $count++)
+            {
+                if($nameOS[$count] !== " ")
+                {
+                }
+                else
+                {
+                    for($count += 1; $count < $length; $count++)
+                    {
+                        $textOs = "$textOs"."$nameOS[$count]";
+                    }
+                    break;
+                }
+            }
+            modifyOS($textOs,$newName,$newType);
+        }
     }
     displayFormManagement();
 }
@@ -437,33 +455,42 @@ function editOS($osName){
 function editSnapshots($snapshotsName){
     require_once 'model/displayManager.php';
     if(isset($snapshotsName['add'])){
-        $typeSnapshots= $snapshotsName['typeSnapAdd'];
-        $policySnapshots = $snapshotsName['txtSnapAdd'];
-        addSnapshots($typeSnapshots,$policySnapshots);
-    }
-    if(isset($snapshotsName['delete'])){
-        $nameSnapshots = $snapshotsName['valueSnapDel'];
-        deleteSnapshots($nameSnapshots);
-    }
-    if(isset($snapshotsName['modify'])){
-        $nameSnapshots = $snapshotsName['valueSnapMod'];
-        $newPolicy = $snapshotsName['txtSnapMod'];
-        $newType = $snapshotsName['typeSnapMod'];
-        $typeSnapshots = "";
-        $length = strlen($nameSnapshots);;
-
-        for($count = 0; $count < $length; $count++)
+        if(isset($snapshotsName['typeSnapAdd']) && $snapshotsName['typeSnapAdd'] != null && isset($snapshotsName['txtSnapAdd']) && $snapshotsName['txtSnapAdd'] != null)
         {
-            if($nameSnapshots[$count] !== " ")
-            {
-                $typeSnapshots = "$typeSnapshots"."$nameSnapshots[$count]";
-            }
-            else
-            {
-                break;
-            }
+            $typeSnapshots= $snapshotsName['typeSnapAdd'];
+            $policySnapshots = $snapshotsName['txtSnapAdd'];
+            addSnapshots($typeSnapshots,$policySnapshots);
         }
-        modifySnapshots($typeSnapshots,$newPolicy,$newType);
+    }
+    elseif(isset($snapshotsName['delete'])){
+        if(isset($snapshotsName['valueSnapDel']) && $snapshotsName['valueSnapDel'] != null)
+        {
+            $nameSnapshots = $snapshotsName['valueSnapDel'];
+            deleteSnapshots($nameSnapshots);
+        }
+    }
+    elseif(isset($snapshotsName['modify'])){
+        if(isset($snapshotsName['valueSnapMod']) && $snapshotsName['valueSnapMod'] != null && isset($snapshotsName['txtSnapMod']) && $snapshotsName['txtSnapMod'] != null && isset($snapshotsName['typeSnapMod']) && $snapshotsName['typeSnapMod'] != null)
+        {
+            $nameSnapshots = $snapshotsName['valueSnapMod'];
+            $newPolicy = $snapshotsName['txtSnapMod'];
+            $newType = $snapshotsName['typeSnapMod'];
+            $typeSnapshots = "";
+            $length = strlen($nameSnapshots);;
+
+            for($count = 0; $count < $length; $count++)
+            {
+                if($nameSnapshots[$count] !== " ")
+                {
+                    $typeSnapshots = "$typeSnapshots"."$nameSnapshots[$count]";
+                }
+                else
+                {
+                    break;
+                }
+            }
+            modifySnapshots($typeSnapshots,$newPolicy,$newType);
+        }
     }
     displayFormManagement();
 }
@@ -471,33 +498,42 @@ function editSnapshots($snapshotsName){
 function editBackup($backupName){
     require_once 'model/displayManager.php';
     if(isset($backupName['add'])){
-        $typeBackup= $backupName['typeBackupAdd'];
-        $policyBackup = $backupName['txtBackupAdd'];
-        addBackup($typeBackup,$policyBackup);
-    }
-    if(isset($backupName['delete'])){
-        $nameSnapshots = $backupName['valueBackupDel'];
-        deleteBackup($nameSnapshots);
-    }
-    if(isset($backupName['modify'])){
-        $nameBackup = $backupName['valueBackupMod'];
-        $newPolicy = $backupName['txtBackupMod'];
-        $newType = $backupName['typeBackupMod'];
-        $typeBackup = "";
-        $length = strlen($nameBackup);;
-
-        for($count = 0; $count < $length; $count++)
+        if(isset($backupName['typeBackupAdd']) && $backupName['typeBackupAdd'] != null && isset($backupName['txtBackupAdd']) && $backupName['txtBackupAdd'] != null)
         {
-            if($nameBackup[$count] !== " ")
-            {
-                $typeBackup = "$typeBackup"."$nameBackup[$count]";
-            }
-            else
-            {
-                break;
-            }
+            $typeBackup= $backupName['typeBackupAdd'];
+            $policyBackup = $backupName['txtBackupAdd'];
+            addBackup($typeBackup,$policyBackup);
         }
-        modifyBackup($typeBackup,$newPolicy,$newType);
+    }
+    elseif(isset($backupName['delete'])){
+        if(isset($backupName['valueBackupDel']) && $backupName['valueBackupDel'] != null)
+        {
+            $nameSnapshots = $backupName['valueBackupDel'];
+            deleteBackup($nameSnapshots);
+        }
+    }
+    elseif(isset($backupName['modify'])){
+        if(isset($backupName['valueBackupMod']) && $backupName['valueBackupMod'] != null && isset($backupName['txtBackupMod']) && $backupName['txtBackupMod'] != null &&isset($backupName['typeBackupMod']) && $backupName['typeBackupMod'] != null)
+        {
+            $nameBackup = $backupName['valueBackupMod'];
+            $newPolicy = $backupName['txtBackupMod'];
+            $newType = $backupName['typeBackupMod'];
+            $typeBackup = "";
+            $length = strlen($nameBackup);;
+
+            for($count = 0; $count < $length; $count++)
+            {
+                if($nameBackup[$count] !== " ")
+                {
+                    $typeBackup = "$typeBackup"."$nameBackup[$count]";
+                }
+                else
+                {
+                    break;
+                }
+            }
+            modifyBackup($typeBackup,$newPolicy,$newType);
+        }
     }
     displayFormManagement();
 }
