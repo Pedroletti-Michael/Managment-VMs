@@ -21,6 +21,10 @@
     <script rel="javascript" src="../view/js/script.js"></script>
     <script rel="javascript" src="../view/js/searchBox.js"></script>
     <script rel="javascript" src="../view/js/sortTable.js"></script>
+
+    <!--Théo-->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 </head>
 <body>
 <!-------------------------- Gabarit phone ------------------------------->

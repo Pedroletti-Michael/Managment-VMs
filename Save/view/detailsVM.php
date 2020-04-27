@@ -18,50 +18,78 @@ ob_start();
     <form method="post" action="../index.php?action=updateVM" class="mb-4">
         <div class="d-inline-block w-100">
             <!--Name of the VM-->
-            <div class="form-group w-50 float-left pr-4">
+            <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="inputVMName" class="font-weight-bold">Nom de la VM<a style="color: red"> *</a></label>
                 <input type="vmName" class="form-control form form" value="<?php echo $dataVM[0]['name'] ?>" id="inputVMName" name="inputVMName" aria-describedby="vmNameHelp" maxlength="15" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
                 <small id="vmNameHelp" class="form-text text-muted">15 caractères maximum. Lettres, chiffres et trait d'union uniquement (Ex: VM-01)</small>
             </div>
             <!--Name of the requester-->
-            <div class="form-group w-50 float-right pl-4">
+            <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="inputRequesterName" class="font-weight-bold">Demandeur<a style="color: red"> *</a></label>
                 <input type="requesterName" class="form-control form form" value="<?php echo $dataVM[0]['customer'] ?>" id="inputRequesterName" name="inputRequesterName" aria-describedby="requesterNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" readonly>
             </div>
         </div>
         <div class="d-inline-block w-100">
-            <div class="form-group w-50 float-left pr-4">
+            <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <!--CPU-->
                 <label for="cpu" class="font-weight-bold">Nombre de CPU<a style="color: red"> *</a></label>
                 <input type="number" class="form-control form form"  value="<?php echo $dataVM[0]['cpu'] ?>" id="inputCPU" name="inputCPU" aria-describedby="cpuHelp" min="1" max="99" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
             </div>
             <!--Name of the technical manager-->
-            <div class="form-group w-50 float-right pl-4">
-                <label for="inputTMName" class="font-weight-bold">Responable technique<a style="color: red"> *</a></label>
-                <input type="tmName" class="form-control form form"  value="<?php echo $dataVM[0]['userRt'] ?>" id="inputTMName" name="inputTMName" aria-describedby="tmNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" required>
+            <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
+                <label for="inputTMNam" class="font-weight-bold">Responsable technique<a style="color: red"> *</a></label>
+                <input type="text" class="form-control form form" value="<?php echo $dataVM[0]['userRt'] ?>" id="inputTMNam" name="inputTMNam" aria-describedby="tmNameHelp" placeholder="Entrer une adresse de messagerie" required onkeyup="searchFunctionTm()">
+                <ul id="tmNameUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
+                    <?php
+                    $id = 'liTm';
+                    $i = 0;
+                    $endSeparator = '';
+
+                    foreach($users as $user){
+                        echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputTm('.$i.', this.text)">'. $user[1]. ' ' .$user[2] .'</a></li>';
+                        echo '<input type="hidden" value="'.$user[0].'" id="'.$id.$i.$endSeparator.'">';
+                        $i++;
+                    }
+                    ?>
+                </ul>
+                <input type="hidden" name="inputTMName" id="inputTMName" value="<?php echo $dataVM[0]['userRt'] ?>" readonly required>
             </div>
         </div>
         <div class="d-inline-block w-100">
-            <div class="form-group w-50 float-left pr-4">
+            <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <!--RAM-->
                 <label for="RAM" class="font-weight-bold mr-2">Nombre de RAM (GB)<a style="color: red"> *</a></label>
                 <input type="number" class="form-control form form mr-3" value="<?php echo $dataVM[0]['ram'] ?>" id="inputRAM" name="inputRAM" aria-describedby="ramHelp" min="1" max="256" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
             </div>
             <!--Name of the responsible administrator-->
-            <div class="form-group w-50 float-right pl-4">
-                <label for="inputRAName" class="font-weight-bold">Responsable administratif<a style="color: red"> *</a></label>
-                <input type="raName" class="form-control form form" value="<?php echo $dataVM[0]['userRa'] ?>" id="inputRAName" name="inputRAName" aria-describedby="raNameHelp" placeholder="Entrer un nom ou une addresse de messagerie" required>
+            <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
+                <label for="inputRANam" class="font-weight-bold">Responsable administratif<a style="color: red"> *</a></label>
+                <input type="text" class="form-control form form" value="<?php echo $dataVM[0]['userRa'] ?>" id="inputRANam" name="inputRANam" aria-describedby="raNameHelp" placeholder="Entrer une adresse de messagerie" required onkeyup="searchFunctionRa()">
                 <small id="raNameHelp" class="form-text text-muted">Direction, Doyen , Directeur d'institut ou Chef de service</small>
+                <ul id="raNameUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
+                    <?php
+                    $id = 'liRa';
+                    $i = 0;
+                    $endSeparator = '';
+
+                    foreach($users as $user){
+                        echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputRa('.$i.', this.text)">'. $user[1]. ' ' .$user[2] .'</a></li>';
+                        echo '<input type="hidden" value="'.$user[0].'" id="'.$id.$i.$endSeparator.'">';
+                        $i++;
+                    }
+                    ?>
+                </ul>
+                <input type="hidden" name="inputRAName" id="inputRAName" value="<?php echo $dataVM[0]['userRa'] ?>" readonly required>
             </div>
         </div>
         <div class="d-inline-block w-100">
-            <div class="form-group w-50 float-left pr-4">
+            <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <!--Stockages-->
                 <label for="SSD" class="font-weight-bold mr-2">Stockage SSD (GB)<a style="color: red"> *</a></label>
                 <input type="number" class="form-control form form" value="<?php echo $dataVM[0]['disk'] ?>" id="inputSSD" name="inputSSD" aria-describedby="ssdHelp" min="20" max="1000" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
             </div>
             <!--Department / Institution / Service-->
-            <div class="form-group w-50 float-right pl-4">
+            <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service<a style="color: red"> *</a></label>
                 <select class="form-control" id="disFormControlSelect" name="disFormControlSelect" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
                     <?php
@@ -78,7 +106,7 @@ ob_start();
         </div>
         <div class="d-inline-block w-100">
             <!--OS-->
-            <div class="form-group w-50 float-left pr-4">
+            <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="osFormControlSelect" class="font-weight-bold">Système d'exploitation<a style="color: red"> *</a></label>
                 <div class="w-100 d-inline-block">
                     <div class="float-left w-50 pr-2">
@@ -114,7 +142,7 @@ ob_start();
                 <small id="osHelp" class="form-text text-muted">Toutes les OS sont en anglais, 64 bits</small>
             </div>
             <!--Date of commissioning-->
-            <div class="form-group w-50 float-right pl-4">
+            <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="inputComissioningDate" class="font-weight-bold">Date de mise en service<a style="color: red"> *</a></label>
                 <input type="date" min="<?php date("Y-m-d") ?>" class="form-control form form" value="<?php echo $dataVM[0]['dateStart'] ?>" id="inputComissioningDate" name="inputComissioningDate" aria-describedby="comissioningDateHelp" placeholder="Entrer un nom ou une addresse de messagerie"  required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
                 <small id="comissioningDateHelp" class="form-text text-muted">Délai d'une semaine pour les VM de type Silver &amp; Gold. Deux semaines pour les autres configurations.</small>
@@ -122,7 +150,7 @@ ob_start();
         </div>
         <div class="d-inline-block w-100">
             <!--Network-->
-            <div class="form-group w-50 float-left pr-4">
+            <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="networkFormControlSelect" class="font-weight-bold">Réseau<a style="color: red"> *</a></label>
                 <select class="form-control" id="networkFormControlSelect" name="networkFormControlSelect" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
                     <?php
@@ -140,7 +168,7 @@ ob_start();
                 <small id="networkHelp" class="form-text text-muted">DMZ Privée : Accessible depuis l'extérieur mais uniquement par son nom DNS (exemple : vm-01.heig-vd.ch)</small>
             </div>
             <!--End Date-->
-            <div class="form-group w-50 float-right pl-4">
+            <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="inputEndDate" class="font-weight-bold">Date de fin</label>
                 <input type="date" class="form-control form form" value="<?php echo $dataVM[0]['dateEnd'] ?>" id="inputEndDate" name="inputEndDate" aria-describedby="EndDateHelp" placeholder="Entrer un nom ou une addresse de messagerie" required >
                 <small id="EndDateHelp" class="form-text text-muted">Date de fin du projet, à laquelle la VM peut être arrêtée puis supprimée.</small>
@@ -240,12 +268,23 @@ ob_start();
         <hr class="">
         <div class="d-inline-block w-100">
             <!--Cluster-->
-            <div class="form-group w-50 float-left pr-4">
+            <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="editCluster" class="font-weight-bold">Cluster</label>
-                <input type="cluster" class="form-control form form" value="<?php echo $dataVM[0]['cluster'] ?>" id="editCluster" name="editCluster" aria-describedby="clusterHelp">
+                <select class="form-control form form" id="editCluster" name="editCluster" aria-describedby="clusterHelp">
+                    <?php
+                    $clusterNames = array("PROD-CH", "PROD-YP","DEV-CH");
+                    for($i = 0; $i<3; $i++){
+                        if($dataVM[0]['cluster'] == $clusterNames[$i]){
+                            echo "<option selected>".$clusterNames[$i]."</option>";}
+                        else{
+                            echo "<option>".$clusterNames[$i]."</option>";
+                        }
+                    }
+                    ?>
+                </select>
             </div>
             <!--Date anniversary-->
-            <div class="form-group w-50 float-right pl-4">
+            <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="inputEndDate" class="font-weight-bold">Date d'anniversaire</label>
                 <input type="date" class="form-control form form" value="<?php echo $dataVM[0]['dateAnniversary'] ?>" id="editDateAnniversary" name="editDateAnniversary" aria-describedby="anniversaryDateHelp">
             </div>
@@ -253,40 +292,56 @@ ob_start();
 
         <div class="d-inline-block w-100">
             <!--IP-->
-            <div class="form-group w-50 float-left pr-4">
+            <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="editIP" class="font-weight-bold">IP</label>
                 <input class="form-control form form" value="<?php echo $dataVM[0]['ip'] ?>" id="editIP" name="editIP" aria-describedby="ipHelp">
             </div>
             <!--dnsName-->
-            <div class="form-group w-50 float-right pl-4">
-                <label for="inputEndDate" class="font-weight-bold">Nom du DNS</label>
+            <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
+                <label for="inputEndDate" class="font-weight-bold">Nom DNS</label>
                 <input class="form-control form form" value="<?php echo $dataVM[0]['dnsName'] ?>" id="editDnsName" name="editDnsName" aria-describedby="dnsNameHelp">
             </div>
         </div>
 
         <div class="d-inline-block w-100">
             <!--Redundance-->
-            <div class="form-group w-50 float-left pr-4">
+            <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="editRedundance" class="font-weight-bold">Redondance</label>
-                <input class="form-control form form" value="<?php echo $dataVM[0]['redundance'] ?>" id="editRedundance" name="editRedundance" aria-describedby="redundanceHelp">
+                <input class="form-control form form" value="<?php echo $dataVM[0]['redundance'] ?>" id="editRedundance" name="editRedundance" aria-describedby="redundanceHelp" onkeyup="searchFunctionRedundance()">
+                <ul id="redundanceUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
+                    <?php
+                    foreach($vms as $vm){
+                        echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputRedundance(this.text)">'. $vm[0] .'</a></li>';
+                    }
+                    ?>
             </div>
             <!--Criticity-->
-            <div class="form-group w-50 float-right pl-4">
+            <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="editCriticity" class="font-weight-bold">Critique</label>
-                <input class="form-control form form" value="<?php echo $dataVM[0]['criticity'] ?>" id="editCriticity" name="editCriticity" aria-describedby="criticityHelp">
+                <select class="form-control form form" id="editCriticity" name="editCriticity" aria-describedby="criticityHelp">
+                    <?php
+                    $criticityNames = array("1", "2","3");
+                    for($i = 0; $i<3; $i++){
+                        if($dataVM[0]['criticity'] == $criticityNames[$i]){
+                            echo "<option selected>".$criticityNames[$i]."</option>";}
+                        else{
+                            echo "<option>".$criticityNames[$i]."</option>";
+                        }
+                    }
+                    ?>
+                </select>
             </div>
         </div>
         <?php endif; ?>
 
         <!--Save the modifications-->
-        <a href="index.php?action=updateVM"><button type="submit" class="btn btn-primary m-auto d-inline">Enregistrer les modifications</button></a>
-
+        <a href="index.php?action=updateVM"><button type="submit" class="btn btn-primary m-auto d-inline responsiveDisplay">Enregistrer les modifications</button></a>
 
         <?php if($dataVM[0]['vmStatus']==0): ?>
         <!--Accepted-->
-        <a href="index.php?action=vmAccepted"><button type="button" class="btn btn-success float-right ml-1">Confirmer la demande</button></a>
+        <a href="index.php?action=vmAccepted"><button type="button" class="btn btn-success float-right ml-1 responsiveDisplay">Confirmer la demande</button></a>
         <!--Refused-->
-        <a href="index.php?action=vmRefused"><button type="button" class="btn btn-danger float-right">Refuser la demande</button></a>
+        <a href="index.php?action=vmRefused"><button type="button" class="btn btn-danger float-right responsiveDisplay">Refuser la demande</button></a>
         <?php endif; ?>
     </form>
 </div>

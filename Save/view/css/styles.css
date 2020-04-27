@@ -13,6 +13,74 @@
 .allVM th, .allVM td{
     width: auto;
 }
+
+.searchBoxUser{
+    overflow-y: scroll;
+    -webkit-overflow-y: scroll;
+    height: 100px;
+}
+
+.unlink{
+    text-decoration: none;
+    color: black;
+}
+
+.unlink:hover{
+    color: black;
+    text-decoration: none;
+}
+.search-responsive{
+    width: calc(100% - 200px - 110px)!important;
+}
+
+
+
+
+.w-15{
+    width: 15% !important;
+}
+
+.w-20{
+    width: 20% !important;
+}
+
+.w-25-m{
+    width: 25% !important;
+}
+
+.w-33{
+    width: calc(100%/3)!important;
+}
+
+.w-40{
+    width: 40% !important;
+}
+
+.w-45{
+    width: 45% !important;
+}
+
+.w-50-m{
+    width: 50% !important;
+}
+
+.w-55{
+    width: 55% !important;
+}
+
+.w-66{
+    width: calc(100%/3*2)!important;
+}
+
+.w-75-m{
+    width: 75% !important;
+}
+
+
+
+
+
+
 /* ------------------------------------------- Responsive correction -------------------------------------------------*/
 @media screen and (min-width: 1050px) {
     .responsive-menu-min{
@@ -26,8 +94,8 @@
         min-width: 200px;
     }
     .signIn-responsive{
-        max-width: 100px;
-        min-width: 100px;
+        max-width: 110px;
+        min-width: 110px;
     }
 }
 @media screen and (max-width: 1050px) {
@@ -42,8 +110,8 @@
         min-width: 200px;
     }
     .signIn-responsive{
-        max-width: 100px;
-        min-width: 100px;
+        max-width: 110px;
+        min-width: 110px;
     }
     .search-responsive{
         width: 50%;
@@ -84,6 +152,15 @@
     .display-phone{
         display: inline-block!important;
     }
+    #responsiveDisplay{
+        width: 100%!important;
+        padding-left: 0!important;
+        padding-right: 0!important;
+    }
+    .responsiveDisplay{
+        width: 100%!important;
+        margin: 2px 0px;
+    }
     .logo-responsive{
         max-width: 100px;
         min-width: 100px;
@@ -97,7 +174,6 @@
     }
     .navbar-toggler-icon{
         width: 50px!important;
-        heigt: 50px!important;
     }
 
     .responsive-phone{
@@ -108,7 +184,6 @@
     .responsive-phone-bg{
         background-color: #272727;
     }
-
 
     /* The side navigation menu */
     .sidenav {

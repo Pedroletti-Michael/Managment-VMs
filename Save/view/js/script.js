@@ -21,15 +21,3 @@ function openNav() {
         flag = 1;
     }
 }
-function smartList(val){
-    if(val=="Windows"){
-        document.getSelection("Linux").style.display="none";
-        document.getElementsByName("Windows").style.display="contents";
-        alert("The input value has changed. The new value is: " + val );
-    }else if(val=="Linux / Ubuntu"){
-        document.getElementsByName("Windows").style.display="none";
-        document.getElementsByName("Linux").style.display="contents";
-        alert("Pute pute pute tpeutpuet ueputpuet: " + val );
-    }
-
-}

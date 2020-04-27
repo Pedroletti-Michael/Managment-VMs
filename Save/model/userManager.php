@@ -59,15 +59,19 @@ function adVerification($userLogin, $userPwd){
     }
 }
 
+function getAllUsers(){
+    $query = 'SELECT mail, lastname, firstname FROM user';
+
+    return executeQuerySelect($query);
+}
+
 /**
 * This function is used to know if the user exist in our db.
 * If the user exist -> function return true
 * Else -> function return false
 */
 function dbVerification($userMail){
-  $query = 'SELECT mail FROM user';
-
-  $queryResult = executeQuerySelect($query);
+  $queryResult = getAllUsers();
 
   //do the test to every user we have
   foreach ($queryResult as $value) {

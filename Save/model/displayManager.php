@@ -5,11 +5,11 @@
  * Time: 11:30
  */
 
-require 'model/dbConnector.php';
+require_once 'model/dbConnector.php';
 
 /********************** Entity **************************/
 function displayBDD_Entity(){
-    $query = "SELECT entityName FROM entity";
+    $query = "SELECT entityName FROM entity WHERE status = 0";
     return executeQuery($query);
 }
 
@@ -21,7 +21,7 @@ function addEntity($nameEntity){
 }
 
 function deleteEntity($nameEntity){
-    $query = "DELETE FROM entity WHERE entity.entityName = '$nameEntity'";
+    $query = "UPDATE entity SET entity.status = 1 WHERE entity.entityName = '$nameEntity'";
     return executeQuery($query);
 }
 
@@ -33,7 +33,7 @@ function modifyEntity($nameEntity,$newName){
 function displayBDD_OSNameWhereWindows(){
     $strSep = '\'';
 
-    $query = "SELECT osName FROM os WHERE osType = ". $strSep."Windows".$strSep;
+    $query = "SELECT osName FROM os WHERE status = 0 AND osType = ". $strSep."Windows".$strSep;
 
     $result = array();
     array_push($result, "Windows");
@@ -45,7 +45,7 @@ function displayBDD_OSNameWhereWindows(){
 function displayBDD_OSNameWhereLinux(){
     $strSep = '\'';
 
-    $query = "SELECT osName FROM os WHERE osType = ". $strSep."Linux / Ubuntu".$strSep;
+    $query = "SELECT osName FROM os WHERE status = 0 AND osType = ". $strSep."Linux".$strSep;
 
     $result = array();
     array_push($result, "Linux / Ubuntu");
@@ -55,7 +55,7 @@ function displayBDD_OSNameWhereLinux(){
 }
 
 function displayBDD_OS(){
-    $query = "SELECT osName, osType FROM os";
+    $query = "SELECT osName, osType FROM os WHERE status = 0";
     return executeQuery($query);
 }
 
@@ -67,7 +67,7 @@ function addOS($nameOS,$typeOS){
 }
 
 function deleteOS($nameOS){
-    $query = "DELETE FROM os WHERE os.osName = '$nameOS'";
+    $query = "UPDATE os SET status = 1 WHERE os.osName = '$nameOS'";
     return executeQuery($query);
 }
 
@@ -77,7 +77,7 @@ function modifyOS($nameOS,$newName,$newType){
 }
 /********************** Snapshots **************************/
 function displayBSS_Snapshots(){
-    $query = "SELECT policy, name FROM snapshot";
+    $query = "SELECT policy, name FROM snapshot WHERE status = 0";
     return executeQuery($query);
 }
 
@@ -89,7 +89,7 @@ function addSnapshots($typeSnapshots,$policySnapshots){
 }
 
 function deleteSnapshots($nameSnapshots){
-    $query = "DELETE FROM `snapshot` WHERE `snapshot`.`name` = '$nameSnapshots'";
+    $query = "UPDATE snapshot SET status = 1 WHERE `snapshot`.`name` = '$nameSnapshots'";
     return executeQuery($query);
 }
 
@@ -99,7 +99,7 @@ function modifySnapshots($nameSnapshots,$newPolicy,$newType){
 }
 /********************** Backup **************************/
 function displayBSS_Backup(){
-    $query = "SELECT policy, name FROM backup";
+    $query = "SELECT policy, name FROM backup WHERE status = 0";
     return executeQuery($query);
 }
 
@@ -111,7 +111,7 @@ function addBackup($typeBackup,$policyBackup){
 }
 
 function deleteBackup($nameBackup){
-    $query = "DELETE FROM `backup` WHERE `backup`.`name` = '$nameBackup';";
+    $query = "UPDATE backup SET status = 1 WHERE `backup`.`name` = '$nameBackup';";
     return executeQuery($query);
 }
 

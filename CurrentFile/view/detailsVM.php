@@ -165,14 +165,13 @@ ob_start();
                     ?>
                 </select>
                 <small id="networkHelp" class="form-text text-muted">LAN : Machine accessible en interne ou via le VPN</small>
-                <small id="networkHelp" class="form-text text-muted">DMZ Privée : Accessible depuis l'extérieur mais uniquement par son nom DNS (exemple : vm-01.heig-vd.ch)</small>
             </div>
             <!--End Date-->
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="inputEndDate" class="font-weight-bold">Date de fin</label>
                 <input type="date" class="form-control form form" value="<?php echo $dataVM[0]['dateEnd'] ?>" id="inputEndDate" name="inputEndDate" aria-describedby="EndDateHelp" placeholder="Entrer un nom ou une addresse de messagerie" required >
                 <small id="EndDateHelp" class="form-text text-muted">Date de fin du projet, à laquelle la VM peut être arrêtée puis supprimée.</small>
-                <small id="EndDateHelp" class="form-text text-muted">S'il n'y a pas d'échéance, une demande de renouvellement sera envoyée chaque année.</small>
+                <small id="EndDateHelp" class="form-text text-muted">S'il n'y a pas d'échéance, une demande de renouvellement sera envoyée tous les 6 mois.</small>
             </div>
         </div>
         <!--Using-->
@@ -307,13 +306,13 @@ ob_start();
             <!--Redundance-->
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="editRedundance" class="font-weight-bold">Redondance</label>
-                <input class="form-control form form" value="<?php echo $dataVM[0]['redundance'] ?>" id="editRedundance" name="editRedundance" aria-describedby="redundanceHelp" onkeyup="searchFunctionRedundance()">
-                <ul id="redundanceUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
+                <select class="js-example-basic-multiple form-control form form" value"<?php echo $dataVM[0]['redundance'] ?>" name="editRedundance" multiple="multiple">
                     <?php
                     foreach($vms as $vm){
-                        echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputRedundance(this.text)">'. $vm[0] .'</a></li>';
+                        echo '<option value="'.$vm[0].'">'.$vm[0].'</option>';
                     }
                     ?>
+                </select>
             </div>
             <!--Criticity-->
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">

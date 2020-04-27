@@ -38,7 +38,7 @@ function displayAllVM($searchFilter)
                     elseif($searchFilter['vmFilter'] == "VM à renouveler")
                     {
                         $checkFilter = "VM à renouveler";
-                        $allVM = getVmToRenew();
+                        $allVM = getRenewalVM();
                     }
 
                     $_GET['action'] = "allVM";
@@ -107,6 +107,35 @@ function displayConfirmationVM()
     }
 }
 
+function displayRenewalVM()
+{
+    if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
+    {
+        switch ($_SESSION['userType'])
+        {
+            case 0:
+                require_once 'controler/user.php';
+                displayHome();
+                break;
+            case 1:
+                require_once 'model/vmManager.php';
+                $renewalVM = getRenewalVM();
+                $_GET['action'] = "renewalVM";
+                require 'view/renewalVM.php';
+                break;
+            default:
+                $_GET['action'] = "signIn";
+                require 'view/signIn.php';
+                break;
+        }
+    }
+    else
+    {
+        $_GET['action'] = "signIn";
+        require 'view/signIn.php';
+    }
+}
+
 function displayDetailsVM($idVM)
 {
     if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
@@ -125,6 +154,9 @@ function displayDetailsVM($idVM)
                     $snapshotPolicy = displayBSS_Snapshots();
                     $backupPolicy = displayBSS_Backup();
 
+                    require_once 'model/userManager.php';
+                    $users = getAllUsers();
+
                     $_SESSION['idVM'] = $idVM;
 
                     $_GET['action'] = "detailsVM";
@@ -142,8 +174,12 @@ function displayDetailsVM($idVM)
                 $snapshotPolicy = displayBSS_Snapshots();
                 $backupPolicy = displayBSS_Backup();
 
+                require_once 'model/userManager.php';
+                $users = getAllUsers();
+
                 require_once 'model/vmManager.php';
                 $dataVM = getDataVM($idVM);
+                $vms = getAllVmName();
 
                 $_SESSION['idVM'] = $idVM;
 
@@ -158,6 +194,7 @@ function displayDetailsVM($idVM)
     }
     else
     {
+        $_SESSION['idVM'] = $idVM;
         $_SESSION['actionUser'] = "detailsVM";
         $_GET['action'] = "signIn";
         require 'view/signIn.php';
@@ -345,16 +382,16 @@ function displayFormManagement()
 function editEntity($entityName){
     require_once 'model/displayManager.php';
     if(isset($entityName['add'])){
-        $nameEntity = $entityName['txt'];
+        $nameEntity = $entityName['txtEntityAdd'];
         addEntity($nameEntity);
     }
     if(isset($entityName['delete'])){
-        $nameEntity = $entityName['value'];
+        $nameEntity = $entityName['valueEntityDel'];
         deleteEntity($nameEntity);
     }
     if(isset($entityName['modify'])){
-        $nameEntity = $entityName['value'];
-        $newName = $entityName['txt'];
+        $nameEntity = $entityName['valueEntityMod'];
+        $newName = $entityName['txtEntityMod'];
         modifyEntity($nameEntity,$newName);
     }
     displayFormManagement();
@@ -363,59 +400,113 @@ function editEntity($entityName){
 function editOS($osName){
     require_once 'model/displayManager.php';
     if(isset($osName['add'])){
-        $nameOS = $osName['txt'];
-        $typeOS = $osName['type'];
+        $nameOS = $osName['txtOsAdd'];
+        $typeOS = $osName['typeOsAdd'];
         addOS($nameOS,$typeOS);
     }
     if(isset($osName['delete'])){
-        $nameOS = $osName['value'];
+        $nameOS = $osName['valueOsDel'];
         deleteOS($nameOS);
     }
     if(isset($osName['modify'])){
-        $nameOS = $osName['value'];
-        $newName = $osName['txt'];
-        $newType = $osName['type'];
-        modifyOS($nameOS,$newName,$newType);
+        $nameOS = $osName['valueOsMod'];
+        $newName = $osName['txtOsMod'];
+        $newType = $osName['typeOsMod'];
+        $textOs = "";
+        $length = strlen($nameOS);;
+
+        for($count = 0; $count < $length; $count++)
+        {
+            if($nameOS[$count] !== " ")
+            {
+            }
+            else
+            {
+                for($count += 1; $count < $length; $count++)
+                {
+                    $textOs = "$textOs"."$nameOS[$count]";
+                }
+                break;
+            }
+        }
+        modifyOS($textOs,$newName,$newType);
     }
     displayFormManagement();
 }
 
 function editSnapshots($snapshotsName){
     require_once 'model/displayManager.php';
-    if($snapshotsName['add']){
-        $typeSnapshots= $snapshotsName['type'];
-        $policySnapshots = $snapshotsName['txt'];
+    if(isset($snapshotsName['add'])){
+        $typeSnapshots= $snapshotsName['typeSnapAdd'];
+        $policySnapshots = $snapshotsName['txtSnapAdd'];
         addSnapshots($typeSnapshots,$policySnapshots);
     }
     if(isset($snapshotsName['delete'])){
-        $nameSnapshots = $snapshotsName['value'];
+        $nameSnapshots = $snapshotsName['valueSnapDel'];
         deleteSnapshots($nameSnapshots);
     }
     if(isset($snapshotsName['modify'])){
-        $nameSnapshots = $snapshotsName['value'];
-        $newPolicy = $snapshotsName['txt'];
-        $newType = $snapshotsName['type'];
-        modifySnapshots($nameSnapshots,$newPolicy,$newType);
+        $nameSnapshots = $snapshotsName['valueSnapMod'];
+        $newPolicy = $snapshotsName['txtSnapMod'];
+        $newType = $snapshotsName['typeSnapMod'];
+        $typeSnapshots = "";
+        $length = strlen($nameSnapshots);;
+
+        for($count = 0; $count < $length; $count++)
+        {
+            if($nameSnapshots[$count] !== " ")
+            {
+                $typeSnapshots = "$typeSnapshots"."$nameSnapshots[$count]";
+            }
+            else
+            {
+                break;
+            }
+        }
+        modifySnapshots($typeSnapshots,$newPolicy,$newType);
     }
     displayFormManagement();
 }
 
 function editBackup($backupName){
     require_once 'model/displayManager.php';
-    if($backupName['add']){
-        $typeBackup= $backupName['type'];
-        $policyBackup = $backupName['txt'];
+    if(isset($backupName['add'])){
+        $typeBackup= $backupName['typeBackupAdd'];
+        $policyBackup = $backupName['txtBackupAdd'];
         addBackup($typeBackup,$policyBackup);
     }
     if(isset($backupName['delete'])){
-        $nameSnapshots = $backupName['value'];
+        $nameSnapshots = $backupName['valueBackupDel'];
         deleteBackup($nameSnapshots);
     }
     if(isset($backupName['modify'])){
-        $nameBackup = $backupName['value'];
-        $newPolicy = $backupName['txt'];
-        $newType = $backupName['type'];
-        modifyBackup($nameBackup,$newPolicy,$newType);
+        $nameBackup = $backupName['valueBackupMod'];
+        $newPolicy = $backupName['txtBackupMod'];
+        $newType = $backupName['typeBackupMod'];
+        $typeBackup = "";
+        $length = strlen($nameBackup);;
+
+        for($count = 0; $count < $length; $count++)
+        {
+            if($nameBackup[$count] !== " ")
+            {
+                $typeBackup = "$typeBackup"."$nameBackup[$count]";
+            }
+            else
+            {
+                break;
+            }
+        }
+        modifyBackup($typeBackup,$newPolicy,$newType);
     }
     displayFormManagement();
+}
+
+function displayResearch($inputResearch){
+    require_once 'model/vmManager.php';
+    require_once 'model/dbConnector.php';
+    $researchResult = researchVm($inputResearch);
+
+    //display searchResultView
+    require 'view/searchResult.php';
 }

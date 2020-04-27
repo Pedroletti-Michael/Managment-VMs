@@ -15,6 +15,9 @@ function displayForm()
         $snapshotPolicy = displayBSS_Snapshots();
         $backupPolicy = displayBSS_Backup();
 
+        require_once 'model/userManager.php';
+        $users = getAllUsers();
+
         $_GET['action'] = "form";
         require 'view/form.php';
     }
@@ -73,7 +76,8 @@ function formVM($formVMRequest)
         require_once 'model/mailSender.php';
 
         requestMail($formVMRequest['inputResquesterName'], $formVMRequest['inputVMName'], $formVMRequest['inputTMName'], $formVMRequest['inputRAName']);
-
+        $link = "http://vmman.heig-vd.ch/index.php?action=detailsVM&id=". getIdOfVmByName($formVMRequest['inputVMName']);
+        mailAdministrator($formVMRequest['inputResquesterName'], $formVMRequest['inputVMName'], $link);
         displayHome();
     }
     else

@@ -18,6 +18,12 @@ function addVMToDB($formVMRequest)
     $cluster = 'null';
     $dateStart = $formVMRequest['inputComissioningDate'];
     $dateEnd = $formVMRequest['inputEndDate'];
+    if($dateEnd == null || $dateEnd == ''){
+        $dateAnniversary = $dateStart + 183;
+    }
+    else{
+        $dateAnniversary = 'null';
+    }
     $description = $formVMRequest['objective'];
     $ip = 'null';
     $dnsName = 'null';
@@ -26,6 +32,7 @@ function addVMToDB($formVMRequest)
     $cpu = $formVMRequest['inputCPU'];
     $ram = $formVMRequest['inputRAM'];
     $disk = $formVMRequest['inputSSD'];
+    $descDisk = $formVMRequest['infoSSD'];
     $network = $formVMRequest['networkFormControlSelect'];
     $domain = $formVMRequest['domainEINET'];
     $comment = $formVMRequest['ti'];
@@ -41,12 +48,13 @@ function addVMToDB($formVMRequest)
 
     $strSep = '\'';
 
-    $query = "INSERT INTO vm (name, cluster, dateStart, dateEnd, description, ip, dnsName, redundance, usageType, cpu, ram, disk, network, domain, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
+    $query = "INSERT INTO vm (name, cluster, dateStart, dateAnniversary, dateEnd, description, ip, dnsName, redundance, usageType, cpu, ram, disk, descriptionDisk, network, domain, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
   
               VALUES(
               ".$strSep.$vmName.$strSep.",
               ".$strSep.$cluster.$strSep.",
               ".$strSep.$dateStart.$strSep.",
+              ".$strSep.$dateAnniversary.$strSep.",
               ".$strSep.$dateEnd.$strSep.",
               ".$strSep.$description.$strSep.",
               ".$strSep.$ip.$strSep.",
@@ -56,6 +64,7 @@ function addVMToDB($formVMRequest)
               ".$strSep.$cpu.$strSep.",
               ".$strSep.$ram.$strSep.",
               ".$strSep.$disk.$strSep.",
+              ".$strSep.$descDisk.$strSep."
               ".$strSep.$network.$strSep.",
               ".$strSep.$domain.$strSep.",
               ".$strSep.$comment.$strSep.",
@@ -68,7 +77,6 @@ function addVMToDB($formVMRequest)
               ".$strSep.$snapshot_id.$strSep.",
               ".$strSep.$backup_id.$strSep.",
               ".$strSep.$cost_id.$strSep.")";
-
 
     executeQueryInsert($query);
     return true;
@@ -238,6 +246,28 @@ function getConfirmationVM(){
     return $resultSelect;
 }
 
+/**===GET INFO FROM VM WHO NEED TO BE CONFIRMED===**/
+function getRenewalVM(){
+    require_once 'model/dbConnector.php';
+
+    $querySelect = "SELECT `id`, `name`, `dateStart`, `dateAnniversary`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`  FROM `vm` WHERE vmStatus = 3";
+
+    $resultSelect = executeQuerySelect($querySelect);
+    $i = 0;
+
+    foreach ($resultSelect as $vm){
+        $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
+        $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
+        $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
+        $resultSelect[$i]['os_id'] = getInfoOs($vm['os_id']);
+        $resultSelect[$i]['snapshot_id'] = getInfoSnapshot($vm['snapshot_id']);
+        $resultSelect[$i]['backup_id'] = getInfoBackup($vm['backup_id']);
+        $i++;
+    }
+    return $resultSelect;
+}
+
 /**===GET INFO FROM VM WHO ARE VALIDATED===**/
 function getValidatedVM(){
     require_once 'model/dbConnector.php';
@@ -261,6 +291,7 @@ function getValidatedVM(){
 }
 
 /**===GET INFO FROM VM WHO NEED TO BE RENEW===**/
+/** A supprimer -> remplacer par getRenewalVM**/
 function getVmToRenew(){
     require_once 'model/dbConnector.php';
 
@@ -374,15 +405,19 @@ function updateStatusVM($id, $vmStatus){
     if($vmStatus){
         $status = 2;
     }
+    elseif($vmStatus == 4){
+        $status = 4;
+    }
     else{
         $status = 1;
     }
+
 
     $query = "UPDATE vm SET vmStatus = ". $status ." WHERE id = ". $id;
 
     executeQuery($query);
 
-    $link = 'http://vmman.heig-vd.ch/action=detailedVM&ID='.$id;
+    $link = 'http://vmman.heig-vd.ch/index.php?action=detailsVM&id='.$id;
     $info = getInformationForMailAboutVM($id);
     if($status == 1){
         deniedRequestMail($info[1], $info[0]);
@@ -410,4 +445,34 @@ function getInformationForMailAboutVM($id){
         $i++;
     }
     return $arrayResult;
+}
+
+/**===GET ID BY NAME OF A VM===**/
+function getIdOfVmByName($vmName){
+    $querySelect = "SELECT `id` FROM `vm` WHERE name = ". $vmName;
+
+    $resultSelect = executeQuerySelect($querySelect);
+
+    return $resultSelect[0][0];
+}
+
+function getAllVmName(){
+    $querySelect = "SELECT `name` FROM `vm` ";
+
+    return executeQuerySelect($querySelect);
+}
+
+function researchVm($inputResearch){
+    $query = "SELECT `id`, `name`, `dateStart`, `dateEnd`, `usageType`, `cpu`, `ram`, `disk`, `network`, `userRt`, `entity_id`, `os_id`  FROM `vm` WHERE vm.name LIKE '%".$inputResearch."%'";
+
+    $resultSelect = executeQuerySelect($query);
+    $i = 0;
+
+    foreach ($resultSelect as $vm){
+        $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
+        $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
+        $resultSelect[$i]['os_id'] = getInfoOs($vm['os_id']);
+        $i++;
+    }
+    return $resultSelect;
 }

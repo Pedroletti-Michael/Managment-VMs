@@ -44,6 +44,9 @@ if(isset($_GET['action']))
         case 'allVM':
             displayAllVM($_POST);
             break;
+        case 'renewalVM':
+            displayRenewalVM();
+            break;
         case 'confirmationVM':
             displayConfirmationVM();
             break;
@@ -91,6 +94,9 @@ if(isset($_GET['action']))
             break;
         case 'editBackup':
             editBackup($_POST);
+            break;
+        case 'research':
+            displayResearch($_POST['inputResearch']);
             break;
         default:
             displayHome();

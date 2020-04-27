@@ -21,6 +21,7 @@ ob_start();
             <th scope="col">name</th>
             <th scope="col">os_id</th>
             <th scope="col">dateStart</th>
+            <th scope="col">dateAnniversary</th>
             <th scope="col">dateEnd</th>
             <th scope="col">usageType</th>
             <th scope="col">cpu</th>
@@ -32,7 +33,7 @@ ob_start();
         </tr>
         </thead>
         <tbody>
-            <?php foreach ($confirmationVM as $value): ?>
+            <?php foreach ($renewalVM as $value): ?>
            <tr>
                <td>
                    <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="submit" class="btn btn-warning"><strong>+</strong></button></a>
@@ -40,6 +41,7 @@ ob_start();
                 <td><?php echo $value['name']?></a></td>
                 <td style="min-width: 100px"><?php echo $value['os_id']['1']." ".$value['os_id']['0']?></td>
                 <td style="min-width: 100px"><?php echo $value['dateStart']?></td>
+                <td style="min-width: 100px"><?php echo $value['dateAnniversary']?></td>
                 <td style="min-width: 100px"><?php echo $value['dateEnd']?></td>
                 <td><?php echo $value['usageType']?></td>
                 <td><?php echo $value['cpu']?></td>

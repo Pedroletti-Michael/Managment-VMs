@@ -32,6 +32,7 @@ function addVMToDB($formVMRequest)
     $cpu = $formVMRequest['inputCPU'];
     $ram = $formVMRequest['inputRAM'];
     $disk = $formVMRequest['inputSSD'];
+    $descDisk = $formVMRequest['infoSSD'];
     $network = $formVMRequest['networkFormControlSelect'];
     $domain = $formVMRequest['domainEINET'];
     $comment = $formVMRequest['ti'];
@@ -47,7 +48,7 @@ function addVMToDB($formVMRequest)
 
     $strSep = '\'';
 
-    $query = "INSERT INTO vm (name, cluster, dateStart, dateAnniversary, dateEnd, description, ip, dnsName, redundance, usageType, cpu, ram, disk, network, domain, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
+    $query = "INSERT INTO vm (name, cluster, dateStart, dateAnniversary, dateEnd, description, ip, dnsName, redundance, usageType, cpu, ram, disk, descriptionDisk, network, domain, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
   
               VALUES(
               ".$strSep.$vmName.$strSep.",
@@ -63,6 +64,7 @@ function addVMToDB($formVMRequest)
               ".$strSep.$cpu.$strSep.",
               ".$strSep.$ram.$strSep.",
               ".$strSep.$disk.$strSep.",
+              ".$strSep.$descDisk.$strSep."
               ".$strSep.$network.$strSep.",
               ".$strSep.$domain.$strSep.",
               ".$strSep.$comment.$strSep.",
@@ -75,7 +77,6 @@ function addVMToDB($formVMRequest)
               ".$strSep.$snapshot_id.$strSep.",
               ".$strSep.$backup_id.$strSep.",
               ".$strSep.$cost_id.$strSep.")";
-
 
     executeQueryInsert($query);
     return true;
