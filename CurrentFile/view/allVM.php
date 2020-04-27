@@ -19,7 +19,7 @@ ob_start();
     <body>
     <form method="post" action="../index.php?action=allVM">
         <!------------- Choix ------------>
-        <div class="form-group p-2">
+        <div class="form-group p-2 mb-0">
             <label for="disFormControlSelect" class="font-weight-bold text-center w-100 pt-3">Filtrer les VM</label>
             <div class="w-25 m-auto" id="responsiveDisplay">
                 <div class="btn-group w-100 m-auto">
@@ -39,28 +39,29 @@ ob_start();
                 </div>
             </div>
         </div>
-
-
-        <div class="w-50 float-left p-3" style="height: 200px">
-            <!--Snapshot-->
-            <button type="button" class="btn btn-primary w-10 h-25" data-toggle="modal" data-target="#modalSnapshot">
-                <h5>Filtres pour Snapshot</h5>
-            </button>
+        <div class="w-25-m m-auto responsiveDisplay">
+            <div class="w-100">
+                <div class="w-50-m float-left p-1">
+                    <!--Snapshot-->
+                    <button type="button" class="btn btn-primary w-100 responsiveButton" data-toggle="modal" data-target="#modalSnapshot">
+                        <h6>Filtres pour Snapshot</h6>
+                    </button>
+                </div>
+                <div class="w-50-m float-right p-1">
+                    <!--Backup-->
+                    <button type="button" class="btn btn-primary w-100 responsiveButton" data-toggle="modal" data-target="#modalBackup">
+                        <h6>Filtres pour Backup</h6>
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="w-50 float-left p-3" style="height: 200px">
-            <!--Backup-->
-            <button type="button" class="btn btn-primary w-10 h-25" data-toggle="modal" data-target="#modalBackup">
-                <h5>Filtres pour Backup</h5>
-            </button>
-        </div>
-
 
         <!--Snapshot Modal Window-->
         <div class="modal fade" id="modalSnapshot" tabindex="-1" role="dialog" aria-labelledby="modalSnapshot" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="w-100 p-3">
-                        <div class="w-50 float-left p-1" style="height: 200px">
+                        <div class="w-50 float-left p-1">
                             <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Gold', 17)">
                                 <h5>Gold</h5>
                             </button>
@@ -71,7 +72,7 @@ ob_start();
                                 <h5>Bronze</h5>
                             </button>
                         </div>
-                        <div class="w-50 float-right p-1" style="height: 200px">
+                        <div class="w-50 float-right p-1">
                             <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Aucun', 17)">
                                 <h5>Aucun</h5>
                             </button>
@@ -89,7 +90,7 @@ ob_start();
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="w-100 p-3">
-                        <div class="w-50 float-left p-1" style="height: 200px">
+                        <div class="w-50 float-left p-1">
                             <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Gold', 18)">
                                 <h5>Gold</h5>
                             </button>
@@ -100,7 +101,7 @@ ob_start();
                                 <h5>Bronze</h5>
                             </button>
                         </div>
-                        <div class="w-50 float-right p-1" style="height: 200px">
+                        <div class="w-50 float-right p-1">
                             <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Aucun', 18)">
                                 <h5>Aucun</h5>
                             </button>

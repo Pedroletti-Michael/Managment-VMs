@@ -157,6 +157,9 @@
         padding-left: 0!important;
         padding-right: 0!important;
     }
+    .responsiveButton{
+        height: 60px;
+    }
     .responsiveDisplay{
         width: 100%!important;
         margin: 2px 0px;
