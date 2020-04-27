@@ -109,31 +109,44 @@ ob_start();
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="osFormControlSelect" class="font-weight-bold">Système d'exploitation<a style="color: red"> *</a></label>
                 <div class="w-100 d-inline-block">
-                    <div class="float-left w-50 pr-2">
-                        <select class="form-control w-100 float-left mr-2" id="osTypeFormControlSelect" name="osTypeFormControlSelect" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
+                    <div class="pr-2">
+                        <select class="form-control w-50 float-left" id="osTypeFormControlSelect" name="osTypeFormControlSelect" onchange="checkOS(this.value)" required>
                             <?php
-                            $windows = 0;
-                            $linux = 0;
-                            foreach ($osNames as $value) {
-                                if (($value['osType']=="Linux")&&$linux<1){
-
-                                    echo "<option>".$value['osType']."</option>";
-                                    $linux++;
-                                }
-                                if (($value['osType']=="Windows")&&$windows<1){
-                                    echo "<option>".$value['osType']."</option>";
-                                    $windows++;
-                                }
+                            if($dataVM[0]['os_id'][1] == "Windows"){
+                                echo "<option selected>Windows</option>";
+                                echo "<option>Linux</option>";
+                            }elseif($dataVM[0]['os_id'][1] == "Linux"){
+                                echo "<option>Windows</option>";
+                                echo "<option selected>Linux</option>";
                             }
                             ?>
                         </select>
                     </div>
-                    <div class="float-right w-50 pl-2">
-                        <select class="form-control w-100 float-right ml-2" id="osFormNameControlSelect" name="osFormNameControlSelect" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
+                    <div class="pl-2">
+                        <select class="form-control w-50 float-right" id="windows" name="osFormNameControlSelect" <?php if($dataVM[0]['os_id'][1] == "Linux"):?>style="display: none;"<?php endif; ?> required>
                             <?php
                             foreach ($osNames as $value) {
-                                if($value['osType'])
-                                    echo "<option>".$value['osName']."</option>";
+                                if($value['osType']=="Windows"){
+                                    if($dataVM[0]['os_id'][0] == $value['osName']){
+                                        echo "<option class='windows' selected>".$value['osName']."</option>";
+                                    }else{
+                                        echo "<option class='windows'>".$value['osName']."</option>";
+                                    }
+                                }
+                            }
+                            ?>
+                        </select>
+                        <select class="form-control w-50 float-right" id="linux" name="osFormNameControlSelect" <?php if($dataVM[0]['os_id'][1] == "Windows"):?>style="display: none;"<?php endif; ?> required>
+                            <?php
+
+                            foreach ($osNames as $value) {
+                                if($value['osType']=="Linux"){
+                                    if($dataVM[0]['os_id'][0] == $value['osName']){
+                                        echo "<option class='linux' selected>".$value['osName']."</option>";
+                                    }else{
+                                        echo "<option class='linux'>".$value['osName']."</option>";
+                                    }
+                                }
                             }
                             ?>
                         </select>
@@ -207,10 +220,10 @@ ob_start();
             <select class="form-control" id="snapshotsFormControlSelect" name="snapshotsFormControlSelect" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
                 <?php
                 foreach ($snapshotPolicy as $value) {
-                    if ($dataVM[0]['snapshot_id'] == $value['policy']) {
-                        echo "<option selected>" . $value['policy'] . "</option>";
+                    if ($dataVM[0]['snapshot_id'][1] == $value['name']) {
+                        echo "<option selected>". $value['name'] ." : ". $value['policy'] ."</option>";
                     } else {
-                        echo "<option>" . $value['policy'] . "</option>";
+                        echo "<option>". $value['name'] ." : ". $value['policy'] ."</option>";
                     }
                 }
                 ?>
@@ -223,10 +236,10 @@ ob_start();
             <select class="form-control" id="backupFormControlSelect" name="backupFormControlSelect" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
                 <?php
                 foreach ($backupPolicy as $value) {
-                    if($dataVM[0]['backup_id'] == $value['policy']){
-                        echo "<option selected>".$value['policy']."</option>";}
+                    if($dataVM[0]['backup_id'][1] == $value['name']){
+                        echo "<option selected>". $value['name'] ." : ". $value['policy'] ."</option>";}
                     else{
-                        echo "<option>".$value['policy']."</option>";
+                        echo "<option>". $value['name'] ." : ". $value['policy'] ."</option>";
                     }
                 }
                 ?>

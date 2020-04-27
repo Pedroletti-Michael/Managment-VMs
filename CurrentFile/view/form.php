@@ -113,7 +113,7 @@ ob_start();
                 <label for="osFormControlSelect" class="font-weight-bold">Système d'exploitation<a style="color: red"> *</a></label>
                 <div class="w-100 d-inline-block">
                     <div class="pr-2">
-                        <select class="form-control w-50 float-left" id="osTypeFormControlSelect" name="osTypeFormControlSelect" value="hello" onchange="smartList(this.value)" required>
+                        <select class="form-control w-50 float-left" id="osTypeFormControlSelect" name="osTypeFormControlSelect" onchange="checkOS(this.value)" required>
                             <?php
                             $windows = 0;
                             $linux = 0;
@@ -131,15 +131,22 @@ ob_start();
                         </select>
                     </div>
                     <div class="pl-2">
-                        <select class="form-control w-50 float-right" required>
+                        <select class="form-control w-50 float-right" id="windows" required>
+                            <?php
+
+                            foreach ($osNames as $value) {
+                                if($value['osType']=="Windows"){
+                                    echo "<option class='windows'>".$value['osName']."</option>";
+                                }
+                            }
+                            ?>
+                        </select>
+                        <select class="form-control w-50 float-right" style="display: none;" id="linux" required>
                             <?php
 
                             foreach ($osNames as $value) {
                                 if($value['osType']=="Linux"){
-                                    echo "<option >".$value['osName']."</option>";
-                                }
-                                if($value['osType']=="Windows"){
-                                    echo "<option >".$value['osName']."</option>";
+                                    echo "<option class='linux'>".$value['osName']."</option>";
                                 }
                             }
                             ?>

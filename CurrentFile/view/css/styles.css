@@ -30,7 +30,7 @@
     text-decoration: none;
 }
 .search-responsive{
-    width: calc(100% - 200px - 110px)!important;
+    width: calc(100% - 200px - 120px)!important;
 }
 
 
@@ -94,8 +94,8 @@
         min-width: 200px;
     }
     .signIn-responsive{
-        max-width: 110px;
-        min-width: 110px;
+        max-width: 120px;
+        min-width: 120px;
     }
 }
 @media screen and (max-width: 1050px) {
@@ -110,11 +110,11 @@
         min-width: 200px;
     }
     .signIn-responsive{
-        max-width: 110px;
-        min-width: 110px;
+        max-width: 120px;
+        min-width: 120px;
     }
     .search-responsive{
-        width: 50%;
+        width: calc(100% - 200px - 120px);
     }
 }
 @media (min-width: 768px) {
@@ -169,11 +169,11 @@
         min-width: 100px;
     }
     .signIn-responsive{
-        max-width: 80px;
-        min-width: 80px;
+        max-width: 75px;
+        min-width: 75px;
     }
     .search-responsive{
-        width: calc(100% - 100px - 80px)!important;
+        width: calc(100% - 100px - 75px)!important;
     }
     .navbar-toggler-icon{
         width: 50px!important;
