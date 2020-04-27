@@ -34,7 +34,7 @@
     </div>
     <form method="post" action="../index.php?action=research" class="btn-group search-responsive float-left" style="padding-top: 5px">
         <input class="form-control form-control-light" style="width: calc(100%-50px)" name="inputResearch" type="text" placeholder="Recherche" aria-label="Recherche">
-        <button type="submit" class="btn btn-success" style="width: 30px">></button>
+        <button type="submit" class="btn btn-success rounded-0" style="width: 30px">></button>
     </form>
     <div class="signIn-responsive float-right text-center float-left align-items-center" style="height: 48px;">
         <span class="navbar-toggler-icon float-right" style="margin: 14px" onclick="openNav()"></span>
@@ -158,7 +158,7 @@
     <!------ Search ------->
     <form method="post" action="../index.php?action=research" class="btn-group search-responsive">
         <input class="form-control form-control-light" style="width: calc(100%-120px)" name="inputResearch" type="text" placeholder="Recherche" aria-label="Recherche">
-        <button type="submit" class="btn btn-success" style="width: 120px">Rechercher</button>
+        <button type="submit" class="btn btn-success rounded-0" style="width: 120px">Rechercher</button>
     </form>
     <!------ Sign In / Sign Out ------->
     <div class="signIn-responsive float-right text-center">
@@ -351,7 +351,7 @@
 <div class="responsive-menu-max container-fluid">
     <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-dark sidebar" style="max-width: 200px">
-            <div class="sidebar-sticky">
+            <div class="sidebar-sticky border-right border-light">
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">
                     <span>Public</span>
                 </h6>
