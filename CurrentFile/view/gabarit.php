@@ -29,8 +29,8 @@
 <body>
 <!-------------------------- Gabarit phone ------------------------------->
 <nav class="display-phone navbar navbar-dark header-top fixed-top flex-lg-nowrap p-0 shadow w-100 navbar-expand-lg" style="background-color: #e30613;flex-wrap: nowrap !important; height: 48px">
-    <div class="logo-responsive navbar-brand mr-0 pl-3 pr-3 font-weight-bold float-left" href="#" style="font-family: 'Century Gothic'">
-        <a href="index.php?action=home" style="color: white; text-decoration: none">HEIG-VD</a>
+    <div class="logo-responsive navbar-brand mr-0 p-0 font-weight-bold float-left" href="#" style="font-family: 'Century Gothic'">
+        <img src="../images/LOGO-PHONE.png" style="height: 48px; width: auto">
     </div>
     <form method="post" action="../index.php?action=research" class="btn-group search-responsive float-left" style="padding-top: 5px">
         <input class="form-control form-control-light" style="width: calc(100%-50px)" name="inputResearch" type="text" placeholder="Recherche" aria-label="Recherche">
@@ -151,9 +151,10 @@
 </nav>
 <!-------------------------- Gabarit responsive ------------------------------->
 <nav class="display-laptop navbar navbar-dark header-top fixed-top flex-lg-nowrap p-0 shadow w-100 navbar-expand-lg" style="background-color: #e30613;flex-wrap: nowrap !important; ">
-    <div class="logo-responsive navbar-brand mr-0 pl-3 pr-3 font-weight-bold" href="#" style="font-family: 'Century Gothic'">
-        <a href="index.php?action=home" style="color: white; text-decoration: none">HEIG-VD</a>
-        <span class="responsive-menu-min navbar-toggler-icon float-right m-0" onclick="Sidebar()"></span>
+    <div class="logo-responsive navbar-brand mr-0 p-0" href="#">
+        <img src="../images/VRAI-LOGO.png" style="height: 48px; width: auto">
+        <a class="text-decoration-none ml-2" href="index.php?action=home" style="color: white; margin-top: 13px!important;">Gestion VM</a>
+        <span class="responsive-menu-min navbar-toggler-icon float-right m-0 mr-3" style="margin-top: 13px!important;" onclick="Sidebar()"></span>
     </div>
     <!------ Search ------->
     <form method="post" action="../index.php?action=research" class="btn-group search-responsive">
@@ -250,6 +251,19 @@
                             <?php endif; ?>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                             Gestion du formulaire
+                        </a>
+                </li>
+            </ul>
+
+            <ul class="nav flex-column mb-2">
+                <li class="nav-item">
+                    <?php if ($_GET['action'] == "refreshUser"): ?>
+                    <a class="nav-link active" href="index.php?action=refreshUser">
+                        <?php else : ?>
+                        <a class="nav-link" href="index.php?action=refreshUser">
+                            <?php endif; ?>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                            Actualiser utilisateurs
                         </a>
                 </li>
             </ul>
@@ -431,6 +445,19 @@
                                 <?php endif; ?>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                                 Gestion du formulaire
+                            </a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column mb-2">
+                    <li class="nav-item">
+                        <?php if ($_GET['action'] == "refreshUser"): ?>
+                        <a class="nav-link active" href="index.php?action=refreshUser">
+                            <?php else : ?>
+                            <a class="nav-link" href="index.php?action=refreshUser">
+                                <?php endif; ?>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                                Actualiser utilisateurs
                             </a>
                     </li>
                 </ul>
