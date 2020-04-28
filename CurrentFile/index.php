@@ -98,6 +98,8 @@ if(isset($_GET['action']))
         case 'research':
             displayResearch($_POST['inputResearch']);
             break;
+        case 'refreshUser':
+            refreshUser();
         default:
             displayHome();
     }

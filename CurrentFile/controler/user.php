@@ -83,3 +83,13 @@ function signOut()
 
     displayHome();
 }
+
+function refreshUser(){
+    require_once 'model/userManager.php';
+    if(verificationUserFromDb()){
+        require 'view/home.php';
+    }
+    else{
+        require 'view/home.php';
+    }
+}
