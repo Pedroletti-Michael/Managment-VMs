@@ -411,17 +411,17 @@ function editEntity($entityName){
 function editOS($osName){
     require_once 'model/displayManager.php';
     if(isset($osName['add'])){
-        if(isset($osName['txtOsAdd']) && $osName['txtOsAdd'] != null && isset($osName['typeOsAdd']) && $osName['typeOsAdd'] != null)
+        if(isset($osName['txtOSAdd']) && $osName['txtOSAdd'] != null && isset($osName['typeOSAdd']) && $osName['typeOSAdd'] != null)
         {
-            $nameOS = $osName['txtOsAdd'];
-            $typeOS = $osName['typeOsAdd'];
+            $nameOS = $osName['txtOSAdd'];
+            $typeOS = $osName['typeOSAdd'];
             addOS($nameOS,$typeOS);
         }
     }
     elseif(isset($osName['delete'])){
-        if(isset($osName['valueOsDel']) && $osName['valueOsDel'] != null)
+        if(isset($osName['valueOSDel']) && $osName['valueOSDel'] != null)
         {
-            $nameOS = $osName['valueOsDel'];
+            $nameOS = $osName['valueOSDel'];
             $length = strlen($nameOS);
             $textOs = "";
 
@@ -443,11 +443,11 @@ function editOS($osName){
         }
     }
     elseif(isset($osName['modify'])){
-        if(isset($osName['valueOsMod']) && $osName['valueOsMod'] != null && isset($osName['txtOsMod']) && $osName['txtOsMod'] != null && isset($osName['typeOsMod']) && $osName['typeOsMod'] != null)
+        if(isset($osName['valueOSMod']) && $osName['valueOSMod'] != null && isset($osName['txtOSMod']) && $osName['txtOSMod'] != null && isset($osName['typeOSMod']) && $osName['typeOSMod'] != null)
         {
-            $nameOS = $osName['valueOsMod'];
-            $newName = $osName['txtOsMod'];
-            $newType = $osName['typeOsMod'];
+            $nameOS = $osName['valueOSMod'];
+            $newName = $osName['txtOSMod'];
+            $newType = $osName['typeOSMod'];
             $textOs = "";
             $length = strlen($nameOS);
 

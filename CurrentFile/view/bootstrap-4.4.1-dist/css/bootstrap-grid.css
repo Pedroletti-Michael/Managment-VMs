@@ -2373,6 +2373,10 @@ html {
   padding-left: 3rem !important;
 }
 
+.p-6 {
+  padding: 3.75rem !important;
+}
+
 .m-n1 {
   margin: -0.25rem !important;
 }
