@@ -593,3 +593,71 @@ function displayResearch($inputResearch){
     //display searchResultView
     require 'view/searchResult.php';
 }
+
+function displayDetailsVmRenewal($idVM)
+{
+    if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
+    {
+        $renewalStatus = true;
+        switch ($_SESSION['userType'])
+        {
+            case 0:
+                require_once 'model/vmManager.php';
+                require_once 'model/displayManager.php';
+                $dataVM = getDataVM($idVM);
+
+                if($_SESSION['userEmail'] == $dataVM[0]['customer'])
+                {
+                    $entityNames = displayBDD_Entity();
+                    $osNames = displayBDD_OS();
+                    $windowsData = displayBDD_OSNameWhereWindows();
+                    $linuxData = displayBDD_OSNameWhereLinux();
+                    $snapshotPolicy = displayBSS_Snapshots();
+                    $backupPolicy = displayBSS_Backup();
+
+                    require_once 'model/userManager.php';
+                    $users = getAllUsers();
+
+                    $_SESSION['idVM'] = $idVM;
+
+                    $_GET['action'] = "detailsVM";
+                    require 'view/detailsVM.php';
+                }
+                else
+                {
+                    displayHome();
+                }
+                break;
+            case 1:
+                require_once 'model/displayManager.php';
+                $entityNames = displayBDD_Entity();
+                $osNames = displayBDD_OS();
+                $snapshotPolicy = displayBSS_Snapshots();
+                $backupPolicy = displayBSS_Backup();
+
+                require_once 'model/userManager.php';
+                $users = getAllUsers();
+
+                require_once 'model/vmManager.php';
+                $dataVM = getDataVM($idVM);
+                $vms = getAllVmName();
+
+                $_SESSION['idVM'] = $idVM;
+
+                $_GET['action'] = "detailsVM";
+                require 'view/detailsVM.php';
+                break;
+            default:
+                $_GET['action'] = "signIn";
+                require 'view/signIn.php';
+                break;
+        }
+    }
+    else
+    {
+        $_SESSION['idVM'] = $idVM;
+        $_SESSION['actionUser'] = "detailsVM";
+        $_GET['action'] = "signIn";
+        require 'view/signIn.php';
+    }
+}

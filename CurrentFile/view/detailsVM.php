@@ -361,12 +361,20 @@ ob_start();
         <!--Save the modifications-->
         <a onclick="getValue()"><button type="submit" class="btn btn-primary m-auto d-inline responsiveDisplay">Enregistrer les modifications</button></a>
 
-        <?php if($dataVM[0]['vmStatus']==1): ?>
-        <!--Accepted-->
-        <a href="index.php?action=vmAccepted"><button type="button" class="btn btn-success float-right ml-1 responsiveDisplay">Confirmer la demande</button></a>
-        <!--Refused-->
-        <a href="index.php?action=vmRefused"><button type="button" class="btn btn-danger float-right responsiveDisplay">Refuser la demande</button></a>
-        <?php endif; ?>
+        <?php
+        if(isset($renewalStatus) && $renewalStatus){
+            //accepted
+            echo '<a href="index.php?action=renewalAccepted"><button type="button" class="btn btn-success float-right ml-1 responsiveDisplay">Confirmer la demande</button></a>';
+            //refused
+            echo '<a href="index.php?action=renewalRefused"><button type="button" class="btn btn-danger float-right responsiveDisplay">Refuser la demande</button></a>';
+        }
+        elseif($dataVM[0]['vmStatus']==1){
+            //accepted
+            echo '<a href="index.php?action=vmAccepted"><button type="button" class="btn btn-success float-right ml-1 responsiveDisplay">Confirmer la demande</button></a>';
+            //refused
+            echo '<a href="index.php?action=vmRefused"><button type="button" class="btn btn-danger float-right responsiveDisplay">Refuser la demande</button></a>';
+        }
+        ?>
     </form>
 </div>
 <?php

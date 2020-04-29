@@ -100,6 +100,10 @@ if(isset($_GET['action']))
             break;
         case 'refreshUser':
             refreshUser();
+            break;
+        case 'renewalDetailsVm':
+            displayDetailsVmRenewal($_GET['id']);
+            break;
         default:
             displayHome();
     }

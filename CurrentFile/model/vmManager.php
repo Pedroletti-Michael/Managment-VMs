@@ -169,7 +169,7 @@ function getInfoUser($id){
 
     $user = executeQuery($query);
     $result = $user[0][0] . " " .$user[0][1];
-    return $result ;
+    return $result;
 }
 
 function getInfoEntity($id){
