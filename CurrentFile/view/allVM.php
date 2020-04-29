@@ -25,7 +25,7 @@ ob_start();
                 <div class="btn-group w-100 m-auto">
                     <select class="form-control w-75 float-left" id="vmFilter" name="vmFilter" required>
                         <?php
-                        $filterName = array("Toutes les vm", "VM confirmées","VM à confirmer","VM à renouveler");
+                        $filterName = array("Toutes les VM", "VM confirmées","VM à confirmer","VM à renouveler");
                         for($i = 0; $i<4; $i++){
                             if($checkFilter == $filterName[$i]){
                                 echo "<option selected>".$filterName[$i]."</option>";}
@@ -39,18 +39,30 @@ ob_start();
                 </div>
             </div>
         </div>
-        <div class="w-25-m m-auto responsiveDisplay">
+        <div class="w-50-m m-auto responsiveDisplay">
             <div class="w-100">
-                <div class="w-50-m float-left p-1">
+                <div class="w-25-m float-left p-1">
                     <!--Snapshot-->
-                    <button type="button" class="btn btn-primary w-100 responsiveButton" data-toggle="modal" data-target="#modalSnapshot">
-                        <h6>Filtres pour Snapshot</h6>
+                    <button type="button" class="btn btn-primary w-100 responsiveButton">
+                        <h6>Toutes les VM</h6>
                     </button>
                 </div>
-                <div class="w-50-m float-right p-1">
+                <div class="w-25-m float-left p-1">
                     <!--Backup-->
-                    <button type="button" class="btn btn-primary w-100 responsiveButton" data-toggle="modal" data-target="#modalBackup">
-                        <h6>Filtres pour Backup</h6>
+                    <button type="button" class="btn btn-primary w-100 responsiveButton">
+                        <h6>VM confirmées</h6>
+                    </button>
+                </div>
+                <div class="w-25-m float-left p-1">
+                    <!--Snapshot-->
+                    <button type="button" class="btn btn-primary w-100 responsiveButton">
+                        <h6>VM à confirmer</h6>
+                    </button>
+                </div>
+                <div class="w-25-m float-left p-1">
+                    <!--Backup-->
+                    <button type="button" class="btn btn-primary w-100 responsiveButton">
+                        <h6>VM à renouveler</h6>
                     </button>
                 </div>
             </div>
@@ -137,8 +149,16 @@ ob_start();
                 <th scope="col" onclick="sortTable(14)">userRt</th>
                 <th scope="col" onclick="sortTable(15)">entity_id</th>
                 <th scope="col" onclick="sortTable(16)">os_id</th>
-                <th scope="col" onclick="sortTable(17)">snapshot_id</th>
-                <th scope="col" onclick="sortTable(18)">backup_id</th>
+                <th scope="col" onclick="sortTable(17)">snapshot_id
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#modalSnapshot">
+                        <path fill-rule="evenodd" d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                    </svg>
+                </th>
+                <th scope="col" onclick="sortTable(18)">backup_id
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#modalBackup">
+                        <path fill-rule="evenodd" d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                    </svg>
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -146,7 +166,7 @@ ob_start();
                     <tr>
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-warning"><strong>+</strong></button></a>
+                                <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-primary"><strong>+</strong></button></a>
                             </div>
                         </td>
                         <td><?php echo $value['name']?></td>
@@ -165,8 +185,8 @@ ob_start();
                         <td><?php echo $value['userRt']?></td>
                         <td><?php echo $value['entity_id']?></td>
                         <td style="min-width: 100px"><?php echo $value['os_id']['1']." ".$value['os_id'][0]?></td>
-                        <td style="min-width: 250px"><?php echo $value['snapshot_id']['1']." : ".$value['snapshot_id'][0]?></td>
-                        <td style="min-width: 250px"><?php echo $value['backup_id']['1']." : ".$value['backup_id'][0]?></td>
+                        <td style="min-width: 130px"><?php echo $value['snapshot_id']['1']?></td>
+                        <td style="min-width: 120px"><?php echo $value['backup_id']['1']?></td>
                     </tr>
                 <?php endforeach;?>
             </tbody>

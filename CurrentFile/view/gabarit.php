@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../view/bootstrap-4.4.1-dist/css/bootstrap-grid.css">
     <link rel="stylesheet" href="../view/bootstrap-4.4.1-dist/css/bootstrap-reboot.css">
     <link rel="stylesheet" href="../view/css/dashboard.css">
+    <link rel="stylesheet" href="../view/css/">
     <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.bundle.js"></script>
     <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
     <script rel="javascript" src="../view/js/jquery.js"></script>
@@ -57,9 +58,9 @@
         <a class="title">Public</a>
         <!----------------- home ---------------->
         <?php if ($_GET['action'] == "home"): ?>
-            <a href="index.php?action=home" class="alert-link active">Home</a>
+            <a href="index.php?action=home" class="alert-link active">Mes VM's</a>
         <?php else : ?>
-            <a href="index.php?action=home">Home</a>
+            <a href="index.php?action=home">Mes VM's</a>
         <?php endif; ?>
         <!----------------- form ---------------->
         <?php if ($_GET['action'] == "form"): ?>
@@ -183,7 +184,7 @@
                         <a class="nav-link" href="index.php?action=home">
                             <?php endif; ?>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                            Accueil
+                            Mes VM's
                         </a>
                 </li>
             </ul>
@@ -377,7 +378,7 @@
                             <a class="nav-link" href="index.php?action=home">
                                 <?php endif; ?>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                Accueil
+                                Mes VM's
                             </a>
                     </li>
                 </ul>

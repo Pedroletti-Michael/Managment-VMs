@@ -28,7 +28,7 @@ ob_start();
                         <label for="inputLogin" class="font-weight-bold">Nom d'utilisateur</label>
                         <div class="input-group mb-2 mr-sm-2 ">
                             <div class="input-group-prepend">
-                                <div class="input-group-text">einet \</div>
+                                <div class="input-group-text">einet\</div>
                             </div>
                             <input type="text" class="form-control" id="userLogin" name="userLogin" placeholder="login AAI" required>
                         </div>

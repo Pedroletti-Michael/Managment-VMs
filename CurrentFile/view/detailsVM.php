@@ -276,7 +276,7 @@ ob_start();
         </div>
         <?php if($_SESSION['userType']==1):?>
         <!------------------ Admin informations ---------------------->
-        <div class="w-100 text-center mt-5"><h5>Info admin</h5></div>
+        <div class="w-100 text-center mt-5"><h5>Informations réservées aux administrateurs</h5></div>
         <hr class="">
         <div class="d-inline-block w-100">
             <!--Cluster-->
@@ -329,7 +329,7 @@ ob_start();
             </div>
             <!--Criticity-->
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
-                <label for="editCriticity" class="font-weight-bold">Critique</label>
+                <label for="editCriticity" class="font-weight-bold">Criticité</label>
                 <select class="form-control form form" id="editCriticity" name="editCriticity" aria-describedby="criticityHelp">
                     <?php
                     $criticityNames = array("1", "2","3");

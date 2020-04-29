@@ -35,7 +35,7 @@ ob_start();
             <?php foreach ($confirmationVM as $value): ?>
            <tr>
                <td>
-                   <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="submit" class="btn btn-warning"><strong>+</strong></button></a>
+                   <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="submit" class="btn btn-primary"><strong>+</strong></button></a>
                </td>
                 <td><?php echo $value['name']?></a></td>
                 <td style="min-width: 100px"><?php echo $value['os_id']['1']." ".$value['os_id']['0']?></td>
