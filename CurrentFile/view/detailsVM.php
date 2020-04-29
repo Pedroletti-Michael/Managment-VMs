@@ -322,8 +322,17 @@ ob_start();
                 <label for="editRedundance" class="font-weight-bold">Redondance</label>
                 <select class="js-example-basic-multiple form-control form form" multiple="multiple">
                     <?php
+                    $dataRedundances = explode(";", $dataVM[0]['redundance']);
+
                     foreach($vms as $vm){
-                        echo '<option value="'.$vm[0].'" selected>'.$vm[0].'</option>';
+                        foreach ($dataRedundances as $dataRedundance){
+                            if ($vm[0] == $dataRedundance){
+                                echo '<option value="'.$vm[0].'" selected>'.$vm[0].'</option>';
+                            }
+                            else{
+                                echo '<option value="'.$vm[0].'">'.$vm[0].'</option>';
+                            }
+                        }
                     }
                     ?>
                 </select>
