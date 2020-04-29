@@ -165,10 +165,11 @@ function getAllVM()
 function getInfoUser($id){
     $strSep = '\'';
 
-    $query = "SELECT mail FROM `user` WHERE user_id = ". $strSep.$id.$strSep;
+    $query = "SELECT lastname, firstname FROM `user` WHERE user_id = ". $strSep.$id.$strSep;
 
-    $result = executeQuery($query);
-    return $result[0][0];
+    $user = executeQuery($query);
+    $result = $user[0][0] . " " .$user[0][1];
+    return $result ;
 }
 
 function getInfoEntity($id){
