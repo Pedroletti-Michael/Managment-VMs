@@ -123,33 +123,34 @@ ob_start();
                         </select>
                     </div>
                     <div class="pl-2">
-                        <select class="form-control w-50 float-right" id="windows" name="osFormNameControlSelect" <?php if($dataVM[0]['os_id'][1] == "Linux"):?>style="display: none;"<?php endif; ?> required>
-                            <?php
-                            foreach ($osNames as $value) {
-                                if($value['osType']=="Windows"){
-                                    if($dataVM[0]['os_id'][0] == $value['osName']){
-                                        echo "<option class='windows' selected>".$value['osName']."</option>";
-                                    }else{
-                                        echo "<option class='windows'>".$value['osName']."</option>";
+                        <?php
+                            if($dataVM[0]['os_id'][1] == "Windows"){
+                                echo '<select class="form-control w-50 float-right" id="windows" name="osFormNameControlSelect" required>';
+                                foreach ($osNames as $value) {
+                                    if($value['osType']=="Windows"){
+                                        if($dataVM[0]['os_id'][0] == $value['osName']){
+                                            echo "<option class='windows' selected>".$value['osName']."</option>";
+                                        }else{
+                                            echo "<option class='windows'>".$value['osName']."</option>";
+                                        }
                                     }
                                 }
+                                echo "</select>";
                             }
-                            ?>
-                        </select>
-                        <select class="form-control w-50 float-right" id="linux" name="osFormNameControlSelect" <?php if($dataVM[0]['os_id'][1] == "Windows"):?>style="display: none;"<?php endif; ?> required>
-                            <?php
-
-                            foreach ($osNames as $value) {
-                                if($value['osType']=="Linux"){
-                                    if($dataVM[0]['os_id'][0] == $value['osName']){
-                                        echo "<option class='linux' selected>".$value['osName']."</option>";
-                                    }else{
-                                        echo "<option class='linux'>".$value['osName']."</option>";
+                            else{
+                                echo '<select class="form-control w-50 float-right" id="linux" name="osFormNameControlSelect" required>';
+                                foreach ($osNames as $value) {
+                                    if($value['osType']=="Linux"){
+                                        if($dataVM[0]['os_id'][0] == $value['osName']){
+                                            echo "<option class='linux' selected>".$value['osName']."</option>";
+                                        }else{
+                                            echo "<option class='linux'>".$value['osName']."</option>";
+                                        }
                                     }
                                 }
+                                echo '</select>';
                             }
-                            ?>
-                        </select>
+                        ?>
                     </div>
                 </div>
                 <small id="osHelp" class="form-text text-muted">Toutes les OS sont en anglais, 64 bits</small>
@@ -319,13 +320,15 @@ ob_start();
             <!--Redundance-->
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="editRedundance" class="font-weight-bold">Redondance</label>
-                <select class="js-example-basic-multiple form-control form form" value"<?php echo $dataVM[0]['redundance'] ?>" name="editRedundance" multiple="multiple">
+                <select class="js-example-basic-multiple form-control form form" multiple="multiple">
                     <?php
                     foreach($vms as $vm){
-                        echo '<option value="'.$vm[0].'">'.$vm[0].'</option>';
+                        echo '<option value="'.$vm[0].'" selected>'.$vm[0].'</option>';
                     }
                     ?>
                 </select>
+
+                <input type="hidden" name="editRedundance" id="editRedundance" value="<?php echo $dataVM[0]['redundance'] ?>" readonly required>
             </div>
             <!--Criticity-->
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
@@ -347,9 +350,9 @@ ob_start();
         <?php endif; ?>
 
         <!--Save the modifications-->
-        <a href="index.php?action=updateVM"><button type="submit" class="btn btn-primary m-auto d-inline responsiveDisplay">Enregistrer les modifications</button></a>
+        <a onclick="getValue()"><button type="submit" class="btn btn-primary m-auto d-inline responsiveDisplay">Enregistrer les modifications</button></a>
 
-        <?php if($dataVM[0]['vmStatus']==0): ?>
+        <?php if($dataVM[0]['vmStatus']==1): ?>
         <!--Accepted-->
         <a href="index.php?action=vmAccepted"><button type="button" class="btn btn-success float-right ml-1 responsiveDisplay">Confirmer la demande</button></a>
         <!--Refused-->

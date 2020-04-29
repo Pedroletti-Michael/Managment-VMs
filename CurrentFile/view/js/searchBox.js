@@ -43,6 +43,7 @@ function searchFunctionTm() {
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
             li[i].style.display = "";
         } else {
+
             li[i].style.display = "none";
         }
     }
@@ -87,3 +88,17 @@ function filterForInventoryVm(which, n) {
 $(document).ready(function() {
     $('.js-example-basic-multiple').select2();
 });
+
+function getValue() {
+    var ul, li, a, i, txtValue, input;
+    ul = document.getElementsByClassName("select2-selection__rendered");
+    li = ul[0].getElementsByTagName("li");
+    txtValue = "";
+    for (i = 0; i < li.length; i++) {
+        a = li[i].title;
+        txtValue += a + ";";
+    }
+    input = document.getElementById("editRedundance");
+    input.value = txtValue;
+    alert(txtValue);
+}

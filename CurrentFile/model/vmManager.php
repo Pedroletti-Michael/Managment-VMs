@@ -104,19 +104,39 @@ function getOsId($osName, $osType){
 function getSnapshotId($snapshotName){
     $strSep = '\'';
 
-    $query = "SELECT snapshot_id FROM `snapshot` WHERE policy = ". $strSep.$snapshotName.$strSep;
+    $typeSnapshot = explode(" ", $snapshotName);
 
-    $result = executeQuery($query);
-    return $result[0][0];
+    $query = "SELECT name, snapshot_id FROM `snapshot`";
+
+    $snapshots = executeQuery($query);
+
+    $result = null;
+    foreach ($snapshots as $snapshot){
+        if($snapshot['name'] == $typeSnapshot[0]){
+            $result = $snapshot[1];
+        }
+    }
+
+    return $result;
 }
 
-function getBackupId($backupId){
+function getBackupId($backupName){
     $strSep = '\'';
 
-    $query = "SELECT backup_id FROM `backup` WHERE policy = ". $strSep.$backupId.$strSep;
+    $typeBackup = explode(" ", $backupName);
 
-    $result = executeQuery($query);
-    return $result[0][0];
+    $query = "SELECT name, backup_id FROM `backup`";
+
+    $backups = executeQuery($query);
+
+    $result = null;
+    foreach ($backups as $backup){
+        if($backup[0] == $typeBackup[0]){
+            $result = $backup[1];
+        }
+    }
+
+    return $result;
 }
 
 /**===GET INFO OF ALL VM===**/
