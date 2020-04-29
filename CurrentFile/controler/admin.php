@@ -422,7 +422,24 @@ function editOS($osName){
         if(isset($osName['valueOsDel']) && $osName['valueOsDel'] != null)
         {
             $nameOS = $osName['valueOsDel'];
-            deleteOS($nameOS);
+            $length = strlen($nameOS);
+            $textOs = "";
+
+            for($count = 0; $count < $length; $count++)
+            {
+                if($nameOS[$count] !== " ")
+                {
+                }
+                else
+                {
+                    for($count += 1; $count < $length; $count++)
+                    {
+                        $textOs = "$textOs"."$nameOS[$count]";
+                    }
+                    break;
+                }
+            }
+            deleteOS($textOs);
         }
     }
     elseif(isset($osName['modify'])){
@@ -432,7 +449,7 @@ function editOS($osName){
             $newName = $osName['txtOsMod'];
             $newType = $osName['typeOsMod'];
             $textOs = "";
-            $length = strlen($nameOS);;
+            $length = strlen($nameOS);
 
             for($count = 0; $count < $length; $count++)
             {
@@ -468,7 +485,21 @@ function editSnapshots($snapshotsName){
         if(isset($snapshotsName['valueSnapDel']) && $snapshotsName['valueSnapDel'] != null)
         {
             $nameSnapshots = $snapshotsName['valueSnapDel'];
-            deleteSnapshots($nameSnapshots);
+            $typeSnapshots = "";
+            $length = strlen($nameSnapshots);
+
+            for($count = 0; $count < $length; $count++)
+            {
+                if($nameSnapshots[$count] !== " ")
+                {
+                    $typeSnapshots = "$typeSnapshots"."$nameSnapshots[$count]";
+                }
+                else
+                {
+                    break;
+                }
+            }
+            deleteSnapshots($typeSnapshots);
         }
     }
     elseif(isset($snapshotsName['modify'])){
@@ -478,7 +509,7 @@ function editSnapshots($snapshotsName){
             $newPolicy = $snapshotsName['txtSnapMod'];
             $newType = $snapshotsName['typeSnapMod'];
             $typeSnapshots = "";
-            $length = strlen($nameSnapshots);;
+            $length = strlen($nameSnapshots);
 
             for($count = 0; $count < $length; $count++)
             {
@@ -510,8 +541,22 @@ function editBackup($backupName){
     elseif(isset($backupName['delete'])){
         if(isset($backupName['valueBackupDel']) && $backupName['valueBackupDel'] != null)
         {
-            $nameSnapshots = $backupName['valueBackupDel'];
-            deleteBackup($nameSnapshots);
+            $nameBackup = $backupName['valueBackupDel'];
+            $typeBackup = "";
+            $length = strlen($nameBackup);
+
+            for($count = 0; $count < $length; $count++)
+            {
+                if($nameBackup[$count] !== " ")
+                {
+                    $typeBackup = "$typeBackup"."$nameBackup[$count]";
+                }
+                else
+                {
+                    break;
+                }
+            }
+            deleteBackup($typeBackup);
         }
     }
     elseif(isset($backupName['modify'])){
@@ -521,7 +566,7 @@ function editBackup($backupName){
             $newPolicy = $backupName['txtBackupMod'];
             $newType = $backupName['typeBackupMod'];
             $typeBackup = "";
-            $length = strlen($nameBackup);;
+            $length = strlen($nameBackup);
 
             for($count = 0; $count < $length; $count++)
             {

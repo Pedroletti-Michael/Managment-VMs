@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../view/bootstrap-4.4.1-dist/css/bootstrap-grid.css">
     <link rel="stylesheet" href="../view/bootstrap-4.4.1-dist/css/bootstrap-reboot.css">
     <link rel="stylesheet" href="../view/css/dashboard.css">
+    <link rel="stylesheet" href="../view/css/">
     <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.bundle.js"></script>
     <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
     <script rel="javascript" src="../view/js/jquery.js"></script>
@@ -30,7 +31,8 @@
 <!-------------------------- Gabarit phone ------------------------------->
 <nav class="display-phone navbar navbar-dark header-top fixed-top flex-lg-nowrap p-0 shadow w-100 navbar-expand-lg" style="background-color: #e30613;flex-wrap: nowrap !important; height: 48px">
     <div class="logo-responsive navbar-brand mr-0 p-0 font-weight-bold float-left" href="#" style="font-family: 'Century Gothic'">
-        <img src="../images/LOGO-PHONE.png" style="height: 48px; width: auto">
+        <img src="../images/VRAI-LOGO.png" style="height: 48px; width: auto">
+        <a class="text-decoration-none ml-1" href="index.php?action=home" style="color: white; font-size: 11px">Gestion VM</a>
     </div>
     <form method="post" action="../index.php?action=research" class="btn-group search-responsive float-left" style="padding-top: 5px">
         <input class="form-control form-control-light" style="width: calc(100%-50px)" name="inputResearch" type="text" placeholder="Recherche" aria-label="Recherche">
@@ -57,9 +59,9 @@
         <a class="title">Public</a>
         <!----------------- home ---------------->
         <?php if ($_GET['action'] == "home"): ?>
-            <a href="index.php?action=home" class="alert-link active">Home</a>
+            <a href="index.php?action=home" class="alert-link active">Mes VM's</a>
         <?php else : ?>
-            <a href="index.php?action=home">Home</a>
+            <a href="index.php?action=home">Mes VM's</a>
         <?php endif; ?>
         <!----------------- form ---------------->
         <?php if ($_GET['action'] == "form"): ?>
@@ -183,7 +185,7 @@
                         <a class="nav-link" href="index.php?action=home">
                             <?php endif; ?>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                            Accueil
+                            Mes VM's
                         </a>
                 </li>
             </ul>
@@ -377,7 +379,7 @@
                             <a class="nav-link" href="index.php?action=home">
                                 <?php endif; ?>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                Accueil
+                                Mes VM's
                             </a>
                     </li>
                 </ul>
