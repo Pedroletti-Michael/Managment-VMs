@@ -31,7 +31,8 @@
 <!-------------------------- Gabarit phone ------------------------------->
 <nav class="display-phone navbar navbar-dark header-top fixed-top flex-lg-nowrap p-0 shadow w-100 navbar-expand-lg" style="background-color: #e30613;flex-wrap: nowrap !important; height: 48px">
     <div class="logo-responsive navbar-brand mr-0 p-0 font-weight-bold float-left" href="#" style="font-family: 'Century Gothic'">
-        <img src="../images/LOGO-PHONE.png" style="height: 48px; width: auto">
+        <img src="../images/VRAI-LOGO.png" style="height: 48px; width: auto">
+        <a class="text-decoration-none ml-1" href="index.php?action=home" style="color: white; font-size: 11px">Gestion VM</a>
     </div>
     <form method="post" action="../index.php?action=research" class="btn-group search-responsive float-left" style="padding-top: 5px">
         <input class="form-control form-control-light" style="width: calc(100%-50px)" name="inputResearch" type="text" placeholder="Recherche" aria-label="Recherche">
