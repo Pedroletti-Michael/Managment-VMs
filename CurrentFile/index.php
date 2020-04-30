@@ -42,7 +42,7 @@ if(isset($_GET['action']))
             displayFormManagement();
             break;
         case 'allVM':
-            displayAllVM($_POST);
+            displayAllVM($_POST,$_GET);
             break;
         case 'renewalVM':
             displayRenewalVM();

@@ -19,51 +19,43 @@ ob_start();
     <body>
     <form method="post" action="../index.php?action=allVM">
         <!------------- Choix ------------>
-        <div class="form-group p-2 mb-0">
-            <label for="disFormControlSelect" class="font-weight-bold text-center w-100 pt-3">Filtrer les VM</label>
-            <div class="w-25 m-auto" id="responsiveDisplay">
-                <div class="btn-group w-100 m-auto">
-                    <select class="form-control w-75 float-left" id="vmFilter" name="vmFilter" required>
-                        <?php
-                        $filterName = array("Toutes les VM", "VM confirmées","VM à confirmer","VM à renouveler");
-                        for($i = 0; $i<4; $i++){
-                            if($checkFilter == $filterName[$i]){
-                                echo "<option selected>".$filterName[$i]."</option>";}
-                            else{
-                                echo "<option>".$filterName[$i]."</option>";
-                            }
-                        }
-                        ?>
-                    </select>
-                    <button type="submit" class="btn btn-success">Trier</button>
-                </div>
-            </div>
-        </div>
-        <div class="w-50-m m-auto responsiveDisplay">
+        <div class="w-50-m m-auto responsiveDisplay pt-2">
             <div class="w-100">
-                <div class="w-25-m float-left p-1">
-                    <!--Snapshot-->
-                    <button type="button" class="btn btn-primary w-100 responsiveButton">
-                        <h6>Toutes les VM</h6>
-                    </button>
+                <div class="w-50-m responsiveDisplay">
+                    <div class="w-50-m float-left p-1">
+                        <!--Snapshot-->
+                        <a href="index.php?action=allVM&vmFilter=all">
+                            <button type="button" class="btn btn-primary w-100 responsiveButton">
+                                <h6>Toutes les VM</h6>
+                            </button>
+                        </a>
+                    </div>
+                    <div class="w-50-m float-left p-1">
+                        <!--Backup-->
+                        <a href="index.php?action=allVM&vmFilter=confirmed">
+                            <button type="button" class="btn btn-primary w-100 responsiveButton">
+                                <h6>VM confirmées</h6>
+                            </button>
+                        </a>
+                    </div>
                 </div>
-                <div class="w-25-m float-left p-1">
-                    <!--Backup-->
-                    <button type="button" class="btn btn-primary w-100 responsiveButton">
-                        <h6>VM confirmées</h6>
-                    </button>
-                </div>
-                <div class="w-25-m float-left p-1">
-                    <!--Snapshot-->
-                    <button type="button" class="btn btn-primary w-100 responsiveButton">
-                        <h6>VM à confirmer</h6>
-                    </button>
-                </div>
-                <div class="w-25-m float-left p-1">
-                    <!--Backup-->
-                    <button type="button" class="btn btn-primary w-100 responsiveButton">
-                        <h6>VM à renouveler</h6>
-                    </button>
+                <div class="w-50-m responsiveDisplay">
+                    <div class="w-50-m float-left p-1">
+                        <!--Snapshot-->
+                        <a href="index.php?action=allVM&vmFilter=confirmation">
+                            <button type="button" class="btn btn-primary w-100 responsiveButton">
+                                <h6>VM à confirmer</h6>
+                            </button>
+                        </a>
+                    </div>
+                    <div class="w-50-m float-left p-1">
+                        <!--Backup-->
+                        <a href="index.php?action=allVM&vmFilter=renewal">
+                            <button type="button" class="btn btn-primary w-100 responsiveButton">
+                                <h6>VM à renouveler</h6>
+                            </button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

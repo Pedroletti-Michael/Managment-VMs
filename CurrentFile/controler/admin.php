@@ -5,11 +5,11 @@
  * Description : Contains all functions related to the admin view
  */
 
-function displayAllVM($searchFilter)
+function displayAllVM($searchFilter,$vmFilter)
 {
     if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
-        if(isset($searchFilter['vmFilter']) && $searchFilter['vmFilter'] != null)
+        if(isset($vmFilter['vmFilter']) && $vmFilter['vmFilter'] != null)
         {
             switch ($_SESSION['userType'])
             {
@@ -20,24 +20,24 @@ function displayAllVM($searchFilter)
                 case 1:
                     require_once 'model/vmManager.php';
 
-                    if($searchFilter['vmFilter'] == "Toutes les vm")
+                    if($vmFilter['vmFilter'] == "all")
                     {
-                        $checkFilter = "Toutes les vm";
+                        $checkFilter = "all";
                         $allVM = getAllVM();
                     }
-                    elseif($searchFilter['vmFilter'] == "VM confirmées")
+                    elseif($vmFilter['vmFilter'] == "confirmed")
                     {
-                        $checkFilter = "VM confirmées";
+                        $checkFilter = "confirmed";
                         $allVM = getValidatedVM();
                     }
-                    elseif($searchFilter['vmFilter'] == "VM à confirmer")
+                    elseif($vmFilter['vmFilter'] == "confirmation")
                     {
-                        $checkFilter = "VM à confirmer";
+                        $checkFilter = "confirmation";
                         $allVM = getConfirmationVM();
                     }
-                    elseif($searchFilter['vmFilter'] == "VM à renouveler")
+                    elseif($vmFilter['vmFilter'] == "renewal")
                     {
-                        $checkFilter = "VM à renouveler";
+                        $checkFilter = "renewal";
                         $allVM = getRenewalVM();
                     }
 
