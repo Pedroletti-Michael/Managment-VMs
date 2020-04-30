@@ -594,70 +594,125 @@ function displayResearch($inputResearch){
     require 'view/searchResult.php';
 }
 
-function displayDetailsVmRenewal($idVM)
-{
-    if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
-    {
-        $renewalStatus = true;
-        switch ($_SESSION['userType'])
+function modifyStatusAfterRenewal($vmInformation, $status){
+    if($status){
+        require_once "model/vmManager.php";
+
+        if (strtotime($vmInformation['inputComissioningDate']) > strtotime($vmInformation['inputEndDate']))
         {
-            case 0:
-                require_once 'model/vmManager.php';
-                require_once 'model/displayManager.php';
-                $dataVM = getDataVM($idVM);
-
-                if($_SESSION['userEmail'] == $dataVM[0]['customer'])
-                {
-                    $entityNames = displayBDD_Entity();
-                    $osNames = displayBDD_OS();
-                    $windowsData = displayBDD_OSNameWhereWindows();
-                    $linuxData = displayBDD_OSNameWhereLinux();
-                    $snapshotPolicy = displayBSS_Snapshots();
-                    $backupPolicy = displayBSS_Backup();
-
-                    require_once 'model/userManager.php';
-                    $users = getAllUsers();
-
-                    $_SESSION['idVM'] = $idVM;
-
-                    $_GET['action'] = "detailsVM";
-                    require 'view/detailsVM.php';
-                }
-                else
-                {
-                    displayHome();
-                }
-                break;
-            case 1:
-                require_once 'model/displayManager.php';
-                $entityNames = displayBDD_Entity();
-                $osNames = displayBDD_OS();
-                $snapshotPolicy = displayBSS_Snapshots();
-                $backupPolicy = displayBSS_Backup();
-
-                require_once 'model/userManager.php';
-                $users = getAllUsers();
-
-                require_once 'model/vmManager.php';
-                $dataVM = getDataVM($idVM);
-                $vms = getAllVmName();
-
-                $_SESSION['idVM'] = $idVM;
-
-                $_GET['action'] = "detailsVM";
-                require 'view/detailsVM.php';
-                break;
-            default:
+            if($_SESSION['userType'] == 0)
+            {
+                displayHome();
+            }
+            elseif($_SESSION['userType'] == 1)
+            {
+                $allVM = getAllVM();
+                $_GET['action'] = "allVM";
+                require 'view/allVM.php';
+            }
+            else
+            {
                 $_GET['action'] = "signIn";
                 require 'view/signIn.php';
-                break;
+            }
         }
-    }
-    else
-    {
-        $_SESSION['idVM'] = $idVM;
-        $_SESSION['actionUser'] = "detailsVM";
-        $_GET['action'] = "signIn";
-        require 'view/signIn.php';
+
+        if(isset($vmInformation['Academique']))
+        {
+            $vmInformation['usingVM'] = "Academique";
+
+            unset($vmInformation['RaD']);
+            unset($vmInformation['Operationnel']);
+            unset($vmInformation['Academique']);
+        }
+        elseif (isset($vmInformation['RaD']))
+        {
+            $vmInformation['usingVM'] = "RaD";
+
+            unset($vmInformation['RaD']);
+            unset($vmInformation['Operationnel']);
+            unset($vmInformation['Academique']);
+        }
+        elseif (isset($vmInformation['Operationnel']))
+        {
+            $vmInformation['usingVM'] = "Operationnel";
+
+            unset($vmInformation['RaD']);
+            unset($vmInformation['Operationnel']);
+            unset($vmInformation['Academique']);
+        }
+
+        if(isset($vmInformation['domainEINET']))
+        {
+            $vmInformation['domainEINET'] = 1;
+        }
+        else
+        {
+            $vmInformation['domainEINET'] = 0;
+        }
+
+        if($vmInformation['securityFormControlSelect'] == "OS mis à jour par le responsable technique")
+        {
+            $vmInformation['securityFormControlSelect'] = 1;
+        }
+        elseif($vmInformation['securityFormControlSelect'] == "OS mis à jour par le SI (update automatiques)")
+        {
+            $vmInformation['securityFormControlSelect'] = 0;
+        }
+
+        if($vmInformation['editDateAnniversary'] == "" || $vmInformation['editDateAnniversary'] == " ")
+        {
+            $vmInformation['editDateAnniversary'] = 0000-00-00;
+        }
+        elseif($vmInformation['editCriticity'] == "" || $vmInformation['editCriticity'] == " ")
+        {
+            $vmInformation['editCriticity'] = 0;
+        }
+
+        if(updateVMInformation($vmInformation, $_SESSION['idVM']))
+        {
+            if($status){
+                $status = 2;
+            }
+            else{
+                $status = 4;
+            }
+
+            updateStatusVM($vmInformation['id'], $status);
+
+            if($_SESSION['userType'] == 0)
+            {
+                displayHome();
+            }
+            elseif($_SESSION['userType'] == 1)
+            {
+                $allVM = getAllVM();
+                $_GET['action'] = "allVM";
+                require 'view/allVM.php';
+            }
+            else
+            {
+                $_GET['action'] = "signIn";
+                require 'view/signIn.php';
+            }
+        }
+        else
+        {
+            if($_SESSION['userType'] == 0)
+            {
+                displayHome();
+            }
+            elseif($_SESSION['userType'] == 1)
+            {
+                $allVM = getAllVM();
+                $_GET['action'] = "allVM";
+                require 'view/allVM.php';
+            }
+            else
+            {
+                $_GET['action'] = "signIn";
+                require 'view/signIn.php';
+            }
+        }
     }
 }

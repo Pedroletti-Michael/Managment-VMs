@@ -423,7 +423,7 @@ function updateStatusVM($id, $vmStatus){
     require_once 'model/mailSender.php';
     $status = 1;
 
-    if($vmStatus){
+    if($vmStatus == true){
         $status = 2;
     }
     elseif($vmStatus == 4){
@@ -443,8 +443,11 @@ function updateStatusVM($id, $vmStatus){
     if($status == 1){
         deniedRequestMail($info[1], $info[0]);
     }
-    elseif($vmStatus == 2){
+    elseif($status == 2){
         validateRequestMail($info[1], $info[0], $link, $info[3], $info[2]);
+    }
+    elseif($status == 4){
+
     }
 
     return true;

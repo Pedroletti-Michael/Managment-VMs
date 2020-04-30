@@ -101,8 +101,11 @@ if(isset($_GET['action']))
         case 'refreshUser':
             refreshUser();
             break;
-        case 'renewalDetailsVm':
-            displayDetailsVmRenewal($_GET['id']);
+        case 'renewalAccepted':
+            modifyStatusAfterRenewal($_POST, true);
+            break;
+        case 'renewalRefused':
+            modifyStatusAfterRenewal($_POST, false);
             break;
         default:
             displayHome();
