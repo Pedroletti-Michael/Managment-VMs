@@ -324,15 +324,16 @@ ob_start();
                     <?php
                     $dataRedundances = explode(";", $dataVM[0]['redundance']);
 
-                    // We need to check with id not with name and store id not name
-                    foreach ($dataRedundances as $dataRedundance){
-                        foreach($vms as $vm){
+                    foreach ($vms as $vm){
+                        foreach($dataRedundances as $dataRedundance){
                             if ($vm[1] == $dataRedundance || $vm[0] == $dataRedundance){
                                 echo '<option value="'.$vm[1].'" selected>'.$vm[0].'</option>';
+
                             }
                             else{
                                 echo '<option value="'.$vm[1].'">'.$vm[0].'</option>';
                             }
+                            break;
                         }
                     }
                     ?>
