@@ -181,7 +181,7 @@ function displayDetailsVM($idVM)
 
                 require_once 'model/vmManager.php';
                 $dataVM = getDataVM($idVM);
-                $vms = getAllVmName();
+                $vms = getAllVmNameAndId();
 
                 $_SESSION['idVM'] = $idVM;
 
