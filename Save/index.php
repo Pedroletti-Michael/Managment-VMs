@@ -42,7 +42,7 @@ if(isset($_GET['action']))
             displayFormManagement();
             break;
         case 'allVM':
-            displayAllVM($_POST);
+            displayAllVM($_POST,$_GET);
             break;
         case 'renewalVM':
             displayRenewalVM();
@@ -61,6 +61,12 @@ if(isset($_GET['action']))
             break;
         case 'vmRefused':
             vmRefused();
+            break;
+        case 'renewalAccepted':
+            modifyStatusAfterRenewal($_GET, true);
+            break;
+        case 'renewalRefused':
+            modifyStatusAfterRenewal($_GET, false);
             break;
         case 'vm':
             displayVM();
@@ -97,6 +103,9 @@ if(isset($_GET['action']))
             break;
         case 'research':
             displayResearch($_POST['inputResearch']);
+            break;
+        case 'refreshUser':
+            refreshUser();
             break;
         default:
             displayHome();

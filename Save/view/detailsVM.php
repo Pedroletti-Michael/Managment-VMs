@@ -109,34 +109,48 @@ ob_start();
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="osFormControlSelect" class="font-weight-bold">Système d'exploitation<a style="color: red"> *</a></label>
                 <div class="w-100 d-inline-block">
-                    <div class="float-left w-50 pr-2">
-                        <select class="form-control w-100 float-left mr-2" id="osTypeFormControlSelect" name="osTypeFormControlSelect" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
+                    <div class="pr-2">
+                        <select class="form-control w-50 float-left" id="osTypeFormControlSelect" name="osTypeFormControlSelect" onchange="checkOS(this.value)" required>
                             <?php
-                            $windows = 0;
-                            $linux = 0;
-                            foreach ($osNames as $value) {
-                                if (($value['osType']=="Linux / Ubuntu ")&&$linux<1){
-
-                                    echo "<option>".$value['osType']."</option>";
-                                    $linux++;
-                                }
-                                if (($value['osType']=="Windows")&&$windows<1){
-                                    echo "<option>".$value['osType']."</option>";
-                                    $windows++;
-                                }
+                            if($dataVM[0]['os_id'][1] == "Windows"){
+                                echo "<option selected>Windows</option>";
+                                echo "<option>Linux</option>";
+                            }elseif($dataVM[0]['os_id'][1] == "Linux"){
+                                echo "<option>Windows</option>";
+                                echo "<option selected>Linux</option>";
                             }
                             ?>
                         </select>
                     </div>
-                    <div class="float-right w-50 pl-2">
-                        <select class="form-control w-100 float-right ml-2" id="osFormNameControlSelect" name="osFormNameControlSelect" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
-                            <?php
-                            foreach ($osNames as $value) {
-                                if($value['osType'])
-                                    echo "<option>".$value['osName']."</option>";
+                    <div class="pl-2">
+                        <?php
+                            if($dataVM[0]['os_id'][1] == "Windows"){
+                                echo '<select class="form-control w-50 float-right" id="windows" name="osFormNameControlSelect" required>';
+                                foreach ($osNames as $value) {
+                                    if($value['osType']=="Windows"){
+                                        if($dataVM[0]['os_id'][0] == $value['osName']){
+                                            echo "<option class='windows' selected>".$value['osName']."</option>";
+                                        }else{
+                                            echo "<option class='windows'>".$value['osName']."</option>";
+                                        }
+                                    }
+                                }
+                                echo "</select>";
                             }
-                            ?>
-                        </select>
+                            else{
+                                echo '<select class="form-control w-50 float-right" id="linux" name="osFormNameControlSelect" required>';
+                                foreach ($osNames as $value) {
+                                    if($value['osType']=="Linux"){
+                                        if($dataVM[0]['os_id'][0] == $value['osName']){
+                                            echo "<option class='linux' selected>".$value['osName']."</option>";
+                                        }else{
+                                            echo "<option class='linux'>".$value['osName']."</option>";
+                                        }
+                                    }
+                                }
+                                echo '</select>';
+                            }
+                        ?>
                     </div>
                 </div>
                 <small id="osHelp" class="form-text text-muted">Toutes les OS sont en anglais, 64 bits</small>
@@ -165,14 +179,13 @@ ob_start();
                     ?>
                 </select>
                 <small id="networkHelp" class="form-text text-muted">LAN : Machine accessible en interne ou via le VPN</small>
-                <small id="networkHelp" class="form-text text-muted">DMZ Privée : Accessible depuis l'extérieur mais uniquement par son nom DNS (exemple : vm-01.heig-vd.ch)</small>
             </div>
             <!--End Date-->
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="inputEndDate" class="font-weight-bold">Date de fin</label>
                 <input type="date" class="form-control form form" value="<?php echo $dataVM[0]['dateEnd'] ?>" id="inputEndDate" name="inputEndDate" aria-describedby="EndDateHelp" placeholder="Entrer un nom ou une addresse de messagerie" required >
                 <small id="EndDateHelp" class="form-text text-muted">Date de fin du projet, à laquelle la VM peut être arrêtée puis supprimée.</small>
-                <small id="EndDateHelp" class="form-text text-muted">S'il n'y a pas d'échéance, une demande de renouvellement sera envoyée chaque année.</small>
+                <small id="EndDateHelp" class="form-text text-muted">S'il n'y a pas d'échéance, une demande de renouvellement sera envoyée tous les 6 mois.</small>
             </div>
         </div>
         <!--Using-->
@@ -208,10 +221,10 @@ ob_start();
             <select class="form-control" id="snapshotsFormControlSelect" name="snapshotsFormControlSelect" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
                 <?php
                 foreach ($snapshotPolicy as $value) {
-                    if ($dataVM[0]['snapshot_id'] == $value['policy']) {
-                        echo "<option selected>" . $value['policy'] . "</option>";
+                    if ($dataVM[0]['snapshot_id'][1] == $value['name']) {
+                        echo "<option selected>". $value['name'] ." : ". $value['policy'] ."</option>";
                     } else {
-                        echo "<option>" . $value['policy'] . "</option>";
+                        echo "<option>". $value['name'] ." : ". $value['policy'] ."</option>";
                     }
                 }
                 ?>
@@ -224,10 +237,10 @@ ob_start();
             <select class="form-control" id="backupFormControlSelect" name="backupFormControlSelect" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
                 <?php
                 foreach ($backupPolicy as $value) {
-                    if($dataVM[0]['backup_id'] == $value['policy']){
-                        echo "<option selected>".$value['policy']."</option>";}
+                    if($dataVM[0]['backup_id'][1] == $value['name']){
+                        echo "<option selected>". $value['name'] ." : ". $value['policy'] ."</option>";}
                     else{
-                        echo "<option>".$value['policy']."</option>";
+                        echo "<option>". $value['name'] ." : ". $value['policy'] ."</option>";
                     }
                 }
                 ?>
@@ -264,7 +277,7 @@ ob_start();
         </div>
         <?php if($_SESSION['userType']==1):?>
         <!------------------ Admin informations ---------------------->
-        <div class="w-100 text-center mt-5"><h5>Info admin</h5></div>
+        <div class="w-100 text-center mt-5"><h5>Informations réservées aux administrateurs</h5></div>
         <hr class="">
         <div class="d-inline-block w-100">
             <!--Cluster-->
@@ -307,17 +320,30 @@ ob_start();
             <!--Redundance-->
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="editRedundance" class="font-weight-bold">Redondance</label>
-                <input class="form-control form form" value="<?php echo $dataVM[0]['redundance'] ?>" id="editRedundance" name="editRedundance" aria-describedby="redundanceHelp" onkeyup="searchFunctionRedundance()">
-                <ul id="redundanceUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
+                <select class="js-example-basic-multiple form-control form form" multiple="multiple" id="select2Redundance">
                     <?php
-                    foreach($vms as $vm){
-                        echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputRedundance(this.text)">'. $vm[0] .'</a></li>';
+                    $dataRedundances = explode(";", $dataVM[0]['redundance']);
+
+                    foreach ($vms as $vm){
+                        foreach($dataRedundances as $dataRedundance){
+                            if ($vm[1] == $dataRedundance || $vm[0] == $dataRedundance){
+                                echo '<option value="'.$vm[1].'" selected>'.$vm[0].'</option>';
+
+                            }
+                            else{
+                                echo '<option value="'.$vm[1].'">'.$vm[0].'</option>';
+                            }
+                            break;
+                        }
                     }
                     ?>
+                </select>
+
+                <input type="hidden" name="editRedundance" id="editRedundance" value="<?php echo $dataVM[0]['redundance'] ?>" readonly required>
             </div>
             <!--Criticity-->
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
-                <label for="editCriticity" class="font-weight-bold">Critique</label>
+                <label for="editCriticity" class="font-weight-bold">Criticité</label>
                 <select class="form-control form form" id="editCriticity" name="editCriticity" aria-describedby="criticityHelp">
                     <?php
                     $criticityNames = array("1", "2","3");
@@ -335,14 +361,22 @@ ob_start();
         <?php endif; ?>
 
         <!--Save the modifications-->
-        <a href="index.php?action=updateVM"><button type="submit" class="btn btn-primary m-auto d-inline responsiveDisplay">Enregistrer les modifications</button></a>
+        <a onclick="getValue()"><button type="submit" class="btn btn-primary m-auto d-inline responsiveDisplay">Enregistrer les modifications</button></a>
 
-        <?php if($dataVM[0]['vmStatus']==0): ?>
-        <!--Accepted-->
-        <a href="index.php?action=vmAccepted"><button type="button" class="btn btn-success float-right ml-1 responsiveDisplay">Confirmer la demande</button></a>
-        <!--Refused-->
-        <a href="index.php?action=vmRefused"><button type="button" class="btn btn-danger float-right responsiveDisplay">Refuser la demande</button></a>
-        <?php endif; ?>
+        <?php
+        if($dataVM[0]['vmStatus']==3){
+            //accepted
+            echo '<a href="index.php?action=renewalAccepted"><button type="button" class="btn btn-success float-right ml-1 responsiveDisplay">Renouveler</button></a>';
+            //refused
+            echo '<a href="index.php?action=renewalRefused"><button type="button" class="btn btn-danger float-right responsiveDisplay">Ne pas renouveler</button></a>';
+        }
+        elseif($dataVM[0]['vmStatus']==0){
+            //accepted
+            echo '<a href="index.php?action=vmAccepted"><button type="button" class="btn btn-success float-right ml-1 responsiveDisplay">Confirmer la demande</button></a>';
+            //refused
+            echo '<a href="index.php?action=vmRefused"><button type="button" class="btn btn-danger float-right responsiveDisplay">Refuser la demande</button></a>';
+        }
+        ?>
     </form>
 </div>
 <?php

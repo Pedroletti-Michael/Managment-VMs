@@ -19,48 +19,57 @@ ob_start();
     <body>
     <form method="post" action="../index.php?action=allVM">
         <!------------- Choix ------------>
-        <div class="form-group p-2">
-            <label for="disFormControlSelect" class="font-weight-bold text-center w-100 pt-3">Filtrer les VM</label>
-            <div class="w-25 m-auto" id="responsiveDisplay">
-                <div class="btn-group w-100 m-auto">
-                    <select class="form-control w-75 float-left" id="vmFilter" name="vmFilter" required>
-                        <?php
-                        $filterName = array("Toutes les vm", "VM confirmées","VM à confirmer","VM à renouveler");
-                        for($i = 0; $i<4; $i++){
-                            if($checkFilter == $filterName[$i]){
-                                echo "<option selected>".$filterName[$i]."</option>";}
-                            else{
-                                echo "<option>".$filterName[$i]."</option>";
-                            }
-                        }
-                        ?>
-                    </select>
-                    <button type="submit" class="btn btn-success">Trier</button>
+        <div class="w-50-m m-auto responsiveDisplay pt-2">
+            <div class="w-100 d-inline-block">
+                <div class="w-20 float-left p-1" style="height: 50px">
+                    <!--Snapshot-->
+                    <a href="index.php?action=allVM&vmFilter=all">
+                        <button type="button" class="btn btn-primary w-100 responsiveButton">
+                            <h6>Toutes les VM</h6>
+                        </button>
+                    </a>
+                </div>
+                <div class="w-20 float-left p-1" style="height: 50px">
+                    <!--Backup-->
+                    <a href="index.php?action=allVM&vmFilter=confirmed">
+                        <button type="button" class="btn btn-primary w-100 responsiveButton">
+                            <h6>VM confirmées</h6>
+                        </button>
+                    </a>
+                </div>
+                <div class="w-20 float-left p-1" style="height: 50px">
+                    <!--Snapshot-->
+                    <a href="index.php?action=allVM&vmFilter=confirmation">
+                        <button type="button" class="btn btn-primary w-100 responsiveButton">
+                            <h6>VM à confirmer</h6>
+                        </button>
+                    </a>
+                </div>
+                <div class="w-20 float-left p-1" style="height: 50px">
+                    <!--Backup-->
+                    <a href="index.php?action=allVM&vmFilter=renewal">
+                        <button type="button" class="btn btn-primary w-100 responsiveButton">
+                            <h6>VM à renouveler</h6>
+                        </button>
+                    </a>
+                </div>
+                <div class="w-20 float-left p-1" style="height: 50px">
+                    <!--Backup-->
+                    <a href="index.php?action=allVM&vmFilter=deleted">
+                        <button type="button" class="btn btn-primary w-100 responsiveButton">
+                            <h6>VM supprimées</h6>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
-
-
-        <div class="w-50 float-left p-3" style="height: 200px">
-            <!--Snapshot-->
-            <button type="button" class="btn btn-primary w-10 h-25" data-toggle="modal" data-target="#modalSnapshot">
-                <h5>Filtres pour Snapshot</h5>
-            </button>
-        </div>
-        <div class="w-50 float-left p-3" style="height: 200px">
-            <!--Backup-->
-            <button type="button" class="btn btn-primary w-10 h-25" data-toggle="modal" data-target="#modalBackup">
-                <h5>Filtres pour Backup</h5>
-            </button>
-        </div>
-
 
         <!--Snapshot Modal Window-->
         <div class="modal fade" id="modalSnapshot" tabindex="-1" role="dialog" aria-labelledby="modalSnapshot" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="w-100 p-3">
-                        <div class="w-50 float-left p-1" style="height: 200px">
+                        <div class="w-50 float-left p-1">
                             <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Gold', 17)">
                                 <h5>Gold</h5>
                             </button>
@@ -71,7 +80,7 @@ ob_start();
                                 <h5>Bronze</h5>
                             </button>
                         </div>
-                        <div class="w-50 float-right p-1" style="height: 200px">
+                        <div class="w-50 float-right p-1">
                             <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Aucun', 17)">
                                 <h5>Aucun</h5>
                             </button>
@@ -89,7 +98,7 @@ ob_start();
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="w-100 p-3">
-                        <div class="w-50 float-left p-1" style="height: 200px">
+                        <div class="w-50 float-left p-1">
                             <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Gold', 18)">
                                 <h5>Gold</h5>
                             </button>
@@ -100,7 +109,7 @@ ob_start();
                                 <h5>Bronze</h5>
                             </button>
                         </div>
-                        <div class="w-50 float-right p-1" style="height: 200px">
+                        <div class="w-50 float-right p-1">
                             <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Aucun', 18)">
                                 <h5>Aucun</h5>
                             </button>
@@ -116,10 +125,10 @@ ob_start();
 
 
         <div class="table-responsive-xl">
-            <table class="table table-striped allVM" id="tableInventoryVm">
+            <table class="table table-hover allVM" id="tableInventoryVm">
             <thead class="thead-dark sticky-top">
             <tr>
-                <th scope="col" style="width: 50px"></th>
+                <th scope="col" style="width: 50px;"></th>
                 <th scope="col" onclick="sortTable(1)">name</th>
                 <th scope="col" onclick="sortTable(2)">dateStart</th>
                 <th scope="col" onclick="sortTable(3)">dateEnd</th>
@@ -136,16 +145,24 @@ ob_start();
                 <th scope="col" onclick="sortTable(14)">userRt</th>
                 <th scope="col" onclick="sortTable(15)">entity_id</th>
                 <th scope="col" onclick="sortTable(16)">os_id</th>
-                <th scope="col" onclick="sortTable(17)">snapshot_id</th>
-                <th scope="col" onclick="sortTable(18)">backup_id</th>
+                <th scope="col" onclick="sortTable(17)">snapshot_id
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#modalSnapshot">
+                        <path fill-rule="evenodd" d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                    </svg>
+                </th>
+                <th scope="col" onclick="sortTable(18)">backup_id
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#modalBackup">
+                        <path fill-rule="evenodd" d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                    </svg>
+                </th>
             </tr>
             </thead>
             <tbody>
                 <?php foreach ($allVM as $value): ?>
-                    <tr>
+                    <tr style="background-color: rgba(<?php if($value['vmStatus']==2){echo '0,255,0,0.2';}elseif ($value['vmStatus']==0){echo '255,127,0,0.2';}elseif ($value['vmStatus']==3){echo '255,0,0,0.2';}else{echo '90,90,90,0.2';}?>);">
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-warning"><strong>+</strong></button></a>
+                                <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-primary"><strong>+</strong></button></a>
                             </div>
                         </td>
                         <td><?php echo $value['name']?></td>
@@ -164,8 +181,8 @@ ob_start();
                         <td><?php echo $value['userRt']?></td>
                         <td><?php echo $value['entity_id']?></td>
                         <td style="min-width: 100px"><?php echo $value['os_id']['1']." ".$value['os_id'][0]?></td>
-                        <td style="min-width: 250px"><?php echo $value['snapshot_id']['1']." : ".$value['snapshot_id'][0]?></td>
-                        <td style="min-width: 250px"><?php echo $value['backup_id']['1']." : ".$value['backup_id'][0]?></td>
+                        <td style="min-width: 130px"><?php echo $value['snapshot_id']['1']?></td>
+                        <td style="min-width: 120px"><?php echo $value['backup_id']['1']?></td>
                     </tr>
                 <?php endforeach;?>
             </tbody>

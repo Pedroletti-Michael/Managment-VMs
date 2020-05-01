@@ -12,6 +12,8 @@ function displayForm()
         require_once 'model/displayManager.php';
         $entityNames = displayBDD_Entity();
         $osNames = displayBDD_OS();
+        $windowsData = displayBDD_OSNameWhereWindows();
+        $linuxData = displayBDD_OSNameWhereLinux();
         $snapshotPolicy = displayBSS_Snapshots();
         $backupPolicy = displayBSS_Backup();
 
@@ -38,27 +40,45 @@ function formVM($formVMRequest)
     if(isset($formVMRequest['Academique']))
     {
         $formVMRequest['usingVM'] = "Academique";
-
-        unset($formVMRequest['RaD']);
-        unset($formVMRequest['Operationnel']);
-        unset($formVMRequest['Academique']);
     }
-    elseif (isset($formVMRequest['RaD']))
+    if (isset($formVMRequest['RaD']))
     {
-        $formVMRequest['usingVM'] = "RaD";
-
-        unset($formVMRequest['RaD']);
-        unset($formVMRequest['Operationnel']);
-        unset($formVMRequest['Academique']);
+        if(!isset($formVMRequest['usingVM']))
+        {
+            $formVMRequest['usingVM'] = "RaD";
+        }
+        else
+        {
+            $formVMRequest['usingVM'] = $formVMRequest['usingVM'].", RaD";
+        }
     }
-    elseif (isset($formVMRequest['Operationnel']))
+    if (isset($formVMRequest['Operationnel']))
     {
-        $formVMRequest['usingVM'] = "Operationnel";
-
-        unset($formVMRequest['RaD']);
-        unset($formVMRequest['Operationnel']);
-        unset($formVMRequest['Academique']);
+        if(!isset($formVMRequest['usingVM']))
+        {
+            $formVMRequest['usingVM'] = "Operationnel";
+        }
+        else
+        {
+            $formVMRequest['usingVM'] = $formVMRequest['usingVM'].", Operationnel";
+        }
     }
+    if (isset($formVMRequest['Test']))
+    {
+        if(!isset($formVMRequest['usingVM']))
+        {
+            $formVMRequest['usingVM'] = "Test";
+        }
+        else
+        {
+            $formVMRequest['usingVM'] = $formVMRequest['usingVM'].", Test";
+        }
+    }
+
+    unset($formVMRequest['Academique']);
+    unset($formVMRequest['RaD']);
+    unset($formVMRequest['Operationnel']);
+    unset($formVMRequest['Test']);
 
     if(isset($formVMRequest['domainEINET']))
     {

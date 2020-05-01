@@ -17,7 +17,7 @@ ob_start();
 </head>
 <body>
 <div class="table-responsive-xl">
-    <table class="table table-striped allVM">
+    <table class="table table-hover allVM">
         <thead class="thead-dark sticky-top">
         <tr>
             <th scope="col"></th>
@@ -46,7 +46,7 @@ ob_start();
             <tr>
                 <td>
                     <div class="btn-group" role="group">
-                        <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-warning"><strong>+</strong></button></a>
+                        <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-primary"><strong>+</strong></button></a>
                     </div>
                 </td>
                 <td><?php echo $value['name']?></td>

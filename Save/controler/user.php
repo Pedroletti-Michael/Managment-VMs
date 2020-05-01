@@ -74,6 +74,7 @@ function createSession($userEmail)
 {
     $_SESSION['userEmail'] = $userEmail;
     $_SESSION['userType'] = getUserType($userEmail);
+    $_SESSION['userId'] = getUserId($userEmail);
 }
 
 function signOut()
@@ -82,4 +83,14 @@ function signOut()
     session_destroy();
 
     displayHome();
+}
+
+function refreshUser(){
+    require_once 'model/userManager.php';
+    if(verificationUserFromDb()){
+        require 'view/home.php';
+    }
+    else{
+        require 'view/home.php';
+    }
 }

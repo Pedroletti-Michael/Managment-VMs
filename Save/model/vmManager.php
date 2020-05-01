@@ -104,26 +104,46 @@ function getOsId($osName, $osType){
 function getSnapshotId($snapshotName){
     $strSep = '\'';
 
-    $query = "SELECT snapshot_id FROM `snapshot` WHERE policy = ". $strSep.$snapshotName.$strSep;
+    $typeSnapshot = explode(" ", $snapshotName);
 
-    $result = executeQuery($query);
-    return $result[0][0];
+    $query = "SELECT name, snapshot_id FROM `snapshot`";
+
+    $snapshots = executeQuery($query);
+
+    $result = null;
+    foreach ($snapshots as $snapshot){
+        if($snapshot['name'] == $typeSnapshot[0]){
+            $result = $snapshot[1];
+        }
+    }
+
+    return $result;
 }
 
-function getBackupId($backupId){
+function getBackupId($backupName){
     $strSep = '\'';
 
-    $query = "SELECT backup_id FROM `backup` WHERE policy = ". $strSep.$backupId.$strSep;
+    $typeBackup = explode(" ", $backupName);
 
-    $result = executeQuery($query);
-    return $result[0][0];
+    $query = "SELECT name, backup_id FROM `backup`";
+
+    $backups = executeQuery($query);
+
+    $result = null;
+    foreach ($backups as $backup){
+        if($backup[0] == $typeBackup[0]){
+            $result = $backup[1];
+        }
+    }
+
+    return $result;
 }
 
 /**===GET INFO OF ALL VM===**/
 function getAllVM()
 {
     require_once 'model/dbConnector.php';
-    $querySelect = "SELECT `id`, `name`, `dateStart`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`  FROM `vm`";
+    $querySelect = "SELECT `id`, `name`, `dateStart`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus` FROM `vm`";
 
     $resultSelect = executeQuerySelect($querySelect);
     $i = 0;
@@ -145,10 +165,20 @@ function getAllVM()
 function getInfoUser($id){
     $strSep = '\'';
 
+    $query = "SELECT lastname, firstname FROM `user` WHERE user_id = ". $strSep.$id.$strSep;
+
+    $user = executeQuery($query);
+    $result = $user[0][0] . " " .$user[0][1];
+    return $result;
+}
+
+function getMailUser($id){
+    $strSep = '\'';
+
     $query = "SELECT mail FROM `user` WHERE user_id = ". $strSep.$id.$strSep;
 
-    $result = executeQuery($query);
-    return $result[0][0];
+    $user = executeQuery($query);
+    return $user[0][0];
 }
 
 function getInfoEntity($id){
@@ -228,7 +258,7 @@ function getUserVM($userId)
 function getConfirmationVM(){
     require_once 'model/dbConnector.php';
 
-    $querySelect = "SELECT `id`, `name`, `dateStart`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`  FROM `vm` WHERE vmStatus = 0";
+    $querySelect = "SELECT `id`, `name`, `dateStart`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus` FROM `vm` WHERE vmStatus = 0";
 
     $resultSelect = executeQuerySelect($querySelect);
     $i = 0;
@@ -250,7 +280,7 @@ function getConfirmationVM(){
 function getRenewalVM(){
     require_once 'model/dbConnector.php';
 
-    $querySelect = "SELECT `id`, `name`, `dateStart`, `dateAnniversary`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`  FROM `vm` WHERE vmStatus = 3";
+    $querySelect = "SELECT `id`, `name`, `dateStart`, `dateAnniversary`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus`  FROM `vm` WHERE vmStatus = 3";
 
     $resultSelect = executeQuerySelect($querySelect);
     $i = 0;
@@ -272,7 +302,29 @@ function getRenewalVM(){
 function getValidatedVM(){
     require_once 'model/dbConnector.php';
 
-    $querySelect = "SELECT `id`, `name`, `dateStart`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`  FROM `vm` WHERE vmStatus = 2";
+    $querySelect = "SELECT `id`, `name`, `dateStart`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus`  FROM `vm` WHERE vmStatus = 2";
+
+    $resultSelect = executeQuerySelect($querySelect);
+    $i = 0;
+
+    foreach ($resultSelect as $vm){
+        $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
+        $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
+        $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
+        $resultSelect[$i]['os_id'] = getInfoOs($vm['os_id']);
+        $resultSelect[$i]['snapshot_id'] = getInfoSnapshot($vm['snapshot_id']);
+        $resultSelect[$i]['backup_id'] = getInfoBackup($vm['backup_id']);
+        $i++;
+    }
+    return $resultSelect;
+}
+
+/**===GET INFO FROM VM WHO ARE VALIDATED===**/
+function getDeletedOrUnrenewalVM(){
+    require_once 'model/dbConnector.php';
+
+    $querySelect = "SELECT `id`, `name`, `dateStart`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus`  FROM `vm` WHERE vmStatus = 4 OR vmStatus = 5";
 
     $resultSelect = executeQuerySelect($querySelect);
     $i = 0;
@@ -313,6 +365,29 @@ function getVmToRenew(){
     return $resultSelect;
 }
 
+/**===GET INFO FROM WHO NEED TO BE RENEW FROM A USER===**/
+function getRenewFromAUser($userId){
+    require_once 'model/dbConnector.php';
+    $strSep = '\'';
+
+    $querySelect = "SELECT `id`, `name`, `dateStart`, `dateAnniversary`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus`  FROM `vm` WHERE vmStatus = 3 AND customer = ". $strSep.$userId.$strSep ."OR userRa = ". $strSep.$userId.$strSep ."OR userRt = ". $strSep.$userId.$strSep;
+
+    $resultSelect = executeQuerySelect($querySelect);
+    $i = 0;
+
+    foreach ($resultSelect as $vm){
+        $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
+        $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
+        $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
+        $resultSelect[$i]['os_id'] = getInfoOs($vm['os_id']);
+        $resultSelect[$i]['snapshot_id'] = getInfoSnapshot($vm['snapshot_id']);
+        $resultSelect[$i]['backup_id'] = getInfoBackup($vm['backup_id']);
+        $i++;
+    }
+    return $resultSelect;
+}
+
 /**===GET INFO OF A SPECIFIC VM VIA THE ID OF THIS VM**/
 function getDataVM($idVM){
     require_once 'model/dbConnector.php';
@@ -323,9 +398,9 @@ function getDataVM($idVM){
     $i = 0;
 
     foreach ($resultSelect as $vm){
-        $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
-        $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
-        $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
+        $resultSelect[$i]['customer'] = getMailUser($vm['customer']);
+        $resultSelect[$i]['userRa'] = getMailUser($vm['userRa']);
+        $resultSelect[$i]['userRt'] = getMailUser($vm['userRt']);
         $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
         $resultSelect[$i]['os_id'] = getInfoOs($vm['os_id']);
         $resultSelect[$i]['snapshot_id'] = getInfoSnapshot($vm['snapshot_id']);
@@ -402,7 +477,7 @@ function updateStatusVM($id, $vmStatus){
     require_once 'model/mailSender.php';
     $status = 1;
 
-    if($vmStatus){
+    if($vmStatus == true){
         $status = 2;
     }
     elseif($vmStatus == 4){
@@ -422,8 +497,11 @@ function updateStatusVM($id, $vmStatus){
     if($status == 1){
         deniedRequestMail($info[1], $info[0]);
     }
-    elseif($vmStatus == 2){
+    elseif($status == 2){
         validateRequestMail($info[1], $info[0], $link, $info[3], $info[2]);
+    }
+    elseif($status == 4){
+
     }
 
     return true;
@@ -456,8 +534,8 @@ function getIdOfVmByName($vmName){
     return $resultSelect[0][0];
 }
 
-function getAllVmName(){
-    $querySelect = "SELECT `name` FROM `vm` ";
+function getAllVmNameAndId(){
+    $querySelect = "SELECT `name`, `id` FROM `vm` ";
 
     return executeQuerySelect($querySelect);
 }

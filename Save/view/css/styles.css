@@ -6,7 +6,6 @@
     -ms-user-select: none;
     user-select: none;
 }
-
 .display-phone{
     display: none!important;
 }
@@ -30,7 +29,11 @@
     text-decoration: none;
 }
 .search-responsive{
-    width: calc(100% - 200px - 110px)!important;
+    width: calc(100% - 200px - 130px)!important;
+}
+
+.table-hover tbody tr:hover {
+    opacity: 0.8;
 }
 
 
@@ -92,10 +95,11 @@
     .logo-responsive{
         max-width: 200px;
         min-width: 200px;
+        background-color: rgba(255,0,0,0)!important;
     }
     .signIn-responsive{
-        max-width: 110px;
-        min-width: 110px;
+        max-width: 130px;
+        min-width: 130px;
     }
 }
 @media screen and (max-width: 1050px) {
@@ -108,13 +112,14 @@
     .logo-responsive{
         max-width: 200px;
         min-width: 200px;
+        background-color: rgba(255,0,0,0)!important;
     }
     .signIn-responsive{
-        max-width: 110px;
-        min-width: 110px;
+        max-width: 130px;
+        min-width: 130px;
     }
     .search-responsive{
-        width: 50%;
+        width: calc(100% - 200px - 120px);
     }
 }
 @media (min-width: 768px) {
@@ -145,7 +150,7 @@
 }
 
 /* ------------------------------------------- Responsive for phone -------------------------------------------------*/
-@media handheld,(max-device-width: 1000px){
+@media handheld,(max-device-width: 1000px) and (max-width: 900px){
     .display-laptop{
         display: none!important;
     }
@@ -157,6 +162,9 @@
         padding-left: 0!important;
         padding-right: 0!important;
     }
+    .responsiveButton{
+        height: 60px;
+    }
     .responsiveDisplay{
         width: 100%!important;
         margin: 2px 0px;
@@ -164,13 +172,14 @@
     .logo-responsive{
         max-width: 100px;
         min-width: 100px;
+        background-color: rgba(255,0,0,0)!important;
     }
     .signIn-responsive{
-        max-width: 80px;
-        min-width: 80px;
+        max-width: 75px;
+        min-width: 75px;
     }
     .search-responsive{
-        width: calc(100% - 100px - 80px)!important;
+        width: calc(100% - 100px - 75px)!important;
     }
     .navbar-toggler-icon{
         width: 50px!important;

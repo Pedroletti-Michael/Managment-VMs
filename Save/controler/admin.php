@@ -5,11 +5,11 @@
  * Description : Contains all functions related to the admin view
  */
 
-function displayAllVM($searchFilter)
+function displayAllVM($searchFilter,$vmFilter = "all")
 {
     if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
-        if(isset($searchFilter['vmFilter']) && $searchFilter['vmFilter'] != null)
+        if(isset($vmFilter['vmFilter']) && $vmFilter['vmFilter'] != null)
         {
             switch ($_SESSION['userType'])
             {
@@ -20,25 +20,30 @@ function displayAllVM($searchFilter)
                 case 1:
                     require_once 'model/vmManager.php';
 
-                    if($searchFilter['vmFilter'] == "Toutes les vm")
+                    if($vmFilter['vmFilter'] == "all")
                     {
-                        $checkFilter = "Toutes les vm";
+                        $checkFilter = "all";
                         $allVM = getAllVM();
                     }
-                    elseif($searchFilter['vmFilter'] == "VM confirmées")
+                    elseif($vmFilter['vmFilter'] == "confirmed")
                     {
-                        $checkFilter = "VM confirmées";
+                        $checkFilter = "confirmed";
                         $allVM = getValidatedVM();
                     }
-                    elseif($searchFilter['vmFilter'] == "VM à confirmer")
+                    elseif($vmFilter['vmFilter'] == "confirmation")
                     {
-                        $checkFilter = "VM à confirmer";
+                        $checkFilter = "confirmation";
                         $allVM = getConfirmationVM();
                     }
-                    elseif($searchFilter['vmFilter'] == "VM à renouveler")
+                    elseif($vmFilter['vmFilter'] == "renewal")
                     {
-                        $checkFilter = "VM à renouveler";
+                        $checkFilter = "renewal";
                         $allVM = getRenewalVM();
+                    }
+                    elseif($vmFilter['vmFilter'] == "deleted")
+                    {
+                        $checkFilter = "deleted";
+                        $allVM = getDeletedOrUnrenewalVM();
                     }
 
                     $_GET['action'] = "allVM";
@@ -55,7 +60,6 @@ function displayAllVM($searchFilter)
             switch ($_SESSION['userType'])
             {
                 case 0:
-                    require_once 'controler/user.php';
                     displayHome();
                     break;
                 case 1:
@@ -85,7 +89,6 @@ function displayConfirmationVM()
         switch ($_SESSION['userType'])
         {
             case 0:
-                require_once 'controler/user.php';
                 displayHome();
                 break;
             case 1:
@@ -114,8 +117,10 @@ function displayRenewalVM()
         switch ($_SESSION['userType'])
         {
             case 0:
-                require_once 'controler/user.php';
-                displayHome();
+                require_once 'model/vmManager.php';
+                $userId = $_SESSION['userId'];
+                getRenewFromAUser($userId);
+                require 'view/renewalVM.php';
                 break;
             case 1:
                 require_once 'model/vmManager.php';
@@ -151,6 +156,8 @@ function displayDetailsVM($idVM)
                 {
                     $entityNames = displayBDD_Entity();
                     $osNames = displayBDD_OS();
+                    $windowsData = displayBDD_OSNameWhereWindows();
+                    $linuxData = displayBDD_OSNameWhereLinux();
                     $snapshotPolicy = displayBSS_Snapshots();
                     $backupPolicy = displayBSS_Backup();
 
@@ -179,7 +186,7 @@ function displayDetailsVM($idVM)
 
                 require_once 'model/vmManager.php';
                 $dataVM = getDataVM($idVM);
-                $vms = getAllVmName();
+                $vms = getAllVmNameAndId();
 
                 $_SESSION['idVM'] = $idVM;
 
@@ -227,27 +234,45 @@ function updateVM($vmInformation)
     if(isset($vmInformation['Academique']))
     {
         $vmInformation['usingVM'] = "Academique";
-
-        unset($vmInformation['RaD']);
-        unset($vmInformation['Operationnel']);
-        unset($vmInformation['Academique']);
     }
-    elseif (isset($vmInformation['RaD']))
+    if (isset($vmInformation['RaD']))
     {
-        $vmInformation['usingVM'] = "RaD";
-
-        unset($vmInformation['RaD']);
-        unset($vmInformation['Operationnel']);
-        unset($vmInformation['Academique']);
+        if(!isset($vmInformation['usingVM']))
+        {
+            $vmInformation['usingVM'] = "RaD";
+        }
+        else
+        {
+            $vmInformation['usingVM'] = $vmInformation['usingVM'].", RaD";
+        }
     }
-    elseif (isset($vmInformation['Operationnel']))
+    if (isset($vmInformation['Operationnel']))
     {
-        $vmInformation['usingVM'] = "Operationnel";
-
-        unset($vmInformation['RaD']);
-        unset($vmInformation['Operationnel']);
-        unset($vmInformation['Academique']);
+        if(!isset($vmInformation['usingVM']))
+        {
+            $vmInformation['usingVM'] = "Operationnel";
+        }
+        else
+        {
+            $vmInformation['usingVM'] = $vmInformation['usingVM'].", Operationnel";
+        }
     }
+    if (isset($vmInformation['Test']))
+    {
+        if(!isset($vmInformation['usingVM']))
+        {
+            $vmInformation['usingVM'] = "Test";
+        }
+        else
+        {
+            $vmInformation['usingVM'] = $vmInformation['usingVM'].", Test";
+        }
+    }
+
+    unset($vmInformation['Academique']);
+    unset($vmInformation['RaD']);
+    unset($vmInformation['Operationnel']);
+    unset($vmInformation['Test']);
 
     if(isset($vmInformation['domainEINET']))
     {
@@ -322,7 +347,7 @@ function vmAccepted()
 
     if(updateStatusVM($_SESSION['idVM'], $vmStatus))
     {
-        displayAllVM("");
+        displayAllVM("","");
     }
     else
     {
@@ -331,6 +356,38 @@ function vmAccepted()
 }
 
 function vmRefused()
+{
+    $vmStatus = false;
+
+    require_once "model/vmManager.php";
+
+    if(updateStatusVM($_SESSION['idVM'], $vmStatus))
+    {
+        displayAllVM("");
+    }
+    else
+    {
+        displayDetailsVM($_SESSION['idVM']);
+    }
+}
+
+function renewwalAccepted()
+{
+    $vmStatus = false;
+
+    require_once "model/vmManager.php";
+
+    if(updateStatusVM($_SESSION['idVM'], $vmStatus))
+    {
+        displayAllVM("");
+    }
+    else
+    {
+        displayDetailsVM($_SESSION['idVM']);
+    }
+}
+
+function renewwalRefused()
 {
     $vmStatus = false;
 
@@ -382,17 +439,26 @@ function displayFormManagement()
 function editEntity($entityName){
     require_once 'model/displayManager.php';
     if(isset($entityName['add'])){
-        $nameEntity = $entityName['txtEntityAdd'];
-        addEntity($nameEntity);
+        if(isset($entityName['txtEntityAdd']) && $entityName['txtEntityAdd'] != null)
+        {
+            $nameEntity = $entityName['txtEntityAdd'];
+            addEntity($nameEntity);
+        }
     }
     if(isset($entityName['delete'])){
-        $nameEntity = $entityName['valueEntityDel'];
-        deleteEntity($nameEntity);
+        if(isset($entityName['valueEntityDel']) && $entityName['valueEntityDel'] != null)
+        {
+            $nameEntity = $entityName['valueEntityDel'];
+            deleteEntity($nameEntity);
+        }
     }
     if(isset($entityName['modify'])){
-        $nameEntity = $entityName['valueEntityMod'];
-        $newName = $entityName['txtEntityMod'];
-        modifyEntity($nameEntity,$newName);
+        if(isset($entityName['valueEntityMod']) && $entityName['valueEntityMod'] != null && isset($entityName['txtEntityMod']) && $entityName['txtEntityMod'] != null)
+        {
+            $nameEntity = $entityName['valueEntityMod'];
+            $newName = $entityName['txtEntityMod'];
+            modifyEntity($nameEntity,$newName);
+        }
     }
     displayFormManagement();
 }
@@ -400,36 +466,62 @@ function editEntity($entityName){
 function editOS($osName){
     require_once 'model/displayManager.php';
     if(isset($osName['add'])){
-        $nameOS = $osName['txtOsAdd'];
-        $typeOS = $osName['typeOsAdd'];
-        addOS($nameOS,$typeOS);
-    }
-    if(isset($osName['delete'])){
-        $nameOS = $osName['valueOsDel'];
-        deleteOS($nameOS);
-    }
-    if(isset($osName['modify'])){
-        $nameOS = $osName['valueOsMod'];
-        $newName = $osName['txtOsMod'];
-        $newType = $osName['typeOsMod'];
-        $textOs = "";
-        $length = strlen($nameOS);;
-
-        for($count = 0; $count < $length; $count++)
+        if(isset($osName['txtOSAdd']) && $osName['txtOSAdd'] != null && isset($osName['typeOSAdd']) && $osName['typeOSAdd'] != null)
         {
-            if($nameOS[$count] !== " ")
-            {
-            }
-            else
-            {
-                for($count += 1; $count < $length; $count++)
-                {
-                    $textOs = "$textOs"."$nameOS[$count]";
-                }
-                break;
-            }
+            $nameOS = $osName['txtOSAdd'];
+            $typeOS = $osName['typeOSAdd'];
+            addOS($nameOS,$typeOS);
         }
-        modifyOS($textOs,$newName,$newType);
+    }
+    elseif(isset($osName['delete'])){
+        if(isset($osName['valueOSDel']) && $osName['valueOSDel'] != null)
+        {
+            $nameOS = $osName['valueOSDel'];
+            $length = strlen($nameOS);
+            $textOs = "";
+
+            for($count = 0; $count < $length; $count++)
+            {
+                if($nameOS[$count] !== " ")
+                {
+                }
+                else
+                {
+                    for($count += 1; $count < $length; $count++)
+                    {
+                        $textOs = "$textOs"."$nameOS[$count]";
+                    }
+                    break;
+                }
+            }
+            deleteOS($textOs);
+        }
+    }
+    elseif(isset($osName['modify'])){
+        if(isset($osName['valueOSMod']) && $osName['valueOSMod'] != null && isset($osName['txtOSMod']) && $osName['txtOSMod'] != null && isset($osName['typeOSMod']) && $osName['typeOSMod'] != null)
+        {
+            $nameOS = $osName['valueOSMod'];
+            $newName = $osName['txtOSMod'];
+            $newType = $osName['typeOSMod'];
+            $textOs = "";
+            $length = strlen($nameOS);
+
+            for($count = 0; $count < $length; $count++)
+            {
+                if($nameOS[$count] !== " ")
+                {
+                }
+                else
+                {
+                    for($count += 1; $count < $length; $count++)
+                    {
+                        $textOs = "$textOs"."$nameOS[$count]";
+                    }
+                    break;
+                }
+            }
+            modifyOS($textOs,$newName,$newType);
+        }
     }
     displayFormManagement();
 }
@@ -437,33 +529,56 @@ function editOS($osName){
 function editSnapshots($snapshotsName){
     require_once 'model/displayManager.php';
     if(isset($snapshotsName['add'])){
-        $typeSnapshots= $snapshotsName['typeSnapAdd'];
-        $policySnapshots = $snapshotsName['txtSnapAdd'];
-        addSnapshots($typeSnapshots,$policySnapshots);
-    }
-    if(isset($snapshotsName['delete'])){
-        $nameSnapshots = $snapshotsName['valueSnapDel'];
-        deleteSnapshots($nameSnapshots);
-    }
-    if(isset($snapshotsName['modify'])){
-        $nameSnapshots = $snapshotsName['valueSnapMod'];
-        $newPolicy = $snapshotsName['txtSnapMod'];
-        $newType = $snapshotsName['typeSnapMod'];
-        $typeSnapshots = "";
-        $length = strlen($nameSnapshots);;
-
-        for($count = 0; $count < $length; $count++)
+        if(isset($snapshotsName['typeSnapAdd']) && $snapshotsName['typeSnapAdd'] != null && isset($snapshotsName['txtSnapAdd']) && $snapshotsName['txtSnapAdd'] != null)
         {
-            if($nameSnapshots[$count] !== " ")
-            {
-                $typeSnapshots = "$typeSnapshots"."$nameSnapshots[$count]";
-            }
-            else
-            {
-                break;
-            }
+            $typeSnapshots= $snapshotsName['typeSnapAdd'];
+            $policySnapshots = $snapshotsName['txtSnapAdd'];
+            addSnapshots($typeSnapshots,$policySnapshots);
         }
-        modifySnapshots($typeSnapshots,$newPolicy,$newType);
+    }
+    elseif(isset($snapshotsName['delete'])){
+        if(isset($snapshotsName['valueSnapDel']) && $snapshotsName['valueSnapDel'] != null)
+        {
+            $nameSnapshots = $snapshotsName['valueSnapDel'];
+            $typeSnapshots = "";
+            $length = strlen($nameSnapshots);
+
+            for($count = 0; $count < $length; $count++)
+            {
+                if($nameSnapshots[$count] !== " ")
+                {
+                    $typeSnapshots = "$typeSnapshots"."$nameSnapshots[$count]";
+                }
+                else
+                {
+                    break;
+                }
+            }
+            deleteSnapshots($typeSnapshots);
+        }
+    }
+    elseif(isset($snapshotsName['modify'])){
+        if(isset($snapshotsName['valueSnapMod']) && $snapshotsName['valueSnapMod'] != null && isset($snapshotsName['txtSnapMod']) && $snapshotsName['txtSnapMod'] != null && isset($snapshotsName['typeSnapMod']) && $snapshotsName['typeSnapMod'] != null)
+        {
+            $nameSnapshots = $snapshotsName['valueSnapMod'];
+            $newPolicy = $snapshotsName['txtSnapMod'];
+            $newType = $snapshotsName['typeSnapMod'];
+            $typeSnapshots = "";
+            $length = strlen($nameSnapshots);
+
+            for($count = 0; $count < $length; $count++)
+            {
+                if($nameSnapshots[$count] !== " ")
+                {
+                    $typeSnapshots = "$typeSnapshots"."$nameSnapshots[$count]";
+                }
+                else
+                {
+                    break;
+                }
+            }
+            modifySnapshots($typeSnapshots,$newPolicy,$newType);
+        }
     }
     displayFormManagement();
 }
@@ -471,33 +586,56 @@ function editSnapshots($snapshotsName){
 function editBackup($backupName){
     require_once 'model/displayManager.php';
     if(isset($backupName['add'])){
-        $typeBackup= $backupName['typeBackupAdd'];
-        $policyBackup = $backupName['txtBackupAdd'];
-        addBackup($typeBackup,$policyBackup);
-    }
-    if(isset($backupName['delete'])){
-        $nameSnapshots = $backupName['valueBackupDel'];
-        deleteBackup($nameSnapshots);
-    }
-    if(isset($backupName['modify'])){
-        $nameBackup = $backupName['valueBackupMod'];
-        $newPolicy = $backupName['txtBackupMod'];
-        $newType = $backupName['typeBackupMod'];
-        $typeBackup = "";
-        $length = strlen($nameBackup);;
-
-        for($count = 0; $count < $length; $count++)
+        if(isset($backupName['typeBackupAdd']) && $backupName['typeBackupAdd'] != null && isset($backupName['txtBackupAdd']) && $backupName['txtBackupAdd'] != null)
         {
-            if($nameBackup[$count] !== " ")
-            {
-                $typeBackup = "$typeBackup"."$nameBackup[$count]";
-            }
-            else
-            {
-                break;
-            }
+            $typeBackup= $backupName['typeBackupAdd'];
+            $policyBackup = $backupName['txtBackupAdd'];
+            addBackup($typeBackup,$policyBackup);
         }
-        modifyBackup($typeBackup,$newPolicy,$newType);
+    }
+    elseif(isset($backupName['delete'])){
+        if(isset($backupName['valueBackupDel']) && $backupName['valueBackupDel'] != null)
+        {
+            $nameBackup = $backupName['valueBackupDel'];
+            $typeBackup = "";
+            $length = strlen($nameBackup);
+
+            for($count = 0; $count < $length; $count++)
+            {
+                if($nameBackup[$count] !== " ")
+                {
+                    $typeBackup = "$typeBackup"."$nameBackup[$count]";
+                }
+                else
+                {
+                    break;
+                }
+            }
+            deleteBackup($typeBackup);
+        }
+    }
+    elseif(isset($backupName['modify'])){
+        if(isset($backupName['valueBackupMod']) && $backupName['valueBackupMod'] != null && isset($backupName['txtBackupMod']) && $backupName['txtBackupMod'] != null &&isset($backupName['typeBackupMod']) && $backupName['typeBackupMod'] != null)
+        {
+            $nameBackup = $backupName['valueBackupMod'];
+            $newPolicy = $backupName['txtBackupMod'];
+            $newType = $backupName['typeBackupMod'];
+            $typeBackup = "";
+            $length = strlen($nameBackup);
+
+            for($count = 0; $count < $length; $count++)
+            {
+                if($nameBackup[$count] !== " ")
+                {
+                    $typeBackup = "$typeBackup"."$nameBackup[$count]";
+                }
+                else
+                {
+                    break;
+                }
+            }
+            modifyBackup($typeBackup,$newPolicy,$newType);
+        }
     }
     displayFormManagement();
 }
@@ -509,4 +647,24 @@ function displayResearch($inputResearch){
 
     //display searchResultView
     require 'view/searchResult.php';
+}
+
+function modifyStatusAfterRenewal($idVM, $status){
+    if($status){
+        $vmStatus = 2;
+    }
+    else{
+        $vmStatus = 4;
+    }
+
+    require_once "model/vmManager.php";
+
+    if(updateStatusVM($idVM['id'], $vmStatus))
+    {
+        displayAllVM("");
+    }
+    else
+    {
+        displayDetailsVM($idVM['id']);
+    }
 }
