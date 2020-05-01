@@ -74,6 +74,7 @@ function createSession($userEmail)
 {
     $_SESSION['userEmail'] = $userEmail;
     $_SESSION['userType'] = getUserType($userEmail);
+    $_SESSION['userId'] = getUserId($userEmail);
 }
 
 function signOut()
