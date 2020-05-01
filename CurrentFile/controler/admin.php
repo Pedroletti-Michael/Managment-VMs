@@ -594,7 +594,7 @@ function displayResearch($inputResearch){
     require 'view/searchResult.php';
 }
 
-function modifyStatusAfterRenewal($status){
+function modifyStatusAfterRenewal($idVM, $status){
     if($status){
         $vmStatus = 2;
     }
@@ -604,12 +604,12 @@ function modifyStatusAfterRenewal($status){
 
     require_once "model/vmManager.php";
 
-    if(updateStatusVM($_SESSION['idVM'], $vmStatus))
+    if(updateStatusVM($idVM['id'], $vmStatus))
     {
         displayAllVM("");
     }
     else
     {
-        displayDetailsVM($_SESSION['idVM']);
+        displayDetailsVM($idVM['id']);
     }
 }

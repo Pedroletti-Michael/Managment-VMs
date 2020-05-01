@@ -36,7 +36,7 @@ ob_start();
             <?php foreach ($renewalVM as $value): ?>
            <tr>
                <td>
-                   <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="submit" class="btn btn-success"><strong>Oui</strong></button></a>
+                   <a href="index.php?action=renewalAccepted&id=<?php echo $value['id']?>"><button type="submit" class="btn btn-success"><strong>Oui</strong></button></a>
                    <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="submit" class="btn btn-danger"><strong>Non</strong></button></a>
 
                </td>
