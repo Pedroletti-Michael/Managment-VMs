@@ -63,10 +63,10 @@ if(isset($_GET['action']))
             vmRefused();
             break;
         case 'renewalAccepted':
-            renewwalAccepted();
+            modifyStatusAfterRenewal($_GET, true);
             break;
         case 'renewalRefused':
-            renewwalRefused();
+            modifyStatusAfterRenewal($_GET, false);
             break;
         case 'vm':
             displayVM();
@@ -106,12 +106,6 @@ if(isset($_GET['action']))
             break;
         case 'refreshUser':
             refreshUser();
-            break;
-        case 'renewalAccepted':
-            modifyStatusAfterRenewal($_GET, true);
-            break;
-        case 'renewalRefused':
-            modifyStatusAfterRenewal($_GET, false);
             break;
         default:
             displayHome();
