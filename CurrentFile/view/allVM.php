@@ -21,7 +21,7 @@ ob_start();
         <!------------- Choix ------------>
         <div class="w-50-m m-auto responsiveDisplay pt-2">
             <div class="w-100 d-inline-block">
-                <div class="w-25-m float-left p-1" style="height: 50px">
+                <div class="w-20 float-left p-1" style="height: 50px">
                     <!--Snapshot-->
                     <a href="index.php?action=allVM&vmFilter=all">
                         <button type="button" class="btn btn-primary w-100 responsiveButton">
@@ -29,7 +29,7 @@ ob_start();
                         </button>
                     </a>
                 </div>
-                <div class="w-25-m float-left p-1" style="height: 50px">
+                <div class="w-20 float-left p-1" style="height: 50px">
                     <!--Backup-->
                     <a href="index.php?action=allVM&vmFilter=confirmed">
                         <button type="button" class="btn btn-primary w-100 responsiveButton">
@@ -37,7 +37,7 @@ ob_start();
                         </button>
                     </a>
                 </div>
-                <div class="w-25-m float-left p-1" style="height: 50px">
+                <div class="w-20 float-left p-1" style="height: 50px">
                     <!--Snapshot-->
                     <a href="index.php?action=allVM&vmFilter=confirmation">
                         <button type="button" class="btn btn-primary w-100 responsiveButton">
@@ -45,11 +45,19 @@ ob_start();
                         </button>
                     </a>
                 </div>
-                <div class="w-25-m float-left p-1" style="height: 50px">
+                <div class="w-20 float-left p-1" style="height: 50px">
                     <!--Backup-->
                     <a href="index.php?action=allVM&vmFilter=renewal">
                         <button type="button" class="btn btn-primary w-100 responsiveButton">
                             <h6>VM à renouveler</h6>
+                        </button>
+                    </a>
+                </div>
+                <div class="w-20 float-left p-1" style="height: 50px">
+                    <!--Backup-->
+                    <a href="index.php?action=allVM&vmFilter=deleted">
+                        <button type="button" class="btn btn-primary w-100 responsiveButton">
+                            <h6>VM supprimées</h6>
                         </button>
                     </a>
                 </div>
