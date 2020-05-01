@@ -343,6 +343,29 @@ function getVmToRenew(){
     return $resultSelect;
 }
 
+/**===GET INFO FROM WHO NEED TO BE RENEW FROM A USER===**/
+function getRenewFromAUser($userId){
+    require_once 'model/dbConnector.php';
+    $strSep = '\'';
+
+    $querySelect = "SELECT `id`, `name`, `dateStart`, `dateAnniversary`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus`  FROM `vm` WHERE vmStatus = 3 AND customer = ". $strSep.$userId.$strSep ."OR userRa = ". $strSep.$userId.$strSep ."OR userRt = ". $strSep.$userId.$strSep;
+
+    $resultSelect = executeQuerySelect($querySelect);
+    $i = 0;
+
+    foreach ($resultSelect as $vm){
+        $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
+        $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
+        $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
+        $resultSelect[$i]['os_id'] = getInfoOs($vm['os_id']);
+        $resultSelect[$i]['snapshot_id'] = getInfoSnapshot($vm['snapshot_id']);
+        $resultSelect[$i]['backup_id'] = getInfoBackup($vm['backup_id']);
+        $i++;
+    }
+    return $resultSelect;
+}
+
 /**===GET INFO OF A SPECIFIC VM VIA THE ID OF THIS VM**/
 function getDataVM($idVM){
     require_once 'model/dbConnector.php';

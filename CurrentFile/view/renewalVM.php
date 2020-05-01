@@ -37,7 +37,7 @@ ob_start();
            <tr>
                <td>
                    <a href="index.php?action=renewalAccepted&id=<?php echo $value['id']?>"><button type="submit" class="btn btn-success"><strong>Oui</strong></button></a>
-                   <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="submit" class="btn btn-danger"><strong>Non</strong></button></a>
+                   <a href="index.php?action=renewalRefused&id=<?php echo $value['id']?>"><button type="submit" class="btn btn-danger"><strong>Non</strong></button></a>
 
                </td>
                 <td><?php echo $value['name']?></a></td>
