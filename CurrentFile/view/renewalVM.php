@@ -14,7 +14,7 @@ ob_start();
     </head>
     <body>
     <div class="table-responsive-xl">
-        <table class="table table-striped allVM">
+        <table class="table table-hover allVM">
         <thead class="thead-dark sticky-top">
         <tr>
             <th scope="col" style="width: 50px"></th>

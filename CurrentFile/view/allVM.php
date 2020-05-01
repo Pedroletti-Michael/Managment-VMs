@@ -20,42 +20,38 @@ ob_start();
     <form method="post" action="../index.php?action=allVM">
         <!------------- Choix ------------>
         <div class="w-50-m m-auto responsiveDisplay pt-2">
-            <div class="w-100">
-                <div class="w-50-m responsiveDisplay">
-                    <div class="w-50-m float-left p-1">
-                        <!--Snapshot-->
-                        <a href="index.php?action=allVM&vmFilter=all">
-                            <button type="button" class="btn btn-primary w-100 responsiveButton">
-                                <h6>Toutes les VM</h6>
-                            </button>
-                        </a>
-                    </div>
-                    <div class="w-50-m float-left p-1">
-                        <!--Backup-->
-                        <a href="index.php?action=allVM&vmFilter=confirmed">
-                            <button type="button" class="btn btn-primary w-100 responsiveButton">
-                                <h6>VM confirmées</h6>
-                            </button>
-                        </a>
-                    </div>
+            <div class="w-100 d-inline-block">
+                <div class="w-25-m float-left p-1" style="height: 50px">
+                    <!--Snapshot-->
+                    <a href="index.php?action=allVM&vmFilter=all">
+                        <button type="button" class="btn btn-primary w-100 responsiveButton">
+                            <h6>Toutes les VM</h6>
+                        </button>
+                    </a>
                 </div>
-                <div class="w-50-m responsiveDisplay">
-                    <div class="w-50-m float-left p-1">
-                        <!--Snapshot-->
-                        <a href="index.php?action=allVM&vmFilter=confirmation">
-                            <button type="button" class="btn btn-primary w-100 responsiveButton">
-                                <h6>VM à confirmer</h6>
-                            </button>
-                        </a>
-                    </div>
-                    <div class="w-50-m float-left p-1">
-                        <!--Backup-->
-                        <a href="index.php?action=allVM&vmFilter=renewal">
-                            <button type="button" class="btn btn-primary w-100 responsiveButton">
-                                <h6>VM à renouveler</h6>
-                            </button>
-                        </a>
-                    </div>
+                <div class="w-25-m float-left p-1" style="height: 50px">
+                    <!--Backup-->
+                    <a href="index.php?action=allVM&vmFilter=confirmed">
+                        <button type="button" class="btn btn-primary w-100 responsiveButton">
+                            <h6>VM confirmées</h6>
+                        </button>
+                    </a>
+                </div>
+                <div class="w-25-m float-left p-1" style="height: 50px">
+                    <!--Snapshot-->
+                    <a href="index.php?action=allVM&vmFilter=confirmation">
+                        <button type="button" class="btn btn-primary w-100 responsiveButton">
+                            <h6>VM à confirmer</h6>
+                        </button>
+                    </a>
+                </div>
+                <div class="w-25-m float-left p-1" style="height: 50px">
+                    <!--Backup-->
+                    <a href="index.php?action=allVM&vmFilter=renewal">
+                        <button type="button" class="btn btn-primary w-100 responsiveButton">
+                            <h6>VM à renouveler</h6>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -121,10 +117,10 @@ ob_start();
 
 
         <div class="table-responsive-xl">
-            <table class="table table-striped allVM" id="tableInventoryVm">
+            <table class="table table-hover allVM" id="tableInventoryVm">
             <thead class="thead-dark sticky-top">
             <tr>
-                <th scope="col" style="width: 50px"></th>
+                <th scope="col" style="width: 50px;"></th>
                 <th scope="col" onclick="sortTable(1)">name</th>
                 <th scope="col" onclick="sortTable(2)">dateStart</th>
                 <th scope="col" onclick="sortTable(3)">dateEnd</th>
@@ -155,7 +151,7 @@ ob_start();
             </thead>
             <tbody>
                 <?php foreach ($allVM as $value): ?>
-                    <tr>
+                    <tr style="background-color: rgba(<?php if($value['vmStatus']==2){echo '0,255,0,0.2';}elseif ($value['vmStatus']==0){echo '255,127,0,0.2';}elseif ($value['vmStatus']==3){echo '255,0,0,0.2';}else{echo '90,90,90,0.2';}?>);">
                         <td>
                             <div class="btn-group" role="group">
                                 <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-primary"><strong>+</strong></button></a>

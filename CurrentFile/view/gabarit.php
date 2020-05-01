@@ -59,9 +59,9 @@
         <a class="title">Public</a>
         <!----------------- home ---------------->
         <?php if ($_GET['action'] == "home"): ?>
-            <a href="index.php?action=home" class="alert-link active">Mes VM's</a>
+            <a href="index.php?action=home" class="alert-link active">Mes VM</a>
         <?php else : ?>
-            <a href="index.php?action=home">Mes VM's</a>
+            <a href="index.php?action=home">Mes VM</a>
         <?php endif; ?>
         <!----------------- form ---------------->
         <?php if ($_GET['action'] == "form"): ?>
@@ -71,7 +71,7 @@
         <?php endif; ?>
 
         <?php if(isset($_SESSION['userType']) && $_SESSION['userType']==1):?>
-            <a class="title">Admin</a>
+            <a class="title">Gestion</a>
             <!----------------- allVM ---------------->
             <?php if ($_GET['action'] == "allVM"): ?>
                 <a href="index.php?action=allVM" class="alert-link active">Inventaire VM</a>
@@ -90,11 +90,19 @@
             <?php else : ?>
                 <a href="index.php?action=renewalVM">Renouvellements</a>
             <?php endif; ?>
+
+            <a class="title">Admin</a>
             <!----------------- formManagement ---------------->
             <?php if ($_GET['action'] == "formManagement"): ?>
                 <a class="last alert-link active" href="index.php?action=formManagement">Gestion du formulaire</a>
             <?php else : ?>
                 <a class="last" href="index.php?action=formManagement">Gestion du formulaire</a>
+            <?php endif; ?>
+            <!----------------- updateUser ---------------->
+            <?php if ($_GET['action'] == "formManagement"): ?>
+                <a class="last alert-link active" href="index.php?action=refreshUser">Actualiser utilisateurs</a>
+            <?php else : ?>
+                <a class="last" href="index.php?action=refreshUser">Actualiser utilisateurs</a>
             <?php endif; ?>
             <!----------------- vm ---------------->
             <!--
@@ -185,7 +193,7 @@
                         <a class="nav-link" href="index.php?action=home">
                             <?php endif; ?>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                            Mes VM's
+                            Mes VM
                         </a>
                 </li>
             </ul>
@@ -203,7 +211,7 @@
             </ul>
             <?php if(isset($_SESSION['userType']) && $_SESSION['userType']==1):?>
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                <span>Admin</span>
+                <span>Gestion</span>
             </h6>
             <ul class="nav flex-column">
                 <li class="nav-item">
@@ -244,7 +252,10 @@
                 </li>
             </ul>
 
-            <ul class="nav flex-column mb-2">
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>Admin</span>
+                </h6>
+            <ul class="nav flex-column">
                 <li class="nav-item">
                     <?php if ($_GET['action'] == "formManagement"): ?>
                     <a class="nav-link active" href="index.php?action=formManagement">
@@ -257,7 +268,7 @@
                 </li>
             </ul>
 
-            <ul class="nav flex-column mb-2">
+            <ul class="nav flex-column">
                 <li class="nav-item">
                     <?php if ($_GET['action'] == "refreshUser"): ?>
                     <a class="nav-link active" href="index.php?action=refreshUser">
@@ -379,7 +390,7 @@
                             <a class="nav-link" href="index.php?action=home">
                                 <?php endif; ?>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                Mes VM's
+                                Mes VM
                             </a>
                     </li>
                 </ul>
@@ -397,7 +408,7 @@
                 </ul>
                 <?php if(isset($_SESSION['userType']) && $_SESSION['userType']==1):?>
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Admin</span>
+                    <span>Gestion</span>
                 </h6>
                 <ul class="nav flex-column">
                     <li class="nav-item">
@@ -437,8 +448,10 @@
                             </a>
                     </li>
                 </ul>
-
-                <ul class="nav flex-column mb-2">
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Admin</span>
+                    </h6>
+                <ul class="nav flex-column">
                     <li class="nav-item">
                         <?php if ($_GET['action'] == "formManagement"): ?>
                         <a class="nav-link active" href="index.php?action=formManagement">
@@ -451,7 +464,7 @@
                     </li>
                 </ul>
 
-                <ul class="nav flex-column mb-2">
+                <ul class="nav flex-column">
                     <li class="nav-item">
                         <?php if ($_GET['action'] == "refreshUser"): ?>
                         <a class="nav-link active" href="index.php?action=refreshUser">
