@@ -90,13 +90,22 @@ $(document).ready(function() {
 });
 
 function getValue() {
-    var ul, li, a, i, txtValue, input;
+    var ul, li, a, i, txtValue, input, select, options, y;
     ul = document.getElementsByClassName("select2-selection__rendered");
     li = ul[0].getElementsByTagName("li");
+    select = document.getElementById("select2Redundance");
+    options = document.getElementsByTagName("option");
     txtValue = "";
-    for (i = 0; i < li.length; i++) {
-        a = li[i].title;
-        txtValue += a + ";";
+    for(i = 0; i < li.length; i++){
+        for(y = 0; y < options.length; y++) {
+
+            a = li[i].title;
+
+            if(a === options[y].textContent){
+                txtValue += options[y].value + ";";
+                break;
+            }
+        }
     }
     input = document.getElementById("editRedundance");
     input.value = txtValue;

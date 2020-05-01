@@ -320,14 +320,14 @@ ob_start();
             <!--Redundance-->
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="editRedundance" class="font-weight-bold">Redondance</label>
-                <select class="js-example-basic-multiple form-control form form" multiple="multiple">
+                <select class="js-example-basic-multiple form-control form form" multiple="multiple" id="select2Redundance">
                     <?php
                     $dataRedundances = explode(";", $dataVM[0]['redundance']);
 
                     // We need to check with id not with name and store id not name
                     foreach ($dataRedundances as $dataRedundance){
                         foreach($vms as $vm){
-                            if ($vm[1] == $dataRedundance){
+                            if ($vm[1] == $dataRedundance || $vm[0] == $dataRedundance){
                                 echo '<option value="'.$vm[1].'" selected>'.$vm[0].'</option>';
                             }
                             else{
