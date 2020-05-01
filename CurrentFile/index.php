@@ -102,10 +102,10 @@ if(isset($_GET['action']))
             refreshUser();
             break;
         case 'renewalAccepted':
-            modifyStatusAfterRenewal($_POST, true);
+            modifyStatusAfterRenewal(true);
             break;
         case 'renewalRefused':
-            modifyStatusAfterRenewal($_POST, false);
+            modifyStatusAfterRenewal(false);
             break;
         default:
             displayHome();

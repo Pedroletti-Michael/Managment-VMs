@@ -5,7 +5,7 @@
  * Description : Contains all functions related to the admin view
  */
 
-function displayAllVM($searchFilter,$vmFilter)
+function displayAllVM($searchFilter,$vmFilter = "all")
 {
     if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
@@ -594,125 +594,22 @@ function displayResearch($inputResearch){
     require 'view/searchResult.php';
 }
 
-function modifyStatusAfterRenewal($vmInformation, $status){
+function modifyStatusAfterRenewal($status){
     if($status){
-        require_once "model/vmManager.php";
+        $vmStatus = 2;
+    }
+    else{
+        $vmStatus = 4;
+    }
 
-        if (strtotime($vmInformation['inputComissioningDate']) > strtotime($vmInformation['inputEndDate']))
-        {
-            if($_SESSION['userType'] == 0)
-            {
-                displayHome();
-            }
-            elseif($_SESSION['userType'] == 1)
-            {
-                $allVM = getAllVM();
-                $_GET['action'] = "allVM";
-                require 'view/allVM.php';
-            }
-            else
-            {
-                $_GET['action'] = "signIn";
-                require 'view/signIn.php';
-            }
-        }
+    require_once "model/vmManager.php";
 
-        if(isset($vmInformation['Academique']))
-        {
-            $vmInformation['usingVM'] = "Academique";
-
-            unset($vmInformation['RaD']);
-            unset($vmInformation['Operationnel']);
-            unset($vmInformation['Academique']);
-        }
-        elseif (isset($vmInformation['RaD']))
-        {
-            $vmInformation['usingVM'] = "RaD";
-
-            unset($vmInformation['RaD']);
-            unset($vmInformation['Operationnel']);
-            unset($vmInformation['Academique']);
-        }
-        elseif (isset($vmInformation['Operationnel']))
-        {
-            $vmInformation['usingVM'] = "Operationnel";
-
-            unset($vmInformation['RaD']);
-            unset($vmInformation['Operationnel']);
-            unset($vmInformation['Academique']);
-        }
-
-        if(isset($vmInformation['domainEINET']))
-        {
-            $vmInformation['domainEINET'] = 1;
-        }
-        else
-        {
-            $vmInformation['domainEINET'] = 0;
-        }
-
-        if($vmInformation['securityFormControlSelect'] == "OS mis à jour par le responsable technique")
-        {
-            $vmInformation['securityFormControlSelect'] = 1;
-        }
-        elseif($vmInformation['securityFormControlSelect'] == "OS mis à jour par le SI (update automatiques)")
-        {
-            $vmInformation['securityFormControlSelect'] = 0;
-        }
-
-        if($vmInformation['editDateAnniversary'] == "" || $vmInformation['editDateAnniversary'] == " ")
-        {
-            $vmInformation['editDateAnniversary'] = 0000-00-00;
-        }
-        elseif($vmInformation['editCriticity'] == "" || $vmInformation['editCriticity'] == " ")
-        {
-            $vmInformation['editCriticity'] = 0;
-        }
-
-        if(updateVMInformation($vmInformation, $_SESSION['idVM']))
-        {
-            if($status){
-                $status = 2;
-            }
-            else{
-                $status = 4;
-            }
-
-            updateStatusVM($vmInformation['id'], $status);
-
-            if($_SESSION['userType'] == 0)
-            {
-                displayHome();
-            }
-            elseif($_SESSION['userType'] == 1)
-            {
-                $allVM = getAllVM();
-                $_GET['action'] = "allVM";
-                require 'view/allVM.php';
-            }
-            else
-            {
-                $_GET['action'] = "signIn";
-                require 'view/signIn.php';
-            }
-        }
-        else
-        {
-            if($_SESSION['userType'] == 0)
-            {
-                displayHome();
-            }
-            elseif($_SESSION['userType'] == 1)
-            {
-                $allVM = getAllVM();
-                $_GET['action'] = "allVM";
-                require 'view/allVM.php';
-            }
-            else
-            {
-                $_GET['action'] = "signIn";
-                require 'view/signIn.php';
-            }
-        }
+    if(updateStatusVM($_SESSION['idVM'], $vmStatus))
+    {
+        displayAllVM("");
+    }
+    else
+    {
+        displayDetailsVM($_SESSION['idVM']);
     }
 }

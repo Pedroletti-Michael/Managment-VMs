@@ -324,8 +324,8 @@ ob_start();
                     <?php
                     $dataRedundances = explode(";", $dataVM[0]['redundance']);
 
-                    foreach($vms as $vm){
-                        foreach ($dataRedundances as $dataRedundance){
+                    foreach ($dataRedundances as $dataRedundance){
+                        foreach($vms as $vm){
                             if ($vm[0] == $dataRedundance){
                                 echo '<option value="'.$vm[0].'" selected>'.$vm[0].'</option>';
                             }
