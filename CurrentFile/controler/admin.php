@@ -366,6 +366,38 @@ function vmRefused()
     }
 }
 
+function renewwalAccepted()
+{
+    $vmStatus = false;
+
+    require_once "model/vmManager.php";
+
+    if(updateStatusVM($_SESSION['idVM'], $vmStatus))
+    {
+        displayAllVM("");
+    }
+    else
+    {
+        displayDetailsVM($_SESSION['idVM']);
+    }
+}
+
+function renewwalRefused()
+{
+    $vmStatus = false;
+
+    require_once "model/vmManager.php";
+
+    if(updateStatusVM($_SESSION['idVM'], $vmStatus))
+    {
+        displayAllVM("");
+    }
+    else
+    {
+        displayDetailsVM($_SESSION['idVM']);
+    }
+}
+
 function displayFormManagement()
 {
     require_once 'model/displayManager.php';
