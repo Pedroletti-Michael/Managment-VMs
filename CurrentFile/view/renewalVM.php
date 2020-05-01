@@ -17,7 +17,7 @@ ob_start();
         <table class="table table-hover allVM">
         <thead class="thead-dark sticky-top">
         <tr>
-            <th scope="col" style="width: 50px"></th>
+            <th scope="col">Renouveler ?</th>
             <th scope="col">name</th>
             <th scope="col">os_id</th>
             <th scope="col">dateStart</th>
@@ -36,7 +36,9 @@ ob_start();
             <?php foreach ($renewalVM as $value): ?>
            <tr>
                <td>
-                   <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="submit" class="btn btn-primary"><strong>+</strong></button></a>
+                   <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="submit" class="btn btn-success"><strong>Oui</strong></button></a>
+                   <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="submit" class="btn btn-danger"><strong>Non</strong></button></a>
+
                </td>
                 <td><?php echo $value['name']?></a></td>
                 <td style="min-width: 100px"><?php echo $value['os_id']['1']." ".$value['os_id']['0']?></td>
