@@ -156,7 +156,7 @@ ob_start();
                             {
                                 var elementToDelete = getSelectedEntityToDelete();
 
-                                $("#confirmationDeleteEntitySelected").text('Êtes-vous sûr de vouloir supprimer le champ : *' + elementToDelete + '* ?');
+                                $("#confirmationDeleteEntitySelected").html('Êtes-vous sûr de vouloir supprimer le champ : <b>'+ elementToDelete + '</b> ?');
                             }
 
                             function displaySelectedValueEntity(getSelectedValue)
@@ -177,7 +177,7 @@ ob_start();
                                 var editedElement = document.getElementById("txtEntityMod").value;
                                 var basicElement = displaySelectedValueEntity(true);
 
-                                $("#confirmationModifyEntitySelected").text('Êtes-vous sûr de vouloir changer le champ : *' + basicElement + '* en *' + editedElement + '* ?');
+                                $("#confirmationModifyEntitySelected").html('Êtes-vous sûr de vouloir changer le champ : <b>' + basicElement + '</b> en <b>' + editedElement + '</b> ?');
                             }
                         </script>
 
@@ -302,7 +302,7 @@ ob_start();
                             {
                                 var elementToDelete = getSelectedOSToDelete();
 
-                                $("#confirmationDeleteOSSelected").text('Êtes-vous sûr de vouloir supprimer le champ : *' + elementToDelete + '* ?');
+                                $("#confirmationDeleteOSSelected").html('Êtes-vous sûr de vouloir supprimer le champ : <b>' + elementToDelete + '<b/> ?');
                             }
 
                             function displaySelectedValueOS(getSelectedValue)
@@ -343,7 +343,7 @@ ob_start();
                                 var editedElement = document.getElementById("typeOSMod").value + " " + document.getElementById("txtOSMod").value;
                                 var basicElement = displaySelectedValueOS(true);
 
-                                $("#confirmationModifyOSSelected").text('Êtes-vous sûr de vouloir changer le champ : *' + basicElement + '* en *' + editedElement + '* ?');
+                                $("#confirmationModifyOSSelected").html('Êtes-vous sûr de vouloir changer le champ : <b>' + basicElement + '</b> en <b>' + editedElement + '</b> ?');
                             }
                         </script>
 
@@ -462,7 +462,7 @@ ob_start();
                             {
                                 var elementToDelete = getSelectedSnapshotsToDelete();
 
-                                $("#confirmationDeleteSnapshotsSelected").text('Êtes-vous sûr de vouloir supprimer le champ : *' + elementToDelete + '* ?');
+                                $("#confirmationDeleteSnapshotsSelected").html('Êtes-vous sûr de vouloir supprimer le champ : <b>' + elementToDelete + '</b> ?');
                             }
 
                             function displaySelectedValueSnapshots(getSelectedValue)
@@ -503,7 +503,7 @@ ob_start();
                                 var editedElement = document.getElementById("typeSnapMod").value + " : " + document.getElementById("txtSnapMod").value;
                                 var basicElement = displaySelectedValueSnapshots(true);
 
-                                $("#confirmationModifySnapshotsSelected").text('Êtes-vous sûr de vouloir changer le champ : *' + basicElement + '* en *' + editedElement + '* ?');
+                                $("#confirmationModifySnapshotsSelected").html('Êtes-vous sûr de vouloir changer le champ : <b>' + basicElement + '</b> en <b>' + editedElement + '</b> ?');
                             }
                         </script>
 
@@ -622,7 +622,7 @@ ob_start();
                             {
                                 var elementToDelete = getSelectedBackupToDelete();
 
-                                $("#confirmationDeleteBackupSelected").text('Êtes-vous sûr de vouloir supprimer le champ : *' + elementToDelete + '* ?');
+                                $("#confirmationDeleteBackupSelected").html('Êtes-vous sûr de vouloir supprimer le champ : <b>' + elementToDelete + '</b> ?');
                             }
 
                             function displaySelectedValueBackup(getSelectedValue)
@@ -663,7 +663,7 @@ ob_start();
                                 var editedElement = document.getElementById("typeBackupMod").value + " : " + document.getElementById("txtBackupMod").value;
                                 var basicElement = displaySelectedValueBackup(true);
 
-                                $("#confirmationModifyBackupSelected").text('Êtes-vous sûr de vouloir changer le champ : *' + basicElement + '* en *' + editedElement + '* ?');
+                                $("#confirmationModifyBackupSelected").html('Êtes-vous sûr de vouloir changer le champ : <b>' + basicElement + '</b> en <b>' + editedElement + '</b> ?');
                             }
                         </script>
 
