@@ -229,27 +229,45 @@ function updateVM($vmInformation)
     if(isset($vmInformation['Academique']))
     {
         $vmInformation['usingVM'] = "Academique";
-
-        unset($vmInformation['RaD']);
-        unset($vmInformation['Operationnel']);
-        unset($vmInformation['Academique']);
     }
-    elseif (isset($vmInformation['RaD']))
+    if (isset($vmInformation['RaD']))
     {
-        $vmInformation['usingVM'] = "RaD";
-
-        unset($vmInformation['RaD']);
-        unset($vmInformation['Operationnel']);
-        unset($vmInformation['Academique']);
+        if(!isset($vmInformation['usingVM']))
+        {
+            $vmInformation['usingVM'] = "RaD";
+        }
+        else
+        {
+            $vmInformation['usingVM'] = $vmInformation['usingVM'].", RaD";
+        }
     }
-    elseif (isset($vmInformation['Operationnel']))
+    if (isset($vmInformation['Operationnel']))
     {
-        $vmInformation['usingVM'] = "Operationnel";
-
-        unset($vmInformation['RaD']);
-        unset($vmInformation['Operationnel']);
-        unset($vmInformation['Academique']);
+        if(!isset($vmInformation['usingVM']))
+        {
+            $vmInformation['usingVM'] = "Operationnel";
+        }
+        else
+        {
+            $vmInformation['usingVM'] = $vmInformation['usingVM'].", Operationnel";
+        }
     }
+    if (isset($vmInformation['Test']))
+    {
+        if(!isset($vmInformation['usingVM']))
+        {
+            $vmInformation['usingVM'] = "Test";
+        }
+        else
+        {
+            $vmInformation['usingVM'] = $vmInformation['usingVM'].", Test";
+        }
+    }
+
+    unset($vmInformation['Academique']);
+    unset($vmInformation['RaD']);
+    unset($vmInformation['Operationnel']);
+    unset($vmInformation['Test']);
 
     if(isset($vmInformation['domainEINET']))
     {
@@ -324,7 +342,7 @@ function vmAccepted()
 
     if(updateStatusVM($_SESSION['idVM'], $vmStatus))
     {
-        displayAllVM("");
+        displayAllVM("","");
     }
     else
     {
@@ -333,6 +351,38 @@ function vmAccepted()
 }
 
 function vmRefused()
+{
+    $vmStatus = false;
+
+    require_once "model/vmManager.php";
+
+    if(updateStatusVM($_SESSION['idVM'], $vmStatus))
+    {
+        displayAllVM("");
+    }
+    else
+    {
+        displayDetailsVM($_SESSION['idVM']);
+    }
+}
+
+function renewwalAccepted()
+{
+    $vmStatus = false;
+
+    require_once "model/vmManager.php";
+
+    if(updateStatusVM($_SESSION['idVM'], $vmStatus))
+    {
+        displayAllVM("");
+    }
+    else
+    {
+        displayDetailsVM($_SESSION['idVM']);
+    }
+}
+
+function renewwalRefused()
 {
     $vmStatus = false;
 
