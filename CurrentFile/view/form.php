@@ -30,47 +30,6 @@ ob_start();
             </div>
         </div>
         <div class="d-inline-block w-100">
-            <!--Name of the technical manager-->
-            <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
-                <label for="inputTMNam" class="font-weight-bold">Responsable technique<a style="color: red"> *</a></label>
-                <input type="text" class="form-control form form" id="inputTMNam" name="inputTMNam" aria-describedby="tmNameHelp" placeholder="Entrer une adresse de messagerie" required onkeyup="searchFunctionTm()">
-                <ul id="tmNameUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
-                    <?php
-                    $id = 'liTm';
-                    $i = 0;
-                    $endSeparator = '';
-
-                    foreach($users as $user){
-                        echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputTm('.$i.', this.text)">'. $user[1]. ' ' .$user[2] .'</a></li>';
-                        echo '<input type="hidden" value="'.$user[0].'" id="'.$id.$i.$endSeparator.'">';
-                        $i++;
-                    }
-                    ?>
-                </ul>
-                <input type="hidden" name="inputTMName" id="inputTMName" readonly required>
-            </div>
-            <!--Name of the responsible administrator-->
-            <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
-                <label for="inputRANam" class="font-weight-bold">Responsable administratif<a style="color: red"> *</a></label>
-                <input type="text" class="form-control form form" id="inputRANam" name="inputRANam" aria-describedby="raNameHelp" placeholder="Entrer une adresse de messagerie" required onkeyup="searchFunctionRa()">
-                <small id="raNameHelp" class="form-text text-muted">Direction, Doyen , Directeur d'institut ou Chef de service</small>
-                <ul id="raNameUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
-                    <?php
-                    $id = 'liRa';
-                    $i = 0;
-                    $endSeparator = '';
-
-                    foreach($users as $user){
-                        echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputRa('.$i.', this.text)">'. $user[1]. ' ' .$user[2] .'</a></li>';
-                        echo '<input type="hidden" value="'.$user[0].'" id="'.$id.$i.$endSeparator.'">';
-                        $i++;
-                    }
-                    ?>
-                </ul>
-                <input type="hidden" name="inputRAName" id="inputRAName" readonly required>
-            </div>
-        </div>
-        <div class="d-inline-block w-100">
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <div class="form-group w-50 float-left pr-1">
                     <!--RAM-->
@@ -82,17 +41,59 @@ ob_start();
                     <label for="cpu" class="font-weight-bold">CPU<a style="color: red"> *</a></label>
                     <input type="number" class="form-control form form" id="inputCPU" name="inputCPU" aria-describedby="cpuHelp" min="1" max="99" required>
                 </div>
+                <br>
+                <div class="form-group w-100 float-left mt-3">
+                    <!--Stockages-->
+                    <label for="SSD" class="font-weight-bold mr-2">Stockage SSD (GB)<a style="color: red"> *</a></label>
+                    <div class="w-100 d-inline-block">
+                        <div class="pr-2">
+                            <input type="number" class="form-control form form w-25 float-left" id="inputSSD" name="inputSSD" aria-describedby="ssdHelp" min="20" max="1000" required>
+                        </div>
+                        <div class="pl-2">
+                            <input type="text" class="form-control form form w-75 float-right" id="infoSSD" name="infoSSD" aria-describedby="ssdHelp" placeholder="Exemple : disque 1 : 200, disque 2 : 50" required>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
-                <!--Stockages-->
-                <label for="SSD" class="font-weight-bold mr-2">Stockage SSD (GB)<a style="color: red"> *</a></label>
-                <div class="w-100 d-inline-block">
-                    <div class="pr-2">
-                        <input type="number" class="form-control form form w-25 float-left" id="inputSSD" name="inputSSD" aria-describedby="ssdHelp" min="20" max="1000" required>
-                    </div>
-                    <div class="pl-2">
-                        <input type="text" class="form-control form form w-75 float-right" id="infoSSD" name="infoSSD" aria-describedby="ssdHelp" placeholder="Exemple : disque 1 : 200, disque 2 : 50" required>
-                    </div>
+                <!--Name of the technical manager-->
+                <div class="form-group w-50 float-left pr-1">
+                    <label for="inputTMNam" class="font-weight-bold">Responsable technique<a style="color: red"> *</a></label>
+                    <input type="text" class="form-control form form" id="inputTMNam" name="inputTMNam" aria-describedby="tmNameHelp" placeholder="Sélectionner une personne" required onkeyup="searchFunctionTm()">
+                    <ul id="tmNameUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
+                        <?php
+                        $id = 'liTm';
+                        $i = 0;
+                        $endSeparator = '';
+
+                        foreach($users as $user){
+                            echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputTm('.$i.', this.text)">'. $user[1]. ' ' .$user[2] .'</a></li>';
+                            echo '<input type="hidden" value="'.$user[0].'" id="'.$id.$i.$endSeparator.'">';
+                            $i++;
+                        }
+                        ?>
+                    </ul>
+                    <input type="hidden" name="inputTMName" id="inputTMName" readonly required>
+                </div>
+                <div class="form-group w-50 float-right pl-1 mb-0">
+                    <!--Name of the responsible administrator-->
+                    <label for="inputRANam" class="font-weight-bold">Responsable administratif<a style="color: red"> *</a></label>
+                    <input type="text" class="form-control form form" id="inputRANam" name="inputRANam" aria-describedby="raNameHelp" placeholder="Sélectionner une personne" required onkeyup="searchFunctionRa()">
+                    <small id="raNameHelp" class="form-text text-muted">Direction, Doyen , Directeur d'institut ou Chef de service</small>
+                    <ul id="raNameUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
+                        <?php
+                        $id = 'liRa';
+                        $i = 0;
+                        $endSeparator = '';
+
+                        foreach($users as $user){
+                            echo '<li class="list-group-item list-group-item-action h-25 p-0 pl-2"><a class="unlink" href="#" onclick="displayIntoInputRa('.$i.', this.text)">'. $user[1]. ' ' .$user[2] .'</a></li>';
+                            echo '<input type="hidden" value="'.$user[0].'" id="'.$id.$i.$endSeparator.'">';
+                            $i++;
+                        }
+                        ?>
+                    </ul>
+                    <input type="hidden" name="inputRAName" id="inputRAName" readonly required>
                 </div>
             </div>
         </div>
@@ -157,21 +158,6 @@ ob_start();
             </div>
         </div>
         <div class="d-inline-block w-100">
-            <!--Date of commissioning-->
-            <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
-                <label for="inputComissioningDate" class="font-weight-bold">Date de mise en service<a style="color: red"> *</a></label>
-                <input type="date" min="<?php date("Y-m-d") ?>" class="form-control form form" id="inputComissioningDate" name="inputComissioningDate" aria-describedby="comissioningDateHelp" placeholder="Entrer un nom ou une addresse de messagerie"  required>
-                <small id="comissioningDateHelp" class="form-text text-muted">Délai d'une semaine pour les VM de type Silver &amp; Gold. Deux semaines pour les autres configurations.</small>
-            </div>
-            <!--End Date-->
-            <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
-                <label for="inputEndDate" class="font-weight-bold">Date de fin</label>
-                <input type="date" class="form-control form form" id="inputEndDate" name="inputEndDate" aria-describedby="EndDateHelp" placeholder="Entrer un nom ou une addresse de messagerie" required>
-                <small id="EndDateHelp" class="form-text text-muted">Date de fin du projet, à laquelle la VM peut être arrêtée puis supprimée.</small>
-                <small id="EndDateHelp" class="form-text text-muted">S'il n'y a pas d'échéance, une demande de renouvellement sera envoyée tous les 6 mois.</small>
-            </div>
-        </div>
-        <div class="d-inline-block w-100">
             <!--Network-->
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="networkFormControlSelect" class="font-weight-bold">Réseau<a style="color: red"> *</a></label>
@@ -182,8 +168,16 @@ ob_start();
                 </select>
                 <small id="networkHelp" class="form-text text-muted">LAN : Machine accessible en interne ou via le VPN</small>
             </div>
-            <!--Using-->
+            <!--Date of commissioning-->
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
+                <label for="inputComissioningDate" class="font-weight-bold">Date de mise en service<a style="color: red"> *</a></label>
+                <input type="date" min="<?php date("Y-m-d") ?>" class="form-control form form" id="inputComissioningDate" name="inputComissioningDate" aria-describedby="comissioningDateHelp" placeholder="Entrer un nom ou une addresse de messagerie"  required>
+                <small id="comissioningDateHelp" class="form-text text-muted">Délai d'une semaine pour les VM de type Silver &amp; Gold. Deux semaines pour les autres configurations.</small>
+            </div>
+        </div>
+        <div class="d-inline-block w-100">
+            <!--Using-->
+            <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="inputDIS" class="font-weight-bold">Type d'utilisation<a style="color: red"> *</a></label>
                 <div class="d-inline-block w-100">
                     <div class="w-50 float-left pr-4">
@@ -207,6 +201,13 @@ ob_start();
                         </div>
                     </div>
                 </div>
+            </div>
+            <!--End Date-->
+            <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
+                <label for="inputEndDate" class="font-weight-bold">Date de fin</label>
+                <input type="date" class="form-control form form" id="inputEndDate" name="inputEndDate" aria-describedby="EndDateHelp" placeholder="Entrer un nom ou une addresse de messagerie" required>
+                <small id="EndDateHelp" class="form-text text-muted">Date de fin du projet, à laquelle la VM peut être arrêtée puis supprimée.</small>
+                <small id="EndDateHelp" class="form-text text-muted">S'il n'y a pas d'échéance, une demande de renouvellement sera envoyée tous les 6 mois.</small>
             </div>
         </div>
 
