@@ -40,6 +40,11 @@ function displayAllVM($searchFilter,$vmFilter = "all")
                         $checkFilter = "renewal";
                         $allVM = getRenewalVM();
                     }
+                    elseif($vmFilter['vmFilter'] == "deleted")
+                    {
+                        $checkFilter = "deleted";
+                        $allVM = getDeletedOrUnrenewalVM();
+                    }
 
                     $_GET['action'] = "allVM";
                     require 'view/allVM.php';
@@ -55,7 +60,6 @@ function displayAllVM($searchFilter,$vmFilter = "all")
             switch ($_SESSION['userType'])
             {
                 case 0:
-                    require_once 'controler/user.php';
                     displayHome();
                     break;
                 case 1:
@@ -85,7 +89,6 @@ function displayConfirmationVM()
         switch ($_SESSION['userType'])
         {
             case 0:
-                require_once 'controler/user.php';
                 displayHome();
                 break;
             case 1:
@@ -117,7 +120,6 @@ function displayRenewalVM()
                 require_once 'model/vmManager.php';
                 $userId = $_SESSION['userId'];
                 getRenewFromAUser($userId);
-                getDeletedOrUnrenewalVM();
                 require 'view/renewalVM.php';
                 break;
             case 1:
