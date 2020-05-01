@@ -62,6 +62,12 @@ if(isset($_GET['action']))
         case 'vmRefused':
             vmRefused();
             break;
+        case 'renewalAccepted':
+            renewwalAccepted();
+            break;
+        case 'renewalRefused':
+            renewwalRefused();
+            break;
         case 'vm':
             displayVM();
             break;
