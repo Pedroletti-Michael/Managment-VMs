@@ -114,8 +114,11 @@ function displayRenewalVM()
         switch ($_SESSION['userType'])
         {
             case 0:
-                require_once 'controler/user.php';
-                displayHome();
+                require_once 'model/vmManager.php';
+                $userId = $_SESSION['userId'];
+                getRenewFromAUser($userId);
+                getDeletedOrUnrenewalVM();
+                require 'view/renewalVM.php';
                 break;
             case 1:
                 require_once 'model/vmManager.php';
