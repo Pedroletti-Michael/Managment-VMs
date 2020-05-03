@@ -121,7 +121,7 @@ ob_start();
                         </select>
                     </div>
                     <div class="pl-2">
-                        <select class="form-control w-50 float-right" id="windows" required>
+                        <select class="form-control w-50 float-right" id="windows" name="osFormNameControlSelectWin" required>
                             <?php
 
                             foreach ($osNames as $value) {
@@ -131,7 +131,7 @@ ob_start();
                             }
                             ?>
                         </select>
-                        <select class="form-control w-50 float-right" style="display: none;" id="linux" required>
+                        <select class="form-control w-50 float-right" style="display: none;" id="linux" name="osFormNameControlSelectLin" required>
                             <?php
 
                             foreach ($osNames as $value) {

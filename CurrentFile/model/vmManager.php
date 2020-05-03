@@ -22,7 +22,7 @@ function addVMToDB($formVMRequest)
         $dateAnniversary = $dateStart + 183;
     }
     else{
-        $dateAnniversary = 'null';
+        $dateAnniversary = null;
     }
     $description = $formVMRequest['objective'];
     $ip = 'null';
@@ -41,14 +41,51 @@ function addVMToDB($formVMRequest)
     $tmName = getUserId($formVMRequest['inputTMName']);
     $raName = getUserId($formVMRequest['inputRAName']);
     $entity_id = getEntityId($formVMRequest['disFormControlSelect']);
-    $os_id = getOsId($formVMRequest['osFormNameControlSelect'], $formVMRequest['osTypeFormControlSelect']);
+    if($formVMRequest['osTypeFormControlSelect'] == "Windows"){
+        $os_id = getOsId($formVMRequest['osFormNameControlSelectWin'], $formVMRequest['osTypeFormControlSelect']);
+    }
+    else{
+        $os_id = getOsId($formVMRequest['osFormNameControlSelectLin'], $formVMRequest['osTypeFormControlSelect']);
+    }
+
     $snapshot_id = getSnapshotId($formVMRequest['snapshotsFormControlSelect']);
     $backup_id = getBackupId($formVMRequest['backupFormControlSelect']);
     $cost_id = 1;
 
     $strSep = '\'';
 
-    $query = "INSERT INTO vm (name, cluster, dateStart, dateAnniversary, dateEnd, description, ip, dnsName, redundance, usageType, cpu, ram, disk, descriptionDisk, network, domain, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
+    if($dateAnniversary == null){
+        $query = "INSERT INTO vm (name, cluster, dateStart, dateEnd, description, ip, dnsName, redundance, usageType, cpu, ram, disk, descriptionDisk, network, domain, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
+  
+              VALUES(
+              ".$strSep.$vmName.$strSep.",
+              ".$strSep.$cluster.$strSep.",
+              ".$strSep.$dateStart.$strSep.",
+              ".$strSep.$dateEnd.$strSep.",
+              ".$strSep.$description.$strSep.",
+              ".$strSep.$ip.$strSep.",
+              ".$strSep.$dnsName.$strSep.",
+              ".$strSep.$redundance.$strSep.",
+              ".$strSep.$usageType.$strSep.",
+              ".$strSep.$cpu.$strSep.",
+              ".$strSep.$ram.$strSep.",
+              ".$strSep.$disk.$strSep.",
+              ".$strSep.$descDisk.$strSep.",
+              ".$strSep.$network.$strSep.",
+              ".$strSep.$domain.$strSep.",
+              ".$strSep.$comment.$strSep.",
+              ".$strSep.$datacenter.$strSep.",
+              ".$strSep.$requestName.$strSep.",
+              ".$strSep.$raName.$strSep.",
+              ".$strSep.$tmName.$strSep.",
+              ".$strSep.$entity_id.$strSep.",
+              ".$strSep.$os_id.$strSep.",
+              ".$strSep.$snapshot_id.$strSep.",
+              ".$strSep.$backup_id.$strSep.",
+              ".$strSep.$cost_id.$strSep.")";
+    }
+    else{
+        $query = "INSERT INTO vm (name, cluster, dateStart, dateAnniversary, dateEnd, description, ip, dnsName, redundance, usageType, cpu, ram, disk, descriptionDisk, network, domain, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
   
               VALUES(
               ".$strSep.$vmName.$strSep.",
@@ -64,7 +101,7 @@ function addVMToDB($formVMRequest)
               ".$strSep.$cpu.$strSep.",
               ".$strSep.$ram.$strSep.",
               ".$strSep.$disk.$strSep.",
-              ".$strSep.$descDisk.$strSep."
+              ".$strSep.$descDisk.$strSep.",
               ".$strSep.$network.$strSep.",
               ".$strSep.$domain.$strSep.",
               ".$strSep.$comment.$strSep.",
@@ -77,6 +114,8 @@ function addVMToDB($formVMRequest)
               ".$strSep.$snapshot_id.$strSep.",
               ".$strSep.$backup_id.$strSep.",
               ".$strSep.$cost_id.$strSep.")";
+    }
+
 
     executeQueryInsert($query);
     return true;
@@ -148,7 +187,9 @@ function getAllVM()
     $resultSelect = executeQuerySelect($querySelect);
     $i = 0;
 
+    echo('<script>alert("'.date("DD.MM.YYYY", strtotime($resultSelect[$i]['dateStart'])).'")</script>');
     foreach ($resultSelect as $vm){
+        $resultSelect[$i]['dateStart'] = date("d.m.Y", strtotime($resultSelect[$i]['dateStart']));
         $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
         $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
         $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);

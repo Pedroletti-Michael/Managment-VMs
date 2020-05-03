@@ -124,32 +124,29 @@ ob_start();
                     </div>
                     <div class="pl-2">
                         <?php
-                            if($dataVM[0]['os_id'][1] == "Windows"){
-                                echo '<select class="form-control w-50 float-right" id="windows" name="osFormNameControlSelect" required>';
-                                foreach ($osNames as $value) {
-                                    if($value['osType']=="Windows"){
-                                        if($dataVM[0]['os_id'][0] == $value['osName']){
-                                            echo "<option class='windows' selected>".$value['osName']."</option>";
-                                        }else{
-                                            echo "<option class='windows'>".$value['osName']."</option>";
-                                        }
+                            echo '<select class="form-control w-50 float-right" id="windows" name="osFormNameControlSelectWin" required>';
+                            foreach ($osNames as $value) {
+                                if($value['osType']=="Windows"){
+                                    if($dataVM[0]['os_id'][0] == $value['osName']){
+                                        echo "<option class='windows' selected>".$value['osName']."</option>";
+                                    }else{
+                                        echo "<option class='windows'>".$value['osName']."</option>";
                                     }
                                 }
-                                echo "</select>";
                             }
-                            else{
-                                echo '<select class="form-control w-50 float-right" id="linux" name="osFormNameControlSelect" required>';
-                                foreach ($osNames as $value) {
-                                    if($value['osType']=="Linux"){
-                                        if($dataVM[0]['os_id'][0] == $value['osName']){
-                                            echo "<option class='linux' selected>".$value['osName']."</option>";
-                                        }else{
-                                            echo "<option class='linux'>".$value['osName']."</option>";
-                                        }
+                            echo "</select>";
+
+                            echo '<select class="form-control w-50 float-right" id="linux" name="osFormNameControlSelectLin" required>';
+                            foreach ($osNames as $value) {
+                                if($value['osType']=="Linux"){
+                                    if($dataVM[0]['os_id'][0] == $value['osName']){
+                                        echo "<option class='linux' selected>".$value['osName']."</option>";
+                                    }else{
+                                        echo "<option class='linux'>".$value['osName']."</option>";
                                     }
                                 }
-                                echo '</select>';
                             }
+                            echo '</select>';
                         ?>
                     </div>
                 </div>
