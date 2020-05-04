@@ -23,35 +23,20 @@ ob_start();
         Gestion du formulaire
     </h3>
     <!--Buttons-->
-    <div class="d-inline-block w-100">
-        <div class="w-50 float-left p-3" style="height: 200px">
-            <!--Department / Institution / Service-->
-            <button type="button" class="btn btn-primary w-100 h-100" data-toggle="modal" data-target="#modalEntity">
-                <h5>Entity</h5>
-            </button>
-        </div>
-        <div class="w-50 float-right p-3" style="height: 200px">
-            <!--OS-->
-            <button type="button" class="btn btn-primary w-100 h-100" data-toggle="modal" data-target="#modalOS">
-                <h5>OS</h5>
-            </button>
-        </div>
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-secondary" data-toggle="modal" data-target="#modalEntity">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked> Entity
+        </label>
+        <label class="btn btn-secondary" data-toggle="modal" data-target="#modalOS">
+            <input type="radio" name="options" id="option2" autocomplete="off"> OS
+        </label>
+        <label class="btn btn-secondary" data-toggle="modal" data-target="#modalSnapshots">
+            <input type="radio" name="options" id="option3" autocomplete="off"> Snapshots
+        </label>
+        <label class="btn btn-secondary" data-toggle="modal" data-target="#modalBackup">
+            <input type="radio" name="options" id="option4" autocomplete="off"> Backup
+        </label>
     </div>
-    <div class="d-inline-block  w-100">
-        <div class="w-50 float-left p-3" style="height: 200px">
-            <!--Snapshots-->
-            <button type="button" class="btn btn-primary w-100 h-100" data-toggle="modal" data-target="#modalSnapshots">
-                <h5>Snapshots</h5>
-            </button>
-        </div>
-        <div class="w-50 float-right p-3" style="height: 200px">
-            <!--Backup-->
-            <button type="button" class="btn btn-primary w-100 h-100" data-toggle="modal" data-target="#modalBackup">
-                <h5>Backup</h5>
-            </button>
-        </div>
-    </div>
-
     <!--Department / Institution / Service-->
     <div class="modal fade" id="modalEntity" tabindex="-1" role="dialog" aria-labelledby="modalEntity" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
