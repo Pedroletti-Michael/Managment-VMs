@@ -32,7 +32,7 @@ ob_start();
                 <div class="w-20 float-left p-1" style="height: 50px">
                     <!--Backup-->
                     <a href="index.php?action=allVM&vmFilter=confirmed">
-                        <button type="button" class="btn btn-primary w-100 responsiveButton">
+                        <button type="button" class="btn btn-primary w-100 responsiveButton" style="background-color: rgba(40,167,69,0.7); border-color: rgba(40,167,69,0.7);">
                             <h6>VM confirmées</h6>
                         </button>
                     </a>
@@ -40,7 +40,7 @@ ob_start();
                 <div class="w-20 float-left p-1" style="height: 50px">
                     <!--Snapshot-->
                     <a href="index.php?action=allVM&vmFilter=confirmation">
-                        <button type="button" class="btn btn-primary w-100 responsiveButton">
+                        <button type="button" class="btn btn-primary w-100 responsiveButton" style="background-color: rgba(255,165,69,0.7); border-color: rgba(255,165,69,0.7);">
                             <h6>VM à confirmer</h6>
                         </button>
                     </a>
@@ -48,7 +48,7 @@ ob_start();
                 <div class="w-20 float-left p-1" style="height: 50px">
                     <!--Backup-->
                     <a href="index.php?action=allVM&vmFilter=renewal">
-                        <button type="button" class="btn btn-primary w-100 responsiveButton">
+                        <button type="button" class="btn btn-primary w-100 responsiveButton" style="background-color: rgba(233,48,48,0.7); border-color: rgba(233,48,48,0.7);">
                             <h6>VM à renouveler</h6>
                         </button>
                     </a>
@@ -56,7 +56,7 @@ ob_start();
                 <div class="w-20 float-left p-1" style="height: 50px">
                     <!--Backup-->
                     <a href="index.php?action=allVM&vmFilter=deleted">
-                        <button type="button" class="btn btn-primary w-100 responsiveButton">
+                        <button type="button" class="btn btn-primary w-100 responsiveButton" style="background-color: rgba(90,90,90,0.7); border-color: rgba(90,90,90,0.7);">
                             <h6>VM supprimées</h6>
                         </button>
                     </a>
@@ -159,10 +159,10 @@ ob_start();
             </thead>
             <tbody>
                 <?php foreach ($allVM as $value): ?>
-                    <tr style="background-color: rgba(<?php if($value['vmStatus']==2){echo '0,255,0,0.2';}elseif ($value['vmStatus']==0){echo '255,127,0,0.2';}elseif ($value['vmStatus']==3){echo '255,0,0,0.2';}else{echo '90,90,90,0.2';}?>);">
+                    <tr>
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-primary"><strong>+</strong></button></a>
+                                <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-primary" style="background-color: rgba(<?php if($value['vmStatus']==2){echo '40,167,69,0.7';}elseif ($value['vmStatus']==0){echo '255,165,69,0.7';}elseif ($value['vmStatus']==3){echo '233,48,48,0.7';}else{echo '90,90,90,0.7';}?>); border-color: rgba(<?php if($value['vmStatus']==2){echo '40,167,69,0.7';}elseif ($value['vmStatus']==0){echo '255,165,69,0.7';}elseif ($value['vmStatus']==3){echo '233,48,48,0.7';}else{echo '90,90,90,0.7';}?>);"><strong>+</strong></button></a>
                             </div>
                         </td>
                         <td><?php echo $value['name']?></td>
