@@ -124,7 +124,13 @@ ob_start();
                     </div>
                     <div class="pl-2">
                         <?php
-                            echo '<select class="form-control w-50 float-right" id="windows" name="osFormNameControlSelectWin" required>';
+                            if($dataVM[0]['os_id'][1] == "Windows"){
+                                echo '<select class="form-control w-50 float-right" id="windows" name="osFormNameControlSelectWin" required>';
+                            }
+                            else{
+                                echo '<select class="form-control w-50 float-right" style="display: none;" id="windows" name="osFormNameControlSelectWin" required>';
+                            }
+
                             foreach ($osNames as $value) {
                                 if($value['osType']=="Windows"){
                                     if($dataVM[0]['os_id'][0] == $value['osName']){
@@ -136,7 +142,13 @@ ob_start();
                             }
                             echo "</select>";
 
-                            echo '<select class="form-control w-50 float-right" id="linux" name="osFormNameControlSelectLin" required>';
+                            if($dataVM[0]['os_id'][1] == "Linux"){
+                                echo '<select class="form-control w-50 float-right" id="linux" name="osFormNameControlSelectLin" required>';
+                            }
+                            else{
+                                echo '<select class="form-control w-50 float-right" style="display: none;" id="linux" name="osFormNameControlSelectLin" required>';
+                            }
+
                             foreach ($osNames as $value) {
                                 if($value['osType']=="Linux"){
                                     if($dataVM[0]['os_id'][0] == $value['osName']){

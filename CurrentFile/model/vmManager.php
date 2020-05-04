@@ -187,7 +187,6 @@ function getAllVM()
     $resultSelect = executeQuerySelect($querySelect);
     $i = 0;
 
-    echo('<script>alert("'.date("DD.MM.YYYY", strtotime($resultSelect[$i]['dateStart'])).'")</script>');
     foreach ($resultSelect as $vm){
         $resultSelect[$i]['dateStart'] = date("d.m.Y", strtotime($resultSelect[$i]['dateStart']));
         $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);

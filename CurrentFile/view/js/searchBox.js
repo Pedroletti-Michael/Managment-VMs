@@ -109,5 +109,4 @@ function getValue() {
     }
     input = document.getElementById("editRedundance");
     input.value = txtValue;
-    alert(txtValue);
 }
