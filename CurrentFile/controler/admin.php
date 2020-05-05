@@ -406,6 +406,7 @@ function renewwalRefused()
 function displayFormManagement($arrayToDisplay)
 {
     require_once 'model/displayManager.php';
+    $_SESSION['gestionFormArray'] = $arrayToDisplay;
     $entityNames = displayBDD_Entity();
     $osNames = displayBDD_OS();
     $snapshotPolicy = displayBSS_Snapshots();
@@ -437,7 +438,9 @@ function displayFormManagement($arrayToDisplay)
 }
 
 function editEntity($entityName){
+    $arrayToDisplay = $_SESSION['gestionFormArray'];
     require_once 'model/displayManager.php';
+
     if(isset($entityName['add'])){
         if(isset($entityName['txtEntityAdd']) && $entityName['txtEntityAdd'] != null)
         {
@@ -460,11 +463,13 @@ function editEntity($entityName){
             modifyEntity($nameEntity,$newName);
         }
     }
-    displayFormManagement();
+    displayFormManagement($arrayToDisplay);
 }
 
 function editOS($osName){
+    $arrayToDisplay = $_SESSION['gestionFormArray'];
     require_once 'model/displayManager.php';
+
     if(isset($osName['add'])){
         if(isset($osName['txtOSAdd']) && $osName['txtOSAdd'] != null && isset($osName['typeOSAdd']) && $osName['typeOSAdd'] != null)
         {
@@ -523,11 +528,13 @@ function editOS($osName){
             modifyOS($textOs,$newName,$newType);
         }
     }
-    displayFormManagement();
+    displayFormManagement($arrayToDisplay);
 }
 
 function editSnapshots($snapshotsName){
+    $arrayToDisplay = $_SESSION['gestionFormArray'];
     require_once 'model/displayManager.php';
+
     if(isset($snapshotsName['add'])){
         if(isset($snapshotsName['typeSnapAdd']) && $snapshotsName['typeSnapAdd'] != null && isset($snapshotsName['txtSnapAdd']) && $snapshotsName['txtSnapAdd'] != null)
         {
@@ -580,11 +587,13 @@ function editSnapshots($snapshotsName){
             modifySnapshots($typeSnapshots,$newPolicy,$newType);
         }
     }
-    displayFormManagement();
+    displayFormManagement($arrayToDisplay);
 }
 
 function editBackup($backupName){
+    $arrayToDisplay = $_SESSION['gestionFormArray'];
     require_once 'model/displayManager.php';
+
     if(isset($backupName['add'])){
         if(isset($backupName['typeBackupAdd']) && $backupName['typeBackupAdd'] != null && isset($backupName['txtBackupAdd']) && $backupName['txtBackupAdd'] != null)
         {
@@ -637,7 +646,7 @@ function editBackup($backupName){
             modifyBackup($typeBackup,$newPolicy,$newType);
         }
     }
-    displayFormManagement();
+    displayFormManagement($arrayToDisplay);
 }
 
 function displayResearch($inputResearch){

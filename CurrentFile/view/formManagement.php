@@ -46,7 +46,7 @@ ob_start();
     <form method="post" action="../index.php?action=editEntity">
         <div class="form-group" name="formulaire" id="form_Entity">
             <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service</label>
-            <select multiple class="form-control h-400" id="valueEntityDel" name="valueEntityDel" onchange="getSelectedEntityToDelete()">
+            <select multiple class="form-control h-350" id="valueEntityDel" name="valueEntityDel" onchange="getSelectedEntityToDelete()">
                 <?php
                 foreach ($entityNames as $value) {
                     echo "<option>".$value['entityName']."</option>";
@@ -170,7 +170,7 @@ ob_start();
                         <div class="form-group" name="formulaire" id="form_OS">
 
                             <label for="disFormControlSelect" class="font-weight-bold">OS</label>
-                            <select multiple class="form-control mb-3" id="valueOSDel" name='valueOSDel' onchange="getSelectedOSToDelete()">
+                            <select multiple class="form-control h-350" id="valueOSDel" name='valueOSDel' onchange="getSelectedOSToDelete()">
                                 <?php
                                 foreach ($osNames as $value) {
                                     echo "<option value='".$value['osType']." ".$value['osName']."'>".$value['osType']." ".$value['osName']."</option>";
@@ -330,7 +330,7 @@ ob_start();
 
                         <div class="form-group" name="formulaire" id="form_Snapshots">
                             <label for="disFormControlSelect" class="font-weight-bold">Snapshots</label>
-                            <select multiple class="form-control mb-3" id="valueSnapDel" name='valueSnapDel' onchange="getSelectedSnapshotsToDelete()">
+                            <select multiple class="form-control h-350" id="valueSnapDel" name='valueSnapDel' onchange="getSelectedSnapshotsToDelete()">
                                 <?php
                                 foreach ($snapshotPolicy as $value) {
                                     echo "<option value='".$value['name']." : ".$value['policy']."'>".$value['name']." : ".$value['policy']."</option>";
@@ -485,7 +485,7 @@ ob_start();
                         <div class="form-group" name="formulaire" id="form_Backup">
 
                             <label for="disFormControlSelect" class="font-weight-bold">Backup</label>
-                            <select multiple class="form-control mb-3" id="valueBackupDel" name='valueBackupDel' onchange="getSelectedBackupToDelete()">
+                            <select multiple class="form-control h-350" id="valueBackupDel" name='valueBackupDel' onchange="getSelectedBackupToDelete()">
                                 <?php
                                 foreach ($backupPolicy as $value) {
                                     echo "<option value='".$value['name']." : ".$value['policy']."'>".$value['name']." : ".$value['policy']."</option>";
