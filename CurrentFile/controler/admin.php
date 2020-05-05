@@ -403,7 +403,7 @@ function renewwalRefused()
     }
 }
 
-function displayFormManagement()
+function displayFormManagement($arrayToDisplay)
 {
     require_once 'model/displayManager.php';
     $entityNames = displayBDD_Entity();
