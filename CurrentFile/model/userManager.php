@@ -198,3 +198,23 @@ function verificationUserFromDb(){
 
     return true;
 }
+
+function exportDataToExcel($userVM){
+    CSV::export($userVM,'Mes VM');
+}
+class CSV{
+    static function export($userVM,$filename){
+        header('Content-Type: text/csv;');
+        header('Content-Disposition: attachment; filename="'.$filename.'.csv"');
+
+        $i = 0;
+        foreach ($userVM as $data){
+            if($i==0){
+                echo '"'.implode('";"',array_keys($data)).'"'."\n";
+                echo '"'.implode('";"',$data).'"'."\n";
+                $i++;
+            }
+
+        }
+    }
+}
