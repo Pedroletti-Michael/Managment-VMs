@@ -54,13 +54,22 @@ function addVMToDB($formVMRequest)
 
     $strSep = '\'';
 
-    if($dateAnniversary == null){
-        $query = "INSERT INTO vm (name, cluster, dateStart, dateEnd, description, ip, dnsName, redundance, usageType, cpu, ram, disk, descriptionDisk, network, domain, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
+    $query = "INSERT INTO vm (name, cluster, dateStart, dateAnniversary, dateEnd, description, ip, dnsName, redundance, usageType, cpu, ram, disk, descriptionDisk, network, domain, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
   
               VALUES(
-              ".$strSep.$vmName.$strSep.",
-              ".$strSep.$cluster.$strSep.",
-              ".$strSep.$dateStart.$strSep.",
+              ".$strSep.$vmName.$strSep.",";
+    if($cluster == 'null' || $cluster == null){
+        $query = $query.$cluster.",
+        ".$strSep.$dateStart.$strSep.",";
+    }
+    else{
+        $query = $query.$strSep.$cluster.$strSep.",
+        ".$strSep.$dateStart.$strSep.",";
+    }
+
+    if($dateAnniversary == null){
+        $dateAnniversary = 'null';
+        $query = $query.$dateAnniversary.",
               ".$strSep.$dateEnd.$strSep.",
               ".$strSep.$description.$strSep.",
               ".$strSep.$ip.$strSep.",
@@ -85,13 +94,7 @@ function addVMToDB($formVMRequest)
               ".$strSep.$cost_id.$strSep.")";
     }
     else{
-        $query = "INSERT INTO vm (name, cluster, dateStart, dateAnniversary, dateEnd, description, ip, dnsName, redundance, usageType, cpu, ram, disk, descriptionDisk, network, domain, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
-  
-              VALUES(
-              ".$strSep.$vmName.$strSep.",
-              ".$strSep.$cluster.$strSep.",
-              ".$strSep.$dateStart.$strSep.",
-              ".$strSep.$dateAnniversary.$strSep.",
+        $query = $query.$strSep.$dateAnniversary.$strSep.",
               ".$strSep.$dateEnd.$strSep.",
               ".$strSep.$description.$strSep.",
               ".$strSep.$ip.$strSep.",
@@ -592,5 +595,14 @@ function researchVm($inputResearch){
         $resultSelect[$i]['os_id'] = getInfoOs($vm['os_id']);
         $i++;
     }
+    return $resultSelect;
+}
+
+function getVmName(){
+    require_once 'model/dbConnector.php';
+    $query = "SELECT `name` FROM `vm`";
+
+    $resultSelect = executeQuerySelect($query);
+
     return $resultSelect;
 }

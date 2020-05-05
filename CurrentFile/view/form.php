@@ -11,6 +11,36 @@ ob_start();
 <head>
     <meta charset="UTF-8">
     <title>Demande VM - HEIG-VD</title>
+    <script>
+        function checkName(){
+            var i = 0;
+            var vmNames = <?= json_encode($allVmName); ?>;
+            var result = false;
+            var name = document.getElementById("inputVMName").value;
+
+            for (i = 0; i < vmNames.length; i++){
+                if(vmNames[i] == name){
+                    result = true;
+                }
+            }
+
+            var txtHelp = document.getElementById("vmNameHelp");
+            var inpt = document.getElementById("inputVMName");
+            var subBtn = document.getElementById("submitButton");
+            if(result){
+                txtHelp.color = "#dc3545";
+                txtHelp.textContent = "Nom déjà utilisé ! Veuillez en utiliser un autre !";
+                inpt.style.borderColor = "#dc3545";
+                subBtn.disabled= true;
+            }
+            else{
+                inpt.style.borderColor = "#ced4da";
+                txtHelp.color = "#495057";
+                txtHelp.textContent = "15 caractères maximum. Lettres, chiffres et trait d'union uniquement (Ex: VM-01)";
+                subBtn.disabled= false;
+            }
+        }
+    </script>
 </head>
 <body>
 <div class="container-fluid pt-3">
@@ -20,7 +50,7 @@ ob_start();
             <!--Name of the VM-->
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="inputVMName" class="font-weight-bold">Nom de la VM<a style="color: red"> *</a></label>
-                <input type="vmName" class="form-control form form" id="inputVMName" name="inputVMName" aria-describedby="vmNameHelp" maxlength="15" required>
+                <input type="vmName" class="form-control form form" id="inputVMName" name="inputVMName" aria-describedby="vmNameHelp" maxlength="15" required onkeyup="checkName()">
                 <small id="vmNameHelp" class="form-text text-muted">15 caractères maximum. Lettres, chiffres et trait d'union uniquement (Ex: VM-01)</small>
             </div>
             <!--Name of the requester-->
@@ -262,7 +292,7 @@ ob_start();
             <small id="tiHelp" class="form-text text-muted">Règles firewall, type de compte, justification DMZ ou configuration personnalisée, etc...</small>
         </div>
         <!--Submit-->
-        <button type="submit" class="btn btn-primary">Envoyer</button>
+        <button type="submit" id="submitButton" class="btn btn-primary">Envoyer</button>
         <!--Cancel-->
         <button type="reset" class="btn btn-danger float-right">Annuler</button>
     </form>
