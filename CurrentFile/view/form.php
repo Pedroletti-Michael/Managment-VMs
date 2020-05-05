@@ -62,14 +62,14 @@ ob_start();
         <div class="d-inline-block w-100">
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <div class="form-group w-50 float-left pr-1">
-                    <!--RAM-->
-                    <label for="RAM" class="font-weight-bold">RAM (GB)<a style="color: red"> *</a></label>
-                    <input type="number" class="form-control form form" id="inputRAM" name="inputRAM" aria-describedby="ramHelp" min="1" max="256" required>
-                </div>
-                <div class="form-group w-50 float-right pl-1">
                     <!--CPU-->
                     <label for="cpu" class="font-weight-bold">CPU<a style="color: red"> *</a></label>
                     <input type="number" class="form-control form form" id="inputCPU" name="inputCPU" aria-describedby="cpuHelp" min="1" max="99" required>
+                </div>
+                <div class="form-group w-50 float-right pl-1">
+                    <!--RAM-->
+                    <label for="RAM" class="font-weight-bold">RAM (GB)<a style="color: red"> *</a></label>
+                    <input type="number" class="form-control form form" id="inputRAM" name="inputRAM" aria-describedby="ramHelp" min="1" max="256" required>
                 </div>
                 <br>
                 <div class="form-group w-100 float-left mt-3">
@@ -80,7 +80,7 @@ ob_start();
                             <input type="number" class="form-control form form w-25 float-left" id="inputSSD" name="inputSSD" aria-describedby="ssdHelp" min="20" max="1000" required>
                         </div>
                         <div class="pl-2">
-                            <input type="text" class="form-control form form w-75 float-right" id="infoSSD" name="infoSSD" aria-describedby="ssdHelp" placeholder="Exemple : disque 1 : 200, disque 2 : 50" required>
+                            <input type="text" class="form-control form form w-75 float-right" id="infoSSD" name="infoSSD" aria-describedby="ssdHelp" placeholder="Exemple : disque 1 : 200, disque 2 : 50">
                         </div>
                     </div>
                 </div>
@@ -90,6 +90,7 @@ ob_start();
                 <div class="form-group w-50 float-left pr-1">
                     <label for="inputTMNam" class="font-weight-bold">Responsable technique<a style="color: red"> *</a></label>
                     <input type="text" class="form-control form form" id="inputTMNam" name="inputTMNam" aria-describedby="tmNameHelp" placeholder="Sélectionner une personne" required onkeyup="searchFunctionTm()">
+                    <small id="inputTMNameHelp" class="form-text text-muted">Personne qui va gérer la VM</small>
                     <ul id="tmNameUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
                         <?php
                         $id = 'liTm';
@@ -275,6 +276,7 @@ ob_start();
         <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="domainEINET" name="domainEINET">
             <label class="form-check-label font-weight-bold" for="domainEINET">Domaine EINET</label>
+            <small id="domainEINETHelp" class="form-text text-muted">Pour serveur Windows uniquement</small>
         </div>
         <!--Security-->
         <div class="form-group">

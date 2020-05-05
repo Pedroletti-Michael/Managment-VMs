@@ -13,7 +13,7 @@ ob_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mes VM's - HEIG-VD</title>
+    <title>Mes VM - HEIG-VD</title>
 </head>
 <body>
 <div class="table-responsive-xl">
