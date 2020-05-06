@@ -199,7 +199,10 @@ function verificationUserFromDb(){
     return true;
 }
 
-function exportDataToExcel($userVM){
+function exportVMToExcel($userVM){
+    foreach ($userVM as $value){
+
+    }
     CSV::export($userVM,'Mes VM');
 }
 class CSV{
@@ -211,10 +214,9 @@ class CSV{
         foreach ($userVM as $data){
             if($i==0){
                 echo '"'.implode('";"',array_keys($data)).'"'."\n";
-                echo '"'.implode('";"',$data).'"'."\n";
                 $i++;
             }
-
+            echo '"'.implode('";"',$data).'"'."\n";
         }
     }
 }
