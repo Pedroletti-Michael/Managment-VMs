@@ -17,6 +17,13 @@ function displayForm()
         $snapshotPolicy = displayBSS_Snapshots();
         $backupPolicy = displayBSS_Backup();
 
+        require_once 'model/vmManager.php';
+        $namesValue = getVmName();
+        $allVmName = array();
+        foreach ($namesValue as $value){
+            array_push($allVmName, $value[0]);
+        }
+
         require_once 'model/userManager.php';
         $users = getAllUsers();
 
@@ -32,6 +39,19 @@ function displayForm()
 
 function formVM($formVMRequest)
 {
+    require_once 'model/vmManager.php';
+    $allVmName = getVmName();
+    $nameResult = false;
+    foreach ($allVmName as $name){
+        if($formVMRequest['inputVMName'] == $name){
+            $name = true;
+        }
+    }
+
+    if($nameResult){
+        displayForm();
+    }
+
     if (strtotime($formVMRequest['inputComissioningDate']) > strtotime($formVMRequest['inputEndDate']))
     {
         displayForm();
@@ -88,8 +108,6 @@ function formVM($formVMRequest)
     {
         $formVMRequest['domainEINET'] = 0;
     }
-
-    require_once 'model/vmManager.php';
 
     if(addVMToDB($formVMRequest))
     {

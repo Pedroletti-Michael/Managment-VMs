@@ -35,7 +35,13 @@ function addVMToDB($formVMRequest)
     $descDisk = $formVMRequest['infoSSD'];
     $network = $formVMRequest['networkFormControlSelect'];
     $domain = $formVMRequest['domainEINET'];
-    $comment = $formVMRequest['ti'];
+    if($formVMRequest['ti'] == null || $formVMRequest['ti'] == ''){
+        $comment = 'null';
+    }
+    else{
+        $comment = $formVMRequest['ti'];
+    }
+
     $datacenter = 'null';
     $requestName = getUserId($_SESSION['userEmail']);
     $tmName = getUserId($formVMRequest['inputTMName']);
@@ -54,18 +60,40 @@ function addVMToDB($formVMRequest)
 
     $strSep = '\'';
 
-    if($dateAnniversary == null){
-        $query = "INSERT INTO vm (name, cluster, dateStart, dateEnd, description, ip, dnsName, redundance, usageType, cpu, ram, disk, descriptionDisk, network, domain, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
+    $query = "INSERT INTO vm (name, cluster, dateStart, dateAnniversary, dateEnd, description, ip, dnsName, redundance, usageType, cpu, ram, disk, descriptionDisk, network, domain, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
   
               VALUES(
-              ".$strSep.$vmName.$strSep.",
-              ".$strSep.$cluster.$strSep.",
-              ".$strSep.$dateStart.$strSep.",
+              ".$strSep.$vmName.$strSep.",";
+    if($cluster == 'null' || $cluster == null){
+        $query = $query.$cluster.",
+        ".$strSep.$dateStart.$strSep.",";
+    }
+    else{
+        $query = $query.$strSep.$cluster.$strSep.",
+        ".$strSep.$dateStart.$strSep.",";
+    }
+
+    if($dateAnniversary == null){
+        $dateAnniversary = 'null';
+        $query = $query.$dateAnniversary.",
               ".$strSep.$dateEnd.$strSep.",
               ".$strSep.$description.$strSep.",
-              ".$strSep.$ip.$strSep.",
-              ".$strSep.$dnsName.$strSep.",
-              ".$strSep.$redundance.$strSep.",
+              ".$ip.",
+              ".$dnsName.",
+              ".$redundance.",
+              ".$strSep.$usageType.$strSep.",
+              ".$strSep.$cpu.$strSep.",
+              ".$strSep.$ram.$strSep.",
+              ".$strSep.$disk.$strSep.",";
+    }
+    else{
+        $dateEnd = 'null';
+        $query = $query.$strSep.$dateAnniversary.$strSep.",
+              ".$dateEnd.",
+              ".$strSep.$description.$strSep.",
+              ".$ip.",
+              ".$dnsName.",
+              ".$redundance.",
               ".$strSep.$usageType.$strSep.",
               ".$strSep.$cpu.$strSep.",
               ".$strSep.$ram.$strSep.",
@@ -84,28 +112,34 @@ function addVMToDB($formVMRequest)
               ".$strSep.$backup_id.$strSep.",
               ".$strSep.$cost_id.$strSep.")";
     }
-    else{
-        $query = "INSERT INTO vm (name, cluster, dateStart, dateAnniversary, dateEnd, description, ip, dnsName, redundance, usageType, cpu, ram, disk, descriptionDisk, network, domain, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
-  
-              VALUES(
-              ".$strSep.$vmName.$strSep.",
-              ".$strSep.$cluster.$strSep.",
-              ".$strSep.$dateStart.$strSep.",
-              ".$strSep.$dateAnniversary.$strSep.",
-              ".$strSep.$dateEnd.$strSep.",
-              ".$strSep.$description.$strSep.",
-              ".$strSep.$ip.$strSep.",
-              ".$strSep.$dnsName.$strSep.",
-              ".$strSep.$redundance.$strSep.",
-              ".$strSep.$usageType.$strSep.",
-              ".$strSep.$cpu.$strSep.",
-              ".$strSep.$ram.$strSep.",
-              ".$strSep.$disk.$strSep.",
-              ".$strSep.$descDisk.$strSep.",
+
+    if($descDisk == null || $descDisk == ""){
+        $descDisk = 'null';
+        $query = $query.$descDisk.",
               ".$strSep.$network.$strSep.",
-              ".$strSep.$domain.$strSep.",
-              ".$strSep.$comment.$strSep.",
-              ".$strSep.$datacenter.$strSep.",
+              ".$strSep.$domain.$strSep.",";
+    }
+    else{
+        $query = $query.$strSep.$descDisk.$strSep.",
+              ".$strSep.$network.$strSep.",
+              ".$strSep.$domain.$strSep.",";
+    }
+
+    if($comment == 'null'){
+        $query = $query.$comment.",
+              ".$datacenter.",
+              ".$strSep.$requestName.$strSep.",
+              ".$strSep.$raName.$strSep.",
+              ".$strSep.$tmName.$strSep.",
+              ".$strSep.$entity_id.$strSep.",
+              ".$strSep.$os_id.$strSep.",
+              ".$strSep.$snapshot_id.$strSep.",
+              ".$strSep.$backup_id.$strSep.",
+              ".$strSep.$cost_id.$strSep.")";
+    }
+    else{
+        $query = $query.$strSep.$comment.$strSep.",
+              ".$datacenter.",
               ".$strSep.$requestName.$strSep.",
               ".$strSep.$raName.$strSep.",
               ".$strSep.$tmName.$strSep.",
@@ -188,7 +222,7 @@ function getAllVM()
     $i = 0;
 
     foreach ($resultSelect as $vm){
-        $resultSelect[$i]['dateStart'] = date("d.m.Y", strtotime($resultSelect[$i]['dateStart']));
+        //$resultSelect[$i]['dateStart'] = date("d.m.Y", strtotime($resultSelect[$i]['dateStart']));
         $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
         $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
         $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
@@ -592,5 +626,14 @@ function researchVm($inputResearch){
         $resultSelect[$i]['os_id'] = getInfoOs($vm['os_id']);
         $i++;
     }
+    return $resultSelect;
+}
+
+function getVmName(){
+    require_once 'model/dbConnector.php';
+    $query = "SELECT `name` FROM `vm`";
+
+    $resultSelect = executeQuerySelect($query);
+
     return $resultSelect;
 }
