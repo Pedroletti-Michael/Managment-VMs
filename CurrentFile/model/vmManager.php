@@ -332,7 +332,7 @@ function getUserVM($userId)
 function getConfirmationVM(){
     require_once 'model/dbConnector.php';
 
-    $querySelect = "SELECT `id`, `name`, `cluster`, `dateStart`, `dateAnniversary`, `dateEnd`, `description`, `ip`, `dnsName`, `redundance`, `usageType`, `criticity`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus` FROM `vm`";
+    $querySelect = "SELECT `id`, `name`, `cluster`, `dateStart`, `dateAnniversary`, `dateEnd`, `description`, `ip`, `dnsName`, `redundance`, `usageType`, `criticity`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus` FROM `vm` WHERE vmStatus = 0";
 
     $resultSelect = executeQuerySelect($querySelect);
     $i = 0;
@@ -350,11 +350,11 @@ function getConfirmationVM(){
     return $resultSelect;
 }
 
-/**===GET INFO FROM VM WHO NEED TO BE CONFIRMED===**/
+/**===GET INFO FROM VM WHO NEED TO BE RENEWAL===**/
 function getRenewalVM(){
     require_once 'model/dbConnector.php';
 
-    $querySelect = "SELECT `id`, `name`, `cluster`, `dateStart`, `dateAnniversary`, `dateEnd`, `description`, `ip`, `dnsName`, `redundance`, `usageType`, `criticity`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus` FROM `vm`";
+    $querySelect = "SELECT `id`, `name`, `cluster`, `dateStart`, `dateAnniversary`, `dateEnd`, `description`, `ip`, `dnsName`, `redundance`, `usageType`, `criticity`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus` FROM `vm` WHERE vmStatus = 3";
 
     $resultSelect = executeQuerySelect($querySelect);
     $i = 0;
@@ -376,7 +376,7 @@ function getRenewalVM(){
 function getValidatedVM(){
     require_once 'model/dbConnector.php';
 
-    $querySelect = "SELECT `id`, `name`, `cluster`, `dateStart`, `dateAnniversary`, `dateEnd`, `description`, `ip`, `dnsName`, `redundance`, `usageType`, `criticity`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus` FROM `vm`";
+    $querySelect = "SELECT `id`, `name`, `cluster`, `dateStart`, `dateAnniversary`, `dateEnd`, `description`, `ip`, `dnsName`, `redundance`, `usageType`, `criticity`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus` FROM `vm` WHERE vmStatus = 2";
 
     $resultSelect = executeQuerySelect($querySelect);
     $i = 0;
@@ -398,7 +398,7 @@ function getValidatedVM(){
 function getDeletedOrUnrenewalVM(){
     require_once 'model/dbConnector.php';
 
-    $querySelect = "SELECT `id`, `name`, `cluster`, `dateStart`, `dateAnniversary`, `dateEnd`, `description`, `ip`, `dnsName`, `redundance`, `usageType`, `criticity`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus` FROM `vm`";
+    $querySelect = "SELECT `id`, `name`, `cluster`, `dateStart`, `dateAnniversary`, `dateEnd`, `description`, `ip`, `dnsName`, `redundance`, `usageType`, `criticity`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus` FROM `vm` WHERE vmStatus = 5";
 
     $resultSelect = executeQuerySelect($querySelect);
     $i = 0;
