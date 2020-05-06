@@ -85,6 +85,60 @@ function filterForInventoryVm(which, n) {
     }
 }
 
+function filterRow(caseName){
+    var row, i, button, th, td, buttonMore;
+    th = document.getElementsByTagName("th");
+    td = document.getElementsByTagName("td");
+
+    if(caseName == "displayAll"){
+        for(i = 0; i < th.length; i++){
+            th[i].style.display = "";
+        }
+        for(i = 0; i < td.length; i++){
+            td[i].style.display = "";
+        }
+    }
+    else if(caseName == "hideAll"){
+        for(i = 0; i < th.length; i++){
+            if(th[i].name == "goToButton"){
+                th[i].style.display = "";
+            }
+            else{
+                th[i].style.display = "none";
+            }
+        }
+        for(i = 0; i < td.length; i++){
+            if(td[i].name == "goToButton"){
+                td[i].style.display = "";
+            }
+            else{
+                td[i].style.display = "none";
+            }
+        }
+    }
+    else{
+        row = document.getElementsByName(caseName);
+        button = document.getElementById(caseName);
+        buttonMore = document.getElementsByName("goToButton");
+
+        if(row[0].style.display == "none"){
+            for(i = 0; i < buttonMore.length; i++){
+                buttonMore[i].style.display = "";
+            }
+            for(i = 0; i < row.length; i++){
+                row[i].style.display = "";
+            }
+            button.style.backgroundColor = "#007bff";
+        }
+        else{
+            for(i = 0; i < row.length; i++){
+                row[i].style.display = "none";
+            }
+            button.style.backgroundColor = "#dc3545";
+        }
+    }
+}
+
 $(document).ready(function() {
     $('.js-example-basic-multiple').select2();
 });

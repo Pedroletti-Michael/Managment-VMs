@@ -30,11 +30,13 @@ ob_start();
             if(result){
                 txtHelp.color = "#dc3545";
                 txtHelp.textContent = "Nom déjà utilisé ! Veuillez en utiliser un autre !";
+                inpt.style.boxShadow = "0 0 0 0.2rem rgba(223, 1, 7, 0.25)";
                 inpt.style.borderColor = "#dc3545";
                 subBtn.disabled= true;
             }
             else{
                 inpt.style.borderColor = "#ced4da";
+                inpt.style.boxShadow = "0 0 0 0.2rem rgba(0, 123, 255, 0.25)";
                 txtHelp.color = "#495057";
                 txtHelp.textContent = "15 caractères maximum. Lettres, chiffres et trait d'union uniquement (Ex: VM-01)";
                 subBtn.disabled= false;
