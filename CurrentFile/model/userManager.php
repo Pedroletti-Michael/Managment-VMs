@@ -204,11 +204,10 @@ function exportVMToExcel($vm){
     $userVM = array();
     foreach ($vm as $value){
         foreach ($fields as $field){
-            if($value == $field){
-                array_push($userVM, $value);
-            }
+            array_push($userVM, $value[$field]);
         }
     }
+
     CSV::export($userVM,'Mes VM');
 }
 

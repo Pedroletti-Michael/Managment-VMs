@@ -102,5 +102,5 @@ function exportToExcel(){
     require_once "model/vmManager.php";
     $userVM = getUserVM($userId);
 
-    exportDataToExcel($userVM);
+    exportVMToExcel($userVM);
 }

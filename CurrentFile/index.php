@@ -108,7 +108,7 @@ if(isset($_GET['action']))
             refreshUser();
             break;
         case 'exportVMToExcel':
-            exportVMToExcel();
+            exportToExcel();
             break;
         default:
             displayHome();
