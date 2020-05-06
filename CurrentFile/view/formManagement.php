@@ -24,10 +24,9 @@ ob_start();
     </h3>
     <!--Buttons-->
     <form method="post" action="../index.php?action=formManagement">
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-
+        <div class="btn-group btn-group-toggle pb-2" data-toggle="buttons">
             <label class="btn btn-secondary">
-                <a href="../index.php?action=formManagement&array=entity"><input type="radio" name="options" id="option1" autocomplete="off" checked> Entity</a>
+                <a href="../index.php?action=formManagement&array=entity"><input type="radio" name="options" id="option1" autocomplete="off"> Entity</a>
             </label>
             <label class="btn btn-secondary">
                 <a href="../index.php?action=formManagement&array=os"><input type="radio" name="options" id="option2" autocomplete="off"> OS</a>
@@ -45,17 +44,16 @@ ob_start();
     <?php if($arrayToDisplay == "entity") :?>
     <form method="post" action="../index.php?action=editEntity">
         <div class="form-group" name="formulaire" id="form_Entity">
-            <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service</label>
-            <select multiple class="form-control h-350" id="valueEntityDel" name="valueEntityDel" onchange="getSelectedEntityToDelete()">
+            <select multiple class="form-control h-331 mb-2" id="valueEntityDel" name="valueEntityDel" onchange="getSelectedEntityToDelete();getSelectedEntityToDisplayOnModify();">
                 <?php
                 foreach ($entityNames as $value) {
                     echo "<option>".$value['entityName']."</option>";
                 }
                 ?>
             </select>
-            <button type="button" class="btn btn-success float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#addEntity">Ajouter</button>
-            <button type="button" onclick="confirmationDeleteEntity()" class="btn btn-danger float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteEntity">Supprimer</button>
-            <button type="button" class="btn btn-warning float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#modifyEntity">Modifier</button>
+            <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyEntity">Modifier</button>
+            <button type="button" onclick="confirmationDeleteEntity()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteEntity">Supprimer</button>
+            <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addEntity">Ajouter</button>
 
             <!--Array FormManagement (confirmation delete modal)-->
             <div class="modal fade" id="confirmationDeleteEntity" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteEntity" aria-hidden="true">
@@ -78,14 +76,8 @@ ob_start();
             <div class="modal-content p-3">
                 <form method="post" action="../index.php?action=editEntity">
                     <div class="form-group" name="formulaire" id="form_Entity">
-                        <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service</label>
-                        <select multiple class="form-control mb-3" id="valueEntityAdd" name="valueEntityAdd">
-                            <?php
-                            foreach ($entityNames as $value) {
-                                echo "<option>".$value['entityName']."</option>";
-                            }
-                            ?>
-                        </select>
+                        <h6><b>Ajouter dans la table Entity le champ :</b></h6>
+
                         <input type="text" class="form-control float-left w-75-m responsiveDisplay" id="txtEntityAdd" name="txtEntityAdd" placeholder="Nom">
                         <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
                     </div>
@@ -100,14 +92,20 @@ ob_start();
             <div class="modal-content p-3">
                 <form method="post" action="../index.php?action=editEntity">
                     <div class="form-group" name="formulaire" id="form_Entity">
-                        <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service</label>
+
+                        <h6 id="textMod"></h6>
+                        <input type="text" id="valueEntityMod" name="valueEntityMod" hidden>
+                        <!--
                         <select multiple class="form-control mb-3" id="valueEntityMod" name="valueEntityMod" onChange="displaySelectedValueEntity()">
                             <?php
+                            /*
                             foreach ($entityNames as $value) {
                                 echo "<option>".$value['entityName']."</option>";
                             }
+                            */
                             ?>
                         </select>
+                        -->
                         <input type="text" class="form-control float-left w-75-m responsiveDisplay" id="txtEntityMod" name="txtEntityMod" placeholder="Nouvelle valeur">
 
                         <button type="button" onclick="confirmationModifyEntity()" class="btn btn-success float-left w-25-m responsiveDisplay" data-toggle="modal" data-target="#confirmationModifyEntity">Confirmer</button>
@@ -152,6 +150,14 @@ ob_start();
                                 }
                             }
 
+                            function getSelectedEntityToDisplayOnModify()
+                            {
+                                var selectedValue = document.getElementById("valueEntityDel").value;
+                                document.getElementById("valueEntityMod").value = selectedValue;
+                                document.getElementById("txtEntityMod").value = selectedValue;
+                                $("#textMod").html('<b>Modifier le champ ' + selectedValue + ' en :</b>');
+                            }
+
                             function confirmationModifyEntity()
                             {
                                 var editedElement = document.getElementById("txtEntityMod").value;
@@ -168,9 +174,7 @@ ob_start();
     <?php elseif ($arrayToDisplay == "os") :?>
                     <form method="post" action="../index.php?action=editOS">
                         <div class="form-group" name="formulaire" id="form_OS">
-
-                            <label for="disFormControlSelect" class="font-weight-bold">OS</label>
-                            <select multiple class="form-control h-350" id="valueOSDel" name='valueOSDel' onchange="getSelectedOSToDelete()">
+                            <select multiple class="form-control h-331 mb-2" id="valueOSDel" name='valueOSDel' onchange="getSelectedOSToDelete()">
                                 <?php
                                 foreach ($osNames as $value) {
                                     echo "<option value='".$value['osType']." ".$value['osName']."'>".$value['osType']." ".$value['osName']."</option>";
@@ -178,9 +182,9 @@ ob_start();
                                 ?>
                             </select>
 
-                            <button type="button" class="btn btn-success float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#addOS">Ajouter</button>
-                            <button type="button" onclick="confirmationDeleteOS()" class="btn btn-danger float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteOS">Supprimer</button>
-                            <button type="button" class="btn btn-warning float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#modifyOS">Modifier</button>
+                            <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyOS">Modifier</button>
+                            <button type="button" onclick="confirmationDeleteOS()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteOS">Supprimer</button>
+                            <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addOS">Ajouter</button>
 
                             <!--OS(confirmation delete modal)-->
                             <div class="modal fade" id="confirmationDeleteOS" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteOS" aria-hidden="true">
@@ -329,8 +333,7 @@ ob_start();
                     <form method="post" action="../index.php?action=editSnapshots">
 
                         <div class="form-group" name="formulaire" id="form_Snapshots">
-                            <label for="disFormControlSelect" class="font-weight-bold">Snapshots</label>
-                            <select multiple class="form-control h-350" id="valueSnapDel" name='valueSnapDel' onchange="getSelectedSnapshotsToDelete()">
+                            <select multiple class="form-control h-331 mb-2" id="valueSnapDel" name='valueSnapDel' onchange="getSelectedSnapshotsToDelete()">
                                 <?php
                                 foreach ($snapshotPolicy as $value) {
                                     echo "<option value='".$value['name']." : ".$value['policy']."'>".$value['name']." : ".$value['policy']."</option>";
@@ -338,9 +341,9 @@ ob_start();
                                 ?>
                             </select>
 
-                            <button type="button" class="btn btn-success float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#addSnapshots">Ajouter</button>
-                            <button type="button" onclick="confirmationDeleteSnapshots()" class="btn btn-danger float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteSnapshots">Supprimer</button>
-                            <button type="button" class="btn btn-warning float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#modifySnapshots">Modifier</button>
+                            <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifySnapshots">Modifier</button>
+                            <button type="button" onclick="confirmationDeleteSnapshots()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteSnapshots">Supprimer</button>
+                            <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addSnapshots">Ajouter</button>
 
                             <!--Snapshots(confirmation delete modal)-->
                             <div class="modal fade" id="confirmationDeleteSnapshots" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteSnapshots" aria-hidden="true">
@@ -483,9 +486,7 @@ ob_start();
         <!--Backup-->
                     <form method="post" action="../index.php?action=editBackup">
                         <div class="form-group" name="formulaire" id="form_Backup">
-
-                            <label for="disFormControlSelect" class="font-weight-bold">Backup</label>
-                            <select multiple class="form-control h-350" id="valueBackupDel" name='valueBackupDel' onchange="getSelectedBackupToDelete()">
+                            <select multiple class="form-control h-331 mb-2" id="valueBackupDel" name='valueBackupDel' onchange="getSelectedBackupToDelete()">
                                 <?php
                                 foreach ($backupPolicy as $value) {
                                     echo "<option value='".$value['name']." : ".$value['policy']."'>".$value['name']." : ".$value['policy']."</option>";
@@ -493,9 +494,9 @@ ob_start();
                                 ?>
                             </select>
 
-                            <button type="button" class="btn btn-success float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#addBackup">Ajouter</button>
-                            <button type="button" onclick="confirmationDeleteBackup()" class="btn btn-danger float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteBackup">Supprimer</button>
-                            <button type="button" class="btn btn-warning float-left w-33 responsiveDisplay" data-toggle="modal" data-target="#modifyBackup">Modifier</button>
+                            <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyBackup">Modifier</button>
+                            <button type="button" onclick="confirmationDeleteBackup()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteBackup">Supprimer</button>
+                            <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addBackup">Ajouter</button>
 
                             <!--Backup(confirmation delete modal)-->
                             <div class="modal fade" id="confirmationDeleteBackup" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteBackup" aria-hidden="true">

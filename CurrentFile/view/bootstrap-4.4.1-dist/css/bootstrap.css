@@ -8025,6 +8025,10 @@ button.bg-dark:focus {
   box-shadow: none !important;
 }
 
+.w-10 {
+  width: 10% !important;
+}
+
 .w-25 {
   width: 25% !important;
 }
@@ -8061,8 +8065,8 @@ button.bg-dark:focus {
   height: 100% !important;
 }
 
-.h-350 {
-  height: 350px !important;
+.h-331 {
+  height: 363px !important;
 }
 
 .h-auto {
