@@ -199,12 +199,19 @@ function verificationUserFromDb(){
     return true;
 }
 
-function exportVMToExcel($userVM){
-    foreach ($userVM as $value){
-
+function exportVMToExcel($vm){
+    $fields = array('name', 'dateStart', 'dateEnd', 'description', 'usageType', 'cpu', 'ram', 'disk', 'network', 'domain', 'comment', 'customer', 'userRa', 'userRt', 'entity_id', 'os_id', 'snapshot_id', 'backup_id');
+    $userVM = array();
+    foreach ($vm as $value){
+        foreach ($fields as $field){
+            if($value == $field){
+                array_push($userVM, $value);
+            }
+        }
     }
     CSV::export($userVM,'Mes VM');
 }
+
 class CSV{
     static function export($userVM,$filename){
         header('Content-Type: text/csv;');
