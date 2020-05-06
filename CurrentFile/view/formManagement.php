@@ -40,167 +40,158 @@ ob_start();
         </div>
     </form>
 
-    <!--Array FormManagement-->
+    <!--Entity-->
     <?php if($arrayToDisplay == "entity") :?>
-    <form method="post" action="../index.php?action=editEntity">
-        <div class="form-group" name="formulaire" id="form_Entity">
-            <select multiple class="form-control h-331 mb-2" id="valueEntityDel" name="valueEntityDel" onchange="getSelectedEntityToDelete();getSelectedEntityToDisplayOnModify();">
-                <?php
-                foreach ($entityNames as $value) {
-                    echo "<option>".$value['entityName']."</option>";
-                }
-                ?>
-            </select>
-            <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyEntity">Modifier</button>
-            <button type="button" onclick="confirmationDeleteEntity()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteEntity">Supprimer</button>
-            <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addEntity">Ajouter</button>
+        <form method="post" action="../index.php?action=editEntity">
+            <div class="form-group" name="formulaire" id="form_Entity">
+                <select multiple class="form-control h-331 mb-2" id="valueEntityDel" name="valueEntityDel" onchange="getSelectedEntityToDelete();getSelectedEntityToDisplayOnModify();">
+                    <?php
+                    foreach ($entityNames as $value) {
+                        echo "<option>".$value['entityName']."</option>";
+                    }
+                    ?>
+                </select>
+                <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyEntity">Modifier</button>
+                <button type="button" onclick="confirmationDeleteEntity()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteEntity">Supprimer</button>
+                <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addEntity">Ajouter</button>
 
-            <!--Array FormManagement (confirmation delete modal)-->
-            <div class="modal fade" id="confirmationDeleteEntity" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteEntity" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content p-6">
-                        <div class="modal-body">
-                            <h6 id="confirmationDeleteEntitySelected"></h6>
+                <!--Array FormManagement (confirmation delete modal)-->
+                <div class="modal fade" id="confirmationDeleteEntity" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteEntity" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content p-6">
+                            <div class="modal-body">
+                                <h6 id="confirmationDeleteEntitySelected"></h6>
 
-                            <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="delete" name="delete" id="delete">OUI</button>
+                                <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="delete" name="delete" id="delete">OUI</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
 
-    <!--Array FormManagement (add modal)-->
-    <div class="modal fade" id="addEntity" tabindex="-1" role="dialog" aria-labelledby="addEntity" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content p-3">
-                <form method="post" action="../index.php?action=editEntity">
-                    <div class="form-group" name="formulaire" id="form_Entity">
-                        <h6><b>Ajouter dans la table Entity le champ :</b></h6>
+        <!--Entity (add modal)-->
+        <div class="modal fade" id="addEntity" tabindex="-1" role="dialog" aria-labelledby="addEntity" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content p-3">
+                    <form method="post" action="../index.php?action=editEntity">
+                        <div class="form-group" name="formulaire" id="form_Entity">
+                            <h6>Ajouter dans la table <b>Entity</b> le champ :</h6>
 
-                        <input type="text" class="form-control float-left w-75-m responsiveDisplay" id="txtEntityAdd" name="txtEntityAdd" placeholder="Nom">
-                        <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!--Array FormManagement (modify modal)-->
-    <div class="modal fade" id="modifyEntity" tabindex="-1" role="dialog" aria-labelledby="modifyEntity" aria-hidden="true" >
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content p-3">
-                <form method="post" action="../index.php?action=editEntity">
-                    <div class="form-group" name="formulaire" id="form_Entity">
-
-                        <h6 id="textMod"></h6>
-                        <input type="text" id="valueEntityMod" name="valueEntityMod" hidden>
-                        <!--
-                        <select multiple class="form-control mb-3" id="valueEntityMod" name="valueEntityMod" onChange="displaySelectedValueEntity()">
-                            <?php
-                            /*
-                            foreach ($entityNames as $value) {
-                                echo "<option>".$value['entityName']."</option>";
-                            }
-                            */
-                            ?>
-                        </select>
-                        -->
-                        <input type="text" class="form-control float-left w-75-m responsiveDisplay" id="txtEntityMod" name="txtEntityMod" placeholder="Nouvelle valeur">
-
-                        <button type="button" onclick="confirmationModifyEntity()" class="btn btn-success float-left w-25-m responsiveDisplay" data-toggle="modal" data-target="#confirmationModifyEntity">Confirmer</button>
-
-                        <!--Department / Institution / Service (confirmation modify modal)-->
-                        <div class="modal fade" id="confirmationModifyEntity" tabindex="-1" role="dialog" aria-labelledby="confirmationModifyEntity" aria-hidden="true">
-                            <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content p-6">
-                                    <div class="modal-body">
-                                        <h6 id="confirmationModifyEntitySelected"></h6>
-
-                                        <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="modify" name="modify" id="modify">OUI</button>
-                                    </div>
-                                </div>
-                            </div>
+                            <input type="text" class="form-control float-left w-75-m responsiveDisplay" id="txtEntityAdd" name="txtEntityAdd" placeholder="Nom">
+                            <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
                         </div>
-
-                        <script>
-                            function getSelectedEntityToDelete()
-                            {
-                                var elementToDelete = document.getElementById("valueEntityDel").value;
-                                return elementToDelete;
-                            }
-
-                            function confirmationDeleteEntity()
-                            {
-                                var elementToDelete = getSelectedEntityToDelete();
-
-                                $("#confirmationDeleteEntitySelected").html('Êtes-vous sûr de vouloir supprimer le champ : <b>'+ elementToDelete + '</b> ?');
-                            }
-
-                            function displaySelectedValueEntity(getSelectedValue)
-                            {
-                                if(getSelectedValue !== true)
-                                {
-                                    document.getElementById("txtEntityMod").value = document.getElementById("valueEntityMod").value;
-                                }
-                                else
-                                {
-                                    var basicElement = document.getElementById("valueEntityMod").value;
-                                    return basicElement;
-                                }
-                            }
-
-                            function getSelectedEntityToDisplayOnModify()
-                            {
-                                var selectedValue = document.getElementById("valueEntityDel").value;
-                                document.getElementById("valueEntityMod").value = selectedValue;
-                                document.getElementById("txtEntityMod").value = selectedValue;
-                                $("#textMod").html('<b>Modifier le champ ' + selectedValue + ' en :</b>');
-                            }
-
-                            function confirmationModifyEntity()
-                            {
-                                var editedElement = document.getElementById("txtEntityMod").value;
-                                var basicElement = displaySelectedValueEntity(true);
-
-                                $("#confirmationModifyEntitySelected").html('Êtes-vous sûr de vouloir changer le champ : <b>' + basicElement + '</b> en <b>' + editedElement + '</b> ?');
-                            }
-                        </script>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    <?php elseif ($arrayToDisplay == "os") :?>
-                    <form method="post" action="../index.php?action=editOS">
-                        <div class="form-group" name="formulaire" id="form_OS">
-                            <select multiple class="form-control h-331 mb-2" id="valueOSDel" name='valueOSDel' onchange="getSelectedOSToDelete()">
-                                <?php
-                                foreach ($osNames as $value) {
-                                    echo "<option value='".$value['osType']." ".$value['osName']."'>".$value['osType']." ".$value['osName']."</option>";
-                                }
-                                ?>
-                            </select>
 
-                            <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyOS">Modifier</button>
-                            <button type="button" onclick="confirmationDeleteOS()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteOS">Supprimer</button>
-                            <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addOS">Ajouter</button>
+        <!--Entity(modify modal)-->
+        <div class="modal fade" id="modifyEntity" tabindex="-1" role="dialog" aria-labelledby="modifyEntity" aria-hidden="true" >
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content p-3">
+                    <form method="post" action="../index.php?action=editEntity">
+                        <div class="form-group" name="formulaire" id="form_Entity">
 
-                            <!--OS(confirmation delete modal)-->
-                            <div class="modal fade" id="confirmationDeleteOS" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteOS" aria-hidden="true">
+                            <h6 id="textModEntity">Aucune valeur n'a été sélectionnée</h6>
+                            <input type="text" id="valueEntityMod" name="valueEntityMod" hidden>
+
+                            <input type="text" class="form-control float-left w-75-m responsiveDisplay" id="txtEntityMod" name="txtEntityMod" placeholder="Nouvelle valeur">
+
+                            <button type="button" onclick="confirmationModifyEntity()" class="btn btn-success float-left w-25-m responsiveDisplay" data-toggle="modal" data-target="#confirmationModifyEntity">Confirmer</button>
+
+                            <!--Department / Institution / Service (confirmation modify modal)-->
+                            <div class="modal fade" id="confirmationModifyEntity" tabindex="-1" role="dialog" aria-labelledby="confirmationModifyEntity" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content p-6">
                                         <div class="modal-body">
-                                            <h6 id="confirmationDeleteOSSelected"></h6>
+                                            <h6 id="confirmationModifyEntitySelected"></h6>
 
-                                            <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="delete" name="delete" id="delete">OUI</button>
+                                            <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="modify" name="modify" id="modify">OUI</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
+                            <script>
+                                function getSelectedEntityToDelete()
+                                {
+                                    var elementToDelete = document.getElementById("valueEntityDel").value;
+                                    return elementToDelete;
+                                }
+
+                                function confirmationDeleteEntity()
+                                {
+                                    var elementToDelete = getSelectedEntityToDelete();
+
+                                    $("#confirmationDeleteEntitySelected").html('Êtes-vous sûr de vouloir supprimer le champ : <b>'+ elementToDelete + '</b> ?');
+                                }
+
+                                function displaySelectedValueEntity(getSelectedValue)
+                                {
+                                    if(getSelectedValue !== true)
+                                    {
+                                        document.getElementById("txtEntityMod").value = document.getElementById("valueEntityMod").value;
+                                    }
+                                    else
+                                    {
+                                        var basicElement = document.getElementById("valueEntityMod").value;
+                                        return basicElement;
+                                    }
+                                }
+
+                                function getSelectedEntityToDisplayOnModify()
+                                {
+                                    var selectedValue = document.getElementById("valueEntityDel").value;
+                                    document.getElementById("valueEntityMod").value = selectedValue;
+                                    document.getElementById("txtEntityMod").value = selectedValue;
+                                    $("#textModEntity").html('Modifier le champ <b>' + selectedValue + '</b> en :');
+                                }
+
+                                function confirmationModifyEntity()
+                                {
+                                    var editedElement = document.getElementById("txtEntityMod").value;
+                                    var basicElement = displaySelectedValueEntity(true);
+
+                                    $("#confirmationModifyEntitySelected").html('Êtes-vous sûr de vouloir changer le champ : <b>' + basicElement + '</b> en <b>' + editedElement + '</b> ?');
+                                }
+                            </script>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+
+    <?php elseif ($arrayToDisplay == "os") :?>
+        <form method="post" action="../index.php?action=editOS">
+            <div class="form-group" name="formulaire" id="form_OS">
+                <select multiple class="form-control h-331 mb-2" id="valueOSDel" name='valueOSDel' onchange="getSelectedOSToDelete();getSelectedOSToDisplayOnModify();">
+                    <?php
+                    foreach ($osNames as $value) {
+                        echo "<option value='".$value['osType']." ".$value['osName']."'>".$value['osType']." ".$value['osName']."</option>";
+                    }
+                    ?>
+                </select>
+
+                <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyOS">Modifier</button>
+                <button type="button" onclick="confirmationDeleteOS()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteOS">Supprimer</button>
+                <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addOS">Ajouter</button>
+
+                <!--OS(confirmation delete modal)-->
+                <div class="modal fade" id="confirmationDeleteOS" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteOS" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content p-6">
+                            <div class="modal-body">
+                                <h6 id="confirmationDeleteOSSelected"></h6>
+
+                                <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="delete" name="delete" id="delete">OUI</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
 
         <!--OS (add modal)-->
         <div class="modal fade" id="addOS" tabindex="-1" role="dialog" aria-labelledby="addOS" aria-hidden="true">
@@ -208,14 +199,9 @@ ob_start();
                 <div class="modal-content p-3">
                     <form method="post" action="../index.php?action=editOS">
                         <div class="form-group" name="formulaire" id="form_OS">
-                            <label for="disFormControlSelect" class="font-weight-bold">OS</label>
-                            <select multiple class="form-control mb-3" id="valueOSAdd" name='valueOSAdd'>
-                                <?php
-                                foreach ($osNames as $value) {
-                                    echo "<option value='".$value['osName']."'>".$value['osType']." ".$value['osName']."</option>";
-                                }
-                                ?>
-                            </select>
+
+                            <h6>Ajouter dans la table <b>OS</b> le champ :</h6>
+
                             <div class="w-75-m responsiveDisplay">
                                 <select class="form-control float-left w-33 responsiveDisplay" id="typeOSAdd" name="typeOSAdd">
                                     <option>Windows</option>
@@ -237,14 +223,9 @@ ob_start();
                     <form method="post" action="../index.php?action=editOS">
                         <div class="form-group" name="formulaire" id="form_OS">
 
-                            <label for="disFormControlSelect" class="font-weight-bold">OS</label>
-                            <select multiple class="form-control mb-3" id="valueOSMod" name='valueOSMod' onchange="displaySelectedValueOS()">
-                                <?php
-                                foreach ($osNames as $value) {
-                                    echo "<option value='".$value['osType']." ".$value['osName']."'>".$value['osType']." ".$value['osName']."</option>";
-                                }
-                                ?>
-                            </select>
+                            <h6 id="textModOs">Aucune valeur n'a été sélectionnée</h6>
+                            <input type="text" id="valueOSMod" name="valueOSMod" hidden>
+
                             <div class="w-75-m responsiveDisplay">
                                 <select class="form-control float-left w-33 responsiveDisplay" id="typeOSMod" name="typeOSMod">
                                     <option>Windows</option>
@@ -314,6 +295,34 @@ ob_start();
                                     }
                                 }
 
+                                function getSelectedOSToDisplayOnModify()
+                                {
+                                    var selectedValue = document.getElementById("valueOSDel").value;
+                                    var typeOSMod = "";
+                                    var txtOSMod = "";
+
+                                    for(var count = 0; count < selectedValue.length; count++)
+                                    {
+                                        if(selectedValue[count] !== " ")
+                                        {
+                                            typeOSMod = typeOSMod + selectedValue[count];
+                                        }
+                                        else
+                                        {
+                                            for(count += 1; count< selectedValue.length; count++)
+                                            {
+                                                txtOSMod = txtOSMod + selectedValue[count];
+                                            }
+                                            break;
+                                        }
+                                    }
+                                    document.getElementById("valueOSMod").value = selectedValue;
+                                    document.getElementById("typeOSMod").value = typeOSMod;
+                                    document.getElementById("txtOSMod").value = txtOSMod;
+                                    console.log(selectedValue, typeOSMod, txtOSMod);
+                                    $("#textModOs").html('Modifier le champ <b>' + selectedValue + '</b> en :');
+                                }
+
                                 function confirmationModifyOS()
                                 {
                                     var editedElement = document.getElementById("typeOSMod").value + " " + document.getElementById("txtOSMod").value;
@@ -330,36 +339,34 @@ ob_start();
         </div>
     <?php elseif($arrayToDisplay == "snapshots") :?>
         <!--Snapshots-->
-                    <form method="post" action="../index.php?action=editSnapshots">
+        <form method="post" action="../index.php?action=editSnapshots">
+            <div class="form-group" name="formulaire" id="form_Snapshots">
+                <select multiple class="form-control h-331 mb-2" id="valueSnapDel" name='valueSnapDel' onchange="getSelectedSnapshotsToDelete();getSelectedSnapshotsToDisplayOnModify();">
+                    <?php
+                    foreach ($snapshotPolicy as $value) {
+                        echo "<option value='".$value['name']." : ".$value['policy']."'>".$value['name']." : ".$value['policy']."</option>";
+                    }
+                    ?>
+                </select>
 
-                        <div class="form-group" name="formulaire" id="form_Snapshots">
-                            <select multiple class="form-control h-331 mb-2" id="valueSnapDel" name='valueSnapDel' onchange="getSelectedSnapshotsToDelete()">
-                                <?php
-                                foreach ($snapshotPolicy as $value) {
-                                    echo "<option value='".$value['name']." : ".$value['policy']."'>".$value['name']." : ".$value['policy']."</option>";
-                                }
-                                ?>
-                            </select>
+                <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifySnapshots">Modifier</button>
+                <button type="button" onclick="confirmationDeleteSnapshots()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteSnapshots">Supprimer</button>
+                <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addSnapshots">Ajouter</button>
 
-                            <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifySnapshots">Modifier</button>
-                            <button type="button" onclick="confirmationDeleteSnapshots()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteSnapshots">Supprimer</button>
-                            <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addSnapshots">Ajouter</button>
+                <!--Snapshots(confirmation delete modal)-->
+                <div class="modal fade" id="confirmationDeleteSnapshots" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteSnapshots" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content p-6">
+                            <div class="modal-body">
+                                <h6 id="confirmationDeleteSnapshotsSelected"></h6>
 
-                            <!--Snapshots(confirmation delete modal)-->
-                            <div class="modal fade" id="confirmationDeleteSnapshots" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteSnapshots" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content p-6">
-                                        <div class="modal-body">
-                                            <h6 id="confirmationDeleteSnapshotsSelected"></h6>
-
-                                            <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="delete" name="delete" id="delete">OUI</button>
-                                        </div>
-                                    </div>
-                                </div>
+                                <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="delete" name="delete" id="delete">OUI</button>
                             </div>
-
                         </div>
-                    </form>
+                    </div>
+                </div>
+            </div>
+        </form>
 
         <!--Snapshots (add modal)-->
         <div class="modal fade" id="addSnapshots" tabindex="-1" role="dialog" aria-labelledby="addSnapshots" aria-hidden="true">
@@ -367,14 +374,9 @@ ob_start();
                 <div class="modal-content p-3">
                     <form method="post" action="../index.php?action=editSnapshots">
                         <div class="form-group" name="formulaire" id="form_Snapshots">
-                            <label for="disFormControlSelect" class="font-weight-bold">Snapshots</label>
-                            <select multiple class="form-control mb-3" id="valueSnapAdd" name='valueSnapAdd'>
-                                <?php
-                                foreach ($snapshotPolicy as $value) {
-                                    echo "<option value='".$value['name']."'>".$value['name']." : ".$value['policy']."</option>";
-                                }
-                                ?>
-                            </select>
+
+                            <h6>Ajouter dans la table <b>Snapshots</b> le champ :</h6>
+
                             <div class="w-75-m responsiveDisplay">
                                 <input type="text" class="form-control float-left w-33 responsiveDisplay" id="typeSnapAdd" name="typeSnapAdd" placeholder="Type">
                                 <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txtSnapAdd" name="txtSnapAdd" placeholder="Nom">
@@ -393,14 +395,9 @@ ob_start();
                     <form method="post" action="../index.php?action=editSnapshots">
                         <div class="form-group" name="formulaire" id="form_Snapshots">
 
-                            <label for="disFormControlSelect" class="font-weight-bold">Snapshots</label>
-                            <select multiple class="form-control mb-3" id="valueSnapMod" name='valueSnapMod' onchange="displaySelectedValueSnapshots()">
-                                <?php
-                                foreach ($snapshotPolicy as $value) {
-                                    echo "<option value='".$value['name']." : ".$value['policy']."'>".$value['name']." : ".$value['policy']."</option>";
-                                }
-                                ?>
-                            </select>
+                            <h6 id="textModSnap">Aucune valeur n'a été sélectionnée</h6>
+                            <input type="text" id="valueSnapMod" name="valueSnapMod" hidden>
+
                             <div class="w-75-m responsiveDisplay">
                                 <input type="text" class="form-control float-left w-33 responsiveDisplay" id="typeSnapMod" name="typeSnapMod" placeholder="Type">
                                 <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txtSnapMod" name="txtSnapMod" placeholder="Nouvelle valeur">
@@ -467,6 +464,33 @@ ob_start();
                                     }
                                 }
 
+                                function getSelectedSnapshotsToDisplayOnModify()
+                                {
+                                    var selectedValue = document.getElementById("valueSnapDel").value;
+                                    var typeSnapMod = "";
+                                    var txtSnapMod = "";
+
+                                    for(var count = 0; count < selectedValue.length; count++)
+                                    {
+                                        if(selectedValue[count] !== " ")
+                                        {
+                                            typeSnapMod = typeSnapMod + selectedValue[count];
+                                        }
+                                        else
+                                        {
+                                            for(count += 3; count < selectedValue.length; count++)
+                                            {
+                                                txtSnapMod = txtSnapMod + selectedValue[count];
+                                            }
+                                            break;
+                                        }
+                                    }
+                                    document.getElementById("valueSnapMod").value = selectedValue;
+                                    document.getElementById("typeSnapMod").value = typeSnapMod;
+                                    document.getElementById("txtSnapMod").value = txtSnapMod;
+                                    $("#textModSnap").html('Modifier le champ <b>' + selectedValue + '</b> en :');
+                                }
+
                                 function confirmationModifySnapshots()
                                 {
                                     var editedElement = document.getElementById("typeSnapMod").value + " : " + document.getElementById("txtSnapMod").value;
@@ -486,7 +510,7 @@ ob_start();
         <!--Backup-->
                     <form method="post" action="../index.php?action=editBackup">
                         <div class="form-group" name="formulaire" id="form_Backup">
-                            <select multiple class="form-control h-331 mb-2" id="valueBackupDel" name='valueBackupDel' onchange="getSelectedBackupToDelete()">
+                            <select multiple class="form-control h-331 mb-2" id="valueBackupDel" name='valueBackupDel' onchange="getSelectedBackupToDelete();getSelectedBackupToDisplayOnModify();">
                                 <?php
                                 foreach ($backupPolicy as $value) {
                                     echo "<option value='".$value['name']." : ".$value['policy']."'>".$value['name']." : ".$value['policy']."</option>";
@@ -520,14 +544,9 @@ ob_start();
                 <div class="modal-content p-3">
                     <form method="post" action="../index.php?action=editBackup">
                         <div class="form-group" name="formulaire" id="form_Backup">
-                            <label for="disFormControlSelect" class="font-weight-bold">Backup</label>
-                            <select multiple class="form-control mb-3" id="valueBackupAdd" name='valueBackupAdd'>
-                                <?php
-                                foreach ($backupPolicy as $value) {
-                                    echo "<option value='".$value['name']."'>".$value['name']." : ".$value['policy']."</option>";
-                                }
-                                ?>
-                            </select>
+
+                            <h6>Ajouter dans la table <b>Backup</b> le champ :</h6>
+
                             <div class="w-75-m responsiveDisplay">
                                 <input type="text" class="form-control float-left w-33 responsiveDisplay" id="typeBackupAdd" name="typeBackupAdd" placeholder="Type">
                                 <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txtBackupAdd" name="txtBackupAdd" placeholder="Nom">
@@ -546,14 +565,9 @@ ob_start();
                     <form method="post" action="../index.php?action=editBackup">
                         <div class="form-group" name="formulaire" id="form_Backup">
 
-                            <label for="disFormControlSelect" class="font-weight-bold">Backup</label>
-                            <select multiple class="form-control mb-3" id="valueBackupMod" name='valueBackupMod' onchange="displaySelectedValueBackup()">
-                                <?php
-                                foreach ($backupPolicy as $value) {
-                                    echo "<option value='".$value['name']." : ".$value['policy']."'>".$value['name']." : ".$value['policy']."</option>";
-                                }
-                                ?>
-                            </select>
+                            <h6 id="textModBackup">Aucune valeur n'a été sélectionnée</h6>
+                            <input type="text" id="valueBackupMod" name="valueBackupMod" hidden>
+
                             <div class="w-75-m responsiveDisplay">
                                 <input type="text" class="form-control float-left w-33 responsiveDisplay" id="typeBackupMod" name="typeBackupMod" placeholder="Type">
                                 <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txtBackupMod" name="txtBackupMod" placeholder="Nouvelle valeur">
@@ -618,6 +632,33 @@ ob_start();
                                     {
                                         return valueBackupMod;
                                     }
+                                }
+
+                                function getSelectedBackupToDisplayOnModify()
+                                {
+                                    var selectedValue = document.getElementById("valueBackupDel").value;
+                                    var typeBackupMod = "";
+                                    var txtBackupMod = "";
+
+                                    for(var count = 0; count < selectedValue.length; count++)
+                                    {
+                                        if(selectedValue[count] !== " ")
+                                        {
+                                            typeBackupMod = typeBackupMod + selectedValue[count];
+                                        }
+                                        else
+                                        {
+                                            for(count += 3; count < selectedValue.length; count++)
+                                            {
+                                                txtBackupMod = txtBackupMod + selectedValue[count];
+                                            }
+                                            break;
+                                        }
+                                    }
+                                    document.getElementById("valueBackupMod").value = selectedValue;
+                                    document.getElementById("typeBackupMod").value = typeBackupMod;
+                                    document.getElementById("txtBackupMod").value = txtBackupMod;
+                                    $("#textModBackup").html('Modifier le champ <b>' + selectedValue + '</b> en :');
                                 }
 
                                 function confirmationModifyBackup()
