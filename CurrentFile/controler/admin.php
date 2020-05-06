@@ -149,6 +149,11 @@ function displayDetailsVM($idVM)
         {
             case 0:
                 require_once 'model/vmManager.php';
+                $namesValue = getVmName();
+                $allVmName = array();
+                foreach ($namesValue as $value){
+                    array_push($allVmName, $value[0]);
+                }
                 require_once 'model/displayManager.php';
                 $dataVM = getDataVM($idVM);
 
@@ -185,6 +190,11 @@ function displayDetailsVM($idVM)
                 $users = getAllUsers();
 
                 require_once 'model/vmManager.php';
+                $namesValue = getVmName();
+                $allVmName = array();
+                foreach ($namesValue as $value){
+                    array_push($allVmName, $value[0]);
+                }
                 $dataVM = getDataVM($idVM);
                 $vms = getAllVmNameAndId();
 

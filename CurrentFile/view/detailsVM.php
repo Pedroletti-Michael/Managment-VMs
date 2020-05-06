@@ -11,6 +11,43 @@ ob_start();
 <head>
     <meta charset="UTF-8">
     <title>Demande VM - HEIG-VD</title>
+    <script>
+        function checkName(){
+            var i = 0;
+            var vmNames = <?= json_encode($allVmName); ?>;
+            var actualName = "<?= $dataVM[0]['name']; ?>";
+            var result = false;
+            var name = document.getElementById("inputVMName").value;
+
+            for (i = 0; i < vmNames.length; i++){
+                if(vmNames[i] == name){
+                    result = true;
+                }
+            }
+
+            if(actualName == name){
+                result = false;
+            }
+
+            var txtHelp = document.getElementById("vmNameHelp");
+            var inpt = document.getElementById("inputVMName");
+            var subBtn = document.getElementById("submitButton");
+            if(result){
+                txtHelp.color = "#dc3545";
+                txtHelp.textContent = "Nom déjà utilisé ! Veuillez en utiliser un autre !";
+                inpt.style.boxShadow = "0 0 0 0.2rem rgba(223, 1, 7, 0.25)";
+                inpt.style.borderColor = "#dc3545";
+                subBtn.disabled= true;
+            }
+            else{
+                inpt.style.borderColor = "#ced4da";
+                inpt.style.boxShadow = "0 0 0 0.2rem rgba(0, 123, 255, 0.25)";
+                txtHelp.color = "#495057";
+                txtHelp.textContent = "15 caractères maximum. Lettres, chiffres et trait d'union uniquement (Ex: VM-01)";
+                subBtn.disabled= false;
+            }
+        }
+    </script>
 </head>
 <body>
 <div class="container-fluid pt-3">
@@ -20,7 +57,7 @@ ob_start();
             <!--Name of the VM-->
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="inputVMName" class="font-weight-bold">Nom de la VM<a style="color: red"> *</a></label>
-                <input type="vmName" class="form-control form form" value="<?php echo $dataVM[0]['name'] ?>" id="inputVMName" name="inputVMName" aria-describedby="vmNameHelp" maxlength="15" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
+                <input type="vmName" class="form-control form form" value="<?php echo $dataVM[0]['name'] ?>" id="inputVMName" name="inputVMName" aria-describedby="vmNameHelp" maxlength="15" onkeyup="checkName()" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
                 <small id="vmNameHelp" class="form-text text-muted">15 caractères maximum. Lettres, chiffres et trait d'union uniquement (Ex: VM-01)</small>
             </div>
             <!--Name of the requester-->
@@ -381,20 +418,14 @@ ob_start();
         <?php endif; ?>
 
         <!--Save the modifications-->
-        <a onclick="getValue()"><button type="submit" class="btn btn-primary m-auto d-inline responsiveDisplay">Enregistrer les modifications</button></a>
+        <a onclick="getValue()"><button type="submit" id="submitButton" class="btn btn-primary m-auto d-inline responsiveDisplay">Enregistrer les modifications</button></a>
 
         <?php
-        if($dataVM[0]['vmStatus']==3){
+        if($dataVM[0]['vmStatus']==0){
             //accepted
-            echo '<a href="index.php?action=renewalAccepted"><button type="button" class="btn btn-success float-right ml-1 responsiveDisplay">Renouveler</button></a>';
+            echo '<a href="index.php?action=vmAccepted" id="submitButton"><button type="button" class="btn btn-success float-right ml-1 responsiveDisplay">Confirmer la demande</button></a>';
             //refused
-            echo '<a href="index.php?action=renewalRefused"><button type="button" class="btn btn-danger float-right responsiveDisplay">Ne pas renouveler</button></a>';
-        }
-        elseif($dataVM[0]['vmStatus']==0){
-            //accepted
-            echo '<a href="index.php?action=vmAccepted"><button type="button" class="btn btn-success float-right ml-1 responsiveDisplay">Confirmer la demande</button></a>';
-            //refused
-            echo '<a href="index.php?action=vmRefused"><button type="button" class="btn btn-danger float-right responsiveDisplay">Refuser la demande</button></a>';
+            echo '<a href="index.php?action=vmRefused" id="submitButton"><button type="button" class="btn btn-danger float-right responsiveDisplay">Refuser la demande</button></a>';
         }
         ?>
     </form>
