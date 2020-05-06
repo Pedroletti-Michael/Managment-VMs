@@ -86,11 +86,16 @@ function filterForInventoryVm(which, n) {
 }
 
 function filterRow(caseName){
-    var row, i, button, th, td, buttonMore;
+    var row, i, button, th, td, buttonMore, btnFilterRow;
     th = document.getElementsByTagName("th");
     td = document.getElementsByTagName("td");
+    btnFilterRow = document.getElementsByName("btnRowFilter");
 
     if(caseName == "displayAll"){
+        for(i = 0; i < btnFilterRow.length; i++){
+            btnFilterRow[i].style.backgroundColor = "#007bff";
+        }
+
         for(i = 0; i < th.length; i++){
             th[i].style.display = "";
         }
@@ -99,6 +104,10 @@ function filterRow(caseName){
         }
     }
     else if(caseName == "hideAll"){
+        for(i = 0; i < btnFilterRow.length; i++){
+            btnFilterRow[i].style.backgroundColor = "#dc3545";
+        }
+
         for(i = 0; i < th.length; i++){
             if(th[i].name == "goToButton"){
                 th[i].style.display = "";

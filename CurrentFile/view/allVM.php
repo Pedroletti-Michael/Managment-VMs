@@ -79,32 +79,41 @@ ob_start();
                 <div class="modal-content">
                     <div class="w-100 p-3">
                         <div class="w-50 float-left p-1">
-                            <button id="name" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('name')">
+                            <button name="btnRowFilter" id="name" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('name')">
                                 <h5>name</h5>
                             </button>
-                            <button id="dateStart" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('dateStart')">
+                            <button name="btnRowFilter" style="background-color: #dc3545" id="cluster" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('cluster')">
+                                <h5>cluster</h5>
+                            </button>
+                            <button name="btnRowFilter" id="dateStart" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('dateStart')">
                                 <h5>dateStart</h5>
                             </button>
-                            <button id="dateEnd" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('dateEnd')">
+                            <button name="btnRowFilter" style="background-color: #dc3545" id="dateAnniversary" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('dateAnniversary')">
+                                <h5>dateAnniversary</h5>
+                            </button>
+                            <button name="btnRowFilter" id="dateEnd" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('dateEnd')">
                                 <h5>dateEnd</h5>
                             </button>
-                            <button id="desc" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('desc')">
+                            <button name="btnRowFilter" id="desc" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('desc')">
                                 <h5>description</h5>
                             </button>
-                            <button id="usage" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('usage')">
+                            <button name="btnRowFilter" style="background-color: #dc3545" id="ip" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('ip')">
+                                <h5>ip</h5>
+                            </button>
+                            <button name="btnRowFilter" style="background-color: #dc3545" id="dnsName" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('dnsName')">
+                                <h5>dnsName</h5>
+                            </button>
+                            <button name="btnRowFilter" style="background-color: #dc3545" id="redundance" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('redundance')">
+                                <h5>redundance</h5>
+                            </button>
+                            <button name="btnRowFilter" id="usage" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('usage')">
                                 <h5>usageType</h5>
                             </button>
-                            <button id="cpu" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('cpu')">
+                            <button name="btnRowFilter" style="background-color: #dc3545" id="criticity" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('criticity')">
+                                <h5>criticity</h5>
+                            </button>
+                            <button name="btnRowFilter" id="cpu" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('cpu')">
                                 <h5>cpu</h5>
-                            </button>
-                            <button id="ram" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('ram')">
-                                <h5>ram</h5>
-                            </button>
-                            <button id="disk" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('disk')">
-                                <h5>disk</h5>
-                            </button>
-                            <button id="network" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('network')">
-                                <h5>network</h5>
                             </button>
                             <br><br>
                             <button id="" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('hideAll')">
@@ -112,31 +121,40 @@ ob_start();
                             </button>
                         </div>
                         <div class="w-50 float-right p-1">
-                            <button id="domain" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('domain')">
+                            <button name="btnRowFilter" id="ram" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('ram')">
+                                <h5>ram</h5>
+                            </button>
+                            <button name="btnRowFilter" id="disk" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('disk')">
+                                <h5>disk</h5>
+                            </button>
+                            <button name="btnRowFilter" id="network" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('network')">
+                                <h5>network</h5>
+                            </button>
+                            <button name="btnRowFilter" id="domain" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('domain')">
                                 <h5>domain</h5>
                             </button>
-                            <button id="comment" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('comment')">
+                            <button name="btnRowFilter" id="comment" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('comment')">
                                 <h5>comment</h5>
                             </button>
-                            <button id="customer" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('customer')">
+                            <button name="btnRowFilter" id="customer" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('customer')">
                                 <h5>customer</h5>
                             </button>
-                            <button id="Ra" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('Ra')">
+                            <button name="btnRowFilter" id="Ra" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('Ra')">
                                 <h5>userRa</h5>
                             </button>
-                            <button id="Rt" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('Rt')">
+                            <button name="btnRowFilter" id="Rt" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('Rt')">
                                 <h5>userRt</h5>
                             </button>
-                            <button id="entity" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('entity')">
+                            <button name="btnRowFilter" id="entity" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('entity')">
                                 <h5>entity_id</h5>
                             </button>
-                            <button id="os" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('os')">
+                            <button name="btnRowFilter" id="os" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('os')">
                                 <h5>os_id</h5>
                             </button>
-                            <button id="snapshot" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('snapshot')">
+                            <button name="btnRowFilter" id="snapshot" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('snapshot')">
                                 <h5>snapshot_id</h5>
                             </button>
-                            <button id="backup" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('backup')">
+                            <button name="btnRowFilter" id="backup" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('backup')">
                                 <h5>backup_id</h5>
                             </button>
                             <br><br>
@@ -215,27 +233,33 @@ ob_start();
             <tr>
                 <th name="goToButton" scope="col" style="width: 50px;"></th>
                 <th name="name" scope="col" onclick="sortTable(1)">name</th>
-                <th name="dateStart" scope="col" onclick="sortTable(2)">dateStart</th>
-                <th name="dateEnd" scope="col" onclick="sortTable(3)">dateEnd</th>
-                <th name="desc" scope="col" onclick="sortTable(4)">description</th>
-                <th name="usage" scope="col" onclick="sortTable(5)">usageType</th>
-                <th name="cpu" scope="col" onclick="sortNumberTable(6)">cpu</th>
-                <th name="ram" scope="col" onclick="sortNumberTable(7)">ram</th>
-                <th name="disk" scope="col" onclick="sortNumberTable(8)">disk</th>
-                <th name="network" scope="col" onclick="sortTable(9)">network</th>
-                <th name="domain" scope="col" onclick="sortTable(10)">domain</th>
-                <th name="comment" scope="col" onclick="sortTable(11)">comment</th>
-                <th name="customer" scope="col" onclick="sortTable(12)">customer</th>
-                <th name="Ra" scope="col" onclick="sortTable(13)">userRa</th>
-                <th name="Rt" scope="col" onclick="sortTable(14)">userRt</th>
-                <th name="entity" scope="col" onclick="sortTable(15)">entity_id</th>
-                <th name="os" scope="col" onclick="sortTable(16)">os_id</th>
-                <th name="snapshot" scope="col" onclick="sortTable(17)">snapshot_id
+                <th style="display: none" name="cluster" scope="col" onclick="sortTable(2)">cluster</th>
+                <th name="dateStart" scope="col" onclick="sortTable(3)">dateStart</th>
+                <th style="display: none" name="dateAnniversary" scope="col" onclick="sortTable(4)">dateAnniversary</th>
+                <th name="dateEnd" scope="col" onclick="sortTable(5)">dateEnd</th>
+                <th name="desc" scope="col" onclick="sortTable(6)">description</th>
+                <th style="display: none" name="ip" scope="col" onclick="sortTable(7)">ip</th>
+                <th style="display: none" name="dnsName" scope="col" onclick="sortTable(8)">dnsName</th>
+                <th style="display: none" name="redundance" scope="col" onclick="sortTable(9)">redundance</th>
+                <th name="usage" scope="col" onclick="sortTable(10)">usageType</th>
+                <th style="display: none" name="criticity" scope="col" onclick="sortTable(11)">criticity</th>
+                <th name="cpu" scope="col" onclick="sortNumberTable(12)">cpu</th>
+                <th name="ram" scope="col" onclick="sortNumberTable(13)">ram</th>
+                <th name="disk" scope="col" onclick="sortNumberTable(14)">disk</th>
+                <th name="network" scope="col" onclick="sortTable(15)">network</th>
+                <th name="domain" scope="col" onclick="sortTable(16)">domain</th>
+                <th name="comment" scope="col" onclick="sortTable(17)">comment</th>
+                <th name="customer" scope="col" onclick="sortTable(18)">customer</th>
+                <th name="Ra" scope="col" onclick="sortTable(19)">userRa</th>
+                <th name="Rt" scope="col" onclick="sortTable(20)">userRt</th>
+                <th name="entity" scope="col" onclick="sortTable(21)">entity_id</th>
+                <th name="os" scope="col" onclick="sortTable(22)">os_id</th>
+                <th name="snapshot" scope="col" onclick="sortTable(23)">snapshot_id
                     <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#modalSnapshot">
                         <path fill-rule="evenodd" d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
                     </svg>
                 </th>
-                <th name="backup" scope="col" onclick="sortTable(18)">backup_id
+                <th name="backup" scope="col" onclick="sortTable(24)">backup_id
                     <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#modalBackup">
                         <path fill-rule="evenodd" d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
                     </svg>
@@ -251,10 +275,16 @@ ob_start();
                             </div>
                         </td>
                         <td name="name"><?php echo $value['name']?></td>
+                        <td style="display: none" name="cluster"><?php echo $value['cluster']?></td>
                         <td name="dateStart" style="min-width: 100px"><?php echo $value['dateStart']?></td>
+                        <td style="display: none" name="dateAnniversary"><?php echo $value['dateAnniversary']?></td>
                         <td name="dateEnd" style="min-width: 100px"><?php echo $value['dateEnd']?></td>
                         <td name="desc" ><?php echo $value['description']?></td>
+                        <td style="display: none" name="ip"><?php echo $value['ip']?></td>
+                        <td style="display: none" name="dnsName"><?php echo $value['dnsName']?></td>
+                        <td style="display: none" name="redundance"><?php echo $value['redundance']?></td>
                         <td name="usage" ><?php echo $value['usageType']?></td>
+                        <td style="display: none" name="criticity"><?php echo $value['criticity']?></td>
                         <td name="cpu" ><?php echo $value['cpu']?></td>
                         <td name="ram" ><?php echo $value['ram']?></td>
                         <td name="disk" ><?php echo $value['disk']?></td>

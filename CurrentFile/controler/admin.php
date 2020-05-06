@@ -660,12 +660,20 @@ function editBackup($backupName){
 }
 
 function displayResearch($inputResearch){
-    require_once 'model/vmManager.php';
-    require_once 'model/dbConnector.php';
-    $researchResult = researchVm($inputResearch);
+    if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
+    {
+        require_once 'model/vmManager.php';
+        require_once 'model/dbConnector.php';
+        $researchResult = researchVm($inputResearch);
 
-    //display searchResultView
-    require 'view/searchResult.php';
+        //display searchResultView
+        require 'view/searchResult.php';
+    }
+    else
+    {
+        $_GET['action'] = "signIn";
+        require 'view/signIn.php';
+    }
 }
 
 function modifyStatusAfterRenewal($idVM, $status){

@@ -36,7 +36,7 @@
     </div>
     <form method="post" action="../index.php?action=research" class="btn-group search-responsive float-left" style="padding-top: 5px">
         <input class="form-control form-control-light" style="width: calc(100%-50px)" name="inputResearch" type="text" placeholder="Recherche" aria-label="Recherche">
-        <button type="submit" class="btn btn-success rounded-0" style="width: 30px">></button>
+        <button type="submit" class="btn btn-success rounded-0" style="width: 30px" <?php if(!isset($_SESSION['userType']) && $_SESSION == null){echo 'disabled'; } ?>>></button>
     </form>
     <div class="signIn-responsive float-right text-center float-left align-items-center" style="height: 48px;">
         <span class="navbar-toggler-icon float-right" style="margin: 14px" onclick="openNav()"></span>
@@ -169,7 +169,7 @@
     <!------ Search ------->
     <form method="post" action="../index.php?action=research" class="btn-group search-responsive">
         <input class="form-control form-control-light" style="width: calc(100%-120px)" name="inputResearch" type="text" placeholder="Recherche" aria-label="Recherche">
-        <button type="submit" class="btn btn-success rounded-0" style="width: 120px">Rechercher</button>
+        <button type="submit" class="btn btn-success rounded-0" style="width: 120px" <?php if(!isset($_SESSION['userType']) && $_SESSION == null){echo 'disabled'; } ?>>Rechercher</button>
     </form>
     <!------ Sign In / Sign Out ------->
     <div class="signIn-responsive float-right text-center">
