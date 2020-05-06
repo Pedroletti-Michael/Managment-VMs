@@ -39,7 +39,7 @@ if(isset($_GET['action']))
             formVM($_POST);
             break;
         case 'formManagement':
-            displayFormManagement();
+            displayFormManagement($_GET['array']);
             break;
         case 'allVM':
             displayAllVM($_POST,$_GET);
@@ -106,6 +106,9 @@ if(isset($_GET['action']))
             break;
         case 'refreshUser':
             refreshUser();
+            break;
+        case 'exportToExcel':
+            exportToExcel();
             break;
         default:
             displayHome();
