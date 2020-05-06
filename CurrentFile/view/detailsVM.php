@@ -87,7 +87,7 @@ ob_start();
                             <input type="number" class="form-control form form w-25 float-left" value="<?php echo $dataVM[0]['disk'] ?>" id="inputSSD" name="inputSSD" aria-describedby="ssdHelp" min="20" max="1000" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
                         </div>
                         <div class="pl-2">
-                            <input type="text" class="form-control form form w-75 float-right" value="<?php echo $dataVM[0]['customer'] ?>" id="infoSSD" name="infoSSD" aria-describedby="ssdHelp" placeholder="Exemple : disque 1 : 200, disque 2 : 50">
+                            <input type="text" class="form-control form form w-75 float-right" value="<?php echo $dataVM[0]['descriptionDisk'] ?>" id="infoSSD" name="infoSSD" aria-describedby="ssdHelp" placeholder="Exemple : disque 1 : 200, disque 2 : 50">
                         </div>
                     </div>
                 </div>
