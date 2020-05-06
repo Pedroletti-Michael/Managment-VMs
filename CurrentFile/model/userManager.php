@@ -170,7 +170,7 @@ function verificationUserFromDb(){
     ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
     ldap_set_option($ds, LDAP_OPT_REFERRALS, 0);
 
-    $r=ldap_bind($ds, "michael.pedrolet@einet.ad.eivd.ch", "..."); // We need to find an way to connect. Because we need to be connected to research user
+    $r=ldap_bind($ds, "einetjoin@einet.ad.eivd.ch", "HLp+SUp*"); // We need to find an way to connect. Because we need to be connected to research user
 
     if ($ds) {
         // Get all user from ou=Personnel
@@ -178,8 +178,6 @@ function verificationUserFromDb(){
         $sr = ldap_search($ds, "ou=personnel,dc=einet,dc=ad,dc=eivd,dc=ch", "samaccountname=*");
 
         $info = ldap_get_entries($ds, $sr);
-
-        //$usersFromDb = getAllUsers(); //Get all users from db
 
         $message = 'variables : '. count($info);
 
