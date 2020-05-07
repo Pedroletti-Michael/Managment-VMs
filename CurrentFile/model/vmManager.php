@@ -19,10 +19,11 @@ function addVMToDB($formVMRequest)
     $dateStart = $formVMRequest['inputComissioningDate'];
     $dateEnd = $formVMRequest['inputEndDate'];
     if($dateEnd == null || $dateEnd == ''){
+        $dateEnd = 'null';
         $dateAnniversary = $dateStart + 183;
     }
     else{
-        $dateAnniversary = null;
+        $dateAnniversary = 'null';
     }
     $description = $formVMRequest['objective'];
     $ip = 'null';

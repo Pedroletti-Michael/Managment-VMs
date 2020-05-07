@@ -52,10 +52,16 @@ function formVM($formVMRequest)
         displayForm();
     }
 
-    if (strtotime($formVMRequest['inputComissioningDate']) > strtotime($formVMRequest['inputEndDate']))
-    {
-        displayForm();
+    if(isset($formVMRequest['inputEndDate']) && $formVMRequest['inputEndDate'] != null || $formVMRequest['inputEndDate'] != ''){
+        if (strtotime($formVMRequest['inputComissioningDate']) > strtotime($formVMRequest['inputEndDate']))
+        {
+            displayForm();
+        }
     }
+    else{
+        $formVMRequest['inputEndDate'] = '';
+    }
+
 
     if(isset($formVMRequest['Academique']))
     {
