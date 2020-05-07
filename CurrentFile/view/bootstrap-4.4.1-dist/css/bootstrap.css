@@ -10152,7 +10152,7 @@ a.text-dark:hover, a.text-dark:focus {
   visibility: hidden !important;
 }
 
-td {border: 1px #DDD solid; padding: 5px; cursor: pointer;}
+.formManagement {border: 1px #DDD solid; padding: 5px; cursor: pointer;}
 
 .selected {
   background-color: #007bff;
