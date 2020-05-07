@@ -170,11 +170,15 @@ function verificationUserFromDb(){
     ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
     ldap_set_option($ds, LDAP_OPT_REFERRALS, 0);
 
-    $r=ldap_bind($ds, "einetjoin@einet.ad.eivd.ch", "HLp+SUp*"); // We need to find an way to connect. Because we need to be connected to research user
+    require_once 'model/encryption.php';
+    $uncodePwd = decrypt("mkHndhU83csnUia.Dhjc73jhSExwK1NVcCo=");
+
+    $r=ldap_bind($ds, "einetjoin@einet.ad.eivd.ch", $uncodePwd); // We need to find an way to connect. Because we need to be connected to research user
 
     if ($ds) {
         // Get all user from ou=Personnel
         $filter = "(uid=*)";
+
         $sr = ldap_search($ds, "ou=personnel,dc=einet,dc=ad,dc=eivd,dc=ch", "samaccountname=*");
 
         $info = ldap_get_entries($ds, $sr);

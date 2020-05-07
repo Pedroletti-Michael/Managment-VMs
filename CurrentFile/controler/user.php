@@ -87,6 +87,7 @@ function signOut()
 
 function refreshUser(){
     require_once 'model/userManager.php';
+
     if(verificationUserFromDb()){
         displayHome();
     }
