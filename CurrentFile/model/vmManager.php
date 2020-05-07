@@ -652,3 +652,33 @@ function getVmName(){
 
     return $resultSelect;
 }
+
+function exportVMToExcel($allVM){
+    $fields = array('name', 'dateStart', 'dateEnd', 'description', 'usageType', 'cpu', 'ram', 'disk', 'network', 'domain', 'comment', 'customer', 'userRa', 'userRt', 'entity_id', 'os_id', 'snapshot_id', 'backup_id');
+    $userVM = array();
+    foreach ($allVM as $value){
+        foreach ($fields as $field){
+            array_push($userVM, $value[$field]);
+        }
+    }
+    CSV::export($userVM,'Mes VM');
+}
+
+class CSV{
+    static function export($userVM,$filename){
+        header('Content-Type: text/csv;');
+        header('Content-Disposition: attachment; filename="'.$filename.'.csv"');
+        $header = array('name', 'dateStart', 'dateEnd', 'description', 'usageType', 'cpu', 'ram', 'disk', 'network', 'domain', 'comment', 'customer', 'userRa', 'userRt', 'entity_id', 'os_id', 'snapshot_id', 'backup_id');
+
+        $i = 0;
+        foreach ($userVM as $data){
+            if($i==0){
+                foreach ($header as $value) {
+                    echo '"' . implode('";"',$value) . '"' . "\n";
+                }
+                $i++;
+            }
+            echo '"'.implode('";"',$data).'"'."\n";
+        }
+    }
+}
