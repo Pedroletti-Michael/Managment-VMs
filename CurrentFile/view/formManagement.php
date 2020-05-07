@@ -56,13 +56,13 @@ ob_start();
                 <button type="button" onclick="confirmationDeleteEntity()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteEntity">Supprimer</button>
                 <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addEntity">Ajouter</button>
 
-                <!--Array FormManagement (confirmation delete modal)-->
+                <!--Entity (confirmation delete modal)-->
                 <div class="modal fade" id="confirmationDeleteEntity" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteEntity" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content p-6">
                             <div class="modal-body">
                                 <h6 id="confirmationDeleteEntitySelected"></h6>
-                                <input type="text" id="valueEntityToDelete" name="valueEntityToDelete" value="" hidden>
+                                <input type="text" id="valueEntityToDelete" name="valueEntityToDelete" hidden>
 
                                 <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="delete" name="delete" id="delete">OUI</button>
                             </div>
@@ -102,7 +102,7 @@ ob_start();
 
                             <button type="button" onclick="confirmationModifyEntity()" class="btn btn-success float-left w-25-m responsiveDisplay" data-toggle="modal" data-target="#confirmationModifyEntity">Confirmer</button>
 
-                            <!--Department / Institution / Service (confirmation modify modal)-->
+                            <!--Entity (confirmation modify modal)-->
                             <div class="modal fade" id="confirmationModifyEntity" tabindex="-1" role="dialog" aria-labelledby="confirmationModifyEntity" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content p-6">
@@ -175,13 +175,13 @@ ob_start();
     <?php elseif ($arrayToDisplay == "os") :?>
         <form method="post" action="../index.php?action=editOS">
             <div class="form-group" name="formulaire" id="form_OS">
-                <select multiple class="form-control h-331 mb-2" id="valueOSDel" name='valueOSDel' onchange="getSelectedOSToDelete();getSelectedOSToDisplayOnModify();">
+                <table id="valueOSDel" name="valueOSDel">
                     <?php
                     foreach ($osNames as $value) {
-                        echo "<option value='".$value['osType']." ".$value['osName']."'>".$value['osType']." ".$value['osName']."</option>";
+                        echo "<tr><td class='formManagement'>".$value['osType']."</td><td class='formManagement'>".$value['osName']."</td></tr>";
                     }
                     ?>
-                </select>
+                </table>
 
                 <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyOS">Modifier</button>
                 <button type="button" onclick="confirmationDeleteOS()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteOS">Supprimer</button>
@@ -193,6 +193,7 @@ ob_start();
                         <div class="modal-content p-6">
                             <div class="modal-body">
                                 <h6 id="confirmationDeleteOSSelected"></h6>
+                                <input type="text" id="valueOSToDelete" name="valueOSToDelete" hidden>
 
                                 <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="delete" name="delete" id="delete">OUI</button>
                             </div>
@@ -259,6 +260,15 @@ ob_start();
                             </div>
 
                             <script>
+                                $("#valueOSDel tr").click(function(){
+                                    $(this).addClass('selected').siblings().removeClass('selected');
+                                    var firstValue =$(this).find('td:first').html();
+                                    var secondValue =$(this).find('td:last').html();
+                                    document.getElementById("valueOSDel").value = firstValue + " " + secondValue;
+                                    document.getElementById("valueOSToDelete").value = firstValue + " " + secondValue;
+                                    getSelectedOSToDelete();getSelectedOSToDisplayOnModify();
+                                });
+
                                 function getSelectedOSToDelete()
                                 {
                                     var elementToDelete = document.getElementById("valueOSDel").value;
@@ -351,13 +361,13 @@ ob_start();
         <!--Snapshots-->
         <form method="post" action="../index.php?action=editSnapshots">
             <div class="form-group" name="formulaire" id="form_Snapshots">
-                <select multiple class="form-control h-331 mb-2" id="valueSnapDel" name='valueSnapDel' onchange="getSelectedSnapshotsToDelete();getSelectedSnapshotsToDisplayOnModify();">
+                <table id="valueSnapDel" name="valueSnapDel">
                     <?php
                     foreach ($snapshotPolicy as $value) {
-                        echo "<option value='".$value['name']." : ".$value['policy']."'>".$value['name']." : ".$value['policy']."</option>";
+                        echo "<tr><td class='formManagement'>".$value['name']."</td><td class='formManagement'>".$value['policy']."</td></tr>";
                     }
                     ?>
-                </select>
+                </table>
 
                 <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifySnapshots">Modifier</button>
                 <button type="button" onclick="confirmationDeleteSnapshots()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteSnapshots">Supprimer</button>
@@ -369,6 +379,7 @@ ob_start();
                         <div class="modal-content p-6">
                             <div class="modal-body">
                                 <h6 id="confirmationDeleteSnapshotsSelected"></h6>
+                                <input type="text" id="valueSnapToDelete" name="valueSnapToDelete" hidden>
 
                                 <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="delete" name="delete" id="delete">OUI</button>
                             </div>
@@ -428,6 +439,15 @@ ob_start();
                             </div>
 
                             <script>
+                                $("#valueSnapDel tr").click(function(){
+                                    $(this).addClass('selected').siblings().removeClass('selected');
+                                    var firstValue =$(this).find('td:first').html();
+                                    var secondValue =$(this).find('td:last').html();
+                                    document.getElementById("valueSnapDel").value = firstValue + " " + secondValue;
+                                    document.getElementById("valueSnapToDelete").value = firstValue + " " + secondValue;
+                                    getSelectedSnapshotsToDelete();getSelectedSnapshotsToDisplayOnModify();
+                                });
+
                                 function getSelectedSnapshotsToDelete()
                                 {
                                     var elementToDelete = document.getElementById("valueSnapDel").value;
@@ -455,7 +475,7 @@ ob_start();
                                         }
                                         else
                                         {
-                                            for(count += 3; count < valueSnapMod.length; count++)
+                                            for(count += 1; count < valueSnapMod.length; count++)
                                             {
                                                 txtSnapMod = txtSnapMod + valueSnapMod[count];
                                             }
@@ -488,7 +508,7 @@ ob_start();
                                         }
                                         else
                                         {
-                                            for(count += 3; count < selectedValue.length; count++)
+                                            for(count += 1; count < selectedValue.length; count++)
                                             {
                                                 txtSnapMod = txtSnapMod + selectedValue[count];
                                             }
@@ -520,13 +540,13 @@ ob_start();
         <!--Backup-->
         <form method="post" action="../index.php?action=editBackup">
             <div class="form-group" name="formulaire" id="form_Backup">
-                <select multiple class="form-control h-331 mb-2" id="valueBackupDel" name='valueBackupDel' onchange="getSelectedBackupToDelete();getSelectedBackupToDisplayOnModify();">
+                <table id="valueBackupDel" name="valueBackupDel">
                     <?php
                     foreach ($backupPolicy as $value) {
-                        echo "<option value='".$value['name']." : ".$value['policy']."'>".$value['name']." : ".$value['policy']."</option>";
+                        echo "<tr><td class='formManagement'>".$value['name']."</td><td class='formManagement'>".$value['policy']."</td></tr>";
                     }
                     ?>
-                </select>
+                </table>
 
                 <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyBackup">Modifier</button>
                 <button type="button" onclick="confirmationDeleteBackup()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteBackup">Supprimer</button>
@@ -538,6 +558,7 @@ ob_start();
                         <div class="modal-content p-6">
                             <div class="modal-body">
                                 <h6 id="confirmationDeleteBackupSelected"></h6>
+                                <input type="text" id="valueBackupToDelete" name="valueBackupToDelete" hidden>
 
                                 <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="delete" name="delete" id="delete">OUI</button>
                             </div>
@@ -598,6 +619,15 @@ ob_start();
                             </div>
 
                             <script>
+                                $("#valueBackupDel tr").click(function(){
+                                    $(this).addClass('selected').siblings().removeClass('selected');
+                                    var firstValue =$(this).find('td:first').html();
+                                    var secondValue =$(this).find('td:last').html();
+                                    document.getElementById("valueBackupDel").value = firstValue + " " + secondValue;
+                                    document.getElementById("valueBackupToDelete").value = firstValue + " " + secondValue;
+                                    getSelectedBackupToDelete();getSelectedBackupToDisplayOnModify();
+                                });
+
                                 function getSelectedBackupToDelete()
                                 {
                                     var elementToDelete = document.getElementById("valueBackupDel").value;
@@ -625,7 +655,7 @@ ob_start();
                                         }
                                         else
                                         {
-                                            for(count += 3; count < valueBackupMod.length; count++)
+                                            for(count += 1; count < valueBackupMod.length; count++)
                                             {
                                                 txtBackupMod = txtBackupMod + valueBackupMod[count];
                                             }
@@ -658,7 +688,7 @@ ob_start();
                                         }
                                         else
                                         {
-                                            for(count += 3; count < selectedValue.length; count++)
+                                            for(count += 1; count < selectedValue.length; count++)
                                             {
                                                 txtBackupMod = txtBackupMod + selectedValue[count];
                                             }

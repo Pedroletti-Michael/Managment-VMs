@@ -503,9 +503,9 @@ function editOS($osName){
         }
     }
     elseif(isset($osName['delete'])){
-        if(isset($osName['valueOSDel']) && $osName['valueOSDel'] != null)
+        if(isset($osName['valueOSToDelete']) && $osName['valueOSToDelete'] != null)
         {
-            $nameOS = $osName['valueOSDel'];
+            $nameOS = $osName['valueOSToDelete'];
             $length = strlen($nameOS);
             $textOs = "";
 
@@ -568,9 +568,9 @@ function editSnapshots($snapshotsName){
         }
     }
     elseif(isset($snapshotsName['delete'])){
-        if(isset($snapshotsName['valueSnapDel']) && $snapshotsName['valueSnapDel'] != null)
+        if(isset($snapshotsName['valueSnapToDelete']) && $snapshotsName['valueSnapToDelete'] != null)
         {
-            $nameSnapshots = $snapshotsName['valueSnapDel'];
+            $nameSnapshots = $snapshotsName['valueSnapToDelete'];
             $typeSnapshots = "";
             $length = strlen($nameSnapshots);
 
@@ -627,9 +627,9 @@ function editBackup($backupName){
         }
     }
     elseif(isset($backupName['delete'])){
-        if(isset($backupName['valueBackupDel']) && $backupName['valueBackupDel'] != null)
+        if(isset($backupName['valueBackupToDelete']) && $backupName['valueBackupToDelete'] != null)
         {
-            $nameBackup = $backupName['valueBackupDel'];
+            $nameBackup = $backupName['valueBackupToDelete'];
             $typeBackup = "";
             $length = strlen($nameBackup);
 
