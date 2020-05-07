@@ -697,11 +697,8 @@ function modifyStatusAfterRenewal($idVM, $status){
 }
 
 function exportToExcel(){
-    require_once 'model/userManager.php';
-    $userId = getUserId($_SESSION['userEmail']);
-
     require_once "model/vmManager.php";
-    $userVM = getUserVM($userId);
+    $allVM = getAllVM();
 
-    exportVMToExcel($userVM);
+    exportVMToExcel($allVM);
 }

@@ -674,7 +674,7 @@ class CSV{
         foreach ($userVM as $data){
             if($i==0){
                 foreach ($header as $value) {
-                    echo '"' . implode('";"',$value) . '"' . "\n";
+                    echo '"'.implode('";"',$value).'"'."\n";
                 }
                 $i++;
             }
