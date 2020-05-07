@@ -44,7 +44,7 @@ ob_start();
     <?php if($arrayToDisplay == "entity") :?>
         <form method="post" action="../index.php?action=editEntity">
             <div class="form-group" name="formulaire" id="form_Entity">
-                <table id="valueEntityDel" name="valueEntityDel" onchange="getSelectedEntityToDelete();getSelectedEntityToDisplayOnModify();">
+                <table id="valueEntityDel" name="valueEntityDel">
                     <?php
                     foreach ($entityNames as $value) {
                         echo "<tr><td>".$value['entityName']."</td></tr>";
@@ -52,7 +52,7 @@ ob_start();
                     ?>
                 </table>
 
-                <button type="button" id="modifyEntity" name="modifyEntity" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyEntity">Modifier</button>
+                <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyEntity">Modifier</button>
                 <button type="button" onclick="confirmationDeleteEntity()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteEntity">Supprimer</button>
                 <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addEntity">Ajouter</button>
 
@@ -62,6 +62,7 @@ ob_start();
                         <div class="modal-content p-6">
                             <div class="modal-body">
                                 <h6 id="confirmationDeleteEntitySelected"></h6>
+                                <input type="text" id="valueEntityToDelete" name="valueEntityToDelete" value="" hidden>
 
                                 <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="delete" name="delete" id="delete">OUI</button>
                             </div>
@@ -118,11 +119,9 @@ ob_start();
                                 $("#valueEntityDel tr").click(function(){
                                     $(this).addClass('selected').siblings().removeClass('selected');
                                     var value=$(this).find('td:first').html();
-                                    alert(value);
-                                });
-
-                                $('.modifyEntity').on('click', function(e){
-                                    alert($("#table tr.selected td:first").html());
+                                    document.getElementById("valueEntityDel").value = value;
+                                    document.getElementById("valueEntityToDelete").value = value;
+                                    getSelectedEntityToDelete();getSelectedEntityToDisplayOnModify();
                                 });
 
                                 function getSelectedEntityToDelete()

@@ -459,9 +459,9 @@ function editEntity($entityName){
         }
     }
     if(isset($entityName['delete'])){
-        if(isset($entityName['valueEntityDel']) && $entityName['valueEntityDel'] != null)
+        if(isset($entityName['valueEntityToDelete']) && $entityName['valueEntityToDelete'] != null)
         {
-            $nameEntity = $entityName['valueEntityDel'];
+            $nameEntity = $entityName['valueEntityToDelete'];
             deleteEntity($nameEntity);
         }
     }
