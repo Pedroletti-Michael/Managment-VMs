@@ -605,9 +605,9 @@ function getInformationForMailAboutVM($id){
 
     foreach ($resultSelect as $vm){
         array_push($arrayResult, $vm['name']);
-        array_push($arrayResult, getInfoUser($vm['customer']));
-        array_push($arrayResult, getInfoUser($vm['userRa']));
-        array_push($arrayResult, getInfoUser($vm['userRt']));
+        array_push($arrayResult, getMailUser($vm['customer']));
+        array_push($arrayResult, getMailUser($vm['userRa']));
+        array_push($arrayResult, getMailUser($vm['userRt']));
         $i++;
     }
     return $arrayResult;

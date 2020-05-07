@@ -88,10 +88,10 @@ function signOut()
 function refreshUser(){
     require_once 'model/userManager.php';
     if(verificationUserFromDb()){
-        require 'view/home.php';
+        displayHome();
     }
     else{
-        require 'view/home.php';
+        displayHome();
     }
 }
 
