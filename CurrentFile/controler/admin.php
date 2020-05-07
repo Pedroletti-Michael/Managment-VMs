@@ -222,24 +222,27 @@ function updateVM($vmInformation)
 {
     require_once "model/vmManager.php";
 
-    if (strtotime($vmInformation['inputComissioningDate']) > strtotime($vmInformation['inputEndDate']))
-    {
-        if($_SESSION['userType'] == 0)
+    if($vmInformation['inputEndDate'] != ""){
+        if (strtotime($vmInformation['inputComissioningDate']) > strtotime($vmInformation['inputEndDate']))
         {
-            displayHome();
-        }
-        elseif($_SESSION['userType'] == 1)
-        {
-            $allVM = getAllVM();
-            $_GET['action'] = "allVM";
-            require 'view/allVM.php';
-        }
-        else
-        {
-            $_GET['action'] = "signIn";
-            require 'view/signIn.php';
+            if($_SESSION['userType'] == 0)
+            {
+                displayHome();
+            }
+            elseif($_SESSION['userType'] == 1)
+            {
+                $allVM = getAllVM();
+                $_GET['action'] = "allVM";
+                require 'view/allVM.php';
+            }
+            else
+            {
+                $_GET['action'] = "signIn";
+                require 'view/signIn.php';
+            }
         }
     }
+
 
     if(strlen($vmInformation['ti']) > 1000 || strlen($vmInformation['objective']) > 1000){
         if($_SESSION['userType'] == 0)
