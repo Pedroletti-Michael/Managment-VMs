@@ -492,7 +492,9 @@ function updateVMInformation($vmInformation, $id){
 
     $strSep = '\'';
 
-    $query = "UPDATE vm SET
+    if(isset($vmInformation['editDateAnniversary'])){
+        if($vmInformation['osTypeFormControlSelect'] == "Windows"){
+            $query = "UPDATE vm SET
               name = ". $strSep.$vmInformation['inputVMName'].$strSep. ",
               cluster = ". $strSep.$vmInformation['editCluster'].$strSep. ",
               dateStart = ". $strSep.$vmInformation['inputComissioningDate'].$strSep. ",
@@ -515,10 +517,102 @@ function updateVMInformation($vmInformation, $id){
               userRa = ". $strSep.getUserId($vmInformation['inputRAName']).$strSep. ",
               userRt = ". $strSep.getUserId($vmInformation['inputTMName']).$strSep. ",
               entity_id = ". $strSep. getEntityId($vmInformation['disFormControlSelect']).$strSep. ",
-              os_id = ". $strSep.getOsId($vmInformation['osFormNameControlSelect'], $vmInformation['osTypeFormControlSelect']).$strSep. ",
+              os_id = ". $strSep.getOsId($vmInformation['osFormNameControlSelectWin'], $vmInformation['osTypeFormControlSelect']).$strSep. ",
               snapshot_id = ". $strSep.getSnapshotId($vmInformation['snapshotsFormControlSelect']).$strSep. ",
               backup_id = ". $strSep.getBackupId($vmInformation['backupFormControlSelect']).$strSep. "
               WHERE id = ". $id;
+        }
+        else{
+            $query = "UPDATE vm SET
+              name = ". $strSep.$vmInformation['inputVMName'].$strSep. ",
+              cluster = ". $strSep.$vmInformation['editCluster'].$strSep. ",
+              dateStart = ". $strSep.$vmInformation['inputComissioningDate'].$strSep. ",
+              dateAnniversary = ". $strSep.$vmInformation['editDateAnniversary'].$strSep. ",
+              dateEnd = ". $strSep.$vmInformation['inputEndDate'].$strSep. ",
+              description = ". $strSep.$vmInformation['objective'].$strSep. ",
+              ip = ". $strSep.$vmInformation['editIP'].$strSep. ",
+              dnsName = ". $strSep.$vmInformation['editDnsName'].$strSep. ",
+              redundance = ". $strSep.$vmInformation['editRedundance'].$strSep. ",
+              usageType = ". $strSep.$vmInformation['usingVM'].$strSep. ",
+              criticity = ". $strSep.$vmInformation['editCriticity'].$strSep. ",
+              cpu = ". $strSep.$vmInformation['inputCPU'].$strSep. ",
+              ram = ". $strSep.$vmInformation['inputRAM'].$strSep. ",
+              disk = ". $strSep.$vmInformation['inputSSD'].$strSep. ",
+              network = ". $strSep.$vmInformation['networkFormControlSelect'].$strSep. ",
+              domain = ". $strSep.$vmInformation['domainEINET'].$strSep. ",
+              patch = ". $strSep.$vmInformation['securityFormControlSelect'].$strSep. ",
+              comment = ". $strSep.$vmInformation['ti'].$strSep. ",
+              customer = ". $strSep.getUserId($vmInformation['inputRequesterName']).$strSep. ",
+              userRa = ". $strSep.getUserId($vmInformation['inputRAName']).$strSep. ",
+              userRt = ". $strSep.getUserId($vmInformation['inputTMName']).$strSep. ",
+              entity_id = ". $strSep. getEntityId($vmInformation['disFormControlSelect']).$strSep. ",
+              os_id = ". $strSep.getOsId($vmInformation['osFormNameControlSelectLin'], $vmInformation['osTypeFormControlSelect']).$strSep. ",
+              snapshot_id = ". $strSep.getSnapshotId($vmInformation['snapshotsFormControlSelect']).$strSep. ",
+              backup_id = ". $strSep.getBackupId($vmInformation['backupFormControlSelect']).$strSep. "
+              WHERE id = ". $id;
+
+        }
+    }
+    else{
+        if($vmInformation['osTypeFormControlSelect'] == "Windows"){
+            $query = "UPDATE vm SET
+              name = ". $strSep.$vmInformation['inputVMName'].$strSep. ",
+              cluster = ". $strSep.$vmInformation['editCluster'].$strSep. ",
+              dateStart = ". $strSep.$vmInformation['inputComissioningDate'].$strSep. ",
+              dateEnd = ". $strSep.$vmInformation['inputEndDate'].$strSep. ",
+              description = ". $strSep.$vmInformation['objective'].$strSep. ",
+              ip = ". $strSep.$vmInformation['editIP'].$strSep. ",
+              dnsName = ". $strSep.$vmInformation['editDnsName'].$strSep. ",
+              redundance = ". $strSep.$vmInformation['editRedundance'].$strSep. ",
+              usageType = ". $strSep.$vmInformation['usingVM'].$strSep. ",
+              criticity = ". $strSep.$vmInformation['editCriticity'].$strSep. ",
+              cpu = ". $strSep.$vmInformation['inputCPU'].$strSep. ",
+              ram = ". $strSep.$vmInformation['inputRAM'].$strSep. ",
+              disk = ". $strSep.$vmInformation['inputSSD'].$strSep. ",
+              network = ". $strSep.$vmInformation['networkFormControlSelect'].$strSep. ",
+              domain = ". $strSep.$vmInformation['domainEINET'].$strSep. ",
+              patch = ". $strSep.$vmInformation['securityFormControlSelect'].$strSep. ",
+              comment = ". $strSep.$vmInformation['ti'].$strSep. ",
+              customer = ". $strSep.getUserId($vmInformation['inputRequesterName']).$strSep. ",
+              userRa = ". $strSep.getUserId($vmInformation['inputRAName']).$strSep. ",
+              userRt = ". $strSep.getUserId($vmInformation['inputTMName']).$strSep. ",
+              entity_id = ". $strSep. getEntityId($vmInformation['disFormControlSelect']).$strSep. ",
+              os_id = ". $strSep.getOsId($vmInformation['osFormNameControlSelectWin'], $vmInformation['osTypeFormControlSelect']).$strSep. ",
+              snapshot_id = ". $strSep.getSnapshotId($vmInformation['snapshotsFormControlSelect']).$strSep. ",
+              backup_id = ". $strSep.getBackupId($vmInformation['backupFormControlSelect']).$strSep. "
+              WHERE id = ". $id;
+        }
+        else{
+            $query = "UPDATE vm SET
+              name = ". $strSep.$vmInformation['inputVMName'].$strSep. ",
+              cluster = ". $strSep.$vmInformation['editCluster'].$strSep. ",
+              dateStart = ". $strSep.$vmInformation['inputComissioningDate'].$strSep. ",
+              dateEnd = ". $strSep.$vmInformation['inputEndDate'].$strSep. ",
+              description = ". $strSep.$vmInformation['objective'].$strSep. ",
+              ip = ". $strSep.$vmInformation['editIP'].$strSep. ",
+              dnsName = ". $strSep.$vmInformation['editDnsName'].$strSep. ",
+              redundance = ". $strSep.$vmInformation['editRedundance'].$strSep. ",
+              usageType = ". $strSep.$vmInformation['usingVM'].$strSep. ",
+              criticity = ". $strSep.$vmInformation['editCriticity'].$strSep. ",
+              cpu = ". $strSep.$vmInformation['inputCPU'].$strSep. ",
+              ram = ". $strSep.$vmInformation['inputRAM'].$strSep. ",
+              disk = ". $strSep.$vmInformation['inputSSD'].$strSep. ",
+              network = ". $strSep.$vmInformation['networkFormControlSelect'].$strSep. ",
+              domain = ". $strSep.$vmInformation['domainEINET'].$strSep. ",
+              patch = ". $strSep.$vmInformation['securityFormControlSelect'].$strSep. ",
+              comment = ". $strSep.$vmInformation['ti'].$strSep. ",
+              customer = ". $strSep.getUserId($vmInformation['inputRequesterName']).$strSep. ",
+              userRa = ". $strSep.getUserId($vmInformation['inputRAName']).$strSep. ",
+              userRt = ". $strSep.getUserId($vmInformation['inputTMName']).$strSep. ",
+              entity_id = ". $strSep. getEntityId($vmInformation['disFormControlSelect']).$strSep. ",
+              os_id = ". $strSep.getOsId($vmInformation['osFormNameControlSelectLin'], $vmInformation['osTypeFormControlSelect']).$strSep. ",
+              snapshot_id = ". $strSep.getSnapshotId($vmInformation['snapshotsFormControlSelect']).$strSep. ",
+              backup_id = ". $strSep.getBackupId($vmInformation['backupFormControlSelect']).$strSep. "
+              WHERE id = ". $id;
+
+        }
+    }
+
 
     executeQuery($query);
 

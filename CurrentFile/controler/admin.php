@@ -320,11 +320,7 @@ function updateVM($vmInformation)
         $vmInformation['securityFormControlSelect'] = 0;
     }
 
-    if($vmInformation['editDateAnniversary'] == "" || $vmInformation['editDateAnniversary'] == " ")
-    {
-        $vmInformation['editDateAnniversary'] = 0000-00-00;
-    }
-    elseif($vmInformation['editCriticity'] == "" || $vmInformation['editCriticity'] == " ")
+    if($vmInformation['editCriticity'] == "" || $vmInformation['editCriticity'] == " ")
     {
         $vmInformation['editCriticity'] = 0;
     }
