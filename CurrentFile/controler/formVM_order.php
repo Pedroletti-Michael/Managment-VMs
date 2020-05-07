@@ -48,6 +48,10 @@ function formVM($formVMRequest)
         }
     }
 
+    if(strlen($formVMRequest['ti']) > 1000 || strlen($formVMRequest['objective']) > 1000){
+        displayForm();
+    }
+
     if($nameResult){
         displayForm();
     }

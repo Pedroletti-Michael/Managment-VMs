@@ -247,7 +247,7 @@ ob_start();
         <!--Objective-->
         <div class="form-group">
             <label for="objective" class="font-weight-bold">Description<a style="color: red"> *</a></label>
-            <textarea class="form-control" rows="5" id="objective" name="objective" required></textarea>
+            <textarea class="form-control" rows="5" id="objective" name="objective" required maxlength="1000"></textarea>
             <small id="objectiveHelp" class="form-text text-muted">But du projet</small>
         </div>
         <!--Snapshots-->
@@ -292,7 +292,7 @@ ob_start();
         <!--technical information-->
         <div class="form-group">
             <label for="ti" class="font-weight-bold">Informations techniques</label>
-            <textarea class="form-control" rows="5" id="ti" name="ti"></textarea>
+            <textarea class="form-control" rows="5" id="ti" name="ti" maxlength="1000"></textarea>
             <small id="tiHelp" class="form-text text-muted">Règles firewall, type de compte, justification DMZ ou configuration personnalisée, etc...</small>
         </div>
         <!--Submit-->
