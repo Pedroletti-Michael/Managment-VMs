@@ -44,14 +44,15 @@ ob_start();
     <?php if($arrayToDisplay == "entity") :?>
         <form method="post" action="../index.php?action=editEntity">
             <div class="form-group" name="formulaire" id="form_Entity">
-                <select multiple class="form-control h-331 mb-2" id="valueEntityDel" name="valueEntityDel" onchange="getSelectedEntityToDelete();getSelectedEntityToDisplayOnModify();">
+                <table id="valueEntityDel" name="valueEntityDel" onchange="getSelectedEntityToDelete();getSelectedEntityToDisplayOnModify();">
                     <?php
                     foreach ($entityNames as $value) {
-                        echo "<option>".$value['entityName']."</option>";
+                        echo "<tr><td>".$value['entityName']."</td></tr>";
                     }
                     ?>
-                </select>
-                <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyEntity">Modifier</button>
+                </table>
+
+                <button type="button" id="modifyEntity" name="modifyEntity" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyEntity">Modifier</button>
                 <button type="button" onclick="confirmationDeleteEntity()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteEntity">Supprimer</button>
                 <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addEntity">Ajouter</button>
 
@@ -114,6 +115,16 @@ ob_start();
                             </div>
 
                             <script>
+                                $("#valueEntityDel tr").click(function(){
+                                    $(this).addClass('selected').siblings().removeClass('selected');
+                                    var value=$(this).find('td:first').html();
+                                    alert(value);
+                                });
+
+                                $('.modifyEntity').on('click', function(e){
+                                    alert($("#table tr.selected td:first").html());
+                                });
+
                                 function getSelectedEntityToDelete()
                                 {
                                     var elementToDelete = document.getElementById("valueEntityDel").value;
@@ -508,35 +519,35 @@ ob_start();
 
     <?php elseif($arrayToDisplay == "backup") :?>
         <!--Backup-->
-                    <form method="post" action="../index.php?action=editBackup">
-                        <div class="form-group" name="formulaire" id="form_Backup">
-                            <select multiple class="form-control h-331 mb-2" id="valueBackupDel" name='valueBackupDel' onchange="getSelectedBackupToDelete();getSelectedBackupToDisplayOnModify();">
-                                <?php
-                                foreach ($backupPolicy as $value) {
-                                    echo "<option value='".$value['name']." : ".$value['policy']."'>".$value['name']." : ".$value['policy']."</option>";
-                                }
-                                ?>
-                            </select>
+        <form method="post" action="../index.php?action=editBackup">
+            <div class="form-group" name="formulaire" id="form_Backup">
+                <select multiple class="form-control h-331 mb-2" id="valueBackupDel" name='valueBackupDel' onchange="getSelectedBackupToDelete();getSelectedBackupToDisplayOnModify();">
+                    <?php
+                    foreach ($backupPolicy as $value) {
+                        echo "<option value='".$value['name']." : ".$value['policy']."'>".$value['name']." : ".$value['policy']."</option>";
+                    }
+                    ?>
+                </select>
 
-                            <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyBackup">Modifier</button>
-                            <button type="button" onclick="confirmationDeleteBackup()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteBackup">Supprimer</button>
-                            <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addBackup">Ajouter</button>
+                <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyBackup">Modifier</button>
+                <button type="button" onclick="confirmationDeleteBackup()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteBackup">Supprimer</button>
+                <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addBackup">Ajouter</button>
 
-                            <!--Backup(confirmation delete modal)-->
-                            <div class="modal fade" id="confirmationDeleteBackup" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteBackup" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content p-6">
-                                        <div class="modal-body">
-                                            <h6 id="confirmationDeleteBackupSelected"></h6>
+                <!--Backup(confirmation delete modal)-->
+                <div class="modal fade" id="confirmationDeleteBackup" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteBackup" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content p-6">
+                            <div class="modal-body">
+                                <h6 id="confirmationDeleteBackupSelected"></h6>
 
-                                            <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="delete" name="delete" id="delete">OUI</button>
-                                        </div>
-                                    </div>
-                                </div>
+                                <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="delete" name="delete" id="delete">OUI</button>
                             </div>
-
                         </div>
-                    </form>
+                    </div>
+                </div>
+
+            </div>
+        </form>
 
         <!--Backup (add modal)-->
         <div class="modal fade" id="addBackup" tabindex="-1" role="dialog" aria-labelledby="addBackup" aria-hidden="true">
