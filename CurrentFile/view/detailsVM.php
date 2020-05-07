@@ -356,7 +356,7 @@ ob_start();
             <!--Date anniversary-->
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="inputEndDate" class="font-weight-bold">Date d'anniversaire</label>
-                <input type="date" class="form-control form form" value="<?php echo $dataVM[0]['dateAnniversary'] ?>" id="editDateAnniversary" name="editDateAnniversary" aria-describedby="anniversaryDateHelp">
+                <input type="date" class="form-control form form" value="<?php echo $dataVM[0]['dateAnniversary'] ?>" id="editDateAnniversary" name="editDateAnniversary" aria-describedby="anniversaryDateHelp" <?php if($dataVM[0]['dateEnd'] != null || isset($dataVM[0]['dateEnd']) || $dataVM[0]['dateEnd'] == false){echo 'disabled';} ?>>
             </div>
         </div>
 
