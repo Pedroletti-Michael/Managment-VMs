@@ -173,21 +173,21 @@ ob_start();
                 <div class="modal-content">
                     <div class="w-100 p-3">
                         <div class="w-50 float-left p-1">
-                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Gold', 17)">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Gold', 23)">
                                 <h5>Gold</h5>
                             </button>
-                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Silver', 17)">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Silver', 23)">
                                 <h5>Silver</h5>
                             </button>
-                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Bronze', 17)">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Bronze', 23)">
                                 <h5>Bronze</h5>
                             </button>
                         </div>
                         <div class="w-50 float-right p-1">
-                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Aucun', 17)">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Aucun', 23)">
                                 <h5>Aucun</h5>
                             </button>
-                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('', 17)">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('', 23)">
                                 <h5>Tous</h5>
                             </button>
                         </div>
@@ -202,21 +202,21 @@ ob_start();
                 <div class="modal-content">
                     <div class="w-100 p-3">
                         <div class="w-50 float-left p-1">
-                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Gold', 18)">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Gold', 24)">
                                 <h5>Gold</h5>
                             </button>
-                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Silver', 18)">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Silver', 24)">
                                 <h5>Silver</h5>
                             </button>
-                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Bronze', 18)">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Bronze', 24)">
                                 <h5>Bronze</h5>
                             </button>
                         </div>
                         <div class="w-50 float-right p-1">
-                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Aucun', 18)">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Aucun', 24)">
                                 <h5>Aucun</h5>
                             </button>
-                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('', 18)">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('', 24)">
                                 <h5>Tous</h5>
                             </button>
                         </div>
