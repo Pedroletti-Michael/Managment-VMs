@@ -746,31 +746,29 @@ function getVmName(){
 }
 
 function exportVMToExcel($allVM){
-    $fields = array('name', 'dateStart', 'dateEnd', 'description', 'usageType', 'cpu', 'ram', 'disk', 'network', 'domain', 'comment', 'customer', 'userRa', 'userRt', 'entity_id', 'os_id', 'snapshot_id', 'backup_id');
-    $userVM = array();
+    $fields = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18','19','20','21','22','23','24','25');
+    $i=0;
     foreach ($allVM as $value){
         foreach ($fields as $field){
-            array_push($userVM, $value[$field]);
+            unset($allVM[$i][$field]);
         }
+        $i++;
     }
-    CSV::export($userVM,'Mes VM');
+    CSV::export($allVM,'Mes VM');
 }
 
 class CSV{
-    static function export($userVM,$filename){
+    static function export($allVM,$filename){
         header('Content-Type: text/csv;');
         header('Content-Disposition: attachment; filename="'.$filename.'.csv"');
-        $header = array('name', 'dateStart', 'dateEnd', 'description', 'usageType', 'cpu', 'ram', 'disk', 'network', 'domain', 'comment', 'customer', 'userRa', 'userRt', 'entity_id', 'os_id', 'snapshot_id', 'backup_id');
-
         $i = 0;
-        foreach ($userVM as $data){
+        foreach ($allVM as $data){
             if($i==0){
-                foreach ($header as $value) {
-                    echo '"'.implode('";"',$value).'"'."\n";
-                }
+                echo '"'.implode('";"',array_keys($data)).'"'."\n";
                 $i++;
             }
             echo '"'.implode('";"',$data).'"'."\n";
         }
     }
+
 }
