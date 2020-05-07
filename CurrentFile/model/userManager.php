@@ -196,31 +196,3 @@ function verificationUserFromDb(){
 
     return true;
 }
-
-function exportVMToExcel($vm){
-    $fields = array('name', 'dateStart', 'dateEnd', 'description', 'usageType', 'cpu', 'ram', 'disk', 'network', 'domain', 'comment', 'customer', 'userRa', 'userRt', 'entity_id', 'os_id', 'snapshot_id', 'backup_id');
-    $userVM = array();
-    foreach ($vm as $value){
-        foreach ($fields as $field){
-            array_push($userVM, $value[$field]);
-        }
-    }
-
-    CSV::export($userVM,'Mes VM');
-}
-
-class CSV{
-    static function export($userVM,$filename){
-        header('Content-Type: text/csv;');
-        header('Content-Disposition: attachment; filename="'.$filename.'.csv"');
-
-        $i = 0;
-        foreach ($userVM as $data){
-            if($i==0){
-                echo '"'.implode('";"',array_keys($data)).'"'."\n";
-                $i++;
-            }
-            echo '"'.implode('";"',$data).'"'."\n";
-        }
-    }
-}

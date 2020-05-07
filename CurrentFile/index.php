@@ -107,7 +107,7 @@ if(isset($_GET['action']))
         case 'refreshUser':
             refreshUser();
             break;
-        case 'exportVMToExcel':
+        case 'exportToExcel':
             exportToExcel();
             break;
         default:

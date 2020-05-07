@@ -71,7 +71,6 @@ ob_start();
         <?php endforeach;?>
         </tbody>
     </table>
-    <a href="index.php?action=exportVMToExcel"><button type="submit" class="btn btn-success"><strong>Excel</strong></button></a>
 </div>
 <?php
 

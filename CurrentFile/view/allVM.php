@@ -66,7 +66,15 @@ ob_start();
                     <!--Row filter-->
                     <a>
                         <button type="button" class="btn btn-primary w-100 responsiveButton" data-toggle="modal" data-target="#modalRowFilter">
-                            <h6>Trier les colonnes</h6>
+                            <h6>Filtrer</h6>
+                        </button>
+                    </a>
+                </div>
+                <div class="w-20 float-left p-1" style="height: 50px">
+                    <!--Row filter-->
+                    <a href="index.php?action=exportToExcel">
+                        <button type="button" class="btn btn-success w-100 responsiveButton">
+                            <h6>Exporter sur Excel</h6>
                         </button>
                     </a>
                 </div>
