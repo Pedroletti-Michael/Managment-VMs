@@ -157,6 +157,12 @@ function getUserId($userMail){
     return $result[0][0];
 }
 
+function getAllUserId(){
+    $query = "SELECT user_id FROM `user`";
+
+    return executeQuery($query);
+}
+
 /**
  * This would check if a user is not already in our DB. For that, this function will get all entries if the ou=Personnel
  * in the active directory and check if the mail is already on the db. If not, they will be added
@@ -185,15 +191,26 @@ function verificationUserFromDb(){
 
         $message = 'variables : '. count($info);
 
-        echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
+        echo '<script type="text/javascript">window.alert("'.$message.' utilisateurs récupéré de l\'AD.");</script>';
 
+        $newUser = 0;
         foreach ($info as $user){
             //before array push verify if user is already in db if the user is not so add the user into db.
             if (!dbVerification($user['mail'][0])){
                 adUserToDB($user["sn"][0], $user["givenname"][0], $user["mail"][0]);
+                $newUser++;
             }
         }
 
+        if($newUser == 0){
+            echo '<script type="text/javascript">window.alert("Aucun nouvel utilisateur ajouté. Base de données à jour.");</script>';
+        }
+        elseif($newUser == 1){
+            echo '<script type="text/javascript">window.alert("1 nouvel utilisateur ajouté. Base de données à jour.");</script>';
+        }
+        else{
+            echo '<script type="text/javascript">window.alert("'.$newUser.' utilisateurs ajoutés. Base de données à jour.");</script>';
+        }
 
         ldap_close($ds);
     }

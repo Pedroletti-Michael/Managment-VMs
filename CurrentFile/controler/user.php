@@ -85,18 +85,23 @@ function signOut()
     displayHome();
 }
 
-function refreshUser(){
+function displayManagementUser(){
     require_once 'model/userManager.php';
-    require_once 'model/dbConnector.php';
     $allUsers = getAllUsers();
 
-
     require_once 'view/userManagement.php';
-/*
+}
+
+function refreshUser(){
+    require_once 'model/userManager.php';
     if(verificationUserFromDb()){
-        displayHome();
+        displayManagementUser();
     }
     else{
-        displayHome();
-    }*/
+        displayManagementUser();
+    }
+}
+
+function saveModificationAboutUsers($allData){
+
 }

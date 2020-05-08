@@ -32,3 +32,13 @@ function checkOS(value){
         document.getElementById("linux").style.display = "block";
     }
 }
+
+function goTo(){
+    var navBtn = document.getElementById("navButton");
+    if(navBtn.value == "Bot"){
+        window.location.href='#bot';
+    }
+    else{
+        window.location.href='#top';
+    }
+}
