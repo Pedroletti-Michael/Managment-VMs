@@ -52,7 +52,7 @@ ob_start();
                     ?>
                 </table>
 
-                <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyEntity">Modifier</button>
+                <button type="button" class="btn btn-primary float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyEntity">Modifier</button>
                 <button type="button" onclick="confirmationDeleteEntity()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteEntity">Supprimer</button>
                 <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addEntity">Ajouter</button>
 
@@ -172,6 +172,7 @@ ob_start();
             </div>
         </div>
 
+        <!--OS-->
     <?php elseif ($arrayToDisplay == "os") :?>
         <form method="post" action="../index.php?action=editOS">
             <div class="form-group" name="formulaire" id="form_OS">
@@ -183,11 +184,11 @@ ob_start();
                     ?>
                 </table>
 
-                <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyOS">Modifier</button>
+                <button type="button" class="btn btn-primary float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyOS">Modifier</button>
                 <button type="button" onclick="confirmationDeleteOS()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteOS">Supprimer</button>
                 <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addOS">Ajouter</button>
 
-                <!--OS(confirmation delete modal)-->
+                <!--OS (confirmation delete modal)-->
                 <div class="modal fade" id="confirmationDeleteOS" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteOS" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content p-6">
@@ -357,8 +358,9 @@ ob_start();
                 </div>
             </div>
         </div>
+
+    <!--Snapshots-->
     <?php elseif($arrayToDisplay == "snapshots") :?>
-        <!--Snapshots-->
         <form method="post" action="../index.php?action=editSnapshots">
             <div class="form-group" name="formulaire" id="form_Snapshots">
                 <table id="valueSnapDel" name="valueSnapDel">
@@ -369,7 +371,7 @@ ob_start();
                     ?>
                 </table>
 
-                <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifySnapshots">Modifier</button>
+                <button type="button" class="btn btn-primary float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifySnapshots">Modifier</button>
                 <button type="button" onclick="confirmationDeleteSnapshots()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteSnapshots">Supprimer</button>
                 <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addSnapshots">Ajouter</button>
 
@@ -536,8 +538,8 @@ ob_start();
             </div>
         </div>
 
+    <!--Backup-->
     <?php elseif($arrayToDisplay == "backup") :?>
-        <!--Backup-->
         <form method="post" action="../index.php?action=editBackup">
             <div class="form-group" name="formulaire" id="form_Backup">
                 <table id="valueBackupDel" name="valueBackupDel">
@@ -548,7 +550,7 @@ ob_start();
                     ?>
                 </table>
 
-                <button type="button" class="btn btn-warning float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyBackup">Modifier</button>
+                <button type="button" class="btn btn-primary float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyBackup">Modifier</button>
                 <button type="button" onclick="confirmationDeleteBackup()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteBackup">Supprimer</button>
                 <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addBackup">Ajouter</button>
 
@@ -709,15 +711,12 @@ ob_start();
                                     $("#confirmationModifyBackupSelected").html('Êtes-vous sûr de vouloir changer le champ : <b>' + basicElement + '</b> en <b>' + editedElement + '</b> ?');
                                 }
                             </script>
-
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     <?php endif;?>
-
-
 </body>
 <?php
 $contenu = ob_get_clean();
