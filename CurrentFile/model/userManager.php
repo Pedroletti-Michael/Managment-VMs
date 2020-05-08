@@ -157,10 +157,36 @@ function getUserId($userMail){
     return $result[0][0];
 }
 
+/**
+ * Get all user id from db and return into a table
+ */
 function getAllUserId(){
     $query = "SELECT user_id FROM `user`";
 
     return executeQuery($query);
+}
+
+/**
+ * Update the type of the user.
+ * If $type == true, update type of the user into an admin
+ * else update user into an user
+ * $userId is the id of the target
+ * return true
+ */
+function updateType($userId, $type){
+    if($type){
+        //admin query
+        $query = "UPDATE user SET type = 1 WHERE user_id = ". $userId;
+
+        executeQuery($query);
+    }
+    else{
+        //user query
+        $query = "UPDATE user SET type = 0 WHERE user_id = ". $userId;
+
+        executeQuery($query);
+    }
+    return true;
 }
 
 /**
