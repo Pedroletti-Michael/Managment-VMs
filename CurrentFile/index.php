@@ -110,6 +110,12 @@ if(isset($_GET['action']))
         case 'exportToExcel':
             exportToExcel();
             break;
+        case 'displayManagementUser':
+            displayManagementUser();
+            break;
+        case 'saveModificationUser':
+            saveModificationAboutUsers($_POST);
+            break;
         default:
             displayHome();
     }
