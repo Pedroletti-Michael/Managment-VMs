@@ -12,11 +12,30 @@ ob_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.bundle.js"></script>
+    <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
     <meta charset="UTF-8">
     <title>Mes VM - HEIG-VD</title>
 </head>
 <body>
 <div class="table-responsive-xl">
+
+    <!--Confirmation command VM modal)-->
+    <?php if(isset($displayModalConfirm) && $displayModalConfirm == true) : ?>
+        <div class="modal fade" id="confirmationCommandVM" tabindex="-1" role="dialog" aria-labelledby="confirmationCommandVM" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h6>Votre commande à bel et bien été effectuée</h6>
+
+                        <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>$('.modal').modal('show')</script>
+    <?php endif; ?>
+
     <table class="table table-hover allVM">
         <thead class="thead-dark sticky-top">
         <tr>
