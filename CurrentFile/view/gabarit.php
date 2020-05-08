@@ -99,10 +99,10 @@
                 <a class="last" href="index.php?action=formManagement&array=entity">Gestion du formulaire</a>
             <?php endif; ?>
             <!----------------- updateUser ---------------->
-            <?php if ($_GET['action'] == "formManagement"): ?>
-                <a class="last alert-link active" href="index.php?action=refreshUser">Actualiser utilisateurs</a>
+            <?php if ($_GET['action'] == "displayManagementUser"): ?>
+                <a class="last alert-link active" href="index.php?action=displayManagementUser">Gestions des utilisateurs</a>
             <?php else : ?>
-                <a class="last" href="index.php?action=refreshUser">Actualiser utilisateurs</a>
+                <a class="last" href="index.php?action=displayManagementUser">Gestions des utilisateurs</a>
             <?php endif; ?>
             <!----------------- vm ---------------->
             <!--
@@ -270,13 +270,13 @@
 
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <?php if ($_GET['action'] == "refreshUser"): ?>
-                    <a class="nav-link active" href="index.php?action=refreshUser">
+                    <?php if ($_GET['action'] == "displayManagementUser"): ?>
+                    <a class="nav-link active" href="index.php?action=displayManagementUser">
                         <?php else : ?>
-                        <a class="nav-link" href="index.php?action=refreshUser">
+                        <a class="nav-link" href="index.php?action=displayManagementUser">
                             <?php endif; ?>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                            Actualiser utilisateurs
+                            Gestions des utilisateurs
                         </a>
                 </li>
             </ul>
@@ -466,13 +466,13 @@
 
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <?php if ($_GET['action'] == "refreshUser"): ?>
-                        <a class="nav-link active" href="index.php?action=refreshUser">
+                        <?php if ($_GET['action'] == "displayManagementUser"): ?>
+                        <a class="nav-link active" href="index.php?action=displayManagementUser">
                             <?php else : ?>
-                            <a class="nav-link" href="index.php?action=refreshUser">
+                            <a class="nav-link" href="index.php?action=displayManagementUser">
                                 <?php endif; ?>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                Actualiser utilisateurs
+                                Gestions des utilisateurs
                             </a>
                     </li>
                 </ul>
