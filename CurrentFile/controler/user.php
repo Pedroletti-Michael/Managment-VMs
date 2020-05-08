@@ -87,11 +87,16 @@ function signOut()
 
 function refreshUser(){
     require_once 'model/userManager.php';
+    require_once 'model/dbConnector.php';
+    $allUsers = getAllUsers();
 
+
+    require_once 'view/userManagement.php';
+/*
     if(verificationUserFromDb()){
         displayHome();
     }
     else{
         displayHome();
-    }
+    }*/
 }

@@ -60,7 +60,7 @@ function adVerification($userLogin, $userPwd){
 }
 
 function getAllUsers(){
-    $query = 'SELECT mail, lastname, firstname FROM user';
+    $query = 'SELECT mail, lastname, firstname, type, user_id FROM user';
 
     return executeQuerySelect($query);
 }
