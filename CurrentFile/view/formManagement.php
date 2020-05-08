@@ -24,38 +24,66 @@ ob_start();
     </h3>
     <!--Buttons-->
     <form method="post" action="../index.php?action=formManagement">
-        <div class="btn-group btn-group-toggle pb-2" data-toggle="buttons">
-            <label class="btn btn-secondary">
-                <a href="../index.php?action=formManagement&array=entity"><input type="radio" name="options" id="option1" autocomplete="off"> Entity</a>
-            </label>
-            <label class="btn btn-secondary">
-                <a href="../index.php?action=formManagement&array=os"><input type="radio" name="options" id="option2" autocomplete="off"> OS</a>
-            </label>
-            <label class="btn btn-secondary">
-                <a href="../index.php?action=formManagement&array=snapshots"><input type="radio" name="options" id="option3" autocomplete="off"> Snapshots</a>
-            </label>
-            <label class="btn btn-secondary">
-                <a href="../index.php?action=formManagement&array=backup"><input type="radio" name="options" id="option4" autocomplete="off"> Backup</a>
-            </label>
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <?php if ($_GET['array'] == "entity"): ?>
+                <a href="../index.php?action=formManagement&array=entity" class="btn btn-secondary active" >
+                    <input type="radio" name="options" id="option1" checked> Entity
+                </a>
+            <?php else : ?>
+                <a href="../index.php?action=formManagement&array=entity" class="btn btn-secondary" >
+                    <input type="radio" name="options" id="option1"> Entity
+                </a>
+            <?php endif; ?>
+            <?php if ($_GET['array'] == "os"): ?>
+                <a href="../index.php?action=formManagement&array=os" class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option2" checked> OS
+                </a>
+            <?php else : ?>
+                <a href="../index.php?action=formManagement&array=os" class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2"> OS
+                </a>
+            <?php endif; ?>
+            <?php if ($_GET['array'] == "snapshots"): ?>
+                <a href="../index.php?action=formManagement&array=snapshots" class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option3" checked> Snapshots
+                </a>
+            <?php else : ?>
+                <a href="../index.php?action=formManagement&array=snapshots" class="btn btn-secondary">
+                    <input type="radio" name="options" id="option3"> Snapshots
+                </a>
+            <?php endif; ?>
+            <?php if ($_GET['array'] == "backup"): ?>
+                <a href="../index.php?action=formManagement&array=backup" class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option4" checked> Backup
+                </a>
+            <?php else : ?>
+                <a href="../index.php?action=formManagement&array=backup" class="btn btn-secondary">
+                    <input type="radio" name="options" id="option4"> Backup
+                </a>
+            <?php endif; ?>
         </div>
     </form>
 
     <!--Entity-->
     <?php if($arrayToDisplay == "entity") :?>
         <form method="post" action="../index.php?action=editEntity">
-            <div class="form-group" name="formulaire" id="form_Entity">
-                <table id="valueEntityDel" name="valueEntityDel">
+            <div class="form-group mt-2" name="formulaire" id="form_Entity">
+                <table id="valueEntityDel" name="valueEntityDel" class="w-100 table table-hover rounded">
                     <?php
                     foreach ($entityNames as $value) {
                         echo "<tr><td class='formManagement'>".$value['entityName']."</td></tr>";
                     }
                     ?>
                 </table>
-
-                <button type="button" class="btn btn-primary float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyEntity">Modifier</button>
-                <button type="button" onclick="confirmationDeleteEntity()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteEntity">Supprimer</button>
-                <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addEntity">Ajouter</button>
-
+                <div class="float-left w-33 responsiveDisplay pr-1 mb-3">
+                    <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#addEntity">Ajouter</button>
+                </div>
+                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3">
+                    <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#modifyEntity">Modifier</button>
+                </div>
+                <div class="float-left w-33 responsiveDisplay pl-1 mb-3">
+                    <button type="button" class="btn btn-danger w-100" data-toggle="modal" data-target="#confirmationDeleteEntity" onclick="confirmationDeleteEntity()">Supprimer</button>
+                </div>
                 <!--Entity (confirmation delete modal)-->
                 <div class="modal fade" id="confirmationDeleteEntity" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteEntity" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
@@ -172,23 +200,27 @@ ob_start();
             </div>
         </div>
 
-        <!--OS-->
     <?php elseif ($arrayToDisplay == "os") :?>
         <form method="post" action="../index.php?action=editOS">
-            <div class="form-group" name="formulaire" id="form_OS">
-                <table id="valueOSDel" name="valueOSDel">
+            <div class="form-group mt-2" name="formulaire" id="form_OS">
+                <table id="valueOSDel" name="valueOSDel" class="w-100 table table-hover rounded">
                     <?php
                     foreach ($osNames as $value) {
                         echo "<tr><td class='formManagement'>".$value['osType']."</td><td class='formManagement'>".$value['osName']."</td></tr>";
                     }
                     ?>
                 </table>
+                <div class="float-left w-33 responsiveDisplay pr-1 mb-3">
+                    <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#addOS">Ajouter</button>
+                </div>
+                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3">
+                    <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#modifyOS">Modifier</button>
+                </div>
+                <div class="float-left w-33 responsiveDisplay pl-1 mb-3">
+                    <button type="button" class="btn btn-danger w-100" data-toggle="modal" data-target="#confirmationDeleteOS" onclick="confirmationDeleteOS()">Supprimer</button>
+                </div>
 
-                <button type="button" class="btn btn-primary float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyOS">Modifier</button>
-                <button type="button" onclick="confirmationDeleteOS()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteOS">Supprimer</button>
-                <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addOS">Ajouter</button>
-
-                <!--OS (confirmation delete modal)-->
+                <!--OS(confirmation delete modal)-->
                 <div class="modal fade" id="confirmationDeleteOS" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteOS" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content p-6">
@@ -358,22 +390,26 @@ ob_start();
                 </div>
             </div>
         </div>
-
-    <!--Snapshots-->
     <?php elseif($arrayToDisplay == "snapshots") :?>
+        <!--Snapshots-->
         <form method="post" action="../index.php?action=editSnapshots">
-            <div class="form-group" name="formulaire" id="form_Snapshots">
-                <table id="valueSnapDel" name="valueSnapDel">
+            <div class="form-group mt-2" name="formulaire" id="form_Snapshots">
+                <table id="valueSnapDel" name="valueSnapDel"  class="w-100 table table-hover rounded">
                     <?php
                     foreach ($snapshotPolicy as $value) {
                         echo "<tr><td class='formManagement'>".$value['name']."</td><td class='formManagement'>".$value['policy']."</td></tr>";
                     }
                     ?>
                 </table>
-
-                <button type="button" class="btn btn-primary float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifySnapshots">Modifier</button>
-                <button type="button" onclick="confirmationDeleteSnapshots()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteSnapshots">Supprimer</button>
-                <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addSnapshots">Ajouter</button>
+                <div class="float-left w-33 responsiveDisplay pr-1 mb-3">
+                    <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#addSnapshots">Ajouter</button>
+                </div>
+                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3">
+                    <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#modifySnapshots">Modifier</button>
+                </div>
+                <div class="float-left w-33 responsiveDisplay pl-1 mb-3">
+                    <button type="button" class="btn btn-danger w-100" data-toggle="modal" data-target="#confirmationDeleteSnapshots" onclick="confirmationDeleteSnapshots()">Supprimer</button>
+                </div>
 
                 <!--Snapshots(confirmation delete modal)-->
                 <div class="modal fade" id="confirmationDeleteSnapshots" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteSnapshots" aria-hidden="true">
@@ -538,11 +574,11 @@ ob_start();
             </div>
         </div>
 
-    <!--Backup-->
     <?php elseif($arrayToDisplay == "backup") :?>
+        <!--Backup-->
         <form method="post" action="../index.php?action=editBackup">
-            <div class="form-group" name="formulaire" id="form_Backup">
-                <table id="valueBackupDel" name="valueBackupDel">
+            <div class="form-group mt-2" name="formulaire" id="form_Backup">
+                <table id="valueBackupDel" name="valueBackupDel" class="w-100 table table-hover rounded">
                     <?php
                     foreach ($backupPolicy as $value) {
                         echo "<tr><td class='formManagement'>".$value['name']."</td><td class='formManagement'>".$value['policy']."</td></tr>";
@@ -550,9 +586,15 @@ ob_start();
                     ?>
                 </table>
 
-                <button type="button" class="btn btn-primary float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#modifyBackup">Modifier</button>
-                <button type="button" onclick="confirmationDeleteBackup()" class="btn btn-danger float-right w-10 ml-2 responsiveDisplay" data-toggle="modal" data-target="#confirmationDeleteBackup">Supprimer</button>
-                <button type="button" class="btn btn-success float-right w-10 responsiveDisplay" data-toggle="modal" data-target="#addBackup">Ajouter</button>
+                <div class="float-left w-33 responsiveDisplay pr-1 mb-3">
+                    <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#addBackup">Ajouter</button>
+                </div>
+                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3">
+                    <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#modifyBackup">Modifier</button>
+                </div>
+                <div class="float-left w-33 responsiveDisplay pl-1 mb-3">
+                    <button type="button" class="btn btn-danger w-100" data-toggle="modal" data-target="#confirmationDeleteBackup" onclick="confirmationDeleteBackup()">Supprimer</button>
+                </div>
 
                 <!--Backup(confirmation delete modal)-->
                 <div class="modal fade" id="confirmationDeleteBackup" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteBackup" aria-hidden="true">
@@ -711,12 +753,15 @@ ob_start();
                                     $("#confirmationModifyBackupSelected").html('Êtes-vous sûr de vouloir changer le champ : <b>' + basicElement + '</b> en <b>' + editedElement + '</b> ?');
                                 }
                             </script>
+
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     <?php endif;?>
+
+
 </body>
 <?php
 $contenu = ob_get_clean();
