@@ -52,14 +52,14 @@ ob_start();
                 <td><?php echo $value['name']?></td>
                 <td style="min-width: 100px"><?php echo $value['dateStart']?></td>
                 <td style="min-width: 100px"><?php echo $value['dateEnd']?></td>
-                <td><?php echo $value['description']?></td>
+                <td><?php if(strlen($value['description']) > 9){echo substr($value['description'],0,10)."...";}else{echo substr($value['description'],0,10);} ?></td>
                 <td><?php echo $value['usageType']?></td>
                 <td><?php echo $value['cpu']?></td>
                 <td><?php echo $value['ram']?></td>
                 <td><?php echo $value['disk']?></td>
                 <td><?php echo $value['network']?></td>
                 <td><?php echo $value['domain']?></td>
-                <td><?php echo $value['comment']?></td>
+                <td><?php if(strlen($value['comment']) > 9){echo substr($value['comment'], 0, 10)."...";}else{echo substr($value['comment'], 0, 10);} ?></td>
                 <td><?php echo $value['customer']?></td>
                 <td><?php echo $value['userRa']?></td>
                 <td><?php echo $value['userRt']?></td>
