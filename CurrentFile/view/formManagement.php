@@ -25,7 +25,7 @@ ob_start();
     <!--Buttons-->
     <form method="post" action="../index.php?action=formManagement">
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <?php if ($_GET['array'] == "entity"): ?>
+            <?php if ($arrayToDisplay == "entity"): ?>
                 <a href="../index.php?action=formManagement&array=entity" class="btn btn-secondary active" >
                     <input type="radio" name="options" id="option1" checked> Entity
                 </a>
@@ -34,7 +34,7 @@ ob_start();
                     <input type="radio" name="options" id="option1"> Entity
                 </a>
             <?php endif; ?>
-            <?php if ($_GET['array'] == "os"): ?>
+            <?php if ($arrayToDisplay == "os"): ?>
                 <a href="../index.php?action=formManagement&array=os" class="btn btn-secondary active">
                     <input type="radio" name="options" id="option2" checked> OS
                 </a>
@@ -43,7 +43,7 @@ ob_start();
                     <input type="radio" name="options" id="option2"> OS
                 </a>
             <?php endif; ?>
-            <?php if ($_GET['array'] == "snapshots"): ?>
+            <?php if ($arrayToDisplay == "snapshots"): ?>
                 <a href="../index.php?action=formManagement&array=snapshots" class="btn btn-secondary active">
                     <input type="radio" name="options" id="option3" checked> Snapshots
                 </a>
@@ -52,7 +52,7 @@ ob_start();
                     <input type="radio" name="options" id="option3"> Snapshots
                 </a>
             <?php endif; ?>
-            <?php if ($_GET['array'] == "backup"): ?>
+            <?php if ($arrayToDisplay == "backup"): ?>
                 <a href="../index.php?action=formManagement&array=backup" class="btn btn-secondary active">
                     <input type="radio" name="options" id="option4" checked> Backup
                 </a>
