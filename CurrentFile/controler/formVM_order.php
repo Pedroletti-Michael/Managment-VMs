@@ -40,6 +40,7 @@ function displayForm()
 function formVM($formVMRequest)
 {
     require_once 'model/vmManager.php';
+    $displayModalConfirm = false;
     $allVmName = getVmName();
     $nameResult = false;
     foreach ($allVmName as $name){
@@ -131,6 +132,7 @@ function formVM($formVMRequest)
             requestMail($_SESSION['userEmail'], $formVMRequest['inputVMName'], $formVMRequest['inputTMName'], $formVMRequest['inputRAName']);
             $link = "http://vmman.heig-vd.ch/index.php?action=detailsVM&id=". getIdOfVmByName($formVMRequest['inputVMName']);
             mailAdministrator($_SESSION['userEmail'], $formVMRequest['inputVMName'], $link);
+            $displayModalConfirm = true;
             displayHome();
         }
     }

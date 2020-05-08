@@ -19,69 +19,160 @@ ob_start();
     </head>
     <body>
     <form method="post" action="../index.php?action=allVM">
-        <!------------- Choix ------------>
-        <div class="w-50-m m-auto responsiveDisplay pt-2">
-            <div class="w-100 d-inline-block">
-                <div class="w-20 float-left p-1" style="height: 50px">
-                    <!--All VM-->
-                    <a href="index.php?action=allVM&vmFilter=all">
-                        <button type="button" class="btn btn-primary w-100 responsiveButton">
-                            <h6>Toutes les VM</h6>
-                        </button>
-                    </a>
-                </div>
-                <div class="w-20 float-left p-1" style="height: 50px">
-                    <!--Confirmed VM-->
-                    <a href="index.php?action=allVM&vmFilter=confirmed">
-                        <button type="button" class="btn btn-primary w-100 responsiveButton" style="background-color: rgba(40,167,69,0.7); border-color: rgba(40,167,69,0.7);">
-                            <h6>VM confirmées</h6>
-                        </button>
-                    </a>
-                </div>
-                <div class="w-20 float-left p-1" style="height: 50px">
-                    <!--VM who need to be confirmed-->
-                    <a href="index.php?action=allVM&vmFilter=confirmation">
-                        <button type="button" class="btn btn-primary w-100 responsiveButton" style="background-color: rgba(255,165,69,0.7); border-color: rgba(255,165,69,0.7);">
-                            <h6>VM à confirmer</h6>
-                        </button>
-                    </a>
-                </div>
-                <div class="w-20 float-left p-1" style="height: 50px">
-                    <!--VM to renew-->
-                    <a href="index.php?action=allVM&vmFilter=renewal">
-                        <button type="button" class="btn btn-primary w-100 responsiveButton" style="background-color: rgba(233,48,48,0.7); border-color: rgba(233,48,48,0.7);">
-                            <h6>VM à renouveler</h6>
-                        </button>
-                    </a>
-                </div>
-                <div class="w-20 float-left p-1" style="height: 50px">
-                    <!--Deleted VM-->
-                    <a href="index.php?action=allVM&vmFilter=deleted">
-                        <button type="button" class="btn btn-primary w-100 responsiveButton" style="background-color: rgba(90,90,90,0.7); border-color: rgba(90,90,90,0.7);">
-                            <h6>VM supprimées</h6>
-                        </button>
-                    </a>
-                </div>
-                <div class="w-20 float-left p-1" style="height: 50px">
-                    <!--Row filter-->
-                    <a>
-                        <button type="button" class="btn btn-primary w-100 responsiveButton" data-toggle="modal" data-target="#modalRowFilter">
-                            <h6>Filtrer</h6>
-                        </button>
-                    </a>
-                </div>
-                <div class="w-20 float-left p-1" style="height: 50px">
-                    <!--Row filter-->
-                    <a href="index.php?action=exportToExcel">
-                        <button type="button" class="btn btn-success w-100 responsiveButton">
-                            <h6>Exporter sur Excel</h6>
-                        </button>
-                    </a>
+        <!------------- Btn Filtrer ------------>
+        <button type="button" class="btn btn-primary rounded-0 w-150-px position-fixed mt-1 " style="right: 0.25rem;" onclick="openRightMenu()">
+            Filtrer &nbsp;
+            <svg class="bi bi-filter-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 10.5a.5.5 0 00-.5-.5h-3a.5.5 0 000 1h3a.5.5 0 00.5-.5zm0-3a.5.5 0 00-.5-.5h-7a.5.5 0 000 1h7a.5.5 0 00.5-.5zm0-3a.5.5 0 00-.5-.5h-11a.5.5 0 000 1h11a.5.5 0 00.5-.5z" clip-rule="evenodd"/>
+            </svg>
+        </button>
+        <!------------- Sidebar Options ------------>
+        <div class="w3-sidebar w3-bar-block w3-card w3-animate-right" style="display:none;right:0;" id="rightMenu">
+            <button  type="button" onclick="closeRightMenu()" class="w-100 btn btn-danger rounded-0">Fermer</button>
+            <!------------- Filter VM ------------>
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle w-100 rounded-0" type="button" data-toggle="collapse" data-target="#collapseVM" aria-expanded="false" aria-controls="collapseExample">
+                    Trier VM
+                </button>
+                <div class="collapse" id="collapseVM">
+                    <div class="w-100">
+                        <!--All VM-->
+                        <a href="index.php?action=allVM&vmFilter=all">
+                            <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0">
+                                Toutes les VM &nbsp;<span class="badge badge-primary">24</span>
+                            </button>
+                        </a>
+                    </div>
+                    <div class="w-100">
+                        <!--Confirmed VM-->
+                        <a href="index.php?action=allVM&vmFilter=confirmed">
+                            <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0" >
+                                VM confirmées &nbsp;<span class="badge" style="background-color: rgba(40,167,69,0.7); border-color: rgba(40,167,69,0.7);">13</span>
+                            </button>
+                        </a>
+                    </div>
+                    <div class="w-100">
+                        <!--VM who need to be confirmed-->
+                        <a href="index.php?action=allVM&vmFilter=confirmation">
+                            <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0">
+                                VM à confirmer &nbsp;<span class="badge" style="background-color: rgba(255,165,69,0.7); border-color: rgba(255,165,69,0.7);">7</span>
+                            </button>
+                        </a>
+                    </div>
+                    <div class="w-100">
+                        <!--VM to renew-->
+                        <a href="index.php?action=allVM&vmFilter=renewal">
+                            <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0">
+                                VM à renouveler &nbsp;<span class="badge" style="background-color: rgba(233,48,48,0.7); border-color: rgba(233,48,48,0.7);">1</span>
+                            </button>
+                        </a>
+                    </div>
+                    <div class="w-100">
+                        <!--Deleted VM-->
+                        <a href="index.php?action=allVM&vmFilter=deleted">
+                            <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0">
+                                VM supprimées &nbsp;<span class="badge" style="background-color: rgba(90,90,90,0.7); border-color: rgba(90,90,90,0.7);">3</span>
+                            </button>
+                        </a>
+                    </div>
                 </div>
             </div>
+            <!------------- Filter fields ------------>
+            <div class="dropdown">
+                <button class="btn btn-dark dropdown-toggle w-100 rounded-0" type="button" data-toggle="collapse" data-target="#collapseFields" aria-expanded="false" aria-controls="collapseExample">
+                    Trier champs
+                </button>
+                <div class="collapse" id="collapseFields">
+                    <button name="btnRowFilter" id="name" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('name')">
+                        name
+                    </button>
+                    <button name="btnRowFilter" style="background-color: #dc3545" id="cluster" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('cluster')">
+                        cluster
+                    </button>
+                    <button name="btnRowFilter" id="dateStart" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('dateStart')">
+                        dateStart
+                    </button>
+                    <button name="btnRowFilter" style="background-color: #dc3545" id="dateAnniversary" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('dateAnniversary')">
+                        dateAnniversary
+                    </button>
+                    <button name="btnRowFilter" id="dateEnd" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('dateEnd')">
+                        dateEnd
+                    </button>
+                    <button name="btnRowFilter" id="desc" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('desc')">
+                        description
+                    </button>
+                    <button name="btnRowFilter" style="background-color: #dc3545" id="ip" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('ip')">
+                        ip
+                    </button>
+                    <button name="btnRowFilter" style="background-color: #dc3545" id="dnsName" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('dnsName')">
+                        dnsName
+                    </button>
+                    <button name="btnRowFilter" style="background-color: #dc3545" id="redundance" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('redundance')">
+                        redundance
+                    </button>
+                    <button name="btnRowFilter" id="usage" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('usage')">
+                        usageType
+                    </button>
+                    <button name="btnRowFilter" style="background-color: #dc3545" id="criticity" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('criticity')">
+                        criticity
+                    </button>
+                    <button name="btnRowFilter" id="cpu" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('cpu')">
+                        cpu
+                    </button>
+                    <button name="btnRowFilter" id="ram" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('ram')">
+                        ram
+                    </button>
+                    <button name="btnRowFilter" id="disk" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('disk')">
+                        disk
+                    </button>
+                    <button name="btnRowFilter" id="network" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('network')">
+                        network
+                    </button>
+                    <button name="btnRowFilter" id="domain" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('domain')">
+                        domain
+                    </button>
+                    <button name="btnRowFilter" id="comment" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('comment')">
+                        comment
+                    </button>
+                    <button name="btnRowFilter" id="customer" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('customer')">
+                        customer
+                    </button>
+                    <button name="btnRowFilter" id="Ra" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('Ra')">
+                        userRa
+                    </button>
+                    <button name="btnRowFilter" id="Rt" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('Rt')">
+                        userRt
+                    </button>
+                    <button name="btnRowFilter" id="entity" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('entity')">
+                        entity_id
+                    </button>
+                    <button name="btnRowFilter" id="os" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('os')">
+                        os_id
+                    </button>
+                    <button name="btnRowFilter" id="snapshot" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('snapshot')">
+                        snapshot_id
+                    </button>
+                    <button name="btnRowFilter" id="backup" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0" onclick="filterRow('backup')">
+                        backup_id
+                    </button>
+                    <button id="" type="button" class="btn btn-secondary w-100 rounded-0 mb-0 border-0" onclick="filterRow('displayAll')">
+                        tout afficher
+                    </button>
+                    <button id="" type="button" class="btn btn-secondary w-100 rounded-0 mb-0 border-0" onclick="filterRow('hideAll')">
+                        tout enlever
+                    </button>
+                </div>
+            </div>
+            <!--Export VM to Excel-->
+            <a href="index.php?action=exportToExcel">
+                <button type="button" class="btn btn-success w-100 rounded-0 mb-0">
+                    Exporter sur Excel
+                </button>
+            </a>
         </div>
 
         <!--Row filter-->
+        <!--
         <div class="modal fade" id="modalRowFilter" tabindex="-1" role="dialog" aria-labelledby="modalRowFilter" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
@@ -174,7 +265,7 @@ ob_start();
                 </div>
             </div>
         </div>
-
+        -->
         <!--Snapshot Modal Window-->
         <div class="modal fade" id="modalSnapshot" tabindex="-1" role="dialog" aria-labelledby="modalSnapshot" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
@@ -234,7 +325,7 @@ ob_start();
         </div>
 
 
-
+        <div style="height: 47px"> </div>
         <div class="table-responsive-xl">
             <table class="table table-hover allVM" id="tableInventoryVm">
             <thead class="thead-dark sticky-top">
