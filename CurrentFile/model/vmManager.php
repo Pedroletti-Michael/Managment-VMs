@@ -20,7 +20,7 @@ function addVMToDB($formVMRequest)
     $dateEnd = $formVMRequest['inputEndDate'];
     if($dateEnd == null || $dateEnd == ''){
         $dateEnd = 'null';
-        $dateAnniversary = $dateStart + 183;
+        $dateAnniversary = date('Y-m-d', strtotime($dateStart. ' + 183 days'));
     }
     else{
         $dateAnniversary = 'null';
@@ -74,7 +74,7 @@ function addVMToDB($formVMRequest)
         ".$strSep.$dateStart.$strSep.",";
     }
 
-    if($dateAnniversary == null){
+    if($dateAnniversary == 'null' || $dateAnniversary == null){
         $dateAnniversary = 'null';
         $query = $query.$dateAnniversary.",
               ".$strSep.$dateEnd.$strSep.",
@@ -98,20 +98,7 @@ function addVMToDB($formVMRequest)
               ".$strSep.$usageType.$strSep.",
               ".$strSep.$cpu.$strSep.",
               ".$strSep.$ram.$strSep.",
-              ".$strSep.$disk.$strSep.",
-              ".$strSep.$descDisk.$strSep.",
-              ".$strSep.$network.$strSep.",
-              ".$strSep.$domain.$strSep.",
-              ".$strSep.$comment.$strSep.",
-              ".$strSep.$datacenter.$strSep.",
-              ".$strSep.$requestName.$strSep.",
-              ".$strSep.$raName.$strSep.",
-              ".$strSep.$tmName.$strSep.",
-              ".$strSep.$entity_id.$strSep.",
-              ".$strSep.$os_id.$strSep.",
-              ".$strSep.$snapshot_id.$strSep.",
-              ".$strSep.$backup_id.$strSep.",
-              ".$strSep.$cost_id.$strSep.")";
+              ".$strSep.$disk.$strSep.",";
     }
 
     if($descDisk == null || $descDisk == ""){
@@ -126,7 +113,7 @@ function addVMToDB($formVMRequest)
               ".$strSep.$domain.$strSep.",";
     }
 
-    if($comment == 'null'){
+    if($comment == 'null' || $comment == null){
         $query = $query.$comment.",
               ".$datacenter.",
               ".$strSep.$requestName.$strSep.",
@@ -719,6 +706,13 @@ function getAllVmNameAndId(){
     $querySelect = "SELECT `name`, `id` FROM `vm` ";
 
     return executeQuerySelect($querySelect);
+}
+
+function getVmNameAndIdByName($vmName){
+    $strSep = '\'';
+    $querySelect = "SELECT `id`, `name` FROM `vm` WHERE name = ". $strSep.$vmName.$strSep;
+
+    return  executeQuerySelect($querySelect);;
 }
 
 function researchVm($inputResearch){

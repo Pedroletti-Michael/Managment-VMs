@@ -122,11 +122,17 @@ function formVM($formVMRequest)
     if(addVMToDB($formVMRequest))
     {
         require_once 'model/mailSender.php';
+        $vmFromDb = getVmNameAndIdByName($formVMRequest['inputVMName']);
 
-        requestMail($_SESSION['userEmail'], $formVMRequest['inputVMName'], $formVMRequest['inputTMName'], $formVMRequest['inputRAName']);
-        $link = "http://vmman.heig-vd.ch/index.php?action=detailsVM&id=". getIdOfVmByName($formVMRequest['inputVMName']);
-        mailAdministrator($_SESSION['userEmail'], $formVMRequest['inputVMName'], $link);
-        displayHome();
+        if(count($vmFromDb) < 2){
+            displayForm();
+        }
+        else{
+            requestMail($_SESSION['userEmail'], $formVMRequest['inputVMName'], $formVMRequest['inputTMName'], $formVMRequest['inputRAName']);
+            $link = "http://vmman.heig-vd.ch/index.php?action=detailsVM&id=". getIdOfVmByName($formVMRequest['inputVMName']);
+            mailAdministrator($_SESSION['userEmail'], $formVMRequest['inputVMName'], $link);
+            displayHome();
+        }
     }
     else
     {
