@@ -42,3 +42,12 @@ function goTo(){
         window.location.href='#top';
     }
 }
+
+// ------------------- w3schools -------------------------
+function openRightMenu() {
+    document.getElementById("rightMenu").style.display = "block";
+}
+
+function closeRightMenu() {
+    document.getElementById("rightMenu").style.display = "none";
+}
