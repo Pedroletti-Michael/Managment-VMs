@@ -378,7 +378,7 @@ ob_start();
                         <td name="dateStart" style="min-width: 100px"><?php echo $value['dateStart']?></td>
                         <td style="display: none" name="dateAnniversary"><?php echo $value['dateAnniversary']?></td>
                         <td name="dateEnd" style="min-width: 100px"><?php echo $value['dateEnd']?></td>
-                        <td name="desc" ><?php echo $value['description']?></td>
+                        <td name="desc" ><?php if(strlen($value['description']) > 9){echo substr($value['description'],0,10)."...";}else{echo substr($value['description'],0,10);} ?></td>
                         <td style="display: none" name="ip"><?php echo $value['ip']?></td>
                         <td style="display: none" name="dnsName"><?php echo $value['dnsName']?></td>
                         <td style="display: none" name="redundance"><?php echo $value['redundance']?></td>
@@ -389,7 +389,7 @@ ob_start();
                         <td name="disk" ><?php echo $value['disk']?></td>
                         <td name="network" ><?php echo $value['network']?></td>
                         <td name="domain" ><?php if($value['domain'] == 1){echo 'oui';}else{echo 'non';}?></td>
-                        <td name="comment" ><?php echo $value['comment']?></td>
+                        <td name="comment" ><?php if(strlen($value['comment']) > 9){echo substr($value['comment'], 0, 10)."...";}else{echo substr($value['comment'], 0, 10);} ?></td>
                         <td name="customer" ><?php echo $value['customer']?></td>
                         <td name="Ra" ><?php echo $value['userRa']?></td>
                         <td name="Rt" ><?php echo $value['userRt']?></td>
