@@ -125,7 +125,7 @@ function formVM($formVMRequest)
         require_once 'model/mailSender.php';
         $vmFromDb = getVmNameAndIdByName($formVMRequest['inputVMName']);
 
-        if(count($vmFromDb) < 2){
+        if(count($vmFromDb) > 2){
             displayForm();
         }
         else{
