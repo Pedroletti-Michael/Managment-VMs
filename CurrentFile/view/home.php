@@ -21,7 +21,7 @@ ob_start();
 <div class="table-responsive-xl">
 
     <!--Confirmation command VM modal)-->
-    <?php if(isset($displayModalConfirm) && $displayModalConfirm == true) : ?>
+    <?php if(isset($_SESSION['$displayModalConfirm']) && $_SESSION['$displayModalConfirm'] == true) : ?>
         <div class="modal fade" id="confirmationCommandVM" tabindex="-1" role="dialog" aria-labelledby="confirmationCommandVM" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
