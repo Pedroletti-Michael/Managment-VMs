@@ -67,7 +67,6 @@ function formVM($formVMRequest)
         $formVMRequest['inputEndDate'] = '';
     }
 
-
     if(isset($formVMRequest['Academique']))
     {
         $formVMRequest['usingVM'] = "Academique";
@@ -129,11 +128,9 @@ function formVM($formVMRequest)
             displayForm();
         }
         else{
-            /*
             requestMail($_SESSION['userEmail'], $formVMRequest['inputVMName'], $formVMRequest['inputTMName'], $formVMRequest['inputRAName']);
             $link = "http://vmman.heig-vd.ch/index.php?action=detailsVM&id=". getIdOfVmByName($formVMRequest['inputVMName']);
             mailAdministrator($_SESSION['userEmail'], $formVMRequest['inputVMName'], $link);
-            */
             $_SESSION['$displayModalConfirm'] = true;
             displayHome();
         }
