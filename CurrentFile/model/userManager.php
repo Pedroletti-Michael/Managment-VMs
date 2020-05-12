@@ -59,8 +59,20 @@ function adVerification($userLogin, $userPwd){
     }
 }
 
+/**
+ * Get all users from DB
+ */
 function getAllUsers(){
     $query = 'SELECT mail, lastname, firstname, type, user_id FROM user';
+
+    return executeQuerySelect($query);
+}
+
+/**
+ * @return array|null
+ */
+function getAllAdmin(){
+    $query = 'SELECT mail, lastname, firstname, type, user_id FROM user WHERE type = 1';
 
     return executeQuerySelect($query);
 }

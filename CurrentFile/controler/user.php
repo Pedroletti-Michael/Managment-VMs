@@ -106,6 +106,35 @@ function saveModificationAboutUsers($allData){
     require_once 'model/userManager.php';
     $allUsers = getAllUsers();
 
+    $adminFromForm = explode(";", $allData['usersAfter']);
+    foreach($adminFromForm as $adminForm){
+        foreach($allUsers as $user){
+            if($adminForm == $user['user_id']){
+                if($user['type'] == 0){
+                    updateType($user['user_id'], true);
+                }
+            }
+        }
+    }
+
+    $adminFromDb = getAllAdmin();
+    foreach($adminFromDb as $adminDb){
+        $res = false;
+        foreach($adminFromForm as $adminForm){
+            if($adminForm == $adminDb['user_id']){
+                $res = true;
+            }
+        }
+        if(!$res){
+            updateType($adminDb['user_id'], false);
+        }
+    }
+
+
+
+    displayManagementUser();
+
+    /*
     $k = array();
     for($i = 0; $i < count($allData); $i++){
         $k[$i] = key($allData);
@@ -129,9 +158,5 @@ function saveModificationAboutUsers($allData){
                 }
             }
         }
-    }
-
-
-
-    displayManagementUser();
+    }*/
 }

@@ -25,6 +25,26 @@ ob_start();
                 lastScrollTop = st;
             });
         </script>
+        <script>
+            var usersBefore = <?= json_encode($allUsers); ?>;
+            function tranferUser(){
+                var checkbox, i, y, usersAfter;
+                checkbox = document.getElementsByClassName("checkBox");
+                usersAfter= "";
+
+                for(i = 0; i < checkbox.length; i++){
+                    if(checkbox[i].checked){
+                        for(y = 0; y < usersBefore.length; y++){
+                            if(checkbox[i].name == "checkbox"+usersBefore[y]["user_id"]){
+                                usersAfter = usersAfter + usersBefore[y]["user_id"] + ";";
+                            }
+                        }
+                    }
+                }
+                document.getElementById("usersAfter").value = usersAfter;
+
+            }
+        </script>
 
         <meta charset="UTF-8">
         <title>Gestion VM - HEIG-VD</title>
@@ -60,7 +80,7 @@ ob_start();
                 <?php foreach ($allUsers as $value): ?>
                     <tr>
                         <td name="goToButton">
-                            <input name="checkbox<?php echo $value['user_id']?>" type="checkbox" <?php if($value['type'] == 1){echo 'checked'; } ?>>
+                            <input name="checkbox<?php echo $value['user_id']?>" class="checkBox" type="checkbox" <?php if($value['type'] == 1){echo 'checked'; } ?>>
                         </td>
                         <td name="lastname<?php echo $value['user_id']?>"><?php echo $value['lastname']?></td>
                         <td name="firstname<?php echo $value['user_id']?>"><?php echo $value['firstname']?></td>
@@ -71,12 +91,15 @@ ob_start();
                 </tbody>
             </table>
         </div>
+        <input type="hidden" name="usersAfter" id="usersAfter">
         <div class="w-50-m m-auto responsiveDisplay pt-2" id="bot">
             <div class="w-100 d-inline-block">
                 <div class="w-75 float-left p-1" style="height: 50px">
-                    <button type="submit" class="btn btn-primary w-100 responsiveButton">
-                        <h6>Enregistrer</h6>
-                    </button>
+                    <a onclick="tranferUser()">
+                        <button type="submit" class="btn btn-primary w-100 responsiveButton">
+                            <h6>Enregistrer</h6>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
