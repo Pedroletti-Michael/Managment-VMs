@@ -221,24 +221,24 @@ function displayDetailsVM($idVM)
 function updateVM($vmInformation)
 {
     require_once "model/vmManager.php";
+    $_SESSION['$displayModalConfirm'] = false;
 
-    if($vmInformation['inputEndDate'] != ""){
+    if($vmInformation['inputEndDate'] != "")
+    {
         if (strtotime($vmInformation['inputComissioningDate']) > strtotime($vmInformation['inputEndDate']))
         {
-            if($_SESSION['userType'] == 0)
+            if (strtotime($vmInformation['inputComissioningDate']) > strtotime($vmInformation['inputEndDate']) || strtotime($vmInformation['inputComissioningDate']) < strtotime('now'))
             {
-                displayHome();
-            }
-            elseif($_SESSION['userType'] == 1)
-            {
-                $allVM = getAllVM();
-                $_GET['action'] = "allVM";
-                require 'view/allVM.php';
-            }
-            else
-            {
-                $_GET['action'] = "signIn";
-                require 'view/signIn.php';
+                if ($_SESSION['userType'] == 0) {
+                    displayHome();
+                } elseif ($_SESSION['userType'] == 1) {
+                    $allVM = getAllVM();
+                    $_GET['action'] = "allVM";
+                    require 'view/allVM.php';
+                } else {
+                    $_GET['action'] = "signIn";
+                    require 'view/signIn.php';
+                }
             }
         }
     }
@@ -337,6 +337,7 @@ function updateVM($vmInformation)
         elseif($_SESSION['userType'] == 1)
         {
             $allVM = getAllVM();
+            $_SESSION['$displayModalConfirm'] = true;
             $_GET['action'] = "allVM";
             require 'view/allVM.php';
         }
@@ -366,14 +367,120 @@ function updateVM($vmInformation)
     }
 }
 
-function vmAccepted()
+function vmAccepted($vmInformation)
 {
     $vmStatus = true;
+    $_SESSION['$displayModalConfirm'] = false;
 
     require_once "model/vmManager.php";
 
-    if(updateStatusVM($_SESSION['idVM'], $vmStatus))
+    if($vmInformation['inputEndDate'] != "")
     {
+        if (strtotime($vmInformation['inputComissioningDate']) > strtotime($vmInformation['inputEndDate']))
+        {
+            if (strtotime($vmInformation['inputComissioningDate']) > strtotime($vmInformation['inputEndDate']) || strtotime($vmInformation['inputComissioningDate']) < strtotime('now'))
+            {
+                if ($_SESSION['userType'] == 0) {
+                    displayHome();
+                } elseif ($_SESSION['userType'] == 1) {
+                    $allVM = getAllVM();
+                    $_GET['action'] = "allVM";
+                    require 'view/allVM.php';
+                } else {
+                    $_GET['action'] = "signIn";
+                    require 'view/signIn.php';
+                }
+            }
+        }
+    }
+
+    if(strlen($vmInformation['ti']) > 1000 || strlen($vmInformation['objective']) > 1000){
+        if($_SESSION['userType'] == 0)
+        {
+            displayHome();
+        }
+        elseif($_SESSION['userType'] == 1)
+        {
+            $allVM = getAllVM();
+            $_GET['action'] = "allVM";
+            require 'view/allVM.php';
+        }
+        else
+        {
+            $_GET['action'] = "signIn";
+            require 'view/signIn.php';
+        }
+    }
+
+    if(isset($vmInformation['Academique']))
+    {
+        $vmInformation['usingVM'] = "Academique";
+    }
+    if (isset($vmInformation['RaD']))
+    {
+        if(!isset($vmInformation['usingVM']))
+        {
+            $vmInformation['usingVM'] = "RaD";
+        }
+        else
+        {
+            $vmInformation['usingVM'] = $vmInformation['usingVM'].", RaD";
+        }
+    }
+    if (isset($vmInformation['Operationnel']))
+    {
+        if(!isset($vmInformation['usingVM']))
+        {
+            $vmInformation['usingVM'] = "Operationnel";
+        }
+        else
+        {
+            $vmInformation['usingVM'] = $vmInformation['usingVM'].", Operationnel";
+        }
+    }
+    if (isset($vmInformation['Test']))
+    {
+        if(!isset($vmInformation['usingVM']))
+        {
+            $vmInformation['usingVM'] = "Test";
+        }
+        else
+        {
+            $vmInformation['usingVM'] = $vmInformation['usingVM'].", Test";
+        }
+    }
+
+    unset($vmInformation['Academique']);
+    unset($vmInformation['RaD']);
+    unset($vmInformation['Operationnel']);
+    unset($vmInformation['Test']);
+
+    if(isset($vmInformation['domainEINET']))
+    {
+        $vmInformation['domainEINET'] = 1;
+    }
+    else
+    {
+        $vmInformation['domainEINET'] = 0;
+    }
+
+    if($vmInformation['securityFormControlSelect'] == "OS mis à jour par le responsable technique")
+    {
+        $vmInformation['securityFormControlSelect'] = 1;
+    }
+    elseif($vmInformation['securityFormControlSelect'] == "OS mis à jour par le SI (update automatiques)")
+    {
+        $vmInformation['securityFormControlSelect'] = 0;
+    }
+
+    if($vmInformation['editCriticity'] == "" || $vmInformation['editCriticity'] == " ")
+    {
+        $vmInformation['editCriticity'] = 0;
+    }
+
+    if(updateStatusVM($_SESSION['idVM'], $vmStatus) && updateVMInformation($vmInformation, $_SESSION['idVM']))
+    {
+        $_SESSION['$displayModalConfirm'] = true;
         displayAllVM("","");
     }
     else
@@ -401,11 +508,13 @@ function vmRefused()
 function renewwalAccepted()
 {
     $vmStatus = false;
+    $_SESSION['$displayModalConfirm'] = false;
 
     require_once "model/vmManager.php";
 
     if(updateStatusVM($_SESSION['idVM'], $vmStatus))
     {
+        $_SESSION['$displayModalConfirm'] = true;
         displayAllVM("");
     }
     else

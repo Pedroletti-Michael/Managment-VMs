@@ -57,7 +57,7 @@ if(isset($_GET['action']))
             updateVM($_POST);
             break;
         case 'vmAccepted':
-            vmAccepted();
+            vmAccepted($_POST);
             break;
         case 'vmRefused':
             vmRefused();
