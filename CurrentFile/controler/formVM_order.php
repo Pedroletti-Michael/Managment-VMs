@@ -41,8 +41,10 @@ function formVM($formVMRequest)
 {
     require_once 'model/vmManager.php';
     $_SESSION['$displayModalConfirm'] = false;
+    $errorForm = false;
     $allVmName = getVmName();
     $nameResult = false;
+
     foreach ($allVmName as $name){
         if($formVMRequest['inputVMName'] == $name){
             $name = true;
@@ -50,21 +52,29 @@ function formVM($formVMRequest)
     }
 
     if(strlen($formVMRequest['ti']) > 1000 || strlen($formVMRequest['objective']) > 1000){
+        $errorForm = true;
         displayForm();
     }
 
     if($nameResult){
+        $errorForm = true;
         displayForm();
     }
 
     if(isset($formVMRequest['inputEndDate']) && $formVMRequest['inputEndDate'] != null || $formVMRequest['inputEndDate'] != ''){
         if (strtotime($formVMRequest['inputComissioningDate']) > strtotime($formVMRequest['inputEndDate']) || strtotime($formVMRequest['inputComissioningDate']) < strtotime('now'))
         {
+            $errorForm = true;
             displayForm();
         }
     }
     else{
         $formVMRequest['inputEndDate'] = '';
+    }
+
+    if($errorForm == true)
+    {
+        exit();
     }
 
     if(isset($formVMRequest['Academique']))
