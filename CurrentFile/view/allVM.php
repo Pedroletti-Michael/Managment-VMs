@@ -18,6 +18,23 @@ ob_start();
         <title>Gestion VM - HEIG-VD</title>
     </head>
     <body>
+
+    <!--Confirmation command VM modal)-->
+    <?php if(isset($_SESSION['$displayModalConfirm']) && $_SESSION['$displayModalConfirm'] == true) : ?>
+        <div class="modal fade" id="confirmationCommandVM" tabindex="-1" role="dialog" aria-labelledby="confirmationCommandVM" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h6>Votre action à bel et bien été effectuée</h6>
+
+                        <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>$('.modal').modal('show')</script>
+    <?php endif; ?>
+
     <form method="post" action="../index.php?action=allVM">
         <!------------- Btn Filtrer ------------>
         <button type="button" class="btn btn-primary rounded-0 w-150-px position-fixed mt-1 " style="right: 0.25rem;" onclick="openRightMenu()">
