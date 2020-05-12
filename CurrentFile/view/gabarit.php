@@ -28,8 +28,99 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 </head>
 <body>
-<!-------------------------- Gabarit max-width : 1000px and phone ------------------------------->
-<nav class="display-phone navbar navbar-dark header-top fixed-top flex-lg-nowrap p-0 shadow w-100 navbar-expand-lg" style="background-color: #e30613;flex-wrap: nowrap !important; height: 48px">
+<!-------------------------- Gabarit for phones ------------------------------->
+<nav class="display-phone w-100">
+    <button type="button" class="rounded-circle bg-dark m-auto fixed-bottom" style="height: 55px; width: 55px;bottom: 10px!important;" onclick="closePhoneMenu()" id="buttonClose">
+        <svg class="bi bi-x" width="40px" height="40px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: lightgray;">
+            <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
+        </svg>
+    </button>
+    <button type="button" class="rounded-circle bg-dark m-auto fixed-bottom" style="height: 55px; width: 55px;bottom: 10px!important;" onclick="openPhoneMenu()" id="buttonOpen">
+        <svg class="bi bi-filter mt-1" width="40px" height="40px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: lightgray;">
+            <path fill-rule="evenodd" d="M6 10.5a.5.5 0 01.5-.5h3a.5.5 0 010 1h-3a.5.5 0 01-.5-.5zm-2-3a.5.5 0 01.5-.5h7a.5.5 0 010 1h-7a.5.5 0 01-.5-.5zm-2-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+        </svg>
+    </button>
+    <div class="w3-sidebar w3-bar-block w3-card w3-animate-bottom w-100" style="display:none;bottom: 0;" id="phoneMenu">
+        <!-- Search form -->
+        <div class="w-100">
+            <form method="post" action="../index.php?action=research" class="btn-group search-responsive w-100">
+                <img src="../images/VRAI-LOGO.png" style="height: 44px; width: auto">
+                <input class="form-control form-control-light w-100 rounded-0" style="font-size: 20px" name="inputResearch" type="text" placeholder="Recherche" aria-label="Recherche" <?php if(!isset($_SESSION['userType']) && $_SESSION == null){echo 'disabled'; } ?>>
+            </form>
+        </div>
+        <hr color="lightgrey" style="height: 1px;" class="w-75">
+        <div class="w-100 m-auto text-center pt-1">
+            <?php if ($_GET['action'] == "home"): ?>
+                <a href="index.php?action=home" class="alert-link active color-lightgrey text-decoration-none"><h5 class="color-active">Mes VM</h5></a>
+            <?php else : ?>
+                <a href="index.php?action=home" class="color-lightgrey text-decoration-none"><h5 class="color-lightgrey">Mes VM</h5></a>
+            <?php endif; ?>
+        </div>
+        <div class="w-100 m-auto text-center pt-1">
+            <?php if ($_GET['action'] == "form"): ?>
+                <a class="last alert-link active color-lightgrey text-decoration-none" href="index.php?action=form"><h5 class="color-active">Formulaire</h5></a>
+            <?php else : ?>
+                <a class="last color-lightgrey text-decoration-none" href="index.php?action=form"><h5 class="color-lightgrey">Formulaire</h5></a>
+            <?php endif; ?>
+        </div>
+        <div class="w-100 fixed-bottom" style="bottom: 20px">
+            <div class="float-right mr-4 w-auto text-decoration-none">
+                <?php if ($_GET['action'] == "signIn"): ?>
+                    <?php if(isset($_SESSION['userType'])): ?>
+                        <a href="index.php?action=signOut" class="alert-link active"><h5 class="color-active">Déconnexion</h5></a>
+                    <?php else : ?>
+                        <a href="index.php?action=signIn" class="alert-link active"><h5 class="color-lightgrey">Se connecter</h5></a>
+                    <?php endif; ?>
+                <?php else : ?>
+                    <?php if(isset($_SESSION['userType'])): ?>
+                        <a href="index.php?action=signOut"><h5 style="color: lightgray">Déconnexion</h5></a>
+                    <?php else : ?>
+                        <a href="index.php?action=signIn"><h5 style="color: lightgray">Se connecter</h5></a>
+                    <?php endif; ?>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="w-100 m-auto text-center pt-1">
+        <?php if(isset($_SESSION['userType']) && $_SESSION['userType']==1):?>
+            <hr color="lightgrey" style="height: 1px;" class="w-50">
+            <!----------------- allVM ---------------->
+            <?php if ($_GET['action'] == "allVM"): ?>
+                <a href="index.php?action=allVM" class="alert-link active"><h5 class="color-active">Inventaire VM</h5></a>
+            <?php else : ?>
+                <a href="index.php?action=allVM"><h5 class="color-lightgrey">Inventaire VM</h5></a>
+            <?php endif; ?>
+            <!----------------- confirmationVM ---------------->
+            <?php if ($_GET['action'] == "confirmationVM"): ?>
+                <a href="index.php?action=confirmationVM" class="alert-link active"><h5 class="color-active">Demandes</h5></a>
+            <?php else : ?>
+                <a href="index.php?action=confirmationVM"><h5 class="color-lightgrey">Demandes</h5></a>
+            <?php endif; ?>
+            <!----------------- renewalVM ---------------->
+            <?php if ($_GET['action'] == "renewalVM"): ?>
+                <a href="index.php?action=renewalVM" class="alert-link active"><h5 class="color-active">Renouvellements</h5></a>
+            <?php else : ?>
+                <a href="index.php?action=renewalVM"><h5 class="color-lightgrey">Renouvellements</h5></a>
+            <?php endif; ?>
+            <hr color="lightgrey" style="height: 1px;" class="w-75">
+            <!----------------- formManagement ---------------->
+            <?php if ($_GET['action'] == "formManagement"): ?>
+                <a class="last alert-link active" href="index.php?action=formManagement&array=entity"><h5 class="color-active">Gestion du formulaire</h5></a>
+            <?php else : ?>
+                <a class="last" href="index.php?action=formManagement&array=entity"><h5 class="color-lightgrey">Gestion du formulaire</h5></a>
+            <?php endif; ?>
+            <!----------------- updateUser ---------------->
+            <?php if ($_GET['action'] == "displayManagementUser"): ?>
+                <a class="last alert-link active" href="index.php?action=displayManagementUser"><h5 class="color-active">Gestions des utilisateurs</h5></a>
+            <?php else : ?>
+                <a href="index.php?action=displayManagementUser"><h5 class="color-lightgrey">Gestions des utilisateurs</h5></a>
+            <?php endif; ?>
+        <?php endif; ?>
+        </div>
+    </div>
+</nav>
+<!-------------------------- Gabarit max-width : 1000px ------------------------------->
+<nav class="display-1000 navbar navbar-dark header-top fixed-top flex-lg-nowrap p-0 shadow w-100 navbar-expand-lg" style="background-color: #e30613;flex-wrap: nowrap !important; height: 48px">
     <div class="logo-responsive navbar-brand mr-0 p-0 font-weight-bold float-left" href="#" style="font-family: 'Century Gothic'">
         <img src="../images/VRAI-LOGO.png" style="height: 48px; width: auto">
         <a class="text-decoration-none ml-1" href="index.php?action=home" style="color: white; font-size: 11px">Gestion VM</a>
@@ -104,58 +195,6 @@
             <?php else : ?>
                 <a class="last" href="index.php?action=displayManagementUser">Gestions des utilisateurs</a>
             <?php endif; ?>
-            <!----------------- vm ---------------->
-            <!--
-            <a class="title">Base de données</a>
-            <?php if ($_GET['action'] == "vm"): ?>
-                <a href="index.php?action=vm" class="alert-link active">vm</a>
-            <?php else : ?>
-                <a href="index.php?action=vm">vm</a>
-            <?php endif; ?>
-            -->
-            <!----------------- user ---------------->
-            <!--
-            <?php if ($_GET['action'] == "user"): ?>
-                <a href="index.php?action=user" class="alert-link active">user</a>
-            <?php else : ?>
-                <a href="index.php?action=user">user</a>
-            <?php endif; ?>
-            <!----------------- entity ---------------->
-            <!--
-            <?php if ($_GET['action'] == "entity"): ?>
-                <a href="index.php?action=entity" class="alert-link active">entity</a>
-            <?php else : ?>
-                <a href="index.php?action=entity">entity</a>
-            <?php endif; ?>
-            <!----------------- os ---------------->
-            <!--
-            <?php if ($_GET['action'] == "os"): ?>
-                <a href="index.php?action=os" class="alert-link active">os</a>
-            <?php else : ?>
-                <a href="index.php?action=os">os</a>
-            <?php endif; ?>
-            <!----------------- snapshot ---------------->
-            <!--
-            <?php if ($_GET['action'] == "snapshot"): ?>
-                <a href="index.php?action=snapshot" class="alert-link active">snapshot</a>
-            <?php else : ?>
-                <a href="index.php?action=snapshot">snapshot</a>
-            <?php endif; ?>
-            <!----------------- backup ---------------->
-            <!--
-            <?php if ($_GET['action'] == "backup"): ?>
-                <a href="index.php?action=backup" class="alert-link active">backup</a>
-            <?php else : ?>
-                <a href="index.php?action=backup">backup</a>
-            <?php endif; ?>
-            <!----------------- pricing ---------------->
-            <!--
-            <?php if ($_GET['action'] == "pricing"): ?>
-                <a href="index.php?action=pricing" class="alert-link active">pricing</a>
-            <?php else : ?>
-                <a href="index.php?action=pricing">pricing</a>
-            <?php endif; ?>
-            -->
         <?php endif; ?>
     </div>
 </nav>

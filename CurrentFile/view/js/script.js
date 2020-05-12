@@ -51,3 +51,15 @@ function openRightMenu() {
 function closeRightMenu() {
     document.getElementById("rightMenu").style.display = "none";
 }
+
+function openPhoneMenu() {
+    document.getElementById("phoneMenu").style.display = "block";
+    document.getElementById("buttonOpen").style.display = "none";
+    document.getElementById("buttonClose").style.display = "block";
+}
+
+function closePhoneMenu() {
+    document.getElementById("phoneMenu").style.display = "none";
+    document.getElementById("buttonOpen").style.display = "block";
+    document.getElementById("buttonClose").style.display = "none";
+}

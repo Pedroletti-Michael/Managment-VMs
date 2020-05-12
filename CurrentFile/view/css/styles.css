@@ -6,13 +6,21 @@
     -ms-user-select: none;
     user-select: none;
 }
+.display-1000{
+    display: none!important;
+}
 .display-phone{
     display: none!important;
 }
 .allVM th, .allVM td{
     width: auto;
 }
-
+.color-lightgrey{
+    color: lightgray;
+}
+.color-active{
+    color: #007bff;
+}
 .searchBoxUser{
     overflow-y: scroll;
     -webkit-overflow-y: scroll;
@@ -89,6 +97,7 @@
 .w3-card,.w3-card-2{box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)}
 .w3-card-4,.w3-hover-shadow:hover{box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19)}
 .w3-animate-right{position:relative;animation:animateright 0.4s}@keyframes animateright{from{right:-300px;opacity:0} to{right:0;opacity:1}}
+.w3-animate-bottom{position:relative;animation:animatebottom 0.8s}@keyframes animatebottom{from{bottom:-90%;opacity:0;} to{bottom:0;opacity:1;}}
 
 /* ------------------------------------------- Responsive correction -------------------------------------------------*/
 @media screen and (min-width: 1050px) {
@@ -156,11 +165,14 @@
 }
 
 /* ------------------------------------------- Responsive for phone -------------------------------------------------*/
-@media handheld,(max-device-width: 1000px) and (max-width: 900px) , screen and (max-width: 1050px){
+@media screen and (max-width: 1050px){
+    #main{
+        margin-top: -21px!important;
+    }
     .display-laptop{
         display: none!important;
     }
-    .display-phone{
+    .display-1000{
         display: inline-block!important;
     }
     #responsiveDisplay{
@@ -266,5 +278,13 @@
     .responsive-phone{
         width: 100%;
         padding: 0% 15% 0px;
+    }
+}
+@media handheld,(max-device-width: 1000px) and (max-width: 900px){
+    .display-phone{
+        display: inline-block!important;
+    }
+    .display-1000{
+        display: none!important;
     }
 }
