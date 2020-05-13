@@ -24,7 +24,7 @@ ob_start();
     </h3>
     <!--Buttons-->
     <form method="post" action="../index.php?action=formManagement">
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <div class="btn-group btn-group-toggle w-100-responsive" data-toggle="buttons">
             <?php if ($arrayToDisplay == "entity"): ?>
                 <a href="../index.php?action=formManagement&array=entity" class="btn btn-secondary active" >
                     <input type="radio" name="options" id="option1" checked> Entity
@@ -75,14 +75,14 @@ ob_start();
                     }
                     ?>
                 </table>
-                <div class="float-left w-33 responsiveDisplay pr-1 mb-3">
+                <div class="float-left w-33 responsiveDisplay pr-1 mb-3" id="responsiveDisplay">
                     <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#addEntity">Ajouter</button>
                 </div>
-                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3">
-                    <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#modifyEntity">Modifier</button>
+                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-primary w-100 mb-0" data-toggle="modal" data-target="#modifyEntity">Modifier</button>
                 </div>
-                <div class="float-left w-33 responsiveDisplay pl-1 mb-3">
-                    <button type="button" class="btn btn-danger w-100" data-toggle="modal" data-target="#deleteEntity">Supprimer</button>
+                <div class="float-left w-33 responsiveDisplay pl-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-danger w-100 mb-70-px" data-toggle="modal" data-target="#deleteEntity">Supprimer</button>
                 </div>
                 <!--Entity (confirmation delete modal)-->
                 <div class="modal fade" id="confirmationDeleteEntity" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteEntity" aria-hidden="true">
@@ -199,14 +199,14 @@ ob_start();
                     }
                     ?>
                 </table>
-                <div class="float-left w-33 responsiveDisplay pr-1 mb-3">
+                <div class="float-left w-33 responsiveDisplay pr-1 mb-3" id="responsiveDisplay">
                     <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#addOS">Ajouter</button>
                 </div>
-                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3">
-                    <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#modifyOS">Modifier</button>
+                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-primary w-100 mb-0" data-toggle="modal" data-target="#modifyOS">Modifier</button>
                 </div>
-                <div class="float-left w-33 responsiveDisplay pl-1 mb-3">
-                    <button type="button" class="btn btn-danger w-100" data-toggle="modal" data-target="#confirmationDeleteOS" onclick="confirmationDeleteOS()">Supprimer</button>
+                <div class="float-left w-33 responsiveDisplay pl-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-danger w-100 mb-70-px" data-toggle="modal" data-target="#confirmationDeleteOS" onclick="confirmationDeleteOS()">Supprimer</button>
                 </div>
 
                 <!--OS(confirmation delete modal)-->
@@ -390,14 +390,14 @@ ob_start();
                     }
                     ?>
                 </table>
-                <div class="float-left w-33 responsiveDisplay pr-1 mb-3">
+                <div class="float-left w-33 responsiveDisplay pr-1 mb-3" id="responsiveDisplay">
                     <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#addSnapshots">Ajouter</button>
                 </div>
-                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3">
-                    <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#modifySnapshots">Modifier</button>
+                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-primary w-100 mb-0" data-toggle="modal" data-target="#modifySnapshots">Modifier</button>
                 </div>
-                <div class="float-left w-33 responsiveDisplay pl-1 mb-3">
-                    <button type="button" class="btn btn-danger w-100" data-toggle="modal" data-target="#confirmationDeleteSnapshots" onclick="confirmationDeleteSnapshots()">Supprimer</button>
+                <div class="float-left w-33 responsiveDisplay pl-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-danger w-100 mb-70-px" data-toggle="modal" data-target="#confirmationDeleteSnapshots" onclick="confirmationDeleteSnapshots()">Supprimer</button>
                 </div>
 
                 <!--Snapshots(confirmation delete modal)-->
@@ -575,14 +575,14 @@ ob_start();
                     ?>
                 </table>
 
-                <div class="float-left w-33 responsiveDisplay pr-1 mb-3">
+                <div class="float-left w-33 responsiveDisplay pr-1 mb-3" id="responsiveDisplay">
                     <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#addBackup">Ajouter</button>
                 </div>
-                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3">
-                    <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#modifyBackup">Modifier</button>
+                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-primary w-100 mb-0" data-toggle="modal" data-target="#modifyBackup">Modifier</button>
                 </div>
-                <div class="float-left w-33 responsiveDisplay pl-1 mb-3">
-                    <button type="button" class="btn btn-danger w-100" data-toggle="modal" data-target="#confirmationDeleteBackup" onclick="confirmationDeleteBackup()">Supprimer</button>
+                <div class="float-left w-33 responsiveDisplay pl-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-danger w-100 mb-70-px" data-toggle="modal" data-target="#confirmationDeleteBackup" onclick="confirmationDeleteBackup()">Supprimer</button>
                 </div>
 
                 <!--Backup(confirmation delete modal)-->

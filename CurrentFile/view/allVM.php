@@ -188,7 +188,7 @@ ob_start();
             <!--Export VM to Excel-->
             <a href="index.php?action=exportToExcel">
                 <button type="button" class="btn btn-success w-100 rounded-0 mb-0 text-left">
-                    Exporter sur Excel
+                    Exporter
                 </button>
             </a>
         </div>

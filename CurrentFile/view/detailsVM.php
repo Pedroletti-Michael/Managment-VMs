@@ -73,7 +73,7 @@ ob_start();
                     <label for="cpu" class="font-weight-bold">CPU<a style="color: red"> *</a></label>
                     <input type="number" class="form-control form form"  value="<?php echo $dataVM[0]['cpu'] ?>" id="inputCPU" name="inputCPU" aria-describedby="cpuHelp" min="1" max="99" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
                 </div>
-                <div class="form-group w-50 float-right pl-1" id="responsiveDisplay">
+                <div class="form-group w-50 float-right pl-1">
                     <!--RAM-->
                     <label for="RAM" class="font-weight-bold mr-2">RAM (GB)<a style="color: red"> *</a></label>
                     <input type="number" class="form-control form form mr-3" value="<?php echo $dataVM[0]['ram'] ?>" id="inputRAM" name="inputRAM" aria-describedby="ramHelp" min="1" max="256" required <?php if($_SESSION['userType']==0){echo "readonly";} ?>>
@@ -93,7 +93,7 @@ ob_start();
                 </div>
             </div>
             <div class="form-group w-50 float-right pl-4 mb-0" id="responsiveDisplay">
-                <div class="form-group w-50 float-left pr-1">
+                <div class="form-group w-50 float-left pr-1" id="responsiveDisplay">
                     <!--Name of the technical manager-->
                     <label for="inputTMNam" class="font-weight-bold">Responsable technique<a style="color: red"> *</a></label>
                     <input type="text" class="form-control form form" value="<?php echo $dataVM[0]['userRt'] ?>" id="inputTMNam" name="inputTMNam" aria-describedby="tmNameHelp" placeholder="Entrer une adresse de messagerie" required onkeyup="searchFunctionTm()">
@@ -395,7 +395,6 @@ ob_start();
                     }
                     ?>
                 </select>
-
                 <input type="hidden" name="editRedundance" id="editRedundance" value="<?php echo $dataVM[0]['redundance'] ?>" readonly required>
             </div>
             <!--Criticity-->

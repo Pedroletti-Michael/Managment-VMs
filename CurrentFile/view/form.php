@@ -89,7 +89,7 @@ ob_start();
             </div>
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <!--Name of the technical manager-->
-                <div class="form-group w-50 float-left pr-1">
+                <div class="form-group w-50 float-left pr-1" id="responsiveDisplay">
                     <label for="inputTMNam" class="font-weight-bold">Responsable technique<a style="color: red"> *</a></label>
                     <input type="text" class="form-control form form" id="inputTMNam" name="inputTMNam" aria-describedby="tmNameHelp" placeholder="Sélectionner une personne" required onkeyup="searchFunctionTm()">
                     <small id="inputTMNameHelp" class="form-text text-muted">Personne qui va gérer la VM</small>
@@ -108,7 +108,7 @@ ob_start();
                     </ul>
                     <input type="hidden" name="inputTMName" id="inputTMName" readonly required>
                 </div>
-                <div class="form-group w-50 float-right pl-1 mb-0">
+                <div class="form-group w-50 float-right pl-1 mb-0" id="responsiveDisplay">
                     <!--Name of the responsible administrator-->
                     <label for="inputRANam" class="font-weight-bold">Responsable administratif<a style="color: red"> *</a></label>
                     <input type="text" class="form-control form form" id="inputRANam" name="inputRANam" aria-describedby="raNameHelp" placeholder="Sélectionner une personne" required onkeyup="searchFunctionRa()">
