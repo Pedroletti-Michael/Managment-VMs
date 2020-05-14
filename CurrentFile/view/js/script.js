@@ -35,8 +35,8 @@ function checkOS(value){
 
 function goTo(){
     var navBtn = document.getElementById("navButton");
-    if(navBtn.value == "Bot"){
-        window.location.href='#bot';
+    if(navBtn.value == "Aller en bas"){
+        window.location.href='#bottom';
     }
     else{
         window.location.href='#top';
