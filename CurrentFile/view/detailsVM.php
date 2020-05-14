@@ -52,7 +52,7 @@ ob_start();
 <body>
 <div class="container-fluid pt-3">
     <h3 class="text-center border border-danger border-left-0 border-right-0 border-top-0 pb-3">Formulaire de demande de VM</h3>
-    <form method="post" action="../index.php?action=updateVM" class="mb-4">
+    <form method="post" action="../index.php?action=updateVM">
         <div class="d-inline-block w-100">
             <!--Name of the VM-->
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
@@ -376,7 +376,7 @@ ob_start();
         <div class="d-inline-block w-100">
             <!--Redundance-->
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
-                <label for="editRedundance" class="font-weight-bold">Redondance</label>
+            <label for="editRedundance" class="font-weight-bold">Redondance</label>
                 <select class="js-example-basic-multiple form-control form form" multiple="multiple" id="select2Redundance">
                     <?php
                     $dataRedundances = explode(";", $dataVM[0]['redundance']);
@@ -419,38 +419,36 @@ ob_start();
         <!--Save the modifications-->
         <a onclick="getValue()"><button type="submit" id="submitButton" class="btn btn-primary m-auto d-inline responsiveDisplay">Enregistrer les modifications</button></a>
     </form>
-        <?php
-        if($dataVM[0]['vmStatus']==0){
-            //accepted
-            echo '<a href="index.php?action=vmAccepted" id="submitButton"><button type="button" class="btn btn-success float-right ml-1 responsiveDisplay">Confirmer la demande</button></a>';
-            //refused
-            echo '
-                    <form method="post" action="../index.php?action=vmRefused">
-                        <button type="button" class="btn btn-danger float-right responsiveDisplay" data-toggle="modal" data-target="#requestDenied">Refuser la demande</button>
-                        <div class="modal fade" id="requestDenied" tabindex="-1" role="dialog" aria-labelledby="requestDeniedLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="requestDenied">Raison du refus de la demande</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <textarea class="form-control" rows="5" id="deniedRequestInformation" name="deniedRequestInformation" maxlength="1000" required></textarea>
-                                        <small id="deniedRequestInformationHelp" class="form-text text-muted">Veuillez décrire la raison du refus de la demande dans le champs texte ci-dessus.</small>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a><button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button></a>
-                                        <a><button type="submit" class="btn btn-primary" style="margin-bottom: 0px !important;">Envoyer</button></a>
-                                    </div>
-                                </div>
+    <?php if($dataVM[0]['vmStatus']==0): ?>
+        <div style="top: -38px;position: relative!important;">
+            <!-- Accepted -->
+            <a href="index.php?action=vmAccepted" id="submitButton"><button type="button" class="btn btn-success float-right ml-1 responsiveDisplay">Confirmer la demande</button></a>
+            <!-- Refused -->
+            <form method="post" action="../index.php?action=vmRefused">
+                <button type="button" class="btn btn-danger float-right responsiveDisplay" data-toggle="modal" data-target="#requestDenied">Refuser la demande</button>
+                <div class="modal fade" id="requestDenied" tabindex="-1" role="dialog" aria-labelledby="requestDeniedLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="requestDenied">Raison du refus de la demande</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <textarea class="form-control" rows="5" id="deniedRequestInformation" name="deniedRequestInformation" maxlength="1000" required></textarea>
+                                <small id="deniedRequestInformationHelp" class="form-text text-muted">Veuillez décrire la raison du refus de la demande dans le champs texte ci-dessus.</small>
+                            </div>
+                            <div class="modal-footer">
+                                <a><button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button></a>
+                                <a><button type="submit" class="btn btn-primary" style="margin-bottom: 0px !important;">Envoyer</button></a>
                             </div>
                         </div>
-                    </form>
-                    ';
-        }
-        ?>
+                    </div>
+                </div>
+            </form>
+        </div>
+    <?php endif; ?>
 </div>
 <?php
 

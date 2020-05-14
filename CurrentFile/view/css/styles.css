@@ -46,7 +46,9 @@
 .w-150-px{
     width: 150px !important;
 }
-
+.w-470-px{
+    width: 470px !important;
+}
 .w-15{
     width: 15% !important;
 }
@@ -85,6 +87,11 @@
 
 .w-75-m{
     width: 75% !important;
+}
+/* ----------------------------------- select2 ---------------------------------*/
+span{
+    border: 1px solid #ced4da!important;
+    height: 38px!important;
 }
 
 /* ----------------------------------- w3 schools ---------------------------------*/
@@ -307,5 +314,11 @@
     }
     .mb-70-px{
         margin-bottom: 70px!important;
+    }
+    .w-470-px{
+        width: 95%!important;
+    }
+    .btn-close-phone{
+        width: 100%;
     }
 }
