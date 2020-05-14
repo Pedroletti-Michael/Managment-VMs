@@ -10,15 +10,14 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
+    <script rel="javascript" src="../view/js/jquery.js"></script>
     <link rel="stylesheet" type="text/css" href="../view/css/styles.css">
     <link rel="stylesheet" href="../view/bootstrap-4.4.1-dist/css/bootstrap.css">
     <link rel="stylesheet" href="../view/bootstrap-4.4.1-dist/css/bootstrap-grid.css">
     <link rel="stylesheet" href="../view/bootstrap-4.4.1-dist/css/bootstrap-reboot.css">
     <link rel="stylesheet" href="../view/css/dashboard.css">
-    <link rel="stylesheet" href="../view/css/">
     <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.bundle.js"></script>
     <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-    <script rel="javascript" src="../view/js/jquery.js"></script>
     <script rel="javascript" src="../view/js/script.js"></script>
     <script rel="javascript" src="../view/js/searchBox.js"></script>
     <script rel="javascript" src="../view/js/sortTable.js"></script>
