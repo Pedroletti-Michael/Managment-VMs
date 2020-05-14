@@ -418,16 +418,39 @@ ob_start();
 
         <!--Save the modifications-->
         <a onclick="getValue()"><button type="submit" id="submitButton" class="btn btn-primary m-auto d-inline responsiveDisplay">Enregistrer les modifications</button></a>
-
+    </form>
         <?php
         if($dataVM[0]['vmStatus']==0){
             //accepted
             echo '<a href="index.php?action=vmAccepted" id="submitButton"><button type="button" class="btn btn-success float-right ml-1 responsiveDisplay">Confirmer la demande</button></a>';
             //refused
-            echo '<a href="index.php?action=vmRefused" id="submitButton"><button type="button" class="btn btn-danger float-right responsiveDisplay">Refuser la demande</button></a>';
+            echo '
+                    <form method="post" action="../index.php?action=vmRefused">
+                        <button type="button" class="btn btn-danger float-right responsiveDisplay" data-toggle="modal" data-target="#requestDenied">Refuser la demande</button>
+                        <div class="modal fade" id="requestDenied" tabindex="-1" role="dialog" aria-labelledby="requestDeniedLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="requestDenied">Raison du refus de la demande</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <textarea class="form-control" rows="5" id="deniedRequestInformation" name="deniedRequestInformation" maxlength="1000" required></textarea>
+                                        <small id="deniedRequestInformationHelp" class="form-text text-muted">Veuillez décrire la raison du refus de la demande dans le champs texte ci-dessus.</small>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a><button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button></a>
+                                        <a><button type="submit" class="btn btn-primary" style="margin-bottom: 0px !important;">Envoyer</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    ';
         }
         ?>
-    </form>
 </div>
 <?php
 

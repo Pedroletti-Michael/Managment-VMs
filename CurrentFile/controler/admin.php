@@ -489,13 +489,17 @@ function vmAccepted($vmInformation)
     }
 }
 
-function vmRefused()
+function vmRefused($reason = null)
 {
     $vmStatus = false;
 
+    if($reason == null){
+        $reason = 'Nous ne pouvons malheureusement pas accéder à votre requête pour le moment.';
+    }
+
     require_once "model/vmManager.php";
 
-    if(updateStatusVM($_SESSION['idVM'], $vmStatus))
+    if(updateStatusVM($_SESSION['idVM'], $vmStatus, $reason))
     {
         displayAllVM("");
     }

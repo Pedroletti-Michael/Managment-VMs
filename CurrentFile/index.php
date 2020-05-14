@@ -60,7 +60,7 @@ if(isset($_GET['action']))
             vmAccepted($_POST);
             break;
         case 'vmRefused':
-            vmRefused();
+            vmRefused($_POST['deniedRequestInformation']);
             break;
         case 'renewalAccepted':
             modifyStatusAfterRenewal($_GET, true);

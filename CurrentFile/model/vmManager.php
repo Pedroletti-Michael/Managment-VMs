@@ -626,7 +626,7 @@ function updateVMInformationForUser($vmInformation, $id){
 }
 
 /**===UPDATE STATUS OF THE VM===**/
-function updateStatusVM($id, $vmStatus){
+function updateStatusVM($id, $vmStatus, $reason = null){
     require_once 'model/dbConnector.php';
     require_once 'model/mailSender.php';
     $status = 1;
@@ -663,7 +663,7 @@ function updateStatusVM($id, $vmStatus){
 
         executeQuery($query);
 
-        deniedRequestMail($info[1], $info[0]);
+        deniedRequestMail($info[1], $info[0], $reason);
     }
     elseif($status == 2){
         validateRequestMail($info[1], $info[0], $link, $info[3], $info[2]);

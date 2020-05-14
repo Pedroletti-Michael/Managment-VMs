@@ -149,30 +149,39 @@ function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
 /**
  * This function used to send the denied validation for a request of vm to an user
  */
-function deniedRequestMail($userMail, $requestName){
+function deniedRequestMail($userMail, $requestName, $reason = null){
     // multiple recipients
     $administratorMail = 'michael.pedroletti@heig-vd.ch';
 
     $to  = $userMail . ', ' . $administratorMail;
 
     // subject
-    $subject = 'Demande pour votre VM refusée';
+    $subject = 'La demande pour votre VM n\'a pas été validée';
 
     // message
+    if($reason == null){
         $message = '
         <p>Nom de la demande : '. $requestName .' </p>
         <br>
-        <p>Votre demande pour une VM a été refusée.</p>
+        <p>Votre demande pour une VM n\'a pas été validée.</p>
         <br>
         <p>
             Nous ne pouvons malheureusement pas accéder à votre requête.
         </p>
+        ';
+    }
+    else{
+        $message = '
+        <p>Nom de la demande : '. $requestName .' </p>
+        <br>
+        <p>Votre demande pour une VM n\'a pas été validée.</p>
         <br>
         <p>
-            Meilleures salutations.
-            VmManager
+            '.$reason.'
         </p>
-    ';
+        ';
+    }
+
 
     // To send HTML mail, the Content-type header must be set
     $headers  = 'MIME-Version: 1.0' . "\r\n";
