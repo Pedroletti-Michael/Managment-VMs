@@ -300,42 +300,41 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
     if($vmStatus == 3){
         //Ex: Si aujourd'hui == à 12.04.2020 et que dateEnd == à 11.04.2020
         if($dateEndVm == null){
-            if($today > $dateAnniversary){
+            if(strtotime($today) > strtotime($dateAnniversary)){
                 updateStatusVM($idVm, 4);
                 nonrenewalMailAdvert($userMail, $requestName, $link, $rtMail, $raMail);
                 return true;
             }
             else{
-                $timeLeft = $dateAnniversary - $today;
+                $diff = abs($dateAnniversary - $today); // abs pour avoir la valeur absolute, ainsi éviter d'avoir une différence négative
+                $dateDiff = array();
 
-                switch ($timeLeft){
+                $tmp = $diff;
+                $dateDiff['second'] = $tmp % 60;
+
+                $tmp = floor( ($tmp - $dateDiff['second']) /60 );
+                $dateDiff['minute'] = $tmp % 60;
+
+                $tmp = floor( ($tmp - $dateDiff['minute'])/60 );
+                $dateDiff['hour'] = $tmp % 24;
+
+                $tmp = floor( ($tmp - $dateDiff['hour'])  /24 );
+                $dateDiff['day'] = $tmp;
+
+                switch ($dateDiff['day']){
                     case 1:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 2:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 3:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 5:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 10:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 15:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 20:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 30:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $dateDiff['day']);
                         break;
                     default:
-                        if($timeLeft == 30){
-                            advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                        if($dateDiff['day'] == 30){
+                            advertMail($userMail, $requestName, $link, $rtMail, $raMail, $dateDiff['day']);
                             break;
                         }
                         break;
@@ -350,36 +349,35 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
                 return true;
             }
             else{
-                $timeLeft = $dateEndVm - $today;
+                $diff = abs($dateEndVm - $today); // abs pour avoir la valeur absolute, ainsi éviter d'avoir une différence négative
+                $dateDiff = array();
 
-                switch ($timeLeft){
+                $tmp = $diff;
+                $dateDiff['second'] = $tmp % 60;
+
+                $tmp = floor( ($tmp - $dateDiff['second']) /60 );
+                $dateDiff['minute'] = $tmp % 60;
+
+                $tmp = floor( ($tmp - $dateDiff['minute'])/60 );
+                $dateDiff['hour'] = $tmp % 24;
+
+                $tmp = floor( ($tmp - $dateDiff['hour'])  /24 );
+                $dateDiff['day'] = $tmp;
+
+                switch ($dateDiff['day']){
                     case 1:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 2:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 3:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 5:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 10:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 15:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 20:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 30:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $dateDiff['day']);
                         break;
                     default:
-                        if($timeLeft == 30){
-                            advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                        if($dateDiff['day'] == 30){
+                            advertMail($userMail, $requestName, $link, $rtMail, $raMail, $dateDiff['day']);
                             break;
                         }
                         break;
@@ -387,42 +385,44 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
                 return true;
             }
         }
-
     }
     else{
         if($dateEndVm == null){
-            if($today >= $dateAnniversary - 30){
-                updateStatusVM($idVm, 3);
-                $timeLeft = $dateAnniversary - $today;
+            if(strtotime($today) > strtotime($dateAnniversary)){
+                updateStatusVM($idVm, 4);
+                nonrenewalMailAdvert($userMail, $requestName, $link, $rtMail, $raMail);
+                return true;
+            }
+            else{
+                $diff = abs($dateAnniversary - $today); // abs pour avoir la valeur absolute, ainsi éviter d'avoir une différence négative
+                $dateDiff = array();
 
-                switch ($timeLeft){
+                $tmp = $diff;
+                $dateDiff['second'] = $tmp % 60;
+
+                $tmp = floor( ($tmp - $dateDiff['second']) /60 );
+                $dateDiff['minute'] = $tmp % 60;
+
+                $tmp = floor( ($tmp - $dateDiff['minute'])/60 );
+                $dateDiff['hour'] = $tmp % 24;
+
+                $tmp = floor( ($tmp - $dateDiff['hour'])  /24 );
+                $dateDiff['day'] = $tmp;
+
+                switch ($dateDiff['day']){
                     case 1:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 2:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 3:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 5:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 10:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 15:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 20:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 30:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $dateDiff['day']);
                         break;
                     default:
-                        if($timeLeft == 30){
-                            advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                        if($dateDiff['day'] == 30){
+                            advertMail($userMail, $requestName, $link, $rtMail, $raMail, $dateDiff['day']);
                             break;
                         }
                         break;
@@ -431,38 +431,41 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
             }
         }
         else{
-            if($today >= $dateEndVm - 30){
-                updateStatusVM($idVm, 3);
-                $timeLeft = $dateEndVm - $today;
+            if($today > $dateEndVm){
+                updateStatusVM($idVm, 4);
+                nonrenewalMailAdvert($userMail, $requestName, $link, $rtMail, $raMail);
+                return true;
+            }
+            else{
+                $diff = abs($dateEndVm - $today); // abs pour avoir la valeur absolute, ainsi éviter d'avoir une différence négative
+                $dateDiff = array();
 
-                switch ($timeLeft){
+                $tmp = $diff;
+                $dateDiff['second'] = $tmp % 60;
+
+                $tmp = floor( ($tmp - $dateDiff['second']) /60 );
+                $dateDiff['minute'] = $tmp % 60;
+
+                $tmp = floor( ($tmp - $dateDiff['minute'])/60 );
+                $dateDiff['hour'] = $tmp % 24;
+
+                $tmp = floor( ($tmp - $dateDiff['hour'])  /24 );
+                $dateDiff['day'] = $tmp;
+
+                switch ($dateDiff['day']){
                     case 1:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 2:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 3:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 5:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 10:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 15:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 20:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
-                        break;
                     case 30:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $dateDiff['day']);
                         break;
                     default:
-                        if($timeLeft == 30){
-                            advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft);
+                        if($dateDiff['day'] == 30){
+                            advertMail($userMail, $requestName, $link, $rtMail, $raMail, $dateDiff['day']);
                             break;
                         }
                         break;
@@ -470,7 +473,5 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
                 return true;
             }
         }
-
     }
-
 }

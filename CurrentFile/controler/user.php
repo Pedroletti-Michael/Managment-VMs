@@ -133,30 +133,4 @@ function saveModificationAboutUsers($allData){
 
 
     displayManagementUser();
-
-    /*
-    $k = array();
-    for($i = 0; $i < count($allData); $i++){
-        $k[$i] = key($allData);
-        next($allData);
-    }
-
-
-    foreach($allUsers as $user){
-        $field = "checkbox".$user['user_id'];
-        for($i = 0; $i < count($k); $i++){
-            if($k[$i] == $field){
-                if($user['type'] == 0){
-                    updateType($user['user_id'], true);
-                    break;
-                }
-            }
-            else{
-                if($user['type'] == 1){
-                    updateType($user['user_id'], false);
-                    break;
-                }
-            }
-        }
-    }*/
 }
