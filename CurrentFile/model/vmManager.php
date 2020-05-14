@@ -695,7 +695,8 @@ function getInformationForMailAboutVM($id){
 
 /**===GET ID BY NAME OF A VM===**/
 function getIdOfVmByName($vmName){
-    $querySelect = "SELECT `id` FROM `vm` WHERE name = ". $vmName;
+    $strSep = '\'';
+    $querySelect = "SELECT `id` FROM `vm` WHERE name = ". $strSep.$vmName.$strSep;
 
     $resultSelect = executeQuerySelect($querySelect);
 

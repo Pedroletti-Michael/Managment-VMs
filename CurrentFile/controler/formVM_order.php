@@ -138,15 +138,29 @@ function formVM($formVMRequest)
             displayForm();
         }
         else{
-            requestMail($_SESSION['userEmail'], $formVMRequest['inputVMName'], $formVMRequest['inputTMName'], $formVMRequest['inputRAName']);
+            $requestMail = false;
+            $adminMail = false;
+            if(requestMail($_SESSION['userEmail'], $formVMRequest['inputVMName'], $formVMRequest['inputTMName'], $formVMRequest['inputRAName'])){
+                $requestMail = true;
+            }
             $link = "http://vmman.heig-vd.ch/index.php?action=detailsVM&id=". getIdOfVmByName($formVMRequest['inputVMName']);
-            mailAdministrator($_SESSION['userEmail'], $formVMRequest['inputVMName'], $link);
-            $_SESSION['$displayModalConfirm'] = true;
+            if(mailAdministrator($_SESSION['userEmail'], $formVMRequest['inputVMName'], $link)){
+                $adminMail = true;
+            }
+
+
+            if($requestMail && $adminMail){
+                $_SESSION['$displayModalConfirm'] = true;
+            }
+            else{
+                $_SESSION['displayModalConfirmationFailed'] = true;
+            }
             displayHome();
         }
     }
     else
     {
+        $_SESSION['displayModalRequestFailed'] = true;
         displayForm();
     }
 }

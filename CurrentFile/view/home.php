@@ -36,6 +36,44 @@ ob_start();
         </div>
         <script>$('.modal').modal('show')</script>
     <?php endif; ?>
+    <!--Modal send mail failed-->
+    <?php if(isset($_SESSION['displayModalConfirmationFailed']) && $_SESSION['displayModalConfirmationFailed']) : ?>
+        <div class="modal fade" id="confirmationMailFailed" tabindex="-1" role="dialog" aria-labelledby="confirmationMailFailed" aria-hidden="true">
+            <div class="modal-dialog m-auto w-470-px"  role="document" style="top: 45%;">
+                <div class="modal-content w-100">
+                    <div class="modal-body">
+                        <div class="w-100">
+                            <h6 class="float-left pt-2 text-center">Un ou plusieurs mails de confirmation de votre commande ne sont pas partit. Veuillez contactez un administrateur.</h6>
+                            <button type="submit" class="btn btn-success float-right btn-close-phone" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>$('.modal').modal('show')</script>
+    <?php
+        unset($_SESSION['displayModalConfirmationFailed']);
+        endif;
+    ?>
+    <!--Modal request failed-->
+    <?php if(isset($_SESSION['displayModalRequestFailed']) && $_SESSION['displayModalRequestFailed']) : ?>
+        <div class="modal fade" id="requestFailed" tabindex="-1" role="dialog" aria-labelledby="requestFailed" aria-hidden="true">
+            <div class="modal-dialog m-auto w-470-px"  role="document" style="top: 45%;">
+                <div class="modal-content w-100">
+                    <div class="modal-body">
+                        <div class="w-100">
+                            <h6 class="float-left pt-2 text-center">Nous rencontrons actuellement un problème. Nous ne pouvons donc prendre en compte votre commande. Veuillez réessayer plus tard.</h6>
+                            <button type="submit" class="btn btn-success float-right btn-close-phone" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>$('.modal').modal('show')</script>
+        <?php
+        unset($_SESSION['displayModalRequestFailed']);
+    endif;
+    ?>
 
     <table class="table table-hover allVM">
         <thead class="thead-dark sticky-top">

@@ -14,7 +14,6 @@
  * @return bool = True = successfully sending | False = Failed to send
  */
 function sendMail($to, $subject, $message, $headers){
-
     if (mail($to, $subject, $message, $headers)){
         return true;
     }
