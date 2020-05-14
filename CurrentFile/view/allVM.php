@@ -22,12 +22,13 @@ ob_start();
     <!--Confirmation command VM modal)-->
     <?php if(isset($_SESSION['$displayModalConfirm']) && $_SESSION['$displayModalConfirm'] == true) : ?>
         <div class="modal fade" id="confirmationCommandVM" tabindex="-1" role="dialog" aria-labelledby="confirmationCommandVM" aria-hidden="true">
-            <div class="modal-dialog modal-frame modal-top" role="document">
-                <div class="modal-content">
+            <div class="modal-dialog m-auto w-470-px"  role="document" style="top: 45%;">
+                <div class="modal-content w-100">
                     <div class="modal-body">
-                        <h6>Votre action à bel et bien été effectuée</h6>
-
-                        <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" data-dismiss="modal">Fermer</button>
+                        <div class="w-100">
+                            <h6 class="float-left pt-2 text-center">Votre commande à bel et bien été effectuée</h6>
+                            <button type="submit" class="btn btn-success float-right btn-close-phone" data-dismiss="modal">Fermer</button>
+                        </div>
                     </div>
                 </div>
             </div>

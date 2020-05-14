@@ -129,7 +129,7 @@ ob_start();
 
                     <form method="post" action="../index.php?action=editEntity">
                         <div class="modal-body">
-                            <input type="text" class="form-control responsiveDisplay" id="txtEntityAdd" name="txtEntityAdd" placeholder="Valeur à ajouter dans la table">
+                            <input type="text" class="form-control responsiveDisplay" id="txtEntityAdd" name="txtEntityAdd" placeholder="Département">
                         </div>
 
                         <div class="modal-footer">
@@ -206,18 +206,25 @@ ob_start();
                     <button type="button" class="btn btn-primary w-100 mb-0" data-toggle="modal" data-target="#modifyOS">Modifier</button>
                 </div>
                 <div class="float-left w-33 responsiveDisplay pl-1 mb-3" id="responsiveDisplay">
-                    <button type="button" class="btn btn-danger w-100 mb-70-px" data-toggle="modal" data-target="#confirmationDeleteOS" onclick="confirmationDeleteOS()">Supprimer</button>
+                    <button type="button" class="btn btn-danger w-100 mb-70-px" data-toggle="modal" data-target="#deleteOS">Supprimer</button>
                 </div>
 
-                <!--OS(confirmation delete modal)-->
-                <div class="modal fade" id="confirmationDeleteOS" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteOS" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content p-6">
-                            <div class="modal-body">
-                                <h6 id="confirmationDeleteOSSelected"></h6>
-                                <input type="text" id="valueOSToDelete" name="valueOSToDelete" hidden>
+                <!--OS (delete modal)-->
+                <div class="modal fade" id="deleteOS" tabindex="-1" role="dialog" aria-labelledby="deleteOS" aria-hidden="true">
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <div class="modal-content text-center">
+                            <div class="modal-header modal-danger justify-content-center">
+                                <h5>Supprimer <b>OS</b></h5>
+                            </div>
 
-                                <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="delete" name="delete" id="delete">OUI</button>
+                            <div class="modal-body">
+                                <h6 id="textDelOS">Aucun champ n'a été sélectionné</h6>
+
+                                <input type="text" id="valueOSToDelete" name="valueOSToDelete" hidden>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-danger mx-auto responsiveDisplay" value="delete" name="delete" id="delete">Confirmer</button>
                             </div>
                         </div>
                     </div>
@@ -228,21 +235,23 @@ ob_start();
 
         <!--OS (add modal)-->
         <div class="modal fade" id="addOS" tabindex="-1" role="dialog" aria-labelledby="addOS" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content p-3">
+            <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header modal-success justify-content-center">
+                        <h5>Ajouter <b>OS</b></h5>
+                    </div>
+
                     <form method="post" action="../index.php?action=editOS">
-                        <div class="form-group" name="formulaire" id="form_OS">
+                        <div class="modal-body">
+                            <select class="form-control float-left mb-2 w-100 responsiveDisplay" id="typeOSAdd" name="typeOSAdd">
+                                <option>Windows</option>
+                                <option>Linux</option>
+                            </select>
+                            <input type="text" class="form-control float-left mb-1 w-100 responsiveDisplay" id="txtOSAdd" name="txtOSAdd" placeholder="Version">
+                        </div>
 
-                            <h6>Ajouter dans la table <b>OS</b> le champ :</h6>
-
-                            <div class="w-75-m responsiveDisplay">
-                                <select class="form-control float-left w-33 responsiveDisplay" id="typeOSAdd" name="typeOSAdd">
-                                    <option>Windows</option>
-                                    <option>Linux</option>
-                                </select>
-                                <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txtOSAdd" name="txtOSAdd" placeholder="Nom">
-                            </div>
-                            <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success mx-auto responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
                         </div>
                     </form>
                 </div>
@@ -251,35 +260,27 @@ ob_start();
 
         <!--OS (modify modal)-->
         <div class="modal fade" id="modifyOS" tabindex="-1" role="dialog" aria-labelledby="modifyOS" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content p-3">
-                    <form method="post" action="../index.php?action=editOS">
-                        <div class="form-group" name="formulaire" id="form_OS">
+            <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header modal-primary justify-content-center">
+                        <h5>Modifier <b>OS</b></h5>
+                    </div>
 
-                            <h6 id="textModOs">Aucune valeur n'a été sélectionnée</h6>
+                    <form method="post" action="../index.php?action=editOS">
+                        <div class="modal-body">
                             <input type="text" id="valueOSMod" name="valueOSMod" hidden>
 
-                            <div class="w-75-m responsiveDisplay">
-                                <select class="form-control float-left w-33 responsiveDisplay" id="typeOSMod" name="typeOSMod">
-                                    <option>Windows</option>
-                                    <option>Linux</option>
-                                </select>
-                                <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txtOSMod" name="txtOSMod" placeholder="Nouvelle valeur">
-                            </div>
-                            <button type="button" onclick="confirmationModifyOS()" class="btn btn-success float-left w-25-m  responsiveDisplay" data-toggle="modal" data-target="#confirmationModifyOS">Confirmer</button>
+                            <h6 id="textModOs">Aucun champ n'a été sélectionné</h6>
+                            <select class="form-control float-left mb-2 w-100 responsiveDisplay" id="typeOSMod" name="typeOSMod">
+                                <option>Windows</option>
+                                <option>Linux</option>
+                            </select>
+                            <input type="text" class="form-control float-left mb-1 w-100 responsiveDisplay" id="txtOSMod" name="txtOSMod" placeholder="Nouvelle valeur">
+                        </div>
 
-                            <!--OS (confirmation modify modal)-->
-                            <div class="modal fade" id="confirmationModifyOS" tabindex="-1" role="dialog" aria-labelledby="confirmationModifyOS" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content p-6">
-                                        <div class="modal-body">
-                                            <h6 id="confirmationModifyOSSelected"></h6>
-
-                                            <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="modify" name="modify" id="modify">OUI</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary mx-auto responsiveDisplay" value="modify" name="modify" id="modify">Confirmer</button>
+                        </div>
 
                             <script>
                                 $("#valueOSDel tr").click(function(){
@@ -288,6 +289,7 @@ ob_start();
                                     var secondValue =$(this).find('td:last').html();
                                     document.getElementById("valueOSDel").value = firstValue + " " + secondValue;
                                     document.getElementById("valueOSToDelete").value = firstValue + " " + secondValue;
+                                    $("#textDelOS").html('Êtes-vous sûr de vouloir supprimer le champ : <b>' + firstValue + " " + secondValue + '<b/> ?');
                                     getSelectedOSToDelete();getSelectedOSToDisplayOnModify();
                                 });
 
@@ -295,46 +297,6 @@ ob_start();
                                 {
                                     var elementToDelete = document.getElementById("valueOSDel").value;
                                     return elementToDelete;
-                                }
-
-                                function confirmationDeleteOS()
-                                {
-                                    var elementToDelete = getSelectedOSToDelete();
-
-                                    $("#confirmationDeleteOSSelected").html('Êtes-vous sûr de vouloir supprimer le champ : <b>' + elementToDelete + '<b/> ?');
-                                }
-
-                                function displaySelectedValueOS(getSelectedValue)
-                                {
-                                    var valueOSMod = document.getElementById("valueOSMod").value;
-                                    var typeOSMod = "";
-                                    var txtOSMod = "";
-
-                                    for(var count = 0; count < valueOSMod.length; count++)
-                                    {
-                                        if(valueOSMod[count] !== " ")
-                                        {
-                                            typeOSMod = typeOSMod + valueOSMod[count];
-                                        }
-                                        else
-                                        {
-                                            for(count += 1; count< valueOSMod.length; count++)
-                                            {
-                                                txtOSMod = txtOSMod + valueOSMod[count];
-                                            }
-                                            break;
-                                        }
-                                    }
-
-                                    if(getSelectedValue !== true)
-                                    {
-                                        document.getElementById("typeOSMod").value = typeOSMod;
-                                        document.getElementById("txtOSMod").value = txtOSMod;
-                                    }
-                                    else
-                                    {
-                                        return valueOSMod;
-                                    }
                                 }
 
                                 function getSelectedOSToDisplayOnModify()
@@ -364,14 +326,6 @@ ob_start();
                                     console.log(selectedValue, typeOSMod, txtOSMod);
                                     $("#textModOs").html('Modifier le champ <b>' + selectedValue + '</b> en :');
                                 }
-
-                                function confirmationModifyOS()
-                                {
-                                    var editedElement = document.getElementById("typeOSMod").value + " " + document.getElementById("txtOSMod").value;
-                                    var basicElement = displaySelectedValueOS(true);
-
-                                    $("#confirmationModifyOSSelected").html('Êtes-vous sûr de vouloir changer le champ : <b>' + basicElement + '</b> en <b>' + editedElement + '</b> ?');
-                                }
                             </script>
 
                         </div>
@@ -397,39 +351,49 @@ ob_start();
                     <button type="button" class="btn btn-primary w-100 mb-0" data-toggle="modal" data-target="#modifySnapshots">Modifier</button>
                 </div>
                 <div class="float-left w-33 responsiveDisplay pl-1 mb-3" id="responsiveDisplay">
-                    <button type="button" class="btn btn-danger w-100 mb-70-px" data-toggle="modal" data-target="#confirmationDeleteSnapshots" onclick="confirmationDeleteSnapshots()">Supprimer</button>
+                    <button type="button" class="btn btn-danger w-100 mb-70-px" data-toggle="modal" data-target="#deleteSnapshots">Supprimer</button>
                 </div>
 
-                <!--Snapshots(confirmation delete modal)-->
-                <div class="modal fade" id="confirmationDeleteSnapshots" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteSnapshots" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content p-6">
-                            <div class="modal-body">
-                                <h6 id="confirmationDeleteSnapshotsSelected"></h6>
-                                <input type="text" id="valueSnapToDelete" name="valueSnapToDelete" hidden>
+                <!--Snapshots (delete modal)-->
+                <div class="modal fade" id="deleteSnapshots" tabindex="-1" role="dialog" aria-labelledby="deleteSnapshots" aria-hidden="true">
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <div class="modal-content text-center">
+                            <div class="modal-header modal-danger justify-content-center">
+                                <h5>Supprimer <b>Snapshots</b></h5>
+                            </div>
 
-                                <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="delete" name="delete" id="delete">OUI</button>
+                            <div class="modal-body">
+                                <h6 id="textDelSnap">Aucun champ n'a été sélectionné</h6>
+
+                                <input type="text" id="valueSnapToDelete" name="valueSnapToDelete" hidden>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-danger mx-auto responsiveDisplay" value="delete" name="delete" id="delete">Confirmer</button>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </form>
 
         <!--Snapshots (add modal)-->
         <div class="modal fade" id="addSnapshots" tabindex="-1" role="dialog" aria-labelledby="addSnapshots" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content p-3">
+            <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header modal-success justify-content-center">
+                        <h5>Ajouter <b>Snapshots</b></h5>
+                    </div>
+
                     <form method="post" action="../index.php?action=editSnapshots">
-                        <div class="form-group" name="formulaire" id="form_Snapshots">
+                        <div class="modal-body">
+                            <input type="text" class="form-control float-left mb-2 w-100 responsiveDisplay" id="typeSnapAdd" name="typeSnapAdd" placeholder="Type">
+                            <input type="text" class="form-control float-left mb-1 w-100 responsiveDisplay" id="txtSnapAdd" name="txtSnapAdd" placeholder="Description">
+                        </div>
 
-                            <h6>Ajouter dans la table <b>Snapshots</b> le champ :</h6>
-
-                            <div class="w-75-m responsiveDisplay">
-                                <input type="text" class="form-control float-left w-33 responsiveDisplay" id="typeSnapAdd" name="typeSnapAdd" placeholder="Type">
-                                <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txtSnapAdd" name="txtSnapAdd" placeholder="Nom">
-                            </div>
-                            <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success mx-auto responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
                         </div>
                     </form>
                 </div>
@@ -438,32 +402,24 @@ ob_start();
 
         <!--Snapshots (modify modal)-->
         <div class="modal fade" id="modifySnapshots" tabindex="-1" role="dialog" aria-labelledby="modifySnapshots" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content p-3">
-                    <form method="post" action="../index.php?action=editSnapshots">
-                        <div class="form-group" name="formulaire" id="form_Snapshots">
+            <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header modal-primary justify-content-center">
+                        <h5>Modifier <b>Snapshots</b></h5>
+                    </div>
 
-                            <h6 id="textModSnap">Aucune valeur n'a été sélectionnée</h6>
+                    <form method="post" action="../index.php?action=editSnapshots">
+                        <div class="modal-body">
                             <input type="text" id="valueSnapMod" name="valueSnapMod" hidden>
 
-                            <div class="w-75-m responsiveDisplay">
-                                <input type="text" class="form-control float-left w-33 responsiveDisplay" id="typeSnapMod" name="typeSnapMod" placeholder="Type">
-                                <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txtSnapMod" name="txtSnapMod" placeholder="Nouvelle valeur">
-                            </div>
-                            <button type="button" onclick="confirmationModifySnapshots()" class="btn btn-success float-left w-25-m  responsiveDisplay" data-toggle="modal" data-target="#confirmationModifySnapshots">Confirmer</button>
+                            <h6 id="textModSnap">Aucun champ n'a été sélectionné</h6>
+                            <input type="text" class="form-control float-left mb-2 w-100 responsiveDisplay" id="typeSnapMod" name="typeSnapMod" placeholder="Nouvelle valeur">
+                            <input type="text" class="form-control float-left mb-1 w-100 responsiveDisplay" id="txtSnapMod" name="txtSnapMod" placeholder="Nouvelle valeur">
+                        </div>
 
-                            <!--Snapshots (confirmation modify modal)-->
-                            <div class="modal fade" id="confirmationModifySnapshots" tabindex="-1" role="dialog" aria-labelledby="confirmationModifySnapshots" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content p-6">
-                                        <div class="modal-body">
-                                            <h6 id="confirmationModifySnapshotsSelected"></h6>
-
-                                            <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="modify" name="modify" id="modify">OUI</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary mx-auto responsiveDisplay" value="modify" name="modify" id="modify">Confirmer</button>
+                        </div>
 
                             <script>
                                 $("#valueSnapDel tr").click(function(){
@@ -472,6 +428,7 @@ ob_start();
                                     var secondValue =$(this).find('td:last').html();
                                     document.getElementById("valueSnapDel").value = firstValue + " " + secondValue;
                                     document.getElementById("valueSnapToDelete").value = firstValue + " " + secondValue;
+                                    $("#textDelSnap").html('Êtes-vous sûr de vouloir supprimer le champ : <b>' + firstValue + " " + secondValue + '<b/> ?');
                                     getSelectedSnapshotsToDelete();getSelectedSnapshotsToDisplayOnModify();
                                 });
 
@@ -479,46 +436,6 @@ ob_start();
                                 {
                                     var elementToDelete = document.getElementById("valueSnapDel").value;
                                     return elementToDelete;
-                                }
-
-                                function confirmationDeleteSnapshots()
-                                {
-                                    var elementToDelete = getSelectedSnapshotsToDelete();
-
-                                    $("#confirmationDeleteSnapshotsSelected").html('Êtes-vous sûr de vouloir supprimer le champ : <b>' + elementToDelete + '</b> ?');
-                                }
-
-                                function displaySelectedValueSnapshots(getSelectedValue)
-                                {
-                                    var valueSnapMod = document.getElementById("valueSnapMod").value;
-                                    var typeSnapMod = "";
-                                    var txtSnapMod = "";
-
-                                    for(var count = 0; count < valueSnapMod.length; count++)
-                                    {
-                                        if(valueSnapMod[count] !== " ")
-                                        {
-                                            typeSnapMod = typeSnapMod + valueSnapMod[count];
-                                        }
-                                        else
-                                        {
-                                            for(count += 1; count < valueSnapMod.length; count++)
-                                            {
-                                                txtSnapMod = txtSnapMod + valueSnapMod[count];
-                                            }
-                                            break;
-                                        }
-                                    }
-
-                                    if(getSelectedValue !== true)
-                                    {
-                                        document.getElementById("typeSnapMod").value = typeSnapMod;
-                                        document.getElementById("txtSnapMod").value = txtSnapMod;
-                                    }
-                                    else
-                                    {
-                                        return valueSnapMod;
-                                    }
                                 }
 
                                 function getSelectedSnapshotsToDisplayOnModify()
@@ -547,14 +464,6 @@ ob_start();
                                     document.getElementById("txtSnapMod").value = txtSnapMod;
                                     $("#textModSnap").html('Modifier le champ <b>' + selectedValue + '</b> en :');
                                 }
-
-                                function confirmationModifySnapshots()
-                                {
-                                    var editedElement = document.getElementById("typeSnapMod").value + " : " + document.getElementById("txtSnapMod").value;
-                                    var basicElement = displaySelectedValueSnapshots(true);
-
-                                    $("#confirmationModifySnapshotsSelected").html('Êtes-vous sûr de vouloir changer le champ : <b>' + basicElement + '</b> en <b>' + editedElement + '</b> ?');
-                                }
                             </script>
 
                         </div>
@@ -582,18 +491,25 @@ ob_start();
                     <button type="button" class="btn btn-primary w-100 mb-0" data-toggle="modal" data-target="#modifyBackup">Modifier</button>
                 </div>
                 <div class="float-left w-33 responsiveDisplay pl-1 mb-3" id="responsiveDisplay">
-                    <button type="button" class="btn btn-danger w-100 mb-70-px" data-toggle="modal" data-target="#confirmationDeleteBackup" onclick="confirmationDeleteBackup()">Supprimer</button>
+                    <button type="button" class="btn btn-danger w-100 mb-70-px" data-toggle="modal" data-target="#deleteBackup">Supprimer</button>
                 </div>
 
-                <!--Backup(confirmation delete modal)-->
-                <div class="modal fade" id="confirmationDeleteBackup" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteBackup" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content p-6">
-                            <div class="modal-body">
-                                <h6 id="confirmationDeleteBackupSelected"></h6>
-                                <input type="text" id="valueBackupToDelete" name="valueBackupToDelete" hidden>
+                <!--Backup (delete modal)-->
+                <div class="modal fade" id="deleteBackup" tabindex="-1" role="dialog" aria-labelledby="deleteBackup" aria-hidden="true">
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <div class="modal-content text-center">
+                            <div class="modal-header modal-danger justify-content-center">
+                                <h5>Supprimer <b>Backup</b></h5>
+                            </div>
 
-                                <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="delete" name="delete" id="delete">OUI</button>
+                            <div class="modal-body">
+                                <h6 id="textDelBackup">Aucun champ n'a été sélectionné</h6>
+
+                                <input type="text" id="valueBackupToDelete" name="valueBackupToDelete" hidden>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-danger mx-auto responsiveDisplay" value="delete" name="delete" id="delete">Confirmer</button>
                             </div>
                         </div>
                     </div>
@@ -604,18 +520,20 @@ ob_start();
 
         <!--Backup (add modal)-->
         <div class="modal fade" id="addBackup" tabindex="-1" role="dialog" aria-labelledby="addBackup" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content p-3">
+            <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header modal-success justify-content-center">
+                        <h5>Ajouter <b>Backup</b></h5>
+                    </div>
+
                     <form method="post" action="../index.php?action=editBackup">
-                        <div class="form-group" name="formulaire" id="form_Backup">
+                        <div class="modal-body">
+                            <input type="text" class="form-control float-left mb-2 w-100 responsiveDisplay" id="typeBackupAdd" name="typeBackupAdd" placeholder="Type">
+                            <input type="text" class="form-control float-left mb-1 w-100 responsiveDisplay" id="txtBackupAdd" name="txtBackupAdd" placeholder="Description">
+                        </div>
 
-                            <h6>Ajouter dans la table <b>Backup</b> le champ :</h6>
-
-                            <div class="w-75-m responsiveDisplay">
-                                <input type="text" class="form-control float-left w-33 responsiveDisplay" id="typeBackupAdd" name="typeBackupAdd" placeholder="Type">
-                                <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txtBackupAdd" name="txtBackupAdd" placeholder="Nom">
-                            </div>
-                            <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success mx-auto responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
                         </div>
                     </form>
                 </div>
@@ -624,32 +542,24 @@ ob_start();
 
         <!--Backup (modify modal)-->
         <div class="modal fade" id="modifyBackup" tabindex="-1" role="dialog" aria-labelledby="modifyBackup" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content p-3">
-                    <form method="post" action="../index.php?action=editBackup">
-                        <div class="form-group" name="formulaire" id="form_Backup">
+            <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header modal-primary justify-content-center">
+                        <h5>Modifier <b>Backup</b></h5>
+                    </div>
 
-                            <h6 id="textModBackup">Aucune valeur n'a été sélectionnée</h6>
+                    <form method="post" action="../index.php?action=editBackup">
+                        <div class="modal-body">
                             <input type="text" id="valueBackupMod" name="valueBackupMod" hidden>
 
-                            <div class="w-75-m responsiveDisplay">
-                                <input type="text" class="form-control float-left w-33 responsiveDisplay" id="typeBackupMod" name="typeBackupMod" placeholder="Type">
-                                <input type="text" class="form-control float-left w-66 responsiveDisplay" id="txtBackupMod" name="txtBackupMod" placeholder="Nouvelle valeur">
-                            </div>
-                            <button type="button" onclick="confirmationModifyBackup()" class="btn btn-success float-left w-25-m  responsiveDisplay" data-toggle="modal" data-target="#confirmationModifyBackup">Confirmer</button>
+                            <h6 id="textModBackup">Aucun champ n'a été sélectionné</h6>
+                            <input type="text" class="form-control float-left mb-2 w-100 responsiveDisplay" id="typeBackupMod" name="typeBackupMod" placeholder="Nouvelle valeur">
+                            <input type="text" class="form-control float-left mb-1 w-100 responsiveDisplay" id="txtBackupMod" name="txtBackupMod" placeholder="Nouvelle valeur">
+                        </div>
 
-                            <!--Backup (confirmation modify modal)-->
-                            <div class="modal fade" id="confirmationModifyBackup" tabindex="-1" role="dialog" aria-labelledby="confirmationModifyBackup" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content p-6">
-                                        <div class="modal-body">
-                                            <h6 id="confirmationModifyBackupSelected"></h6>
-
-                                            <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="modify" name="modify" id="modify">OUI</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary mx-auto responsiveDisplay" value="modify" name="modify" id="modify">Confirmer</button>
+                        </div>
 
                             <script>
                                 $("#valueBackupDel tr").click(function(){
@@ -658,6 +568,7 @@ ob_start();
                                     var secondValue =$(this).find('td:last').html();
                                     document.getElementById("valueBackupDel").value = firstValue + " " + secondValue;
                                     document.getElementById("valueBackupToDelete").value = firstValue + " " + secondValue;
+                                    $("#textDelBackup").html('Êtes-vous sûr de vouloir supprimer le champ : <b>' + firstValue + " " + secondValue + '<b/> ?');
                                     getSelectedBackupToDelete();getSelectedBackupToDisplayOnModify();
                                 });
 
@@ -665,46 +576,6 @@ ob_start();
                                 {
                                     var elementToDelete = document.getElementById("valueBackupDel").value;
                                     return elementToDelete;
-                                }
-
-                                function confirmationDeleteBackup()
-                                {
-                                    var elementToDelete = getSelectedBackupToDelete();
-
-                                    $("#confirmationDeleteBackupSelected").html('Êtes-vous sûr de vouloir supprimer le champ : <b>' + elementToDelete + '</b> ?');
-                                }
-
-                                function displaySelectedValueBackup(getSelectedValue)
-                                {
-                                    var valueBackupMod = document.getElementById("valueBackupMod").value;
-                                    var typeBackupMod = "";
-                                    var txtBackupMod = "";
-
-                                    for(var count = 0; count < valueBackupMod.length; count++)
-                                    {
-                                        if(valueBackupMod[count] !== " ")
-                                        {
-                                            typeBackupMod = typeBackupMod + valueBackupMod[count];
-                                        }
-                                        else
-                                        {
-                                            for(count += 1; count < valueBackupMod.length; count++)
-                                            {
-                                                txtBackupMod = txtBackupMod + valueBackupMod[count];
-                                            }
-                                            break;
-                                        }
-                                    }
-
-                                    if(getSelectedValue !== true)
-                                    {
-                                        document.getElementById("typeBackupMod").value = typeBackupMod;
-                                        document.getElementById("txtBackupMod").value = txtBackupMod;
-                                    }
-                                    else
-                                    {
-                                        return valueBackupMod;
-                                    }
                                 }
 
                                 function getSelectedBackupToDisplayOnModify()
@@ -732,14 +603,6 @@ ob_start();
                                     document.getElementById("typeBackupMod").value = typeBackupMod;
                                     document.getElementById("txtBackupMod").value = txtBackupMod;
                                     $("#textModBackup").html('Modifier le champ <b>' + selectedValue + '</b> en :');
-                                }
-
-                                function confirmationModifyBackup()
-                                {
-                                    var editedElement = document.getElementById("typeBackupMod").value + " : " + document.getElementById("txtBackupMod").value;
-                                    var basicElement = displaySelectedValueBackup(true);
-
-                                    $("#confirmationModifyBackupSelected").html('Êtes-vous sûr de vouloir changer le champ : <b>' + basicElement + '</b> en <b>' + editedElement + '</b> ?');
                                 }
                             </script>
 
