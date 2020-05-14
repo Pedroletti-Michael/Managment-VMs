@@ -38,7 +38,7 @@ ob_start();
 
     <form method="post" action="../index.php?action=allVM">
         <!------------- Btn Filtrer ------------>
-        <button type="button" class="btn btn-primary rounded-0 w-150-px position-fixed mt-1 " style="right: 0.25rem;" onclick="openRightMenu()">
+        <button type="button" class="btn btn-primary rounded-0 w-150-px position-fixed mt-1" style="right: 0.25rem;" onclick="openRightMenu()">
             Filtrer &nbsp;
             <svg class="bi bi-filter-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M14 10.5a.5.5 0 00-.5-.5h-3a.5.5 0 000 1h3a.5.5 0 00.5-.5zm0-3a.5.5 0 00-.5-.5h-7a.5.5 0 000 1h7a.5.5 0 00.5-.5zm0-3a.5.5 0 00-.5-.5h-11a.5.5 0 000 1h11a.5.5 0 00.5-.5z" clip-rule="evenodd"/>

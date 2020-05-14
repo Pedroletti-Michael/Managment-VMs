@@ -182,9 +182,6 @@ main{
 
 /* ------------------------------------------- Responsive for screen < 1050px -------------------------------------------------*/
 @media screen and (max-width: 1050px){
-    #main{
-        margin-top: -21px!important;
-    }
     .display-laptop{
         display: none!important;
     }
@@ -306,6 +303,7 @@ main{
 }
 @media handheld,(max-device-width: 1000px) and (max-width: 900px){
     #main{
+        margin-top: -21px!important;
         margin-bottom: 70px;
     }
     .menu-phone-selected{

@@ -15,14 +15,20 @@ ob_start();
         <script rel="javascript" src="../view/js/searchBox.js"></script>
         <script>
             var lastScrollTop = 0;
+
             $(window).scroll(function(event){
                 var st = $(this).scrollTop();
                 if (st > lastScrollTop){
-                    document.getElementById("navButton").value = "Bot";
+                    document.getElementById("navButton").value = "Aller en bas";
                 } else {
-                    document.getElementById("navButton").value = "Top";
+                    document.getElementById("navButton").value = "Retour en haut";
                 }
                 lastScrollTop = st;
+                if (window.pageYOffset==0){
+                    document.getElementById("navButton").style.visibility="hidden";
+                }else{
+                    document.getElementById("navButton").style.visibility="visible";
+                }
             });
         </script>
         <script>
@@ -50,20 +56,14 @@ ob_start();
         <title>Gestion VM - HEIG-VD</title>
     </head>
 <body>
-<!------------- Choix ------------>
-    <div class="w-50-m m-auto responsiveDisplay pt-2" id="top">
-        <div class="w-100 d-inline-block">
-            <div class="w-75 float-left p-1" style="height: 50px">
-                <!--All VM-->
-                <a href="index.php?action=refreshUser">
-                    <button type="button" class="btn btn-primary w-100 responsiveButton">
-                        <h6>Actualiser la liste des utilisateurs</h6>
-                    </button>
-                </a>
-            </div>
-        </div>
-    </div>
-    <input type="button" value="Top" id="navButton" class="position-fixed btn btn-primary responsiveButton" OnClick="goTo()">
+
+    <!--All VM-->
+    <a href="index.php?action=refreshUser">
+        <button type="button" class="btn btn-primary mb-1 mt-1 responsiveDisplay">
+            <a>Actualiser la liste des utilisateurs</a>
+        </button>
+    </a>
+    <input type="button" value="Retour en haut" id="navButton" class="btn btn-primary rounded-0 w-150-px position-fixed mt-1" style="right: 0.25rem;visibility: hidden" OnClick="goTo()">
     <form method="post" action="../index.php?action=saveModificationUser">
         <div class="table-responsive-xl">
             <table class="table table-hover allVM" id="tableInventoryUser">
@@ -92,17 +92,11 @@ ob_start();
             </table>
         </div>
         <input type="hidden" name="usersAfter" id="usersAfter">
-        <div class="w-50-m m-auto responsiveDisplay pt-2" id="bot">
-            <div class="w-100 d-inline-block">
-                <div class="w-75 float-left p-1" style="height: 50px">
-                    <a onclick="tranferUser()">
-                        <button type="submit" class="btn btn-primary w-100 responsiveButton">
-                            <h6>Enregistrer</h6>
-                        </button>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <a onclick="tranferUser()">
+            <button type="submit" class="btn btn-primary mb-1 mt-1 responsiveDisplay" id="bottom">
+                <a>Enregistrer les modifications apportées</a>
+            </button>
+        </a>
     </form>
 <?php
 $contenu = ob_get_clean();
