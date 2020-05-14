@@ -21,14 +21,15 @@ ob_start();
 <div class="table-responsive-xl">
 
     <!--Confirmation command VM modal)-->
-    <?php if(isset($_SESSION['$displayModalConfirm']) && $_SESSION['$displayModalConfirm'] == true) : ?>
+    <?php $_SESSION['$displayModalConfirm'] = true; if(isset($_SESSION['$displayModalConfirm']) && $_SESSION['$displayModalConfirm'] == true) : ?>
         <div class="modal fade" id="confirmationCommandVM" tabindex="-1" role="dialog" aria-labelledby="confirmationCommandVM" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
+            <div class="modal-dialog float-left mt-0"  role="document">
+                <div class="modal-content" style="width: 1920px; padding-left:400px">
                     <div class="modal-body">
-                        <h6>Votre commande à bel et bien été effectuée</h6>
-
-                        <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" data-dismiss="modal">Fermer</button>
+                        <div class="row text-center">
+                            <h6 class="pr-3 pt-2">Votre commande à bel et bien été effectuée</h6>
+                            <button type="submit" class="btn btn-success" data-dismiss="modal">Fermer</button>
+                        </div>
                     </div>
                 </div>
             </div>

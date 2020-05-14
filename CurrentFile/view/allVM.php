@@ -22,7 +22,7 @@ ob_start();
     <!--Confirmation command VM modal)-->
     <?php if(isset($_SESSION['$displayModalConfirm']) && $_SESSION['$displayModalConfirm'] == true) : ?>
         <div class="modal fade" id="confirmationCommandVM" tabindex="-1" role="dialog" aria-labelledby="confirmationCommandVM" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-frame modal-top" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
                         <h6>Votre action à bel et bien été effectuée</h6>
@@ -188,7 +188,7 @@ ob_start();
             <!--Export VM to Excel-->
             <a href="index.php?action=exportToExcel">
                 <button type="button" class="btn btn-success w-100 rounded-0 mb-0 text-left">
-                    Exporter sur Excel
+                    Exporter
                 </button>
             </a>
         </div>

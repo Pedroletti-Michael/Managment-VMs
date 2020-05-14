@@ -24,7 +24,7 @@ ob_start();
     </h3>
     <!--Buttons-->
     <form method="post" action="../index.php?action=formManagement">
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <div class="btn-group btn-group-toggle w-100-responsive" data-toggle="buttons">
             <?php if ($arrayToDisplay == "entity"): ?>
                 <a href="../index.php?action=formManagement&array=entity" class="btn btn-secondary active" >
                     <input type="radio" name="options" id="option1" checked> Entity
@@ -75,24 +75,43 @@ ob_start();
                     }
                     ?>
                 </table>
-                <div class="float-left w-33 responsiveDisplay pr-1 mb-3">
+                <div class="float-left w-33 responsiveDisplay pr-1 mb-3" id="responsiveDisplay">
                     <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#addEntity">Ajouter</button>
                 </div>
-                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3">
-                    <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#modifyEntity">Modifier</button>
+                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-primary w-100 mb-0" data-toggle="modal" data-target="#modifyEntity">Modifier</button>
                 </div>
-                <div class="float-left w-33 responsiveDisplay pl-1 mb-3">
-                    <button type="button" class="btn btn-danger w-100" data-toggle="modal" data-target="#confirmationDeleteEntity" onclick="confirmationDeleteEntity()">Supprimer</button>
+                <div class="float-left w-33 responsiveDisplay pl-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-danger w-100 mb-70-px" data-toggle="modal" data-target="#deleteEntity">Supprimer</button>
                 </div>
                 <!--Entity (confirmation delete modal)-->
                 <div class="modal fade" id="confirmationDeleteEntity" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteEntity" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content p-6">
                             <div class="modal-body">
-                                <h6 id="confirmationDeleteEntitySelected"></h6>
-                                <input type="text" id="valueEntityToDelete" name="valueEntityToDelete" hidden>
+                                <
 
-                                <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="delete" name="delete" id="delete">OUI</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Entity (delete modal)-->
+                <div class="modal fade" id="deleteEntity" tabindex="-1" role="dialog" aria-labelledby="deleteEntity" aria-hidden="true">
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <div class="modal-content text-center">
+                            <div class="modal-header modal-danger justify-content-center">
+                                <h5>Supprimer <b>Entity</b></h5>
+                            </div>
+
+                            <div class="modal-body">
+                                <h6 id="textDelEntity">Aucun champ n'a été sélectionné</h6>
+
+                                <input type="text" id="valueEntityToDelete" name="valueEntityToDelete" hidden>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-danger mx-auto responsiveDisplay" value="delete" name="delete" id="delete">Confirmer</button>
                             </div>
                         </div>
                     </div>
@@ -102,99 +121,69 @@ ob_start();
 
         <!--Entity (add modal)-->
         <div class="modal fade" id="addEntity" tabindex="-1" role="dialog" aria-labelledby="addEntity" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content p-3">
-                    <form method="post" action="../index.php?action=editEntity">
-                        <div class="form-group" name="formulaire" id="form_Entity">
-                            <h6>Ajouter dans la table <b>Entity</b> le champ :</h6>
+            <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header modal-success justify-content-center">
+                        <h5>Ajouter <b>Entity</b></h5>
+                    </div>
 
-                            <input type="text" class="form-control float-left w-75-m responsiveDisplay" id="txtEntityAdd" name="txtEntityAdd" placeholder="Nom">
-                            <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
+                    <form method="post" action="../index.php?action=editEntity">
+                        <div class="modal-body">
+                            <input type="text" class="form-control responsiveDisplay" id="txtEntityAdd" name="txtEntityAdd" placeholder="Valeur à ajouter dans la table">
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success mx-auto responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
 
-        <!--Entity(modify modal)-->
-        <div class="modal fade" id="modifyEntity" tabindex="-1" role="dialog" aria-labelledby="modifyEntity" aria-hidden="true" >
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content p-3">
-                    <form method="post" action="../index.php?action=editEntity">
-                        <div class="form-group" name="formulaire" id="form_Entity">
+        <!--Entity (modify modal)-->
+        <div class="modal fade" id="modifyEntity" tabindex="-1" role="dialog" aria-labelledby="modifyEntity" aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header modal-primary justify-content-center">
+                        <h5>Modifier <b>Entity</b></h5>
+                    </div>
 
-                            <h6 id="textModEntity">Aucune valeur n'a été sélectionnée</h6>
+                    <form method="post" action="../index.php?action=editEntity">
+                        <div class="modal-body">
                             <input type="text" id="valueEntityMod" name="valueEntityMod" hidden>
 
-                            <input type="text" class="form-control float-left w-75-m responsiveDisplay" id="txtEntityMod" name="txtEntityMod" placeholder="Nouvelle valeur">
-
-                            <button type="button" onclick="confirmationModifyEntity()" class="btn btn-success float-left w-25-m responsiveDisplay" data-toggle="modal" data-target="#confirmationModifyEntity">Confirmer</button>
-
-                            <!--Entity (confirmation modify modal)-->
-                            <div class="modal fade" id="confirmationModifyEntity" tabindex="-1" role="dialog" aria-labelledby="confirmationModifyEntity" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content p-6">
-                                        <div class="modal-body">
-                                            <h6 id="confirmationModifyEntitySelected"></h6>
-
-                                            <button type="submit" class="btn btn-success float-left w-25-m responsiveDisplay" value="modify" name="modify" id="modify">OUI</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <script>
-                                $("#valueEntityDel tr").click(function(){
-                                    $(this).addClass('selected').siblings().removeClass('selected');
-                                    var value=$(this).find('td:first').html();
-                                    document.getElementById("valueEntityDel").value = value;
-                                    document.getElementById("valueEntityToDelete").value = value;
-                                    getSelectedEntityToDelete();getSelectedEntityToDisplayOnModify();
-                                });
-
-                                function getSelectedEntityToDelete()
-                                {
-                                    var elementToDelete = document.getElementById("valueEntityDel").value;
-                                    return elementToDelete;
-                                }
-
-                                function confirmationDeleteEntity()
-                                {
-                                    var elementToDelete = getSelectedEntityToDelete();
-
-                                    $("#confirmationDeleteEntitySelected").html('Êtes-vous sûr de vouloir supprimer le champ : <b>'+ elementToDelete + '</b> ?');
-                                }
-
-                                function displaySelectedValueEntity(getSelectedValue)
-                                {
-                                    if(getSelectedValue !== true)
-                                    {
-                                        document.getElementById("txtEntityMod").value = document.getElementById("valueEntityMod").value;
-                                    }
-                                    else
-                                    {
-                                        var basicElement = document.getElementById("valueEntityMod").value;
-                                        return basicElement;
-                                    }
-                                }
-
-                                function getSelectedEntityToDisplayOnModify()
-                                {
-                                    var selectedValue = document.getElementById("valueEntityDel").value;
-                                    document.getElementById("valueEntityMod").value = selectedValue;
-                                    document.getElementById("txtEntityMod").value = selectedValue;
-                                    $("#textModEntity").html('Modifier le champ <b>' + selectedValue + '</b> en :');
-                                }
-
-                                function confirmationModifyEntity()
-                                {
-                                    var editedElement = document.getElementById("txtEntityMod").value;
-                                    var basicElement = displaySelectedValueEntity(true);
-
-                                    $("#confirmationModifyEntitySelected").html('Êtes-vous sûr de vouloir changer le champ : <b>' + basicElement + '</b> en <b>' + editedElement + '</b> ?');
-                                }
-                            </script>
+                            <h6 id="textModEntity" class="float-left">Aucun champ n'a été sélectionné</h6>
+                            <input type="text" class="form-control responsiveDisplay" id="txtEntityMod" name="txtEntityMod" placeholder="Nouvelle valeur">
                         </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary mx-auto responsiveDisplay" value="modify" name="modify" id="modify">Confirmer</button>
+                        </div>
+
+                        <script>
+                            $("#valueEntityDel tr").click(function(){
+                                $(this).addClass('selected').siblings().removeClass('selected');
+                                var value=$(this).find('td:first').html();
+                                document.getElementById("valueEntityDel").value = value;
+                                document.getElementById("valueEntityToDelete").value = value;
+                                getSelectedEntityToDisplayOnModify();getSelectedEntityToDisplayOnDelete();
+                            });
+
+                            function getSelectedEntityToDisplayOnDelete()
+                            {
+                                var selectedValue = document.getElementById("valueEntityDel").value;
+
+                                $("#textDelEntity").html('Êtes-vous sûr de vouloir supprimer le champ : <b>' + selectedValue + '<b/> ?');
+                            }
+
+                            function getSelectedEntityToDisplayOnModify()
+                            {
+                                var selectedValue = document.getElementById("valueEntityDel").value;
+                                document.getElementById("valueEntityMod").value = selectedValue;
+                                document.getElementById("txtEntityMod").value = selectedValue;
+                                $("#textModEntity").html('Changer le champ <b>' + selectedValue + '</b> en :');
+                            }
+                        </script>
                     </form>
                 </div>
             </div>
@@ -210,14 +199,14 @@ ob_start();
                     }
                     ?>
                 </table>
-                <div class="float-left w-33 responsiveDisplay pr-1 mb-3">
+                <div class="float-left w-33 responsiveDisplay pr-1 mb-3" id="responsiveDisplay">
                     <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#addOS">Ajouter</button>
                 </div>
-                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3">
-                    <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#modifyOS">Modifier</button>
+                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-primary w-100 mb-0" data-toggle="modal" data-target="#modifyOS">Modifier</button>
                 </div>
-                <div class="float-left w-33 responsiveDisplay pl-1 mb-3">
-                    <button type="button" class="btn btn-danger w-100" data-toggle="modal" data-target="#confirmationDeleteOS" onclick="confirmationDeleteOS()">Supprimer</button>
+                <div class="float-left w-33 responsiveDisplay pl-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-danger w-100 mb-70-px" data-toggle="modal" data-target="#confirmationDeleteOS" onclick="confirmationDeleteOS()">Supprimer</button>
                 </div>
 
                 <!--OS(confirmation delete modal)-->
@@ -401,14 +390,14 @@ ob_start();
                     }
                     ?>
                 </table>
-                <div class="float-left w-33 responsiveDisplay pr-1 mb-3">
+                <div class="float-left w-33 responsiveDisplay pr-1 mb-3" id="responsiveDisplay">
                     <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#addSnapshots">Ajouter</button>
                 </div>
-                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3">
-                    <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#modifySnapshots">Modifier</button>
+                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-primary w-100 mb-0" data-toggle="modal" data-target="#modifySnapshots">Modifier</button>
                 </div>
-                <div class="float-left w-33 responsiveDisplay pl-1 mb-3">
-                    <button type="button" class="btn btn-danger w-100" data-toggle="modal" data-target="#confirmationDeleteSnapshots" onclick="confirmationDeleteSnapshots()">Supprimer</button>
+                <div class="float-left w-33 responsiveDisplay pl-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-danger w-100 mb-70-px" data-toggle="modal" data-target="#confirmationDeleteSnapshots" onclick="confirmationDeleteSnapshots()">Supprimer</button>
                 </div>
 
                 <!--Snapshots(confirmation delete modal)-->
@@ -586,14 +575,14 @@ ob_start();
                     ?>
                 </table>
 
-                <div class="float-left w-33 responsiveDisplay pr-1 mb-3">
+                <div class="float-left w-33 responsiveDisplay pr-1 mb-3" id="responsiveDisplay">
                     <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#addBackup">Ajouter</button>
                 </div>
-                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3">
-                    <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#modifyBackup">Modifier</button>
+                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-primary w-100 mb-0" data-toggle="modal" data-target="#modifyBackup">Modifier</button>
                 </div>
-                <div class="float-left w-33 responsiveDisplay pl-1 mb-3">
-                    <button type="button" class="btn btn-danger w-100" data-toggle="modal" data-target="#confirmationDeleteBackup" onclick="confirmationDeleteBackup()">Supprimer</button>
+                <div class="float-left w-33 responsiveDisplay pl-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-danger w-100 mb-70-px" data-toggle="modal" data-target="#confirmationDeleteBackup" onclick="confirmationDeleteBackup()">Supprimer</button>
                 </div>
 
                 <!--Backup(confirmation delete modal)-->

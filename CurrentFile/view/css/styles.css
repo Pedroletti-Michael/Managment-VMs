@@ -164,7 +164,7 @@
     }
 }
 
-/* ------------------------------------------- Responsive for phone -------------------------------------------------*/
+/* ------------------------------------------- Responsive for screen < 1050px -------------------------------------------------*/
 @media screen and (max-width: 1050px){
     #main{
         margin-top: -21px!important;
@@ -179,6 +179,7 @@
         width: 100%!important;
         padding-left: 0!important;
         padding-right: 0!important;
+        margin-bottom: 0!important;
     }
     .responsiveButton{
         height: 60px;
@@ -212,6 +213,12 @@
         background-color: #272727;
     }
 
+    .w-25-responsive{
+        width: 25%!important;
+    }
+    .w-100-responsive{
+        width: 100%!important;
+    }
     /* The side navigation menu */
     .sidenav {
         height: 100%; /* 100% Full-height */
@@ -274,6 +281,7 @@
         .sidenav a {font-size: 18px;}
     }
 }
+/* ------------------------------------------- Responsive for phones -------------------------------------------------*/
 @media handheld and (min-device-width: 600px){
     .responsive-phone{
         width: 100%;
@@ -281,10 +289,23 @@
     }
 }
 @media handheld,(max-device-width: 1000px) and (max-width: 900px){
+    #main{
+        margin-bottom: 70px;
+    }
+    .menu-phone-selected{
+        text-decoration: underline red!important;
+    }
     .display-phone{
         display: inline-block!important;
     }
     .display-1000{
         display: none!important;
+    }
+    .responsiveDisplay{
+        width: 100%!important;
+        margin: 2px 0px;
+    }
+    .mb-70-px{
+        margin-bottom: 70px!important;
     }
 }

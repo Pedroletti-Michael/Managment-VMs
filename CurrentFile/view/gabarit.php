@@ -40,7 +40,7 @@
             <path fill-rule="evenodd" d="M6 10.5a.5.5 0 01.5-.5h3a.5.5 0 010 1h-3a.5.5 0 01-.5-.5zm-2-3a.5.5 0 01.5-.5h7a.5.5 0 010 1h-7a.5.5 0 01-.5-.5zm-2-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
         </svg>
     </button>
-    <div class="w3-sidebar w3-bar-block w3-card w3-animate-bottom w-100" style="display:none;bottom: 0;" id="phoneMenu">
+    <div class="w3-sidebar w3-bar-block w3-card w3-animate-bottom w-100" style="display:none;bottom: 0; z-index: 999" id="phoneMenu">
         <!-- Search form -->
         <div class="w-100">
             <form method="post" action="../index.php?action=research" class="btn-group search-responsive w-100">
@@ -51,25 +51,25 @@
         <hr color="lightgrey" style="height: 1px;" class="w-75">
         <div class="w-100 m-auto text-center pt-1">
             <?php if ($_GET['action'] == "home"): ?>
-                <a href="index.php?action=home" class="alert-link active color-lightgrey text-decoration-none"><h5 class="color-active">Mes VM</h5></a>
+                <a href="index.php?action=home" class="alert-link active color-lightgrey text-decoration-none"><h5 class="color-lightgrey"><a class="menu-phone-selected">Mes VM</a></h5></a>
             <?php else : ?>
                 <a href="index.php?action=home" class="color-lightgrey text-decoration-none"><h5 class="color-lightgrey">Mes VM</h5></a>
             <?php endif; ?>
         </div>
         <div class="w-100 m-auto text-center pt-1">
             <?php if ($_GET['action'] == "form"): ?>
-                <a class="last alert-link active color-lightgrey text-decoration-none" href="index.php?action=form"><h5 class="color-active">Formulaire</h5></a>
+                <a class="alert-link active color-lightgrey text-decoration-none" href="index.php?action=form"><h5 class="color-lightgrey"><a class="menu-phone-selected">Formulaire</a></h5></a>
             <?php else : ?>
-                <a class="last color-lightgrey text-decoration-none" href="index.php?action=form"><h5 class="color-lightgrey">Formulaire</h5></a>
+                <a class="color-lightgrey text-decoration-none" href="index.php?action=form"><h5 class="color-lightgrey">Formulaire</h5></a>
             <?php endif; ?>
         </div>
         <div class="w-100 fixed-bottom" style="bottom: 20px">
             <div class="float-right mr-4 w-auto text-decoration-none">
                 <?php if ($_GET['action'] == "signIn"): ?>
                     <?php if(isset($_SESSION['userType'])): ?>
-                        <a href="index.php?action=signOut" class="alert-link active"><h5 class="color-active">Déconnexion</h5></a>
+                        <a href="index.php?action=signOut" class="alert-link active text-decoration-none"><h5 class="color-lightgrey"><a class="menu-phone-selected">Déconnexion</a></h5></a>
                     <?php else : ?>
-                        <a href="index.php?action=signIn" class="alert-link active"><h5 class="color-lightgrey">Se connecter</h5></a>
+                        <a href="index.php?action=signIn" class="alert-link active text-decoration-none"><h5 class="color-lightgrey"><a class="menu-phone-selected">Se connecter</a></h5></a>
                     <?php endif; ?>
                 <?php else : ?>
                     <?php if(isset($_SESSION['userType'])): ?>
@@ -85,34 +85,34 @@
             <hr color="lightgrey" style="height: 1px;" class="w-50">
             <!----------------- allVM ---------------->
             <?php if ($_GET['action'] == "allVM"): ?>
-                <a href="index.php?action=allVM" class="alert-link active"><h5 class="color-active">Inventaire VM</h5></a>
+                <a href="index.php?action=allVM" class="alert-link active text-decoration-none"><h5 class="color-lightgrey"><a class="menu-phone-selected">Inventaire VM</a></h5></a>
             <?php else : ?>
-                <a href="index.php?action=allVM"><h5 class="color-lightgrey">Inventaire VM</h5></a>
+                <a href="index.php?action=allVM" class="text-decoration-none"><h5 class="color-lightgrey">Inventaire VM</h5></a>
             <?php endif; ?>
             <!----------------- confirmationVM ---------------->
             <?php if ($_GET['action'] == "confirmationVM"): ?>
-                <a href="index.php?action=confirmationVM" class="alert-link active"><h5 class="color-active">Demandes</h5></a>
+                <a href="index.php?action=confirmationVM" class="alert-link active text-decoration-none"><h5 class="color-lightgrey"><a class="menu-phone-selected">Demandes</a></h5></a>
             <?php else : ?>
-                <a href="index.php?action=confirmationVM"><h5 class="color-lightgrey">Demandes</h5></a>
+                <a href="index.php?action=confirmationVM" class="text-decoration-none"><h5 class="color-lightgrey">Demandes</h5></a>
             <?php endif; ?>
             <!----------------- renewalVM ---------------->
             <?php if ($_GET['action'] == "renewalVM"): ?>
-                <a href="index.php?action=renewalVM" class="alert-link active"><h5 class="color-active">Renouvellements</h5></a>
+                <a href="index.php?action=renewalVM" class="alert-link active text-decoration-none"><h5 class="color-lightgrey"><a class="menu-phone-selected">Renouvellements</a></h5></a>
             <?php else : ?>
-                <a href="index.php?action=renewalVM"><h5 class="color-lightgrey">Renouvellements</h5></a>
+                <a href="index.php?action=renewalVM" class="text-decoration-none"><h5 class="color-lightgrey">Renouvellements</h5></a>
             <?php endif; ?>
             <hr color="lightgrey" style="height: 1px;" class="w-75">
             <!----------------- formManagement ---------------->
             <?php if ($_GET['action'] == "formManagement"): ?>
-                <a class="last alert-link active" href="index.php?action=formManagement&array=entity"><h5 class="color-active">Gestion du formulaire</h5></a>
+                <a class="alert-link active text-decoration-none" href="index.php?action=formManagement&array=entity"><h5 class="color-lightgrey"><a class="menu-phone-selected">Gestion du formulaire</a></h5></a>
             <?php else : ?>
-                <a class="last" href="index.php?action=formManagement&array=entity"><h5 class="color-lightgrey">Gestion du formulaire</h5></a>
+                <a class="text-decoration-none" href="index.php?action=formManagement&array=entity"><h5 class="color-lightgrey">Gestion du formulaire</h5></a>
             <?php endif; ?>
             <!----------------- updateUser ---------------->
             <?php if ($_GET['action'] == "displayManagementUser"): ?>
-                <a class="last alert-link active" href="index.php?action=displayManagementUser"><h5 class="color-active">Gestions des utilisateurs</h5></a>
+                <a class="alert-link active text-decoration-none" href="index.php?action=displayManagementUser"><h5 class="color-lightgrey"><a class="menu-phone-selected">Gestion des utilisateurs</a></h5></a>
             <?php else : ?>
-                <a href="index.php?action=displayManagementUser"><h5 class="color-lightgrey">Gestions des utilisateurs</h5></a>
+                <a href="index.php?action=displayManagementUser" class="text-decoration-none"><h5 class="color-lightgrey">Gestion des utilisateurs</h5></a>
             <?php endif; ?>
         <?php endif; ?>
         </div>
@@ -155,9 +155,9 @@
         <?php endif; ?>
         <!----------------- form ---------------->
         <?php if ($_GET['action'] == "form"): ?>
-            <a class="last alert-link active" href="index.php?action=form">Formulaire</a>
+            <a class="alert-link active" href="index.php?action=form">Formulaire</a>
         <?php else : ?>
-            <a class="last" href="index.php?action=form">Formulaire</a>
+            <a href="index.php?action=form">Formulaire</a>
         <?php endif; ?>
 
         <?php if(isset($_SESSION['userType']) && $_SESSION['userType']==1):?>
@@ -184,15 +184,15 @@
             <a class="title">Admin</a>
             <!----------------- formManagement ---------------->
             <?php if ($_GET['action'] == "formManagement"): ?>
-                <a class="last alert-link active" href="index.php?action=formManagement&array=entity">Gestion du formulaire</a>
+                <a class="alert-link active" href="index.php?action=formManagement&array=entity">Gestion du formulaire</a>
             <?php else : ?>
-                <a class="last" href="index.php?action=formManagement&array=entity">Gestion du formulaire</a>
+                <a href="index.php?action=formManagement&array=entity">Gestion du formulaire</a>
             <?php endif; ?>
             <!----------------- updateUser ---------------->
             <?php if ($_GET['action'] == "displayManagementUser"): ?>
-                <a class="last alert-link active" href="index.php?action=displayManagementUser">Gestions des utilisateurs</a>
+                <a class="alert-link active" href="index.php?action=displayManagementUser">Gestion des utilisateurs</a>
             <?php else : ?>
-                <a class="last" href="index.php?action=displayManagementUser">Gestions des utilisateurs</a>
+                <a href="index.php?action=displayManagementUser">Gestion des utilisateurs</a>
             <?php endif; ?>
         <?php endif; ?>
     </div>
@@ -313,7 +313,7 @@
                             <a class="nav-link" href="index.php?action=displayManagementUser">
                                 <?php endif; ?>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                Gestions des utilisateurs
+                                Gestion des utilisateurs
                             </a>
                     </li>
                 </ul>

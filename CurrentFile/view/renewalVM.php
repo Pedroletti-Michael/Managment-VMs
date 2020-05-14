@@ -36,9 +36,10 @@ ob_start();
             <?php foreach ($renewalVM as $value): ?>
            <tr>
                <td>
-                   <a href="index.php?action=renewalAccepted&id=<?php echo $value['id']?>"><button type="submit" class="btn btn-success"><strong>Oui</strong></button></a>
-                   <a href="index.php?action=renewalRefused&id=<?php echo $value['id']?>"><button type="submit" class="btn btn-danger"><strong>Non</strong></button></a>
-
+                   <div class="btn-group" role="group">
+                        <a href="index.php?action=renewalAccepted&id=<?php echo $value['id']?>" class="pr-1"><button type="submit" class="btn btn-success"><strong>Oui</strong></button></a>
+                        <a href="index.php?action=renewalRefused&id=<?php echo $value['id']?>"><button type="submit" class="btn btn-danger"><strong>Non</strong></button></a>
+                   </div>
                </td>
                 <td><?php echo $value['name']?></a></td>
                 <td style="min-width: 100px"><?php echo $value['os_id']['1']." ".$value['os_id']['0']?></td>
