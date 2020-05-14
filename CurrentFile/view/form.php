@@ -24,24 +24,24 @@ ob_start();
                 }
             }
 
-            var txtHelp = document.getElementById("vmNameHelp");
             var inpt = document.getElementById("inputVMName");
             var subBtn = document.getElementById("submitButton");
             if(result){
-                txtHelp.color = "#dc3545";
-                txtHelp.textContent = "Nom déjà utilisé ! Veuillez en utiliser un autre !";
+                document.getElementById("alertVmName").style.display = "";
                 inpt.style.boxShadow = "0 0 0 0.2rem rgba(223, 1, 7, 0.25)";
                 inpt.style.borderColor = "#dc3545";
                 subBtn.disabled= true;
             }
             else{
                 inpt.style.borderColor = "#ced4da";
+                document.getElementById("alertVmName").style.display = "none";
                 inpt.style.boxShadow = "0 0 0 0.2rem rgba(0, 123, 255, 0.25)";
-                txtHelp.color = "#495057";
-                txtHelp.textContent = "15 caractères maximum. Lettres, chiffres et trait d'union uniquement (Ex: VM-01)";
                 subBtn.disabled= false;
             }
         }
+    </script>
+    <script>
+
     </script>
 </head>
 <body>
@@ -54,6 +54,10 @@ ob_start();
                 <label for="inputVMName" class="font-weight-bold">Nom de la VM<a style="color: red"> *</a></label>
                 <input type="vmName" class="form-control form form" id="inputVMName" name="inputVMName" aria-describedby="vmNameHelp" maxlength="15" required onkeyup="checkName()">
                 <small id="vmNameHelp" class="form-text text-muted">15 caractères maximum. Lettres, chiffres et trait d'union uniquement (Ex: VM-01)</small>
+
+                <div class="alert alert-warning w-100 align-middle text-center mt-2 mb-0" id="alertVmName" style="display: none;">
+                    <strong>Attention!</strong> Ce nom est déjà utilisé. Veuillez en utiliser un autre !
+                </div>
             </div>
             <!--Name of the requester-->
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
@@ -204,7 +208,7 @@ ob_start();
             <!--Date of commissioning-->
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="inputComissioningDate" class="font-weight-bold">Date de mise en service<a style="color: red"> *</a></label>
-                <input type="date" min="<?php date("Y-m-d") ?>" class="form-control form form" id="inputComissioningDate" name="inputComissioningDate" aria-describedby="comissioningDateHelp" placeholder="Entrer un nom ou une addresse de messagerie"  required>
+                <input type="date" min="<?= date("Y-m-d"); ?>" class="form-control form form" id="inputComissioningDate" name="inputComissioningDate" aria-describedby="comissioningDateHelp" placeholder="Entrer un nom ou une addresse de messagerie"  required>
                 <small id="comissioningDateHelp" class="form-text text-muted">Délai d'une semaine pour les VM de type Silver &amp; Gold. Deux semaines pour les autres configurations.</small>
             </div>
         </div>
@@ -238,9 +242,12 @@ ob_start();
             <!--End Date-->
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="inputEndDate" class="font-weight-bold">Date de fin</label>
-                <input type="date" class="form-control form form" id="inputEndDate" name="inputEndDate" aria-describedby="EndDateHelp" placeholder="Entrer un nom ou une addresse de messagerie">
+                <input type="date" min="<?= strtotime(date("Y-m-d").'+ 1 DAY'); ?>" class="form-control form form" id="inputEndDate" name="inputEndDate" aria-describedby="EndDateHelp" onchange="checkField('alertEndDate')" placeholder="Entrer un nom ou une addresse de messagerie">
                 <small id="EndDateHelp" class="form-text text-muted">Date de fin du projet, à laquelle la VM peut être arrêtée puis supprimée.</small>
                 <small id="EndDateHelp" class="form-text text-muted">S'il n'y a pas d'échéance, une demande de renouvellement sera envoyée tous les 6 mois.</small>
+                <div class="alert alert-warning w-100 align-middle text-center mt-2 mb-0" id="alertEndDate" style="display: none;">
+                    <strong>Attention!</strong> La date de fin doit être plus grande que la date de début !
+                </div>
             </div>
         </div>
 

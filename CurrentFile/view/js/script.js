@@ -43,6 +43,36 @@ function goTo(){
     }
 }
 
+//Function used to check fields in form.php
+function checkField(fieldName) {
+    switch (fieldName) {
+        case 'alertEndDate':
+            var dateEnd = document.getElementById('inputEndDate').value;
+            var splitedDateEnd = dateEnd.split('-');
+
+            var dateStart = document.getElementById('inputComissioningDate').value;
+            var splitedDateStart = dateStart.split('-');
+
+            if(Date.UTC(splitedDateEnd[0], splitedDateEnd[1], splitedDateEnd[2]) <= Date.UTC(splitedDateStart[0], splitedDateStart[1], splitedDateStart[2])) {
+                if(document.getElementById('inputEndDate').value !== '') {
+                    document.getElementById('alertEndDate').style.display = '';
+                    document.getElementById('submitButton').disabled = true
+                }
+                else {
+                    document.getElementById('alertEndDate').style.display = 'none';
+                    document.getElementById('submitButton').disabled = false
+                }
+            }
+            else {
+                document.getElementById('alertEndDate').style.display = 'none';
+                document.getElementById('submitButton').disabled = false
+            }
+            break;
+    }
+
+}
+
+
 // ------------------- w3schools -------------------------
 function openRightMenu() {
     document.getElementById("rightMenu").style.display = "block";

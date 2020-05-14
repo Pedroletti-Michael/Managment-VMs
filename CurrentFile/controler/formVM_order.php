@@ -69,7 +69,7 @@ function formVM($formVMRequest)
         }
     }
     else{
-        $formVMRequest['inputEndDate'] = '';
+        $formVMRequest['inputEndDate'] = null;
     }
 
     if($errorForm == true)

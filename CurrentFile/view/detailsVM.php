@@ -420,7 +420,7 @@ ob_start();
         <a onclick="getValue()"><button type="submit" id="submitButton" class="btn btn-primary m-auto d-inline responsiveDisplay">Enregistrer les modifications</button></a>
     </form>
         <?php
-        if($dataVM[0]['vmStatus']==0){
+        if($dataVM[0]['vmStatus']==0 && $_SESSION['userType'] == 1){
             //accepted
             echo '<a href="index.php?action=vmAccepted" id="submitButton"><button type="button" class="btn btn-success float-right ml-1 responsiveDisplay">Confirmer la demande</button></a>';
             //refused
