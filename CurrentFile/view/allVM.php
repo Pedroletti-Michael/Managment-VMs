@@ -438,27 +438,26 @@ ob_start();
         var vmRenew = 0;
         var vmDeleted = 0;
         for(i = 0; i < allVm.length; i++){
-            switch(allVm) {
-                case 0:
+            switch(allVm[i]['vmStatus']) {
+                case '0':
                     vmToBeConfirmed ++;
                     break;
-                case 2:
+                case '2':
                     vmConfirmed ++;
                     break;
-                case 3:
+                case '3':
                     vmRenew ++;
                     break;
-                case 5:
+                case '5':
                     vmDeleted ++;
                     break;
             }
         }
-        alert(allVmCount + "pute de test mort");
         document.getElementById("numberOfVM").innerHTML = allVmCount;
-        document.getElementById("numberOfConfirmedVM").textContent = vmConfirmed.toString();
-        document.getElementById("numberOfToBeConfirmedVM").innerText = vmToBeConfirmed.toString();
-        document.getElementById("numberOfRenewalVM").innerHTML = vmRenew.toString();
-        document.getElementById("numberOfDeletedVM").innerHTML = vmDeleted.toString();
+        document.getElementById("numberOfConfirmedVM").textContent = vmConfirmed;
+        document.getElementById("numberOfToBeConfirmedVM").innerText = vmToBeConfirmed;
+        document.getElementById("numberOfRenewalVM").innerHTML = vmRenew;
+        document.getElementById("numberOfDeletedVM").innerHTML = vmDeleted;
     </script>
 <?php
 $contenu = ob_get_clean();
