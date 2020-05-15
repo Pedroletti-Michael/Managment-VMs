@@ -40,7 +40,7 @@ ob_start();
                         <!--All VM-->
                         <a href="index.php?action=allVM&vmFilter=all">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left">
-                                <span class="badge badge-primary">24</span>
+                                <span class="badge badge-primary" id="numberOfVM"> </span>
                                 Toutes les VM
                             </button>
                         </a>
@@ -49,7 +49,7 @@ ob_start();
                         <!--Confirmed VM-->
                         <a href="index.php?action=allVM&vmFilter=confirmed">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" >
-                                <span class="badge" style="background-color: rgba(40,167,69,0.7); border-color: rgba(40,167,69,0.7);">13</span>
+                                <span class="badge" style="background-color: rgba(40,167,69,0.7); border-color: rgba(40,167,69,0.7);" id="numberOfConfirmedVM"> </span>
                                 VM confirmées
                             </button>
                         </a>
@@ -58,7 +58,7 @@ ob_start();
                         <!--VM who need to be confirmed-->
                         <a href="index.php?action=allVM&vmFilter=confirmation">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left">
-                                <span class="badge" style="background-color: rgba(255,165,69,0.7); border-color: rgba(255,165,69,0.7);">7</span>
+                                <span class="badge" style="background-color: rgba(255,165,69,0.7); border-color: rgba(255,165,69,0.7);" id="numberOfToBeConfirmedVM"> </span>
                                 VM à confirmer
                             </button>
                         </a>
@@ -67,7 +67,7 @@ ob_start();
                         <!--VM to renew-->
                         <a href="index.php?action=allVM&vmFilter=renewal">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left">
-                                <span class="badge" style="background-color: rgba(233,48,48,0.7); border-color: rgba(233,48,48,0.7);">1</span>
+                                <span class="badge" style="background-color: rgba(233,48,48,0.7); border-color: rgba(233,48,48,0.7);" id="numberOfRenewalVM"> </span>
                                 VM à renouveler
                             </button>
                         </a>
@@ -76,7 +76,7 @@ ob_start();
                         <!--Deleted VM-->
                         <a href="index.php?action=allVM&vmFilter=deleted">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left">
-                                <span class="badge" style="background-color: rgba(90,90,90,0.7); border-color: rgba(90,90,90,0.7);">3</span>
+                                <span class="badge" style="background-color: rgba(90,90,90,0.7); border-color: rgba(90,90,90,0.7);" id="numberOfDeletedVM"> </span>
                                 VM supprimées
                             </button>
                         </a>
@@ -337,34 +337,34 @@ ob_start();
             <thead class="thead-dark sticky-top">
             <tr>
                 <th name="goToButton" scope="col" style="width: 50px;"></th>
-                <th name="name" scope="col" onclick="sortTable(1)">name</th>
-                <th style="display: none" name="cluster" scope="col" onclick="sortTable(2)">cluster</th>
-                <th name="dateStart" scope="col" onclick="sortTable(4)">dateStart</th>
-                <th style="display: none" name="dateAnniversary" scope="col" onclick="sortTable(6)">dateAnniversary</th>
-                <th name="dateEnd" scope="col" onclick="sortTable(8)">dateEnd</th>
-                <th name="desc" scope="col" onclick="sortTable(9)">description</th>
-                <th style="display: none" name="ip" scope="col" onclick="sortTable(10)">ip</th>
-                <th style="display: none" name="dnsName" scope="col" onclick="sortTable(11)">dnsName</th>
-                <th style="display: none" name="redundance" scope="col" onclick="sortTable(12)">redundance</th>
-                <th name="usage" scope="col" onclick="sortTable(13)">usageType</th>
-                <th style="display: none" name="criticity" scope="col" onclick="sortTable(14)">criticity</th>
-                <th name="cpu" scope="col" onclick="sortNumberTable(15)">cpu</th>
-                <th name="ram" scope="col" onclick="sortNumberTable(16)">ram</th>
-                <th name="disk" scope="col" onclick="sortNumberTable(17)">disk</th>
-                <th name="network" scope="col" onclick="sortTable(18)">network</th>
-                <th name="domain" scope="col" onclick="sortTable(19)">domain</th>
-                <th name="comment" scope="col" onclick="sortTable(20)">comment</th>
-                <th name="customer" scope="col" onclick="sortTable(21)">customer</th>
-                <th name="Ra" scope="col" onclick="sortTable(22)">userRa</th>
-                <th name="Rt" scope="col" onclick="sortTable(23)">userRt</th>
-                <th name="entity" scope="col" onclick="sortTable(24)">entity_id</th>
-                <th name="os" scope="col" onclick="sortTable(25)">os_id</th>
-                <th name="snapshot" scope="col" onclick="sortTable(26)">snapshot_id
+                <th name="name" scope="col" onclick="sortTable(1, 0)">name</th>
+                <th style="display: none" name="cluster" scope="col" onclick="sortTable(2, 0)">cluster</th>
+                <th name="dateStart" scope="col" onclick="sortTable(4, 0)">dateStart</th>
+                <th style="display: none" name="dateAnniversary" scope="col" onclick="sortTable(6, 0)">dateAnniversary</th>
+                <th name="dateEnd" scope="col" onclick="sortTable(8, 0)">dateEnd</th>
+                <th name="desc" scope="col" onclick="sortTable(9, 0)">description</th>
+                <th style="display: none" name="ip" scope="col" onclick="sortTable(10, 0)">ip</th>
+                <th style="display: none" name="dnsName" scope="col" onclick="sortTable(11, 0)">dnsName</th>
+                <th style="display: none" name="redundance" scope="col" onclick="sortTable(12, 0)">redundance</th>
+                <th name="usage" scope="col" onclick="sortTable(13, 0)">usageType</th>
+                <th style="display: none" name="criticity" scope="col" onclick="sortTable(14, 0)">criticity</th>
+                <th name="cpu" scope="col" onclick="sortNumberTable(15, 0)">cpu</th>
+                <th name="ram" scope="col" onclick="sortNumberTable(16, 0)">ram</th>
+                <th name="disk" scope="col" onclick="sortNumberTable(17, 0)">disk</th>
+                <th name="network" scope="col" onclick="sortTable(18, 0)">network</th>
+                <th name="domain" scope="col" onclick="sortTable(19, 0)">domain</th>
+                <th name="comment" scope="col" onclick="sortTable(20, 0)">comment</th>
+                <th name="customer" scope="col" onclick="sortTable(21, 0)">customer</th>
+                <th name="Ra" scope="col" onclick="sortTable(22, 0)">userRa</th>
+                <th name="Rt" scope="col" onclick="sortTable(23, 0)">userRt</th>
+                <th name="entity" scope="col" onclick="sortTable(24, 0)">entity_id</th>
+                <th name="os" scope="col" onclick="sortTable(25, 0)">os_id</th>
+                <th name="snapshot" scope="col" onclick="sortTable(26, 0)">snapshot_id
                     <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#modalSnapshot">
                         <path fill-rule="evenodd" d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
                     </svg>
                 </th>
-                <th name="backup" scope="col" onclick="sortTable(27)">backup_id
+                <th name="backup" scope="col" onclick="sortTable(27, 0)">backup_id
                     <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#modalBackup">
                         <path fill-rule="evenodd" d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
                     </svg>
@@ -412,6 +412,36 @@ ob_start();
         </table>
         </div>
     </form>
+    <script>
+        var allVm = <?= json_encode($allVM); ?>;
+        var i;
+        var allVmCount = allVm.length;
+        var vmConfirmed = 0;
+        var vmToBeConfirmed = 0;
+        var vmRenew = 0;
+        var vmDeleted = 0;
+        for(i = 0; i < allVm.length; i++){
+            switch(allVm[i]['vmStatus']) {
+                case '0':
+                    vmToBeConfirmed ++;
+                    break;
+                case '2':
+                    vmConfirmed ++;
+                    break;
+                case '3':
+                    vmRenew ++;
+                    break;
+                case '5':
+                    vmDeleted ++;
+                    break;
+            }
+        }
+        document.getElementById("numberOfVM").innerHTML = allVmCount;
+        document.getElementById("numberOfConfirmedVM").textContent = vmConfirmed;
+        document.getElementById("numberOfToBeConfirmedVM").innerText = vmToBeConfirmed;
+        document.getElementById("numberOfRenewalVM").innerHTML = vmRenew;
+        document.getElementById("numberOfDeletedVM").innerHTML = vmDeleted;
+    </script>
 <?php
 $contenu = ob_get_clean();
 require "gabarit.php";

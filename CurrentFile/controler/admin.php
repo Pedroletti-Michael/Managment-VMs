@@ -17,6 +17,7 @@ function displayAllVM($searchFilter,$vmFilter = "all")
                     require_once 'controler/user.php';
                     displayHome();
                     break;
+                case 2:
                 case 1:
                     require_once 'model/vmManager.php';
 
@@ -59,6 +60,7 @@ function displayAllVM($searchFilter,$vmFilter = "all")
         {
             switch ($_SESSION['userType'])
             {
+                case 2:
                 case 0:
                     displayHome();
                     break;
@@ -88,6 +90,7 @@ function displayConfirmationVM()
     {
         switch ($_SESSION['userType'])
         {
+            case 2:
             case 0:
                 displayHome();
                 break;
@@ -116,6 +119,7 @@ function displayRenewalVM()
     {
         switch ($_SESSION['userType'])
         {
+            case 2:
             case 0:
                 require_once 'model/vmManager.php';
                 $userId = $_SESSION['userId'];
@@ -203,6 +207,30 @@ function displayDetailsVM($idVM)
                 $_GET['action'] = "detailsVM";
                 require 'view/detailsVM.php';
                 break;
+            case 2:
+                require_once 'model/vmManager.php';
+                $namesValue = getVmName();
+                $allVmName = array();
+                foreach ($namesValue as $value){
+                    array_push($allVmName, $value[0]);
+                }
+                require_once 'model/displayManager.php';
+                $dataVM = getDataVM($idVM);
+
+                $entityNames = displayBDD_Entity();
+                $osNames = displayBDD_OS();
+                $windowsData = displayBDD_OSNameWhereWindows();
+                $linuxData = displayBDD_OSNameWhereLinux();
+                $snapshotPolicy = displayBSS_Snapshots();
+                $backupPolicy = displayBSS_Backup();
+
+                require_once 'model/userManager.php';
+                $users = getAllUsers();
+
+                $_SESSION['idVM'] = $idVM;
+
+                $_GET['action'] = "detailsVM";
+                require 'view/detailsVM.php';
             default:
                 $_GET['action'] = "signIn";
                 require 'view/signIn.php';
