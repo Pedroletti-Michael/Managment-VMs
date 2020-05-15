@@ -14,30 +14,6 @@ ob_start();
         <script rel="javascript" src="../view/js/jquery.js"></script>
         <script rel="javascript" src="../view/js/script.js"></script>
         <script rel="javascript" src="../view/js/searchBox.js"></script>
-        <script>
-            var allVm = <?= json_encode($allVM); ?>;
-            var i;
-            var allVmCount = allVm.length;
-            var vmConfirmed = 0;
-            var vmToBeConfirmed = 0;
-            var vmRenew = 0;
-            var vmDeleted = 0;
-            for(i = 0; i < allVm.length; i++){
-                switch(allVm) {
-                    case 0:
-                        vmToBeConfirmed ++;
-                        break;
-                    case 2:
-                        vmConfirmed ++;
-                        break;
-                    case 3:
-                        vmRenew ++;
-                        break;
-                    case 5:
-                        vmDeleted ++;
-                }
-            }
-        </script>
         <meta charset="UTF-8">
         <title>Gestion VM - HEIG-VD</title>
     </head>
@@ -81,7 +57,7 @@ ob_start();
                         <!--All VM-->
                         <a href="index.php?action=allVM&vmFilter=all">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left">
-                                <span class="badge badge-primary">24</span>
+                                <span class="badge badge-primary" id="numberOfVM"> </span>
                                 Toutes les VM
                             </button>
                         </a>
@@ -90,7 +66,7 @@ ob_start();
                         <!--Confirmed VM-->
                         <a href="index.php?action=allVM&vmFilter=confirmed">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" >
-                                <span class="badge" style="background-color: rgba(40,167,69,0.7); border-color: rgba(40,167,69,0.7);">13</span>
+                                <span class="badge" style="background-color: rgba(40,167,69,0.7); border-color: rgba(40,167,69,0.7);" id="numberOfConfirmedVM"> </span>
                                 VM confirmées
                             </button>
                         </a>
@@ -99,7 +75,7 @@ ob_start();
                         <!--VM who need to be confirmed-->
                         <a href="index.php?action=allVM&vmFilter=confirmation">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left">
-                                <span class="badge" style="background-color: rgba(255,165,69,0.7); border-color: rgba(255,165,69,0.7);">7</span>
+                                <span class="badge" style="background-color: rgba(255,165,69,0.7); border-color: rgba(255,165,69,0.7);" id="numberOfToBeConfirmedVM"> </span>
                                 VM à confirmer
                             </button>
                         </a>
@@ -108,7 +84,7 @@ ob_start();
                         <!--VM to renew-->
                         <a href="index.php?action=allVM&vmFilter=renewal">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left">
-                                <span class="badge" style="background-color: rgba(233,48,48,0.7); border-color: rgba(233,48,48,0.7);">1</span>
+                                <span class="badge" style="background-color: rgba(233,48,48,0.7); border-color: rgba(233,48,48,0.7);" id="numberOfRenewalVM"> </span>
                                 VM à renouveler
                             </button>
                         </a>
@@ -117,7 +93,7 @@ ob_start();
                         <!--Deleted VM-->
                         <a href="index.php?action=allVM&vmFilter=deleted">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left">
-                                <span class="badge" style="background-color: rgba(90,90,90,0.7); border-color: rgba(90,90,90,0.7);">3</span>
+                                <span class="badge" style="background-color: rgba(90,90,90,0.7); border-color: rgba(90,90,90,0.7);" id="numberOfDeletedVM"> </span>
                                 VM supprimées
                             </button>
                         </a>
@@ -453,6 +429,37 @@ ob_start();
         </table>
         </div>
     </form>
+    <script>
+        var allVm = <?= json_encode($allVM); ?>;
+        var i;
+        var allVmCount = allVm.length;
+        var vmConfirmed = 0;
+        var vmToBeConfirmed = 0;
+        var vmRenew = 0;
+        var vmDeleted = 0;
+        for(i = 0; i < allVm.length; i++){
+            switch(allVm) {
+                case 0:
+                    vmToBeConfirmed ++;
+                    break;
+                case 2:
+                    vmConfirmed ++;
+                    break;
+                case 3:
+                    vmRenew ++;
+                    break;
+                case 5:
+                    vmDeleted ++;
+                    break;
+            }
+        }
+        alert(allVmCount + "pute de test mort");
+        document.getElementById("numberOfVM").innerHTML = allVmCount;
+        document.getElementById("numberOfConfirmedVM").textContent = vmConfirmed.toString();
+        document.getElementById("numberOfToBeConfirmedVM").innerText = vmToBeConfirmed.toString();
+        document.getElementById("numberOfRenewalVM").innerHTML = vmRenew.toString();
+        document.getElementById("numberOfDeletedVM").innerHTML = vmDeleted.toString();
+    </script>
 <?php
 $contenu = ob_get_clean();
 require "gabarit.php";
