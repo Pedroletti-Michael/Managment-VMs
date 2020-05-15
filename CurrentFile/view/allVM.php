@@ -14,6 +14,30 @@ ob_start();
         <script rel="javascript" src="../view/js/jquery.js"></script>
         <script rel="javascript" src="../view/js/script.js"></script>
         <script rel="javascript" src="../view/js/searchBox.js"></script>
+        <script>
+            var allVm = <?= json_encode($allVM); ?>;
+            var i;
+            var allVmCount = allVm.length;
+            var vmConfirmed = 0;
+            var vmToBeConfirmed = 0;
+            var vmRenew = 0;
+            var vmDeleted = 0;
+            for(i = 0; i < allVm.length; i++){
+                switch(allVm) {
+                    case 0:
+                        vmToBeConfirmed ++;
+                        break;
+                    case 2:
+                        vmConfirmed ++;
+                        break;
+                    case 3:
+                        vmRenew ++;
+                        break;
+                    case 5:
+                        vmDeleted ++;
+                }
+            }
+        </script>
         <meta charset="UTF-8">
         <title>Gestion VM - HEIG-VD</title>
     </head>

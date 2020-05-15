@@ -416,10 +416,12 @@ ob_start();
         </div>
         <?php endif; ?>
 
-        <!--Save the modifications-->
-        <a onclick="getValue()"><button type="submit" id="submitButton" class="btn btn-primary m-auto d-inline responsiveDisplay">Enregistrer les modifications</button></a>
+        <?php if($_SESSION['userEmail'] == $dataVM[0]['customer']): ?>
+            <!--Save the modifications-->
+            <a onclick="getValue()"><button type="submit" id="submitButton" class="btn btn-primary m-auto d-inline responsiveDisplay">Enregistrer les modifications</button></a>
+        <?php endif; ?>
     </form>
-    <?php if($dataVM[0]['vmStatus']==0): ?>
+    <?php if($dataVM[0]['vmStatus'] == 0 && isset($_SESSION['userType']) && $_SESSION['userType'] == 1): ?>
         <div style="top: -38px;position: relative!important;">
             <!-- Accepted -->
             <a href="index.php?action=vmAccepted" id="submitButton"><button type="button" class="btn btn-success float-right ml-1 responsiveDisplay">Confirmer la demande</button></a>
