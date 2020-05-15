@@ -19,23 +19,6 @@ ob_start();
     </head>
     <body>
 
-    <!--Confirmation command VM modal)-->
-    <?php if(isset($_SESSION['$displayModalConfirm']) && $_SESSION['$displayModalConfirm'] == true) : ?>
-        <div class="modal fade" id="confirmationCommandVM" tabindex="-1" role="dialog" aria-labelledby="confirmationCommandVM" aria-hidden="true">
-            <div class="modal-dialog m-auto w-470-px"  role="document" style="top: 45%;">
-                <div class="modal-content w-100">
-                    <div class="modal-body">
-                        <div class="w-100">
-                            <h6 class="float-left pt-2 text-center">Votre commande à bel et bien été effectuée</h6>
-                            <button type="submit" class="btn btn-success float-right btn-close-phone" data-dismiss="modal">Fermer</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script>$('.modal').modal('show')</script>
-    <?php endif; ?>
-
     <form method="post" action="../index.php?action=allVM">
         <!------------- Btn Filtrer ------------>
         <button type="button" class="btn btn-primary rounded-0 w-150-px position-fixed mt-1" style="right: 0.25rem;" onclick="openRightMenu()">

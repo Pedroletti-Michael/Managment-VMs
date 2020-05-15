@@ -336,10 +336,8 @@ function updateVM($vmInformation)
         }
         elseif($_SESSION['userType'] == 1)
         {
-            $allVM = getAllVM();
             $_SESSION['$displayModalConfirm'] = true;
-            $_GET['action'] = "allVM";
-            require 'view/allVM.php';
+            displayDetailsVM($_SESSION['idVM']);
         }
         else
         {

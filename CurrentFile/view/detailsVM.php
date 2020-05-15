@@ -50,6 +50,23 @@ ob_start();
     </script>
 </head>
 <body>
+<!--Confirmation update VM modal)-->
+<?php if(isset($_SESSION['$displayModalConfirm']) && $_SESSION['$displayModalConfirm'] == true) : ?>
+    <div class="modal fade" id="confirmationUpdateVM" tabindex="-1" role="dialog" aria-labelledby="confirmationUpdateVM" aria-hidden="true">
+        <div class="modal-dialog m-auto w-470-px"  role="document" style="top: 45%;">
+            <div class="modal-content w-100">
+                <div class="modal-body">
+                    <div class="w-100">
+                        <h6 class="float-left pt-2 text-center">La VM à bel et bien été modifiée</h6>
+                        <button type="submit" class="btn btn-success float-right btn-close-phone" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>$('.modal').modal('show')</script>
+<?php endif; ?>
+
 <div class="container-fluid pt-3 mb-3">
     <h3 class="text-center border border-danger border-left-0 border-right-0 border-top-0 pb-3">Formulaire de demande de VM</h3>
     <form method="post" action="../index.php?action=updateVM">
