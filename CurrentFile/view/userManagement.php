@@ -33,7 +33,7 @@ ob_start();
         </script>
         <script>
             var usersBefore = <?= json_encode($allUsers); ?>;
-            function tranferUser(){
+            function transferUser(){
                 var checkbox, i, y, usersAfter;
                 checkbox = document.getElementsByClassName("checkBox");
                 usersAfter= "";
@@ -92,9 +92,9 @@ ob_start();
             </table>
         </div>
         <input type="hidden" name="usersAfter" id="usersAfter">
-        <a onclick="tranferUser()">
+        <a onclick="transferUser()">
             <button type="submit" class="btn btn-primary mb-1 mt-1 responsiveDisplay" id="bottom">
-                <a>Enregistrer les modifications apportées</a>
+                Enregistrer les modifications apportées
             </button>
         </a>
     </form>
