@@ -354,34 +354,34 @@ ob_start();
             <thead class="thead-dark sticky-top">
             <tr>
                 <th name="goToButton" scope="col" style="width: 50px;"></th>
-                <th name="name" scope="col" onclick="sortTable(1)">name</th>
-                <th style="display: none" name="cluster" scope="col" onclick="sortTable(2)">cluster</th>
-                <th name="dateStart" scope="col" onclick="sortTable(4)">dateStart</th>
-                <th style="display: none" name="dateAnniversary" scope="col" onclick="sortTable(6)">dateAnniversary</th>
-                <th name="dateEnd" scope="col" onclick="sortTable(8)">dateEnd</th>
-                <th name="desc" scope="col" onclick="sortTable(9)">description</th>
-                <th style="display: none" name="ip" scope="col" onclick="sortTable(10)">ip</th>
-                <th style="display: none" name="dnsName" scope="col" onclick="sortTable(11)">dnsName</th>
-                <th style="display: none" name="redundance" scope="col" onclick="sortTable(12)">redundance</th>
-                <th name="usage" scope="col" onclick="sortTable(13)">usageType</th>
-                <th style="display: none" name="criticity" scope="col" onclick="sortTable(14)">criticity</th>
-                <th name="cpu" scope="col" onclick="sortNumberTable(15)">cpu</th>
-                <th name="ram" scope="col" onclick="sortNumberTable(16)">ram</th>
-                <th name="disk" scope="col" onclick="sortNumberTable(17)">disk</th>
-                <th name="network" scope="col" onclick="sortTable(18)">network</th>
-                <th name="domain" scope="col" onclick="sortTable(19)">domain</th>
-                <th name="comment" scope="col" onclick="sortTable(20)">comment</th>
-                <th name="customer" scope="col" onclick="sortTable(21)">customer</th>
-                <th name="Ra" scope="col" onclick="sortTable(22)">userRa</th>
-                <th name="Rt" scope="col" onclick="sortTable(23)">userRt</th>
-                <th name="entity" scope="col" onclick="sortTable(24)">entity_id</th>
-                <th name="os" scope="col" onclick="sortTable(25)">os_id</th>
-                <th name="snapshot" scope="col" onclick="sortTable(26)">snapshot_id
+                <th name="name" scope="col" onclick="sortTable(1, 0)">name</th>
+                <th style="display: none" name="cluster" scope="col" onclick="sortTable(2, 0)">cluster</th>
+                <th name="dateStart" scope="col" onclick="sortTable(4, 0)">dateStart</th>
+                <th style="display: none" name="dateAnniversary" scope="col" onclick="sortTable(6, 0)">dateAnniversary</th>
+                <th name="dateEnd" scope="col" onclick="sortTable(8, 0)">dateEnd</th>
+                <th name="desc" scope="col" onclick="sortTable(9, 0)">description</th>
+                <th style="display: none" name="ip" scope="col" onclick="sortTable(10, 0)">ip</th>
+                <th style="display: none" name="dnsName" scope="col" onclick="sortTable(11, 0)">dnsName</th>
+                <th style="display: none" name="redundance" scope="col" onclick="sortTable(12, 0)">redundance</th>
+                <th name="usage" scope="col" onclick="sortTable(13, 0)">usageType</th>
+                <th style="display: none" name="criticity" scope="col" onclick="sortTable(14, 0)">criticity</th>
+                <th name="cpu" scope="col" onclick="sortNumberTable(15, 0)">cpu</th>
+                <th name="ram" scope="col" onclick="sortNumberTable(16, 0)">ram</th>
+                <th name="disk" scope="col" onclick="sortNumberTable(17, 0)">disk</th>
+                <th name="network" scope="col" onclick="sortTable(18, 0)">network</th>
+                <th name="domain" scope="col" onclick="sortTable(19, 0)">domain</th>
+                <th name="comment" scope="col" onclick="sortTable(20, 0)">comment</th>
+                <th name="customer" scope="col" onclick="sortTable(21, 0)">customer</th>
+                <th name="Ra" scope="col" onclick="sortTable(22, 0)">userRa</th>
+                <th name="Rt" scope="col" onclick="sortTable(23, 0)">userRt</th>
+                <th name="entity" scope="col" onclick="sortTable(24, 0)">entity_id</th>
+                <th name="os" scope="col" onclick="sortTable(25, 0)">os_id</th>
+                <th name="snapshot" scope="col" onclick="sortTable(26, 0)">snapshot_id
                     <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#modalSnapshot">
                         <path fill-rule="evenodd" d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
                     </svg>
                 </th>
-                <th name="backup" scope="col" onclick="sortTable(27)">backup_id
+                <th name="backup" scope="col" onclick="sortTable(27, 0)">backup_id
                     <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#modalBackup">
                         <path fill-rule="evenodd" d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
                     </svg>

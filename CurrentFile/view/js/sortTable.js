@@ -1,7 +1,12 @@
 //These function (sortTable and sortNumberTable) can only be used in table with id == tableInventoryVm
-function sortTable(n) {
+function sortTable(n, whichTable) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    table = document.getElementById("tableInventoryVm");
+    if(whichTable == 0){
+        table = document.getElementById("tableInventoryVm");
+    }
+    else if(whichTable == 1){
+        table = document.getElementById("tableInventoryUser");
+    }
     switching = true;
     //Set the sorting direction to ascending:
     dir = "asc";
@@ -54,9 +59,14 @@ function sortTable(n) {
     }
 }
 
-function sortNumberTable(n) {
+function sortNumberTable(n, whichTable) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    table = document.getElementById("tableInventoryVm");
+    if(whichTable == 0){
+        table = document.getElementById("tableInventoryVm");
+    }
+    else if(whichTable == 1){
+        table = document.getElementById("tableInventoryUser");
+    }
     switching = true;
     //Set the sorting direction to ascending:
     dir = "asc";

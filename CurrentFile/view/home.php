@@ -75,28 +75,28 @@ ob_start();
     endif;
     ?>
 
-    <table class="table table-hover allVM">
+    <table class="table table-hover allVM" id="tableInventoryUser">
         <thead class="thead-dark sticky-top">
         <tr>
             <th scope="col"></th>
-            <th scope="col">name</th>
-            <th scope="col">dateStart</th>
-            <th scope="col">dateEnd</th>
-            <th scope="col">description</th>
-            <th scope="col">usageType</th>
-            <th scope="col">cpu</th>
-            <th scope="col">ram</th>
-            <th scope="col">disk</th>
-            <th scope="col">network</th>
-            <th scope="col">domain</th>
-            <th scope="col">comment</th>
-            <th scope="col">customer</th>
-            <th scope="col">userRa</th>
-            <th scope="col">userRt</th>
-            <th scope="col">entity_id</th>
-            <th scope="col">os_id</th>
-            <th scope="col">snapshot_id</th>
-            <th scope="col">backup_id</th>
+            <th scope="col" onclick="sortTable(1, 1)">name</th>
+            <th scope="col" onclick="sortTable(2, 1)">dateStart</th>
+            <th scope="col" onclick="sortTable(3, 1)">dateEnd</th>
+            <th scope="col" onclick="sortTable(4, 1)">description</th>
+            <th scope="col" onclick="sortTable(5, 1)">usageType</th>
+            <th scope="col" onclick="sortNumberTable(6, 1)">cpu</th>
+            <th scope="col" onclick="sortNumberTable(7, 1)">ram</th>
+            <th scope="col" onclick="sortNumberTable(8, 1)">disk</th>
+            <th scope="col" onclick="sortTable(9, 1)">network</th>
+            <th scope="col" onclick="sortTable(10, 1)">domain</th>
+            <th scope="col" onclick="sortTable(11, 1)">comment</th>
+            <th scope="col" onclick="sortTable(12, 1)">customer</th>
+            <th scope="col" onclick="sortTable(13, 1)">userRa</th>
+            <th scope="col" onclick="sortTable(14, 1)">userRt</th>
+            <th scope="col" onclick="sortTable(15, 1)">entity_id</th>
+            <th scope="col" onclick="sortTable(16, 1)">os_id</th>
+            <th scope="col" onclick="sortTable(17, 1)">snapshot_id</th>
+            <th scope="col" onclick="sortTable(18, 1)">backup_id</th>
         </tr>
         </thead>
         <tbody>
