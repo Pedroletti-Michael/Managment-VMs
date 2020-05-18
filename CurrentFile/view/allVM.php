@@ -33,7 +33,7 @@ ob_start();
             <!------------- Filter VM ------------>
             <div class="dropdown">
                 <button class="btn btn-light dropdown-toggle w-100 rounded-0 text-left" type="button" data-toggle="collapse" data-target="#collapseVM" aria-expanded="false" aria-controls="collapseExample">
-                    Trier VM
+                    Filtrer VM
                 </button>
                 <div class="collapse" id="collapseVM">
                     <div class="w-100">
@@ -86,7 +86,7 @@ ob_start();
             <!------------- Filter fields ------------>
             <div class="dropdown">
                 <button class="btn btn-dark dropdown-toggle w-100 rounded-0 text-left" type="button" data-toggle="collapse" data-target="#collapseFields" aria-expanded="false" aria-controls="collapseExample">
-                    Trier champs
+                    Filtrer colonnes
                 </button>
                 <div class="collapse" id="collapseFields">
                     <button name="btnRowFilter" id="name" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('name')">

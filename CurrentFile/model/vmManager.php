@@ -749,7 +749,8 @@ function exportVMToExcel($allVM){
         }
         $i++;
     }
-    CSV::export($allVM,'Mes VM');
+    $filename='HEIG-VD_VM_Inventory_'.date('d.m.Y/G.i.s');
+    CSV::export($allVM,$filename);
 }
 
 class CSV{

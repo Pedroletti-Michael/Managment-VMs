@@ -146,7 +146,7 @@
                 <a href="index.php?action=signIn" class="float-right pr-4">Se connecter</a>
             <?php endif; ?>
         <?php endif; ?>
-        <a class="title">Public</a>
+        <a class="title">Mon compte</a>
         <!----------------- home ---------------->
         <?php if ($_GET['action'] == "home"): ?>
             <a href="index.php?action=home" class="alert-link active">Mes VM</a>
@@ -224,7 +224,7 @@
         <nav class="col-md-2 d-none d-md-block bg-dark sidebar" style="max-width: 200px">
             <div class="sidebar-sticky border-right border-light">
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">
-                    <span>Public</span>
+                    <span>Mon Compte</span>
                 </h6>
                 <ul class="nav flex-column">
                     <li class="nav-item">
