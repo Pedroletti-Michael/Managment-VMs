@@ -356,6 +356,8 @@ function updateVM($vmInformation)
         $vmInformation['editCriticity'] = 0;
     }
 
+    $vmInformation['inputVMName'] = strtoupper($vmInformation['inputVMName']);
+
     if(updateVMInformation($vmInformation, $_SESSION['idVM']))
     {
         if($_SESSION['userType'] == 0)

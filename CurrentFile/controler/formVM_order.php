@@ -129,6 +129,8 @@ function formVM($formVMRequest)
         $formVMRequest['domainEINET'] = 0;
     }
 
+    $formVMRequest['inputVMName'] = strtoupper($formVMRequest['inputVMName']);
+
     if(addVMToDB($formVMRequest))
     {
         require_once 'model/mailSender.php';
