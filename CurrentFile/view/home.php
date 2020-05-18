@@ -199,7 +199,7 @@ ob_start();
     <table class="table table-hover allVM" id="tableInventoryUser">
         <thead class="thead-dark sticky-top">
         <tr>
-            <th scope="col"></th>
+            <th scope="col">Statut</th>
             <th scope="col" onclick="sortTable(1, 1)">name</th>
             <th scope="col" onclick="sortTable(2, 1)">dateStart</th>
             <th scope="col" onclick="sortTable(3, 1)">dateEnd</th>

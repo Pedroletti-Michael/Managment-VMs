@@ -336,7 +336,7 @@ ob_start();
             <table class="table table-hover allVM" id="tableInventoryVm">
             <thead class="thead-dark sticky-top">
             <tr>
-                <th name="goToButton" scope="col" style="width: 50px;"></th>
+                <th name="goToButton" scope="col" style="width: 50px;">Statut</th>
                 <th name="name" scope="col" onclick="sortTable(1, 0)">name</th>
                 <th style="display: none" name="cluster" scope="col" onclick="sortTable(2, 0)">cluster</th>
                 <th name="dateStart" scope="col" onclick="sortTable(4, 0)">dateStart</th>

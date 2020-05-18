@@ -53,7 +53,7 @@ ob_start();
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="inputVMName" class="font-weight-bold">Nom de la VM<a style="color: red"> *</a></label>
                 <input type="vmName" class="form-control form form text-uppercase" id="inputVMName" name="inputVMName" aria-describedby="vmNameHelp" maxlength="15" required onkeyup="checkName()">
-                <small id="vmNameHelp" class="form-text text-muted">15 caractères maximum. Lettres, chiffres et trait d'union uniquement (Ex: VM-01)</small>
+                <small id="vmNameHelp" class="form-text text-muted">15 caractères maximum. Lettres, chiffres et trait d'union uniquement (Exemple : DPT-VM01)</small>
 
                 <div class="alert alert-warning w-100 align-middle text-center mt-2 mb-0" id="alertVmName" style="display: none;">
                     <strong>Attention!</strong> Ce nom est déjà utilisé. Veuillez en utiliser un autre !
@@ -86,7 +86,7 @@ ob_start();
                             <input type="number" class="form-control form form w-25 float-left" id="inputSSD" name="inputSSD" aria-describedby="ssdHelp" min="20" max="1000" required>
                         </div>
                         <div class="pl-2">
-                            <input type="text" class="form-control form form w-75 float-right" id="infoSSD" name="infoSSD" aria-describedby="ssdHelp" placeholder="Exemple : disque 1 : 200, disque 2 : 50">
+                            <input type="text" class="form-control form form w-75 float-right" id="infoSSD" name="infoSSD" aria-describedby="ssdHelp" placeholder="Exemple : Disque 1 : 50 GB / Disque 2 : 100 GB">
                         </div>
                     </div>
                 </div>
@@ -209,7 +209,7 @@ ob_start();
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="inputComissioningDate" class="font-weight-bold">Date de mise en service<a style="color: red"> *</a></label>
                 <input type="date" min="<?= date("Y-m-d"); ?>" class="form-control form form" id="inputComissioningDate" name="inputComissioningDate" aria-describedby="comissioningDateHelp" placeholder="Entrer un nom ou une addresse de messagerie"  required>
-                <small id="comissioningDateHelp" class="form-text text-muted">Délai d'une semaine pour les VM de type Silver &amp; Gold. Deux semaines pour les autres configurations.</small>
+                <small id="comissioningDateHelp" class="form-text text-muted">Délai de 7 jours après validation</small>
             </div>
         </div>
         <div class="d-inline-block w-100">
@@ -291,10 +291,10 @@ ob_start();
         <div class="form-group">
             <label for="securityFormControlSelect" class="font-weight-bold">Sécurité<a style="color: red"> *</a></label>
             <select class="form-control" id="securityFormControlSelect" name="securityFormControlSelect" required>
-                <option>OS mis à jour par le responsable technique</option>
-                <option>OS mis à jour par le SI (update automatiques)</option>
+                <option>Mises à jour installées par le responsable technique</option>
+                <option>Mises à jour installées par le S-ISI de manière automatique</option>
             </select>
-            <small id="securityHelp" class="form-text text-muted">Le S-ISI recommande de patcher les VM tous les 90 jours au moins.</small>
+            <small id="securityHelp" class="form-text text-muted">Le S-ISI recommande de mettre à jour la VM tous les 90 jours au minimum</small>
         </div>
         <!--technical information-->
         <div class="form-group">
