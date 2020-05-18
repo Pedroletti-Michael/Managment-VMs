@@ -129,7 +129,7 @@ ob_start();
 
                     <form method="post" action="../index.php?action=editEntity">
                         <div class="modal-body">
-                            <input type="text" class="form-control responsiveDisplay" id="txtEntityAdd" name="txtEntityAdd" placeholder="Département">
+                            <input type="text" class="form-control responsiveDisplay" id="txtEntityAdd" name="txtEntityAdd" placeholder="Entity">
                         </div>
 
                         <div class="modal-footer">

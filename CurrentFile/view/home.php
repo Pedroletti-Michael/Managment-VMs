@@ -27,7 +27,7 @@ ob_start();
                 <div class="modal-content w-100">
                     <div class="modal-body">
                         <div class="w-100">
-                            <h6 class="float-left pt-2 text-center">Votre commande à bel et bien été effectuée</h6>
+                            <h6 class="float-left pt-2 text-center">Un e-mail de confirmation a été envoyé à vous et au responsable technique de la VM</h6>
                             <button type="submit" class="btn btn-success float-right btn-close-phone" data-dismiss="modal">Fermer</button>
                         </div>
                     </div>
@@ -37,15 +37,21 @@ ob_start();
         <script>$('.modal').modal('show')</script>
     <?php endif; ?>
     <!--Modal send mail failed-->
-    <?php if(isset($_SESSION['displayModalConfirmationFailed']) && $_SESSION['displayModalConfirmationFailed']) : ?>
+    <?php $_SESSION['displayModalConfirmationFailed'] = true; if(isset($_SESSION['displayModalConfirmationFailed']) && $_SESSION['displayModalConfirmationFailed']) : ?>
         <div class="modal fade" id="confirmationMailFailed" tabindex="-1" role="dialog" aria-labelledby="confirmationMailFailed" aria-hidden="true">
-            <div class="modal-dialog m-auto w-470-px"  role="document" style="top: 45%;">
-                <div class="modal-content w-100">
+            <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header modal-danger justify-content-center">
+                        <h5>Echec de l'envoi du mail</h5>
+                    </div>
+
                     <div class="modal-body">
-                        <div class="w-100">
-                            <h6 class="float-left pt-2 text-center">Un ou plusieurs mails de confirmation de votre commande ne sont pas partit. Veuillez contactez un administrateur.</h6>
-                            <button type="submit" class="btn btn-success float-right btn-close-phone" data-dismiss="modal">Fermer</button>
-                        </div>
+                        <h6 id="textDelEntity">L'email de confirmation n'a pas été envoyé. Vous pouvez contacter le helpdesk (si possible avec un mailto : helpdesk@heig-vd.ch).</h6>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger mx-auto responsiveDisplay" data-dismiss="modal">Fermer</button>
                     </div>
                 </div>
             </div>

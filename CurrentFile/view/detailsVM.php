@@ -57,7 +57,7 @@ ob_start();
             <div class="modal-content w-100">
                 <div class="modal-body">
                     <div class="w-100">
-                        <h6 class="float-left pt-2 text-center">La VM à bel et bien été modifiée</h6>
+                        <h6 class="float-left pt-2 text-center">Modifications enregistrées</h6>
                         <button type="submit" class="btn btn-success float-right btn-close-phone" data-dismiss="modal">Fermer</button>
                     </div>
                 </div>
