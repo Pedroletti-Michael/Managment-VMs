@@ -10,7 +10,7 @@ ob_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Demande VM - HEIG-VD</title>
+    <title>Détails VM - HEIG-VD</title>
     <script>
         function checkName(){
             var i = 0;
@@ -68,7 +68,7 @@ ob_start();
 <?php endif; ?>
 
 <div class="container-fluid pt-3 mb-3">
-    <h3 class="text-center border border-danger border-left-0 border-right-0 border-top-0 pb-3">Formulaire de demande de VM</h3>
+    <h3 class="text-center border border-danger border-left-0 border-right-0 border-top-0 pb-3">Tous les détails de la VM</h3>
     <form method="post" action="../index.php?action=updateVM">
         <div class="d-inline-block w-100">
             <!--Name of the VM-->
