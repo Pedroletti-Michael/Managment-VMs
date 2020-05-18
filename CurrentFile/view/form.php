@@ -52,7 +52,7 @@ ob_start();
             <!--Name of the VM-->
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="inputVMName" class="font-weight-bold">Nom de la VM<a style="color: red"> *</a></label>
-                <input type="vmName" class="form-control form form" id="inputVMName" name="inputVMName" aria-describedby="vmNameHelp" maxlength="15" style="text-transform: uppercase" required onkeyup="checkName()">
+                <input type="vmName" class="form-control form form text-uppercase" id="inputVMName" name="inputVMName" aria-describedby="vmNameHelp" maxlength="15" required onkeyup="checkName()">
                 <small id="vmNameHelp" class="form-text text-muted">15 caractères maximum. Lettres, chiffres et trait d'union uniquement (Ex: VM-01)</small>
 
                 <div class="alert alert-warning w-100 align-middle text-center mt-2 mb-0" id="alertVmName" style="display: none;">
