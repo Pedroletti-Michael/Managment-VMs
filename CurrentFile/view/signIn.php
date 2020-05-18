@@ -35,7 +35,7 @@ ob_start();
                             <input type="password" class="form-control" id="userPassword" name="userPassword" placeholder="Mot de passe" required>
                             <div class="input-group-prepend">
                                 <button type="submit" class="input-group btn btn-success disabled rounded-right">
-                                    --->
+                                    Connexion
                             </div>
                         </div>
                         </div>

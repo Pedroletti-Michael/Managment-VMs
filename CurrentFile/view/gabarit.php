@@ -27,6 +27,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 </head>
 <body>
+<?php if (isset($_SESSION['userType'])): ?>
 <!-------------------------- Gabarit for phones ------------------------------->
 <nav class="display-phone w-100">
     <button type="button" class="rounded-circle bg-dark m-auto fixed-bottom" style="height: 55px; width: 55px;bottom: 10px!important;" onclick="closePhoneMenu()" id="buttonClose">
@@ -322,8 +323,10 @@
         </nav>
     </div>
 </div>
+<?php endif;?>
 <main id="main" role="main" class="padding-left h-100 w-100 mt-5">
     <?= $contenu; ?>
 </main>
 </body>
+
 </html>
