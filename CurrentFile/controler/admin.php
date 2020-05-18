@@ -60,10 +60,10 @@ function displayAllVM($searchFilter,$vmFilter = "all")
         {
             switch ($_SESSION['userType'])
             {
-                case 2:
                 case 0:
                     displayHome();
                     break;
+                case 2:
                 case 1:
                     require_once 'model/vmManager.php';
                     $allVM = getAllVM();
@@ -231,6 +231,7 @@ function displayDetailsVM($idVM)
 
                 $_GET['action'] = "detailsVM";
                 require 'view/detailsVM.php';
+                break;
             default:
                 $_GET['action'] = "signIn";
                 require 'view/signIn.php';
