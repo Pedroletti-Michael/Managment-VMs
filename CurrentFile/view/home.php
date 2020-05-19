@@ -42,11 +42,11 @@ ob_start();
             <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
                 <div class="modal-content text-center">
                     <div class="modal-header modal-danger justify-content-center">
-                        <h5>Echec de l'envoi du mail</h5>
+                        <h5>Échec envoi e-mail</h5>
                     </div>
 
                     <div class="modal-body">
-                        <h6 id="textDelEntity">L'email de confirmation n'a pas été envoyé. Vous pouvez contacter le <a href="mailto:helpdesk@heig-vd.ch?subject=Échec de l'envoi du mail de confirmation (commande VM)">helpdesk</a>.</h6>
+                        <h6 id="textDelEntity">L’e-mail de confirmation n’a pas été envoyé. Contactez le <a href="mailto:helpdesk@heig-vd.ch?subject=Demande de VM : Erreur lors de la confirmation">helpdesk</a>.</h6>
 
                     </div>
 
