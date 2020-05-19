@@ -1,6 +1,7 @@
 //These function (sortTable and sortNumberTable) can only be used in table with id == tableInventoryVm
 function sortTable(n, whichTable) {
-    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0, last_n;
+
     if(whichTable == 0){
         table = document.getElementById("tableInventoryVm");
     }

@@ -32,13 +32,10 @@ ob_start();
                     <div class="d-inline-block w-100 pb-2">
                         <label for="inputPassword" class="font-weight-bold">Mot de passe</label>
                         <div class="input-group mb-2 mr-sm-2">
-                            <input type="password" class="form-control" id="userPassword" name="userPassword" placeholder="Mot de passe" required>
-                            <div class="input-group-prepend">
-                                <button type="submit" class="input-group btn btn-success disabled rounded-right">
-                                    Connexion
-                            </div>
+                            <input type="password" class="form-control w-100" id="userPassword" name="userPassword" placeholder="Mot de passe" required>
                         </div>
-                        </div>
+                        <button type="submit" class="input-group btn btn-success w-auto m-auto w3-center">Connexion</button>
+                    </div>
                     <?php
                         if(isset($_POST['error']) && $_POST['error'] == "credentials"){
                             echo "<div style='color: red'>Identifiant ou mot de passe faux !</div>";

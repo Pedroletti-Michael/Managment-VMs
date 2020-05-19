@@ -72,7 +72,6 @@ function checkField(fieldName) {
 
 }
 
-
 // ------------------- w3schools -------------------------
 function openRightMenu() {
     document.getElementById("rightMenu").style.display = "block";
