@@ -219,21 +219,21 @@ ob_start();
                 <div class="d-inline-block w-100">
                     <div class="w-50 float-left pr-4">
                         <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="Academique" name="Academique">
+                            <input type="checkbox" class="form-check-input" id="Academique" name="Academique" onchange="checkUsingCheckbx()">
                             <label class="form-check-label" for="Academique">Académique</label>
                         </div>
                         <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="RaD" name="RaD">
+                            <input type="checkbox" class="form-check-input" id="RaD" name="RaD" onchange="checkUsingCheckbx()">
                             <label class="form-check-label" for="RaD">Ra&D</label>
                         </div>
                     </div>
                     <div class="w-50 float-right pl-4">
                         <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="Operationnel" name="Operationnel">
+                            <input type="checkbox" class="form-check-input" id="Operationnel" name="Operationnel" onchange="checkUsingCheckbx()">
                             <label class="form-check-label" for="Operationnel">Opérationnel - Production</label>
                         </div>
                         <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="Test" name="Test">
+                            <input type="checkbox" class="form-check-input" id="Test" name="Test" onchange="checkUsingCheckbx()">
                             <label class="form-check-label" for="Test">Test - Dev</label>
                         </div>
                     </div>
@@ -303,7 +303,33 @@ ob_start();
             <small id="tiHelp" class="form-text text-muted">Règles firewall, type de compte, justification DMZ ou configuration personnalisée, etc...</small>
         </div>
         <!--Submit-->
-        <button type="submit" id="submitButton" class="btn btn-primary">Envoyer</button>
+        <button type='button' id='alertButton' class='btn btn-primary' onclick="checkUsingCheckbx()">Envoyer</button>
+
+        <button type='submit' id='submitButton' class='btn btn-primary' style="display: none;">Envoyer</button>
+        <script>
+            function checkUsingCheckbx()
+            {
+                var checkbxAcademique = document.getElementById("Academique").checked;
+                var checkbxRaD = document.getElementById("RaD").checked;
+                var checkbxOperationnel = document.getElementById("Operationnel").checked;
+                var checkbxTest = document.getElementById("Test").checked;
+                var alertButton = document.getElementById("alertButton");
+                var submitButton = document.getElementById("submitButton");
+
+                if(checkbxAcademique !== true && checkbxRaD !== true && checkbxOperationnel !== true && checkbxTest !== true)
+                {
+                    submitButton.setAttribute("style", "display:none");
+                    alertButton.setAttribute("style", "display:block");
+
+                    alert("Veuillez cocher au moins une case de la section \"type d'utilisation\"");
+                }
+                else
+                {
+                    submitButton.setAttribute("style", "display:block");
+                    alertButton.setAttribute("style", "display:none");
+                }
+            }
+        </script>
         <!--Cancel-->
         <button type="reset" class="btn btn-danger float-right">Annuler</button>
     </form>
