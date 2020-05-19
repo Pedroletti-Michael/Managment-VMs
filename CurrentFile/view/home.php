@@ -37,7 +37,7 @@ ob_start();
         <script>$('.modal').modal('show')</script>
     <?php endif; ?>
     <!--Modal send mail failed-->
-    <?php $_SESSION['displayModalConfirmationFailed'] = true; if(isset($_SESSION['displayModalConfirmationFailed']) && $_SESSION['displayModalConfirmationFailed']) : ?>
+    <?php if(isset($_SESSION['displayModalConfirmationFailed']) && $_SESSION['displayModalConfirmationFailed']) : ?>
         <div class="modal fade" id="confirmationMailFailed" tabindex="-1" role="dialog" aria-labelledby="confirmationMailFailed" aria-hidden="true">
             <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
                 <div class="modal-content text-center">
@@ -46,7 +46,7 @@ ob_start();
                     </div>
 
                     <div class="modal-body">
-                        <h6 id="textDelEntity">L'email de confirmation n'a pas été envoyé. Vous pouvez contacter le helpdesk (si possible avec un mailto : helpdesk@heig-vd.ch).</h6>
+                        <h6 id="textDelEntity">L'email de confirmation n'a pas été envoyé. Vous pouvez contacter le <a href="mailto:helpdesk@heig-vd.ch?subject=Échec de l'envoi du mail de confirmation (commande VM)">helpdesk</a>.</h6>
 
                     </div>
 
