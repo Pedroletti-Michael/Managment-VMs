@@ -19,6 +19,42 @@ ob_start();
     </head>
     <body>
 
+    <!--Confirmation update VM modal)-->
+    <?php if(isset($_SESSION['displayModalErrorMail']) && $_SESSION['displayModalErrorMail'] == true) : ?>
+        <div class="modal fade" id="displayModalErrorMail" tabindex="-1" role="dialog" aria-labelledby="displayModalErrorMail" aria-hidden="true">
+            <div class="modal-dialog m-auto w-470-px"  role="document" style="top: 45%;">
+                <div class="modal-content w-100">
+                    <div class="modal-body">
+                        <div class="w-100">
+                            <h6 class="float-left pt-2 text-center">Nous rencontrons actuellement quelques problèmes, les mails de confirmation ne se sont donc pas envoyé. Veuillez contacter le support informatique.</h6>
+                            <button type="submit" class="btn btn-success float-right btn-close-phone" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>$('.modal').modal('show')</script>
+    <?php unset($_SESSION['displayModalErrorMail']); endif; ?>
+
+    <!--Confirmation update VM modal)-->
+    <?php if(isset($_SESSION['$displayModalConfirm']) && $_SESSION['$displayModalConfirm'] == true) : ?>
+        <div class="modal fade" id="$displayModalConfirm" tabindex="-1" role="dialog" aria-labelledby="$displayModalConfirm" aria-hidden="true">
+            <div class="modal-dialog m-auto w-470-px"  role="document" style="top: 45%;">
+                <div class="modal-content w-100">
+                    <div class="modal-body">
+                        <div class="w-100">
+                            <h6 class="float-left pt-2 text-center">Les modifications ont bien été enregistré et les mails de confirmation ont bien été envoyé.</h6>
+                            <button type="submit" class="btn btn-success float-right btn-close-phone" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>$('.modal').modal('show')</script>
+        <?php unset($_SESSION['$displayModalConfirm']); endif; ?>
+
+
+
     <form method="post" action="../index.php?action=allVM">
         <!------------- Btn Filtrer ------------>
         <button type="button" class="btn btn-primary rounded-0 w-150-px position-fixed mt-1" style="right: 0.25rem;" onclick="openRightMenu()">

@@ -51,22 +51,39 @@ ob_start();
     </script>
 </head>
 <body>
-<!--Confirmation update VM modal)-->
-<?php if(isset($_SESSION['$displayModalConfirm']) && $_SESSION['$displayModalConfirm'] == true) : ?>
-    <div class="modal fade" id="confirmationUpdateVM" tabindex="-1" role="dialog" aria-labelledby="confirmationUpdateVM" aria-hidden="true">
-        <div class="modal-dialog m-auto w-470-px"  role="document" style="top: 45%;">
-            <div class="modal-content w-100">
-                <div class="modal-body">
-                    <div class="w-100">
-                        <h6 class="float-left pt-2 text-center">Modifications enregistrées</h6>
-                        <button type="submit" class="btn btn-success float-right btn-close-phone" data-dismiss="modal">Fermer</button>
+    <!--Confirmation update VM modal)-->
+    <?php if(isset($_SESSION['$displayModalConfirm']) && $_SESSION['$displayModalConfirm'] == true) : ?>
+        <div class="modal fade" id="confirmationUpdateVM" tabindex="-1" role="dialog" aria-labelledby="confirmationUpdateVM" aria-hidden="true">
+            <div class="modal-dialog m-auto w-470-px"  role="document" style="top: 45%;">
+                <div class="modal-content w-100">
+                    <div class="modal-body">
+                        <div class="w-100">
+                            <h6 class="float-left pt-2 text-center">Modifications enregistrées</h6>
+                            <button type="submit" class="btn btn-success float-right btn-close-phone" data-dismiss="modal">Fermer</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script>$('.modal').modal('show')</script>
-<?php endif; ?>
+        <script>$('.modal').modal('show')</script>
+    <?php endif; ?>
+
+    <!--Confirmation update VM modal)-->
+    <?php if(isset($_SESSION['displayErrorModification']) && $_SESSION['displayErrorModification'] == true) : ?>
+        <div class="modal fade" id="displayErrorModification" tabindex="-1" role="dialog" aria-labelledby="displayErrorModification" aria-hidden="true">
+            <div class="modal-dialog m-auto w-470-px"  role="document" style="top: 45%;">
+                <div class="modal-content w-100">
+                    <div class="modal-body">
+                        <div class="w-100">
+                            <h6 class="float-left pt-2 text-center">Une erreur est survenu lors de la mise à jour des données de votre VM. Veuillez réessayer.</h6>
+                            <button type="submit" class="btn btn-success float-right btn-close-phone" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>$('.modal').modal('show')</script>
+    <?php unset($_SESSION['displayErrorModification']); endif; ?>
 
 <div class="container-fluid pt-3 mb-3">
     <h3 class="text-center border border-danger border-left-0 border-right-0 border-top-0 pb-3">Tous les détails de la VM</h3>

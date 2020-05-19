@@ -629,8 +629,9 @@ function updateVMInformationForUser($vmInformation, $id){
 function updateStatusVM($id, $vmStatus, $reason = null){
     require_once 'model/dbConnector.php';
     require_once 'model/mailSender.php';
-    $status = 1;
+    $status = 0;
     $strSep = '\'';
+    $result = false;
 
     if($vmStatus == true){
         $status = 2;
@@ -663,16 +664,43 @@ function updateStatusVM($id, $vmStatus, $reason = null){
 
         executeQuery($query);
 
-        deniedRequestMail($info[1], $info[0], $reason);
+        $query = "SELECT `status` FROM `vm` WHERE id =". $id;
+        $selectResult = executeQuery($query);
+        if($selectResult[0][0] == 1){
+            if(deniedRequestMail($info[1], $info[0], $reason)){
+                $result = 2;
+            }
+            else{
+                $result = 1;
+            }
+        }
     }
     elseif($status == 2){
-        validateRequestMail($info[1], $info[0], $link, $info[3], $info[2]);
+        $query = "SELECT `status` FROM `vm` WHERE id =". $id;
+        $selectResult = executeQuery($query);
+        if($selectResult[0][0] == 2){
+            if(validateRequestMail($info[1], $info[0], $link, $info[3], $info[2])){
+                $result = 2;
+            }
+            else{
+                $result = 1;
+            }
+        }
     }
     elseif($status == 4){
-
+        $query = "SELECT `status` FROM `vm` WHERE id =". $id;
+        $selectResult = executeQuery($query);
+        if($selectResult[0][0] == 4){
+            if(nonrenewalMailAdvert($info[1], $info[0], $info[3], $info[2])){
+                $result = 2;
+            }
+            else{
+                $result = 1;
+            }
+        }
     }
 
-    return true;
+    return $result;
 }
 
 /**===GET INFORMATION FOR THE UPDATE OF THE STATUS VM===**/

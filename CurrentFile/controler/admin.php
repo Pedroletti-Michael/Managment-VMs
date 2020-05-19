@@ -507,13 +507,16 @@ function vmAccepted($vmInformation)
         $vmInformation['editCriticity'] = 0;
     }
 
-    if(updateStatusVM($_SESSION['idVM'], $vmStatus) && updateVMInformation($vmInformation, $_SESSION['idVM']))
-    {
+    if(updateStatusVM($_SESSION['idVM'], $vmStatus) == 2 && updateVMInformation($vmInformation, $_SESSION['idVM'])){
         $_SESSION['$displayModalConfirm'] = true;
         displayAllVM("","");
     }
-    else
-    {
+    elseif(updateStatusVM($_SESSION['idVM'], $vmStatus) == 1 && updateVMInformation($vmInformation, $_SESSION['idVM'])){
+        $_SESSION['displayModalErrorMail'] = true;
+        displayAllVM("","");
+    }
+    else{
+        $_SESSION['displayErrorModification'] = true;
         displayDetailsVM($_SESSION['idVM']);
     }
 }
@@ -528,12 +531,16 @@ function vmRefused($reason = null)
 
     require_once "model/vmManager.php";
 
-    if(updateStatusVM($_SESSION['idVM'], $vmStatus, $reason))
-    {
+    if(updateStatusVM($_SESSION['idVM'], $vmStatus, $reason) == 2){
+        $_SESSION['$displayModalConfirm'] = true;
         displayAllVM("");
     }
-    else
-    {
+    elseif(updateStatusVM($_SESSION['idVM'], $vmStatus, $reason) == 1){
+        $_SESSION['displayModalErrorMail'] = true;
+        displayAllVM("");
+    }
+    else{
+        $_SESSION['displayErrorModification'] = true;
         displayDetailsVM($_SESSION['idVM']);
     }
 }
@@ -545,13 +552,16 @@ function renewwalAccepted()
 
     require_once "model/vmManager.php";
 
-    if(updateStatusVM($_SESSION['idVM'], $vmStatus))
-    {
+    if(updateStatusVM($_SESSION['idVM'], $vmStatus) == 2){
         $_SESSION['$displayModalConfirm'] = true;
         displayAllVM("");
     }
-    else
-    {
+    elseif(updateStatusVM($_SESSION['idVM'], $vmStatus) == 1){
+        $_SESSION['displayModalErrorMail'] = true;
+        displayAllVM("");
+    }
+    else{
+        $_SESSION['displayErrorModification'] = true;
         displayDetailsVM($_SESSION['idVM']);
     }
 }
@@ -562,12 +572,16 @@ function renewwalRefused()
 
     require_once "model/vmManager.php";
 
-    if(updateStatusVM($_SESSION['idVM'], $vmStatus))
-    {
+    if(updateStatusVM($_SESSION['idVM'], $vmStatus) == 2){
+        $_SESSION['$displayModalConfirm'] = true;
         displayAllVM("");
     }
-    else
-    {
+    elseif(updateStatusVM($_SESSION['idVM'], $vmStatus) == 1){
+        $_SESSION['displayModalErrorMail'] = true;
+        displayAllVM("");
+    }
+    else{
+        $_SESSION['displayErrorModification'] = true;
         displayDetailsVM($_SESSION['idVM']);
     }
 }
@@ -845,12 +859,16 @@ function modifyStatusAfterRenewal($idVM, $status){
 
     require_once "model/vmManager.php";
 
-    if(updateStatusVM($idVM['id'], $vmStatus))
-    {
+    if(updateStatusVM($idVM['id'], $vmStatus) == 2){
+        $_SESSION['$displayModalConfirm'] = true;
         displayAllVM("");
     }
-    else
-    {
+    elseif(updateStatusVM($idVM['id'], $vmStatus) == 1){
+        $_SESSION['displayModalErrorMail'] = true;
+        displayAllVM("");
+    }
+    else{
+        $_SESSION['displayErrorModification'] = true;
         displayDetailsVM($idVM['id']);
     }
 }

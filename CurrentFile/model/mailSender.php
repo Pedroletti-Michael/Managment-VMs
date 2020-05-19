@@ -42,9 +42,6 @@ function requestMail($userMail, $requestName, $rtMail, $raMail){
     Nom de la demande : ". $requestName ."
     <br><br>
     Votre demande est en cours de validation, vous recevrez bientôt un mail de confirmation avec toutes les informations nécessaires.
-    <br><br>
-    Meilleures salutations.
-    VmManager
     ";
 
     // To send HTML mail, the Content-type header must be set
@@ -83,10 +80,6 @@ function mailAdministrator($userMail, $requestName, $link){
     <br><br>
     Une demande a été mise par l'utilisateur utilisant l'adresse mail : ". $userMail .".<br>
     Voici le lien pour accéder à la demande : <a href='". $link ."'>ici</a>
-    <br><br>
-    Meilleures salutations
-    <br>
-    VmManager
     ";
 
     // To send HTML mail, the Content-type header must be set
@@ -124,9 +117,6 @@ function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
     <br><br>
     Votre commande a été validée. Vous pouvez donc vous rendre sous le lien ci-dessous pour obtenir toutes les informations nécessaires pour votre machine :<br>
     <a href='". $link ."'>ici</a>
-    <br><br>
-    Meilleures salutations.
-    VmManager
     ";
 
     // To send HTML mail, the Content-type header must be set
@@ -225,9 +215,6 @@ function advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft)
     ". $link ."<br><br>
     
     Toutes les informations nécessaires au renouvellement se trouve sur le lien, toutefois si vous avez une question vous pouvez nous contacter à cette adresse : vmmanger@heig-vd.ch<br><br>
-
-    Meilleures salutations.
-    VmManager
     ";
 
     // To send HTML mail, the Content-type header must be set
@@ -250,7 +237,7 @@ function advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft)
  * This function used to send an advert mail to the technical manager, administrator manager and the admin of the VMManager
  * When the vm need to be renew.
  */
-function nonrenewalMailAdvert($userMail, $requestName, $link, $rtMail, $raMail){
+function nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail){
     // multiple recipients
     $administratorMail = 'michael.pedroletti@heig-vd.ch';
 
@@ -271,9 +258,6 @@ function nonrenewalMailAdvert($userMail, $requestName, $link, $rtMail, $raMail){
     Votre VM ne sera donc dès à présent plus disponible.
     
     Toutefois si vous avez une question vous pouvez nous contacter à cette adresse : vmmanger@heig-vd.ch<br><br>
-
-    Meilleures salutations.
-    VmManager
     ";
 
     // To send HTML mail, the Content-type header must be set
