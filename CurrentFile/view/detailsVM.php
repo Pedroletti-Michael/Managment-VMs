@@ -12,7 +12,6 @@ ob_start();
     <meta charset="UTF-8">
     <title>Détails VM - HEIG-VD</title>
     <script>
-        alert("<?= $_SESSION['userType']; ?>");
         function checkName(){
             var i = 0;
             var vmNames = <?= json_encode($allVmName); ?>;
