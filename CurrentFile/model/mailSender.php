@@ -30,7 +30,7 @@ function requestMail($userMail, $requestName, $rtMail, $raMail){
     // multiple recipients
     $administratorMail = 'michael.pedroletti@heig-vd.ch';
 
-    $to  = $userMail . ', ' . $rtMail . ', ' . $raMail . ', ' . $administratorMail;
+    $to  = $userMail . ', ' . $raMail . ', ' . $administratorMail;
 
     // subject
     $subject = 'Résumé de votre demande pour une VM';
@@ -50,6 +50,7 @@ function requestMail($userMail, $requestName, $rtMail, $raMail){
 
     // Additional headers
     $headers .= 'To: '. $userMail ."\r\n";
+    $headers .= 'BCC: '.$rtMail."\r\n";
     $headers .= 'From: VMManager <vmManager@heig-vd.ch>' . "\r\n";
 
     if(sendMail($to, $subject, $message, $headers)){
@@ -105,7 +106,7 @@ function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
     // multiple recipients
     $administratorMail = 'michael.pedroletti@heig-vd.ch';
 
-    $to  = $userMail . ', ' . $rtMail . ', ' . $raMail . ', ' . $administratorMail;
+    $to  = $userMail . ', ' . $raMail . ', ' . $administratorMail;
 
     // subject
     $subject = 'Résumé de votre demande pour une VM';
@@ -125,6 +126,7 @@ function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
 
     // Additional headers
     $headers .= 'To: '. $userMail ."\r\n";
+    $headers .= 'BCC: '.$rtMail."\r\n";
     $headers .= 'From: VMManager <vmManager@heig-vd.ch>' . "\r\n";
 
     if(sendMail($to, $subject, $message, $headers)){
@@ -197,7 +199,7 @@ function advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft)
     // multiple recipients
     $administratorMail = 'michael.pedroletti@heig-vd.ch';
 
-    $to  = $userMail . ', ' . $rtMail . ', ' . $raMail . ', ' . $administratorMail;
+    $to  = $userMail . ', ' . $raMail . ', ' . $administratorMail;
 
     // subject
     $subject = 'Résumé de votre demande pour une VM';
@@ -223,6 +225,7 @@ function advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft)
 
     // Additional headers
     $headers .= 'To: '. $userMail ."\r\n";
+    $headers .= 'BCC: '.$rtMail."\r\n";
     $headers .= 'From: VMManager <vmManager@heig-vd.ch>' . "\r\n";
 
     if(sendMail($to, $subject, $message, $headers)){
@@ -241,7 +244,7 @@ function nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail){
     // multiple recipients
     $administratorMail = 'michael.pedroletti@heig-vd.ch';
 
-    $to  = $userMail . ', ' . $rtMail . ', ' . $raMail . ', ' . $administratorMail;
+    $to  = $userMail . ', ' . $raMail . ', ' . $administratorMail;
 
     // subject
     $subject = 'Non-renouvellement de votre VM : '. $requestName;
@@ -266,6 +269,7 @@ function nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail){
 
     // Additional headers
     $headers .= 'To: '. $userMail ."\r\n";
+    $headers .= 'BCC: '.$rtMail."\r\n";
     $headers .= 'From: VMManager <vmManager@heig-vd.ch>' . "\r\n";
 
     if(sendMail($to, $subject, $message, $headers)){
