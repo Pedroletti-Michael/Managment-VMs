@@ -343,11 +343,11 @@ function updateVM($vmInformation)
         $vmInformation['domainEINET'] = 0;
     }
 
-    if($vmInformation['securityFormControlSelect'] == "OS mis à jour par le responsable technique")
+    if($vmInformation['securityFormControlSelect'] == "Mises à jour installées par le responsable technique")
     {
         $vmInformation['securityFormControlSelect'] = 1;
     }
-    elseif($vmInformation['securityFormControlSelect'] == "OS mis à jour par le SI (update automatiques)")
+    elseif($vmInformation['securityFormControlSelect'] == "Mises à jour installées par le S-ISI de manière automatique")
     {
         $vmInformation['securityFormControlSelect'] = 0;
     }
@@ -493,12 +493,15 @@ function vmAccepted($vmInformation)
         $vmInformation['domainEINET'] = 0;
     }
 
-    if($vmInformation['securityFormControlSelect'] == "OS mis à jour par le responsable technique")
+    if($vmInformation['securityFormControlSelect'] == "Mises à jour installées par le responsable technique")
     {
         $vmInformation['securityFormControlSelect'] = 1;
     }
-    elseif($vmInformation['securityFormControlSelect'] == "OS mis à jour par le SI (update automatiques)")
+    elseif($vmInformation['securityFormControlSelect'] == "Mises à jour installées par le S-ISI de manière automatique")
     {
+        $vmInformation['securityFormControlSelect'] = 0;
+    }
+    else{
         $vmInformation['securityFormControlSelect'] = 0;
     }
 

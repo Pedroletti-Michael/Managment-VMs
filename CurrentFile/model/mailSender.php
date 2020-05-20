@@ -4,6 +4,7 @@
  * Date: 30.03.2020
  * Time: 10:39
  */
+require_once "model/jsonConnector.php";
 
 /**
  * function used to send the mail and return true or false
@@ -28,7 +29,8 @@ function sendMail($to, $subject, $message, $headers){
  */
 function requestMail($userMail, $requestName, $rtMail, $raMail){
     // multiple recipients
-    $administratorMail = 'michael.pedroletti@heig-vd.ch';
+    $jsonData = getJsonData();
+    $administratorMail = $jsonData['mailAdmin'];
 
     $to  = $userMail . ', ' . $raMail . ', ' . $administratorMail;
 
@@ -51,7 +53,7 @@ function requestMail($userMail, $requestName, $rtMail, $raMail){
     // Additional headers
     $headers .= 'To: '. $userMail ."\r\n";
     $headers .= 'BCC: '.$rtMail."\r\n";
-    $headers .= 'From: VMManager <vmManager@heig-vd.ch>' . "\r\n";
+    $headers .= 'From: '.$jsonData['sender']."\r\n";
 
     if(sendMail($to, $subject, $message, $headers)){
         return true;
@@ -66,7 +68,8 @@ function requestMail($userMail, $requestName, $rtMail, $raMail){
  */
 function mailAdministrator($userMail, $requestName, $link){
     // multiple recipients
-    $administratorMail = 'michael.pedroletti@heig-vd.ch';
+    $jsonData = getJsonData();
+    $administratorMail = $jsonData['mailAdmin'];
 
     $to  = $administratorMail;
 
@@ -89,7 +92,7 @@ function mailAdministrator($userMail, $requestName, $link){
 
     // Additional headers
     $headers .= 'To: '. $administratorMail ."\r\n";
-    $headers .= 'From: VMManager <vmManager@heig-vd.ch>' . "\r\n";
+    $headers .= 'From: '.$jsonData['sender']."\r\n";
 
     if(sendMail($to, $subject, $message, $headers)){
         return true;
@@ -104,7 +107,8 @@ function mailAdministrator($userMail, $requestName, $link){
  */
 function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
     // multiple recipients
-    $administratorMail = 'michael.pedroletti@heig-vd.ch';
+    $jsonData = getJsonData();
+    $administratorMail = $jsonData['mailAdmin'];
 
     $to  = $userMail . ', ' . $raMail . ', ' . $administratorMail;
 
@@ -127,7 +131,7 @@ function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
     // Additional headers
     $headers .= 'To: '. $userMail ."\r\n";
     $headers .= 'BCC: '.$rtMail."\r\n";
-    $headers .= 'From: VMManager <vmManager@heig-vd.ch>' . "\r\n";
+    $headers .= 'From: '.$jsonData['sender']."\r\n";
 
     if(sendMail($to, $subject, $message, $headers)){
         return true;
@@ -142,7 +146,8 @@ function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
  */
 function deniedRequestMail($userMail, $requestName, $reason = null){
     // multiple recipients
-    $administratorMail = 'michael.pedroletti@heig-vd.ch';
+    $jsonData = getJsonData();
+    $administratorMail = $jsonData['mailAdmin'];
 
     $to  = $userMail . ', ' . $administratorMail;
 
@@ -180,7 +185,7 @@ function deniedRequestMail($userMail, $requestName, $reason = null){
 
     // Additional headers
     $headers .= 'To: '. $userMail ."\r\n";
-    $headers .= 'From: VMManager <vmManager@heig-vd.ch>' . "\r\n";
+    $headers .= 'From: '.$jsonData['sender']."\r\n";
 
     if(sendMail($to, $subject, $message, $headers)){
         return true;
@@ -197,7 +202,8 @@ function deniedRequestMail($userMail, $requestName, $reason = null){
  */
 function advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft){
     // multiple recipients
-    $administratorMail = 'michael.pedroletti@heig-vd.ch';
+    $jsonData = getJsonData();
+    $administratorMail = $jsonData['mailAdmin'];
 
     $to  = $userMail . ', ' . $raMail . ', ' . $administratorMail;
 
@@ -226,7 +232,7 @@ function advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft)
     // Additional headers
     $headers .= 'To: '. $userMail ."\r\n";
     $headers .= 'BCC: '.$rtMail."\r\n";
-    $headers .= 'From: VMManager <vmManager@heig-vd.ch>' . "\r\n";
+    $headers .= 'From: '.$jsonData['sender']."\r\n";
 
     if(sendMail($to, $subject, $message, $headers)){
         return true;
@@ -242,7 +248,8 @@ function advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft)
  */
 function nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail){
     // multiple recipients
-    $administratorMail = 'michael.pedroletti@heig-vd.ch';
+    $jsonData = getJsonData();
+    $administratorMail = $jsonData['mailAdmin'];
 
     $to  = $userMail . ', ' . $raMail . ', ' . $administratorMail;
 
@@ -270,7 +277,7 @@ function nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail){
     // Additional headers
     $headers .= 'To: '. $userMail ."\r\n";
     $headers .= 'BCC: '.$rtMail."\r\n";
-    $headers .= 'From: VMManager <vmManager@heig-vd.ch>' . "\r\n";
+    $headers .= 'From: '.$jsonData['sender']."\r\n";
 
     if(sendMail($to, $subject, $message, $headers)){
         return true;

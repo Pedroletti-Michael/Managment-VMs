@@ -601,6 +601,7 @@ function updateVMInformation($vmInformation, $id){
 
     executeQuery($query);
 
+    //TODO ADD A VERIFICATION => GET DATA FROM DB AND COMPARE WITH DATA WE HAVE HERE AND AFTER THAT RETURN TRUE OR FALSE
     return true;
 }
 
@@ -664,7 +665,7 @@ function updateStatusVM($id, $vmStatus, $reason = null){
 
         executeQuery($query);
 
-        $query = "SELECT `status` FROM `vm` WHERE id =". $id;
+        $query = "SELECT `vmStatus` FROM `vm` WHERE id =". $id;
         $selectResult = executeQuery($query);
         if($selectResult[0][0] == 1){
             if(deniedRequestMail($info[1], $info[0], $reason)){
@@ -676,7 +677,7 @@ function updateStatusVM($id, $vmStatus, $reason = null){
         }
     }
     elseif($status == 2){
-        $query = "SELECT `status` FROM `vm` WHERE id =". $id;
+        $query = "SELECT `vmStatus` FROM `vm` WHERE id =". $id;
         $selectResult = executeQuery($query);
         if($selectResult[0][0] == 2){
             if(validateRequestMail($info[1], $info[0], $link, $info[3], $info[2])){
@@ -688,7 +689,7 @@ function updateStatusVM($id, $vmStatus, $reason = null){
         }
     }
     elseif($status == 4){
-        $query = "SELECT `status` FROM `vm` WHERE id =". $id;
+        $query = "SELECT `vmStatus` FROM `vm` WHERE id =". $id;
         $selectResult = executeQuery($query);
         if($selectResult[0][0] == 4){
             if(nonrenewalMailAdvert($info[1], $info[0], $info[3], $info[2])){

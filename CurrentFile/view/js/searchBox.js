@@ -152,13 +152,18 @@ $(document).ready(function() {
     $('.js-example-basic-multiple').select2();
 });
 
-function getValue() {
+function getValue(where) {
     var ul, li, a, i, txtValue, input, select, options, y;
     ul = document.getElementsByClassName("select2-selection__rendered");
     li = ul[0].getElementsByTagName("li");
     select = document.getElementById("select2Redundance");
     options = document.getElementsByTagName("option");
     txtValue = "";
+
+    if(where == true){
+        document.getElementById("formDetailsVm").action = "../index.php?action=vmAccepted";
+    }
+
     for(i = 0; i < li.length; i++){
         for(y = 0; y < options.length; y++) {
 
