@@ -302,7 +302,9 @@ ob_start();
                         if ($dataVM[0]['entity_id'] == $value['entityName']) {
                             echo "<option selected>" . $value['entityName'] . "</option>";
                         } else {
-                            echo "<option>" . $value['entityName'] . "</option>";
+                            if($value['status'] == 0){
+                                echo "<option>" . $value['entityName'] . "</option>";
+                            }
                         }
                     }
                     ?>

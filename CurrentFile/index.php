@@ -116,6 +116,12 @@ if(isset($_GET['action']))
         case 'saveModificationUser':
             saveModificationAboutUsers($_POST);
             break;
+        case 'displayAlertManagementPage':
+            displayAlertManagementPage();
+            break;
+        case 'saveAlertModification':
+            saveAlertModification($_POST);
+            break;
         default:
             displayHome();
     }

@@ -123,6 +123,12 @@
                 <?php else : ?>
                     <a href="index.php?action=displayManagementUser" class="text-decoration-none"><h5 class="color-lightgrey">Gestion des utilisateurs</h5></a>
                 <?php endif; ?>
+                <!----------------- alertManagement ---------------->
+                <?php if ($_GET['action'] == "displayAlertManagementPage"): ?>
+                    <a class="alert-link active text-decoration-none" href="index.php?action=displayAlertManagementPage"><h5 class="color-lightgrey"><a class="menu-phone-selected">Gestion des alertes</a></h5></a>
+                <?php else : ?>
+                    <a href="index.php?action=displayAlertManagementPage" class="text-decoration-none"><h5 class="color-lightgrey">Gestion des alertes</h5></a>
+                <?php endif; ?>
             <?php endif;?>
         <?php endif; ?>
         </div>
@@ -212,6 +218,12 @@
                     <a class="alert-link active" href="index.php?action=displayManagementUser">Gestion des utilisateurs</a>
                 <?php else : ?>
                     <a href="index.php?action=displayManagementUser">Gestion des utilisateurs</a>
+                <?php endif; ?>
+                <!----------------- alertManagement ---------------->
+                <?php if ($_GET['action'] == "displayAlertManagementPage"): ?>
+                    <a class="alert-link active" href="index.php?action=displayAlertManagementPage">Gestion des alertes</a>
+                <?php else : ?>
+                    <a href="index.php?action=displayAlertManagementPage">Gestion des alertes</a>
                 <?php endif; ?>
             <?php endif; ?>
         <?php endif; ?>
@@ -351,6 +363,18 @@
                                         <?php endif; ?>
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                                         Gestion des utilisateurs
+                                    </a>
+                            </li>
+                        </ul>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <?php if ($_GET['action'] == "displayAlertManagementPage"): ?>
+                                <a class="nav-link active" href="index.php?action=displayAlertManagementPage">
+                                    <?php else : ?>
+                                    <a class="nav-link" href="index.php?action=displayAlertManagementPage">
+                                        <?php endif; ?>
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                                        Gestion des alertes
                                     </a>
                             </li>
                         </ul>

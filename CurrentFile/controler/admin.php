@@ -882,3 +882,25 @@ function exportToExcel(){
 
     exportVMToExcel($allVM);
 }
+
+function displayAlertManagementPage(){
+    if(isset($_SESSION['userType'])){
+        if($_SESSION['userType'] == 1){
+            require_once "model/jsonConnector.php";
+            $jsonData = getJsonData();
+
+            require 'view/alertManagementPage.php';
+        }
+        else{
+            displayHome();
+        }
+    }
+    else{
+        $_GET['action'] = "signIn";
+        displaySignIn();
+    }
+}
+
+function saveAlertModification($data){
+
+}
