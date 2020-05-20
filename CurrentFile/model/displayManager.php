@@ -9,7 +9,7 @@ require_once 'model/dbConnector.php';
 
 /********************** Entity **************************/
 function displayBDD_Entity(){
-    $query = "SELECT entityName, status FROM entity";
+    $query = "SELECT entityName FROM entity WHERE status = 0";
     return executeQuery($query);
 }
 
