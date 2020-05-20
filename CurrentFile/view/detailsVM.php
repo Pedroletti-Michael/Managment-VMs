@@ -352,6 +352,7 @@ ob_start();
         <div class="d-inline-block w-100">
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <!--Using-->
+                <?php if($_SESSION['userType'] == 1) :?>
                 <label for="inputDIS" class="font-weight-bold">Type d'utilisation<a style="color: red"> *</a></label>
                 <div class="d-inline-block w-100">
                     <div class="w-50 float-left pr-4">
@@ -402,6 +403,58 @@ ob_start();
                     </div>
                 </div>
             </div>
+            <?php else :?>
+            <label for="inputDIS" class="font-weight-bold">Type d'utilisation<a style="color: red"> *</a></label>
+            <div class="d-inline-block w-100">
+                <div class="w-50 float-left pr-4">
+                    <div class="form-group form-check">
+                        <input type="checkbox" disabled="disabled"
+                               class="form-check-input" <?php if ($dataVM[0]['usageType'] == "Academique") {
+                            echo "checked";
+                        } ?> id="Academique"
+                               name="Academique" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
+                            echo "readonly";
+                        } ?>>
+                        <label class="form-check-label" for="Academique">Académique</label>
+                    </div>
+
+                    <div class="form-group form-check">
+                        <input type="checkbox" disabled="disabled"
+                               class="form-check-input" <?php if ($dataVM[0]['usageType'] == "RaD") {
+                            echo "checked";
+                        } ?> id="RaD"
+                               name="RaD" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
+                            echo "readonly";
+                        } ?>>
+                        <label class="form-check-label" for="RaD">Ra&D</label>
+                    </div>
+                </div>
+                <div class="w-50 float-right pl-4">
+                    <div class="form-group form-check">
+                        <input type="checkbox" disabled="disabled"
+                               class="form-check-input" <?php if ($dataVM[0]['usageType'] == "Operationnel") {
+                            echo "checked";
+                        } ?> id="Operationnel"
+                               name="Operationnel" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
+                            echo "readonly";
+                        } ?>>
+                        <label class="form-check-label" for="Operationnel">Opérationnel - Production</label>
+                    </div>
+
+                    <div class="form-group form-check">
+                        <input type="checkbox" disabled="disabled"
+                               class="form-check-input" <?php if ($dataVM[0]['usageType'] == "Test") {
+                            echo "checked";
+                        } ?> id="Test"
+                               name="Test" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
+                            echo "readonly";
+                        } ?>>
+                        <label class="form-check-label" for="Test">Test - Dev</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <?php endif;?>
             <!--End Date-->
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="inputEndDate" class="font-weight-bold">Date de fin</label>
@@ -467,6 +520,7 @@ ob_start();
             <small id="backupHelp" class="form-text text-muted">Non disponible sur l'infrastructure de DEV</small>
         </div>
         <!--Checkbox domain EINET-->
+        <?php if($_SESSION['userType'] == 1) :?>
         <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" <?php if ($dataVM[0]['domain'] == 1) {
                 echo "checked";
@@ -477,6 +531,18 @@ ob_start();
             <label class="form-check-label font-weight-bold" for="domainEINET">Domaine EINET</label>
             <small id="domainEINETHelp" class="form-text text-muted">Pour serveur Windows uniquement</small>
         </div>
+        <?php else :?>
+        <div class="form-group form-check">
+            <input type="checkbox" disabled="disabled" class="form-check-input" <?php if ($dataVM[0]['domain'] == 1) {
+                echo "checked";
+            } ?> id="domainEINET"
+                   name="domainEINET" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
+                echo "readonly";
+            } ?>>
+            <label class="form-check-label font-weight-bold" for="domainEINET">Domaine EINET</label>
+            <small id="domainEINETHelp" class="form-text text-muted">Pour serveur Windows uniquement</small>
+        </div>
+        <?php endif;?>
         <!--Security-->
         <div class="form-group">
             <label for="securityFormControlSelect" class="font-weight-bold">Sécurité<a style="color: red"> *</a></label>
