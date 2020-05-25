@@ -593,7 +593,14 @@ function displayFormManagement($arrayToDisplay)
 {
     require_once 'model/displayManager.php';
     $_SESSION['gestionFormArray'] = $arrayToDisplay;
-    $entityNames = displayBDD_Entity();
+    $brutEntityNames = displayBDD_Entity();
+    $entityNames = array();
+    foreach($brutEntityNames as $value){
+        if($value['status'] == 0){
+            array_push($entityNames, $value['entityName']);
+        }
+    }
+
     $osNames = displayBDD_OS();
     $snapshotPolicy = displayBSS_Snapshots();
     $backupPolicy = displayBSS_Backup();

@@ -71,7 +71,7 @@ ob_start();
                 <table id="valueEntityDel" name="valueEntityDel" class="w-100 table table-hover rounded">
                     <?php
                     foreach ($entityNames as $value) {
-                        echo "<tr><td class='formManagement'>".$value['entityName']."</td></tr>";
+                        echo "<tr><td class='formManagement'>".$value."</td></tr>";
                     }
                     ?>
                 </table>
