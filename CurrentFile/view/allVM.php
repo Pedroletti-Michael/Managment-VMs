@@ -372,7 +372,7 @@ ob_start();
             <table class="table table-hover allVM" id="tableInventoryVm">
             <thead class="thead-dark sticky-top">
             <tr>
-                <th name="goToButton" scope="col" style="width: 50px;">Statut</th>
+                <th name="goToButton" scope="col" style="width: 50px;" onclick="sortTablePlus(0)">Statut</th>
                 <th name="name" scope="col" onclick="sortTable(1, 0)">name</th>
                 <th style="display: none" name="cluster" scope="col" onclick="sortTable(2, 0)">cluster</th>
                 <th name="dateStart" scope="col" onclick="sortTable(4, 0)">dateStart</th>
@@ -410,7 +410,7 @@ ob_start();
             <tbody>
                 <?php foreach ($allVM as $value): ?>
                     <tr>
-                        <td name="goToButton">
+                        <td name="goToButton" id="<?= $value['vmStatus']; ?>">
                             <div class="btn-group" role="group">
                                 <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-primary" style="background-color: rgba(<?php if($value['vmStatus']==2){echo '40,167,69,0.7';}elseif ($value['vmStatus']==0){echo '255,165,69,0.7';}elseif ($value['vmStatus']==3){echo '233,48,48,0.7';}else{echo '90,90,90,0.7';}?>); border-color: rgba(<?php if($value['vmStatus']==2){echo '40,167,69,0.7';}elseif ($value['vmStatus']==0){echo '255,165,69,0.7';}elseif ($value['vmStatus']==3){echo '233,48,48,0.7';}else{echo '90,90,90,0.7';}?>);"><strong>+</strong></button></a>
                             </div>
