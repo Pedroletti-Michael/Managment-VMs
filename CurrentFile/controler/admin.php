@@ -20,6 +20,7 @@ function displayAllVM($searchFilter,$vmFilter = "all")
                 case 2:
                 case 1:
                     require_once 'model/vmManager.php';
+                    $allVmName = getAllVmNameAndId();
 
                     if($vmFilter['vmFilter'] == "all")
                     {
@@ -66,6 +67,8 @@ function displayAllVM($searchFilter,$vmFilter = "all")
                 case 2:
                 case 1:
                     require_once 'model/vmManager.php';
+                    require_once 'model/dbConnector.php';
+                    $allVmName = getAllVmNameAndId();
                     $allVM = getAllVM();
                     $_GET['action'] = "allVM";
                     require 'view/allVM.php';

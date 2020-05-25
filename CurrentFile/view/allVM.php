@@ -426,7 +426,26 @@ ob_start();
                         <td name="desc" ><?php if(strlen($value['description']) > 9){echo substr($value['description'],0,10)."...";}else{echo substr($value['description'],0,10);} ?></td>
                         <td style="display: none" name="ip"><?php echo $value['ip']?></td>
                         <td style="display: none" name="dnsName"><?php echo $value['dnsName']?></td>
-                        <td style="display: none" name="redundance"><?php echo $value['redundance']?></td>
+                        <td style="display: none" name="redundance"><?php
+
+                            //Verification for display name of the vm for redundance and not to display there ID
+                            if($value['redundance'] != null || $value['redundance'] != 'null' || $value['redundance'] != ' '){
+                                if(strstr($value['redundance'], '0') || strstr($value['redundance'], '1') || strstr($value['redundance'], '2') || strstr($value['redundance'], '3') || strstr($value['redundance'], '4') || strstr($value['redundance'], '5') || strstr($value['redundance'], '6') || strstr($value['redundance'], '7') || strstr($value['redundance'], '8') || strstr($value['redundance'], '9')){
+                                    foreach(explode(";", $value['redundance']) as $redundanceVal){
+                                        foreach($allVmName as $vmName){
+                                            if($redundanceVal == $vmName['id']){
+                                                echo $vmName['name']. '; ';
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    echo $value['redundance'];
+                                }
+
+                            }
+
+                            ?></td>
                         <td name="usage" ><?php echo $value['usageType']?></td>
                         <td style="display: none" name="criticity"><?php echo $value['criticity']?></td>
                         <td name="cpu" ><?php echo $value['cpu']?></td>
