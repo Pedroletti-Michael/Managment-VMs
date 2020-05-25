@@ -84,17 +84,6 @@ ob_start();
                 <div class="float-left w-33 responsiveDisplay pl-1 mb-3" id="responsiveDisplay">
                     <button type="button" class="btn btn-danger w-100 mb-70-px" data-toggle="modal" data-target="#deleteEntity">Supprimer</button>
                 </div>
-                <!--Entity (confirmation delete modal)-->
-                <div class="modal fade" id="confirmationDeleteEntity" tabindex="-1" role="dialog" aria-labelledby="confirmationDeleteEntity" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content p-6">
-                            <div class="modal-body">
-                                <
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <!--Entity (delete modal)-->
                 <div class="modal fade" id="deleteEntity" tabindex="-1" role="dialog" aria-labelledby="deleteEntity" aria-hidden="true">
@@ -189,6 +178,7 @@ ob_start();
             </div>
         </div>
 
+    <!--OS-->
     <?php elseif ($arrayToDisplay == "os") :?>
         <form method="post" action="../index.php?action=editOS">
             <div class="form-group mt-2" name="formulaire" id="form_OS">
@@ -333,8 +323,9 @@ ob_start();
                 </div>
             </div>
         </div>
+
+    <!--Snapshots-->
     <?php elseif($arrayToDisplay == "snapshots") :?>
-        <!--Snapshots-->
         <form method="post" action="../index.php?action=editSnapshots">
             <div class="form-group mt-2" name="formulaire" id="form_Snapshots">
                 <table id="valueSnapDel" name="valueSnapDel"  class="w-100 table table-hover rounded">
@@ -472,8 +463,8 @@ ob_start();
             </div>
         </div>
 
+    <!--Backup-->
     <?php elseif($arrayToDisplay == "backup") :?>
-        <!--Backup-->
         <form method="post" action="../index.php?action=editBackup">
             <div class="form-group mt-2" name="formulaire" id="form_Backup">
                 <table id="valueBackupDel" name="valueBackupDel" class="w-100 table table-hover rounded">
@@ -612,8 +603,6 @@ ob_start();
             </div>
         </div>
     <?php endif;?>
-
-
 </body>
 <?php
 $contenu = ob_get_clean();
