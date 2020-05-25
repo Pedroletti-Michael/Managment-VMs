@@ -782,6 +782,25 @@ function exportVMToExcel($allVM){
     CSV::export($allVM,$filename);
 }
 
+function countConfirmationVM(){
+    require_once 'model/dbConnector.php';
+
+    $querySelect = "SELECT COUNT(*) FROM vm WHERE vmStatus = 0";
+
+    $resultSelect = executeQuerySelect($querySelect);
+
+    return $resultSelect[0][0];
+}
+function countRenewalVM(){
+    require_once 'model/dbConnector.php';
+
+    $querySelect = "SELECT COUNT(*) FROM vm WHERE vmStatus = 3";
+
+    $resultSelect = executeQuerySelect($querySelect);
+
+    return $resultSelect[0][0];
+}
+
 class CSV{
     static function export($allVM,$filename){
         header('Content-Type: text/csv;');
@@ -792,8 +811,10 @@ class CSV{
                 echo '"'.implode('";"',array_keys($data)).'"'."\n";
                 $i++;
             }
+            $data['os_id']= $data['os_id'][1]." : ".$data['os_id'][0];
+            $data['backup_id']= $data['backup_id'][1]." : ".$data['backup_id'][0];
+            $data['snapshot_id']= $data['snapshot_id'][1]." : ".$data['snapshot_id'][0];
             echo '"'.implode('";"',$data).'"'."\n";
         }
     }
-
 }

@@ -75,6 +75,10 @@ function createSession($userEmail)
     $_SESSION['userEmail'] = $userEmail;
     $_SESSION['userType'] = getUserType($userEmail);
     $_SESSION['userId'] = getUserId($userEmail);
+
+    require_once 'model/vmManager.php';
+    $_SESSION['countConfirmationVM'] = countConfirmationVM();
+    $_SESSION['countRenewalVM'] = countRenewalVM();
 }
 
 function signOut()
