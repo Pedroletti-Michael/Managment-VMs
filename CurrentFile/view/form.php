@@ -188,7 +188,9 @@ ob_start();
                 <select class="form-control" id="disFormControlSelect" name="disFormControlSelect" required>
                     <?php
                     foreach ($entityNames as $value) {
-                        echo "<option>".$value['entityName']."</option>";
+                        if($value['status'] == 0){
+                            echo "<option>".$value['entityName']."</option>";
+                        }
                     }
                     ?>
                 </select>
