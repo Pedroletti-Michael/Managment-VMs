@@ -164,7 +164,7 @@ function displayDetailsVM($idVM)
                 require_once 'model/displayManager.php';
                 $dataVM = getDataVM($idVM);
 
-                if($_SESSION['userEmail'] == $dataVM[0]['customer'])
+                if($_SESSION['userEmail'] == $dataVM[0]['customer'] || $_SESSION['userEmail'] == $dataVM[0]['userRt'] || $_SESSION['userEmail'] == $dataVM[0]['userRa'])
                 {
                     $entityNames = displayBDD_Entity();
                     $osNames = displayBDD_OS();
