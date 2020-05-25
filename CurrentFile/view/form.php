@@ -304,6 +304,21 @@ ob_start();
             <textarea class="form-control" rows="5" id="ti" name="ti" maxlength="1000"></textarea>
             <small id="tiHelp" class="form-text text-muted">Règles firewall, type de compte, justification DMZ ou configuration personnalisée, etc...</small>
         </div>
+
+        <!--Error no checkbox selected (modal)-->
+        <div class="modal fade" id="modalErrorUsingCheckbox" tabindex="-1" role="dialog" aria-labelledby="modalErrorUsingCheckbox" aria-hidden="true">
+            <div class="modal-dialog m-auto w-470-px"  role="document" style="top: 45%;">
+                <div class="modal-content w-100">
+                    <div class="modal-body">
+                        <div class="w-100">
+                            <h6 class="float-left pt-2 text-center">Veuillez cocher au moins une case dans la section "Type d'utilisation"</h6>
+                            <button type="submit" class="btn btn-danger float-right btn-close-phone" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!--Submit-->
         <button type='button' id='alertButton' class='btn btn-primary' onclick="checkUsingCheckbx()">Envoyer</button>
 
@@ -322,13 +337,13 @@ ob_start();
                 {
                     submitButton.setAttribute("style", "display:none");
                     alertButton.setAttribute("style", "display:block");
-
-                    alert("Veuillez cocher au moins une case de la section \"type d'utilisation\"");
+                    $('.modal').modal('show')
                 }
                 else
                 {
                     submitButton.setAttribute("style", "display:block");
                     alertButton.setAttribute("style", "display:none");
+                    $('.modal').modal('hide')
                 }
             }
         </script>
