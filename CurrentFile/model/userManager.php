@@ -240,6 +240,8 @@ function verificationUserFromDb(){
             }
         }
 
+        $newUser -= 3;
+
         if($newUser == 0){
             echo '<script type="text/javascript">window.alert("Aucun nouvel utilisateur ajouté. Base de données à jour.");</script>';
         }
