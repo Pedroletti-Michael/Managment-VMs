@@ -98,15 +98,11 @@ ob_start();
             <!--Name of the VM-->
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="inputVMName" class="font-weight-bold">Nom de la VM<a style="color: red"> *</a></label>
-                <small id="vmNameHelp" class="form-text text-muted">15 caractères maximum. Lettres, chiffres et trait
-                    d'union uniquement (Exemple : DPT-VM01)
-                </small>
                 <input type="vmName" class="form-control form form" value="<?php echo $dataVM[0]['name'] ?>"
                        id="inputVMName" name="inputVMName" aria-describedby="vmNameHelp" maxlength="15"
-                       style="text-transform: uppercase" onkeyup="checkName()"
-                       required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
-                    echo "readonly";
-                } ?>>
+                       style="text-transform: uppercase" onkeyup="checkName()" required
+                       <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {echo "readonly";} ?>>
+                <small id="vmNameHelp" class="form-text text-muted">15 caractères maximum. Lettres, chiffres et trait d'union uniquement (Exemple : DPT-VM01)</small>
             </div>
             <!--Name of the requester-->
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
