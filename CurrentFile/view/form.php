@@ -145,9 +145,15 @@ ob_start();
                             $windows = 0;
                             $linux = 0;
                             foreach ($osNames as $value) {
-                                if($value['osType'] == $_SESSION['formRequest']['osTypeFormControlSelect'])
+                                if($value['osType'] == $_SESSION['formRequest']['osTypeFormControlSelect']  && $value['osType'] == "Windows" && $windows<1)
                                 {
                                     echo "<option selected>".$value['osType']."</option>";
+                                    $windows++;
+                                }
+                                elseif($value['osType'] == $_SESSION['formRequest']['osTypeFormControlSelect'] && $value['osType'] == "Linux" && $linux<1)
+                                {
+                                    echo "<option selected>".$value['osType']."</option>";
+                                    $linux++;
                                 }
                                 elseif (($value['osType']=="Linux")&&$linux<1){
                                     echo "<option>".$value['osType']."</option>";
@@ -162,13 +168,14 @@ ob_start();
                         </select>
                     </div>
                     <div class="pl-2">
+                        <?php if(isset($_SESSION['formRequest']) && $_SESSION['formRequest']['osTypeFormControlSelect'] == "Windows") :?>
                         <select class="form-control w-50 float-right" id="windows" name="osFormNameControlSelectWin" required>
                             <?php
 
                             foreach ($osNames as $value) {
-                                if($value['osType'] == $_SESSION['formRequest']['osFormNameControlSelectWin'])
+                                if($value['osName'] == $_SESSION['formRequest']['osFormNameControlSelectWin'] && $value['osType'] == $_SESSION['formRequest']['osTypeFormControlSelect'])
                                 {
-                                    echo "<option selected>".$value['osName']."</option>";
+                                    echo "<option class='windows' selected>".$value['osName']."</option>";
                                 }
                                 elseif($value['osType']=="Windows"){
                                     echo "<option class='windows'>".$value['osName']."</option>";
@@ -176,13 +183,14 @@ ob_start();
                             }
                             ?>
                         </select>
-                        <select class="form-control w-50 float-right" style="display: none;" id="linux" name="osFormNameControlSelectLin" required>
+                        <?php elseif(isset($_SESSION['formRequest']) && $_SESSION['formRequest']['osTypeFormControlSelect'] == "Linux") :?>
+                        <select class="form-control w-50 float-right" id="linux" name="osFormNameControlSelectLin" required>
                             <?php
 
                             foreach ($osNames as $value) {
-                                if($value['osType'] == $_SESSION['formRequest']['osFormNameControlSelectLin'])
+                                if($value['osName'] == $_SESSION['formRequest']['osFormNameControlSelectLin'] && $value['osType'] == $_SESSION['formRequest']['osTypeFormControlSelect'])
                                 {
-                                    echo "<option selected>".$value['osName']."</option>";
+                                    echo "<option class='linux' selected>".$value['osName']."</option>";
                                 }
                                 elseif($value['osType']=="Linux"){
                                     echo "<option class='linux'>".$value['osName']."</option>";
@@ -190,6 +198,36 @@ ob_start();
                             }
                             ?>
                         </select>
+                        <?php else :?>
+                        <select class="form-control w-50 float-right" id="windows" name="osFormNameControlSelectWin" required>
+                            <?php
+
+                            foreach ($osNames as $value) {
+                            if($value['osName'] == $_SESSION['formRequest']['osFormNameControlSelectWin'] && $value['osType'] == $_SESSION['formRequest']['osTypeFormControlSelect'])
+                            {
+                            echo "<option class='windows' selected>".$value['osName']."</option>";
+                            }
+                            elseif($value['osType']=="Windows"){
+                            echo "<option class='windows'>".$value['osName']."</option>";
+                            }
+                            }
+                            ?>
+                        </select>
+                        <select class="form-control w-50 float-right" style="display: none;" id="linux" name="osFormNameControlSelectLin" required>
+                            <?php
+
+                            foreach ($osNames as $value) {
+                            if($value['osName'] == $_SESSION['formRequest']['osFormNameControlSelectLin'] && $value['osType'] == $_SESSION['formRequest']['osTypeFormControlSelect'])
+                            {
+                            echo "<option class='linux' selected>".$value['osName']."</option>";
+                            }
+                            elseif($value['osType']=="Linux"){
+                            echo "<option class='linux'>".$value['osName']."</option>";
+                            }
+                            }
+                            ?>
+                        </select>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <small id="osHelp" class="form-text text-muted">Toutes les OS sont en anglais, 64 bits</small>
@@ -199,13 +237,21 @@ ob_start();
                 <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service<a style="color: red"> *</a></label>
                 <select class="form-control" id="disFormControlSelect" name="disFormControlSelect" required>
                     <?php
+                    $count = 0;
+
                     foreach ($entityNames as $value) {
-                        if($value['$entityNames'] == $_SESSION['formRequest']['disFormControlSelect']){
+                        if($value['entityName'] == $_SESSION['formRequest']['disFormControlSelect']){
                             echo "<option selected>".$value['entityName']."</option>";
                         }
-                        elseif($value['status'] == 0){
+                        elseif($value['status'] == 0 && $count == 0)
+                        {
+                            echo "<option selected>".$value['entityName']."</option>";
+                        }
+                        elseif($value['status'] == 0)
+                        {
                             echo "<option>".$value['entityName']."</option>";
                         }
+                        $count=1;
                     }
                     ?>
                 </select>
@@ -215,10 +261,37 @@ ob_start();
             <!--Network-->
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="networkFormControlSelect" class="font-weight-bold">Réseau<a style="color: red"> *</a></label>
-                <select class="form-control" id="networkFormControlSelect" name="networkFormControlSelect" value="<?php if(isset($_SESSION['formRequest']['networkFormControlSelect'])){echo($_SESSION['formRequest']['networkFormControlSelect']);} ?>" required>
-                    <option>LAN</option>
-                    <option>DMZ</option>
-                    <option>DMZ avec adressage privé</option>
+                <select class="form-control" id="networkFormControlSelect" name="networkFormControlSelect" required>
+                    <?php
+                        $lan = "LAN";
+                        $dmz = "DMZ";
+                        $dmzPrivate = "DMZ avec adressage privé";
+
+                        if($_SESSION['formRequest']['networkFormControlSelect'] == $lan)
+                        {
+                            echo "<option selected>"."$lan"."</option>";
+                            echo "<option>"."$dmz"."</option>";
+                            echo "<option>"."$dmzPrivate"."</option>";
+                        }
+                        elseif($_SESSION['formRequest']['networkFormControlSelect'] == $dmz)
+                        {
+                            echo "<option>"."$lan"."</option>";
+                            echo "<option selected>"."$dmz"."</option>";
+                            echo "<option>"."$dmzPrivate"."</option>";
+                        }
+                        elseif($_SESSION['formRequest']['networkFormControlSelect'] == $dmzPrivate)
+                        {
+                            echo "<option>"."$lan"."</option>";
+                            echo "<option>"."$dmz"."</option>";
+                            echo "<option selected>"."$dmzPrivate"."</option>";
+                        }
+                        else
+                        {
+                            echo "<option selected>"."$lan"."</option>";
+                            echo "<option>"."$dmz"."</option>";
+                            echo "<option>"."$dmzPrivate"."</option>";
+                        }
+                    ?>
                 </select>
                 <small id="networkHelp" class="form-text text-muted">LAN : Machine accessible en interne ou via le VPN</small>
             </div>
@@ -293,10 +366,17 @@ ob_start();
         <!--Snapshots-->
         <div class="form-group">
             <label for="snapshotsFormControlSelect" class="font-weight-bold">Snapshots<a style="color: red"> *</a></label>
-            <select class="form-control" id="snapshotsFormControlSelect" name="snapshotsFormControlSelect" value="<?php if(isset($_SESSION['formRequest']['snapshotsFormControlSelect'])){echo($_SESSION['formRequest']['snapshotsFormControlSelect']);} ?>" required>
+            <select class="form-control" id="snapshotsFormControlSelect" name="snapshotsFormControlSelect" required>
                 <?php
                 foreach ($snapshotPolicy as $value) {
-                    echo "<option>".$value['name']." : ".$value['policy']."</option>";
+                    if($value['name']." : ".$value['policy'] == $_SESSION['formRequest']['snapshotsFormControlSelect'])
+                    {
+                        echo "<option selected>".$value['name']." : ".$value['policy']."</option>";
+                    }
+                    else
+                    {
+                        echo "<option>".$value['name']." : ".$value['policy']."</option>";
+                    }
                 }
                 ?>
             </select>
@@ -305,10 +385,17 @@ ob_start();
         <!--Backup-->
         <div class="form-group">
             <label for="backupFormControlSelect" class="font-weight-bold">Backup<a style="color: red"> *</a></label>
-            <select class="form-control" id="backupFormControlSelect" name="backupFormControlSelect" value="<?php if(isset($_SESSION['formRequest']['backupFormControlSelect'])){echo($_SESSION['formRequest']['backupFormControlSelect']);} ?>" required>
+            <select class="form-control" id="backupFormControlSelect" name="backupFormControlSelect" required>
                 <?php
                 foreach ($backupPolicy as $value) {
-                    echo "<option>".$value['name']." : ".$value['policy']."</option>";
+                    if($value['name']." : ".$value['policy'] == $_SESSION['formRequest']['backupFormControlSelect'])
+                    {
+                        echo "<option selected>".$value['name']." : ".$value['policy']."</option>";
+                    }
+                    else
+                    {
+                        echo "<option>".$value['name']." : ".$value['policy']."</option>";
+                    }
                 }
                 ?>
             </select>
@@ -329,8 +416,26 @@ ob_start();
         <div class="form-group">
             <label for="securityFormControlSelect" class="font-weight-bold">Sécurité<a style="color: red"> *</a></label>
             <select class="form-control" id="securityFormControlSelect" name="securityFormControlSelect" required>
-                <option>Mises à jour installées par le responsable technique</option>
-                <option>Mises à jour installées par le S-ISI de manière automatique</option>
+                <?php
+                $tech = "Mises à jour installées par le responsable technique";
+                $auto = "Mises à jour installées par le S-ISI de manière automatique";
+
+                if($_SESSION['formRequest']['securityFormControlSelect'] == $tech)
+                {
+                    echo "<option selected>"."$tech"."</option>";
+                    echo "<option>"."$auto"."</option>";
+                }
+                elseif($_SESSION['formRequest']['securityFormControlSelect'] == $auto)
+                {
+                    echo "<option>"."$tech"."</option>";
+                    echo "<option selected>"."$auto"."</option>";
+                }
+                else
+                {
+                    echo "<option selected>"."$tech"."</option>";
+                    echo "<option>"."$auto"."</option>";
+                }
+                ?>
             </select>
             <small id="securityHelp" class="form-text text-muted">Le S-ISI recommande de mettre à jour la VM tous les 90 jours au minimum</small>
         </div>
