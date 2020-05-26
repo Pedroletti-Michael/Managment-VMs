@@ -13,6 +13,7 @@ function displayHome()
         $userId = getUserId($_SESSION['userEmail']);
 
         require_once "model/vmManager.php";
+        $allVmName = getAllVmNameAndId();
         $userVM = getUserVM($userId);
 
         $_GET['action'] = "home";

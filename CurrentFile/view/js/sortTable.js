@@ -124,9 +124,15 @@ function sortNumberTable(n, whichTable) {
 }
 
 
-function sortTablePlus(n){
+function sortTablePlus(n, which){
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    table = document.getElementById("tableInventoryVm");
+    if(which == 0){
+        table = document.getElementById("tableInventoryVm");
+    }
+    else if(which == 1){
+        table = document.getElementById("tableInventoryUser");
+    }
+
     switching = true;
     //Set the sorting direction to ascending:
     dir = "asc";

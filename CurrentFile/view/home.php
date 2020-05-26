@@ -135,8 +135,14 @@ ob_start();
                     <button name="btnRowFilter" id="name" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('name')">
                         name
                     </button>
+                    <button name="btnRowFilter" style="background-color: #dc3545" id="cluster" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('cluster')">
+                        cluster
+                    </button>
                     <button name="btnRowFilter" id="dateStart" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('dateStart')">
                         dateStart
+                    </button>
+                    <button name="btnRowFilter" style="background-color: #dc3545" id="dateAnniversary" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('dateAnniversary')">
+                        dateAnniversary
                     </button>
                     <button name="btnRowFilter" id="dateEnd" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('dateEnd')">
                         dateEnd
@@ -144,8 +150,20 @@ ob_start();
                     <button name="btnRowFilter" id="desc" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('desc')">
                         description
                     </button>
+                    <button name="btnRowFilter" style="background-color: #dc3545" id="ip" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('ip')">
+                        ip
+                    </button>
+                    <button name="btnRowFilter" style="background-color: #dc3545" id="dnsName" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('dnsName')">
+                        dnsName
+                    </button>
+                    <button name="btnRowFilter" style="background-color: #dc3545" id="redundance" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('redundance')">
+                        redundance
+                    </button>
                     <button name="btnRowFilter" id="usage" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('usage')">
                         usageType
+                    </button>
+                    <button name="btnRowFilter" style="background-color: #dc3545" id="criticity" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('criticity')">
+                        criticity
                     </button>
                     <button name="btnRowFilter" id="cpu" type="button" class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('cpu')">
                         cpu
@@ -199,53 +217,95 @@ ob_start();
     <table class="table table-hover allVM" id="tableInventoryUser">
         <thead class="thead-dark sticky-top">
         <tr>
-            <th scope="col">Statut</th>
-            <th scope="col" onclick="sortTable(1, 1)">name</th>
-            <th scope="col" onclick="sortTable(2, 1)">dateStart</th>
-            <th scope="col" onclick="sortTable(3, 1)">dateEnd</th>
-            <th scope="col" onclick="sortTable(4, 1)">description</th>
-            <th scope="col" onclick="sortTable(5, 1)">usageType</th>
-            <th scope="col" onclick="sortNumberTable(6, 1)">cpu</th>
-            <th scope="col" onclick="sortNumberTable(7, 1)">ram</th>
-            <th scope="col" onclick="sortNumberTable(8, 1)">disk</th>
-            <th scope="col" onclick="sortTable(9, 1)">network</th>
-            <th scope="col" onclick="sortTable(10, 1)">domain</th>
-            <th scope="col" onclick="sortTable(11, 1)">comment</th>
-            <th scope="col" onclick="sortTable(12, 1)">customer</th>
-            <th scope="col" onclick="sortTable(13, 1)">userRa</th>
-            <th scope="col" onclick="sortTable(14, 1)">userRt</th>
-            <th scope="col" onclick="sortTable(15, 1)">entity_id</th>
-            <th scope="col" onclick="sortTable(16, 1)">os_id</th>
-            <th scope="col" onclick="sortTable(17, 1)">snapshot_id</th>
-            <th scope="col" onclick="sortTable(18, 1)">backup_id</th>
+            <th name="goToButton" scope="col" style="width: 50px;" onclick="sortTablePlus(0, 1)">Statut</th>
+            <th name="name" scope="col" onclick="sortTable(1, 1)">name</th>
+            <th style="display: none" name="cluster" scope="col" onclick="sortTable(2, 1)">cluster</th>
+            <th name="dateStart" scope="col" onclick="sortTable(4, 1)">dateStart</th>
+            <th style="display: none" name="dateAnniversary" scope="col" onclick="sortTable(6, 1)">dateAnniversary</th>
+            <th name="dateEnd" scope="col" onclick="sortTable(8, 1)">dateEnd</th>
+            <th name="desc" scope="col" onclick="sortTable(9, 1)">description</th>
+            <th style="display: none" name="ip" scope="col" onclick="sortTable(10, 1)">ip</th>
+            <th style="display: none" name="dnsName" scope="col" onclick="sortTable(11, 1)">dnsName</th>
+            <th style="display: none" name="redundance" scope="col" onclick="sortTable(12, 1)">redundance</th>
+            <th name="usage" scope="col" onclick="sortTable(13, 1)">usageType</th>
+            <th style="display: none" name="criticity" scope="col" onclick="sortTable(14, 1)">criticity</th>
+            <th name="cpu" scope="col" onclick="sortNumberTable(15, 1)">cpu</th>
+            <th name="ram" scope="col" onclick="sortNumberTable(16, 1)">ram</th>
+            <th name="disk" scope="col" onclick="sortNumberTable(17, 1)">disk</th>
+            <th name="network" scope="col" onclick="sortTable(18, 1)">network</th>
+            <th name="domain" scope="col" onclick="sortTable(19, 1)">domain</th>
+            <th name="comment" scope="col" onclick="sortTable(20, 1)">comment</th>
+            <th name="customer" scope="col" onclick="sortTable(21, 1)">customer</th>
+            <th name="Ra" scope="col" onclick="sortTable(22, 1)">userRa</th>
+            <th name="Rt" scope="col" onclick="sortTable(23, 1)">userRt</th>
+            <th name="entity" scope="col" onclick="sortTable(24, 1)">entity_id</th>
+            <th name="os" scope="col" onclick="sortTable(25, 1)">os_id</th>
+            <th name="snapshot" scope="col" onclick="sortTable(26, 1)">snapshot_id
+                <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#modalSnapshot">
+                    <path fill-rule="evenodd" d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                </svg>
+            </th>
+            <th name="backup" scope="col" onclick="sortTable(27, 1)">backup_id
+                <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#modalBackup">
+                    <path fill-rule="evenodd" d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                </svg>
+            </th>
         </tr>
         </thead>
         <tbody>
         <?php foreach ($userVM as $value): ?>
             <tr>
-                <td>
+                <td name="goToButton" id="<?= $value['vmStatus']; ?>">
                     <div class="btn-group" role="group">
-                        <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-primary"><strong>+</strong></button></a>
+                        <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-primary" style="background-color: rgba(<?php if($value['vmStatus']==2){echo '40,167,69,0.7';}elseif ($value['vmStatus']==0){echo '255,165,69,0.7';}elseif ($value['vmStatus']==3){echo '233,48,48,0.7';}else{echo '90,90,90,0.7';}?>); border-color: rgba(<?php if($value['vmStatus']==2){echo '40,167,69,0.7';}elseif ($value['vmStatus']==0){echo '255,165,69,0.7';}elseif ($value['vmStatus']==3){echo '233,48,48,0.7';}else{echo '90,90,90,0.7';}?>);"><strong>+</strong></button></a>
                     </div>
                 </td>
-                <td><?php echo $value['name']?></td>
-                <td style="min-width: 100px"><?php echo $value['dateStart']?></td>
-                <td style="min-width: 100px"><?php echo $value['dateEnd']?></td>
-                <td><?php if(strlen($value['description']) > 9){echo substr($value['description'],0,10)."...";}else{echo substr($value['description'],0,10);} ?></td>
-                <td><?php echo $value['usageType']?></td>
-                <td><?php echo $value['cpu']?></td>
-                <td><?php echo $value['ram']?></td>
-                <td><?php echo $value['disk']?></td>
-                <td><?php echo $value['network']?></td>
-                <td><?php echo $value['domain']?></td>
-                <td><?php if(strlen($value['comment']) > 9){echo substr($value['comment'], 0, 10)."...";}else{echo substr($value['comment'], 0, 10);} ?></td>
-                <td><?php echo $value['customer']?></td>
-                <td><?php echo $value['userRa']?></td>
-                <td><?php echo $value['userRt']?></td>
-                <td><?php echo $value['entity_id']?></td>
-                <td style="min-width: 150px"><?php echo $value['os_id']['1']." ".$value['os_id']['0']?></td>
-                <td style="min-width: 250px"><?php echo $value['snapshot_id']['1']." : ".$value['snapshot_id']['0']?></td>
-                <td style="min-width: 250px"><?php echo $value['backup_id']['1']." : ".$value['backup_id']['0']?></td>
+                <td name="name"><?php echo $value['name']?></td>
+                <td style="display: none" name="cluster"><?php echo $value['cluster']?></td>
+                <td name="dateStart" style="min-width: 100px"><?php echo date("d.m.Y", strtotime($value['dateStart']))?></td>
+                <td hidden name="strDateStart"><?= strtotime($value['dateStart']); ?></td>
+                <td style="display: none" name="dateAnniversary"><?php if($value['dateAnniversary'] == null || $value['dateAnniversary'] == 'null'){echo '';}else{echo date("d.m.Y", strtotime($value['dateAnniversary']));}?></td>
+                <td hidden name="strDateAnniversary"><?= strtotime($value['dateAnniversary']); ?></td>
+                <td name="dateEnd" style="min-width: 100px"><?php if($value['dateEnd'] == null || $value['dateEnd'] == 'null'){echo '';}else{echo date("d.m.Y", strtotime($value['dateEnd']));}?></td>
+                <td hidden name="strDateEnd"><?= strtotime($value['dateEnd']); ?></td>
+                <td name="desc" ><?php if(strlen($value['description']) > 9){echo substr($value['description'],0,10)."...";}else{echo substr($value['description'],0,10);} ?></td>
+                <td style="display: none" name="ip"><?php echo $value['ip']?></td>
+                <td style="display: none" name="dnsName"><?php echo $value['dnsName']?></td>
+                <td style="display: none" name="redundance"><?php
+
+                    //Verification for display name of the vm for redundance and not to display there ID
+                    if($value['redundance'] != null || $value['redundance'] != 'null' || $value['redundance'] != ' '){
+                        if(strstr($value['redundance'], '0') || strstr($value['redundance'], '1') || strstr($value['redundance'], '2') || strstr($value['redundance'], '3') || strstr($value['redundance'], '4') || strstr($value['redundance'], '5') || strstr($value['redundance'], '6') || strstr($value['redundance'], '7') || strstr($value['redundance'], '8') || strstr($value['redundance'], '9')){
+                            foreach(explode(";", $value['redundance']) as $redundanceVal){
+                                foreach($allVmName as $vmName){
+                                    if($redundanceVal == $vmName['id']){
+                                        echo $vmName['name']. '; ';
+                                    }
+                                }
+                            }
+                        }
+                        else{
+                            echo $value['redundance'];
+                        }
+
+                    }
+
+                    ?></td>
+                <td name="usage" ><?php echo $value['usageType']?></td>
+                <td style="display: none" name="criticity"><?php echo $value['criticity']?></td>
+                <td name="cpu" ><?php echo $value['cpu']?></td>
+                <td name="ram" ><?php echo $value['ram']?></td>
+                <td name="disk" ><?php echo $value['disk']?></td>
+                <td name="network" ><?php echo $value['network']?></td>
+                <td name="domain" ><?php if($value['domain'] == 1){echo 'oui';}else{echo 'non';}?></td>
+                <td name="comment" ><?php if(strlen($value['comment']) > 9){echo substr($value['comment'], 0, 10)."...";}else{echo substr($value['comment'], 0, 10);} ?></td>
+                <td name="customer" ><?php echo $value['customer']?></td>
+                <td name="Ra" ><?php echo $value['userRa']?></td>
+                <td name="Rt" ><?php echo $value['userRt']?></td>
+                <td name="entity" ><?php echo $value['entity_id']?></td>
+                <td name="os" style="min-width: 100px"><?php echo $value['os_id']['1']." ".$value['os_id'][0]?></td>
+                <td name="snapshot" style="min-width: 130px"><?php echo $value['snapshot_id']['1']?></td>
+                <td name="backup" style="min-width: 120px"><?php echo $value['backup_id']['1']?></td>
             </tr>
         <?php endforeach;?>
         </tbody>
