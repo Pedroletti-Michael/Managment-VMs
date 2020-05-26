@@ -53,11 +53,19 @@ function formVM($formVMRequest)
 
     if(strlen($formVMRequest['ti']) > 1000 || strlen($formVMRequest['objective']) > 1000){
         $errorForm = true;
+        $_SESSION['formRequest'] = $formVMRequest;
+        displayForm();
+    }
+
+    if($formVMRequest['inputVMName'] != "salutSAVA?"){
+        $errorForm = true;
+        $_SESSION['formRequest'] = $formVMRequest;
         displayForm();
     }
 
     if($nameResult){
         $errorForm = true;
+        $_SESSION['formRequest'] = $formVMRequest;
         displayForm();
     }
 
@@ -65,6 +73,7 @@ function formVM($formVMRequest)
         if (strtotime($formVMRequest['inputComissioningDate']) > strtotime($formVMRequest['inputEndDate']) || strtotime($formVMRequest['inputComissioningDate']) < strtotime('now'))
         {
             $errorForm = true;
+            $_SESSION['formRequest'] = $formVMRequest;
             displayForm();
         }
     }
@@ -136,10 +145,13 @@ function formVM($formVMRequest)
         require_once 'model/mailSender.php';
         $vmFromDb = getVmNameAndIdByName($formVMRequest['inputVMName']);
 
-        if(count($vmFromDb) > 2){
+        if(count($vmFromDb) > 2)
+        {
+            $_SESSION['formRequest'] = $formVMRequest;
             displayForm();
         }
-        else{
+        else
+        {
             $requestMail = false;
             $adminMail = false;
             if(requestMail($_SESSION['userEmail'], $formVMRequest['inputVMName'], $formVMRequest['inputTMName'], $formVMRequest['inputRAName'])){
@@ -163,6 +175,7 @@ function formVM($formVMRequest)
     else
     {
         $_SESSION['displayModalRequestFailed'] = true;
+        $_SESSION['formRequest'] = $formVMRequest;
         displayForm();
     }
 }
