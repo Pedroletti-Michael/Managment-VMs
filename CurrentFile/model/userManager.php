@@ -241,13 +241,13 @@ function verificationUserFromDb(){
         $newUser -= 3;
 
         if($newUser == 0){
-            echo '<script type="text/javascript">window.alert("'.$message.' utilisateurs récupéré de l\'AD.<br> Aucun nouvel utilisateur ajouté. Base de données à jour.");</script>';
+            echo '<script type="text/javascript">window.alert("'.$message.' utilisateurs récupéré de l\'AD. Aucun nouvel utilisateur ajouté. Base de données à jour.");</script>';
         }
         elseif($newUser == 1){
-            echo '<script type="text/javascript">window.alert("'.$message.' utilisateurs récupéré de l\'AD.<br> 1 nouvel utilisateur ajouté. Base de données à jour.");</script>';
+            echo '<script type="text/javascript">window.alert("'.$message.' utilisateurs récupéré de l\'AD. 1 nouvel utilisateur ajouté. Base de données à jour.");</script>';
         }
         else{
-            echo '<script type="text/javascript">window.alert("'.$message.' utilisateurs récupéré de l\'AD.<br> '.$newUser.' utilisateurs ajoutés. Base de données à jour.");</script>';
+            echo '<script type="text/javascript">window.alert("'.$message.' utilisateurs récupéré de l\'AD. '.$newUser.' utilisateurs ajoutés. Base de données à jour.");</script>';
         }
 
         ldap_close($ds);
