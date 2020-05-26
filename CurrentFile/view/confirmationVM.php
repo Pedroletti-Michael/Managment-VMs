@@ -29,6 +29,7 @@ ob_start();
             <th scope="col">network</th>
             <th scope="col">userRt</th>
             <th scope="col">entity_id</th>
+            <th scope="col">creationDate</th>
         </tr>
         </thead>
         <tbody>
@@ -48,6 +49,7 @@ ob_start();
                 <td><?php echo $value['network']?></td>
                 <td><?php echo $value['userRt']?></td>
                 <td><?php echo $value['entity_id']?></td>
+                <td><?php echo $value['timestampAdd']?></td>
             </tr>
             <?php endforeach;?>
         </tbody>
