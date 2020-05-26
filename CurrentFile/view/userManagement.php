@@ -60,7 +60,7 @@ ob_start();
     <!--All VM-->
     <a href="index.php?action=refreshUser">
         <button type="button" class="btn btn-primary mb-1 mt-1 responsiveDisplay">
-            <a>Actualiser la liste des utilisateurs</a>
+            Actualiser la liste des utilisateurs
         </button>
     </a>
     <input type="button" value="Retour en haut" id="navButton" class="btn btn-primary rounded-0 w-150-px position-fixed mt-1" style="right: 0.25rem;visibility: hidden" OnClick="goTo()">
