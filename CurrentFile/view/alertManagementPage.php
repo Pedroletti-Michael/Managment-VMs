@@ -23,20 +23,20 @@ ob_start();
             <div class="d-inline-block w-100">
                 <!--Mail of administrator-->
                 <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
-                    <label for="adminMail" class="font-weight-bold">Mail de l'administrateur<a style="color: red"> *</a></label>
+                    <label for="adminMail" class="font-weight-bold">E-mail de l'administrateur<a style="color: red"> *</a></label>
                     <input type="email" class="form-control form form text-lowercase" id="adminMail" name="adminMail" value="<?= $jsonData['mailAdmin']; ?>" aria-describedby="adminMailHelp" placeholder="Ex: vmmanager@heig-vd.ch" required>
-                    <small id="adminMailHelp" class="form-text text-muted">Mail de l'administrateur qui est en copie de tout mail envoyé depuis VMManager.</small>
+                    <small id="adminMailHelp" class="form-text text-muted">Adresse e-mail qui est en copie de tous les e-mails générés depuis cette plateforme.</small>
                 </div>
                 <!--Mail of sender-->
                 <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
-                    <label for="senderMail" class="font-weight-bold">Mail de provenance<a style="color: red"> *</a></label>
+                    <label for="senderMail" class="font-weight-bold">E-mail de l'expéditeur<a style="color: red"> *</a></label>
                     <input type="email" class="form-control form form text-lowercase" id="senderMail" name="senderMail" value="<?= $jsonData['sender']; ?>" aria-describedby="senderMailHelp" placeholder="Ex: vmmanager@heig-vd.ch" required>
-                    <small id="senderMailHelp" class="form-text text-muted">Adresse mail depuis lequel le mail est envoyé.</small>
+                    <small id="senderMailHelp" class="form-text text-muted">Adresse e-mail de l'expéditeur pour tous les e-mails générés depuis cette plateforme.</small>
                 </div>
             </div>
 
             <!--Submit-->
-            <button type='button' class='btn btn-primary'>enregistrer</button>
+            <button type='button' class='btn btn-primary'>Enregistrer</button>
             <button type="reset" style="margin-bottom: 10px;" class="btn btn-danger">Annuler</button>
         </form>
     </div>

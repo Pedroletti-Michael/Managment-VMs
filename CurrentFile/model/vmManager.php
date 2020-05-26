@@ -320,7 +320,7 @@ function getUserVM($userId)
 function getConfirmationVM(){
     require_once 'model/dbConnector.php';
 
-    $querySelect = "SELECT `id`, `name`, `cluster`, `dateStart`, `dateAnniversary`, `dateEnd`, `description`, `ip`, `dnsName`, `redundance`, `usageType`, `criticity`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus` FROM `vm` WHERE vmStatus = 0";
+    $querySelect = "SELECT `id`, `name`, `cluster`, `dateStart`, `dateAnniversary`, `dateEnd`, `timestampAdd`, `description`, `ip`, `dnsName`, `redundance`, `usageType`, `criticity`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus` FROM `vm` WHERE vmStatus = 0";
 
     $resultSelect = executeQuerySelect($querySelect);
     $i = 0;

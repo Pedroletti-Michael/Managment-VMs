@@ -229,8 +229,6 @@ function verificationUserFromDb(){
 
         $message = 'variables : '. count($info);
 
-        echo '<script type="text/javascript">window.alert("'.$message.' utilisateurs récupéré de l\'AD.");</script>';
-
         $newUser = 0;
         foreach ($info as $user){
             //before array push verify if user is already in db if the user is not so add the user into db.
@@ -243,13 +241,13 @@ function verificationUserFromDb(){
         $newUser -= 3;
 
         if($newUser == 0){
-            echo '<script type="text/javascript">window.alert("Aucun nouvel utilisateur ajouté. Base de données à jour.");</script>';
+            echo '<script type="text/javascript">window.alert("'.$message.' utilisateurs récupéré de l\'AD.<br> Aucun nouvel utilisateur ajouté. Base de données à jour.");</script>';
         }
         elseif($newUser == 1){
-            echo '<script type="text/javascript">window.alert("1 nouvel utilisateur ajouté. Base de données à jour.");</script>';
+            echo '<script type="text/javascript">window.alert("'.$message.' utilisateurs récupéré de l\'AD.<br> 1 nouvel utilisateur ajouté. Base de données à jour.");</script>';
         }
         else{
-            echo '<script type="text/javascript">window.alert("'.$newUser.' utilisateurs ajoutés. Base de données à jour.");</script>';
+            echo '<script type="text/javascript">window.alert("'.$message.' utilisateurs récupéré de l\'AD.<br> '.$newUser.' utilisateurs ajoutés. Base de données à jour.");</script>';
         }
 
         ldap_close($ds);

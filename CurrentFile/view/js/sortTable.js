@@ -8,6 +8,9 @@ function sortTable(n, whichTable) {
     else if(whichTable == 1){
         table = document.getElementById("tableInventoryUser");
     }
+    else if(whichTable == 2){
+        table = document.getElementById("confirmationTable");
+    }
     switching = true;
     //Set the sorting direction to ascending:
     dir = "asc";

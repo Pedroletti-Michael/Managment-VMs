@@ -14,10 +14,11 @@ ob_start();
     </head>
     <body>
     <div class="table-responsive-xl">
-        <table class="table table-hover allVM">
+        <table class="table table-hover allVM" id="confirmationTable">
         <thead class="thead-dark sticky-top">
         <tr>
             <th scope="col" style="width: 50px"></th>
+            <th scope="col" onclick="sortTable(1, 2)">creationDate</th>
             <th scope="col">name</th>
             <th scope="col">os_id</th>
             <th scope="col">dateStart</th>
@@ -29,7 +30,6 @@ ob_start();
             <th scope="col">network</th>
             <th scope="col">userRt</th>
             <th scope="col">entity_id</th>
-            <th scope="col">creationDate</th>
         </tr>
         </thead>
         <tbody>
@@ -38,18 +38,18 @@ ob_start();
                <td>
                    <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="submit" class="btn btn-primary"><strong>+</strong></button></a>
                </td>
-                <td><?php echo $value['name']?></a></td>
-                <td style="min-width: 100px"><?php echo $value['os_id']['1']." ".$value['os_id']['0']?></td>
-                <td style="min-width: 100px"><?php echo $value['dateStart']?></td>
-                <td style="min-width: 100px"><?php echo $value['dateEnd']?></td>
-                <td><?php echo $value['usageType']?></td>
-                <td><?php echo $value['cpu']?></td>
-                <td><?php echo $value['ram']?></td>
-                <td><?php echo $value['disk']?></td>
-                <td><?php echo $value['network']?></td>
-                <td><?php echo $value['userRt']?></td>
-                <td><?php echo $value['entity_id']?></td>
-                <td><?php echo $value['timestampAdd']?></td>
+               <td><?php echo $value['timestampAdd']?></td>
+               <td><?php echo $value['name']?></a></td>
+               <td style="min-width: 100px"><?php echo $value['os_id']['1']." ".$value['os_id']['0']?></td>
+               <td style="min-width: 100px"><?php echo $value['dateStart']?></td>
+               <td style="min-width: 100px"><?php echo $value['dateEnd']?></td>
+               <td><?php echo $value['usageType']?></td>
+               <td><?php echo $value['cpu']?></td>
+               <td><?php echo $value['ram']?></td>
+               <td><?php echo $value['disk']?></td>
+               <td><?php echo $value['network']?></td>
+               <td><?php echo $value['userRt']?></td>
+               <td><?php echo $value['entity_id']?></td>
             </tr>
             <?php endforeach;?>
         </tbody>
