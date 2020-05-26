@@ -100,15 +100,53 @@
                 <?php endif; ?>
                 <!----------------- confirmationVM ---------------->
                 <?php if ($_GET['action'] == "confirmationVM"): ?>
-                    <a href="index.php?action=confirmationVM" class="alert-link active text-decoration-none"><h5 class="color-lightgrey"><a class="menu-phone-selected">Demandes</a></h5></a>
+                    <a href="index.php?action=confirmationVM" class="alert-link active text-decoration-none">
+                        <h5 class="color-lightgrey">
+                            <?php
+                            if(isset($_SESSION['countConfirmationVM'])){
+                                echo '<span class="badge badge-light mr-1">'. $_SESSION['countConfirmationVM'] .'</span>';
+                            }
+                            ?>
+                            <a class="menu-phone-selected">Demandes</a>
+                        </h5>
+                    </a>
                 <?php else : ?>
-                    <a href="index.php?action=confirmationVM" class="text-decoration-none"><h5 class="color-lightgrey">Demandes</h5></a>
+                    <a href="index.php?action=confirmationVM" class="text-decoration-none">
+                        <h5 class="color-lightgrey">
+                            <?php
+                            if(isset($_SESSION['countConfirmationVM'])){
+                                echo '<span class="badge badge-light mr-1">'. $_SESSION['countConfirmationVM'] .'</span>';
+                            }
+                            ?>
+                            Demandes
+                        </h5>
+                    </a>
                 <?php endif; ?>
                 <!----------------- renewalVM ---------------->
                 <?php if ($_GET['action'] == "renewalVM"): ?>
-                    <a href="index.php?action=renewalVM" class="alert-link active text-decoration-none"><h5 class="color-lightgrey"><a class="menu-phone-selected">Renouvellements</a></h5></a>
+                    <a href="index.php?action=renewalVM" class="alert-link active text-decoration-none">
+                        <h5 class="color-lightgrey">
+                            <?php
+                            if(isset($_SESSION['countRenewalVM'])){
+                                echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
+                            }
+                            ?>
+                            <a class="menu-phone-selected">
+                                Renouvellements
+                            </a>
+                        </h5>
+                    </a>
                 <?php else : ?>
-                    <a href="index.php?action=renewalVM" class="text-decoration-none"><h5 class="color-lightgrey">Renouvellements</h5></a>
+                    <a href="index.php?action=renewalVM" class="text-decoration-none">
+                        <h5 class="color-lightgrey">
+                            <?php
+                            if(isset($_SESSION['countRenewalVM'])){
+                                echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
+                            }
+                            ?>
+                            Renouvellements
+                        </h5>
+                    </a>
                 <?php endif; ?>
                 <hr color="lightgrey" style="height: 1px;" class="w-75">
                 <!----------------- formManagement ---------------->
@@ -195,15 +233,43 @@
                 <?php endif; ?>
                 <!----------------- confirmationVM ---------------->
                 <?php if ($_GET['action'] == "confirmationVM"): ?>
-                    <a href="index.php?action=confirmationVM" class="alert-link active">Demandes</a>
+                    <a href="index.php?action=confirmationVM" class="alert-link active">
+                        <?php
+                        if(isset($_SESSION['countConfirmationVM'])){
+                        echo '<span class="badge badge-light mr-1">'. $_SESSION['countConfirmationVM'] .'</span>';
+                        }
+                        ?>
+                        Demandes
+                    </a>
                 <?php else : ?>
-                    <a href="index.php?action=confirmationVM">Demandes</a>
+                    <a href="index.php?action=confirmationVM">
+                        <?php
+                        if(isset($_SESSION['countConfirmationVM'])){
+                            echo '<span class="badge badge-light mr-1">'. $_SESSION['countConfirmationVM'] .'</span>';
+                        }
+                        ?>
+                        Demandes
+                    </a>
                 <?php endif; ?>
                 <!----------------- renewalVM ---------------->
                 <?php if ($_GET['action'] == "renewalVM"): ?>
-                    <a href="index.php?action=renewalVM" class="alert-link active">Renouvellements</a>
+                    <a href="index.php?action=renewalVM" class="alert-link active">
+                        <?php
+                        if(isset($_SESSION['countRenewalVM'])){
+                            echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
+                        }
+                        ?>
+                        Renouvellements
+                    </a>
                 <?php else : ?>
-                    <a href="index.php?action=renewalVM">Renouvellements</a>
+                    <a href="index.php?action=renewalVM">
+                        <?php
+                        if(isset($_SESSION['countRenewalVM'])){
+                            echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
+                        }
+                        ?>
+                        Renouvellements
+                    </a>
                 <?php endif; ?>
 
                 <a class="title">Admin</a>
