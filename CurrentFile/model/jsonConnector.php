@@ -4,10 +4,30 @@
  * Date : 19.05.2020
  */
 
-function getJsonData() {
-    return json_decode(file_get_contents('data/alertManagementData.json'), true);
+function getJsonData($n) {
+    if($n == 0){
+        $file = 'data/alertManagementData.json';
+    }
+    else{
+        $file = 'data/mailContent.json';
+    }
+
+    return json_decode(file_get_contents($file), true);
 }
 
-function saveJsonData($dataToWrite) {
-    file_put_contents('data/alertManagementData.json', json_encode($dataToWrite, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT));
+function saveJsonData($dataToWrite, $n) {
+    if($n == 0){
+        $file = 'data/alertManagementData.json';
+    }
+    else{
+        $file = 'data/mailContent.json';
+    }
+
+    if(file_put_contents($file, json_encode($dataToWrite, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT))){
+        return true;
+    }
+    else{
+        return false;
+    }
+
 }

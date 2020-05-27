@@ -24,19 +24,68 @@ ob_start();
                 <!--Mail of administrator-->
                 <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                     <label for="adminMail" class="font-weight-bold">E-mail de l'administrateur<a style="color: red"> *</a></label>
-                    <input type="email" class="form-control form form text-lowercase" id="adminMail" name="adminMail" value="<?= $jsonData['mailAdmin']; ?>" aria-describedby="adminMailHelp" placeholder="Ex: vmmanager@heig-vd.ch" required>
+                    <input type="email" class="form-control form form text-lowercase" id="adminMail" name="adminMail" value="<?= $alertJsonData['mailAdmin']; ?>" aria-describedby="adminMailHelp" placeholder="Ex: vmmanager@heig-vd.ch" required>
                     <small id="adminMailHelp" class="form-text text-muted">Adresse e-mail qui est en copie de tous les e-mails générés depuis cette plateforme.</small>
                 </div>
                 <!--Mail of sender-->
                 <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                     <label for="senderMail" class="font-weight-bold">E-mail de l'expéditeur<a style="color: red"> *</a></label>
-                    <input type="email" class="form-control form form text-lowercase" id="senderMail" name="senderMail" value="<?= $jsonData['sender']; ?>" aria-describedby="senderMailHelp" placeholder="Ex: vmmanager@heig-vd.ch" required>
+                    <input type="email" class="form-control form form text-lowercase" id="senderMail" name="senderMail" value="<?= $alertJsonData['sender']; ?>" aria-describedby="senderMailHelp" placeholder="Ex: vmmanager@heig-vd.ch" required>
                     <small id="senderMailHelp" class="form-text text-muted">Adresse e-mail de l'expéditeur pour tous les e-mails générés depuis cette plateforme.</small>
                 </div>
             </div>
 
             <!--Submit-->
-            <button type='button' class='btn btn-primary'>Enregistrer</button>
+            <button type='submit' class='btn btn-primary'>Enregistrer</button>
+            <button type="reset" style="margin-bottom: 10px;" class="btn btn-danger">Annuler</button>
+        </form>
+        <h4 class="text-center border border-danger border-left-0 border-right-0 border-top-0 pb-3">Contenus des e-mails</h4>
+        <form method="post" action="../index.php?action=saveContentMail" class="mb-4">
+            <div class="d-inline-block w-100">
+                <!--Content of request mail-->
+                <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
+                    <label for="requestMail" class="font-weight-bold">Contenu du mail de confirmation de requête<a style="color: red"> *</a></label>
+                    <textarea rows="15" style="resize: none" class="form-control form form text-lowercase" id="requestMail" name="requestMail" aria-describedby="requestMailHelp" placeholder="Ex: Bonjour,<br>..." required><?= $mailContentJsonData['requestMail']; ?></textarea>
+                    <small id="requestMailHelp" class="form-text text-muted">Contenu du mail envoyer lors de la création d'une requête par un utilisateur à l'utilisateur.</small>
+                </div>
+                <!--Content mail Administrator for request-->
+                <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
+                    <label for="mailToAdminstratorRequest" class="font-weight-bold">Contenu du mail de confirmation de requête envoyer à l'administrateur<a style="color: red"> *</a></label>
+                    <textarea rows="15" style="resize: none" class="form-control form form text-lowercase" id="mailToAdminstratorRequest" name="mailToAdminstratorRequest" aria-describedby="mailToAdminstratorRequestHelp" placeholder="Ex: Bonjour,<br>..." required><?= $mailContentJsonData['mailToAdminstratorRequest']; ?></textarea>
+                    <small id="mailToAdminstratorRequestHelp" class="form-text text-muted">Contenu du mail envoyer lors de la création d'une requête par un utilisateur à l'administrateur.</small>
+                </div>
+            </div>
+            <div class="d-inline-block w-100">
+                <!--Content of validation mail-->
+                <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
+                    <label for="validateRequestMail" class="font-weight-bold">Contenu du mail de validation d'une requête<a style="color: red"> *</a></label>
+                    <textarea rows="15" style="resize: none" class="form-control form form text-lowercase" id="validateRequestMail" name="validateRequestMail" aria-describedby="validateRequestMailHelp" placeholder="Ex: Bonjour,<br>..." required><?= $mailContentJsonData['validateRequestMail']; ?></textarea>
+                    <small id="validateRequestMailHelp" class="form-text text-muted">Contenu du mail envoyer lors de la validation d'une requête par un administrateur à destination des utilisateurs membres de la requête.</small>
+                </div>
+                <!--Content mail denied-->
+                <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
+                    <label for="deniedRequestMail" class="font-weight-bold">Contenu du mail de refus d'une requête<a style="color: red"> *</a></label>
+                    <textarea rows="15" style="resize: none" class="form-control form form text-lowercase" id="deniedRequestMail" name="deniedRequestMail" aria-describedby="deniedRequestMailHelp" placeholder="Ex: Bonjour,<br>..." required><?= $mailContentJsonData['deniedRequestMail']; ?></textarea>
+                    <small id="deniedRequestMailHelp" class="form-text text-muted">Contenu du mail de refus de la prise en charge d'une VM envoyer si l'administrateur n'a pas remplit de raison</small>
+                </div>
+            </div>
+            <div class="d-inline-block w-100">
+                <!--Content mail advert for renewal-->
+                <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
+                    <label for="advertMail" class="font-weight-bold">Contenu du mail d'avertissement (renouvellement)<a style="color: red"> *</a></label>
+                    <textarea rows="15" style="resize: none" class="form-control form form text-lowercase" id="advertMail" name="advertMail" aria-describedby="advertMailHelp" placeholder="Ex: Bonjour,<br>..." required><?= $mailContentJsonData['advertMail']; ?></textarea>
+                    <small id="advertMailHelp" class="form-text text-muted">Contenu du mail d'avertissement lorsqu'une VM à besoin d'être renouvelée.</small>
+                </div>
+                <!--Content for nonrenewal request-->
+                <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
+                    <label for="nonrenewalMailAdvert" class="font-weight-bold">Contenu du mail de non-renouvellement d'une VM<a style="color: red"> *</a></label>
+                    <textarea rows="15" style="resize: none" class="form-control form form text-lowercase" id="nonrenewalMailAdvert" name="nonrenewalMailAdvert" aria-describedby="nonrenewalMailAdvertHelp" placeholder="Ex: Bonjour,<br>..." required><?= $mailContentJsonData['nonrenewalMailAdvert']; ?></textarea>
+                    <small id="nonrenewalMailAdvertHelp" class="form-text text-muted">Contenu du mail de non-renouvellement envoyer aux utilisateurs concernés</small>
+                </div>
+            </div>
+
+            <!--Submit-->
+            <button type='submit' class='btn btn-primary'>Enregistrer</button>
             <button type="reset" style="margin-bottom: 10px;" class="btn btn-danger">Annuler</button>
         </form>
     </div>

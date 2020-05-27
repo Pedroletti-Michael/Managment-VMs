@@ -897,7 +897,9 @@ function displayAlertManagementPage(){
     if(isset($_SESSION['userType'])){
         if($_SESSION['userType'] == 1){
             require_once "model/jsonConnector.php";
-            $jsonData = getJsonData();
+            $alertJsonData = getJsonData(0);
+            $mailContentJsonData = getJsonData(1);
+
 
             require 'view/alertManagementPage.php';
         }
@@ -912,5 +914,59 @@ function displayAlertManagementPage(){
 }
 
 function saveAlertModification($data){
+    if(isset($data['adminMail'])){
+        if(isset($data['senderMail'])){
+            $tableToSave = array('data' => 'alertManagement', 'mailAdmin' => $data['adminMail'], 'sender' =>$data['senderMail']);
+        }
+    }
+
+    if(isset($tableToSave)){
+        require_once "model/jsonConnector.php";
+        if(saveJsonData($tableToSave, 0)){
+            $_SESSION['saveAlertModification'] = true;
+            displayAlertManagementPage();
+        }
+        else{
+            $_SESSION['saveAlertModification'] = false;
+            displayAlertManagementPage();
+        }
+    }
+    else{
+        $_SESSION['saveAlertModification'] = false;
+        displayAlertManagementPage();
+    }
+
+}
+
+function saveContentMail($data){
+    if(isset($data['requestMail'])){
+        if(isset($data['mailToAdminstratorRequest'])){
+            if(isset($data['validateRequestMail'])){
+                if(isset($data['deniedRequestMail'])){
+                    if(isset($data['advertMail'])){
+                        if(isset($data['nonrenewalMailAdvert'])){
+                            $tableToSave = array('data' => 'mailContent', 'requestMail' => $data['requestMail'], 'mailToAdminstratorRequest' =>$data['mailToAdminstratorRequest'], 'validateRequestMail' => $data['validateRequestMail'], 'deniedRequestMail' =>$data['deniedRequestMail'], 'advertMail' => $data['advertMail'], 'nonrenewalMailAdvert' =>$data['nonrenewalMailAdvert']);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    if(isset($tableToSave)){
+        require_once "model/jsonConnector.php";
+        if(saveJsonData($tableToSave, 1)){
+            $_SESSION['saveContentMail'] = true;
+            displayAlertManagementPage();
+        }
+        else{
+            $_SESSION['saveContentMail'] = false;
+            displayAlertManagementPage();
+        }
+    }
+    else{
+        $_SESSION['saveContentMail'] = false;
+        displayAlertManagementPage();
+    }
 
 }

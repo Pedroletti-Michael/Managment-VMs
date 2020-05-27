@@ -1,5 +1,5 @@
 {
-  "data" : "alertManagement",
-  "mailAdmin" : "michael.pedroletti@heig-vd.ch",
-  "sender" : "vmManager@heig-vd.ch"
+    "data": "alertManagement",
+    "mailAdmin": "michael.pedroletti@heig-vd.ch",
+    "sender": "vmManager@heig-vd.ch"
 }

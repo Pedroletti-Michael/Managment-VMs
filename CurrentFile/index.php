@@ -18,6 +18,9 @@ foreach ($files as $file)
 if(isset($_GET['action']))
 {
     $action = $_GET['action'];
+    require_once 'model/vmManager.php';
+    $_SESSION['countConfirmationVM'] = countConfirmationVM();
+    $_SESSION['countRenewalVM'] = countRenewalVM();
     switch ($action)
     {
         case 'home':
@@ -121,6 +124,9 @@ if(isset($_GET['action']))
             break;
         case 'saveAlertModification':
             saveAlertModification($_POST);
+            break;
+        case 'saveContentMail':
+            saveContentMail($_POST);
             break;
         default:
             displayHome();
