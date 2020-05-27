@@ -46,7 +46,7 @@ ob_start();
                     </div>
 
                     <div class="modal-body">
-                        <h6 id="textDelEntity">L’e-mail de confirmation n’a pas été envoyé. Contactez le <a href="mailto:helpdesk@heig-vd.ch?subject=Demande de VM : Erreur lors de la confirmation">helpdesk</a>.</h6>
+                        <h6>L’e-mail de confirmation n’a pas été envoyé. Contactez le <a href="mailto:helpdesk@heig-vd.ch?subject=Demande de VM : Erreur lors de la confirmation">helpdesk</a>.</h6>
 
                     </div>
 

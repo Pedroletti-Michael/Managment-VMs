@@ -86,7 +86,7 @@ ob_start();
                         <a href="index.php?action=allVM&vmFilter=confirmed">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" >
                                 <span class="badge" style="background-color: rgba(40,167,69,0.7); border-color: rgba(40,167,69,0.7);" id="numberOfConfirmedVM"> </span>
-                                VM confirmées
+                                VM en service
                             </button>
                         </a>
                     </div>
