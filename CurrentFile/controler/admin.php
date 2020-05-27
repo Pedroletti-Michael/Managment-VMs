@@ -923,7 +923,7 @@ function saveAlertModification($data){
     if(isset($tableToSave)){
         require_once "model/jsonConnector.php";
         if(saveJsonData($tableToSave, 0)){
-            $_SESSION['saveAlertModification'] = true;
+            $_SESSION['saveAlertModification'] = 1;
             displayAlertManagementPage();
         }
         else{
@@ -956,7 +956,7 @@ function saveContentMail($data){
     if(isset($tableToSave)){
         require_once "model/jsonConnector.php";
         if(saveJsonData($tableToSave, 1)){
-            $_SESSION['saveContentMail'] = true;
+            $_SESSION['saveContentMail'] = 1;
             displayAlertManagementPage();
         }
         else{
