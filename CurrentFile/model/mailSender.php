@@ -40,7 +40,29 @@ function requestMail($userMail, $requestName, $rtMail, $raMail){
     // message
     $mailContent = getJsonData(1);
     if(isset($mailContent['requestMail']) && $mailContent['requestMail'] != null || $mailContent['requestMail'] != ''){
-        $message = $mailContent['requestMail'];
+        $messageToTreatment = $mailContent['requestMail'];
+        $messageToTreatment = explode("\\", $messageToTreatment);
+
+        $message = '';
+        foreach($messageToTreatment as $value){
+            if($value != '' && $value != "1" && $value != "2" && $value != "3" && $value != "4" && $value != "5" && $value != "6" && $value != "7"){
+                $message .= $value;
+            }
+            elseif($value != ''){
+                if($value == "1"){
+                    $message .= " ".$userMail." ";
+                }
+                if($value == "2"){
+                    $message .= " ".$requestName." ";
+                }
+                if($value == '3'){
+                    $message .= " ".$rtMail." ";
+                }
+                if($value == '4'){
+                    $message .= " ".$raMail." ";
+                }
+            }
+        }
     }
     else{
         $message = "
@@ -86,7 +108,26 @@ function mailAdministrator($userMail, $requestName, $link){
     // message
     $mailContent = getJsonData(1);
     if(isset($mailContent['mailToAdminstratorRequest']) && $mailContent['mailToAdminstratorRequest'] != null || $mailContent['mailToAdminstratorRequest'] != ''){
-        $message = $mailContent['mailToAdminstratorRequest'];
+        $messageToTreatment = $mailContent['mailToAdminstratorRequest'];
+        $messageToTreatment = explode("\\", $messageToTreatment);
+
+        $message = '';
+        foreach($messageToTreatment as $value){
+            if($value != '' && $value != "1" && $value != "2" && $value != "3" && $value != "4" && $value != "5" && $value != "6" && $value != "7"){
+                $message .= $value;
+            }
+            elseif($value != ''){
+                if($value == "1"){
+                    $message .= " ".$userMail." ";
+                }
+                if($value == "2"){
+                    $message .= " ".$requestName." ";
+                }
+                if($value == "5"){
+                    $message .= " ".$link." ";
+                }
+            }
+        }
     }
     else{
         $message = "
@@ -131,7 +172,32 @@ function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
     // message
     $mailContent = getJsonData(1);
     if(isset($mailContent['validateRequestMail']) && $mailContent['validateRequestMail'] != null || $mailContent['validateRequestMail'] != ''){
-        $message = $mailContent['validateRequestMail'];
+        $messageToTreatment = $mailContent['validateRequestMail'];
+        $messageToTreatment = explode("\\", $messageToTreatment);
+
+        $message = '';
+        foreach($messageToTreatment as $value){
+            if($value != '' && $value != "1" && $value != "2" && $value != "3" && $value != "4" && $value != "5" && $value != "6" && $value != "7"){
+                $message .= $value;
+            }
+            elseif($value != ''){
+                if($value == "1"){
+                    $message .= " ".$userMail." ";
+                }
+                if($value == "2"){
+                    $message .= " ".$requestName." ";
+                }
+                if($value == '3'){
+                    $message .= " ".$rtMail." ";
+                }
+                if($value == '4'){
+                    $message .= " ".$raMail." ";
+                }
+                if($value == "5"){
+                    $message .= " ".$link." ";
+                }
+            }
+        }
     }
     else{
         $message = "
@@ -176,12 +242,7 @@ function deniedRequestMail($userMail, $requestName, $reason = null){
 
     // message
     if($reason == null){
-        $mailContent = getJsonData(1);
-        if(isset($mailContent['deniedRequestMail']) && $mailContent['deniedRequestMail'] != null || $mailContent['deniedRequestMail'] != ''){
-            $message = $mailContent['deniedRequestMail'];
-        }
-        else{
-            $message = '
+        $message = '
             <p>Nom de la demande : '. $requestName .' </p>
             <br>
             <p>Votre demande pour une VM n\'a pas été validée.</p>
@@ -190,19 +251,42 @@ function deniedRequestMail($userMail, $requestName, $reason = null){
                 Nous ne pouvons malheureusement pas accéder à votre requête.
             </p>
             ';
-        }
-
     }
     else{
-        $message = '
-        <p>Nom de la demande : '. $requestName .' </p>
-        <br>
-        <p>Votre demande pour une VM n\'a pas été validée.</p>
-        <br>
-        <p>
-            '.$reason.'
-        </p>
-        ';
+        $mailContent = getJsonData(1);
+        if(isset($mailContent['deniedRequestMail']) && $mailContent['deniedRequestMail'] != null || $mailContent['deniedRequestMail'] != ''){
+            $messageToTreatment = $mailContent['deniedRequestMail'];
+            $messageToTreatment = explode("\\", $messageToTreatment);
+
+            $message = '';
+            foreach($messageToTreatment as $value){
+                if($value != '' && $value != "1" && $value != "2" && $value != "3" && $value != "4" && $value != "5" && $value != "6" && $value != "7"){
+                    $message .= $value;
+                }
+                elseif($value != ''){
+                    if($value == "1"){
+                        $message .= " ".$userMail." ";
+                    }
+                    if($value == "2"){
+                        $message .= " ".$requestName." ";
+                    }
+                    if($value == "6"){
+                        $message .= " ".$reason." ";
+                    }
+                }
+            }
+        }
+        else{
+            $message = '
+            <p>Nom de la demande : '. $requestName .' </p>
+            <br>
+            <p>Votre demande pour une VM n\'a pas été validée.</p>
+            <br>
+            <p>
+                '.$reason.'
+            </p>
+            ';
+        }
     }
 
 
@@ -240,7 +324,35 @@ function advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft)
     // message
     $mailContent = getJsonData(1);
     if(isset($mailContent['advertMail']) && $mailContent['advertMail'] != null || $mailContent['advertMail'] != ''){
-        $message = $mailContent['advertMail'];
+        $messageToTreatment = $mailContent['advertMail'];
+        $messageToTreatment = explode("\\", $messageToTreatment);
+
+        $message = '';
+        foreach($messageToTreatment as $value){
+            if($value != '' && $value != "1" && $value != "2" && $value != "3" && $value != "4" && $value != "5" && $value != "6" && $value != "7"){
+                $message .= $value;
+            }
+            elseif($value != ''){
+                if($value == "1"){
+                    $message .= " ".$userMail." ";
+                }
+                if($value == "2"){
+                    $message .= " ".$requestName." ";
+                }
+                if($value == "3"){
+                    $message .= " ".$rtMail." ";
+                }
+                if($value == "4"){
+                    $message .= " ".$raMail." ";
+                }
+                if($value == "5"){
+                    $message .= " ".$link." ";
+                }
+                if($value == "7"){
+                    $message .= " ".$timeLeft." ";
+                }
+            }
+        }
     }
     else{
         $message = "
@@ -293,7 +405,29 @@ function nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail){
     // message
     $mailContent = getJsonData(1);
     if(isset($mailContent['nonrenewalMailAdvert']) && $mailContent['nonrenewalMailAdvert'] != null || $mailContent['nonrenewalMailAdvert'] != ''){
-        $message = $mailContent['nonrenewalMailAdvert'];
+        $messageToTreatment = $mailContent['nonrenewalMailAdvert'];
+        $messageToTreatment = explode("\\", $messageToTreatment);
+
+        $message = '';
+        foreach($messageToTreatment as $value){
+            if($value != '' && $value != "1" && $value != "2" && $value != "3" && $value != "4" && $value != "5" && $value != "6" && $value != "7"){
+                $message .= $value;
+            }
+            elseif($value != ''){
+                if($value == "1"){
+                    $message .= " ".$userMail." ";
+                }
+                if($value == "2"){
+                    $message .= " ".$requestName." ";
+                }
+                if($value == "3"){
+                    $message .= " ".$rtMail." ";
+                }
+                if($value == "4"){
+                    $message .= " ".$raMail." ";
+                }
+            }
+        }
     }
     else{
         $message = "

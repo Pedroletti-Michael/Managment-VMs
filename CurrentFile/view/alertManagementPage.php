@@ -66,13 +66,13 @@ ob_start();
                 <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                     <label for="validateRequestMail" class="font-weight-bold">Contenu du mail de validation d'une requête<a style="color: red"> *</a></label>
                     <textarea rows="15" style="resize: none" class="form-control form form text-lowercase" id="validateRequestMail" name="validateRequestMail" aria-describedby="validateRequestMailHelp" placeholder="Ex: Bonjour,<br>..." required><?= $mailContentJsonData['validateRequestMail']; ?></textarea>
-                    <small id="validateRequestMailHelp" class="form-text text-muted">Contenu du mail envoyer lors de la validation d'une requête par un administrateur à destination des utilisateurs membres de la requête.</small>
+                    <small id="validateRequestMailHelp" class="form-text text-muted">Variables utilisables : 1. e-mail de l'utilisateur | 2. nom de la requête | 3. e-mail du RT | 4. e-mail du RA | 5. lien vers la requête</small>
                 </div>
                 <!--Content mail denied-->
                 <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                     <label for="deniedRequestMail" class="font-weight-bold">Contenu du mail de refus d'une requête<a style="color: red"> *</a></label>
                     <textarea rows="15" style="resize: none" class="form-control form form text-lowercase" id="deniedRequestMail" name="deniedRequestMail" aria-describedby="deniedRequestMailHelp" placeholder="Ex: Bonjour,<br>..." required><?= $mailContentJsonData['deniedRequestMail']; ?></textarea>
-                    <small id="deniedRequestMailHelp" class="form-text text-muted">Contenu du mail de refus de la prise en charge d'une VM envoyer si l'administrateur n'a pas remplit de raison</small>
+                    <small id="deniedRequestMailHelp" class="form-text text-muted">Variables utilisables : 1. e-mail de l'utilisateur | 2. nom de la requête | 6. raison d'un refus</small>
                 </div>
             </div>
             <div class="d-inline-block w-100">
@@ -80,13 +80,13 @@ ob_start();
                 <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                     <label for="advertMail" class="font-weight-bold">Contenu du mail d'avertissement (renouvellement)<a style="color: red"> *</a></label>
                     <textarea rows="15" style="resize: none" class="form-control form form text-lowercase" id="advertMail" name="advertMail" aria-describedby="advertMailHelp" placeholder="Ex: Bonjour,<br>..." required><?= $mailContentJsonData['advertMail']; ?></textarea>
-                    <small id="advertMailHelp" class="form-text text-muted">Contenu du mail d'avertissement lorsqu'une VM à besoin d'être renouvelée.</small>
+                    <small id="advertMailHelp" class="form-text text-muted">Variables utilisables : 1. e-mail de l'utilisateur | 2. nom de la requête | 3. e-mail du RT | 4. e-mail du RA | 5. lien vers la requête | 7. temps restant</small>
                 </div>
                 <!--Content for nonrenewal request-->
                 <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                     <label for="nonrenewalMailAdvert" class="font-weight-bold">Contenu du mail de non-renouvellement d'une VM<a style="color: red"> *</a></label>
                     <textarea rows="15" style="resize: none" class="form-control form form text-lowercase" id="nonrenewalMailAdvert" name="nonrenewalMailAdvert" aria-describedby="nonrenewalMailAdvertHelp" placeholder="Ex: Bonjour,<br>..." required><?= $mailContentJsonData['nonrenewalMailAdvert']; ?></textarea>
-                    <small id="nonrenewalMailAdvertHelp" class="form-text text-muted">Contenu du mail de non-renouvellement envoyer aux utilisateurs concernés</small>
+                    <small id="nonrenewalMailAdvertHelp" class="form-text text-muted">Variables utilisables : 1. e-mail de l'utilisateur | 2. nom de la requête | 3. e-mail du RT | 4. e-mail du RA</small>
                 </div>
             </div>
 
