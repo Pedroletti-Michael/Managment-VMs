@@ -24,10 +24,10 @@ function openNav() {
 
 function checkOS(value){
     //osTypeFormControlSelect
-    if(value == "Windows"){
+    if (value === "Windows") {
         document.getElementById("linux").style.display = "none";
         document.getElementById("windows").style.display = "block";
-    }else if(value == "Linux"){
+    } else if (value === "Linux") {
         document.getElementById("windows").style.display = "none";
         document.getElementById("linux").style.display = "block";
     }

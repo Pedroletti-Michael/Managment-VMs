@@ -168,37 +168,6 @@ ob_start();
                         </select>
                     </div>
                     <div class="pl-2">
-                        <?php if(isset($_SESSION['formRequest']) && $_SESSION['formRequest']['osTypeFormControlSelect'] == "Windows") :?>
-                        <select class="form-control w-50 float-right" id="windows" name="osFormNameControlSelectWin" required>
-                            <?php
-
-                            foreach ($osNames as $value) {
-                                if($value['osName'] == $_SESSION['formRequest']['osFormNameControlSelectWin'] && $value['osType'] == $_SESSION['formRequest']['osTypeFormControlSelect'])
-                                {
-                                    echo "<option class='windows' selected>".$value['osName']."</option>";
-                                }
-                                elseif($value['osType']=="Windows"){
-                                    echo "<option class='windows'>".$value['osName']."</option>";
-                                }
-                            }
-                            ?>
-                        </select>
-                        <?php elseif(isset($_SESSION['formRequest']) && $_SESSION['formRequest']['osTypeFormControlSelect'] == "Linux") :?>
-                        <select class="form-control w-50 float-right" id="linux" name="osFormNameControlSelectLin" required>
-                            <?php
-
-                            foreach ($osNames as $value) {
-                                if($value['osName'] == $_SESSION['formRequest']['osFormNameControlSelectLin'] && $value['osType'] == $_SESSION['formRequest']['osTypeFormControlSelect'])
-                                {
-                                    echo "<option class='linux' selected>".$value['osName']."</option>";
-                                }
-                                elseif($value['osType']=="Linux"){
-                                    echo "<option class='linux'>".$value['osName']."</option>";
-                                }
-                            }
-                            ?>
-                        </select>
-                        <?php else :?>
                         <select class="form-control w-50 float-right" id="windows" name="osFormNameControlSelectWin" required>
                             <?php
 
@@ -213,7 +182,8 @@ ob_start();
                             }
                             ?>
                         </select>
-                        <select class="form-control w-50 float-right" style="display: none;" id="linux" name="osFormNameControlSelectLin" required>
+                        <script>if(document.getElementById("osTypeFormControlSelect").value === "Linux"){document.getElementById("windows").style.display = "none";} </script>
+                        <select class="form-control w-50 float-right" id="linux" name="osFormNameControlSelectLin" required>
                             <?php
 
                             foreach ($osNames as $value) {
@@ -227,7 +197,7 @@ ob_start();
                             }
                             ?>
                         </select>
-                        <?php endif; ?>
+                        <script>if(document.getElementById("osTypeFormControlSelect").value === "Windows"){document.getElementById("linux").style.display = "none";}</script>
                     </div>
                 </div>
                 <small id="osHelp" class="form-text text-muted">Toutes les OS sont en anglais, 64 bits</small>
@@ -237,21 +207,14 @@ ob_start();
                 <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service<a style="color: red"> *</a></label>
                 <select class="form-control" id="disFormControlSelect" name="disFormControlSelect" required>
                     <?php
-                    $count = 0;
-
                     foreach ($entityNames as $value) {
-                        if($value['entityName'] == $_SESSION['formRequest']['disFormControlSelect']){
-                            echo "<option selected>".$value['entityName']."</option>";
-                        }
-                        elseif($value['status'] == 0 && $count == 0)
-                        {
+                        if(isset($_SESSION['formRequest']) && $value['entityName'] == $_SESSION['formRequest']['disFormControlSelect']){
                             echo "<option selected>".$value['entityName']."</option>";
                         }
                         elseif($value['status'] == 0)
                         {
                             echo "<option>".$value['entityName']."</option>";
                         }
-                        $count=1;
                     }
                     ?>
                 </select>
