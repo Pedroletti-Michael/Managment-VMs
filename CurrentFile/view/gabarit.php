@@ -21,8 +21,6 @@
     <script rel="javascript" src="../view/js/script.js"></script>
     <script rel="javascript" src="../view/js/searchBox.js"></script>
     <script rel="javascript" src="../view/js/sortTable.js"></script>
-
-    <!--Théo-->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 </head>
@@ -61,11 +59,16 @@
             <?php if ($_GET['action'] == "form"): ?>
                 <a class="alert-link active color-lightgrey text-decoration-none" href="index.php?action=form"><h5 class="color-lightgrey"><a class="menu-phone-selected">Formulaire</a></h5></a>
             <?php else : ?>
-                <a class="color-lightgrey text-decoration-none" href="index.php?action=form"><h5 class="color-lightgrey">Formulaire</h5></a>
+                <a class="color-lightgrey text-decoration-none" href="index.php?action=form"><h5 class="color-lightgrey pb-0">Formulaire</h5></a>
             <?php endif; ?>
         </div>
-        <div class="w-100 fixed-bottom" style="bottom: 20px">
-            <div class="float-right mr-4 w-auto text-decoration-none">
+        <div class="w-100 fixed-bottom d-inline-block" style="bottom: 20px">
+            <div class="float-left w-50 text-decoration-none pl-2">
+                <a href="mailto:helpdesk@heig-vd.ch?subject=Problème Gestion VM : [Titre de votre problème]">
+                    <h5 class="color-lightgrey">Contactez-nous</h5>
+                </a>
+            </div>
+            <div class="float-right w-50 text-decoration-none text-right pr-4">
                 <?php if ($_GET['action'] == "signIn"): ?>
                     <?php if(isset($_SESSION['userType'])): ?>
                         <a href="index.php?action=signOut" class="alert-link active text-decoration-none"><h5 class="color-lightgrey"><a class="menu-phone-selected">Déconnexion</a></h5></a>
@@ -81,7 +84,7 @@
                 <?php endif; ?>
             </div>
         </div>
-        <div class="w-100 m-auto text-center pt-1">
+        <div class="w-100 text-center pt-1" style="margin-bottom: 80px">
         <?php if(isset($_SESSION['userType']) && $_SESSION['userType']==1 || $_SESSION['userType']==2):?>
             <hr color="lightgrey" style="height: 1px;" class="w-50">
             <?php if($_SESSION['userType']==2): ?>
@@ -293,6 +296,9 @@
                 <?php endif; ?>
             <?php endif; ?>
         <?php endif; ?>
+        <div class="mt-4 mb-5">
+            <a href="mailto:helpdesk@heig-vd.ch?subject=Problème Gestion VM : [Titre de votre problème]">Contactez-nous</a>
+        </div>
     </div>
 </nav>
 <!-------------------------- Gabarit responsive ------------------------------->
@@ -429,7 +435,9 @@
                                     <?php else : ?>
                                     <a class="nav-link" href="index.php?action=formManagement&array=entity">
                                         <?php endif; ?>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                        <svg class="bi bi-wrench pb-1 mr-1" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364L.102 2.223zm13.37 9.019L13 11l-.471.242-.529.026-.287.445-.445.287-.026.529L11 13l.242.471.026.529.445.287.287.445.529.026L13 15l.471-.242.529-.026.287-.445.445-.287.026-.529L15 13l-.242-.471-.026-.529-.445-.287-.287-.445-.529-.026z"/>
+                                        </svg>
                                         Gestion du formulaire
                                     </a>
                             </li>
@@ -441,7 +449,9 @@
                                     <?php else : ?>
                                     <a class="nav-link" href="index.php?action=displayManagementUser">
                                         <?php endif; ?>
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                                        <svg class="bi bi-people pb-1 mr-1" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.995-.944v-.002.002zM7.022 13h7.956a.274.274 0 0 0 .014-.002l.008-.002c-.002-.264-.167-1.03-.76-1.72C13.688 10.629 12.718 10 11 10c-1.717 0-2.687.63-3.24 1.276-.593.69-.759 1.457-.76 1.72a1.05 1.05 0 0 0 .022.004zm7.973.056v-.002.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10c-1.668.02-2.615.64-3.16 1.276C1.163 11.97 1 12.739 1 13h3c0-1.045.323-2.086.92-3zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+                                        </svg>
                                         Gestion des utilisateurs
                                     </a>
                             </li>
@@ -453,13 +463,31 @@
                                     <?php else : ?>
                                     <a class="nav-link" href="index.php?action=displayAlertManagementPage">
                                         <?php endif; ?>
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                                        <svg class="bi bi-alarm pb-1 mr-1" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M8 15A6 6 0 1 0 8 3a6 6 0 0 0 0 12zm0 1A7 7 0 1 0 8 2a7 7 0 0 0 0 14z"/>
+                                            <path fill-rule="evenodd" d="M8 4.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.053.224l-1.5 3a.5.5 0 1 1-.894-.448L7.5 8.882V5a.5.5 0 0 1 .5-.5z"/>
+                                            <path d="M.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z"/>
+                                            <path fill-rule="evenodd" d="M11.646 14.146a.5.5 0 0 1 .708 0l1 1a.5.5 0 0 1-.708.708l-1-1a.5.5 0 0 1 0-.708zm-7.292 0a.5.5 0 0 0-.708 0l-1 1a.5.5 0 0 0 .708.708l1-1a.5.5 0 0 0 0-.708zM5.5.5A.5.5 0 0 1 6 0h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"/>
+                                            <path d="M7 1h2v2H7V1z"/>
+                                        </svg>
                                         Gestion des alertes
                                     </a>
                             </li>
                         </ul>
                     <?php endif; ?>
                 <?php endif; ?>
+                <ul class="nav flex-column mt-5">
+                    <li class="nav-item">
+                        <a class="nav-link" href="mailto:helpdesk@heig-vd.ch?subject=Problème Gestion VM : [Titre de votre problème]">
+                            <svg class="bi bi-envelope pb-1 mr-1" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M14 3H2a1 1 0 00-1 1v8a1 1 0 001 1h12a1 1 0 001-1V4a1 1 0 00-1-1zM2 2a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2H2z" clip-rule="evenodd"/>
+                                <path fill-rule="evenodd" d="M.071 4.243a.5.5 0 01.686-.172L8 8.417l7.243-4.346a.5.5 0 01.514.858L8 9.583.243 4.93a.5.5 0 01-.172-.686z" clip-rule="evenodd"/>
+                                <path d="M6.752 8.932l.432-.252-.504-.864-.432.252.504.864zm-6 3.5l6-3.5-.504-.864-6 3.5.504.864zm8.496-3.5l-.432-.252.504-.864.432.252-.504.864zm6 3.5l-6-3.5.504-.864 6 3.5-.504.864z"/>
+                            </svg>
+                            Contactez-nous
+                        </a>
+                    </li>
+                </ul>
             </div>
         </nav>
     </div>
