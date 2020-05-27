@@ -371,7 +371,7 @@ function updateVM($vmInformation)
         elseif($_SESSION['userType'] == 1)
         {
             $_SESSION['$displayModalConfirm'] = true;
-            displayDetailsVM($_SESSION['idVM']);
+            displayAllVM("","");
         }
         else
         {
