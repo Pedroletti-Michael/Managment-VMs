@@ -35,7 +35,7 @@ ob_start();
             </div>
         </div>
         <script>$('.modal').modal('show')</script>
-    <?php endif; ?>
+    <?php unset($_SESSION['$displayModalConfirm']); endif; ?>
     <!--Modal send mail failed-->
     <?php if(isset($_SESSION['displayModalConfirmationFailed']) && $_SESSION['displayModalConfirmationFailed']) : ?>
         <div class="modal fade" id="confirmationMailFailed" tabindex="-1" role="dialog" aria-labelledby="confirmationMailFailed" aria-hidden="true">

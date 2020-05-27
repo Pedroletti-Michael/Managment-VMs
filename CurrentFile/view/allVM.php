@@ -9,11 +9,11 @@ ob_start();
     <!DOCTYPE html>
     <html lang="en">
     <head>
-        <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.bundle.js"></script>
-        <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
         <script rel="javascript" src="../view/js/jquery.js"></script>
         <script rel="javascript" src="../view/js/script.js"></script>
         <script rel="javascript" src="../view/js/searchBox.js"></script>
+        <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.bundle.js"></script>
+        <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
         <meta charset="UTF-8">
         <title>Gestion VM - HEIG-VD</title>
     </head>
@@ -38,7 +38,7 @@ ob_start();
 
     <!--Confirmation update VM modal)-->
     <?php if(isset($_SESSION['displayModalConfirm']) && $_SESSION['displayModalConfirm'] == true) : ?>
-        <div class="modal fade" id="$displayModalConfirm" tabindex="-1" role="dialog" aria-labelledby="$displayModalConfirm" aria-hidden="true">
+        <div class="modal fade" id="displayModalConfirm" tabindex="-1" role="dialog" aria-labelledby="displayModalConfirm" aria-hidden="true">
             <div class="modal-dialog m-auto w-470-px"  role="document" style="top: 45%;">
                 <div class="modal-content w-100">
                     <div class="modal-body">
