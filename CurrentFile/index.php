@@ -38,6 +38,9 @@ if(isset($_GET['action']))
         case 'form':
             displayForm();
             break;
+        case 'formAdmin':
+            displayFormAdmin();
+            break;
         case 'RequestVM':
             formVM($_POST);
             break;

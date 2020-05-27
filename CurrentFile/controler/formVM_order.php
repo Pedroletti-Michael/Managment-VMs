@@ -36,6 +36,37 @@ function displayForm()
         require "view/signIn.php";
     }
 }
+function displayFormAdmin()
+{
+    if(isset($_SESSION['userType'])&& $_SESSION['userType'] != null)
+    {
+        require_once 'model/displayManager.php';
+        $entityNames = displayBDD_Entity();
+        $osNames = displayBDD_OS();
+        $windowsData = displayBDD_OSNameWhereWindows();
+        $linuxData = displayBDD_OSNameWhereLinux();
+        $snapshotPolicy = displayBSS_Snapshots();
+        $backupPolicy = displayBSS_Backup();
+
+        require_once 'model/vmManager.php';
+        $namesValue = getVmName();
+        $allVmName = array();
+        foreach ($namesValue as $value){
+            array_push($allVmName, $value[0]);
+        }
+
+        require_once 'model/userManager.php';
+        $users = getAllUsers();
+
+        $_GET['action'] = "formAdmin";
+        require 'view/formAdmin.php';
+    }
+    else
+    {
+        $_GET['action'] = "signIn";
+        require "view/signIn.php";
+    }
+}
 
 function formVM($formVMRequest)
 {
@@ -52,12 +83,6 @@ function formVM($formVMRequest)
     }
 
     if(strlen($formVMRequest['ti']) > 1000 || strlen($formVMRequest['objective']) > 1000){
-        $errorForm = true;
-        $_SESSION['formRequest'] = $formVMRequest;
-        displayForm();
-    }
-
-    if($formVMRequest['inputVMName'] != "salutSAVA?"){
         $errorForm = true;
         $_SESSION['formRequest'] = $formVMRequest;
         displayForm();
