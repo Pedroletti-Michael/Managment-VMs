@@ -27,9 +27,11 @@ function checkOS(value){
     if (value === "Windows") {
         document.getElementById("linux").style.display = "none";
         document.getElementById("windows").style.display = "block";
+        document.getElementById("domainEINET").disabled = false;
     } else if (value === "Linux") {
         document.getElementById("windows").style.display = "none";
         document.getElementById("linux").style.display = "block";
+        document.getElementById("domainEINET").disabled = true;
     }
 }
 

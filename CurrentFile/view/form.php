@@ -327,7 +327,7 @@ ob_start();
             <small id="objectiveHelp" class="form-text text-muted">But du projet</small>
         </div>
         <!--Snapshots-->
-        <div class="form-group">
+        <div class="form-group" id="Snapshots">
             <label for="snapshotsFormControlSelect" class="font-weight-bold">Snapshots<a style="color: red"> *</a></label>
             <select class="form-control" id="snapshotsFormControlSelect" name="snapshotsFormControlSelect" required>
                 <?php
@@ -346,18 +346,18 @@ ob_start();
             <small id="snapshotsHelp" class="form-text text-muted">Non disponible sur l'infrastructure de DEV</small>
         </div>
         <!--Backup-->
-        <div class="form-group">
+        <div class="form-group" id="Backup">
             <label for="backupFormControlSelect" class="font-weight-bold">Backup<a style="color: red"> *</a></label>
             <select class="form-control" id="backupFormControlSelect" name="backupFormControlSelect" required>
                 <?php
                 foreach ($backupPolicy as $value) {
                     if($value['name']." : ".$value['policy'] == $_SESSION['formRequest']['backupFormControlSelect'])
                     {
-                        echo "<option selected>".$value['name']." : ".$value['policy']."</option>";
+                        echo "<option value=".$value['name']." selected>".$value['name']." : ".$value['policy']."</option>";
                     }
                     else
                     {
-                        echo "<option>".$value['name']." : ".$value['policy']."</option>";
+                        echo "<option value=".$value['name'].">".$value['name']." : ".$value['policy']."</option>";
                     }
                 }
                 ?>
@@ -427,7 +427,7 @@ ob_start();
         <button type='button' id='alertButton' class='btn btn-primary' onclick="checkUsingCheckbx()">Envoyer</button>
 
         <button type='submit' id='submitButton' class='btn btn-primary' style="display: none;">Envoyer</button>
-        <script>
+        <script type="text/javascript">
             function checkUsingCheckbx()
             {
                 var checkbxAcademique = document.getElementById("Academique").checked;
@@ -448,6 +448,18 @@ ob_start();
                     submitButton.setAttribute("style", "display:block");
                     alertButton.setAttribute("style", "display:none");
                     $('.modal').modal('hide')
+                }
+
+                if(checkbxTest == true){
+                    document.getElementById("snapshotsFormControlSelect").selectedIndex = 3;
+                    document.getElementById("snapshotsFormControlSelect").disabled = true;
+                    document.getElementById("backupFormControlSelect").selectedIndex = 3;
+                    document.getElementById("backupFormControlSelect").disabled = true;
+                }else{
+                    document.getElementById("snapshotsFormControlSelect").selectedIndex = 0;
+                    document.getElementById("snapshotsFormControlSelect").disabled = false;
+                    document.getElementById("backupFormControlSelect").selectedIndex = 0;
+                    document.getElementById("backupFormControlSelect").disabled = false;
                 }
             }
         </script>
