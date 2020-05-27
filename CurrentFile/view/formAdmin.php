@@ -434,12 +434,7 @@ ob_start();
                 <!--Date anniversary-->
                 <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                     <label for="inputEndDate" class="font-weight-bold">Date d'anniversaire</label>
-                    <input type="date" class="form-control form form"
-                           value="<?php echo $dataVM[0]['dateAnniversary'] ?>" id="editDateAnniversary"
-                           name="editDateAnniversary"
-                           aria-describedby="anniversaryDateHelp" <?php if (isset($dataVM[0]['dateEnd']) && $dataVM[0]['dateEnd'] != null || $dataVM[0]['dateEnd'] != false || $dataVM[0]['dateEnd'] != '') {
-                        echo 'disabled';
-                    } ?>>
+                    <input type="date" class="form-control form form" id="editDateAnniversary" name="editDateAnniversary" aria-describedby="anniversaryDateHelp">
                 </div>
             </div>
 
@@ -447,14 +442,12 @@ ob_start();
                 <!--IP-->
                 <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                     <label for="editIP" class="font-weight-bold">IP</label>
-                    <input class="form-control form form" value="<?php echo $dataVM[0]['ip'] ?>" id="editIP"
-                           name="editIP" aria-describedby="ipHelp">
+                    <input class="form-control form form" id="editIP" name="editIP" aria-describedby="ipHelp">
                 </div>
                 <!--dnsName-->
                 <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                     <label for="inputEndDate" class="font-weight-bold">Nom DNS</label>
-                    <input class="form-control form form" value="<?php echo $dataVM[0]['dnsName'] ?>" id="editDnsName"
-                           name="editDnsName" aria-describedby="dnsNameHelp">
+                    <input class="form-control form form" id="editDnsName" name="editDnsName" aria-describedby="dnsNameHelp">
                 </div>
             </div>
 
@@ -481,8 +474,7 @@ ob_start();
                         }
                         ?>
                     </select>
-                    <input type="hidden" name="editRedundance" id="editRedundance"
-                           value="<?php echo $dataVM[0]['redundance'] ?>" readonly required>
+                    <input type="hidden" name="editRedundance" id="editRedundance">
                 </div>
                 <!--Criticity-->
                 <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
