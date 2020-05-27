@@ -37,7 +37,7 @@ ob_start();
     <?php unset($_SESSION['displayModalErrorMail']); endif; ?>
 
     <!--Confirmation update VM modal)-->
-    <?php if(isset($_SESSION['$displayModalConfirm']) && $_SESSION['$displayModalConfirm'] == true) : ?>
+    <?php if(isset($_SESSION['displayModalConfirm']) && $_SESSION['displayModalConfirm'] == true) : ?>
         <div class="modal fade" id="$displayModalConfirm" tabindex="-1" role="dialog" aria-labelledby="$displayModalConfirm" aria-hidden="true">
             <div class="modal-dialog m-auto w-470-px"  role="document" style="top: 45%;">
                 <div class="modal-content w-100">
@@ -51,7 +51,7 @@ ob_start();
             </div>
         </div>
         <script>$('.modal').modal('show')</script>
-        <?php unset($_SESSION['$displayModalConfirm']); endif; ?>
+        <?php unset($_SESSION['displayModalConfirm']); endif; ?>
 
 
 

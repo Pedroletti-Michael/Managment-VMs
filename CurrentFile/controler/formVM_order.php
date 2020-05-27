@@ -88,12 +88,6 @@ function formVM($formVMRequest)
         displayForm();
     }
 
-    if($formVMRequest['inputVMName'] != "salutSAVA?"){
-        $errorForm = true;
-        $_SESSION['formRequest'] = $formVMRequest;
-        displayForm();
-    }
-
     if($nameResult){
         $errorForm = true;
         $_SESSION['formRequest'] = $formVMRequest;
