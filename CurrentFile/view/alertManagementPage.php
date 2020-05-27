@@ -40,19 +40,25 @@ ob_start();
             <button type="reset" style="margin-bottom: 10px;" class="btn btn-danger">Annuler</button>
         </form>
         <h4 class="text-center border border-danger border-left-0 border-right-0 border-top-0 pb-3">Contenus des e-mails</h4>
+        <p class="text-center">
+            Listes des variables utilisables dans les différents contenu de mail (format d'utilisation = \nb_var\):<br>
+            1. e-mail de l'utilisateur | 2. nom de la requête | 3. e-mail du RT | 4. e-mail du RA | 5. lien vers la requête | 6. raison d'un refus | 7. temps restant<br>
+            <span class="font-weight-bold">Veillez à prêter attention aux différentes variables utilisables selon le mail que vous écrivez. Cette information est disponible en dessous de l'espace pour écrire.</span><br>
+            Exemple d'utilisation : La commande \2\ est prête...!
+        </p>
         <form method="post" action="../index.php?action=saveContentMail" class="mb-4">
             <div class="d-inline-block w-100">
                 <!--Content of request mail-->
                 <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                     <label for="requestMail" class="font-weight-bold">Contenu du mail de confirmation de requête<a style="color: red"> *</a></label>
                     <textarea rows="15" style="resize: none" class="form-control form form text-lowercase" id="requestMail" name="requestMail" aria-describedby="requestMailHelp" placeholder="Ex: Bonjour,<br>..." required><?= $mailContentJsonData['requestMail']; ?></textarea>
-                    <small id="requestMailHelp" class="form-text text-muted">Contenu du mail envoyer lors de la création d'une requête par un utilisateur à l'utilisateur.</small>
+                    <small id="requestMailHelp" class="form-text text-muted font-weight-bold">Variables utilisables : 1. e-mail de l'utilisateur | 2. nom de la requête | 3. e-mail du RT | 4. e-mail du RA</small>
                 </div>
                 <!--Content mail Administrator for request-->
                 <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                     <label for="mailToAdminstratorRequest" class="font-weight-bold">Contenu du mail de confirmation de requête envoyer à l'administrateur<a style="color: red"> *</a></label>
                     <textarea rows="15" style="resize: none" class="form-control form form text-lowercase" id="mailToAdminstratorRequest" name="mailToAdminstratorRequest" aria-describedby="mailToAdminstratorRequestHelp" placeholder="Ex: Bonjour,<br>..." required><?= $mailContentJsonData['mailToAdminstratorRequest']; ?></textarea>
-                    <small id="mailToAdminstratorRequestHelp" class="form-text text-muted">Contenu du mail envoyer lors de la création d'une requête par un utilisateur à l'administrateur.</small>
+                    <small id="mailToAdminstratorRequestHelp" class="form-text text-muted">Variables utilisables : 1. e-mail de l'utilisateur | 2. nom de la requête | 5. lien vers la requête</small>
                 </div>
             </div>
             <div class="d-inline-block w-100">

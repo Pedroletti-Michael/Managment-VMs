@@ -29,7 +29,7 @@ function sendMail($to, $subject, $message, $headers){
  */
 function requestMail($userMail, $requestName, $rtMail, $raMail){
     // multiple recipients
-    $jsonData = getJsonData();
+    $jsonData = getJsonData(0);
     $administratorMail = $jsonData['mailAdmin'];
 
     $to  = $userMail . ', ' . $raMail . ', ' . $administratorMail;
@@ -38,13 +38,20 @@ function requestMail($userMail, $requestName, $rtMail, $raMail){
     $subject = 'Résumé de votre demande pour une VM';
 
     // message
-    $message = "
-    Bonjour,
-    <br><br>
-    Nom de la demande : ". $requestName ."
-    <br><br>
-    Votre demande est en cours de validation, vous recevrez bientôt un mail de confirmation avec toutes les informations nécessaires.
-    ";
+    $mailContent = getJsonData(1);
+    if(isset($mailContent['requestMail']) && $mailContent['requestMail'] != null || $mailContent['requestMail'] != ''){
+        $message = $mailContent['requestMail'];
+    }
+    else{
+        $message = "
+        Bonjour,
+        <br><br>
+        Nom de la demande : ". $requestName ."
+        <br><br>
+        Votre demande est en cours de validation, vous recevrez bientôt un mail de confirmation avec toutes les informations nécessaires.
+        ";
+    }
+
 
     // To send HTML mail, the Content-type header must be set
     $headers  = 'MIME-Version: 1.0' . "\r\n";
@@ -68,7 +75,7 @@ function requestMail($userMail, $requestName, $rtMail, $raMail){
  */
 function mailAdministrator($userMail, $requestName, $link){
     // multiple recipients
-    $jsonData = getJsonData();
+    $jsonData = getJsonData(0);
     $administratorMail = $jsonData['mailAdmin'];
 
     $to  = $administratorMail;
@@ -77,14 +84,20 @@ function mailAdministrator($userMail, $requestName, $link){
     $subject = 'Résumé de la demande pour une VM : '. $requestName;
 
     // message
-    $message = "
-    Bonjour,
-    <br><br>
-    Nom de la demande : ". $requestName ."
-    <br><br>
-    Une demande a été mise par l'utilisateur utilisant l'adresse mail : ". $userMail .".<br>
-    Voici le lien pour accéder à la demande : <a href='". $link ."'>ici</a>
-    ";
+    $mailContent = getJsonData(1);
+    if(isset($mailContent['mailToAdminstratorRequest']) && $mailContent['mailToAdminstratorRequest'] != null || $mailContent['mailToAdminstratorRequest'] != ''){
+        $message = $mailContent['mailToAdminstratorRequest'];
+    }
+    else{
+        $message = "
+        Bonjour,
+        <br><br>
+        Nom de la demande : ". $requestName ."
+        <br><br>
+        Une demande a été mise par l'utilisateur utilisant l'adresse mail : ". $userMail .".<br>
+        Voici le lien pour accéder à la demande : <a href='". $link ."'>ici</a>
+        ";
+    }
 
     // To send HTML mail, the Content-type header must be set
     $headers  = 'MIME-Version: 1.0' . "\r\n";
@@ -107,7 +120,7 @@ function mailAdministrator($userMail, $requestName, $link){
  */
 function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
     // multiple recipients
-    $jsonData = getJsonData();
+    $jsonData = getJsonData(0);
     $administratorMail = $jsonData['mailAdmin'];
 
     $to  = $userMail . ', ' . $raMail . ', ' . $administratorMail;
@@ -116,13 +129,20 @@ function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
     $subject = 'Résumé de votre demande pour une VM';
 
     // message
-    $message = "
-    Bonjour,<br><br>
-    Nom de la demande : ". $requestName ."
-    <br><br>
-    Votre commande a été validée. Vous pouvez donc vous rendre sous le lien ci-dessous pour obtenir toutes les informations nécessaires pour votre machine :<br>
-    <a href='". $link ."'>ici</a>
-    ";
+    $mailContent = getJsonData(1);
+    if(isset($mailContent['validateRequestMail']) && $mailContent['validateRequestMail'] != null || $mailContent['validateRequestMail'] != ''){
+        $message = $mailContent['validateRequestMail'];
+    }
+    else{
+        $message = "
+        Bonjour,<br><br>
+        Nom de la demande : ". $requestName ."
+        <br><br>
+        Votre commande a été validée. Vous pouvez donc vous rendre sous le lien ci-dessous pour obtenir toutes les informations nécessaires pour votre machine :<br>
+        <a href='". $link ."'>ici</a>
+        ";
+    }
+
 
     // To send HTML mail, the Content-type header must be set
     $headers  = 'MIME-Version: 1.0' . "\r\n";
@@ -146,7 +166,7 @@ function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
  */
 function deniedRequestMail($userMail, $requestName, $reason = null){
     // multiple recipients
-    $jsonData = getJsonData();
+    $jsonData = getJsonData(0);
     $administratorMail = $jsonData['mailAdmin'];
 
     $to  = $userMail . ', ' . $administratorMail;
@@ -156,15 +176,22 @@ function deniedRequestMail($userMail, $requestName, $reason = null){
 
     // message
     if($reason == null){
-        $message = '
-        <p>Nom de la demande : '. $requestName .' </p>
-        <br>
-        <p>Votre demande pour une VM n\'a pas été validée.</p>
-        <br>
-        <p>
-            Nous ne pouvons malheureusement pas accéder à votre requête.
-        </p>
-        ';
+        $mailContent = getJsonData(1);
+        if(isset($mailContent['deniedRequestMail']) && $mailContent['deniedRequestMail'] != null || $mailContent['deniedRequestMail'] != ''){
+            $message = $mailContent['deniedRequestMail'];
+        }
+        else{
+            $message = '
+            <p>Nom de la demande : '. $requestName .' </p>
+            <br>
+            <p>Votre demande pour une VM n\'a pas été validée.</p>
+            <br>
+            <p>
+                Nous ne pouvons malheureusement pas accéder à votre requête.
+            </p>
+            ';
+        }
+
     }
     else{
         $message = '
@@ -202,7 +229,7 @@ function deniedRequestMail($userMail, $requestName, $reason = null){
  */
 function advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft){
     // multiple recipients
-    $jsonData = getJsonData();
+    $jsonData = getJsonData(0);
     $administratorMail = $jsonData['mailAdmin'];
 
     $to  = $userMail . ', ' . $raMail . ', ' . $administratorMail;
@@ -211,19 +238,26 @@ function advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft)
     $subject = 'Résumé de votre demande pour une VM';
 
     // message
-    $message = "
-    Bonjour,<br><br>
-    
-    Nous vous envoyons ce mail pour vous informer que votre demande pour une VM arrive bientôt à échéance, il vous reste ".$timeLeft." jours.<br>
-     
-    Nom de la demande : ". $requestName ."<br>
-    
-    Nous nous permettons ainsi de vous envoyez ce mail afin que vous puissiez si vous le souhaitez renouveller votre demande, en suivant le lien ci-dessous :<br><br>
-    
-    ". $link ."<br><br>
-    
-    Toutes les informations nécessaires au renouvellement se trouve sur le lien, toutefois si vous avez une question vous pouvez nous contacter à cette adresse : vmmanger@heig-vd.ch<br><br>
-    ";
+    $mailContent = getJsonData(1);
+    if(isset($mailContent['advertMail']) && $mailContent['advertMail'] != null || $mailContent['advertMail'] != ''){
+        $message = $mailContent['advertMail'];
+    }
+    else{
+        $message = "
+        Bonjour,<br><br>
+        
+        Nous vous envoyons ce mail pour vous informer que votre demande pour une VM arrive bientôt à échéance, il vous reste ".$timeLeft." jours.<br>
+         
+        Nom de la demande : ". $requestName ."<br>
+        
+        Nous nous permettons ainsi de vous envoyez ce mail afin que vous puissiez si vous le souhaitez renouveller votre demande, en suivant le lien ci-dessous :<br><br>
+        
+        ". $link ."<br><br>
+        
+        Toutes les informations nécessaires au renouvellement se trouve sur le lien, toutefois si vous avez une question vous pouvez nous contacter à cette adresse : vmmanger@heig-vd.ch<br><br>
+        ";
+    }
+
 
     // To send HTML mail, the Content-type header must be set
     $headers  = 'MIME-Version: 1.0' . "\r\n";
@@ -248,7 +282,7 @@ function advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft)
  */
 function nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail){
     // multiple recipients
-    $jsonData = getJsonData();
+    $jsonData = getJsonData(0);
     $administratorMail = $jsonData['mailAdmin'];
 
     $to  = $userMail . ', ' . $raMail . ', ' . $administratorMail;
@@ -257,18 +291,25 @@ function nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail){
     $subject = 'Non-renouvellement de votre VM : '. $requestName;
 
     // message
-    $message = "
-    Bonjour,<br><br>
-    
-    Nous vous envoyons ce mail pour vous informer que la date limite de votre VM est échue.<br>
-     
-    Nom de la demande : ". $requestName ."<br>
-    
-    Étant donné que vous n'avez pas voulu la renouvelée via le lien précédent nous allons donc supprimer votre VM.<br>
-    Votre VM ne sera donc dès à présent plus disponible.
-    
-    Toutefois si vous avez une question vous pouvez nous contacter à cette adresse : vmmanger@heig-vd.ch<br><br>
-    ";
+    $mailContent = getJsonData(1);
+    if(isset($mailContent['nonrenewalMailAdvert']) && $mailContent['nonrenewalMailAdvert'] != null || $mailContent['nonrenewalMailAdvert'] != ''){
+        $message = $mailContent['nonrenewalMailAdvert'];
+    }
+    else{
+        $message = "
+        Bonjour,<br><br>
+        
+        Nous vous envoyons ce mail pour vous informer que la date limite de votre VM est échue.<br>
+         
+        Nom de la demande : ". $requestName ."<br>
+        
+        Étant donné que vous n'avez pas voulu la renouvelée via le lien précédent nous allons donc supprimer votre VM.<br>
+        Votre VM ne sera donc dès à présent plus disponible.
+        
+        Toutefois si vous avez une question vous pouvez nous contacter à cette adresse : vmmanger@heig-vd.ch<br><br>
+        ";
+    }
+
 
     // To send HTML mail, the Content-type header must be set
     $headers  = 'MIME-Version: 1.0' . "\r\n";
@@ -297,7 +338,7 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
         if($dateEndVm == null){
             if(strtotime($today) > strtotime($dateAnniversary)){
                 updateStatusVM($idVm, 4);
-                nonrenewalMailAdvert($userMail, $requestName, $link, $rtMail, $raMail);
+                nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail);
                 return true;
             }
             else{
@@ -340,7 +381,7 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
         else{
             if($today > $dateEndVm){
                 updateStatusVM($idVm, 4);
-                nonrenewalMailAdvert($userMail, $requestName, $link, $rtMail, $raMail);
+                nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail);
                 return true;
             }
             else{
@@ -385,7 +426,7 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
         if($dateEndVm == null){
             if(strtotime($today) > strtotime($dateAnniversary)){
                 updateStatusVM($idVm, 4);
-                nonrenewalMailAdvert($userMail, $requestName, $link, $rtMail, $raMail);
+                nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail);
                 return true;
             }
             else{
@@ -428,7 +469,7 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
         else{
             if($today > $dateEndVm){
                 updateStatusVM($idVm, 4);
-                nonrenewalMailAdvert($userMail, $requestName, $link, $rtMail, $raMail);
+                nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail);
                 return true;
             }
             else{
