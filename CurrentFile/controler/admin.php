@@ -253,7 +253,7 @@ function displayDetailsVM($idVM)
 function updateVM($vmInformation)
 {
     require_once "model/vmManager.php";
-    $_SESSION['$displayModalConfirm'] = false;
+    $_SESSION['displayModalConfirm'] = false;
 
     if($vmInformation['inputEndDate'] != "")
     {
@@ -370,8 +370,8 @@ function updateVM($vmInformation)
         }
         elseif($_SESSION['userType'] == 1)
         {
-            $_SESSION['$displayModalConfirm'] = true;
-            displayDetailsVM($_SESSION['idVM']);
+            $_SESSION['displayModalConfirm'] = true;
+            displayAllVM("","");
         }
         else
         {
@@ -402,7 +402,7 @@ function updateVM($vmInformation)
 function vmAccepted($vmInformation)
 {
     $vmStatus = true;
-    $_SESSION['$displayModalConfirm'] = false;
+    $_SESSION['displayModalConfirm'] = false;
 
     require_once "model/vmManager.php";
 
@@ -514,7 +514,7 @@ function vmAccepted($vmInformation)
     }
 
     if(updateStatusVM($_SESSION['idVM'], $vmStatus) == 2 && updateVMInformation($vmInformation, $_SESSION['idVM'])){
-        $_SESSION['$displayModalConfirm'] = true;
+        $_SESSION['displayModalConfirm'] = true;
         displayAllVM("","");
     }
     elseif(updateStatusVM($_SESSION['idVM'], $vmStatus) == 1 && updateVMInformation($vmInformation, $_SESSION['idVM'])){
