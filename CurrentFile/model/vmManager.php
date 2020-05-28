@@ -243,6 +243,15 @@ function getMailUser($id){
     return $user[0][0];
 }
 
+function getNameAndSurnameUser($id){
+    $strSep = '\'';
+
+    $query = "SELECT lastname, firstname FROM `user` WHERE user_id = ". $strSep.$id.$strSep;
+
+    $user = executeQuery($query);
+    return $user;
+}
+
 function getInfoEntity($id){
     $strSep = '\'';
 
@@ -460,9 +469,12 @@ function getDataVM($idVM){
     $i = 0;
 
     foreach ($resultSelect as $vm){
+        $userRa = getNameAndSurnameUser($vm['userRa']);
+        $userRt = getNameAndSurnameUser($vm['userRt']);
+
         $resultSelect[$i]['customer'] = getMailUser($vm['customer']);
-        $resultSelect[$i]['userRa'] = getMailUser($vm['userRa']);
-        $resultSelect[$i]['userRt'] = getMailUser($vm['userRt']);
+        $resultSelect[$i]['userRa'] = $userRa[0]['lastname']." ".$userRa[0]['firstname'];
+        $resultSelect[$i]['userRt'] = $userRt[0]['lastname']." ".$userRt[0]['firstname'];
         $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
         $resultSelect[$i]['os_id'] = getInfoOs($vm['os_id']);
         $resultSelect[$i]['snapshot_id'] = getInfoSnapshot($vm['snapshot_id']);
