@@ -227,6 +227,68 @@ function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
     }
 }
 
+
+function administratorMailValidateRequest($requestName, $link, $dataFile){
+    require_once 'model/jsonConnector.php';
+    $jsonData = getJsonData(0);
+    $administratorMail = $jsonData['mailAdmin'];
+
+    $to  = $administratorMail;
+
+    // subject
+    $subject = 'Mail de confirmation de validation d\'une VM';
+
+    // random key
+    $boundary = md5(uniqid(microtime(), TRUE));
+
+    // message
+    $message = "
+    Bonjour,<br>
+    <p>
+        Vous venez de valider une VM, voici un mail de confirmation avec un fichier Json contenant toutes les données de la VM validée.<br>
+        Vous pouvez directement vous rendre sur les détails de la requête depuis <a href='".$link."'>ici</a>
+    </p>
+    ";
+
+    // file attachment
+    $fileName = 'dataFrom'.$requestName.strtotime(date("Y-m-d H:i:s"));
+    $filePath = 'data/'.$fileName.'.json';
+
+    if(saveJsonData($dataFile, null, $filePath)){
+        if (file_exists($filePath))
+        {
+            $file_type = filetype($filePath);
+            $file_size = filesize($filePath);
+
+            $handle = fopen($filePath, 'r') or die('File '.$filePath.'can t be open');
+            $content = fread($handle, $file_size);
+            $content = chunk_split(base64_encode($content));
+            $f = fclose($handle);
+
+            $message .= '--'.$boundary."\r\n";
+            $message .= 'Content-type:'.$file_type.';name='.$filePath."\r\n";
+            $message .= 'Content-transfer-encoding:base64'."\r\n";
+            $message .= $content."\r\n";
+        }
+    }
+
+    // To send HTML mail, the Content-type header must be set
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+    $headers .= 'Content-Type: multipart/mixed;boundary='.$boundary."\r\n";
+
+    // Additional headers
+    $headers .= 'To: '. $administratorMail ."\r\n";
+    $headers .= 'From: '.$jsonData['sender']."\r\n";
+
+    if(sendMail($to, $subject, $message, $headers)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 /**
  * This function used to send the denied validation for a request of vm to an user
  */

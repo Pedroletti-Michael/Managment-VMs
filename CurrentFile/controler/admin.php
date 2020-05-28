@@ -513,11 +513,11 @@ function vmAccepted($vmInformation)
         $vmInformation['editCriticity'] = 0;
     }
 
-    if(updateStatusVM($_SESSION['idVM'], $vmStatus) == 2 && updateVMInformation($vmInformation, $_SESSION['idVM'])){
+    if(updateStatusVM($_SESSION['idVM'], $vmStatus, null, $vmInformation) == 2 && updateVMInformation($vmInformation, $_SESSION['idVM'])){
         $_SESSION['displayModalConfirm'] = true;
         displayAllVM("","");
     }
-    elseif(updateStatusVM($_SESSION['idVM'], $vmStatus) == 1 && updateVMInformation($vmInformation, $_SESSION['idVM'])){
+    elseif(updateStatusVM($_SESSION['idVM'], $vmStatus, null, $vmInformation) == 1 && updateVMInformation($vmInformation, $_SESSION['idVM'])){
         $_SESSION['displayModalErrorMail'] = true;
         displayAllVM("","");
     }
