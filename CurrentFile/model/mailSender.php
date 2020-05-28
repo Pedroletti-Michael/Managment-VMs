@@ -257,25 +257,21 @@ function administratorMailValidateRequest($requestName, $link, $dataFile){
     if(saveJsonData($dataFile, null, $filePath)){
         if (file_exists($filePath))
         {
-            $file_type = filetype($filePath);
-            $file_size = filesize($filePath);
-
-            $handle = fopen($filePath, 'r') or die('File '.$filePath.'can t be open');
-            $content = fread($handle, $file_size);
+            $content = file_get_contents($filePath);
             $content = chunk_split(base64_encode($content));
-            $f = fclose($handle);
 
             $message .= '--'.$boundary."\r\n";
-            $message .= 'Content-type:'.$file_type.';name='.$filePath."\r\n";
+            $message .= 'Content-Type: application/octet-stream;name="'.$filePath."\"\r\n";
             $message .= 'Content-transfer-encoding:base64'."\r\n";
+            $message .= "Content-Disposition: attachment"."\r\n";
             $message .= $content."\r\n";
         }
     }
 
     // To send HTML mail, the Content-type header must be set
     $headers  = 'MIME-Version: 1.0' . "\r\n";
-    $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
     $headers .= 'Content-Type: multipart/mixed;boundary='.$boundary."\r\n";
+    $headers .= "Content-Transfer-Encoding: 7bit". "\r\n";
 
     // Additional headers
     $headers .= 'To: '. $administratorMail ."\r\n";
