@@ -227,57 +227,76 @@ function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
     }
 }
 
-
+/**
+ * This function used to send a json file with all information about a validate request. She used after a validation of
+ * a vm request
+ */
 function administratorMailValidateRequest($requestName, $link, $dataFile){
     require_once 'model/jsonConnector.php';
     $jsonData = getJsonData(0);
+    $sender = $jsonData['sender'];
     $administratorMail = $jsonData['mailAdmin'];
 
-    $to  = $administratorMail;
+    // Recipient
+    $to = $administratorMail;
 
-    // subject
-    $subject = 'Mail de confirmation de validation d\'une VM';
+    // Sender
+    $from = $sender;
+    $fromName = $sender;
 
-    // random key
-    $boundary = md5(uniqid(microtime(), TRUE));
+    // Email subject
+    $subject = 'Confirmation de validation requête : '.$requestName;
 
-    // message
-    $message = "
+    // Attachment file
+    $fileName = 'dataFrom'.$requestName.strtotime(date("Y-m-d H:i:s"));
+    $file = 'data/'.$fileName.'.json';
+    saveJsonData($dataFile, null, $file);
+
+    // Email body content
+    $htmlContent = ' 
     Bonjour,<br>
     <p>
         Vous venez de valider une VM, voici un mail de confirmation avec un fichier Json contenant toutes les données de la VM validée.<br>
-        Vous pouvez directement vous rendre sur les détails de la requête depuis <a href='".$link."'>ici</a>
+        Vous pouvez directement vous rendre sur les détails de la requête depuis <a href="'.$link.'">ici</a>
     </p>
-    ";
+';
 
-    // file attachment
-    $fileName = 'dataFrom'.$requestName.strtotime(date("Y-m-d H:i:s"));
-    $filePath = 'data/'.$fileName.'.json';
+    // Header for sender info
+    $headers = "From: $fromName"." <".$from.">";
 
-    if(saveJsonData($dataFile, null, $filePath)){
-        if (file_exists($filePath))
-        {
-            $content = file_get_contents($filePath);
-            $content = chunk_split(base64_encode($content));
+    // Boundary
+    $semi_rand = md5(time());
+    $mime_boundary = "==Multipart_Boundary_x{$semi_rand}x";
 
-            $message .= '--'.$boundary."\r\n";
-            $message .= 'Content-Type: application/octet-stream;name="'.$filePath."\"\r\n";
-            $message .= 'Content-transfer-encoding:base64'."\r\n";
-            $message .= "Content-Disposition: attachment"."\r\n";
-            $message .= $content."\r\n";
+    // Headers for attachment
+    $headers .= "\nMIME-Version: 1.0\n" . "Content-Type: multipart/mixed;\n" . " boundary=\"{$mime_boundary}\"";
+
+    // Multipart boundary
+    $message = "--{$mime_boundary}\n" . "Content-Type: text/html; charset=\"UTF-8\"\n" .
+        "Content-Transfer-Encoding: 7bit\n\n" . $htmlContent . "\n\n";
+
+    // Preparing attachment
+    if(!empty($file) > 0){
+        if(is_file($file)){
+            $message .= "--{$mime_boundary}\n";
+            $fp =    @fopen($file,"rb");
+            $data =  @fread($fp,filesize($file));
+
+            @fclose($fp);
+            $data = chunk_split(base64_encode($data));
+            $message .= "Content-Type: application/octet-stream; name=\"".basename($file)."\"\n" .
+                "Content-Description: ".basename($file)."\n" .
+                "Content-Disposition: attachment;\n" . " filename=\"".basename($file)."\"; size=".filesize($file).";\n" .
+                "Content-Transfer-Encoding: base64\n\n" . $data . "\n\n";
         }
     }
+    $message .= "--{$mime_boundary}--";
+    $returnpath = "-f" . $from;
 
-    // To send HTML mail, the Content-type header must be set
-    $headers  = 'MIME-Version: 1.0' . "\r\n";
-    $headers .= 'Content-Type: multipart/mixed;boundary='.$boundary."\r\n";
-    $headers .= "Content-Transfer-Encoding: 7bit". "\r\n";
+    // Send email
+    $mail = @mail($to, $subject, $message, $headers, $returnpath);
 
-    // Additional headers
-    $headers .= 'To: '. $administratorMail ."\r\n";
-    $headers .= 'From: '.$jsonData['sender']."\r\n";
-
-    if(sendMail($to, $subject, $message, $headers)){
+    if($mail){
         return true;
     }
     else{
