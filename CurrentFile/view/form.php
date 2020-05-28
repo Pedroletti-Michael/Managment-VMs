@@ -110,7 +110,24 @@ ob_start();
                         }
                         ?>
                     </ul>
-                    <input type="hidden" name="inputTMName" id="inputTMName" value="<?php if(isset($_SESSION['formRequest']['inputTMName'])){echo($_SESSION['formRequest']['inputTMName']);} ?>" readonly required>
+                    <input type="hidden" name="inputTMName" id="inputTMName" value="<?php if(isset($_SESSION['formRequest']['inputTMName'])){echo($_SESSION['formRequest']['inputTMName']);} ?>" required>
+                    <script>
+                        var input, filter, ul, li, a, i, txtValue;
+                        input = document.getElementById("inputTMNam");
+                        filter = input.value.toUpperCase();
+                        ul = document.getElementById("tmNameUl");
+                        li = ul.getElementsByTagName("li");
+                        for (i = 0; i < li.length; i++) {
+                            a = li[i].getElementsByTagName("a")[0];
+                            txtValue = a.textContent || a.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                li[i].style.display = "";
+                            } else {
+
+                                li[i].style.display = "none";
+                            }
+                        }
+                    </script>
                 </div>
                 <div class="form-group w-50 float-right pl-1 mb-0" id="responsiveDisplay">
                     <!--Name of the responsible administrator-->
@@ -130,7 +147,23 @@ ob_start();
                         }
                         ?>
                     </ul>
-                    <input type="hidden" name="inputRAName" id="inputRAName" value="<?php if(isset($_SESSION['formRequest']['inputRAName'])){echo($_SESSION['formRequest']['inputRAName']);} ?>" readonly required>
+                    <input type="hidden" name="inputRAName" id="inputRAName" value="<?php if(isset($_SESSION['formRequest']['inputRAName'])){echo($_SESSION['formRequest']['inputRAName']);} ?>" required>
+                    <script>
+                        var input, filter, ul, li, a, i, txtValue;
+                        input = document.getElementById("inputRANam");
+                        filter = input.value.toUpperCase();
+                        ul = document.getElementById("raNameUl");
+                        li = ul.getElementsByTagName("li");
+                        for (i = 0; i < li.length; i++) {
+                            a = li[i].getElementsByTagName("a")[0];
+                            txtValue = a.textContent || a.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                li[i].style.display = "";
+                            } else {
+                                li[i].style.display = "none";
+                            }
+                        }
+                    </script>
                 </div>
             </div>
         </div>
@@ -408,6 +441,23 @@ ob_start();
             <textarea class="form-control" rows="5" id="ti" name="ti" maxlength="1000"><?php if(isset($_SESSION['formRequest']['ti'])){echo($_SESSION['formRequest']['ti']);} ?></textarea>
             <small id="tiHelp" class="form-text text-muted">Règles firewall, type de compte, justification DMZ ou configuration personnalisée, etc...</small>
         </div>
+
+        <?php if(isset($_SESSION['displayModalNoUserSelected']) && $_SESSION['displayModalNoUserSelected'] == true) :?>
+        <!--Error no user selected for Rt or Ra (modal)-->
+        <div class="modal fade" id="modalNoUserSelected" tabindex="-1" role="dialog" aria-labelledby="modalNoUserSelected" aria-hidden="true">
+            <div class="modal-dialog m-auto w-470-px"  role="document" style="top: 45%;">
+                <div class="modal-content w-100">
+                    <div class="modal-body">
+                        <div class="w-100">
+                            <h6 class="float-left pt-2 text-center">Veuillez sélectionner un utilisateur des listes déroulante dans les sections "Responsable technique" et "Responsable administratif"</h6>
+                            <button type="submit" class="btn btn-danger float-right btn-close-phone" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>$('.modal').modal('show')</script>
+        <?php unset($_SESSION['displayModalNoUserSelected']); endif; ?>
 
         <!--Error no checkbox selected (modal)-->
         <div class="modal fade" id="modalErrorUsingCheckbox" tabindex="-1" role="dialog" aria-labelledby="modalErrorUsingCheckbox" aria-hidden="true">
