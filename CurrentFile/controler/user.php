@@ -94,6 +94,8 @@ function displayManagementUser(){
     if(isset($_SESSION['userType']) && $_SESSION['userType'] == 1){
         require_once 'model/userManager.php';
         $allUsers = getAllUsers();
+        $allUsersAsc = getAllUsersAscendant();
+        $allUsersDesc = getAllUsersDescendant();
 
         require_once 'view/userManagement.php';
     }
@@ -117,31 +119,56 @@ function saveModificationAboutUsers($allData){
     require_once 'model/userManager.php';
     $allUsers = getAllUsers();
 
-    $adminFromForm = explode(";", $allData['usersAfter']);
-    foreach($adminFromForm as $adminForm){
-        foreach($allUsers as $user){
-            if($adminForm == $user['user_id']){
-                if($user['type'] == 0){
-                    updateType($user['user_id'], true);
+    if(isset($allData['usersAfterAsc']) && $allData['usersAfterAsc'] != ''){
+        $adminFromForm = explode(";", $allData['usersAfterAsc']);
+        foreach($adminFromForm as $adminForm){
+            foreach($allUsers as $user){
+                if($adminForm == $user['user_id']){
+                    if($user['type'] == 0){
+                        updateType($user['user_id'], true);
+                    }
                 }
             }
         }
-    }
 
-    $adminFromDb = getAllAdmin();
-    foreach($adminFromDb as $adminDb){
-        $res = false;
-        foreach($adminFromForm as $adminForm){
-            if($adminForm == $adminDb['user_id']){
-                $res = true;
+        $adminFromDb = getAllAdmin();
+        foreach($adminFromDb as $adminDb){
+            $res = false;
+            foreach($adminFromForm as $adminForm){
+                if($adminForm == $adminDb['user_id']){
+                    $res = true;
+                }
+            }
+            if(!$res){
+                updateType($adminDb['user_id'], false);
             }
         }
-        if(!$res){
-            updateType($adminDb['user_id'], false);
+    }
+    elseif(isset($allData['usersAfterDesc']) && $allData['usersAfterDesc'] != ''){
+        $adminFromForm = explode(";", $allData['usersAfterDesc']);
+        foreach($adminFromForm as $adminForm){
+            foreach($allUsers as $user){
+                if($adminForm == $user['user_id']){
+                    if($user['type'] == 0){
+                        updateType($user['user_id'], true);
+                    }
+                }
+            }
+        }
+
+        $adminFromDb = getAllAdmin();
+        foreach($adminFromDb as $adminDb){
+            $res = false;
+            foreach($adminFromForm as $adminForm){
+                if($adminForm == $adminDb['user_id']){
+                    $res = true;
+                }
+            }
+            if(!$res){
+                updateType($adminDb['user_id'], false);
+            }
         }
     }
-
-
 
     displayManagementUser();
 }

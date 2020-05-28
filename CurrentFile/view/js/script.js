@@ -38,7 +38,12 @@ function checkOS(value){
 function goTo(){
     var navBtn = document.getElementById("navButton");
     if(navBtn.value == "Aller en bas"){
-        window.location.href='#bottom';
+        if(document.getElementById("btnSort").innerText == "Trier les noms (A-Z)"){
+            window.location.href='#bottomDesc';
+        }
+        else{
+            window.location.href='#bottomAsc';
+        }
     }
     else{
         window.location.href='#top';

@@ -69,6 +69,24 @@ function getAllUsers(){
 }
 
 /**
+ * Get all users from DB sort by name (A-Z)
+ */
+function getAllUsersAscendant(){
+    $query = 'SELECT mail, lastname, firstname, type, user_id FROM user ORDER BY lastname ASC';
+
+    return executeQuerySelect($query);
+}
+
+/**
+ * Get all users from DB sort by name (Z-A)
+ */
+function getAllUsersDescendant(){
+    $query = 'SELECT mail, lastname, firstname, type, user_id FROM user ORDER BY lastname DESC';
+
+    return executeQuerySelect($query);
+}
+
+/**
  * @return array|null
  */
 function getAllAdmin(){
