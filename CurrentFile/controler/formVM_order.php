@@ -82,6 +82,14 @@ function formVM($formVMRequest)
         }
     }
 
+    if($formVMRequest['inputTMName'] == null || $formVMRequest['inputRAName'] == null)
+    {
+        $errorForm = true;
+        $_SESSION['displayModalNoUserSelected'] = true;
+        $_SESSION['formRequest'] = $formVMRequest;
+        displayForm();
+    }
+
     if(strlen($formVMRequest['ti']) > 1000 || strlen($formVMRequest['objective']) > 1000){
         $errorForm = true;
         $_SESSION['formRequest'] = $formVMRequest;
