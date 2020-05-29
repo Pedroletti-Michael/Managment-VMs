@@ -152,6 +152,12 @@
                     </a>
                 <?php endif; ?>
                 <hr color="lightgrey" style="height: 1px;" class="w-75">
+                <!----------------- formAdmin ---------------->
+                <?php if ($_GET['action'] == "formAdmin"): ?>
+                    <a class="alert-link active text-decoration-none" href="index.php?action=formAdmin"><h5 class="color-lightgrey"><a class="menu-phone-selected">Formulaire administrateur</a></h5></a>
+                <?php else : ?>
+                    <a class="text-decoration-none" href="index.php?action=formAdmin"><h5 class="color-lightgrey">Formulaire administrateur</h5></a>
+                <?php endif; ?>
                 <!----------------- formManagement ---------------->
                 <?php if ($_GET['action'] == "formManagement"): ?>
                     <a class="alert-link active text-decoration-none" href="index.php?action=formManagement&array=entity"><h5 class="color-lightgrey"><a class="menu-phone-selected">Gestion du formulaire</a></h5></a>
@@ -276,6 +282,12 @@
                 <?php endif; ?>
 
                 <a class="title">Admin</a>
+                <!----------------- formAdmin ---------------->
+                <?php if ($_GET['action'] == "formAdmin"): ?>
+                    <a class="alert-link active" href="index.php?action=formAdmin">Formulaire administrateur</a>
+                <?php else : ?>
+                    <a href="index.php?action=formAdmin">Formulaire administrateur</a>
+                <?php endif; ?>
                 <!----------------- formManagement ---------------->
                 <?php if ($_GET['action'] == "formManagement"): ?>
                     <a class="alert-link active" href="index.php?action=formManagement&array=entity">Gestion du formulaire</a>
@@ -434,6 +446,9 @@
                                     </a>
                             </li>
                         </ul>
+                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                            <span>Admin</span>
+                        </h6>
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <?php if ($_GET['action'] == "formAdmin"): ?>
@@ -449,9 +464,6 @@
                                     </a>
                             </li>
                         </ul>
-                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                            <span>Admin</span>
-                        </h6>
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <?php if ($_GET['action'] == "formManagement"): ?>
