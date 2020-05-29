@@ -3,7 +3,21 @@ function sortTable(n, whichTable) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0, last_n;
 
     if(whichTable == 0){
-        table = document.getElementById("tableInventoryVm");
+        if(document.getElementById("allVmBody").hidden == false){
+            table = document.getElementById("allVmBody");
+        }
+        else if(document.getElementById("allValidatedVmBody").hidden == false){
+            table = document.getElementById("allValidatedVmBody");
+        }
+        else if(document.getElementById("allConfirmationVmBody").hidden == false){
+            table = document.getElementById("allConfirmationVmBody");
+        }
+        else if(document.getElementById("allRenewalVmBody").hidden == false){
+            table = document.getElementById("allRenewalVmBody");
+        }
+        else if(document.getElementById("allDeletedVmBody").hidden == false){
+            table = document.getElementById("allDeletedVmBody");
+        }
     }
     else if(whichTable == 1){
         table = document.getElementById("tableInventoryUser");
@@ -66,7 +80,21 @@ function sortTable(n, whichTable) {
 function sortNumberTable(n, whichTable) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     if(whichTable == 0){
-        table = document.getElementById("tableInventoryVm");
+        if(document.getElementById("allVmBody").hidden == false){
+            table = document.getElementById("allVmBody");
+        }
+        else if(document.getElementById("allValidatedVmBody").hidden == false){
+            table = document.getElementById("allValidatedVmBody");
+        }
+        else if(document.getElementById("allConfirmationVmBody").hidden == false){
+            table = document.getElementById("allConfirmationVmBody");
+        }
+        else if(document.getElementById("allRenewalVmBody").hidden == false){
+            table = document.getElementById("allRenewalVmBody");
+        }
+        else if(document.getElementById("allDeletedVmBody").hidden == false){
+            table = document.getElementById("allDeletedVmBody");
+        }
     }
     else if(whichTable == 1){
         table = document.getElementById("tableInventoryUser");
@@ -127,7 +155,21 @@ function sortNumberTable(n, whichTable) {
 function sortTablePlus(n, which){
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     if(which == 0){
-        table = document.getElementById("tableInventoryVm");
+        if(document.getElementById("allVmBody").hidden == false){
+            table = document.getElementById("allVmBody");
+        }
+        else if(document.getElementById("allValidatedVmBody").hidden == false){
+            table = document.getElementById("allValidatedVmBody");
+        }
+        else if(document.getElementById("allConfirmationVmBody").hidden == false){
+            table = document.getElementById("allConfirmationVmBody");
+        }
+        else if(document.getElementById("allRenewalVmBody").hidden == false){
+            table = document.getElementById("allRenewalVmBody");
+        }
+        else if(document.getElementById("allDeletedVmBody").hidden == false){
+            table = document.getElementById("allDeletedVmBody");
+        }
     }
     else if(which == 1){
         table = document.getElementById("tableInventoryUser");

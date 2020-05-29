@@ -79,6 +79,63 @@ function checkField(fieldName) {
 
 }
 
+//Function to change the body of the table in InventoryVM (allVM.php)
+function changeBodyTable(n){
+    var allVm, validatedVm, confirmationVm, renewalVm, deletedVm;
+    allVm = document.getElementById("allVmBody");
+    validatedVm = document.getElementById("allValidatedVmBody");
+    confirmationVm = document.getElementById("allConfirmationVmBody");
+    renewalVm = document.getElementById("allRenewalVmBody");
+    deletedVm = document.getElementById("allDeletedVmBody");
+
+
+    switch(n){
+        case 0:
+            allVm.hidden = false;
+            validatedVm.hidden = true;
+            confirmationVm.hidden = true;
+            renewalVm.hidden = true;
+            deletedVm.hidden = true;
+            break;
+        case 1:
+            allVm.hidden = true;
+            validatedVm.hidden = false;
+            confirmationVm.hidden = true;
+            renewalVm.hidden = true;
+            deletedVm.hidden = true;
+            break;
+        case 2:
+            allVm.hidden = true;
+            validatedVm.hidden = true;
+            confirmationVm.hidden = false;
+            renewalVm.hidden = true;
+            deletedVm.hidden = true;
+            break;
+        case 3:
+            allVm.hidden = true;
+            validatedVm.hidden = true;
+            confirmationVm.hidden = true;
+            renewalVm.hidden = false;
+            deletedVm.hidden = true;
+            break;
+        case 4:
+            allVm.hidden = true;
+            validatedVm.hidden = true;
+            confirmationVm.hidden = true;
+            renewalVm.hidden = true;
+            deletedVm.hidden = false;
+            break;
+        default:
+            allVm.hidden = false;
+            validatedVm.hidden = true;
+            confirmationVm.hidden = true;
+            renewalVm.hidden = true;
+            deletedVm.hidden = true;
+            break;
+    }
+}
+
+
 // ------------------- w3schools -------------------------
 function openRightMenu() {
     document.getElementById("rightMenu").style.display = "block";

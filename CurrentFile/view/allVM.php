@@ -74,7 +74,7 @@ ob_start();
                 <div class="collapse" id="collapseVM">
                     <div class="w-100">
                         <!--All VM-->
-                        <a href="index.php?action=allVM&vmFilter=all">
+                        <a onclick="changeBodyTable(0)">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left">
                                 <span class="badge badge-primary" id="numberOfVM"> </span>
                                 Toutes les VM
@@ -83,7 +83,7 @@ ob_start();
                     </div>
                     <div class="w-100">
                         <!--Confirmed VM-->
-                        <a href="index.php?action=allVM&vmFilter=confirmed">
+                        <a onclick="changeBodyTable(1)">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" >
                                 <span class="badge" style="background-color: rgba(40,167,69,0.7); border-color: rgba(40,167,69,0.7);" id="numberOfConfirmedVM"> </span>
                                 VM en service
@@ -92,7 +92,7 @@ ob_start();
                     </div>
                     <div class="w-100">
                         <!--VM who need to be confirmed-->
-                        <a href="index.php?action=allVM&vmFilter=confirmation">
+                        <a onclick="changeBodyTable(2)">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left">
                                 <span class="badge" style="background-color: rgba(255,165,69,0.7); border-color: rgba(255,165,69,0.7);" id="numberOfToBeConfirmedVM"> </span>
                                 VM à confirmer
@@ -101,7 +101,7 @@ ob_start();
                     </div>
                     <div class="w-100">
                         <!--VM to renew-->
-                        <a href="index.php?action=allVM&vmFilter=renewal">
+                        <a onclick="changeBodyTable(3)">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left">
                                 <span class="badge" style="background-color: rgba(233,48,48,0.7); border-color: rgba(233,48,48,0.7);" id="numberOfRenewalVM"> </span>
                                 VM à renouveler
@@ -110,7 +110,7 @@ ob_start();
                     </div>
                     <div class="w-100">
                         <!--Deleted VM-->
-                        <a href="index.php?action=allVM&vmFilter=deleted">
+                        <a onclick="changeBodyTable(4)">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left">
                                 <span class="badge" style="background-color: rgba(90,90,90,0.7); border-color: rgba(90,90,90,0.7);" id="numberOfDeletedVM"> </span>
                                 VM supprimées
@@ -213,122 +213,27 @@ ob_start();
             </a>
         </div>
 
-        <!--Row filter-->
-        <!--
-        <div class="modal fade" id="modalRowFilter" tabindex="-1" role="dialog" aria-labelledby="modalRowFilter" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="w-100 p-3">
-                        <div class="w-50 float-left p-1">
-                            <button name="btnRowFilter" id="name" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('name')">
-                                <h5>name</h5>
-                            </button>
-                            <button name="btnRowFilter" style="background-color: #dc3545" id="cluster" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('cluster')">
-                                <h5>cluster</h5>
-                            </button>
-                            <button name="btnRowFilter" id="dateStart" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('dateStart')">
-                                <h5>dateStart</h5>
-                            </button>
-                            <button name="btnRowFilter" style="background-color: #dc3545" id="dateAnniversary" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('dateAnniversary')">
-                                <h5>dateAnniversary</h5>
-                            </button>
-                            <button name="btnRowFilter" id="dateEnd" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('dateEnd')">
-                                <h5>dateEnd</h5>
-                            </button>
-                            <button name="btnRowFilter" id="desc" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('desc')">
-                                <h5>description</h5>
-                            </button>
-                            <button name="btnRowFilter" style="background-color: #dc3545" id="ip" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('ip')">
-                                <h5>ip</h5>
-                            </button>
-                            <button name="btnRowFilter" style="background-color: #dc3545" id="dnsName" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('dnsName')">
-                                <h5>dnsName</h5>
-                            </button>
-                            <button name="btnRowFilter" style="background-color: #dc3545" id="redundance" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('redundance')">
-                                <h5>redundance</h5>
-                            </button>
-                            <button name="btnRowFilter" id="usage" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('usage')">
-                                <h5>usageType</h5>
-                            </button>
-                            <button name="btnRowFilter" style="background-color: #dc3545" id="criticity" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('criticity')">
-                                <h5>criticity</h5>
-                            </button>
-                            <button name="btnRowFilter" id="cpu" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('cpu')">
-                                <h5>cpu</h5>
-                            </button>
-                            <br><br>
-                            <button id="" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('hideAll')">
-                                <h5>tout enlever</h5>
-                            </button>
-                        </div>
-                        <div class="w-50 float-right p-1">
-                            <button name="btnRowFilter" id="ram" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('ram')">
-                                <h5>ram</h5>
-                            </button>
-                            <button name="btnRowFilter" id="disk" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('disk')">
-                                <h5>disk</h5>
-                            </button>
-                            <button name="btnRowFilter" id="network" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('network')">
-                                <h5>network</h5>
-                            </button>
-                            <button name="btnRowFilter" id="domain" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('domain')">
-                                <h5>domain</h5>
-                            </button>
-                            <button name="btnRowFilter" id="comment" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('comment')">
-                                <h5>comment</h5>
-                            </button>
-                            <button name="btnRowFilter" id="customer" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('customer')">
-                                <h5>customer</h5>
-                            </button>
-                            <button name="btnRowFilter" id="Ra" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('Ra')">
-                                <h5>userRa</h5>
-                            </button>
-                            <button name="btnRowFilter" id="Rt" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('Rt')">
-                                <h5>userRt</h5>
-                            </button>
-                            <button name="btnRowFilter" id="entity" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('entity')">
-                                <h5>entity_id</h5>
-                            </button>
-                            <button name="btnRowFilter" id="os" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('os')">
-                                <h5>os_id</h5>
-                            </button>
-                            <button name="btnRowFilter" id="snapshot" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('snapshot')">
-                                <h5>snapshot_id</h5>
-                            </button>
-                            <button name="btnRowFilter" id="backup" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('backup')">
-                                <h5>backup_id</h5>
-                            </button>
-                            <br><br>
-                            <button id="" type="button" class="btn btn-primary w-100 h-33" onclick="filterRow('displayAll')">
-                                <h5>tout afficher</h5>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        -->
         <!--Snapshot Modal Window-->
         <div class="modal fade" id="modalSnapshot" tabindex="-1" role="dialog" aria-labelledby="modalSnapshot" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="w-100 p-3">
                         <div class="w-50 float-left p-1">
-                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Gold', 23)">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Gold', 26)">
                                 <h5>Gold</h5>
                             </button>
-                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Silver', 23)">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Silver', 26)">
                                 <h5>Silver</h5>
                             </button>
-                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Bronze', 23)">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Bronze', 26)">
                                 <h5>Bronze</h5>
                             </button>
                         </div>
                         <div class="w-50 float-right p-1">
-                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Aucun', 23)">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Aucun', 26)">
                                 <h5>Aucun</h5>
                             </button>
-                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('', 23)">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('', 26)">
                                 <h5>Tous</h5>
                             </button>
                         </div>
@@ -343,21 +248,21 @@ ob_start();
                 <div class="modal-content">
                     <div class="w-100 p-3">
                         <div class="w-50 float-left p-1">
-                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Gold', 24)">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Gold', 27)">
                                 <h5>Gold</h5>
                             </button>
-                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Silver', 24)">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Silver', 27)">
                                 <h5>Silver</h5>
                             </button>
-                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Bronze', 24)">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Bronze', 27)">
                                 <h5>Bronze</h5>
                             </button>
                         </div>
                         <div class="w-50 float-right p-1">
-                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Aucun', 24)">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('Aucun', 27)">
                                 <h5>Aucun</h5>
                             </button>
-                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('', 24)">
+                            <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('', 27)">
                                 <h5>Tous</h5>
                             </button>
                         </div>
@@ -369,7 +274,7 @@ ob_start();
 
         <div style="height: 47px"> </div>
         <div class="table-responsive-xl">
-            <table class="table table-hover allVM" id="tableInventoryVm">
+            <table class="table table-hover allVM" id="allVmBody">
             <thead class="thead-dark sticky-top">
             <tr>
                 <th name="goToButton" scope="col" style="width: 50px;" onclick="sortTablePlus(0, 0)">Statut</th>
@@ -407,6 +312,7 @@ ob_start();
                 </th>
             </tr>
             </thead>
+                <!--AllVM-->
             <tbody>
                 <?php foreach ($allVM as $value): ?>
                     <tr>
@@ -465,6 +371,387 @@ ob_start();
                 <?php endforeach;?>
             </tbody>
         </table>
+
+            <table class="table table-hover allVM" id="allValidatedVmBody" hidden>
+                <thead class="thead-dark sticky-top">
+                <tr>
+                    <th name="goToButton" scope="col" style="width: 50px;" onclick="sortTablePlus(0, 0)">Statut</th>
+                    <th name="name" scope="col" onclick="sortTable(1, 0)">name</th>
+                    <th style="display: none" name="cluster" scope="col" onclick="sortTable(2, 0)">cluster</th>
+                    <th name="dateStart" scope="col" onclick="sortTable(4, 0)">dateStart</th>
+                    <th style="display: none" name="dateAnniversary" scope="col" onclick="sortTable(6, 0)">dateAnniversary</th>
+                    <th name="dateEnd" scope="col" onclick="sortTable(8, 0)">dateEnd</th>
+                    <th name="desc" scope="col" onclick="sortTable(9, 0)">description</th>
+                    <th style="display: none" name="ip" scope="col" onclick="sortTable(10, 0)">ip</th>
+                    <th style="display: none" name="dnsName" scope="col" onclick="sortTable(11, 0)">dnsName</th>
+                    <th style="display: none" name="redundance" scope="col" onclick="sortTable(12, 0)">redundance</th>
+                    <th name="usage" scope="col" onclick="sortTable(13, 0)">usageType</th>
+                    <th style="display: none" name="criticity" scope="col" onclick="sortTable(14, 0)">criticity</th>
+                    <th name="cpu" scope="col" onclick="sortNumberTable(15, 0)">cpu</th>
+                    <th name="ram" scope="col" onclick="sortNumberTable(16, 0)">ram</th>
+                    <th name="disk" scope="col" onclick="sortNumberTable(17, 0)">disk</th>
+                    <th name="network" scope="col" onclick="sortTable(18, 0)">network</th>
+                    <th name="domain" scope="col" onclick="sortTable(19, 0)">domain</th>
+                    <th name="comment" scope="col" onclick="sortTable(20, 0)">comment</th>
+                    <th name="customer" scope="col" onclick="sortTable(21, 0)">customer</th>
+                    <th name="Ra" scope="col" onclick="sortTable(22, 0)">userRa</th>
+                    <th name="Rt" scope="col" onclick="sortTable(23, 0)">userRt</th>
+                    <th name="entity" scope="col" onclick="sortTable(24, 0)">entity_id</th>
+                    <th name="os" scope="col" onclick="sortTable(25, 0)">os_id</th>
+                    <th name="snapshot" scope="col" onclick="sortTable(26, 0)">snapshot_id
+                        <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#modalSnapshot">
+                            <path fill-rule="evenodd" d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                        </svg>
+                    </th>
+                    <th name="backup" scope="col" onclick="sortTable(27, 0)">backup_id
+                        <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#modalBackup">
+                            <path fill-rule="evenodd" d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                        </svg>
+                    </th>
+                </tr>
+                </thead>
+                <!--allValidatedVM-->
+                <tbody>
+                <?php foreach ($allValidatedVM as $value): ?>
+                    <tr>
+                        <td name="goToButton" id="<?= $value['vmStatus']; ?>">
+                            <div class="btn-group" role="group">
+                                <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-primary" style="background-color: rgba(<?php if($value['vmStatus']==2){echo '40,167,69,0.7';}elseif ($value['vmStatus']==0){echo '255,165,69,0.7';}elseif ($value['vmStatus']==3){echo '233,48,48,0.7';}else{echo '90,90,90,0.7';}?>); border-color: rgba(<?php if($value['vmStatus']==2){echo '40,167,69,0.7';}elseif ($value['vmStatus']==0){echo '255,165,69,0.7';}elseif ($value['vmStatus']==3){echo '233,48,48,0.7';}else{echo '90,90,90,0.7';}?>);"><strong>+</strong></button></a>
+                            </div>
+                        </td>
+                        <td name="name"><?php echo $value['name']?></td>
+                        <td style="display: none" name="cluster"><?php echo $value['cluster']?></td>
+                        <td name="dateStart" style="min-width: 100px"><?php echo date("d.m.Y", strtotime($value['dateStart']))?></td>
+                        <td hidden name="strDateStart"><?= strtotime($value['dateStart']); ?></td>
+                        <td style="display: none" name="dateAnniversary"><?php if($value['dateAnniversary'] == null || $value['dateAnniversary'] == 'null'){echo '';}else{echo date("d.m.Y", strtotime($value['dateAnniversary']));}?></td>
+                        <td hidden name="strDateAnniversary"><?= strtotime($value['dateAnniversary']); ?></td>
+                        <td name="dateEnd" style="min-width: 100px"><?php if($value['dateEnd'] == null || $value['dateEnd'] == 'null'){echo '';}else{echo date("d.m.Y", strtotime($value['dateEnd']));}?></td>
+                        <td hidden name="strDateEnd"><?= strtotime($value['dateEnd']); ?></td>
+                        <td name="desc" ><?php if(strlen($value['description']) > 9){echo substr($value['description'],0,10)."...";}else{echo substr($value['description'],0,10);} ?></td>
+                        <td style="display: none" name="ip"><?php echo $value['ip']?></td>
+                        <td style="display: none" name="dnsName"><?php echo $value['dnsName']?></td>
+                        <td style="display: none" name="redundance"><?php
+                            //Verification for display name of the vm for redundance and not to display there ID
+                            if($value['redundance'] != null || $value['redundance'] != 'null' || $value['redundance'] != ' '){
+                                if(strstr($value['redundance'], '0') || strstr($value['redundance'], '1') || strstr($value['redundance'], '2') || strstr($value['redundance'], '3') || strstr($value['redundance'], '4') || strstr($value['redundance'], '5') || strstr($value['redundance'], '6') || strstr($value['redundance'], '7') || strstr($value['redundance'], '8') || strstr($value['redundance'], '9')){
+                                    foreach(explode(";", $value['redundance']) as $redundanceVal){
+                                        foreach($allVmName as $vmName){
+                                            if($redundanceVal == $vmName['id']){
+                                                echo $vmName['name']. '; ';
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    echo $value['redundance'];
+                                }
+                            }
+                            ?></td>
+                        <td name="usage" ><?php echo $value['usageType']?></td>
+                        <td style="display: none" name="criticity"><?php echo $value['criticity']?></td>
+                        <td name="cpu" ><?php echo $value['cpu']?></td>
+                        <td name="ram" ><?php echo $value['ram']?></td>
+                        <td name="disk" ><?php echo $value['disk']?></td>
+                        <td name="network" ><?php echo $value['network']?></td>
+                        <td name="domain" ><?php if($value['domain'] == 1){echo 'oui';}else{echo 'non';}?></td>
+                        <td name="comment" ><?php if(strlen($value['comment']) > 9){echo substr($value['comment'], 0, 10)."...";}else{echo substr($value['comment'], 0, 10);} ?></td>
+                        <td name="customer" ><?php echo $value['customer']?></td>
+                        <td name="Ra" ><?php echo $value['userRa']?></td>
+                        <td name="Rt" ><?php echo $value['userRt']?></td>
+                        <td name="entity" ><?php echo $value['entity_id']?></td>
+                        <td name="os" style="min-width: 100px"><?php echo $value['os_id']['1']." ".$value['os_id'][0]?></td>
+                        <td name="snapshot" style="min-width: 130px"><?php echo $value['snapshot_id']['1']?></td>
+                        <td name="backup" style="min-width: 120px"><?php echo $value['backup_id']['1']?></td>
+                    </tr>
+                <?php endforeach;?>
+                </tbody>
+            </table>
+
+            <table class="table table-hover allVM" id="allConfirmationVmBody" hidden>
+                <thead class="thead-dark sticky-top">
+                <tr>
+                    <th name="goToButton" scope="col" style="width: 50px;" onclick="sortTablePlus(0, 0)">Statut</th>
+                    <th name="name" scope="col" onclick="sortTable(1, 0)">name</th>
+                    <th style="display: none" name="cluster" scope="col" onclick="sortTable(2, 0)">cluster</th>
+                    <th name="dateStart" scope="col" onclick="sortTable(4, 0)">dateStart</th>
+                    <th style="display: none" name="dateAnniversary" scope="col" onclick="sortTable(6, 0)">dateAnniversary</th>
+                    <th name="dateEnd" scope="col" onclick="sortTable(8, 0)">dateEnd</th>
+                    <th name="desc" scope="col" onclick="sortTable(9, 0)">description</th>
+                    <th style="display: none" name="ip" scope="col" onclick="sortTable(10, 0)">ip</th>
+                    <th style="display: none" name="dnsName" scope="col" onclick="sortTable(11, 0)">dnsName</th>
+                    <th style="display: none" name="redundance" scope="col" onclick="sortTable(12, 0)">redundance</th>
+                    <th name="usage" scope="col" onclick="sortTable(13, 0)">usageType</th>
+                    <th style="display: none" name="criticity" scope="col" onclick="sortTable(14, 0)">criticity</th>
+                    <th name="cpu" scope="col" onclick="sortNumberTable(15, 0)">cpu</th>
+                    <th name="ram" scope="col" onclick="sortNumberTable(16, 0)">ram</th>
+                    <th name="disk" scope="col" onclick="sortNumberTable(17, 0)">disk</th>
+                    <th name="network" scope="col" onclick="sortTable(18, 0)">network</th>
+                    <th name="domain" scope="col" onclick="sortTable(19, 0)">domain</th>
+                    <th name="comment" scope="col" onclick="sortTable(20, 0)">comment</th>
+                    <th name="customer" scope="col" onclick="sortTable(21, 0)">customer</th>
+                    <th name="Ra" scope="col" onclick="sortTable(22, 0)">userRa</th>
+                    <th name="Rt" scope="col" onclick="sortTable(23, 0)">userRt</th>
+                    <th name="entity" scope="col" onclick="sortTable(24, 0)">entity_id</th>
+                    <th name="os" scope="col" onclick="sortTable(25, 0)">os_id</th>
+                    <th name="snapshot" scope="col" onclick="sortTable(26, 0)">snapshot_id
+                        <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#modalSnapshot">
+                            <path fill-rule="evenodd" d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                        </svg>
+                    </th>
+                    <th name="backup" scope="col" onclick="sortTable(27, 0)">backup_id
+                        <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#modalBackup">
+                            <path fill-rule="evenodd" d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                        </svg>
+                    </th>
+                </tr>
+                </thead>
+                <!--allConfirmationVM-->
+                <tbody>
+                <?php foreach ($allConfirmationVM as $value): ?>
+                    <tr>
+                        <td name="goToButton" id="<?= $value['vmStatus']; ?>">
+                            <div class="btn-group" role="group">
+                                <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-primary" style="background-color: rgba(<?php if($value['vmStatus']==2){echo '40,167,69,0.7';}elseif ($value['vmStatus']==0){echo '255,165,69,0.7';}elseif ($value['vmStatus']==3){echo '233,48,48,0.7';}else{echo '90,90,90,0.7';}?>); border-color: rgba(<?php if($value['vmStatus']==2){echo '40,167,69,0.7';}elseif ($value['vmStatus']==0){echo '255,165,69,0.7';}elseif ($value['vmStatus']==3){echo '233,48,48,0.7';}else{echo '90,90,90,0.7';}?>);"><strong>+</strong></button></a>
+                            </div>
+                        </td>
+                        <td name="name"><?php echo $value['name']?></td>
+                        <td style="display: none" name="cluster"><?php echo $value['cluster']?></td>
+                        <td name="dateStart" style="min-width: 100px"><?php echo date("d.m.Y", strtotime($value['dateStart']))?></td>
+                        <td hidden name="strDateStart"><?= strtotime($value['dateStart']); ?></td>
+                        <td style="display: none" name="dateAnniversary"><?php if($value['dateAnniversary'] == null || $value['dateAnniversary'] == 'null'){echo '';}else{echo date("d.m.Y", strtotime($value['dateAnniversary']));}?></td>
+                        <td hidden name="strDateAnniversary"><?= strtotime($value['dateAnniversary']); ?></td>
+                        <td name="dateEnd" style="min-width: 100px"><?php if($value['dateEnd'] == null || $value['dateEnd'] == 'null'){echo '';}else{echo date("d.m.Y", strtotime($value['dateEnd']));}?></td>
+                        <td hidden name="strDateEnd"><?= strtotime($value['dateEnd']); ?></td>
+                        <td name="desc" ><?php if(strlen($value['description']) > 9){echo substr($value['description'],0,10)."...";}else{echo substr($value['description'],0,10);} ?></td>
+                        <td style="display: none" name="ip"><?php echo $value['ip']?></td>
+                        <td style="display: none" name="dnsName"><?php echo $value['dnsName']?></td>
+                        <td style="display: none" name="redundance"><?php
+                            //Verification for display name of the vm for redundance and not to display there ID
+                            if($value['redundance'] != null || $value['redundance'] != 'null' || $value['redundance'] != ' '){
+                                if(strstr($value['redundance'], '0') || strstr($value['redundance'], '1') || strstr($value['redundance'], '2') || strstr($value['redundance'], '3') || strstr($value['redundance'], '4') || strstr($value['redundance'], '5') || strstr($value['redundance'], '6') || strstr($value['redundance'], '7') || strstr($value['redundance'], '8') || strstr($value['redundance'], '9')){
+                                    foreach(explode(";", $value['redundance']) as $redundanceVal){
+                                        foreach($allVmName as $vmName){
+                                            if($redundanceVal == $vmName['id']){
+                                                echo $vmName['name']. '; ';
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    echo $value['redundance'];
+                                }
+                            }
+                            ?></td>
+                        <td name="usage" ><?php echo $value['usageType']?></td>
+                        <td style="display: none" name="criticity"><?php echo $value['criticity']?></td>
+                        <td name="cpu" ><?php echo $value['cpu']?></td>
+                        <td name="ram" ><?php echo $value['ram']?></td>
+                        <td name="disk" ><?php echo $value['disk']?></td>
+                        <td name="network" ><?php echo $value['network']?></td>
+                        <td name="domain" ><?php if($value['domain'] == 1){echo 'oui';}else{echo 'non';}?></td>
+                        <td name="comment" ><?php if(strlen($value['comment']) > 9){echo substr($value['comment'], 0, 10)."...";}else{echo substr($value['comment'], 0, 10);} ?></td>
+                        <td name="customer" ><?php echo $value['customer']?></td>
+                        <td name="Ra" ><?php echo $value['userRa']?></td>
+                        <td name="Rt" ><?php echo $value['userRt']?></td>
+                        <td name="entity" ><?php echo $value['entity_id']?></td>
+                        <td name="os" style="min-width: 100px"><?php echo $value['os_id']['1']." ".$value['os_id'][0]?></td>
+                        <td name="snapshot" style="min-width: 130px"><?php echo $value['snapshot_id']['1']?></td>
+                        <td name="backup" style="min-width: 120px"><?php echo $value['backup_id']['1']?></td>
+                    </tr>
+                <?php endforeach;?>
+                </tbody>
+            </table>
+
+            <table class="table table-hover allVM" id="allRenewalVmBody" hidden>
+                <thead class="thead-dark sticky-top">
+                <tr>
+                    <th name="goToButton" scope="col" style="width: 50px;" onclick="sortTablePlus(0, 0)">Statut</th>
+                    <th name="name" scope="col" onclick="sortTable(1, 0)">name</th>
+                    <th style="display: none" name="cluster" scope="col" onclick="sortTable(2, 0)">cluster</th>
+                    <th name="dateStart" scope="col" onclick="sortTable(4, 0)">dateStart</th>
+                    <th style="display: none" name="dateAnniversary" scope="col" onclick="sortTable(6, 0)">dateAnniversary</th>
+                    <th name="dateEnd" scope="col" onclick="sortTable(8, 0)">dateEnd</th>
+                    <th name="desc" scope="col" onclick="sortTable(9, 0)">description</th>
+                    <th style="display: none" name="ip" scope="col" onclick="sortTable(10, 0)">ip</th>
+                    <th style="display: none" name="dnsName" scope="col" onclick="sortTable(11, 0)">dnsName</th>
+                    <th style="display: none" name="redundance" scope="col" onclick="sortTable(12, 0)">redundance</th>
+                    <th name="usage" scope="col" onclick="sortTable(13, 0)">usageType</th>
+                    <th style="display: none" name="criticity" scope="col" onclick="sortTable(14, 0)">criticity</th>
+                    <th name="cpu" scope="col" onclick="sortNumberTable(15, 0)">cpu</th>
+                    <th name="ram" scope="col" onclick="sortNumberTable(16, 0)">ram</th>
+                    <th name="disk" scope="col" onclick="sortNumberTable(17, 0)">disk</th>
+                    <th name="network" scope="col" onclick="sortTable(18, 0)">network</th>
+                    <th name="domain" scope="col" onclick="sortTable(19, 0)">domain</th>
+                    <th name="comment" scope="col" onclick="sortTable(20, 0)">comment</th>
+                    <th name="customer" scope="col" onclick="sortTable(21, 0)">customer</th>
+                    <th name="Ra" scope="col" onclick="sortTable(22, 0)">userRa</th>
+                    <th name="Rt" scope="col" onclick="sortTable(23, 0)">userRt</th>
+                    <th name="entity" scope="col" onclick="sortTable(24, 0)">entity_id</th>
+                    <th name="os" scope="col" onclick="sortTable(25, 0)">os_id</th>
+                    <th name="snapshot" scope="col" onclick="sortTable(26, 0)">snapshot_id
+                        <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#modalSnapshot">
+                            <path fill-rule="evenodd" d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                        </svg>
+                    </th>
+                    <th name="backup" scope="col" onclick="sortTable(27, 0)">backup_id
+                        <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#modalBackup">
+                            <path fill-rule="evenodd" d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                        </svg>
+                    </th>
+                </tr>
+                </thead>
+                <!--allRenewalVmBody-->
+                <tbody>
+                <?php foreach ($allRenewalVM as $value): ?>
+                    <tr>
+                        <td name="goToButton" id="<?= $value['vmStatus']; ?>">
+                            <div class="btn-group" role="group">
+                                <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-primary" style="background-color: rgba(<?php if($value['vmStatus']==2){echo '40,167,69,0.7';}elseif ($value['vmStatus']==0){echo '255,165,69,0.7';}elseif ($value['vmStatus']==3){echo '233,48,48,0.7';}else{echo '90,90,90,0.7';}?>); border-color: rgba(<?php if($value['vmStatus']==2){echo '40,167,69,0.7';}elseif ($value['vmStatus']==0){echo '255,165,69,0.7';}elseif ($value['vmStatus']==3){echo '233,48,48,0.7';}else{echo '90,90,90,0.7';}?>);"><strong>+</strong></button></a>
+                            </div>
+                        </td>
+                        <td name="name"><?php echo $value['name']?></td>
+                        <td style="display: none" name="cluster"><?php echo $value['cluster']?></td>
+                        <td name="dateStart" style="min-width: 100px"><?php echo date("d.m.Y", strtotime($value['dateStart']))?></td>
+                        <td hidden name="strDateStart"><?= strtotime($value['dateStart']); ?></td>
+                        <td style="display: none" name="dateAnniversary"><?php if($value['dateAnniversary'] == null || $value['dateAnniversary'] == 'null'){echo '';}else{echo date("d.m.Y", strtotime($value['dateAnniversary']));}?></td>
+                        <td hidden name="strDateAnniversary"><?= strtotime($value['dateAnniversary']); ?></td>
+                        <td name="dateEnd" style="min-width: 100px"><?php if($value['dateEnd'] == null || $value['dateEnd'] == 'null'){echo '';}else{echo date("d.m.Y", strtotime($value['dateEnd']));}?></td>
+                        <td hidden name="strDateEnd"><?= strtotime($value['dateEnd']); ?></td>
+                        <td name="desc" ><?php if(strlen($value['description']) > 9){echo substr($value['description'],0,10)."...";}else{echo substr($value['description'],0,10);} ?></td>
+                        <td style="display: none" name="ip"><?php echo $value['ip']?></td>
+                        <td style="display: none" name="dnsName"><?php echo $value['dnsName']?></td>
+                        <td style="display: none" name="redundance"><?php
+                            //Verification for display name of the vm for redundance and not to display there ID
+                            if($value['redundance'] != null || $value['redundance'] != 'null' || $value['redundance'] != ' '){
+                                if(strstr($value['redundance'], '0') || strstr($value['redundance'], '1') || strstr($value['redundance'], '2') || strstr($value['redundance'], '3') || strstr($value['redundance'], '4') || strstr($value['redundance'], '5') || strstr($value['redundance'], '6') || strstr($value['redundance'], '7') || strstr($value['redundance'], '8') || strstr($value['redundance'], '9')){
+                                    foreach(explode(";", $value['redundance']) as $redundanceVal){
+                                        foreach($allVmName as $vmName){
+                                            if($redundanceVal == $vmName['id']){
+                                                echo $vmName['name']. '; ';
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    echo $value['redundance'];
+                                }
+                            }
+                            ?></td>
+                        <td name="usage" ><?php echo $value['usageType']?></td>
+                        <td style="display: none" name="criticity"><?php echo $value['criticity']?></td>
+                        <td name="cpu" ><?php echo $value['cpu']?></td>
+                        <td name="ram" ><?php echo $value['ram']?></td>
+                        <td name="disk" ><?php echo $value['disk']?></td>
+                        <td name="network" ><?php echo $value['network']?></td>
+                        <td name="domain" ><?php if($value['domain'] == 1){echo 'oui';}else{echo 'non';}?></td>
+                        <td name="comment" ><?php if(strlen($value['comment']) > 9){echo substr($value['comment'], 0, 10)."...";}else{echo substr($value['comment'], 0, 10);} ?></td>
+                        <td name="customer" ><?php echo $value['customer']?></td>
+                        <td name="Ra" ><?php echo $value['userRa']?></td>
+                        <td name="Rt" ><?php echo $value['userRt']?></td>
+                        <td name="entity" ><?php echo $value['entity_id']?></td>
+                        <td name="os" style="min-width: 100px"><?php echo $value['os_id']['1']." ".$value['os_id'][0]?></td>
+                        <td name="snapshot" style="min-width: 130px"><?php echo $value['snapshot_id']['1']?></td>
+                        <td name="backup" style="min-width: 120px"><?php echo $value['backup_id']['1']?></td>
+                    </tr>
+                <?php endforeach;?>
+                </tbody>
+            </table>
+
+            <table class="table table-hover allVM" id="allDeletedVmBody" hidden>
+                <thead class="thead-dark sticky-top">
+                <tr>
+                    <th name="goToButton" scope="col" style="width: 50px;" onclick="sortTablePlus(0, 0)">Statut</th>
+                    <th name="name" scope="col" onclick="sortTable(1, 0)">name</th>
+                    <th style="display: none" name="cluster" scope="col" onclick="sortTable(2, 0)">cluster</th>
+                    <th name="dateStart" scope="col" onclick="sortTable(4, 0)">dateStart</th>
+                    <th style="display: none" name="dateAnniversary" scope="col" onclick="sortTable(6, 0)">dateAnniversary</th>
+                    <th name="dateEnd" scope="col" onclick="sortTable(8, 0)">dateEnd</th>
+                    <th name="desc" scope="col" onclick="sortTable(9, 0)">description</th>
+                    <th style="display: none" name="ip" scope="col" onclick="sortTable(10, 0)">ip</th>
+                    <th style="display: none" name="dnsName" scope="col" onclick="sortTable(11, 0)">dnsName</th>
+                    <th style="display: none" name="redundance" scope="col" onclick="sortTable(12, 0)">redundance</th>
+                    <th name="usage" scope="col" onclick="sortTable(13, 0)">usageType</th>
+                    <th style="display: none" name="criticity" scope="col" onclick="sortTable(14, 0)">criticity</th>
+                    <th name="cpu" scope="col" onclick="sortNumberTable(15, 0)">cpu</th>
+                    <th name="ram" scope="col" onclick="sortNumberTable(16, 0)">ram</th>
+                    <th name="disk" scope="col" onclick="sortNumberTable(17, 0)">disk</th>
+                    <th name="network" scope="col" onclick="sortTable(18, 0)">network</th>
+                    <th name="domain" scope="col" onclick="sortTable(19, 0)">domain</th>
+                    <th name="comment" scope="col" onclick="sortTable(20, 0)">comment</th>
+                    <th name="customer" scope="col" onclick="sortTable(21, 0)">customer</th>
+                    <th name="Ra" scope="col" onclick="sortTable(22, 0)">userRa</th>
+                    <th name="Rt" scope="col" onclick="sortTable(23, 0)">userRt</th>
+                    <th name="entity" scope="col" onclick="sortTable(24, 0)">entity_id</th>
+                    <th name="os" scope="col" onclick="sortTable(25, 0)">os_id</th>
+                    <th name="snapshot" scope="col" onclick="sortTable(26, 0)">snapshot_id
+                        <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#modalSnapshot">
+                            <path fill-rule="evenodd" d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                        </svg>
+                    </th>
+                    <th name="backup" scope="col" onclick="sortTable(27, 0)">backup_id
+                        <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#modalBackup">
+                            <path fill-rule="evenodd" d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                        </svg>
+                    </th>
+                </tr>
+                </thead>
+                <!--allDeletedVmBody-->
+                <tbody>
+                <?php foreach ($allDeletedVM as $value): ?>
+                    <tr>
+                        <td name="goToButton" id="<?= $value['vmStatus']; ?>">
+                            <div class="btn-group" role="group">
+                                <a href="index.php?action=detailsVM&id=<?php echo $value['id']?>"><button type="button" class="btn btn-primary" style="background-color: rgba(<?php if($value['vmStatus']==2){echo '40,167,69,0.7';}elseif ($value['vmStatus']==0){echo '255,165,69,0.7';}elseif ($value['vmStatus']==3){echo '233,48,48,0.7';}else{echo '90,90,90,0.7';}?>); border-color: rgba(<?php if($value['vmStatus']==2){echo '40,167,69,0.7';}elseif ($value['vmStatus']==0){echo '255,165,69,0.7';}elseif ($value['vmStatus']==3){echo '233,48,48,0.7';}else{echo '90,90,90,0.7';}?>);"><strong>+</strong></button></a>
+                            </div>
+                        </td>
+                        <td name="name"><?php echo $value['name']?></td>
+                        <td style="display: none" name="cluster"><?php echo $value['cluster']?></td>
+                        <td name="dateStart" style="min-width: 100px"><?php echo date("d.m.Y", strtotime($value['dateStart']))?></td>
+                        <td hidden name="strDateStart"><?= strtotime($value['dateStart']); ?></td>
+                        <td style="display: none" name="dateAnniversary"><?php if($value['dateAnniversary'] == null || $value['dateAnniversary'] == 'null'){echo '';}else{echo date("d.m.Y", strtotime($value['dateAnniversary']));}?></td>
+                        <td hidden name="strDateAnniversary"><?= strtotime($value['dateAnniversary']); ?></td>
+                        <td name="dateEnd" style="min-width: 100px"><?php if($value['dateEnd'] == null || $value['dateEnd'] == 'null'){echo '';}else{echo date("d.m.Y", strtotime($value['dateEnd']));}?></td>
+                        <td hidden name="strDateEnd"><?= strtotime($value['dateEnd']); ?></td>
+                        <td name="desc" ><?php if(strlen($value['description']) > 9){echo substr($value['description'],0,10)."...";}else{echo substr($value['description'],0,10);} ?></td>
+                        <td style="display: none" name="ip"><?php echo $value['ip']?></td>
+                        <td style="display: none" name="dnsName"><?php echo $value['dnsName']?></td>
+                        <td style="display: none" name="redundance"><?php
+                            //Verification for display name of the vm for redundance and not to display there ID
+                            if($value['redundance'] != null || $value['redundance'] != 'null' || $value['redundance'] != ' '){
+                                if(strstr($value['redundance'], '0') || strstr($value['redundance'], '1') || strstr($value['redundance'], '2') || strstr($value['redundance'], '3') || strstr($value['redundance'], '4') || strstr($value['redundance'], '5') || strstr($value['redundance'], '6') || strstr($value['redundance'], '7') || strstr($value['redundance'], '8') || strstr($value['redundance'], '9')){
+                                    foreach(explode(";", $value['redundance']) as $redundanceVal){
+                                        foreach($allVmName as $vmName){
+                                            if($redundanceVal == $vmName['id']){
+                                                echo $vmName['name']. '; ';
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    echo $value['redundance'];
+                                }
+                            }
+                            ?></td>
+                        <td name="usage" ><?php echo $value['usageType']?></td>
+                        <td style="display: none" name="criticity"><?php echo $value['criticity']?></td>
+                        <td name="cpu" ><?php echo $value['cpu']?></td>
+                        <td name="ram" ><?php echo $value['ram']?></td>
+                        <td name="disk" ><?php echo $value['disk']?></td>
+                        <td name="network" ><?php echo $value['network']?></td>
+                        <td name="domain" ><?php if($value['domain'] == 1){echo 'oui';}else{echo 'non';}?></td>
+                        <td name="comment" ><?php if(strlen($value['comment']) > 9){echo substr($value['comment'], 0, 10)."...";}else{echo substr($value['comment'], 0, 10);} ?></td>
+                        <td name="customer" ><?php echo $value['customer']?></td>
+                        <td name="Ra" ><?php echo $value['userRa']?></td>
+                        <td name="Rt" ><?php echo $value['userRt']?></td>
+                        <td name="entity" ><?php echo $value['entity_id']?></td>
+                        <td name="os" style="min-width: 100px"><?php echo $value['os_id']['1']." ".$value['os_id'][0]?></td>
+                        <td name="snapshot" style="min-width: 130px"><?php echo $value['snapshot_id']['1']?></td>
+                        <td name="backup" style="min-width: 120px"><?php echo $value['backup_id']['1']?></td>
+                    </tr>
+                <?php endforeach;?>
+                </tbody>
+            </table>
+
         </div>
     </form>
     <script>

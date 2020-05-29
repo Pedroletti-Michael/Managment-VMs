@@ -70,8 +70,26 @@ function filterForInventoryVm(which, n) {
     var input, filter, table, tr, td, i, txtValue;
     input = which;
     filter = input.toUpperCase();
-    table = document.getElementById("tableInventoryVm");
+
+    //get the good table for get the good tr
+    if(document.getElementById("allVmBody").hidden == false){
+        table = document.getElementById("allVmBody");
+    }
+    else if(document.getElementById("allValidatedVmBody").hidden == false){
+        table = document.getElementById("allValidatedVmBody");
+    }
+    else if(document.getElementById("allConfirmationVmBody").hidden == false){
+        table = document.getElementById("allConfirmationVmBody");
+    }
+    else if(document.getElementById("allRenewalVmBody").hidden == false){
+        table = document.getElementById("allRenewalVmBody");
+    }
+    else if(document.getElementById("allDeletedVmBody").hidden == false){
+        table = document.getElementById("allDeletedVmBody");
+    }
+
     tr = table.getElementsByTagName("tr");
+
     for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[n];
         if (td) {

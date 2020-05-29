@@ -68,8 +68,14 @@ function displayAllVM($searchFilter,$vmFilter = "all")
                 case 1:
                     require_once 'model/vmManager.php';
                     require_once 'model/dbConnector.php';
-                    $allVmName = getAllVmNameAndId();
+
+                    $allValidatedVM = getValidatedVM();
+                    $allConfirmationVM = getConfirmationVM();
+                    $allRenewalVM = getRenewalVM();
+                    $allDeletedVM = getDeletedOrUnrenewalVM();
                     $allVM = getAllVM();
+                    $allVmName = getAllVmNameAndId();
+
                     $_GET['action'] = "allVM";
                     require 'view/allVM.php';
                     break;
