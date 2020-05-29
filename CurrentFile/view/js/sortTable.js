@@ -75,6 +75,7 @@ function sortTable(n, whichTable) {
             }
         }
     }
+    numberOfClick(n,dir);
 }
 
 function sortNumberTable(n, whichTable) {
@@ -149,6 +150,7 @@ function sortNumberTable(n, whichTable) {
             }
         }
     }
+    numberOfClick(n,dir);
 }
 
 
@@ -223,6 +225,31 @@ function sortTablePlus(n, which){
                 dir = "desc";
                 switching = true;
             }
+        }
+    }
+    numberOfClick(n,dir);
+}
+
+function numberOfClick(n,dir){
+    for (var i = 0; i < 28; i++){
+        if (i == 3){i = 4;}
+        if (i == 5){i = 6;}
+        if (i == 7){i = 8;}
+        if(i == n){
+            if(dir == "asc"){
+                document.getElementById(n + "_none").style.display = "none";
+                document.getElementById(n + "_up").style.display = "none";
+                document.getElementById(n + "_down").style.display = "inline";
+            }
+            if(dir == "desc"){
+                document.getElementById(n + "_none").style.display = "none";
+                document.getElementById(n + "_down").style.display = "none";
+                document.getElementById(n + "_up").style.display = "inline";
+            }
+        }else{
+            document.getElementById(i + "_none").style.display = "inline";
+            document.getElementById(i + "_up").style.display = "none";
+            document.getElementById(i + "_down").style.display = "none";
         }
     }
 }
