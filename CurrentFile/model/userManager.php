@@ -273,3 +273,11 @@ function verificationUserFromDb(){
 
     return true;
 }
+
+function userRtVerification(){
+    //get all user from db
+
+    //get all userRt and cluster from requestVm in db
+
+    //compare
+}

@@ -231,25 +231,121 @@ function sortTablePlus(n, which){
 }
 
 function numberOfClick(n,dir){
-    for (var i = 0; i < 28; i++){
-        if (i == 3){i = 4;}
-        if (i == 5){i = 6;}
-        if (i == 7){i = 8;}
-        if(i == n){
-            if(dir == "asc"){
-                document.getElementById(n + "_none").style.display = "none";
-                document.getElementById(n + "_up").style.display = "none";
-                document.getElementById(n + "_down").style.display = "inline";
+    if(document.getElementById("allVmBody").hidden == false){
+        for (var i = 0; i < 28; i++){
+            if (i == 3){i = 4;}
+            if (i == 5){i = 6;}
+            if (i == 7){i = 8;}
+            if(i == n){
+                if(dir == "asc"){
+                    document.getElementById(n + "_none_all").style.display = "none";
+                    document.getElementById(n + "_up_all").style.display = "none";
+                    document.getElementById(n + "_down_all").style.display = "inline";
+                }
+                if(dir == "desc"){
+                    document.getElementById(n + "_none_all").style.display = "none";
+                    document.getElementById(n + "_down_all").style.display = "none";
+                    document.getElementById(n + "_up_all").style.display = "inline";
+                }
+            }else{
+                document.getElementById(i + "_none_all").style.display = "inline";
+                document.getElementById(i + "_up_all").style.display = "none";
+                document.getElementById(i + "_down_all").style.display = "none";
             }
-            if(dir == "desc"){
-                document.getElementById(n + "_none").style.display = "none";
-                document.getElementById(n + "_down").style.display = "none";
-                document.getElementById(n + "_up").style.display = "inline";
-            }
-        }else{
-            document.getElementById(i + "_none").style.display = "inline";
-            document.getElementById(i + "_up").style.display = "none";
-            document.getElementById(i + "_down").style.display = "none";
         }
     }
+    else if(document.getElementById("allValidatedVmBody").hidden == false){
+        for (var i = 0; i < 28; i++){
+            if (i == 3){i = 4;}
+            if (i == 5){i = 6;}
+            if (i == 7){i = 8;}
+            if(i == n){
+                if(dir == "asc"){
+                    document.getElementById(n + "_none_validate").style.display = "none";
+                    document.getElementById(n + "_up_validate").style.display = "none";
+                    document.getElementById(n + "_down_validate").style.display = "inline";
+                }
+                if(dir == "desc"){
+                    document.getElementById(n + "_none_validate").style.display = "none";
+                    document.getElementById(n + "_down_validate").style.display = "none";
+                    document.getElementById(n + "_up_validate").style.display = "inline";
+                }
+            }else{
+                document.getElementById(i + "_none_validate").style.display = "inline";
+                document.getElementById(i + "_up_validate").style.display = "none";
+                document.getElementById(i + "_down_validate").style.display = "none";
+            }
+        }
+    }
+    else if(document.getElementById("allConfirmationVmBody").hidden == false){
+        for (var i = 0; i < 28; i++){
+            if (i == 3){i = 4;}
+            if (i == 5){i = 6;}
+            if (i == 7){i = 8;}
+            if(i == n){
+                if(dir == "asc"){
+                    document.getElementById(n + "_none_confirmation").style.display = "none";
+                    document.getElementById(n + "_up_confirmation").style.display = "none";
+                    document.getElementById(n + "_down_confirmation").style.display = "inline";
+                }
+                if(dir == "desc"){
+                    document.getElementById(n + "_none_confirmation").style.display = "none";
+                    document.getElementById(n + "_down_confirmation").style.display = "none";
+                    document.getElementById(n + "_up_confirmation").style.display = "inline";
+                }
+            }else{
+                document.getElementById(i + "_none_confirmation").style.display = "inline";
+                document.getElementById(i + "_up_confirmation").style.display = "none";
+                document.getElementById(i + "_down_confirmation").style.display = "none";
+            }
+        }
+    }
+    else if(document.getElementById("allRenewalVmBody").hidden == false){
+        for (var i = 0; i < 28; i++){
+            if (i == 3){i = 4;}
+            if (i == 5){i = 6;}
+            if (i == 7){i = 8;}
+            if(i == n){
+                if(dir == "asc"){
+                    document.getElementById(n + "_none_renewal").style.display = "none";
+                    document.getElementById(n + "_up_renewal").style.display = "none";
+                    document.getElementById(n + "_down_renewal").style.display = "inline";
+                }
+                if(dir == "desc"){
+                    document.getElementById(n + "_none_renewal").style.display = "none";
+                    document.getElementById(n + "_down_renewal").style.display = "none";
+                    document.getElementById(n + "_up_renewal").style.display = "inline";
+                }
+            }else{
+                document.getElementById(i + "_none_renewal").style.display = "inline";
+                document.getElementById(i + "_up_renewal").style.display = "none";
+                document.getElementById(i + "_down_renewal").style.display = "none";
+            }
+        }
+    }
+    else if(document.getElementById("allDeletedVmBody").hidden == false){
+        for (var i = 0; i < 28; i++){
+            if (i == 3){i = 4;}
+            if (i == 5){i = 6;}
+            if (i == 7){i = 8;}
+            if(i == n){
+                if(dir == "asc"){
+                    document.getElementById(n + "_none_delete").style.display = "none";
+                    document.getElementById(n + "_up_delete").style.display = "none";
+                    document.getElementById(n + "_down_delete").style.display = "inline";
+                }
+                if(dir == "desc"){
+                    document.getElementById(n + "_none_delete").style.display = "none";
+                    document.getElementById(n + "_down_delete").style.display = "none";
+                    document.getElementById(n + "_up_delete").style.display = "inline";
+                }
+            }else{
+                document.getElementById(i + "_none_delete").style.display = "inline";
+                document.getElementById(i + "_up_delete").style.display = "none";
+                document.getElementById(i + "_down_delete").style.display = "none";
+            }
+        }
+    }
+
+
 }
