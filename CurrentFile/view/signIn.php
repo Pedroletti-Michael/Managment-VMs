@@ -34,11 +34,12 @@ ob_start();
                         <div class="input-group mb-2 mr-sm-2">
                             <input type="password" class="form-control w-100" id="userPassword" name="userPassword" placeholder="Mot de passe" required>
                         </div>
+                        <div class="w-100 mb-2"><a href="mailto:helpdesk@heig-vd.ch?subject=Plateforme GVM : [Titre de votre message]">Un problème pour vous connecter ? Contactez le mailto:helpdesk@heig-vd.ch</a></div>
                         <button type="submit" class="input-group btn btn-success w-auto m-auto w3-center">Connexion</button>
                     </div>
                     <?php
                         if(isset($_POST['error']) && $_POST['error'] == "credentials"){
-                            echo "<div style='color: red'>Identifiant ou mot de passe faux !</div>";
+                            echo "<div style='color: red'>Indentifiant ou mot de passe invalide.</div>";
                         }
                         if(isset($_POST['error']) && $_POST['error'] == "fieldEmpty"){
                             echo "<div style='color: red'>Veuillez renseigner tous les champs !</div>";
