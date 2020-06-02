@@ -351,7 +351,7 @@ function getUserConfirmationVM($userId){
     require_once 'model/dbConnector.php';
 
     $strSep = '\'';
-    $querySelect = "SELECT `id`, `name`, `cluster`, `dateStart`, `dateAnniversary`, `dateEnd`, `timestampAdd`, `description`, `ip`, `dnsName`, `redundance`, `usageType`, `criticity`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus` FROM `vm` WHERE vmStatus = 0 AND customer = ". $strSep.$userId.$strSep ." OR userRa =". $strSep.$userId.$strSep ." OR userRt =". $strSep.$userId.$strSep;
+    $querySelect = "SELECT `id`, `name`, `cluster`, `dateStart`, `dateAnniversary`, `dateEnd`, `timestampAdd`, `description`, `ip`, `dnsName`, `redundance`, `usageType`, `criticity`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus` FROM `vm` WHERE vmStatus = 0 AND customer = ". $strSep.$userId.$strSep ." OR vmStatus = 0 AND userRa =". $strSep.$userId.$strSep ." OR vmStatus = 0 AND userRt =". $strSep.$userId.$strSep;
 
     $resultSelect = executeQuerySelect($querySelect);
     $i = 0;
@@ -395,7 +395,7 @@ function getUserRenewalVM($userId){
     require_once 'model/dbConnector.php';
 
     $strSep = '\'';
-    $querySelect = "SELECT `id`, `name`, `cluster`, `dateStart`, `dateAnniversary`, `dateEnd`, `timestampAdd`, `description`, `ip`, `dnsName`, `redundance`, `usageType`, `criticity`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus` FROM `vm` WHERE vmStatus = 3 AND customer = ". $strSep.$userId.$strSep ." OR userRa =". $strSep.$userId.$strSep ." OR userRt =". $strSep.$userId.$strSep;
+    $querySelect = "SELECT `id`, `name`, `cluster`, `dateStart`, `dateAnniversary`, `dateEnd`, `timestampAdd`, `description`, `ip`, `dnsName`, `redundance`, `usageType`, `criticity`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus` FROM `vm` WHERE vmStatus = 3 AND customer = ". $strSep.$userId.$strSep ." OR vmStatus = 3 AND userRa =". $strSep.$userId.$strSep ." OR vmStatus = 3 AND userRt =". $strSep.$userId.$strSep;
 
     $resultSelect = executeQuerySelect($querySelect);
     $i = 0;
@@ -439,7 +439,7 @@ function getUserValidatedVM($userId){
     require_once 'model/dbConnector.php';
 
     $strSep = '\'';
-    $querySelect = "SELECT `id`, `name`, `cluster`, `dateStart`, `dateAnniversary`, `dateEnd`, `timestampAdd`, `description`, `ip`, `dnsName`, `redundance`, `usageType`, `criticity`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus` FROM `vm` WHERE vmStatus = 2 AND customer = ". $strSep.$userId.$strSep ." OR userRa =". $strSep.$userId.$strSep ." OR userRt =". $strSep.$userId.$strSep;
+    $querySelect = "SELECT `id`, `name`, `cluster`, `dateStart`, `dateAnniversary`, `dateEnd`, `timestampAdd`, `description`, `ip`, `dnsName`, `redundance`, `usageType`, `criticity`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus` FROM `vm` WHERE vmStatus = 2 AND customer = ". $strSep.$userId.$strSep ." OR vmStatus = 2 AND userRa =". $strSep.$userId.$strSep ." OR vmStatus = 2 AND userRt =". $strSep.$userId.$strSep;
 
     $resultSelect = executeQuerySelect($querySelect);
     $i = 0;
@@ -483,7 +483,7 @@ function getUserDeletedOrUnrenewalVM($userId){
     require_once 'model/dbConnector.php';
 
     $strSep = '\'';
-    $querySelect = "SELECT `id`, `name`, `cluster`, `dateStart`, `dateAnniversary`, `dateEnd`, `timestampAdd`, `description`, `ip`, `dnsName`, `redundance`, `usageType`, `criticity`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus` FROM `vm` WHERE vmStatus = 5 AND customer = ". $strSep.$userId.$strSep ." OR userRa =". $strSep.$userId.$strSep ." OR userRt =". $strSep.$userId.$strSep;
+    $querySelect = "SELECT `id`, `name`, `cluster`, `dateStart`, `dateAnniversary`, `dateEnd`, `timestampAdd`, `description`, `ip`, `dnsName`, `redundance`, `usageType`, `criticity`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus` FROM `vm` WHERE vmStatus = 5 AND customer = ". $strSep.$userId.$strSep ." OR vmStatus = 5 AND userRa =". $strSep.$userId.$strSep ." OR vmStatus = 5 AND userRt =". $strSep.$userId.$strSep;
 
     $resultSelect = executeQuerySelect($querySelect);
     $i = 0;
@@ -529,7 +529,7 @@ function getRenewFromAUser($userId){
     require_once 'model/dbConnector.php';
     $strSep = '\'';
 
-    $querySelect = "SELECT `id`, `name`, `dateStart`, `dateAnniversary`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus`  FROM `vm` WHERE vmStatus = 3 AND customer = ". $strSep.$userId.$strSep ."OR userRa = ". $strSep.$userId.$strSep ."OR userRt = ". $strSep.$userId.$strSep;
+    $querySelect = "SELECT `id`, `name`, `dateStart`, `dateAnniversary`, `dateEnd`, `description`, `usageType`, `cpu`, `ram`, `disk`, `network`, `domain`, `comment`, `customer`, `userRa`, `userRt`, `entity_id`, `os_id`, `snapshot_id`, `backup_id`, `vmStatus`  FROM `vm` WHERE vmStatus = 3 AND customer = ". $strSep.$userId.$strSep ."OR vmStatus = 3 AND userRa = ". $strSep.$userId.$strSep ."OR vmStatus = 3 AND userRt = ". $strSep.$userId.$strSep;
 
     $resultSelect = executeQuerySelect($querySelect);
     $i = 0;

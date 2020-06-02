@@ -3107,6 +3107,37 @@ ob_start();
 
 
 </div>
+<script>
+    var allVm = <?= json_encode($allVM); ?>;
+    var i;
+    var allVmCount = allVm.length;
+    var vmConfirmed = 0;
+    var vmToBeConfirmed = 0;
+    var vmRenew = 0;
+    var vmDeleted = 0;
+    for (i = 0; i < allVm.length; i++) {
+        switch (allVm[i]['vmStatus']) {
+            case '0':
+                vmToBeConfirmed++;
+                break;
+            case '2':
+                vmConfirmed++;
+                break;
+            case '3':
+                vmRenew++;
+                break;
+            case '5':
+                vmDeleted++;
+                break;
+        }
+    }
+    document.getElementById("numberOfVM").innerHTML = allVmCount;
+    document.getElementById("numberOfConfirmedVM").textContent = vmConfirmed;
+    document.getElementById("numberOfToBeConfirmedVM").innerText = vmToBeConfirmed;
+    document.getElementById("numberOfRenewalVM").innerHTML = vmRenew;
+    document.getElementById("numberOfDeletedVM").innerHTML = vmDeleted;
+</script>
+
 <?php
 
 $contenu = ob_get_clean();

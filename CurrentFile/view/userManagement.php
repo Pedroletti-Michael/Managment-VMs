@@ -35,7 +35,8 @@ ob_start();
             <table class="table table-hover allVM" id="tableInventoryUser" >
                 <thead class="thead-dark sticky-top">
                 <tr>
-                    <th name="goToButton" scope="col" style="width: 50px;"></th>
+                    <th name="goToButton" scope="col" style="width: 50px;">Admin</th>
+                    <th name="goToButton" scope="col" style="width: 50px;">Viewer</th>
                     <th name="lastname" scope="col">lastname</th>
                     <th name="firstname" scope="col">firstname</th>
                     <th name="mail" scope="col">mail</th>
@@ -46,7 +47,10 @@ ob_start();
                 <?php foreach ($allUsersAsc as $value): ?>
                     <tr>
                         <td name="goToButton">
-                            <input name="checkboxAsc<?php echo $value['user_id']?>" class="checkBoxAsc" type="checkbox" <?php if($value['type'] == 1){echo 'checked'; } ?>>
+                            <input name="checkboxAsc<?php echo $value['user_id']?>" style="width: 50px;" class="checkBoxAsc" type="checkbox" <?php if($value['type'] == 1){echo 'checked'; } ?> onchange="if(document.getElementsByName('checkboxViewerAsc<?php echo $value['user_id']?>')[0].checked == true){document.getElementsByName('checkboxViewerAsc<?php echo $value['user_id']?>')[0].checked = false;}">
+                        </td>
+                        <td name="goToButton">
+                            <input name="checkboxViewerAsc<?php echo $value['user_id']?>" style="width: 50px;" class="checkBoxAsc" type="checkbox" <?php if($value['type'] == 2){echo 'checked'; } ?> onchange="if(document.getElementsByName('checkboxAsc<?php echo $value['user_id']?>')[0].checked == true){document.getElementsByName('checkboxAsc<?php echo $value['user_id']?>')[0].checked = false;}">
                         </td>
                         <td name="lastname<?php echo $value['user_id']?>"><?php echo $value['lastname']?></td>
                         <td name="firstname<?php echo $value['user_id']?>"><?php echo $value['firstname']?></td>
@@ -69,7 +73,8 @@ ob_start();
             <table class="table table-hover allVM" id="tableInventoryUser" >
                 <thead class="thead-dark sticky-top">
                 <tr>
-                    <th name="goToButton" scope="col" style="width: 50px;"></th>
+                    <th name="goToButton" scope="col" style="width: 50px;">Admin</th>
+                    <th name="goToButton" scope="col" style="width: 50px;">Viewer</th>
                     <th name="lastname" scope="col">lastname</th>
                     <th name="firstname" scope="col">firstname</th>
                     <th name="mail" scope="col">mail</th>
@@ -80,7 +85,10 @@ ob_start();
                 <?php foreach ($allUsersDesc as $valueDesc): ?>
                     <tr>
                         <td name="goToButton">
-                            <input name="checkboxDesc<?php echo $valueDesc['user_id']?>"  class="checkBoxDesc" type="checkbox" <?php if($valueDesc['type'] == 1){echo 'checked'; } ?>>
+                            <input name="checkboxDesc<?php echo $valueDesc['user_id']?>" style="width: 50px;" class="checkBoxDesc" type="checkbox" <?php if($valueDesc['type'] == 1){echo 'checked'; } ?> onchange="if(document.getElementsByName('checkboxViewerDesc<?php echo $value['user_id']?>')[0].checked == true){document.getElementsByName('checkboxViewerDesc<?php echo $value['user_id']?>')[0].checked = false;}">
+                        </td>
+                        <td name="goToButton">
+                            <input name="checkboxViewerDesc<?php echo $valueDesc['user_id']?>" style="width: 50px;" class="checkBoxDesc" type="checkbox" <?php if($valueDesc['type'] == 2){echo 'checked'; } ?> onchange="if(document.getElementsByName('checkboxDesc<?php echo $value['user_id']?>')[0].checked == true){document.getElementsByName('checkboxDesc<?php echo $value['user_id']?>')[0].checked = false;}">
                         </td>
                         <td name="lastname<?php echo $valueDesc['user_id']?>"><?php echo $valueDesc['lastname']?></td>
                         <td name="firstname<?php echo $valueDesc['user_id']?>"><?php echo $valueDesc['firstname']?></td>
@@ -92,6 +100,7 @@ ob_start();
             </table>
         </div>
         <input type="hidden" name="usersAfterDesc" id="usersAfterDesc">
+        <input type="hidden" name="usersViewerAfterDesc" id="usersViewerAfterDesc">
         <a onclick="transferUser(1)">
             <button type="submit" class="btn btn-primary mb-1 mt-1 responsiveDisplay" id="bottomDesc">
                 Enregistrer les modifications apportées
