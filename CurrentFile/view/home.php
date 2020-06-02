@@ -108,6 +108,7 @@ ob_start();
                       clip-rule="evenodd"/>
             </svg>
         </button>
+        <div class="pb-5"><!-- DONT DELETE THAT /!\ --> </div>
         <!------------- Sidebar Options ------------>
         <div class="w3-sidebar w3-bar-block w3-card w3-animate-right" style="display:none;right:0;" id="rightMenu">
             <button type="button" onclick="closeRightMenu()" class="w-100 btn btn-danger rounded-0 text-left">Fermer
