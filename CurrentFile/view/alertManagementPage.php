@@ -117,7 +117,7 @@ ob_start();
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="requestMail" class="font-weight-bold">Contenu du mail de confirmation de requête<a
                             style="color: red"> *</a></label>
-                <textarea rows="15" style="resize: none" class="form-control form form text-lowercase" id="requestMail"
+                <textarea rows="15" style="resize: none" class="form-control form form" id="requestMail"
                           name="requestMail" aria-describedby="requestMailHelp" placeholder="Ex: Bonjour,<br>..."
                           required><?= $mailContentJsonData['requestMail']; ?></textarea>
                 <small id="requestMailHelp" class="form-text text-muted font-weight-bold">Variables utilisables : 1.
@@ -128,7 +128,7 @@ ob_start();
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="mailToAdminstratorRequest" class="font-weight-bold">Contenu du mail de confirmation de
                     requête envoyer à l'administrateur<a style="color: red"> *</a></label>
-                <textarea rows="15" style="resize: none" class="form-control form form text-lowercase"
+                <textarea rows="15" style="resize: none" class="form-control form form"
                           id="mailToAdminstratorRequest" name="mailToAdminstratorRequest"
                           aria-describedby="mailToAdminstratorRequestHelp" placeholder="Ex: Bonjour,<br>..."
                           required><?= $mailContentJsonData['mailToAdminstratorRequest']; ?></textarea>
@@ -142,7 +142,7 @@ ob_start();
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="validateRequestMail" class="font-weight-bold">Contenu du mail de validation d'une requête<a
                             style="color: red"> *</a></label>
-                <textarea rows="15" style="resize: none" class="form-control form form text-lowercase"
+                <textarea rows="15" style="resize: none" class="form-control form form"
                           id="validateRequestMail" name="validateRequestMail" aria-describedby="validateRequestMailHelp"
                           placeholder="Ex: Bonjour,<br>..."
                           required><?= $mailContentJsonData['validateRequestMail']; ?></textarea>
@@ -154,7 +154,7 @@ ob_start();
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="deniedRequestMail" class="font-weight-bold">Contenu du mail de refus d'une requête<a
                             style="color: red"> *</a></label>
-                <textarea rows="15" style="resize: none" class="form-control form form text-lowercase"
+                <textarea rows="15" style="resize: none" class="form-control form form"
                           id="deniedRequestMail" name="deniedRequestMail" aria-describedby="deniedRequestMailHelp"
                           placeholder="Ex: Bonjour,<br>..."
                           required><?= $mailContentJsonData['deniedRequestMail']; ?></textarea>
@@ -168,7 +168,7 @@ ob_start();
             <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                 <label for="advertMail" class="font-weight-bold">Contenu du mail d'avertissement (renouvellement)<a
                             style="color: red"> *</a></label>
-                <textarea rows="15" style="resize: none" class="form-control form form text-lowercase" id="advertMail"
+                <textarea rows="15" style="resize: none" class="form-control form form" id="advertMail"
                           name="advertMail" aria-describedby="advertMailHelp" placeholder="Ex: Bonjour,<br>..."
                           required><?= $mailContentJsonData['advertMail']; ?></textarea>
                 <small id="advertMailHelp" class="form-text text-muted">Variables utilisables : 1. e-mail de
@@ -180,7 +180,7 @@ ob_start();
             <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                 <label for="nonrenewalMailAdvert" class="font-weight-bold">Contenu du mail de non-renouvellement d'une
                     VM<a style="color: red"> *</a></label>
-                <textarea rows="15" style="resize: none" class="form-control form form text-lowercase"
+                <textarea rows="15" style="resize: none" class="form-control form form"
                           id="nonrenewalMailAdvert" name="nonrenewalMailAdvert"
                           aria-describedby="nonrenewalMailAdvertHelp" placeholder="Ex: Bonjour,<br>..."
                           required><?= $mailContentJsonData['nonrenewalMailAdvert']; ?></textarea>
