@@ -95,6 +95,12 @@ function getAllAdmin(){
     return executeQuerySelect($query);
 }
 
+function getAllViewer(){
+    $query = 'SELECT mail, lastname, firstname, type, user_id FROM user WHERE type = 2 ORDER BY lastname ASC';
+
+    return executeQuerySelect($query);
+}
+
 /**
 * This function is used to know if the user exist in our db.
 * If the user exist -> function return true
@@ -204,7 +210,13 @@ function getAllUserId(){
  * return true
  */
 function updateType($userId, $type){
-    if($type){
+    if($type == 2){
+        //viewer query
+        $query = "UPDATE user SET type = 2 WHERE user_id = ". $userId;
+
+        executeQuery($query);
+    }
+    elseif($type == true){
         //admin query
         $query = "UPDATE user SET type = 1 WHERE user_id = ". $userId;
 

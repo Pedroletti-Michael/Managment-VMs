@@ -124,13 +124,24 @@ function saveModificationAboutUsers($allData){
     require_once 'model/userManager.php';
     $allUsers = getAllUsers();
 
-    if(isset($allData['usersAfterAsc']) && $allData['usersAfterAsc'] != ''){
+    if(isset($allData['usersAfterAsc']) && isset($allData['usersViewerAfterAsc'])){
         $adminFromForm = explode(";", $allData['usersAfterAsc']);
+        $viewerFromForm = explode(";", $allData['usersViewerAfterAsc']);
         foreach($adminFromForm as $adminForm){
             foreach($allUsers as $user){
                 if($adminForm == $user['user_id']){
-                    if($user['type'] == 0){
+                    if($user['type'] == 0 || $user['type'] == 2){
                         updateType($user['user_id'], true);
+                    }
+                }
+            }
+        }
+
+        foreach($viewerFromForm as $viewerForm){
+            foreach($allUsers as $user){
+                if($viewerForm == $user['user_id']){
+                    if($user['type'] == 0 || $user['type'] == 1){
+                        updateType($user['user_id'], 2);
                     }
                 }
             }
@@ -146,16 +157,40 @@ function saveModificationAboutUsers($allData){
             }
             if(!$res){
                 updateType($adminDb['user_id'], false);
+            }
+        }
+
+        $viewerFromDb = getAllViewer();
+        foreach($viewerFromDb as $viewerDb){
+            $res = false;
+            foreach($viewerFromForm as $viewerForm){
+                if($viewerForm == $viewerDb['user_id']){
+                    $res = true;
+                }
+            }
+            if(!$res){
+                updateType($viewerDb['user_id'], false);
             }
         }
     }
-    elseif(isset($allData['usersAfterDesc']) && $allData['usersAfterDesc'] != ''){
+    elseif(isset($allData['usersAfterDesc']) && isset($allData['usersViewerAfterDesc'])){
         $adminFromForm = explode(";", $allData['usersAfterDesc']);
+        $viewerFromForm = explode(";", $allData['usersViewerAfterDesc']);
         foreach($adminFromForm as $adminForm){
             foreach($allUsers as $user){
                 if($adminForm == $user['user_id']){
-                    if($user['type'] == 0){
+                    if($user['type'] == 0 || $user['type'] == 2){
                         updateType($user['user_id'], true);
+                    }
+                }
+            }
+        }
+
+        foreach($viewerFromForm as $viewerForm){
+            foreach($allUsers as $user){
+                if($viewerForm == $user['user_id']){
+                    if($user['type'] == 0 || $user['type'] == 1){
+                        updateType($user['user_id'], 2);
                     }
                 }
             }
@@ -171,6 +206,19 @@ function saveModificationAboutUsers($allData){
             }
             if(!$res){
                 updateType($adminDb['user_id'], false);
+            }
+        }
+
+        $viewerFromDb = getAllViewer();
+        foreach($viewerFromDb as $viewerDb){
+            $res = false;
+            foreach($viewerFromForm as $viewerForm){
+                if($viewerForm == $viewerDb['user_id']){
+                    $res = true;
+                }
+            }
+            if(!$res){
+                updateType($viewerDb['user_id'], false);
             }
         }
     }

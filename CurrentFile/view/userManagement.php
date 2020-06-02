@@ -50,7 +50,7 @@ ob_start();
                             <input name="checkboxAsc<?php echo $value['user_id']?>" style="width: 50px;" class="checkBoxAsc" type="checkbox" <?php if($value['type'] == 1){echo 'checked'; } ?> onchange="if(document.getElementsByName('checkboxViewerAsc<?php echo $value['user_id']?>')[0].checked == true){document.getElementsByName('checkboxViewerAsc<?php echo $value['user_id']?>')[0].checked = false;}">
                         </td>
                         <td name="goToButton">
-                            <input name="checkboxViewerAsc<?php echo $value['user_id']?>" style="width: 50px;" class="checkBoxAsc" type="checkbox" <?php if($value['type'] == 2){echo 'checked'; } ?> onchange="if(document.getElementsByName('checkboxAsc<?php echo $value['user_id']?>')[0].checked == true){document.getElementsByName('checkboxAsc<?php echo $value['user_id']?>')[0].checked = false;}">
+                            <input name="checkboxViewerAsc<?php echo $value['user_id']?>" style="width: 50px;" class="checkBoxViewerAsc" type="checkbox" <?php if($value['type'] == 2){echo 'checked'; } ?> onchange="if(document.getElementsByName('checkboxAsc<?php echo $value['user_id']?>')[0].checked == true){document.getElementsByName('checkboxAsc<?php echo $value['user_id']?>')[0].checked = false;}">
                         </td>
                         <td name="lastname<?php echo $value['user_id']?>"><?php echo $value['lastname']?></td>
                         <td name="firstname<?php echo $value['user_id']?>"><?php echo $value['firstname']?></td>
@@ -62,6 +62,7 @@ ob_start();
             </table>
         </div>
         <input type="hidden" name="usersAfterAsc" id="usersAfterAsc">
+        <input type="hidden" name="usersViewerAfterAsc" id="usersViewerAfterAsc">
         <a onclick="transferUser(0)">
             <button type="submit" class="btn btn-primary mb-1 mt-1 responsiveDisplay" id="bottomAsc">
                 Enregistrer les modifications apportées
@@ -88,7 +89,7 @@ ob_start();
                             <input name="checkboxDesc<?php echo $valueDesc['user_id']?>" style="width: 50px;" class="checkBoxDesc" type="checkbox" <?php if($valueDesc['type'] == 1){echo 'checked'; } ?> onchange="if(document.getElementsByName('checkboxViewerDesc<?php echo $value['user_id']?>')[0].checked == true){document.getElementsByName('checkboxViewerDesc<?php echo $value['user_id']?>')[0].checked = false;}">
                         </td>
                         <td name="goToButton">
-                            <input name="checkboxViewerDesc<?php echo $valueDesc['user_id']?>" style="width: 50px;" class="checkBoxDesc" type="checkbox" <?php if($valueDesc['type'] == 2){echo 'checked'; } ?> onchange="if(document.getElementsByName('checkboxDesc<?php echo $value['user_id']?>')[0].checked == true){document.getElementsByName('checkboxDesc<?php echo $value['user_id']?>')[0].checked = false;}">
+                            <input name="checkboxViewerDesc<?php echo $valueDesc['user_id']?>" style="width: 50px;" class="checkBoxViewerDesc" type="checkbox" <?php if($valueDesc['type'] == 2){echo 'checked'; } ?> onchange="if(document.getElementsByName('checkboxDesc<?php echo $value['user_id']?>')[0].checked == true){document.getElementsByName('checkboxDesc<?php echo $value['user_id']?>')[0].checked = false;}">
                         </td>
                         <td name="lastname<?php echo $valueDesc['user_id']?>"><?php echo $valueDesc['lastname']?></td>
                         <td name="firstname<?php echo $valueDesc['user_id']?>"><?php echo $valueDesc['firstname']?></td>
@@ -149,6 +150,7 @@ ob_start();
         var usersBefore = <?= json_encode($allUsers); ?>;
         function transferUser(n){
             var checkbox, i, y, usersAfter;
+            //to know which table we need to select
             if(n == 1){
                 checkbox = document.getElementsByClassName("checkBoxDesc");
                 usersAfter= "";
@@ -163,6 +165,20 @@ ob_start();
                     }
                 }
                 document.getElementById("usersAfterDesc").value = usersAfter;
+
+                checkbox = document.getElementsByClassName("checkBoxViewerDesc");
+                usersAfter= "";
+
+                for(i = 0; i < checkbox.length; i++){
+                    if(checkbox[i].checked){
+                        for(y = 0; y < usersBefore.length; y++){
+                            if(checkbox[i].name == "checkboxViewerDesc"+usersBefore[y]["user_id"]){
+                                usersAfter = usersAfter + usersBefore[y]["user_id"] + ";";
+                            }
+                        }
+                    }
+                }
+                document.getElementById("usersViewerAfterDesc").value = usersAfter;
             }
             else{
                 checkbox = document.getElementsByClassName("checkBoxAsc");
@@ -178,6 +194,20 @@ ob_start();
                     }
                 }
                 document.getElementById("usersAfterAsc").value = usersAfter;
+
+                checkbox = document.getElementsByClassName("checkBoxViewerAsc");
+                usersAfter= "";
+
+                for(i = 0; i < checkbox.length; i++){
+                    if(checkbox[i].checked){
+                        for(y = 0; y < usersBefore.length; y++){
+                            if(checkbox[i].name == "checkboxViewerAsc"+usersBefore[y]["user_id"]){
+                                usersAfter = usersAfter + usersBefore[y]["user_id"] + ";";
+                            }
+                        }
+                    }
+                }
+                document.getElementById("usersViewerAfterAsc").value = usersAfter;
             }
         }
     </script>
