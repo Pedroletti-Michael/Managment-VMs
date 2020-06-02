@@ -63,7 +63,7 @@ function adVerification($userLogin, $userPwd){
  * Get all users from DB
  */
 function getAllUsers(){
-    $query = 'SELECT mail, lastname, firstname, type, user_id FROM user';
+    $query = 'SELECT mail, lastname, firstname, type, user_id FROM user ORDER BY lastname ASC';
 
     return executeQuerySelect($query);
 }
@@ -90,7 +90,7 @@ function getAllUsersDescendant(){
  * @return array|null
  */
 function getAllAdmin(){
-    $query = 'SELECT mail, lastname, firstname, type, user_id FROM user WHERE type = 1';
+    $query = 'SELECT mail, lastname, firstname, type, user_id FROM user WHERE type = 1 ORDER BY lastname ASC';
 
     return executeQuerySelect($query);
 }
