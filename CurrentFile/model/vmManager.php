@@ -749,7 +749,7 @@ function updateStatusVM($id, $vmStatus, $reason = null, $vmInformation = null){
 
     executeQuery($query);
 
-    $link = 'http://vmman.heig-vd.ch/index.php?action=detailsVM&id='.$id;
+    $link = 'https://vmman.heig-vd.ch/index.php?action=detailsVM&id='.$id;
     $info = getInformationForMailAboutVM($id);
     if($status == 1){
         $length = 10;
