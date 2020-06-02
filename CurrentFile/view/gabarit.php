@@ -64,7 +64,7 @@
         </div>
         <div class="w-100 fixed-bottom d-inline-block" style="bottom: 20px">
             <div class="float-left w-50 text-decoration-none pl-2">
-                <a href="mailto:helpdesk@heig-vd.ch?subject=Problème Gestion VM : [Titre de votre problème]">
+                <a href="mailto:helpdesk@heig-vd.ch?subject=Plateforme GVM : [Titre de votre message]">
                     <h5 class="color-lightgrey">Contactez-nous</h5>
                 </a>
             </div>
@@ -309,7 +309,7 @@
             <?php endif; ?>
         <?php endif; ?>
         <div class="mt-4 mb-5">
-            <a href="mailto:helpdesk@heig-vd.ch?subject=Problème Gestion VM : [Titre de votre problème]">Contactez-nous</a>
+            <a href="mailto:helpdesk@heig-vd.ch?subject=Plateforme GVM : [Titre de votre message]">Contactez-nous</a>
         </div>
     </div>
 </nav>
@@ -514,7 +514,7 @@
                 <?php endif; ?>
                 <ul class="nav flex-column mt-5">
                     <li class="nav-item">
-                        <a class="nav-link" href="mailto:helpdesk@heig-vd.ch?subject=Problème Gestion VM : [Titre de votre problème]">
+                        <a class="nav-link" href="mailto:helpdesk@heig-vd.ch?subject=Plateforme GVM : [Titre de votre message]">
                             <svg class="bi bi-envelope pb-1 mr-1" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M14 3H2a1 1 0 00-1 1v8a1 1 0 001 1h12a1 1 0 001-1V4a1 1 0 00-1-1zM2 2a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2H2z" clip-rule="evenodd"/>
                                 <path fill-rule="evenodd" d="M.071 4.243a.5.5 0 01.686-.172L8 8.417l7.243-4.346a.5.5 0 01.514.858L8 9.583.243 4.93a.5.5 0 01-.172-.686z" clip-rule="evenodd"/>
