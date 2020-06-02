@@ -62,6 +62,34 @@
                 <a class="color-lightgrey text-decoration-none" href="index.php?action=form"><h5 class="color-lightgrey pb-0">Formulaire</h5></a>
             <?php endif; ?>
         </div>
+        <div class="w-100 m-auto text-center pt-1">
+            <!----------------- renewalVM ---------------->
+            <?php if ($_GET['action'] == "renewalVM"): ?>
+                <a href="index.php?action=renewalVM" class="alert-link active text-decoration-none">
+                    <h5 class="color-lightgrey">
+                        <?php
+                        if(isset($_SESSION['countRenewalVM'])){
+                            echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
+                        }
+                        ?>
+                        <a class="menu-phone-selected">
+                            Renouvellements
+                        </a>
+                    </h5>
+                </a>
+            <?php else : ?>
+                <a href="index.php?action=renewalVM" class="text-decoration-none">
+                    <h5 class="color-lightgrey">
+                        <?php
+                        if(isset($_SESSION['countRenewalVM'])){
+                            echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
+                        }
+                        ?>
+                        Renouvellements
+                    </h5>
+                </a>
+            <?php endif; ?>
+        </div>
         <div class="w-100 fixed-bottom d-inline-block" style="bottom: 20px">
             <div class="float-left w-50 text-decoration-none pl-2">
                 <a href="mailto:helpdesk@heig-vd.ch?subject=Plateforme GVM : [Titre de votre message]">
@@ -222,6 +250,26 @@
         <?php else : ?>
             <a href="index.php?action=form">Formulaire</a>
         <?php endif; ?>
+        <!----------------- renewalVM ---------------->
+        <?php if ($_GET['action'] == "renewalVM"): ?>
+            <a href="index.php?action=renewalVM" class="alert-link active">
+                <?php
+                if(isset($_SESSION['countRenewalVM'])){
+                    echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
+                }
+                ?>
+                Renouvellements
+            </a>
+        <?php else : ?>
+            <a href="index.php?action=renewalVM">
+                <?php
+                if(isset($_SESSION['countRenewalVM'])){
+                    echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
+                }
+                ?>
+                Renouvellements
+            </a>
+        <?php endif; ?>
 
         <?php if(isset($_SESSION['userType']) && $_SESSION['userType']==1 || $_SESSION['userType']==2):?>
             <?php if($_SESSION['userType']==2) :?>
@@ -369,6 +417,25 @@
                                     <path fill-rule="evenodd" d="M4.5 10.5A.5.5 0 0 1 5 10h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
                                 </svg>
                                 Formulaire
+                            </a>
+                    </li>
+                </ul>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <?php if ($_GET['action'] == "renewalVM"): ?>
+                        <a class="nav-link active" href="index.php?action=renewalVM">
+                            <?php else : ?>
+                            <a class="nav-link" href="index.php?action=renewalVM">
+                                <?php endif; ?>
+                                <?php
+                                if(isset($_SESSION['countRenewalVM'])){
+                                    echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
+                                }
+                                else{
+                                    echo '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>';
+                                }
+                                ?>
+                                Renouvellements
                             </a>
                     </li>
                 </ul>

@@ -901,6 +901,27 @@ function countRenewalVM(){
     return $resultSelect[0][0];
 }
 
+function countUserConfirmationVM($userId){
+    require_once 'model/dbConnector.php';
+    $strSep = '\'';
+
+    $querySelect = "SELECT COUNT(*) FROM vm WHERE vmStatus = 0 AND customer = ". $strSep.$userId.$strSep. " OR vmStatus = 0 AND userRt = ". $strSep.$userId.$strSep. " OR vmStatus = 0 AND userRa = ". $strSep.$userId.$strSep;
+
+    $resultSelect = executeQuerySelect($querySelect);
+
+    return $resultSelect[0][0];
+}
+function countUserRenewalVM($userId){
+    require_once 'model/dbConnector.php';
+    $strSep = '\'';
+
+    $querySelect = "SELECT COUNT(*) FROM vm WHERE vmStatus = 3 AND customer = ". $strSep.$userId.$strSep. " OR vmStatus = 0 AND userRt = ". $strSep.$userId.$strSep. " OR vmStatus = 0 AND userRa = ". $strSep.$userId.$strSep;
+
+    $resultSelect = executeQuerySelect($querySelect);
+
+    return $resultSelect[0][0];
+}
+
 class CSV{
     static function export($allVM,$filename){
         header('Content-Type: text/csv;');

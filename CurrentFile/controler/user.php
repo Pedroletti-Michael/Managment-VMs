@@ -83,8 +83,15 @@ function createSession($userEmail)
     $_SESSION['userId'] = getUserId($userEmail);
 
     require_once 'model/vmManager.php';
-    $_SESSION['countConfirmationVM'] = countConfirmationVM();
-    $_SESSION['countRenewalVM'] = countRenewalVM();
+    if($_SESSION['userType'] == 1){
+        $_SESSION['countConfirmationVM'] = countConfirmationVM();
+        $_SESSION['countRenewalVM'] = countRenewalVM();
+    }
+    else{
+        $_SESSION['countConfirmationVM'] = countUserConfirmationVM($_SESSION['userId']);
+        $_SESSION['countRenewalVM'] = countUserRenewalVM($_SESSION['userId']);
+    }
+
 }
 
 function signOut()
