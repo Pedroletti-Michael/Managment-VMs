@@ -132,7 +132,7 @@ function displayRenewalVM()
             case 0:
                 require_once 'model/vmManager.php';
                 $userId = $_SESSION['userId'];
-                getRenewFromAUser($userId);
+                $renewalVM = getUserRenewalVM($userId);
                 require 'view/renewalVM.php';
                 break;
             case 1:
