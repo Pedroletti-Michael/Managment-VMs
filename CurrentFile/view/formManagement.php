@@ -10,10 +10,10 @@ ob_start();
     <!DOCTYPE html>
     <html lang="en">
 <head>
-    <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.bundle.js"></script>
-    <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
     <script rel="javascript" src="../view/js/jquery.js"></script>
     <script rel="javascript" src="../view/js/script.js"></script>
+    <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.bundle.js"></script>
+    <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
     <meta charset="UTF-8">
     <title>Gestion form - HEIG-VD</title>
 </head>
@@ -63,6 +63,68 @@ ob_start();
             <?php endif; ?>
         </div>
     </form>
+
+    <!--Modal error element already associated to a VM -->
+    <?php if (isset($_SESSION['displayModalEntityAssociated']) && $_SESSION['displayModalEntityAssociated'] == true) : ?>
+        <div class="modal fade" id="displayModalEntityAssociated" tabindex="-1" role="dialog" aria-labelledby="displayModalEntityAssociated" aria-hidden="true">
+            <div class="modal-dialog m-auto w-470-px" role="document" style="top: 45%;">
+                <div class="modal-content w-100">
+                    <div class="modal-body">
+                        <div class="w-100">
+                            <h6 class="float-left pt-2 text-center">Cette entité étant asossiée avec une VM, vous ne pouvez pas la supprimer.</h6>
+                            <button type="submit" class="btn btn-danger float-right btn-close-phone" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>$('.modal').modal('show')</script>
+    <?php unset($_SESSION['displayModalEntityAssociated']); ?>
+    <?php elseif (isset($_SESSION['displayModalOSAssociated']) && $_SESSION['displayModalOSAssociated'] == true) : ?>
+        <div class="modal fade" id="displayModalOSAssociated" tabindex="-1" role="dialog" aria-labelledby="displayModalOSAssociated" aria-hidden="true">
+            <div class="modal-dialog m-auto w-470-px" role="document" style="top: 45%;">
+                <div class="modal-content w-100">
+                    <div class="modal-body">
+                        <div class="w-100">
+                            <h6 class="float-left pt-2 text-center">Cet OS étant asossié avec une VM, vous ne pouvez pas le supprimer.</h6>
+                            <button type="submit" class="btn btn-danger float-right btn-close-phone" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>$('.modal').modal('show')</script>
+    <?php unset($_SESSION['displayModalOSAssociated']); ?>
+    <?php elseif (isset($_SESSION['displayModalSnapshotAssociated']) && $_SESSION['displayModalSnapshotAssociated'] == true) : ?>
+        <div class="modal fade" id="displayModalSnapshotAssociated" tabindex="-1" role="dialog" aria-labelledby="displayModalSnapshotAssociated" aria-hidden="true">
+            <div class="modal-dialog m-auto w-470-px" role="document" style="top: 45%;">
+                <div class="modal-content w-100">
+                    <div class="modal-body">
+                        <div class="w-100">
+                            <h6 class="float-left pt-2 text-center">Cette snapshot étant asossiée avec une VM, vous ne pouvez pas la supprimer.</h6>
+                            <button type="submit" class="btn btn-danger float-right btn-close-phone" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>$('.modal').modal('show')</script>
+    <?php unset($_SESSION['displayModalSnapshotAssociated']); ?>
+    <?php elseif (isset($_SESSION['displayModalBackupAssociated']) && $_SESSION['displayModalBackupAssociated'] == true) : ?>
+        <div class="modal fade" id="displayModalBackupAssociated" tabindex="-1" role="dialog" aria-labelledby="displayModalBackupAssociated" aria-hidden="true">
+            <div class="modal-dialog m-auto w-470-px" role="document" style="top: 45%;">
+                <div class="modal-content w-100">
+                    <div class="modal-body">
+                        <div class="w-100">
+                            <h6 class="float-left pt-2 text-center">Cette backup étant asossiée avec une VM, vous ne pouvez pas la supprimer.</h6>
+                            <button type="submit" class="btn btn-danger float-right btn-close-phone" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>$('.modal').modal('show')</script>
+    <?php unset($_SESSION['displayModalBackupAssociated']);endif; ?>
 
     <!--Entity-->
     <?php if($arrayToDisplay == "entity") :?>

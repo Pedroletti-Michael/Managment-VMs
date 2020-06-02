@@ -641,6 +641,7 @@ function displayFormManagement($arrayToDisplay)
 
 function editEntity($entityName){
     $arrayToDisplay = $_SESSION['gestionFormArray'];
+    $isEntityAssociated = false;
     require_once 'model/displayManager.php';
 
     if(isset($entityName['add'])){
@@ -654,7 +655,32 @@ function editEntity($entityName){
         if(isset($entityName['valueEntityToDelete']) && $entityName['valueEntityToDelete'] != null)
         {
             $nameEntity = $entityName['valueEntityToDelete'];
-            deleteEntity($nameEntity);
+            $entitiesAssociatedToVM = getEntityAssociateToVM();
+            $idEntity = getIdEntity($nameEntity);
+
+            foreach($entitiesAssociatedToVM as $entityAssiociatedToVM)
+            {
+                if($idEntity[0]['entity_id'] == $entityAssiociatedToVM['entity_id'])
+                {
+                    $isEntityAssociated = true;
+                }
+                else
+                {
+                    $isEntityAssociated = false;
+                }
+            }
+
+            if($isEntityAssociated == true)
+            {
+                $_SESSION['displayModalEntityAssociated'] = true;
+                displayFormManagement("entity");
+                exit;
+            }
+            else
+            {
+                deleteEntity($nameEntity);
+            }
+
         }
     }
     if(isset($entityName['modify'])){
@@ -670,6 +696,7 @@ function editEntity($entityName){
 
 function editOS($osName){
     $arrayToDisplay = $_SESSION['gestionFormArray'];
+    $isOSAssociated = false;
     require_once 'model/displayManager.php';
 
     if(isset($osName['add'])){
@@ -701,7 +728,32 @@ function editOS($osName){
                     break;
                 }
             }
-            deleteOS($textOs);
+
+            $allOSAssociatedToVM = getOSAssociateToVM();
+            $idOS = getIdOS($textOs);
+
+            foreach($allOSAssociatedToVM as $osAssociatedToVM)
+            {
+                if($idOS[0]['os_id'] == $osAssociatedToVM['os_id'])
+                {
+                    $isOSAssociated = true;
+                }
+                else
+                {
+                    $isOSAssociated = false;
+                }
+
+                if($isOSAssociated == true)
+                {
+                    $_SESSION['displayModalOSAssociated'] = true;
+                    displayFormManagement("os");
+                    exit;
+                }
+                else
+                {
+                    deleteOS($textOs);
+                }
+            }
         }
     }
     elseif(isset($osName['modify'])){
@@ -735,6 +787,7 @@ function editOS($osName){
 
 function editSnapshots($snapshotsName){
     $arrayToDisplay = $_SESSION['gestionFormArray'];
+    $isSnapshotAssociated = false;
     require_once 'model/displayManager.php';
 
     if(isset($snapshotsName['add'])){
@@ -763,7 +816,32 @@ function editSnapshots($snapshotsName){
                     break;
                 }
             }
-            deleteSnapshots($typeSnapshots);
+
+            $snapshotsAssociatedToVM = getSnapshotsAssociateToVM();
+            $idSnapshot = getIdSnapshots($typeSnapshots);
+
+            foreach($snapshotsAssociatedToVM as $snapshotAssociatedToVM)
+            {
+                if($idSnapshot[0]['snapshot_id'] == $snapshotAssociatedToVM['snapshot_id'])
+                {
+                    $isSnapshotAssociated = true;
+                }
+                else
+                {
+                    $isSnapshotAssociated = false;
+                }
+            }
+
+            if($isSnapshotAssociated == true)
+            {
+                $_SESSION['displayModalSnapshotAssociated'] = true;
+                displayFormManagement("snapshots");
+                exit;
+            }
+            else
+            {
+                deleteSnapshots($typeSnapshots);
+            }
         }
     }
     elseif(isset($snapshotsName['modify'])){
@@ -794,6 +872,7 @@ function editSnapshots($snapshotsName){
 
 function editBackup($backupName){
     $arrayToDisplay = $_SESSION['gestionFormArray'];
+    $isBackupAssociated = false;
     require_once 'model/displayManager.php';
 
     if(isset($backupName['add'])){
@@ -822,7 +901,32 @@ function editBackup($backupName){
                     break;
                 }
             }
-            deleteBackup($typeBackup);
+
+            $backupsAssociatedToVM = getBackupAssociateToVM();
+            $idBackup = getIdBackup($typeBackup);
+
+            foreach($backupsAssociatedToVM as $backupAssociatedToVM)
+            {
+                if($idBackup[0]['backup_id'] == $backupAssociatedToVM['backup_id'])
+                {
+                    $isBackupAssociated = true;
+                }
+                else
+                {
+                    $isBackupAssociated = false;
+                }
+            }
+
+            if($isBackupAssociated == true)
+            {
+                $_SESSION['displayModalBackupAssociated'] = true;
+                displayFormManagement("backup");
+                exit;
+            }
+            else
+            {
+                deleteBackup($typeBackup);
+            }
         }
     }
     elseif(isset($backupName['modify'])){

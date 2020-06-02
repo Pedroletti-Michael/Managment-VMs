@@ -29,6 +29,16 @@ function modifyEntity($nameEntity,$newName){
     $query = "UPDATE `entity` SET `entityName` = '$newName' WHERE `entity`.`entityName` = '$nameEntity';";
     return executeQuery($query);
 }
+
+function getIdEntity($nameEntity){
+    $query = "SELECT entity_id FROM entity WHERE entity.entityName = '$nameEntity'";
+    return executeQuery($query);
+}
+
+function getEntityAssociateToVM(){
+    $query = "SELECT entity_id FROM vm";
+    return executeQuery($query);
+}
 /********************** OS **************************/
 function displayBDD_OSNameWhereWindows(){
     $strSep = '\'';
@@ -75,6 +85,16 @@ function modifyOS($nameOS,$newName,$newType){
     $query = "UPDATE `os` SET `osName` = '$newName', `osType` = '$newType' WHERE `os`.`osName` = '$nameOS';";
     return executeQuery($query);
 }
+
+function getIdOS($nameOS){
+    $query = "SELECT os_id FROM os WHERE os.osName = '$nameOS'";
+    return executeQuery($query);
+}
+
+function getOSAssociateToVM(){
+    $query = "SELECT os_id FROM vm";
+    return executeQuery($query);
+}
 /********************** Snapshots **************************/
 function displayBSS_Snapshots(){
     $query = "SELECT policy, name FROM snapshot WHERE status = 0";
@@ -97,6 +117,16 @@ function modifySnapshots($nameSnapshots,$newPolicy,$newType){
     $query = "UPDATE `snapshot` SET `policy` = '$newPolicy', `name` = '$newType' WHERE `snapshot`.`name` = '$nameSnapshots';";
     return executeQuery($query);
 }
+
+function getIdSnapshots($nameSnapshots){
+    $query = "SELECT snapshot_id FROM snapshot WHERE snapshot.name = '$nameSnapshots'";
+    return executeQuery($query);
+}
+
+function getSnapshotsAssociateToVM(){
+    $query = "SELECT snapshot_id FROM vm";
+    return executeQuery($query);
+}
 /********************** Backup **************************/
 function displayBSS_Backup(){
     $query = "SELECT policy, name FROM backup WHERE status = 0";
@@ -117,6 +147,16 @@ function deleteBackup($nameBackup){
 
 function modifyBackup($nameBackup,$newPolicy,$newType){
     $query = "UPDATE `backup` SET `policy` = '$newPolicy', `name` = '$newType' WHERE `backup`.`name` = '$nameBackup';";
+    return executeQuery($query);
+}
+
+function getIdBackup($nameBackup){
+    $query = "SELECT backup_id FROM backup WHERE backup.name = '$nameBackup'";
+    return executeQuery($query);
+}
+
+function getBackupAssociateToVM(){
+    $query = "SELECT backup_id FROM vm";
     return executeQuery($query);
 }
 /********************** Columns **************************/
