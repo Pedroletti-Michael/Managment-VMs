@@ -27,7 +27,7 @@ ob_start();
                     <div class="w-100">
                         <h6 class="float-left pt-2 text-center">
                             <?php if ($_SESSION['saveContentMail'] == 1) {
-                                echo 'La sauvegarde des modifications apportées aux contenus des mails c\'est effectué correctement.';
+                                echo 'Modifications enregistrées.';
                             } else {
                                 echo 'Nous avons rencontré un problème lors de la sauvegarde des modifications apportées aux contenus des mails. Veuillez contactez le support.';
                             } ?>
