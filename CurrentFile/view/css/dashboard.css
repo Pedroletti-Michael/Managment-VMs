@@ -1,10 +1,11 @@
 body {
     font-size: .875rem;
+    font-family: "Century Gothic", CenturyGothic, Century Gothic, AppleGothic !important;
     /*font-family: "Century Gothic"!important;*/
 }
 
 @font-face {
-    font-family: "Century Gothic", CenturyGothic, AppleGothic !important;
+    font-family: "Century Gothic", CenturyGothic, Century Gothic, AppleGothic !important;
     src: url("../font/Century-Gothic_9791.ttf") format("truetype") !important;
 }
 
