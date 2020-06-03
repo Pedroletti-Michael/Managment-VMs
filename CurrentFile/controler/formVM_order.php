@@ -83,7 +83,7 @@ function formVM($formVMRequest)
         }
     }
 
-    if($formVMRequest['inputTMName'] == null || $formVMRequest['inputRAName'] == null)
+    if($formVMRequest['inputTMName'] == null && $formVMRequest['inputRAName'] == null)
     {
         $errorForm = true;
         $_SESSION['displayModalNoUserSelected'] = true;

@@ -31,6 +31,7 @@ function checkOS(value){
     } else if (value === "Linux") {
         document.getElementById("windows").style.display = "none";
         document.getElementById("linux").style.display = "block";
+        document.getElementById("domainEINET").checked = false;
         document.getElementById("domainEINET").disabled = true;
     }
 }
