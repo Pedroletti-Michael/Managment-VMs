@@ -15,8 +15,6 @@ ob_start();
     <script rel="javascript" src="../view/js/jquery.js"></script>
     <script rel="javascript" src="../view/js/script.js"></script>
     <script rel="javascript" src="../view/js/searchBox.js"></script>
-    <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.bundle.js"></script>
-    <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
     <meta charset="UTF-8">
     <title>Mes VM - HEIG-VD</title>
 </head>
@@ -100,7 +98,7 @@ ob_start();
         <!------------- Btn Filtrer ------------>
         <button type="button" class="btn btn-primary rounded-0 w-150-px position-fixed mt-1" style="right: 0.25rem;"
                 onclick="openRightMenu()">
-            Filtrer &nbsp;
+            Filtres
             <svg class="bi bi-filter-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
                  xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
@@ -114,8 +112,7 @@ ob_start();
             </button>
             <!------------- Filter VM ------------>
             <div class="dropdown">
-                <button class="btn btn-light dropdown-toggle w-100 rounded-0 text-left" type="button" data-toggle="collapse"
-                        data-target="#collapseVM" aria-expanded="false" aria-controls="collapseExample">
+                <button class="btn btn-light dropdown-toggle w-100 rounded-0 text-left" type="button" data-toggle="collapse" data-target="#collapseVM" aria-expanded="false" aria-controls="collapseExample">
                     Filtrer VM
                 </button>
                 <div class="collapse" id="collapseVM">
@@ -176,8 +173,7 @@ ob_start();
             </div>
             <!------------- Filter fields ------------>
             <div class="dropdown">
-                <button class="btn btn-dark dropdown-toggle w-100 rounded-0 text-left" type="button" data-toggle="collapse"
-                        data-target="#collapseFields" aria-expanded="false" aria-controls="collapseExample">
+                <button class="btn btn-dark dropdown-toggle w-100 rounded-0 text-left" type="button" data-toggle="collapse" data-target="#collapseFields" aria-expanded="false" aria-controls="collapseExample">
                     Filtrer colonnes
                 </button>
                 <div class="collapse" id="collapseFields">
