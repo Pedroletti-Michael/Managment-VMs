@@ -153,6 +153,15 @@ function getEntityId($entityName){
     return $result[0][0];
 }
 
+function getClusterId($clusterName){
+    $strSep = '\'';
+
+    $query = "SELECT id FROM `cluster` WHERE name = ". $strSep.$clusterName.$strSep;
+
+    $result = executeQuery($query);
+    return $result[0][0];
+}
+
 function getOsId($osName, $osType){
     $strSep = '\'';
 
@@ -210,8 +219,8 @@ function getAllVM()
     $i = 0;
 
     foreach ($resultSelect as $vm){
-        //$resultSelect[$i]['dateStart'] = date("d.m.Y", strtotime($resultSelect[$i]['dateStart']));
         $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['cluster'] = getCluster($vm['cluster']);
         $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
         $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
         $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
@@ -250,6 +259,26 @@ function getNameAndSurnameUser($id){
 
     $user = executeQuery($query);
     return $user;
+}
+
+function getCluster($id){
+    $strSep = '\'';
+
+    if(isset($id) && $id != '' && $id != null && $id != 'null'){
+        $query = "SELECT name, id_site FROM `cluster` WHERE id = ". $strSep.$id.$strSep;
+
+        $result = executeQuery($query);
+
+        $query = "SELECT name FROM `site` WHERE id = ". $strSep.$result[0]['id_site'].$strSep;
+
+        $nameSite = executeQuery($query);
+        $finalResult = array('name' => $result[0][0], 'nameSite' => $nameSite[0][0]);
+    }
+    else{
+        $finalResult = array('name' => '', 'nameSite' => '');
+    }
+
+    return $finalResult;
 }
 
 function getInfoEntity($id){
@@ -314,6 +343,7 @@ function getUserVM($userId)
 
     foreach ($resultSelect as $vm){
         $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['cluster'] = getCluster($vm['cluster']);
         $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
         $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
         $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
@@ -336,6 +366,7 @@ function getConfirmationVM(){
 
     foreach ($resultSelect as $vm){
         $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['cluster'] = getCluster($vm['cluster']);
         $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
         $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
         $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
@@ -358,6 +389,7 @@ function getUserConfirmationVM($userId){
 
     foreach ($resultSelect as $vm){
         $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['cluster'] = getCluster($vm['cluster']);
         $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
         $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
         $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
@@ -380,6 +412,7 @@ function getRenewalVM(){
 
     foreach ($resultSelect as $vm){
         $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['cluster'] = getCluster($vm['cluster']);
         $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
         $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
         $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
@@ -402,6 +435,7 @@ function getUserRenewalVM($userId){
 
     foreach ($resultSelect as $vm){
         $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['cluster'] = getCluster($vm['cluster']);
         $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
         $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
         $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
@@ -424,6 +458,7 @@ function getValidatedVM(){
 
     foreach ($resultSelect as $vm){
         $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['cluster'] = getCluster($vm['cluster']);
         $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
         $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
         $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
@@ -446,6 +481,7 @@ function getUserValidatedVM($userId){
 
     foreach ($resultSelect as $vm){
         $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['cluster'] = getCluster($vm['cluster']);
         $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
         $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
         $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
@@ -468,6 +504,7 @@ function getDeletedOrUnrenewalVM(){
 
     foreach ($resultSelect as $vm){
         $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['cluster'] = getCluster($vm['cluster']);
         $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
         $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
         $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
@@ -490,6 +527,7 @@ function getUserDeletedOrUnrenewalVM($userId){
 
     foreach ($resultSelect as $vm){
         $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['cluster'] = getCluster($vm['cluster']);
         $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
         $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
         $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
@@ -513,6 +551,7 @@ function getVmToRenew(){
 
     foreach ($resultSelect as $vm){
         $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['cluster'] = getCluster($vm['cluster']);
         $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
         $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
         $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
@@ -536,6 +575,7 @@ function getRenewFromAUser($userId){
 
     foreach ($resultSelect as $vm){
         $resultSelect[$i]['customer'] = getInfoUser($vm['customer']);
+        $resultSelect[$i]['cluster'] = getCluster($vm['cluster']);
         $resultSelect[$i]['userRa'] = getInfoUser($vm['userRa']);
         $resultSelect[$i]['userRt'] = getInfoUser($vm['userRt']);
         $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
@@ -559,7 +599,7 @@ function getDataVM($idVM){
     foreach ($resultSelect as $vm){
         $userRa = getNameAndSurnameUser($vm['userRa']);
         $userRt = getNameAndSurnameUser($vm['userRt']);
-
+        $resultSelect[$i]['cluster'] = getCluster($vm['cluster']);
         $resultSelect[$i]['customer'] = getMailUser($vm['customer']);
         $resultSelect[$i]['userRa'] = $userRa[0]['lastname']." ".$userRa[0]['firstname'];
         $resultSelect[$i]['userRt'] = $userRt[0]['lastname']." ".$userRt[0]['firstname'];
@@ -583,7 +623,7 @@ function updateVMInformation($vmInformation, $id){
         if($vmInformation['osTypeFormControlSelect'] == "Windows"){
             $query = "UPDATE vm SET
               name = ". $strSep.$vmInformation['inputVMName'].$strSep. ",
-              cluster = ". $strSep.$vmInformation['editCluster'].$strSep. ",
+              cluster = ". $strSep.getClusterId($vmInformation['editCluster']).$strSep. ",
               dateStart = ". $strSep.$vmInformation['inputComissioningDate'].$strSep. ",
               dateAnniversary = ". $strSep.$vmInformation['editDateAnniversary'].$strSep. ",
               description = ". $strSep.$vmInformation['objective'].$strSep. ",
@@ -611,7 +651,7 @@ function updateVMInformation($vmInformation, $id){
         else{
             $query = "UPDATE vm SET
               name = ". $strSep.$vmInformation['inputVMName'].$strSep. ",
-              cluster = ". $strSep.$vmInformation['editCluster'].$strSep. ",
+              cluster = ". $strSep.getClusterId($vmInformation['editCluster']).$strSep. ",
               dateStart = ". $strSep.$vmInformation['inputComissioningDate'].$strSep. ",
               dateAnniversary = ". $strSep.$vmInformation['editDateAnniversary'].$strSep. ",
               description = ". $strSep.$vmInformation['objective'].$strSep. ",
@@ -642,7 +682,7 @@ function updateVMInformation($vmInformation, $id){
         if($vmInformation['osTypeFormControlSelect'] == "Windows"){
             $query = "UPDATE vm SET
               name = ". $strSep.$vmInformation['inputVMName'].$strSep. ",
-              cluster = ". $strSep.$vmInformation['editCluster'].$strSep. ",
+              cluster = ". $strSep.getClusterId($vmInformation['editCluster']).$strSep. ",
               dateStart = ". $strSep.$vmInformation['inputComissioningDate'].$strSep. ",
               dateEnd = ". $strSep.$vmInformation['inputEndDate'].$strSep. ",
               description = ". $strSep.$vmInformation['objective'].$strSep. ",
@@ -670,7 +710,7 @@ function updateVMInformation($vmInformation, $id){
         else{
             $query = "UPDATE vm SET
               name = ". $strSep.$vmInformation['inputVMName'].$strSep. ",
-              cluster = ". $strSep.$vmInformation['editCluster'].$strSep. ",
+              cluster = ". $strSep.getClusterId($vmInformation['editCluster']).$strSep. ",
               dateStart = ". $strSep.$vmInformation['inputComissioningDate'].$strSep. ",
               dateEnd = ". $strSep.$vmInformation['inputEndDate'].$strSep. ",
               description = ". $strSep.$vmInformation['objective'].$strSep. ",
@@ -932,6 +972,7 @@ class CSV{
                 echo '"'.implode('";"',array_keys($data)).'"'."\n";
                 $i++;
             }
+            $data['cluster'] = $data['cluster']['name'];
             $data['os_id']= $data['os_id'][1]." : ".$data['os_id'][0];
             $data['backup_id']= $data['backup_id'][1]." : ".$data['backup_id'][0];
             $data['snapshot_id']= $data['snapshot_id'][1]." : ".$data['snapshot_id'][0];

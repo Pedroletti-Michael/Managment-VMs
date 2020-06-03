@@ -159,6 +159,21 @@ function getBackupAssociateToVM(){
     $query = "SELECT backup_id FROM vm";
     return executeQuery($query);
 }
+
+
+/**
+ *
+ */
+function getClusters(){
+    $strSep = '\'';
+
+    $query = "SELECT name FROM `cluster` WHERE status = 0";
+
+    $result = executeQuery($query);
+
+    return $result;
+}
+
 /********************** Columns **************************/
 /**
  * Region contains all function to display information about columns for every table of the db

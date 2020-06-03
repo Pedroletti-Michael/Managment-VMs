@@ -178,6 +178,7 @@ function displayDetailsVM($idVM)
                     $linuxData = displayBDD_OSNameWhereLinux();
                     $snapshotPolicy = displayBSS_Snapshots();
                     $backupPolicy = displayBSS_Backup();
+                    $clusterData = getClusters();
 
                     require_once 'model/userManager.php';
                     $users = getAllUsers();
@@ -198,6 +199,7 @@ function displayDetailsVM($idVM)
                 $osNames = displayBDD_OS();
                 $snapshotPolicy = displayBSS_Snapshots();
                 $backupPolicy = displayBSS_Backup();
+                $clusterData = getClusters();
 
                 require_once 'model/userManager.php';
                 $users = getAllUsers();
@@ -232,6 +234,7 @@ function displayDetailsVM($idVM)
                 $linuxData = displayBDD_OSNameWhereLinux();
                 $snapshotPolicy = displayBSS_Snapshots();
                 $backupPolicy = displayBSS_Backup();
+                $clusterData = getClusters();
 
                 require_once 'model/userManager.php';
                 $users = getAllUsers();

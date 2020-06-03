@@ -813,7 +813,7 @@ ob_start();
                         </div>
                     </td>
                     <td name="name"><?php echo $value['name'] ?></td>
-                    <td style="display: none" name="cluster"><?php echo $value['cluster'] ?></td>
+                    <td style="display: none" name="cluster"><?php echo $value['cluster']['name'] ?></td>
                     <td name="dateStart"
                         style="min-width: 100px"><?php echo date("d.m.Y", strtotime($value['dateStart'])) ?></td>
                     <td hidden name="strDateStart"><?= strtotime($value['dateStart']); ?></td>
@@ -1363,7 +1363,7 @@ ob_start();
                         </div>
                     </td>
                     <td name="name"><?php echo $value['name'] ?></td>
-                    <td style="display: none" name="cluster"><?php echo $value['cluster'] ?></td>
+                    <td style="display: none" name="cluster"><?php echo $value['cluster']['name'] ?></td>
                     <td name="dateStart"
                         style="min-width: 100px"><?php echo date("d.m.Y", strtotime($value['dateStart'])) ?></td>
                     <td hidden name="strDateStart"><?= strtotime($value['dateStart']); ?></td>
@@ -1910,7 +1910,7 @@ ob_start();
                         </div>
                     </td>
                     <td name="name"><?php echo $value['name'] ?></td>
-                    <td style="display: none" name="cluster"><?php echo $value['cluster'] ?></td>
+                    <td style="display: none" name="cluster"><?php echo $value['cluster']['name'] ?></td>
                     <td name="dateStart"
                         style="min-width: 100px"><?php echo date("d.m.Y", strtotime($value['dateStart'])) ?></td>
                     <td hidden name="strDateStart"><?= strtotime($value['dateStart']); ?></td>
@@ -2457,7 +2457,7 @@ ob_start();
                         </div>
                     </td>
                     <td name="name"><?php echo $value['name'] ?></td>
-                    <td style="display: none" name="cluster"><?php echo $value['cluster'] ?></td>
+                    <td style="display: none" name="cluster"><?php echo $value['cluster']['name'] ?></td>
                     <td name="dateStart"
                         style="min-width: 100px"><?php echo date("d.m.Y", strtotime($value['dateStart'])) ?></td>
                     <td hidden name="strDateStart"><?= strtotime($value['dateStart']); ?></td>
@@ -3004,7 +3004,7 @@ ob_start();
                         </div>
                     </td>
                     <td name="name"><?php echo $value['name'] ?></td>
-                    <td style="display: none" name="cluster"><?php echo $value['cluster'] ?></td>
+                    <td style="display: none" name="cluster"><?php echo $value['cluster']['name'] ?></td>
                     <td name="dateStart"
                         style="min-width: 100px"><?php echo date("d.m.Y", strtotime($value['dateStart'])) ?></td>
                     <td hidden name="strDateStart"><?= strtotime($value['dateStart']); ?></td>

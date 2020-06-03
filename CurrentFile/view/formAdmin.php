@@ -420,13 +420,15 @@ ob_start();
                     <select class="form-control form form" id="editCluster" name="editCluster"
                             aria-describedby="clusterHelp">
                         <?php
-                        $clusterNames = array("PROD-CH", "PROD-YP", "DEV-CH");
-                        for ($i = 0; $i < 3; $i++) {
-                            if ($dataVM[0]['cluster'] == $clusterNames[$i]) {
-                                echo "<option selected>" . $clusterNames[$i] . "</option>";
-                            } else {
-                                echo "<option>" . $clusterNames[$i] . "</option>";
+                        $i = 0;
+                        foreach($clusterData as $value){
+                            if($i == 0){
+                                echo "<option selected>" . $value['name'] . "</option>";
                             }
+                            else{
+                                echo "<option>" . $value['name'] . "</option>";
+                            }
+                            $i++;
                         }
                         ?>
                     </select>
