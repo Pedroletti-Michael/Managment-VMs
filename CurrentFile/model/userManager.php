@@ -186,6 +186,34 @@ function getUserType($userMail){
  */
 function getUserId($userMail){
     $strSep = '\'';
+    $lastName = "";
+    $firstName = "";
+
+    if($userMail == "admin admin")
+    {
+        $userMail = "admin@heig-vd.ch";
+    }
+
+    if (!filter_var($userMail, FILTER_VALIDATE_EMAIL))
+    {
+        $userMail = strtolower($userMail);
+        $length = strlen($userMail);
+
+        for($count = 0; $count < $length; $count++)
+        {
+            $lastName = "$lastName"."$userMail[$count]";
+
+            if($userMail[$count+1] == " ")
+            {
+                for($count += 2; $count < $length; $count++)
+                {
+                    $firstName = "$firstName"."$userMail[$count]";
+                }
+            }
+        }
+
+        $userMail = $firstName.".".$lastName."@heig-vd.ch";
+    }
 
     $query = "SELECT user_id FROM `user` WHERE mail = ". $strSep.$userMail.$strSep;
 
