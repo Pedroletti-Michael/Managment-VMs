@@ -449,7 +449,7 @@ ob_start();
                 <div class="modal-content w-100">
                     <div class="modal-body">
                         <div class="w-100">
-                            <h6 class="float-left pt-2 text-center">Veuillez sélectionner un utilisateur des listes déroulante dans les sections "Responsable technique" et "Responsable administratif"</h6>
+                            <h6 class="float-left pt-2 text-center">Responsable technique ou administratif non sélectionné</h6>
                             <button type="submit" class="btn btn-danger float-right btn-close-phone" data-dismiss="modal">Fermer</button>
                         </div>
                     </div>
