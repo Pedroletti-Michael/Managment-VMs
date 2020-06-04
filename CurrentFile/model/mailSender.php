@@ -55,13 +55,13 @@ function requestMail($userMail, $requestName, $rtMail, $raMail, $tableInfo){
                 if($value == "2"){
                     $message .= " ".$requestName." ";
                 }
-                if($value == '3'){
+                if($value == "3"){
                     $message .= " ".$rtMail." ";
                 }
-                if($value == '4'){
+                if($value == "4"){
                     $message .= " ".$raMail." ";
                 }
-                if($value == '8'){
+                if($value == "8"){
                     foreach($tableInfo as $key => $value){
                         $message .= $key. " : " . $value . "<br>";
                     }
@@ -131,7 +131,7 @@ function mailAdministrator($userMail, $requestName, $link, $tableInfo){
                 if($value == "5"){
                     $message .= " ".$link." ";
                 }
-                if($value == '8'){
+                if($value == "8"){
                     foreach($tableInfo as $key => $value){
                         $message .= $key. " : " . $value . "<br>";
                     }
@@ -197,16 +197,16 @@ function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail, $
                 if($value == "2"){
                     $message .= " ".$requestName." ";
                 }
-                if($value == '3'){
+                if($value == "3"){
                     $message .= " ".$rtMail." ";
                 }
-                if($value == '4'){
+                if($value == "4"){
                     $message .= " ".$raMail." ";
                 }
                 if($value == "5"){
                     $message .= " ".$link." ";
                 }
-                if($value == '9'){
+                if($value == "9"){
                     foreach($tableInfo as $key => $value){
                         $message .= $key. " : " . $value . "<br>";
                     }
