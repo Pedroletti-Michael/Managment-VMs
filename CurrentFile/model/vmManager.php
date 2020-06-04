@@ -865,7 +865,7 @@ function transformNameIntoEmail($name)
         {
             $lastName = "$lastName"."$name[$count]";
 
-            if($count = $length - 1)
+            if($count == $length - 1)
             {
                 $email = $lastName."@heig-vd.ch";
                 return $email;
