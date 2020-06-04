@@ -262,20 +262,12 @@ function displayDetailsVM($idVM)
 function updateVM($vmInformation)
 {
     require_once "model/vmManager.php";
+    
     $_SESSION['displayModalConfirm'] = false;
-    $checkTMName = transformNameIntoEmail($vmInformation['inputTMNam']);
-    $checkRAName = transformNameIntoEmail($vmInformation['inputRANam']);
+    $checkTMNam = getFirstAndLastNameUser($vmInformation['inputTMName']);
+    $checkRANam = getFirstAndLastNameUser($vmInformation['inputRAName']);
 
-    if($vmInformation['inputTMName'] == "admin admin")
-    {
-        $vmInformation['inputTMName'] = "admin@heig-vd.ch";
-    }
-    elseif($vmInformation['inputRAName'] == "admin admin")
-    {
-        $vmInformation['inputRAName'] = "admin@heig-vd.ch";
-    }
-
-    if($vmInformation['inputTMName'] == null || $vmInformation['inputTMName'] != $checkTMName || $vmInformation['inputRAName'] == null  || $vmInformation['inputRAName'] != $checkRAName)
+    if($vmInformation['inputTMName'] == null || $vmInformation['inputRAName'] == null || $vmInformation['inputTMNam'] != $checkTMNam || $vmInformation['inputRANam'] != $checkRANam)
     {
         $errorForm = true;
         $_SESSION['displayModalNoUserSelected'] = true;
@@ -430,13 +422,14 @@ function updateVM($vmInformation)
 
 function vmAccepted($vmInformation)
 {
-    $vmStatus = true;
-    $_SESSION['displayModalConfirm'] = false;
-    $checkTMName = transformNameIntoEmail($vmInformation['inputTMNam']);
-    $checkRAName = transformNameIntoEmail($vmInformation['inputRANam']);
     require_once "model/vmManager.php";
 
-    if($vmInformation['inputTMName'] == null || $vmInformation['inputTMName'] != $checkTMName || $vmInformation['inputRAName'] == null  || $vmInformation['inputRAName'] != $checkRAName)
+    $vmStatus = true;
+    $checkTMNam = getFirstAndLastNameUser($vmInformation['inputTMName']);
+    $checkRANam = getFirstAndLastNameUser($vmInformation['inputRAName']);
+    $_SESSION['displayModalConfirm'] = false;
+
+    if($vmInformation['inputTMName'] == null || $vmInformation['inputRAName'] == null || $vmInformation['inputTMNam'] != $checkTMNam || $vmInformation['inputRANam'] != $checkRANam)
     {
         $errorForm = true;
         $_SESSION['displayModalNoUserSelected'] = true;

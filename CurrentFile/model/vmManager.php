@@ -261,6 +261,15 @@ function getNameAndSurnameUser($id){
     return $user;
 }
 
+function getEmailUser($id){
+    $strSep = '\'';
+
+    $query = "SELECT mail FROM `user` WHERE user_id = ". $strSep.$id.$strSep;
+
+    $userEmail = executeQuery($query);
+    return $userEmail;
+}
+
 function getCluster($id){
     $strSep = '\'';
 
@@ -599,10 +608,14 @@ function getDataVM($idVM){
     foreach ($resultSelect as $vm){
         $userRa = getNameAndSurnameUser($vm['userRa']);
         $userRt = getNameAndSurnameUser($vm['userRt']);
+        $userEmailRa = getEmailUser($vm['userRa']);
+        $userEmailRt = getEmailUser($vm['userRt']);
         $resultSelect[$i]['cluster'] = getCluster($vm['cluster']);
         $resultSelect[$i]['customer'] = getMailUser($vm['customer']);
         $resultSelect[$i]['userRa'] = $userRa[0]['lastname']." ".$userRa[0]['firstname'];
         $resultSelect[$i]['userRt'] = $userRt[0]['lastname']." ".$userRt[0]['firstname'];
+        $resultSelect[$i]['userEmailRa'] = $userEmailRa[0]['mail'];
+        $resultSelect[$i]['userEmailRt'] = $userEmailRt[0]['mail'];
         $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
         $resultSelect[$i]['os_id'] = getInfoOs($vm['os_id']);
         $resultSelect[$i]['snapshot_id'] = getInfoSnapshot($vm['snapshot_id']);
@@ -845,43 +858,17 @@ function updateStatusVM($id, $vmStatus, $reason = null, $vmInformation = null){
 }
 
 /**===Verify datas to update VM===**/
-function transformNameIntoEmail($name)
+function getFirstAndLastNameUser($email)
 {
-    $lastName = null;
-    $firstName = null;
+    $strSep = '\'';
 
-    if($name == "admin admin")
-    {
-        $email = "admin@heig-vd.ch";
-        return $email;
-    }
+    $query = "SELECT lastname, firstname FROM `user` WHERE mail = ". $strSep.$email.$strSep;
 
-    if (!filter_var($name, FILTER_VALIDATE_EMAIL))
-    {
-        $name = strtolower($name);
-        $length = strlen($name);
+    $user = executeQuery($query);
 
-        for($count = 0; $count < $length; $count++)
-        {
-            $lastName = "$lastName"."$name[$count]";
+    $name = $user[0]["lastname"]." ".$user[0]["firstname"];
 
-            if($count == $length - 1)
-            {
-                $email = $lastName."@heig-vd.ch";
-                return $email;
-            }
-
-            if($name[$count+1] == " ")
-            {
-                for($count += 2; $count < $length; $count++)
-                {
-                    $firstName = "$firstName"."$name[$count]";
-                }
-            }
-        }
-        $email = $firstName.".".$lastName."@heig-vd.ch";
-        return $email;
-    }
+    return $name;
 }
 
 /**===GET INFORMATION FOR THE UPDATE OF THE STATUS VM===**/

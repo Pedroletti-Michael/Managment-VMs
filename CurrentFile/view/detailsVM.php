@@ -200,7 +200,7 @@ ob_start();
                             ?>
                         </ul>
                         <input type="hidden" name="inputTMName" id="inputTMName"
-                               value="<?php echo $dataVM[0]['userRt'] ?>" readonly required>
+                               value="<?php echo $dataVM[0]['userEmailRt'] ?>" readonly required>
                     <?php endif; ?>
                 </div>
                 <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
@@ -231,7 +231,7 @@ ob_start();
                             ?>
                         </ul>
                         <input type="hidden" name="inputRAName" id="inputRAName"
-                               value="<?php echo $dataVM[0]['userRa'] ?>" readonly required>
+                               value="<?php echo $dataVM[0]['userEmailRa'] ?>" readonly required>
                     <?php endif; ?>
                 </div>
             </div>
