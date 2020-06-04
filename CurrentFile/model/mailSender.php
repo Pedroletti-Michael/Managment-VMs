@@ -27,7 +27,7 @@ function sendMail($to, $subject, $message, $headers){
  * This mail contains a direct link to the request of the user and some basic information about the request.
  * This mail is going to be send to the request user and in copy to the administrator.
  */
-function requestMail($userMail, $requestName, $rtMail, $raMail){
+function requestMail($userMail, $requestName, $rtMail, $raMail, $tableInfo){
     // multiple recipients
     $jsonData = getJsonData(0);
     $administratorMail = $jsonData['mailAdmin'];
@@ -60,6 +60,11 @@ function requestMail($userMail, $requestName, $rtMail, $raMail){
                 }
                 if($value == '4'){
                     $message .= " ".$raMail." ";
+                }
+                if($value == '8'){
+                    foreach($tableInfo as $key => $value){
+                        $message .= $key. " : " . $value . "<br>";
+                    }
                 }
             }
         }
@@ -95,7 +100,7 @@ function requestMail($userMail, $requestName, $rtMail, $raMail){
 /**
  * Function used to send a request with a direct link into the request to the administrator of the SI.
  */
-function mailAdministrator($userMail, $requestName, $link){
+function mailAdministrator($userMail, $requestName, $link, $tableInfo){
     // multiple recipients
     $jsonData = getJsonData(0);
     $administratorMail = $jsonData['mailAdmin'];
@@ -125,6 +130,11 @@ function mailAdministrator($userMail, $requestName, $link){
                 }
                 if($value == "5"){
                     $message .= " ".$link." ";
+                }
+                if($value == '8'){
+                    foreach($tableInfo as $key => $value){
+                        $message .= $key. " : " . $value . "<br>";
+                    }
                 }
             }
         }
@@ -159,7 +169,7 @@ function mailAdministrator($userMail, $requestName, $link){
 /**
  * This function used to send the validation for a request of vm to an user.
  */
-function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
+function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail, $tableInfo){
     // multiple recipients
     $jsonData = getJsonData(0);
     $administratorMail = $jsonData['mailAdmin'];
@@ -195,6 +205,11 @@ function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail){
                 }
                 if($value == "5"){
                     $message .= " ".$link." ";
+                }
+                if($value == '9'){
+                    foreach($tableInfo as $key => $value){
+                        $message .= $key. " : " . $value . "<br>";
+                    }
                 }
             }
         }

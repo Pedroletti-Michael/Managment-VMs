@@ -188,11 +188,11 @@ function formVM($formVMRequest)
         {
             $requestMail = false;
             $adminMail = false;
-            if(requestMail($_SESSION['userEmail'], $formVMRequest['inputVMName'], $formVMRequest['inputTMName'], $formVMRequest['inputRAName'])){
+            if(requestMail($_SESSION['userEmail'], $formVMRequest['inputVMName'], $formVMRequest['inputTMName'], $formVMRequest['inputRAName'], $formVMRequest)){
                 $requestMail = true;
             }
             $link = "http://vmman.heig-vd.ch/index.php?action=detailsVM&id=". getIdOfVmByName($formVMRequest['inputVMName']);
-            if(mailAdministrator($_SESSION['userEmail'], $formVMRequest['inputVMName'], $link)){
+            if(mailAdministrator($_SESSION['userEmail'], $formVMRequest['inputVMName'], $link, $formVMRequest)){
                 $adminMail = true;
             }
 

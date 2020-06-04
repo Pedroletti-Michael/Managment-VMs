@@ -820,7 +820,7 @@ function updateStatusVM($id, $vmStatus, $reason = null, $vmInformation = null){
         $query = "SELECT `vmStatus` FROM `vm` WHERE id =". $id;
         $selectResult = executeQuery($query);
         if($selectResult[0][0] == 2){
-            if(validateRequestMail($info[1], $info[0], $link, $info[3], $info[2]) && administratorMailValidateRequest($info[0],$link,$vmInformation)){
+            if(validateRequestMail($info[1], $info[0], $link, $info[3], $info[2], $vmInformation) && administratorMailValidateRequest($info[0],$link,$vmInformation)){
                 $result = 2;
             }
             else{

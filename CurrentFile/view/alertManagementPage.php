@@ -107,7 +107,7 @@ ob_start();
     <p class="text-center">
         Listes des variables utilisables dans les différents contenu de mail (format d'utilisation = \nb_var\):<br>
         1. e-mail de l'utilisateur | 2. nom de la requête | 3. e-mail du RT | 4. e-mail du RA | 5. lien vers la requête
-        | 6. raison d'un refus | 7. temps restant<br>
+        | 6. raison d'un refus | 7. temps restant | 8. tableau récap. d'une demande | 9. tableau récap. après validation d'une demande<br>
         <span class="font-weight-bold">Veillez à prêter attention aux différentes variables utilisables selon le mail que vous écrivez. Cette information est disponible en dessous de l'espace pour écrire.</span><br>
         Exemple d'utilisation : La commande \2\ est prête...!
     </p>
@@ -120,8 +120,8 @@ ob_start();
                 <textarea rows="15" style="resize: none" class="form-control form form" id="requestMail"
                           name="requestMail" aria-describedby="requestMailHelp" placeholder="Ex: Bonjour,<br>..."
                           required><?= $mailContentJsonData['requestMail']; ?></textarea>
-                <small id="requestMailHelp" class="form-text text-muted font-weight-bold">Variables utilisables : 1.
-                    e-mail de l'utilisateur | 2. nom de la requête | 3. e-mail du RT | 4. e-mail du RA
+                <small id="requestMailHelp" class="form-text text-muted font-weight-bold">
+                    Variables utilisables : 1. e-mail de l'utilisateur | 2. nom de la requête | 3. e-mail du RT | 4. e-mail du RA | 8. tableau récap. d'une demande
                 </small>
             </div>
             <!--Content mail Administrator for request-->
@@ -132,8 +132,8 @@ ob_start();
                           id="mailToAdminstratorRequest" name="mailToAdminstratorRequest"
                           aria-describedby="mailToAdminstratorRequestHelp" placeholder="Ex: Bonjour,<br>..."
                           required><?= $mailContentJsonData['mailToAdminstratorRequest']; ?></textarea>
-                <small id="mailToAdminstratorRequestHelp" class="form-text text-muted">Variables utilisables : 1. e-mail
-                    de l'utilisateur | 2. nom de la requête | 5. lien vers la requête
+                <small id="mailToAdminstratorRequestHelp" class="form-text text-muted font-weight-bold">
+                    Variables utilisables : 1. e-mail de l'utilisateur | 2. nom de la requête | 5. lien vers la requête | 8. tableau récap. d'une demande
                 </small>
             </div>
         </div>
@@ -146,8 +146,8 @@ ob_start();
                           id="validateRequestMail" name="validateRequestMail" aria-describedby="validateRequestMailHelp"
                           placeholder="Ex: Bonjour,<br>..."
                           required><?= $mailContentJsonData['validateRequestMail']; ?></textarea>
-                <small id="validateRequestMailHelp" class="form-text text-muted">Variables utilisables : 1. e-mail de
-                    l'utilisateur | 2. nom de la requête | 3. e-mail du RT | 4. e-mail du RA | 5. lien vers la requête
+                <small id="validateRequestMailHelp" class="form-text text-muted font-weight-bold">
+                    Variables utilisables : 1. e-mail de l'utilisateur | 2. nom de la requête | 3. e-mail du RT | 4. e-mail du RA | 5. lien vers la requête | 9. tableau récap. après validation d'une demandes
                 </small>
             </div>
             <!--Content mail denied-->
