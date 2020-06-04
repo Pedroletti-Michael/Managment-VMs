@@ -266,6 +266,15 @@ function updateVM($vmInformation)
     $checkTMName = transformNameIntoEmail($vmInformation['inputTMNam']);
     $checkRAName = transformNameIntoEmail($vmInformation['inputRANam']);
 
+    if($vmInformation['inputTMName'] == "admin admin")
+    {
+        $vmInformation['inputTMName'] = "admin@heig-vd.ch";
+    }
+    elseif($vmInformation['inputRAName'] == "admin admin")
+    {
+        $vmInformation['inputRAName'] = "admin@heig-vd.ch";
+    }
+
     if($vmInformation['inputTMName'] == null || $vmInformation['inputTMName'] != $checkTMName || $vmInformation['inputRAName'] == null  || $vmInformation['inputRAName'] != $checkRAName)
     {
         $errorForm = true;
@@ -423,8 +432,18 @@ function vmAccepted($vmInformation)
 {
     $vmStatus = true;
     $_SESSION['displayModalConfirm'] = false;
-
+    $checkTMName = transformNameIntoEmail($vmInformation['inputTMNam']);
+    $checkRAName = transformNameIntoEmail($vmInformation['inputRANam']);
     require_once "model/vmManager.php";
+
+    if($vmInformation['inputTMName'] == null || $vmInformation['inputTMName'] != $checkTMName || $vmInformation['inputRAName'] == null  || $vmInformation['inputRAName'] != $checkRAName)
+    {
+        $errorForm = true;
+        $_SESSION['displayModalNoUserSelected'] = true;
+        displayDetailsVM($_SESSION['idVM']);
+        exit;
+
+    }
 
     if($vmInformation['inputEndDate'] != "")
     {

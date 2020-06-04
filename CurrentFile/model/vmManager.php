@@ -852,7 +852,7 @@ function transformNameIntoEmail($name)
 
     if($name == "admin admin")
     {
-        $email = "admin admin";
+        $email = "admin@heig-vd.ch";
         return $email;
     }
 
