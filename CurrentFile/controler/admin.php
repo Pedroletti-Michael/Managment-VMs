@@ -263,6 +263,17 @@ function updateVM($vmInformation)
 {
     require_once "model/vmManager.php";
     $_SESSION['displayModalConfirm'] = false;
+    $checkTMName = transformNameIntoEmail($vmInformation['inputTMNam']);
+    $checkRAName = transformNameIntoEmail($vmInformation['inputRANam']);
+
+    if($vmInformation['inputTMName'] == null || $vmInformation['inputTMName'] != $checkTMName || $vmInformation['inputRAName'] == null  || $vmInformation['inputRAName'] != $checkRAName)
+    {
+        $errorForm = true;
+        $_SESSION['displayModalNoUserSelected'] = true;
+        displayDetailsVM($_SESSION['idVM']);
+        exit;
+
+    }
 
     if($vmInformation['inputEndDate'] != "")
     {

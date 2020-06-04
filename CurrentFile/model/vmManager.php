@@ -844,6 +844,46 @@ function updateStatusVM($id, $vmStatus, $reason = null, $vmInformation = null){
     return $result;
 }
 
+/**===Verify datas to update VM===**/
+function transformNameIntoEmail($name)
+{
+    $lastName = null;
+    $firstName = null;
+
+    if($name == "admin admin")
+    {
+        $email = "admin admin";
+        return $email;
+    }
+
+    if (!filter_var($name, FILTER_VALIDATE_EMAIL))
+    {
+        $name = strtolower($name);
+        $length = strlen($name);
+
+        for($count = 0; $count < $length; $count++)
+        {
+            $lastName = "$lastName"."$name[$count]";
+
+            if($count = $length - 1)
+            {
+                $email = $lastName."@heig-vd.ch";
+                return $email;
+            }
+
+            if($name[$count+1] == " ")
+            {
+                for($count += 2; $count < $length; $count++)
+                {
+                    $firstName = "$firstName"."$name[$count]";
+                }
+            }
+        }
+        $email = $firstName.".".$lastName."@heig-vd.ch";
+        return $email;
+    }
+}
+
 /**===GET INFORMATION FOR THE UPDATE OF THE STATUS VM===**/
 function getInformationForMailAboutVM($id){
     $querySelect = "SELECT `name`, `customer`, `userRa`, `userRt` FROM `vm` WHERE id = ". $id;
