@@ -29,13 +29,13 @@
 <!-------------------------- Gabarit for phones ------------------------------->
 <nav class="display-phone w-100">
     <button type="button" class="rounded-circle bg-dark m-auto fixed-bottom" style="height: 55px; width: 55px;bottom: 10px!important;" onclick="closePhoneMenu()" id="buttonClose">
-        <svg class="bi bi-x" width="40px" height="40px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: lightgray;">
+        <svg class="bi bi-x m-auto" width="40px" height="40px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: lightgray;">
             <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
             <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
         </svg>
     </button>
     <button type="button" class="rounded-circle bg-dark m-auto fixed-bottom" style="height: 55px; width: 55px;bottom: 10px!important;" onclick="openPhoneMenu()" id="buttonOpen">
-        <svg class="bi bi-filter mt-1" width="40px" height="40px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: lightgray;">
+        <svg class="bi bi-filter mt-1 m-auto" width="40px" height="40px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: lightgray;">
             <path fill-rule="evenodd" d="M6 10.5a.5.5 0 01.5-.5h3a.5.5 0 010 1h-3a.5.5 0 01-.5-.5zm-2-3a.5.5 0 01.5-.5h7a.5.5 0 010 1h-7a.5.5 0 01-.5-.5zm-2-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
         </svg>
     </button>
@@ -62,34 +62,36 @@
                 <a class="color-lightgrey text-decoration-none" href="index.php?action=form"><h5 class="color-lightgrey pb-0">Formulaire</h5></a>
             <?php endif; ?>
         </div>
-        <div class="w-100 m-auto text-center pt-1">
-            <!----------------- renewalVM ---------------->
-            <?php if ($_GET['action'] == "renewalVM"): ?>
-                <a href="index.php?action=renewalVM" class="alert-link active text-decoration-none">
-                    <h5 class="color-lightgrey">
-                        <?php
-                        if(isset($_SESSION['countRenewalVM'])){
-                            echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
-                        }
-                        ?>
-                        <a class="menu-phone-selected">
+        <?php if ($_SESSION['userType'] != 1): ?>
+            <div class="w-100 m-auto text-center pt-1">
+                <!----------------- renewalVM ---------------->
+                <?php if ($_GET['action'] == "renewalVM"): ?>
+                    <a href="index.php?action=renewalVM" class="alert-link active text-decoration-none">
+                        <h5 class="color-lightgrey">
+                            <?php
+                            if(isset($_SESSION['countRenewalVM'])){
+                                echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
+                            }
+                            ?>
+                            <a class="menu-phone-selected">
+                                Renouvellements
+                            </a>
+                        </h5>
+                    </a>
+                <?php else : ?>
+                    <a href="index.php?action=renewalVM" class="text-decoration-none">
+                        <h5 class="color-lightgrey">
+                            <?php
+                            if(isset($_SESSION['countRenewalVM'])){
+                                echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
+                            }
+                            ?>
                             Renouvellements
-                        </a>
-                    </h5>
-                </a>
-            <?php else : ?>
-                <a href="index.php?action=renewalVM" class="text-decoration-none">
-                    <h5 class="color-lightgrey">
-                        <?php
-                        if(isset($_SESSION['countRenewalVM'])){
-                            echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
-                        }
-                        ?>
-                        Renouvellements
-                    </h5>
-                </a>
-            <?php endif; ?>
-        </div>
+                        </h5>
+                    </a>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
         <div class="w-100 fixed-bottom d-inline-block" style="bottom: 20px">
             <div class="float-left w-50 text-decoration-none pl-2">
                 <a href="mailto:helpdesk@heig-vd.ch?subject=Plateforme GVM : [Titre de votre message]">
@@ -251,24 +253,26 @@
             <a href="index.php?action=form">Formulaire</a>
         <?php endif; ?>
         <!----------------- renewalVM ---------------->
-        <?php if ($_GET['action'] == "renewalVM"): ?>
-            <a href="index.php?action=renewalVM" class="alert-link active">
-                <?php
-                if(isset($_SESSION['countRenewalVM'])){
-                    echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
-                }
-                ?>
-                Renouvellements
-            </a>
-        <?php else : ?>
-            <a href="index.php?action=renewalVM">
-                <?php
-                if(isset($_SESSION['countRenewalVM'])){
-                    echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
-                }
-                ?>
-                Renouvellements
-            </a>
+        <?php if ($_SESSION['userType'] != 1): ?>
+            <?php if ($_GET['action'] == "renewalVM"): ?>
+                <a href="index.php?action=renewalVM" class="alert-link active">
+                    <?php
+                    if(isset($_SESSION['countRenewalVM'])){
+                        echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
+                    }
+                    ?>
+                    Renouvellements
+                </a>
+            <?php else : ?>
+                <a href="index.php?action=renewalVM">
+                    <?php
+                    if(isset($_SESSION['countRenewalVM'])){
+                        echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
+                    }
+                    ?>
+                    Renouvellements
+                </a>
+            <?php endif; ?>
         <?php endif; ?>
 
         <?php if(isset($_SESSION['userType']) && $_SESSION['userType']==1 || $_SESSION['userType']==2):?>
@@ -405,7 +409,7 @@
                             </a>
                     </li>
                 </ul>
-                <ul class="nav flex-column mb-2">
+                <ul class="nav flex-column">
                     <li class="nav-item">
                         <?php if ($_GET['action'] == "form"): ?>
                         <a class="nav-link active" href="index.php?action=form">
@@ -420,7 +424,8 @@
                             </a>
                     </li>
                 </ul>
-                <ul class="nav flex-column">
+                <?php if ($_SESSION['userType'] != 1): ?>
+                <ul class="nav flex-column  mb-2">
                     <li class="nav-item">
                         <?php if ($_GET['action'] == "renewalVM"): ?>
                         <a class="nav-link active" href="index.php?action=renewalVM">
@@ -439,6 +444,7 @@
                             </a>
                     </li>
                 </ul>
+                <?php endif; ?>
                 <?php if(isset($_SESSION['userType']) && $_SESSION['userType']==1 || $_SESSION['userType']==2):?>
                     <?php if($_SESSION['userType']==2) : ?>
                         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
