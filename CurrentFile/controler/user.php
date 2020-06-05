@@ -147,6 +147,9 @@ function renewalTest(){
     // Get all VM from dataBase
     $allVm = array();
 
+    $advertMail = 0;
+    $nonrenewalMail = 0;
+
     // Do a verification for all vm
     foreach($allVm as $vm){
         $idVm = $vm['id'];
@@ -159,8 +162,17 @@ function renewalTest(){
         $dateAnniversary = $vm['dataAnniversary'];
 
         // Function who do the verification, we only need to give these info
-        isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $raMail, $dateEndVm, $dateAnniversary);
+        if(isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $raMail, $dateEndVm, $dateAnniversary)){
+            $advertMail ++;
+        }
+        else{
+            $nonrenewalMail ++;
+        }
     }
+
+    echo '<script>alert("'.$advertMail.' e-mails d\'avertissement sont partit.<br>'.$nonrenewalMail.' e-mails de non renouvellements sont partis.");</script>';
+
+    displayManagementUser();
 }
 
 /**
