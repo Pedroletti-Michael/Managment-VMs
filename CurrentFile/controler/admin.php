@@ -1121,20 +1121,6 @@ function saveAlertModification($data)
     }
 }
 
-<<<<<<< Updated upstream
-function saveContentMail($data){
-    if(isset($data['requestMail'])){
-        if(isset($data['mailToAdminstratorRequest'])){
-            if(isset($data['validateRequestMail'])){
-                if(isset($data['deniedRequestMail'])){
-                    if(isset($data['advertMail'])){
-                        if(isset($data['nonrenewalMailAdvert'])){
-                            if(isset($data['renewalMail'])){
-                                if(isset($data['administratorMailValidateRequest'])){
-                                    $tableToSave = array('data' => 'mailContent', 'requestMail' => $data['requestMail'], 'mailToAdminstratorRequest' =>$data['mailToAdminstratorRequest'], 'validateRequestMail' => $data['validateRequestMail'], 'deniedRequestMail' =>$data['deniedRequestMail'], 'advertMail' => $data['advertMail'], 'nonrenewalMailAdvert' =>$data['nonrenewalMailAdvert'], 'renewalMail' => $data['renewalMail'], 'administratorMailValidateRequest' => $data['administratorMailValidateRequest']);
-                                }
-                            }
-=======
 function saveContentMail($data)
 {
     if(isset($data['requestMail']))
@@ -1149,8 +1135,13 @@ function saveContentMail($data)
                     {
                         if(isset($data['nonrenewalMailAdvert']))
                         {
-                            $tableToSave = array('data' => 'mailContent', 'requestMail' => $data['requestMail'], 'mailToAdminstratorRequest' =>$data['mailToAdminstratorRequest'], 'validateRequestMail' => $data['validateRequestMail'], 'deniedRequestMail' =>$data['deniedRequestMail'], 'advertMail' => $data['advertMail'], 'nonrenewalMailAdvert' =>$data['nonrenewalMailAdvert']);
->>>>>>> Stashed changes
+                            if(isset($data['renewalMail']))
+                            {
+                                if(isset($data['administratorMailValidateRequest']))
+                                {
+                                    $tableToSave = array('data' => 'mailContent', 'requestMail' => $data['requestMail'], 'mailToAdminstratorRequest' =>$data['mailToAdminstratorRequest'], 'validateRequestMail' => $data['validateRequestMail'], 'deniedRequestMail' =>$data['deniedRequestMail'], 'advertMail' => $data['advertMail'], 'nonrenewalMailAdvert' =>$data['nonrenewalMailAdvert'], 'renewalMail' => $data['renewalMail'], 'administratorMailValidateRequest' => $data['administratorMailValidateRequest']);
+                                }
+                            }
                         }
                     }
                 }
