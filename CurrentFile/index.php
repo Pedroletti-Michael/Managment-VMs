@@ -19,14 +19,17 @@ if(isset($_GET['action']))
 {
     $action = $_GET['action'];
     require_once 'model/vmManager.php';
-    if($_SESSION['userType'] == 1){
+    if($_SESSION['userType'] == 1)
+    {
         $_SESSION['countConfirmationVM'] = countConfirmationVM();
         $_SESSION['countRenewalVM'] = countRenewalVM();
     }
-    else{
+    else
+    {
         $_SESSION['countConfirmationVM'] = countUserConfirmationVM($_SESSION['userId']);
         $_SESSION['countRenewalVM'] = countUserRenewalVM($_SESSION['userId']);
     }
+
     switch ($action)
     {
         case 'home':
