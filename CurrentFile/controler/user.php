@@ -5,6 +5,9 @@
 * Description : Contains all functions related to the user
 **/
 
+/**
+ * Get datas user's VMs to display the user's VMs at the home page
+ */
 function displayHome()
 {
     if(isset($_SESSION['userType'])&& $_SESSION['userType'] != null)
@@ -31,12 +34,21 @@ function displayHome()
     }
 }
 
+/**
+ * Display the sign in page
+ */
 function displaySignIn()
 {
     $_GET['action'] = "signIn";
     require 'view/signIn.php';
 }
 
+/**
+ * Verify the datas's form VM order and if the login is correct, display the home page.
+ * (Only if the user did not take any action before logging in).
+ *
+ * @param $loginRequest = The datas's form VM order (POST)
+ */
 function login($loginRequest)
 {
   if (isset($loginRequest['userLogin']) && $loginRequest['userLogin'] != null && isset($loginRequest['userPassword']) && $loginRequest['userPassword'] != null)
@@ -45,7 +57,6 @@ function login($loginRequest)
          $userPwd = $loginRequest['userPassword'];
 
          require_once "model/userManager.php";
-
          $userEmail = userLogin($userLogin, $userPwd);
 
          if ($userEmail!=null || $userEmail!=false)
@@ -76,6 +87,10 @@ function login($loginRequest)
      }
 }
 
+/**
+ * Create the user's session (store the user's informations into the user's session)
+ * @param $userEmail = The user's email address
+ */
 function createSession($userEmail)
 {
     $_SESSION['userEmail'] = $userEmail;
@@ -83,27 +98,37 @@ function createSession($userEmail)
     $_SESSION['userId'] = getUserId($userEmail);
 
     require_once 'model/vmManager.php';
-    if($_SESSION['userType'] == 1){
+
+    if($_SESSION['userType'] == 1)
+    {
         $_SESSION['countConfirmationVM'] = countConfirmationVM();
         $_SESSION['countRenewalVM'] = countRenewalVM();
     }
-    else{
+    else
+    {
         $_SESSION['countConfirmationVM'] = countUserConfirmationVM($_SESSION['userId']);
         $_SESSION['countRenewalVM'] = countUserRenewalVM($_SESSION['userId']);
     }
-
 }
 
+/**
+ * Disconnect the user, delete user's information and redirect the user to the sign in page
+ */
 function signOut()
 {
     $_SESSION = array();
     session_destroy();
 
-    displayHome();
+    displaySignIn();
 }
 
-function displayManagementUser(){
-    if(isset($_SESSION['userType']) && $_SESSION['userType'] == 1){
+/**
+ * Get users to display and display the users management page
+ */
+function displayManagementUser()
+{
+    if(isset($_SESSION['userType']) && $_SESSION['userType'] == 1)
+    {
         require_once 'model/userManager.php';
         $allUsers = getAllUsers();
         $allUsersAsc = getAllUsersAscendant();
@@ -111,43 +136,68 @@ function displayManagementUser(){
 
         require_once 'view/userManagement.php';
     }
-    else{
+    else
+    {
         displaySignIn();
     }
-
 }
 
-function refreshUser(){
+/**
+ * Refresh the users list (get the users on the ad server with ldap and add the users into the DB)
+ * then display the users management page.
+ */
+function refreshUser()
+{
     require_once 'model/userManager.php';
-    if(verificationUserFromDb()){
+
+    if(verificationUserFromDb())
+    {
         displayManagementUser();
     }
-    else{
+    else
+    {
         displayManagementUser();
     }
 }
 
-function saveModificationAboutUsers($allData){
+/**
+ * Verify the datas's form users management, updating the user type depending of the user's actions
+ * and finally display the users management page.
+ *
+ * @param $allData = The datas's form users management (POST)
+ */
+function saveModificationAboutUsers($allData)
+{
     require_once 'model/userManager.php';
     $allUsers = getAllUsers();
 
-    if(isset($allData['usersAfterAsc']) && isset($allData['usersViewerAfterAsc'])){
+    if(isset($allData['usersAfterAsc']) && isset($allData['usersViewerAfterAsc']))
+    {
         $adminFromForm = explode(";", $allData['usersAfterAsc']);
         $viewerFromForm = explode(";", $allData['usersViewerAfterAsc']);
-        foreach($adminFromForm as $adminForm){
-            foreach($allUsers as $user){
-                if($adminForm == $user['user_id']){
-                    if($user['type'] == 0 || $user['type'] == 2){
+
+        foreach($adminFromForm as $adminForm)
+        {
+            foreach($allUsers as $user)
+            {
+                if($adminForm == $user['user_id'])
+                {
+                    if($user['type'] == 0 || $user['type'] == 2)
+                    {
                         updateType($user['user_id'], true);
                     }
                 }
             }
         }
 
-        foreach($viewerFromForm as $viewerForm){
-            foreach($allUsers as $user){
-                if($viewerForm == $user['user_id']){
-                    if($user['type'] == 0 || $user['type'] == 1){
+        foreach($viewerFromForm as $viewerForm)
+        {
+            foreach($allUsers as $user)
+            {
+                if($viewerForm == $user['user_id'])
+                {
+                    if($user['type'] == 0 || $user['type'] == 1)
+                    {
                         updateType($user['user_id'], 2);
                     }
                 }
@@ -155,48 +205,71 @@ function saveModificationAboutUsers($allData){
         }
 
         $adminFromDb = getAllAdmin();
-        foreach($adminFromDb as $adminDb){
+
+        foreach($adminFromDb as $adminDb)
+        {
             $res = false;
-            foreach($adminFromForm as $adminForm){
-                if($adminForm == $adminDb['user_id']){
+            foreach($adminFromForm as $adminForm)
+            {
+                if($adminForm == $adminDb['user_id'])
+                {
                     $res = true;
                 }
             }
-            if(!$res){
+
+            if(!$res)
+            {
                 updateType($adminDb['user_id'], false);
             }
         }
 
         $viewerFromDb = getAllViewer();
-        foreach($viewerFromDb as $viewerDb){
+
+        foreach($viewerFromDb as $viewerDb)
+        {
             $res = false;
-            foreach($viewerFromForm as $viewerForm){
-                if($viewerForm == $viewerDb['user_id']){
+
+            foreach($viewerFromForm as $viewerForm)
+            {
+                if($viewerForm == $viewerDb['user_id'])
+                {
                     $res = true;
                 }
             }
-            if(!$res){
+
+            if(!$res)
+            {
                 updateType($viewerDb['user_id'], false);
             }
         }
     }
-    elseif(isset($allData['usersAfterDesc']) && isset($allData['usersViewerAfterDesc'])){
+    elseif(isset($allData['usersAfterDesc']) && isset($allData['usersViewerAfterDesc']))
+    {
         $adminFromForm = explode(";", $allData['usersAfterDesc']);
         $viewerFromForm = explode(";", $allData['usersViewerAfterDesc']);
-        foreach($adminFromForm as $adminForm){
-            foreach($allUsers as $user){
-                if($adminForm == $user['user_id']){
-                    if($user['type'] == 0 || $user['type'] == 2){
+
+        foreach($adminFromForm as $adminForm)
+        {
+            foreach($allUsers as $user)
+            {
+                if($adminForm == $user['user_id'])
+                {
+                    if($user['type'] == 0 || $user['type'] == 2)
+                    {
                         updateType($user['user_id'], true);
                     }
                 }
             }
         }
 
-        foreach($viewerFromForm as $viewerForm){
-            foreach($allUsers as $user){
-                if($viewerForm == $user['user_id']){
-                    if($user['type'] == 0 || $user['type'] == 1){
+        foreach($viewerFromForm as $viewerForm)
+        {
+            foreach($allUsers as $user)
+            {
+                if($viewerForm == $user['user_id'])
+                {
+                    if($user['type'] == 0 || $user['type'] == 1)
+                    {
                         updateType($user['user_id'], 2);
                     }
                 }
@@ -204,31 +277,43 @@ function saveModificationAboutUsers($allData){
         }
 
         $adminFromDb = getAllAdmin();
-        foreach($adminFromDb as $adminDb){
+
+        foreach($adminFromDb as $adminDb)
+        {
             $res = false;
-            foreach($adminFromForm as $adminForm){
-                if($adminForm == $adminDb['user_id']){
+
+            foreach($adminFromForm as $adminForm)
+            {
+                if($adminForm == $adminDb['user_id'])
+                {
                     $res = true;
                 }
             }
-            if(!$res){
+
+            if(!$res)
+            {
                 updateType($adminDb['user_id'], false);
             }
         }
 
         $viewerFromDb = getAllViewer();
-        foreach($viewerFromDb as $viewerDb){
+
+        foreach($viewerFromDb as $viewerDb)
+        {
             $res = false;
-            foreach($viewerFromForm as $viewerForm){
-                if($viewerForm == $viewerDb['user_id']){
+
+            foreach($viewerFromForm as $viewerForm)
+            {
+                if($viewerForm == $viewerDb['user_id'])
+                {
                     $res = true;
                 }
             }
-            if(!$res){
+            if(!$res)
+            {
                 updateType($viewerDb['user_id'], false);
             }
         }
     }
-
     displayManagementUser();
 }
