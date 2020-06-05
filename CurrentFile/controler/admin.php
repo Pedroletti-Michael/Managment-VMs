@@ -458,7 +458,8 @@ function vmAccepted($vmInformation)
         }
     }
 
-    if(strlen($vmInformation['ti']) > 1000 || strlen($vmInformation['objective']) > 1000){
+    if(strlen($vmInformation['ti']) > 1000 || strlen($vmInformation['objective']) > 1000)
+    {
         if($_SESSION['userType'] == 0)
         {
             displayHome();
@@ -536,7 +537,8 @@ function vmAccepted($vmInformation)
     {
         $vmInformation['securityFormControlSelect'] = 0;
     }
-    else{
+    else
+    {
         $vmInformation['securityFormControlSelect'] = 0;
     }
 
@@ -545,15 +547,18 @@ function vmAccepted($vmInformation)
         $vmInformation['editCriticity'] = 0;
     }
 
-    if(updateStatusVM($_SESSION['idVM'], $vmStatus, null, $vmInformation) == 2 && updateVMInformation($vmInformation, $_SESSION['idVM'])){
+    if(updateStatusVM($_SESSION['idVM'], $vmStatus, null, $vmInformation) == 2 && updateVMInformation($vmInformation, $_SESSION['idVM']))
+    {
         $_SESSION['displayModalConfirm'] = true;
         displayAllVM("","");
     }
-    elseif(updateStatusVM($_SESSION['idVM'], $vmStatus, null, $vmInformation) == 1 && updateVMInformation($vmInformation, $_SESSION['idVM'])){
+    elseif(updateStatusVM($_SESSION['idVM'], $vmStatus, null, $vmInformation) == 1 && updateVMInformation($vmInformation, $_SESSION['idVM']))
+    {
         $_SESSION['displayModalErrorMail'] = true;
         displayAllVM("","");
     }
-    else{
+    else
+    {
         $_SESSION['displayErrorModification'] = true;
         displayDetailsVM($_SESSION['idVM']);
     }
@@ -563,21 +568,25 @@ function vmRefused($reason = null)
 {
     $vmStatus = false;
 
-    if($reason == null){
+    if($reason == null)
+    {
         $reason = 'Nous ne pouvons malheureusement pas accéder à votre requête pour le moment.';
     }
 
     require_once "model/vmManager.php";
 
-    if(updateStatusVM($_SESSION['idVM'], $vmStatus, $reason) == 2){
+    if(updateStatusVM($_SESSION['idVM'], $vmStatus, $reason) == 2)
+    {
         $_SESSION['$displayModalConfirm'] = true;
         displayAllVM("");
     }
-    elseif(updateStatusVM($_SESSION['idVM'], $vmStatus, $reason) == 1){
+    elseif(updateStatusVM($_SESSION['idVM'], $vmStatus, $reason) == 1)
+    {
         $_SESSION['displayModalErrorMail'] = true;
         displayAllVM("");
     }
-    else{
+    else
+    {
         $_SESSION['displayErrorModification'] = true;
         displayDetailsVM($_SESSION['idVM']);
     }
@@ -590,15 +599,18 @@ function renewwalAccepted()
 
     require_once "model/vmManager.php";
 
-    if(updateStatusVM($_SESSION['idVM'], $vmStatus) == 2){
+    if(updateStatusVM($_SESSION['idVM'], $vmStatus) == 2)
+    {
         $_SESSION['$displayModalConfirm'] = true;
         displayAllVM("");
     }
-    elseif(updateStatusVM($_SESSION['idVM'], $vmStatus) == 1){
+    elseif(updateStatusVM($_SESSION['idVM'], $vmStatus) == 1)
+    {
         $_SESSION['displayModalErrorMail'] = true;
         displayAllVM("");
     }
-    else{
+    else
+    {
         $_SESSION['displayErrorModification'] = true;
         displayDetailsVM($_SESSION['idVM']);
     }
@@ -610,15 +622,18 @@ function renewwalRefused()
 
     require_once "model/vmManager.php";
 
-    if(updateStatusVM($_SESSION['idVM'], $vmStatus) == 2){
+    if(updateStatusVM($_SESSION['idVM'], $vmStatus) == 2)
+    {
         $_SESSION['$displayModalConfirm'] = true;
         displayAllVM("");
     }
-    elseif(updateStatusVM($_SESSION['idVM'], $vmStatus) == 1){
+    elseif(updateStatusVM($_SESSION['idVM'], $vmStatus) == 1)
+    {
         $_SESSION['displayModalErrorMail'] = true;
         displayAllVM("");
     }
-    else{
+    else
+    {
         $_SESSION['displayErrorModification'] = true;
         displayDetailsVM($_SESSION['idVM']);
     }
@@ -630,8 +645,11 @@ function displayFormManagement($arrayToDisplay)
     $_SESSION['gestionFormArray'] = $arrayToDisplay;
     $brutEntityNames = displayBDD_Entity();
     $entityNames = array();
-    foreach($brutEntityNames as $value){
-        if($value['status'] == 0){
+
+    foreach($brutEntityNames as $value)
+    {
+        if($value['status'] == 0)
+        {
             array_push($entityNames, $value['entityName']);
         }
     }
@@ -665,19 +683,22 @@ function displayFormManagement($arrayToDisplay)
     }
 }
 
-function editEntity($entityName){
+function editEntity($entityName)
+{
     $arrayToDisplay = $_SESSION['gestionFormArray'];
     $isEntityAssociated = false;
     require_once 'model/displayManager.php';
 
-    if(isset($entityName['add'])){
+    if(isset($entityName['add']))
+    {
         if(isset($entityName['txtEntityAdd']) && $entityName['txtEntityAdd'] != null)
         {
             $nameEntity = $entityName['txtEntityAdd'];
             addEntity($nameEntity);
         }
     }
-    if(isset($entityName['delete'])){
+    if(isset($entityName['delete']))
+    {
         if(isset($entityName['valueEntityToDelete']) && $entityName['valueEntityToDelete'] != null)
         {
             $nameEntity = $entityName['valueEntityToDelete'];
@@ -709,7 +730,8 @@ function editEntity($entityName){
 
         }
     }
-    if(isset($entityName['modify'])){
+    if(isset($entityName['modify']))
+    {
         if(isset($entityName['valueEntityMod']) && $entityName['valueEntityMod'] != null && isset($entityName['txtEntityMod']) && $entityName['txtEntityMod'] != null)
         {
             $nameEntity = $entityName['valueEntityMod'];
@@ -720,12 +742,14 @@ function editEntity($entityName){
     displayFormManagement($arrayToDisplay);
 }
 
-function editOS($osName){
+function editOS($osName)
+{
     $arrayToDisplay = $_SESSION['gestionFormArray'];
     $isOSAssociated = false;
     require_once 'model/displayManager.php';
 
-    if(isset($osName['add'])){
+    if(isset($osName['add']))
+    {
         if(isset($osName['txtOSAdd']) && $osName['txtOSAdd'] != null && isset($osName['typeOSAdd']) && $osName['typeOSAdd'] != null)
         {
             $nameOS = $osName['txtOSAdd'];
@@ -733,7 +757,8 @@ function editOS($osName){
             addOS($nameOS,$typeOS);
         }
     }
-    elseif(isset($osName['delete'])){
+    elseif(isset($osName['delete']))
+    {
         if(isset($osName['valueOSToDelete']) && $osName['valueOSToDelete'] != null)
         {
             $nameOS = $osName['valueOSToDelete'];
@@ -742,10 +767,7 @@ function editOS($osName){
 
             for($count = 0; $count < $length; $count++)
             {
-                if($nameOS[$count] !== " ")
-                {
-                }
-                else
+                if($nameOS[$count] == " ")
                 {
                     for($count += 1; $count < $length; $count++)
                     {
@@ -782,7 +804,8 @@ function editOS($osName){
             }
         }
     }
-    elseif(isset($osName['modify'])){
+    elseif(isset($osName['modify']))
+    {
         if(isset($osName['valueOSMod']) && $osName['valueOSMod'] != null && isset($osName['txtOSMod']) && $osName['txtOSMod'] != null && isset($osName['typeOSMod']) && $osName['typeOSMod'] != null)
         {
             $nameOS = $osName['valueOSMod'];
@@ -793,10 +816,7 @@ function editOS($osName){
 
             for($count = 0; $count < $length; $count++)
             {
-                if($nameOS[$count] !== " ")
-                {
-                }
-                else
+                if($nameOS[$count] == " ")
                 {
                     for($count += 1; $count < $length; $count++)
                     {
@@ -811,12 +831,14 @@ function editOS($osName){
     displayFormManagement($arrayToDisplay);
 }
 
-function editSnapshots($snapshotsName){
+function editSnapshots($snapshotsName)
+{
     $arrayToDisplay = $_SESSION['gestionFormArray'];
     $isSnapshotAssociated = false;
     require_once 'model/displayManager.php';
 
-    if(isset($snapshotsName['add'])){
+    if(isset($snapshotsName['add']))
+    {
         if(isset($snapshotsName['typeSnapAdd']) && $snapshotsName['typeSnapAdd'] != null && isset($snapshotsName['txtSnapAdd']) && $snapshotsName['txtSnapAdd'] != null)
         {
             $typeSnapshots= $snapshotsName['typeSnapAdd'];
@@ -824,7 +846,8 @@ function editSnapshots($snapshotsName){
             addSnapshots($typeSnapshots,$policySnapshots);
         }
     }
-    elseif(isset($snapshotsName['delete'])){
+    elseif(isset($snapshotsName['delete']))
+    {
         if(isset($snapshotsName['valueSnapToDelete']) && $snapshotsName['valueSnapToDelete'] != null)
         {
             $nameSnapshots = $snapshotsName['valueSnapToDelete'];
@@ -870,7 +893,8 @@ function editSnapshots($snapshotsName){
             }
         }
     }
-    elseif(isset($snapshotsName['modify'])){
+    elseif(isset($snapshotsName['modify']))
+    {
         if(isset($snapshotsName['valueSnapMod']) && $snapshotsName['valueSnapMod'] != null && isset($snapshotsName['txtSnapMod']) && $snapshotsName['txtSnapMod'] != null && isset($snapshotsName['typeSnapMod']) && $snapshotsName['typeSnapMod'] != null)
         {
             $nameSnapshots = $snapshotsName['valueSnapMod'];
@@ -896,12 +920,14 @@ function editSnapshots($snapshotsName){
     displayFormManagement($arrayToDisplay);
 }
 
-function editBackup($backupName){
+function editBackup($backupName)
+{
     $arrayToDisplay = $_SESSION['gestionFormArray'];
     $isBackupAssociated = false;
     require_once 'model/displayManager.php';
 
-    if(isset($backupName['add'])){
+    if(isset($backupName['add']))
+    {
         if(isset($backupName['typeBackupAdd']) && $backupName['typeBackupAdd'] != null && isset($backupName['txtBackupAdd']) && $backupName['txtBackupAdd'] != null)
         {
             $typeBackup= $backupName['typeBackupAdd'];
@@ -909,7 +935,8 @@ function editBackup($backupName){
             addBackup($typeBackup,$policyBackup);
         }
     }
-    elseif(isset($backupName['delete'])){
+    elseif(isset($backupName['delete']))
+    {
         if(isset($backupName['valueBackupToDelete']) && $backupName['valueBackupToDelete'] != null)
         {
             $nameBackup = $backupName['valueBackupToDelete'];
@@ -955,7 +982,8 @@ function editBackup($backupName){
             }
         }
     }
-    elseif(isset($backupName['modify'])){
+    elseif(isset($backupName['modify']))
+    {
         if(isset($backupName['valueBackupMod']) && $backupName['valueBackupMod'] != null && isset($backupName['txtBackupMod']) && $backupName['txtBackupMod'] != null &&isset($backupName['typeBackupMod']) && $backupName['typeBackupMod'] != null)
         {
             $nameBackup = $backupName['valueBackupMod'];
@@ -981,7 +1009,8 @@ function editBackup($backupName){
     displayFormManagement($arrayToDisplay);
 }
 
-function displayResearch($inputResearch){
+function displayResearch($inputResearch)
+{
     if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
         require_once 'model/vmManager.php';
@@ -998,82 +1027,101 @@ function displayResearch($inputResearch){
     }
 }
 
-function modifyStatusAfterRenewal($idVM, $status){
-    if($status){
+function modifyStatusAfterRenewal($idVM, $status)
+{
+    if($status)
+    {
         $vmStatus = 2;
     }
-    else{
+    else
+    {
         $vmStatus = 4;
     }
 
     require_once "model/vmManager.php";
 
-    if(updateStatusVM($idVM['id'], $vmStatus) == 2){
+    if(updateStatusVM($idVM['id'], $vmStatus) == 2)
+    {
         $_SESSION['$displayModalConfirm'] = true;
         displayAllVM("");
     }
-    elseif(updateStatusVM($idVM['id'], $vmStatus) == 1){
+    elseif(updateStatusVM($idVM['id'], $vmStatus) == 1)
+    {
         $_SESSION['displayModalErrorMail'] = true;
         displayAllVM("");
     }
-    else{
+    else
+    {
         $_SESSION['displayErrorModification'] = true;
         displayDetailsVM($idVM['id']);
     }
 }
 
-function exportToExcel(){
+function exportToExcel()
+{
     require_once "model/vmManager.php";
     $allVM = getAllVM();
 
     exportVMToExcel($allVM);
 }
 
-function displayAlertManagementPage(){
-    if(isset($_SESSION['userType'])){
-        if($_SESSION['userType'] == 1){
+function displayAlertManagementPage()
+{
+    if(isset($_SESSION['userType']))
+    {
+        if($_SESSION['userType'] == 1)
+        {
             require_once "model/jsonConnector.php";
             $alertJsonData = getJsonData(0);
             $mailContentJsonData = getJsonData(1);
 
-
             require 'view/alertManagementPage.php';
         }
-        else{
+        else
+        {
             displayHome();
         }
     }
-    else{
+    else
+    {
         $_GET['action'] = "signIn";
         displaySignIn();
     }
 }
 
-function saveAlertModification($data){
-    if(isset($data['adminMail'])){
-        if(isset($data['senderMail'])){
+function saveAlertModification($data)
+{
+    if(isset($data['adminMail']))
+    {
+        if(isset($data['senderMail']))
+        {
             $tableToSave = array('data' => 'alertManagement', 'mailAdmin' => $data['adminMail'], 'sender' =>$data['senderMail']);
         }
     }
 
-    if(isset($tableToSave)){
+    if(isset($tableToSave))
+    {
         require_once "model/jsonConnector.php";
-        if(saveJsonData($tableToSave, 0)){
+
+        if(saveJsonData($tableToSave, 0))
+        {
             $_SESSION['saveAlertModification'] = 1;
             displayAlertManagementPage();
         }
-        else{
+        else
+        {
             $_SESSION['saveAlertModification'] = false;
             displayAlertManagementPage();
         }
     }
-    else{
+    else
+    {
         $_SESSION['saveAlertModification'] = false;
         displayAlertManagementPage();
     }
-
 }
 
+<<<<<<< Updated upstream
 function saveContentMail($data){
     if(isset($data['requestMail'])){
         if(isset($data['mailToAdminstratorRequest'])){
@@ -1086,6 +1134,23 @@ function saveContentMail($data){
                                     $tableToSave = array('data' => 'mailContent', 'requestMail' => $data['requestMail'], 'mailToAdminstratorRequest' =>$data['mailToAdminstratorRequest'], 'validateRequestMail' => $data['validateRequestMail'], 'deniedRequestMail' =>$data['deniedRequestMail'], 'advertMail' => $data['advertMail'], 'nonrenewalMailAdvert' =>$data['nonrenewalMailAdvert'], 'renewalMail' => $data['renewalMail'], 'administratorMailValidateRequest' => $data['administratorMailValidateRequest']);
                                 }
                             }
+=======
+function saveContentMail($data)
+{
+    if(isset($data['requestMail']))
+    {
+        if(isset($data['mailToAdminstratorRequest']))
+        {
+            if(isset($data['validateRequestMail']))
+            {
+                if(isset($data['deniedRequestMail']))
+                {
+                    if(isset($data['advertMail']))
+                    {
+                        if(isset($data['nonrenewalMailAdvert']))
+                        {
+                            $tableToSave = array('data' => 'mailContent', 'requestMail' => $data['requestMail'], 'mailToAdminstratorRequest' =>$data['mailToAdminstratorRequest'], 'validateRequestMail' => $data['validateRequestMail'], 'deniedRequestMail' =>$data['deniedRequestMail'], 'advertMail' => $data['advertMail'], 'nonrenewalMailAdvert' =>$data['nonrenewalMailAdvert']);
+>>>>>>> Stashed changes
                         }
                     }
                 }
@@ -1093,20 +1158,24 @@ function saveContentMail($data){
         }
     }
 
-    if(isset($tableToSave)){
+    if(isset($tableToSave))
+    {
         require_once "model/jsonConnector.php";
-        if(saveJsonData($tableToSave, 1)){
+
+        if(saveJsonData($tableToSave, 1))
+        {
             $_SESSION['saveContentMail'] = 1;
             displayAlertManagementPage();
         }
-        else{
+        else
+        {
             $_SESSION['saveContentMail'] = false;
             displayAlertManagementPage();
         }
     }
-    else{
+    else
+    {
         $_SESSION['saveContentMail'] = false;
         displayAlertManagementPage();
     }
-
 }
