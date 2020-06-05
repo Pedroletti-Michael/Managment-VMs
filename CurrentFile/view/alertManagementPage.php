@@ -189,6 +189,29 @@ ob_start();
                 </small>
             </div>
         </div>
+        <div class="d-inline-block w-100">
+            <!--Content mail renewal-->
+            <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
+                <label for="renewalMail" class="font-weight-bold">Contenu du mail de renouvellement<a
+                            style="color: red"> *</a></label>
+                <textarea rows="15" style="resize: none" class="form-control form form" id="renewalMail"
+                          name="renewalMail" aria-describedby="renewalMailHelp" placeholder="Ex: Bonjour,<br>..."
+                          required><?= $mailContentJsonData['renewalMail']; ?></textarea>
+                <small id="renewalMailHelp" class="form-text text-muted">Variables utilisables : 1. e-mail de
+                    l'utilisateur | 2. nom de la requête | 3. e-mail du RT | 4. e-mail du RA | 5. lien vers la requête
+                </small>
+            </div>
+            <!--Content admin validation-->
+            <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
+                <label for="administratorMailValidateRequestAdvert" class="font-weight-bold">Contenu du mail de validation (envoyé à l'administrateur)<a style="color: red"> *</a></label>
+                <textarea rows="15" style="resize: none" class="form-control form form"
+                          id="administratorMailValidateRequest" name="administratorMailValidateRequest"
+                          aria-describedby="administratorMailValidateRequestHelp" placeholder="Ex: Bonjour,<br>..."
+                          required><?= $mailContentJsonData['administratorMailValidateRequest']; ?></textarea>
+                <small id="administratorMailValidateRequestHelp" class="form-text text-muted">Variables utilisables : 2. nom de la requête | 5. lien vers la requête
+                </small>
+            </div>
+        </div>
 
         <!--Submit-->
         <button type='submit' class='btn btn-primary'>Enregistrer</button>

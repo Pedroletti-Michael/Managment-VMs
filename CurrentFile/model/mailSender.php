@@ -45,7 +45,7 @@ function requestMail($userMail, $requestName, $rtMail, $raMail, $tableInfo){
 
         $message = '';
         foreach($messageToTreatment as $value){
-            if($value != '' && $value != "1" && $value != "2" && $value != "3" && $value != "4" && $value != "5" && $value != "6" && $value != "7"){
+            if($value != '' && $value != "1" && $value != "2" && $value != "3" && $value != "4" && $value != "5" && $value != "6" && $value != "7" && $value != "8" && $value != "9"){
                 $message .= $value;
             }
             elseif($value != ''){
@@ -118,7 +118,7 @@ function mailAdministrator($userMail, $requestName, $link, $tableInfo){
 
         $message = '';
         foreach($messageToTreatment as $value){
-            if($value != '' && $value != "1" && $value != "2" && $value != "3" && $value != "4" && $value != "5" && $value != "6" && $value != "7"){
+            if($value != '' && $value != "1" && $value != "2" && $value != "3" && $value != "4" && $value != "5" && $value != "6" && $value != "7" && $value != "8" && $value != "9"){
                 $message .= $value;
             }
             elseif($value != ''){
@@ -187,7 +187,7 @@ function validateRequestMail($userMail, $requestName, $link, $rtMail, $raMail, $
 
         $message = '';
         foreach($messageToTreatment as $value){
-            if($value != '' && $value != "1" && $value != "2" && $value != "3" && $value != "4" && $value != "5" && $value != "6" && $value != "7"){
+            if($value != '' && $value != "1" && $value != "2" && $value != "3" && $value != "4" && $value != "5" && $value != "6" && $value != "7" && $value != "8" && $value != "9"){
                 $message .= $value;
             }
             elseif($value != ''){
@@ -268,13 +268,37 @@ function administratorMailValidateRequest($requestName, $link, $dataFile){
     saveJsonData($dataFile, null, $file);
 
     // Email body content
-    $htmlContent = ' 
-    Bonjour,<br>
-    <p>
+    $mailContent = getJsonData(1);
+    if(isset($mailContent['administratorMailValidateRequest']) && $mailContent['administratorMailValidateRequest'] != null || $mailContent['administratorMailValidateRequest'] != ''){
+        $messageToTreatment = $mailContent['administratorMailValidateRequest'];
+        $messageToTreatment = explode("\\", $messageToTreatment);
+
+        $htmlContent = '';
+        foreach($messageToTreatment as $value){
+            if($value != '' && $value != "1" && $value != "2" && $value != "3" && $value != "4" && $value != "5" && $value != "6" && $value != "7" && $value != "8" && $value != "9"){
+                $htmlContent .= $value;
+            }
+            elseif($value != ''){
+                if($value == "2"){
+                    $htmlContent .= " ".$requestName." ";
+                }
+                if($value == "5"){
+                    $htmlContent .= " ".$link." ";
+                }
+            }
+        }
+    }
+    else{
+        $htmlContent = ' 
+        Bonjour,<br>
+        <p>
         Vous venez de valider une VM, voici un mail de confirmation avec un fichier Json contenant toutes les données de la VM validée.<br>
         Vous pouvez directement vous rendre sur les détails de la requête depuis <a href="'.$link.'">ici</a>
-    </p>
-';
+        </p>
+        ';
+    }
+
+
 
     // Header for sender info
     $headers = "From: $fromName"." <".$from.">";
@@ -554,6 +578,77 @@ function nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail){
     }
 }
 
+/**
+ * This function used to send the validation for a request of vm to an user.
+ */
+function renewalMail($userMail, $requestName, $link, $rtMail, $raMail){
+    // multiple recipients
+    $jsonData = getJsonData(0);
+    $administratorMail = $jsonData['mailAdmin'];
+
+    $to  = $userMail . ', ' . $raMail . ', ' . $administratorMail;
+
+    // subject
+    $subject = 'Résumé de votre demande pour une VM';
+
+    // message
+    $mailContent = getJsonData(1);
+    if(isset($mailContent['renewalMail']) && $mailContent['renewalMail'] != null || $mailContent['renewalMail'] != ''){
+        $messageToTreatment = $mailContent['renewalMail'];
+        $messageToTreatment = explode("\\", $messageToTreatment);
+
+        $message = '';
+        foreach($messageToTreatment as $value){
+            if($value != '' && $value != "1" && $value != "2" && $value != "3" && $value != "4" && $value != "5" && $value != "6" && $value != "7" && $value != "8" && $value != "9"){
+                $message .= $value;
+            }
+            elseif($value != ''){
+                if($value == "1"){
+                    $message .= " ".$userMail." ";
+                }
+                if($value == "2"){
+                    $message .= " ".$requestName." ";
+                }
+                if($value == "3"){
+                    $message .= " ".$rtMail." ";
+                }
+                if($value == "4"){
+                    $message .= " ".$raMail." ";
+                }
+                if($value == "5"){
+                    $message .= " ".$link." ";
+                }
+            }
+        }
+    }
+    else{
+        $message = "
+        Bonjour,<br><br>
+        Nom de la demande : ". $requestName ."
+        <br><br>
+        Votre commande a été validée. Vous pouvez donc vous rendre sous le lien ci-dessous pour obtenir toutes les informations nécessaires pour votre machine :<br>
+        <a href='". $link ."'>ici</a>
+        ";
+    }
+
+
+    // To send HTML mail, the Content-type header must be set
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+
+    // Additional headers
+    $headers .= 'To: '. $userMail ."\r\n";
+    $headers .= 'BCC: '.$rtMail."\r\n";
+    $headers .= 'From: '.$jsonData['sender']."\r\n";
+
+    if(sendMail($to, $subject, $message, $headers)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $raMail, $dateEndVm, $dateAnniversary){
     $link = 'http://vmman.heig-vd.ch/index.php?action=detailsVM&id='.$idVm;
     $today = date('Y-m-d');
@@ -565,7 +660,7 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
             if(strtotime($today) > strtotime($dateAnniversary)){
                 updateStatusVM($idVm, 4);
                 nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail);
-                return true;
+                return false;
             }
             else{
                 $diff = abs($dateAnniversary - $today); // abs pour avoir la valeur absolute, ainsi éviter d'avoir une différence négative
@@ -608,7 +703,7 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
             if($today > $dateEndVm){
                 updateStatusVM($idVm, 4);
                 nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail);
-                return true;
+                return false;
             }
             else{
                 $diff = abs($dateEndVm - $today); // abs pour avoir la valeur absolute, ainsi éviter d'avoir une différence négative
@@ -653,7 +748,7 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
             if(strtotime($today) > strtotime($dateAnniversary)){
                 updateStatusVM($idVm, 4);
                 nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail);
-                return true;
+                return false;
             }
             else{
                 $diff = abs($dateAnniversary - $today); // abs pour avoir la valeur absolute, ainsi éviter d'avoir une différence négative
@@ -696,7 +791,7 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
             if($today > $dateEndVm){
                 updateStatusVM($idVm, 4);
                 nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail);
-                return true;
+                return false;
             }
             else{
                 $diff = abs($dateEndVm - $today); // abs pour avoir la valeur absolute, ainsi éviter d'avoir une différence négative

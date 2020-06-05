@@ -114,8 +114,29 @@ function displayManagementUser(){
     else{
         displaySignIn();
     }
-
 }
+
+function renewalTest(){
+    require_once 'model/vmManager.php';
+    // Get all VM from dataBase
+    $allVm = array();
+
+    // Do a verification for all vm
+    foreach($allVm as $vm){
+        $idVm = $vm['id'];
+        $vmStatus = $vm['vmStatus'];
+        $userMail = $vm['customer'];
+        $requestName = $vm['name'];
+        $rtMail = $vm['userRt'];
+        $raMail = $vm['userRa'];
+        $dateEndVm = $vm['dateEnd'];
+        $dateAnniversary = $vm['dataAnniversary'];
+
+        // Function who do the verification, we only need to give these info
+        isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $raMail, $dateEndVm, $dateAnniversary);
+    }
+}
+
 
 function refreshUser(){
     require_once 'model/userManager.php';

@@ -18,12 +18,19 @@ ob_start();
     </head>
 <body>
 
-    <!--All VM-->
+    <!--Refresh user of db-->
     <a href="index.php?action=refreshUser">
         <button type="button" class="btn btn-primary mb-1 mt-1 responsiveDisplay">
             Actualiser la liste des utilisateurs
         </button>
     </a>
+    <!--Test for refresh renewal-->
+    <a href="index.php?action=renewalTest">
+        <button type="button" class="btn btn-primary mb-1 mt-1 responsiveDisplay">
+            Renouvellements tests
+        </button>
+    </a>
+    <!--Sort user table-->
     <a onclick="sortTableUser()">
         <button type="button" class="btn btn-primary mb-1 mt-1 responsiveDisplay" id="btnSort">
             Trier les noms (Z-A)

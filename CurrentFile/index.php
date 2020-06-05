@@ -137,6 +137,9 @@ if(isset($_GET['action']))
         case 'saveContentMail':
             saveContentMail($_POST);
             break;
+        case 'renewalTest':
+            renewalTest();
+            break;
         default:
             displayHome();
     }

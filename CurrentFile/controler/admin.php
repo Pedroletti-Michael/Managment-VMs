@@ -1058,7 +1058,11 @@ function saveContentMail($data){
                 if(isset($data['deniedRequestMail'])){
                     if(isset($data['advertMail'])){
                         if(isset($data['nonrenewalMailAdvert'])){
-                            $tableToSave = array('data' => 'mailContent', 'requestMail' => $data['requestMail'], 'mailToAdminstratorRequest' =>$data['mailToAdminstratorRequest'], 'validateRequestMail' => $data['validateRequestMail'], 'deniedRequestMail' =>$data['deniedRequestMail'], 'advertMail' => $data['advertMail'], 'nonrenewalMailAdvert' =>$data['nonrenewalMailAdvert']);
+                            if(isset($data['renewalMail'])){
+                                if(isset($data['administratorMailValidateRequest'])){
+                                    $tableToSave = array('data' => 'mailContent', 'requestMail' => $data['requestMail'], 'mailToAdminstratorRequest' =>$data['mailToAdminstratorRequest'], 'validateRequestMail' => $data['validateRequestMail'], 'deniedRequestMail' =>$data['deniedRequestMail'], 'advertMail' => $data['advertMail'], 'nonrenewalMailAdvert' =>$data['nonrenewalMailAdvert'], 'renewalMail' => $data['renewalMail'], 'administratorMailValidateRequest' => $data['administratorMailValidateRequest']);
+                                }
+                            }
                         }
                     }
                 }
