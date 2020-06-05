@@ -262,7 +262,19 @@ function displayDetailsVM($idVM)
 function updateVM($vmInformation)
 {
     require_once "model/vmManager.php";
+    
     $_SESSION['displayModalConfirm'] = false;
+    $checkTMNam = getFirstAndLastNameUser($vmInformation['inputTMName']);
+    $checkRANam = getFirstAndLastNameUser($vmInformation['inputRAName']);
+
+    if($vmInformation['inputTMName'] == null || $vmInformation['inputRAName'] == null || $vmInformation['inputTMNam'] != $checkTMNam || $vmInformation['inputRANam'] != $checkRANam)
+    {
+        $errorForm = true;
+        $_SESSION['displayModalNoUserSelected'] = true;
+        displayDetailsVM($_SESSION['idVM']);
+        exit;
+
+    }
 
     if($vmInformation['inputEndDate'] != "")
     {
@@ -410,10 +422,21 @@ function updateVM($vmInformation)
 
 function vmAccepted($vmInformation)
 {
+    require_once "model/vmManager.php";
+
     $vmStatus = true;
+    $checkTMNam = getFirstAndLastNameUser($vmInformation['inputTMName']);
+    $checkRANam = getFirstAndLastNameUser($vmInformation['inputRAName']);
     $_SESSION['displayModalConfirm'] = false;
 
-    require_once "model/vmManager.php";
+    if($vmInformation['inputTMName'] == null || $vmInformation['inputRAName'] == null || $vmInformation['inputTMNam'] != $checkTMNam || $vmInformation['inputRANam'] != $checkRANam)
+    {
+        $errorForm = true;
+        $_SESSION['displayModalNoUserSelected'] = true;
+        displayDetailsVM($_SESSION['idVM']);
+        exit;
+
+    }
 
     if($vmInformation['inputEndDate'] != "")
     {

@@ -261,6 +261,15 @@ function getNameAndSurnameUser($id){
     return $user;
 }
 
+function getEmailUser($id){
+    $strSep = '\'';
+
+    $query = "SELECT mail FROM `user` WHERE user_id = ". $strSep.$id.$strSep;
+
+    $userEmail = executeQuery($query);
+    return $userEmail;
+}
+
 function getCluster($id){
     $strSep = '\'';
 
@@ -599,10 +608,14 @@ function getDataVM($idVM){
     foreach ($resultSelect as $vm){
         $userRa = getNameAndSurnameUser($vm['userRa']);
         $userRt = getNameAndSurnameUser($vm['userRt']);
+        $userEmailRa = getEmailUser($vm['userRa']);
+        $userEmailRt = getEmailUser($vm['userRt']);
         $resultSelect[$i]['cluster'] = getCluster($vm['cluster']);
         $resultSelect[$i]['customer'] = getMailUser($vm['customer']);
         $resultSelect[$i]['userRa'] = $userRa[0]['lastname']." ".$userRa[0]['firstname'];
         $resultSelect[$i]['userRt'] = $userRt[0]['lastname']." ".$userRt[0]['firstname'];
+        $resultSelect[$i]['userEmailRa'] = $userEmailRa[0]['mail'];
+        $resultSelect[$i]['userEmailRt'] = $userEmailRt[0]['mail'];
         $resultSelect[$i]['entity_id'] = getInfoEntity($vm['entity_id']);
         $resultSelect[$i]['os_id'] = getInfoOs($vm['os_id']);
         $resultSelect[$i]['snapshot_id'] = getInfoSnapshot($vm['snapshot_id']);
@@ -842,6 +855,20 @@ function updateStatusVM($id, $vmStatus, $reason = null, $vmInformation = null){
     }
 
     return $result;
+}
+
+/**===Verify datas to update VM===**/
+function getFirstAndLastNameUser($email)
+{
+    $strSep = '\'';
+
+    $query = "SELECT lastname, firstname FROM `user` WHERE mail = ". $strSep.$email.$strSep;
+
+    $user = executeQuery($query);
+
+    $name = $user[0]["lastname"]." ".$user[0]["firstname"];
+
+    return $name;
 }
 
 /**===GET INFORMATION FOR THE UPDATE OF THE STATUS VM===**/

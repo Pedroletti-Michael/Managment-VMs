@@ -127,8 +127,8 @@ function changeBodyTable(n){
             deletedVm.hidden = false;
             break;
         default:
-            allVm.hidden = false;
-            validatedVm.hidden = true;
+            allVm.hidden = true;
+            validatedVm.hidden = false;
             confirmationVm.hidden = true;
             renewalVm.hidden = true;
             deletedVm.hidden = true;

@@ -5,6 +5,9 @@
  * Description : Contains all functions related to the formVM_order
  **/
 
+/**
+ * Get datas to display on the form VM order then display the form VM order
+ */
 function displayForm()
 {
     if(isset($_SESSION['userType'])&& $_SESSION['userType'] != null)
@@ -20,7 +23,9 @@ function displayForm()
         require_once 'model/vmManager.php';
         $namesValue = getVmName();
         $allVmName = array();
-        foreach ($namesValue as $value){
+
+        foreach ($namesValue as $value)
+        {
             array_push($allVmName, $value[0]);
         }
 
@@ -36,6 +41,10 @@ function displayForm()
         require "view/signIn.php";
     }
 }
+
+/**
+ * Get datas to display on the admin form VM order then display the admin form VM order
+ */
 function displayFormAdmin()
 {
     if(isset($_SESSION['userType'])&& $_SESSION['userType'] != null)
@@ -52,7 +61,9 @@ function displayFormAdmin()
         require_once 'model/vmManager.php';
         $namesValue = getVmName();
         $allVmName = array();
-        foreach ($namesValue as $value){
+
+        foreach ($namesValue as $value)
+        {
             array_push($allVmName, $value[0]);
         }
 
@@ -69,6 +80,12 @@ function displayFormAdmin()
     }
 }
 
+/**
+ * Check the datas's form VM order and, when all is correct, add the VM into the DB
+ * and send a mail to the customer, the technical manager and the administrative manager.
+ *
+ * @param $formVMRequest = The datas's form VM order (POST)
+ */
 function formVM($formVMRequest)
 {
     require_once 'model/vmManager.php';
@@ -77,13 +94,15 @@ function formVM($formVMRequest)
     $allVmName = getVmName();
     $nameResult = false;
 
-    foreach ($allVmName as $name){
-        if($formVMRequest['inputVMName'] == $name){
+    foreach ($allVmName as $name)
+    {
+        if($formVMRequest['inputVMName'] == $name)
+        {
             $name = true;
         }
     }
 
-    if($formVMRequest['inputTMName'] == null && $formVMRequest['inputRAName'] == null)
+    if($formVMRequest['inputTMName'] == null || $formVMRequest['inputRAName'] == null)
     {
         $errorForm = true;
         $_SESSION['displayModalNoUserSelected'] = true;
@@ -91,19 +110,22 @@ function formVM($formVMRequest)
         displayForm();
     }
 
-    if(strlen($formVMRequest['ti']) > 1000 || strlen($formVMRequest['objective']) > 1000){
+    if(strlen($formVMRequest['ti']) > 1000 || strlen($formVMRequest['objective']) > 1000)
+    {
         $errorForm = true;
         $_SESSION['formRequest'] = $formVMRequest;
         displayForm();
     }
 
-    if($nameResult){
+    if($nameResult)
+    {
         $errorForm = true;
         $_SESSION['formRequest'] = $formVMRequest;
         displayForm();
     }
 
-    if(isset($formVMRequest['inputEndDate']) && $formVMRequest['inputEndDate'] != null || $formVMRequest['inputEndDate'] != ''){
+    if(isset($formVMRequest['inputEndDate']) && $formVMRequest['inputEndDate'] != null || $formVMRequest['inputEndDate'] != '')
+    {
         if (strtotime($formVMRequest['inputComissioningDate']) > strtotime($formVMRequest['inputEndDate']) || strtotime($formVMRequest['inputComissioningDate']) < strtotime('now'))
         {
             $errorForm = true;
@@ -111,7 +133,8 @@ function formVM($formVMRequest)
             displayForm();
         }
     }
-    else{
+    else
+    {
         $formVMRequest['inputEndDate'] = null;
     }
 
@@ -157,7 +180,6 @@ function formVM($formVMRequest)
             $formVMRequest['usingVM'] = $formVMRequest['usingVM'].", Test";
         }
     }
-
     unset($formVMRequest['Academique']);
     unset($formVMRequest['RaD']);
     unset($formVMRequest['Operationnel']);
@@ -188,19 +210,25 @@ function formVM($formVMRequest)
         {
             $requestMail = false;
             $adminMail = false;
-            if(requestMail($_SESSION['userEmail'], $formVMRequest['inputVMName'], $formVMRequest['inputTMName'], $formVMRequest['inputRAName'], $formVMRequest)){
+
+            if(requestMail($_SESSION['userEmail'], $formVMRequest['inputVMName'], $formVMRequest['inputTMName'], $formVMRequest['inputRAName'], $formVMRequest))
+            {
                 $requestMail = true;
             }
+
             $link = "http://vmman.heig-vd.ch/index.php?action=detailsVM&id=". getIdOfVmByName($formVMRequest['inputVMName']);
-            if(mailAdministrator($_SESSION['userEmail'], $formVMRequest['inputVMName'], $link, $formVMRequest)){
+
+            if(mailAdministrator($_SESSION['userEmail'], $formVMRequest['inputVMName'], $link, $formVMRequest))
+            {
                 $adminMail = true;
             }
 
-
-            if($requestMail && $adminMail){
+            if($requestMail && $adminMail)
+            {
                 $_SESSION['$displayModalConfirm'] = true;
             }
-            else{
+            else
+            {
                 $_SESSION['displayModalConfirmationFailed'] = true;
             }
             displayHome();
