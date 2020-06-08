@@ -1040,12 +1040,14 @@ function modifyStatusAfterRenewal($idVM, $status)
 
     require_once "model/vmManager.php";
 
-    if(updateStatusVM($idVM['id'], $vmStatus) == 2)
+    $result = updateStatusVM($idVM['id'], $vmStatus, "renewal");
+
+    if($result == 2)
     {
         $_SESSION['$displayModalConfirm'] = true;
         displayAllVM("");
     }
-    elseif(updateStatusVM($idVM['id'], $vmStatus) == 1)
+    elseif($result == 1)
     {
         $_SESSION['displayModalErrorMail'] = true;
         displayAllVM("");

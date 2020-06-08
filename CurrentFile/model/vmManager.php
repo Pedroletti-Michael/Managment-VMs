@@ -833,11 +833,21 @@ function updateStatusVM($id, $vmStatus, $reason = null, $vmInformation = null){
         $query = "SELECT `vmStatus` FROM `vm` WHERE id =". $id;
         $selectResult = executeQuery($query);
         if($selectResult[0][0] == 2){
-            if(validateRequestMail($info[1], $info[0], $link, $info[3], $info[2], $vmInformation) && administratorMailValidateRequest($info[0],$link,$vmInformation)){
-                $result = 2;
+            if($reason == "renewal"){
+                if(renewalMail($info[1], $info[0], $link, $info[3], $info[2])){
+                    $result = 2;
+                }
+                else{
+                    $result = 1;
+                }
             }
             else{
-                $result = 1;
+                if(validateRequestMail($info[1], $info[0], $link, $info[3], $info[2], $vmInformation) && administratorMailValidateRequest($info[0],$link,$vmInformation)){
+                    $result = 2;
+                }
+                else{
+                    $result = 1;
+                }
             }
         }
     }
@@ -909,11 +919,11 @@ function getVmNameAndIdByName($vmName){
     $strSep = '\'';
     $querySelect = "SELECT `id`, `name` FROM `vm` WHERE name = ". $strSep.$vmName.$strSep;
 
-    return  executeQuerySelect($querySelect);;
+    return  executeQuerySelect($querySelect);
 }
 
 function researchVm($inputResearch){
-    $query = "SELECT `id`, `name`, `dateStart`, `dateEnd`, `usageType`, `cpu`, `ram`, `disk`, `network`, `userRt`, `entity_id`, `os_id`  FROM `vm` WHERE vm.name LIKE '%".$inputResearch."%'";
+    $query = "SELECT `id`, `name`, `dateStart`, `dateEnd`, `usageType`, `cpu`, `ram`, `disk`, `network`, `userRt`, `entity_id`, `os_id`, `vmStatus`  FROM `vm` WHERE vm.name LIKE '%".$inputResearch."%'";
 
     $resultSelect = executeQuerySelect($query);
     $i = 0;
@@ -934,6 +944,13 @@ function getVmName(){
     $resultSelect = executeQuerySelect($query);
 
     return $resultSelect;
+}
+
+function getAllVmForCheckSendingMail(){
+    $strSep = '\'';
+    $querySelect = "SELECT `id`, `name`, `dataAnniversary`, `dateEnd`, `customer`, `userRt`, `userRa`, `vmStatus` FROM `vm` WHERE vmStatus = 2 OR vmStatus = 3";
+
+    return  executeQuerySelect($querySelect);
 }
 
 function exportVMToExcel($allVM){

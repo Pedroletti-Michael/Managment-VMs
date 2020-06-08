@@ -145,7 +145,7 @@ function displayManagementUser()
 function renewalTest(){
     require_once 'model/vmManager.php';
     // Get all VM from dataBase
-    $allVm = array();
+    $allVm = getAllVmForCheckSendingMail();
 
     $advertMail = 0;
     $nonrenewalMail = 0;
