@@ -17,7 +17,6 @@ function displayHome()
 
         require_once "model/vmManager.php";
         $allVmName = getAllVmNameAndId();
-
         $allValidatedVM = getUserValidatedVM($userId);
         $allConfirmationVM = getUserConfirmationVM($userId);
         $allRenewalVM = getUserRenewalVM($userId);

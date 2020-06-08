@@ -270,21 +270,21 @@ function formVMAdmin($formVMAdminRequest)
         $errorForm = true;
         $_SESSION['displayModalNoUserSelected'] = true;
         $_SESSION['formRequest'] = $formVMAdminRequest;
-        displayForm();
+        displayFormAdmin();
     }
 
     if(strlen($formVMAdminRequest['ti']) > 1000 || strlen($formVMAdminRequest['objective']) > 1000)
     {
         $errorForm = true;
         $_SESSION['formRequest'] = $formVMAdminRequest;
-        displayForm();
+        displayFormAdmin();
     }
 
     if($nameResult)
     {
         $errorForm = true;
         $_SESSION['formRequest'] = $formVMAdminRequest;
-        displayForm();
+        displayFormAdmin();
     }
 
     if(isset($formVMAdminRequest['inputEndDate']) && $formVMAdminRequest['inputEndDate'] != null || $formVMAdminRequest['inputEndDate'] != '')
@@ -293,7 +293,7 @@ function formVMAdmin($formVMAdminRequest)
         {
             $errorForm = true;
             $_SESSION['formRequest'] = $formVMAdminRequest;
-            displayForm();
+            displayFormAdmin();
         }
     }
     else
@@ -367,7 +367,7 @@ function formVMAdmin($formVMAdminRequest)
         if(count($vmFromDb) > 2)
         {
             $_SESSION['formRequest'] = $formVMAdminRequest;
-            displayForm();
+            displayFormAdmin();
         }
         else
         {
