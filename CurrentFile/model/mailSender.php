@@ -655,16 +655,18 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
     $dateAnniversary = strtotime($dateAnniversary);
     $dateEndVm = strtotime($dateEndVm);
 
-    // Faire le check to les 6 mois
+    // Si le statut de la VM est égal a "à renouveler"
     if($vmStatus == 3){
-        //Ex: Si aujourd'hui == à 12.04.2020 et que dateEnd == à 11.04.2020
+        // Si la date de fin n'existe pas
         if($dateEndVm == null){
+            // Si la date du jour est plus grande que la date d'anniversaire
             if($today > $dateAnniversary){
+                // On pas la VM en status "non-renouvelée" et on envoie un mail
                 updateStatusVM($idVm, 4);
-                nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail);
                 return false;
             }
             else{
+                // Si la date du jour est plus petite on regarde de combien
                 $diff = abs($dateAnniversary - $today); // abs pour avoir la valeur absolute, ainsi éviter d'avoir une différence négative
                 $dateDiff = array();
 
@@ -680,6 +682,7 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
                 $tmp = floor( ($tmp - $dateDiff['hour'])  /24 );
                 $dateDiff['day'] = $tmp;
 
+                // Si le nombre de jour restant est égal à un des chiffre si-dessous alors on envoit un mail d'avertissement pour que l'utilisateur puisse aller renouveler sa demande
                 switch ($dateDiff['day']){
                     case 1:
                     case 2:
@@ -694,7 +697,6 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
                     default:
                         if($dateDiff['day'] == 30){
                             advertMail($userMail, $requestName, $link, $rtMail, $raMail, $dateDiff['day']);
-                            break;
                         }
                         break;
                 }
@@ -737,7 +739,6 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
                     default:
                         if($dateDiff['day'] == 30){
                             advertMail($userMail, $requestName, $link, $rtMail, $raMail, $dateDiff['day']);
-                            break;
                         }
                         break;
                 }
@@ -777,12 +778,15 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
                     case 15:
                     case 20:
                     case 30:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $dateDiff['day']);
+                        if(updateStatusVM($idVm, 3)){
+                            advertMail($userMail, $requestName, $link, $rtMail, $raMail, $dateDiff['day']);
+                        }
                         break;
                     default:
                         if($dateDiff['day'] == 30){
-                            advertMail($userMail, $requestName, $link, $rtMail, $raMail, $dateDiff['day']);
-                            break;
+                            if(updateStatusVM($idVm, 3)){
+                                advertMail($userMail, $requestName, $link, $rtMail, $raMail, $dateDiff['day']);
+                            }
                         }
                         break;
                 }
@@ -820,12 +824,15 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
                     case 15:
                     case 20:
                     case 30:
-                        advertMail($userMail, $requestName, $link, $rtMail, $raMail, $dateDiff['day']);
+                        if(updateStatusVM($idVm, 3)){
+                            advertMail($userMail, $requestName, $link, $rtMail, $raMail, $dateDiff['day']);
+                        }
                         break;
                     default:
                         if($dateDiff['day'] == 30){
-                            advertMail($userMail, $requestName, $link, $rtMail, $raMail, $dateDiff['day']);
-                            break;
+                            if(updateStatusVM($idVm, 3)){
+                                advertMail($userMail, $requestName, $link, $rtMail, $raMail, $dateDiff['day']);
+                            }
                         }
                         break;
                 }

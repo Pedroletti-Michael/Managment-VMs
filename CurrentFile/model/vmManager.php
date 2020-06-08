@@ -790,6 +790,9 @@ function updateStatusVM($id, $vmStatus, $reason = null, $vmInformation = null){
     if($vmStatus == 4){
         $status = 4;
     }
+    elseif($vmStatus == 3){
+        $status = 3;
+    }
     elseif($vmStatus == true){
         $status = 2;
     }
@@ -849,6 +852,13 @@ function updateStatusVM($id, $vmStatus, $reason = null, $vmInformation = null){
                     $result = 1;
                 }
             }
+        }
+    }
+    elseif($status == 3){
+        $query = "SELECT `vmStatus` FROM `vm` WHERE id =". $id;
+        $selectResult = executeQuery($query);
+        if($selectResult[0][0] == 3){
+            $result = true;
         }
     }
     elseif($status == 4){
