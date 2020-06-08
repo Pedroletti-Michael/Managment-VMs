@@ -480,7 +480,9 @@ function advertMail($userMail, $requestName, $link, $rtMail, $raMail, $timeLeft)
         
         Nous nous permettons ainsi de vous envoyez ce mail afin que vous puissiez si vous le souhaitez renouveller votre demande, en suivant le lien ci-dessous :<br><br>
         
-        ". $link ."<br><br>
+        <a href='https://vmman.heig-vd.ch/index.php?action=renewalVM'>Lien vers la page de renouvellements</a><br>
+        
+        <a href='". $link ."'>Lien des détails de votre machine</a><br><br>
         
         Toutes les informations nécessaires au renouvellement se trouve sur le lien, toutefois si vous avez une question vous pouvez nous contacter à cette adresse : vmmanger@heig-vd.ch<br><br>
         ";
@@ -512,7 +514,7 @@ function nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail){
     // multiple recipients
     $jsonData = getJsonData(0);
     $administratorMail = $jsonData['mailAdmin'];
-    
+
     $to  = $userMail . ', ' . $raMail . ', ' . $administratorMail;
 
     // subject
@@ -650,7 +652,7 @@ function renewalMail($userMail, $requestName, $link, $rtMail, $raMail){
 }
 
 function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $raMail, $dateEndVm, $dateAnniversary){
-    $link = 'http://vmman.heig-vd.ch/index.php?action=detailsVM&id='.$idVm;
+    $link = 'https://vmman.heig-vd.ch/index.php?action=detailsVM&id='.$idVm;
     $today = strtotime(date('Y-m-d'));
     $dateAnniversary = strtotime($dateAnniversary);
     $dateEndVm = strtotime($dateEndVm);
