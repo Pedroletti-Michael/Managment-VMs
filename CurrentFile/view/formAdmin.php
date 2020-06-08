@@ -374,6 +374,19 @@ ob_start();
 
             <label class="form-check-label font-weight-bold" for="domainEINET">Domaine EINET</label>
             <small id="domainEINETHelp" class="form-text text-muted">Pour serveur Windows uniquement</small>
+
+            <script>
+                if (document.getElementById('osTypeFormControlSelect').value === "Windows") {
+                    document.getElementById("linux").style.display = "none";
+                    document.getElementById("windows").style.display = "block";
+                    document.getElementById("domainEINET").disabled = false;
+                } else if (document.getElementById('osTypeFormControlSelect').value === "Linux") {
+                    document.getElementById("windows").style.display = "none";
+                    document.getElementById("linux").style.display = "block";
+                    document.getElementById("domainEINET").checked = false;
+                    document.getElementById("domainEINET").disabled = true;
+                }
+            </script>
         </div>
         <!--Security-->
         <div class="form-group">
@@ -436,7 +449,7 @@ ob_start();
                 <!--Date anniversary-->
                 <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                     <label for="inputEndDate" class="font-weight-bold">Date d'anniversaire</label>
-                    <input type="date" class="form-control form form" id="editDateAnniversary" name="editDateAnniversary" aria-describedby="anniversaryDateHelp">
+                    <input type="date" min="<?= date("Y-m-d"); ?>" class="form-control form form" id="editDateAnniversary" name="editDateAnniversary" aria-describedby="anniversaryDateHelp">
                 </div>
             </div>
 

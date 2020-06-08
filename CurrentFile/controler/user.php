@@ -16,12 +16,13 @@ function displayHome()
         $userId = getUserId($_SESSION['userEmail']);
 
         require_once "model/vmManager.php";
+        /*
         $allVmName = getAllVmNameAndId();
         $allValidatedVM = getUserValidatedVM($userId);
         $allConfirmationVM = getUserConfirmationVM($userId);
         $allRenewalVM = getUserRenewalVM($userId);
         $allDeletedVM = getUserDeletedOrUnrenewalVM($userId);
-        $allVM = getUserVM($userId);
+        $allVM = getUserVM($userId);*/
 
         $_GET['action'] = "home";
         require_once "view/home.php";
