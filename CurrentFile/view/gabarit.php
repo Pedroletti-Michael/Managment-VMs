@@ -365,7 +365,7 @@
         </div>
     </div>
 </nav>
-<!-------------------------- Gabarit responsive ------------------------------->
+<!-------------------------- Template ------------------------------->
 <nav class="display-laptop navbar navbar-dark header-top fixed-top flex-lg-nowrap p-0 shadow w-100 navbar-expand-lg" style="background-color: #e30613;flex-wrap: nowrap !important; ">
     <div class="logo-responsive navbar-brand mr-0 p-0" href="#">
         <img src="../images/VRAI-LOGO.png" style="height: 48px; width: auto">
@@ -386,7 +386,7 @@
         <?php endif; ?>
     </div>
 </nav>
-<!-------------------------- Gabarit normal ------------------------------->
+
 <div class="responsive-menu-max container-fluid">
     <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-dark sidebar" style="max-width: 200px">
@@ -585,7 +585,7 @@
                         </ul>
                     <?php endif; ?>
                 <?php endif; ?>
-                <ul class="nav flex-column mt-5">
+                <ul class="nav flex-column mt-5 mb-5">
                     <li class="nav-item">
                         <a class="nav-link" href="mailto:helpdesk@heig-vd.ch?subject=Plateforme GVM : [Titre de votre message]">
                             <svg class="bi bi-envelope pb-1 mr-1" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
