@@ -53,6 +53,9 @@ if(isset($_GET['action']))
         case 'RequestVM':
             formVM($_POST);
             break;
+        case 'RequestVMAdmin':
+            formVMAdmin($_POST);
+            break;
         case 'formManagement':
             displayFormManagement($_GET['array']);
             break;
