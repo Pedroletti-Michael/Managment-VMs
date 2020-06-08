@@ -512,7 +512,7 @@ function nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail){
     // multiple recipients
     $jsonData = getJsonData(0);
     $administratorMail = $jsonData['mailAdmin'];
-
+    
     $to  = $userMail . ', ' . $raMail . ', ' . $administratorMail;
 
     // subject
@@ -673,7 +673,7 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
                 $tmp = $diff;
                 $dateDiff['second'] = $tmp % 60;
 
-                $tmp = floor( ($tmp - $dateDiff['second']) /60 );
+                $tmp = floor( ($tmp - $dateDiff['second'])/60 );
                 $dateDiff['minute'] = $tmp % 60;
 
                 $tmp = floor( ($tmp - $dateDiff['minute'])/60 );
@@ -760,7 +760,7 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
                 $tmp = $diff;
                 $dateDiff['second'] = $tmp % 60;
 
-                $tmp = floor( ($tmp - $dateDiff['second']) /60 );
+                $tmp = floor( ($tmp - $dateDiff['second'])/60 );
                 $dateDiff['minute'] = $tmp % 60;
 
                 $tmp = floor( ($tmp - $dateDiff['minute'])/60 );

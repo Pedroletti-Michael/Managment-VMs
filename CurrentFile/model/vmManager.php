@@ -960,7 +960,18 @@ function getAllVmForCheckSendingMail(){
     $strSep = '\'';
     $querySelect = "SELECT `id`,`name`,`dateAnniversary`,`dateEnd`,`customer`,`userRa`,`userRt`,`vmStatus` FROM `vm` WHERE vmStatus = 2 OR vmStatus = 3";
 
-    return  executeQuerySelect($querySelect);
+    $resultSelect =executeQuerySelect($querySelect);
+
+    $i = 0;
+
+    foreach ($resultSelect as $vm){
+        $resultSelect[$i]['customer'] = getMailUser($vm['customer']);
+        $resultSelect[$i]['userRa'] = getMailUser($vm['userRa']);
+        $resultSelect[$i]['userRt'] = getMailUser($vm['userRt']);
+        $i++;
+    }
+
+    return $resultSelect;
 }
 
 function exportVMToExcel($allVM){
