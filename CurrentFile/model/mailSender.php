@@ -651,13 +651,15 @@ function renewalMail($userMail, $requestName, $link, $rtMail, $raMail){
 
 function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $raMail, $dateEndVm, $dateAnniversary){
     $link = 'http://vmman.heig-vd.ch/index.php?action=detailsVM&id='.$idVm;
-    $today = date('Y-m-d');
+    $today = strtotime(date('Y-m-d'));
+    $dateAnniversary = strtotime($dateAnniversary);
+    $dateEndVm = strtotime($dateEndVm);
 
     // Faire le check to les 6 mois
     if($vmStatus == 3){
         //Ex: Si aujourd'hui == à 12.04.2020 et que dateEnd == à 11.04.2020
         if($dateEndVm == null){
-            if(strtotime($today) > strtotime($dateAnniversary)){
+            if($today > $dateAnniversary){
                 updateStatusVM($idVm, 4);
                 nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail);
                 return false;
@@ -745,7 +747,7 @@ function isAnyMailToSend($idVm, $vmStatus, $userMail, $requestName, $rtMail, $ra
     }
     else{
         if($dateEndVm == null){
-            if(strtotime($today) > strtotime($dateAnniversary)){
+            if($today > $dateAnniversary){
                 updateStatusVM($idVm, 4);
                 nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail);
                 return false;

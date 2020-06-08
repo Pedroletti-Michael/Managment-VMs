@@ -787,11 +787,11 @@ function updateStatusVM($id, $vmStatus, $reason = null, $vmInformation = null){
     $strSep = '\'';
     $result = false;
 
-    if($vmStatus == true){
-        $status = 2;
-    }
-    elseif($vmStatus == 4){
+    if($vmStatus == 4){
         $status = 4;
+    }
+    elseif($vmStatus == true){
+        $status = 2;
     }
     else{
         $status = 1;
@@ -948,7 +948,7 @@ function getVmName(){
 
 function getAllVmForCheckSendingMail(){
     $strSep = '\'';
-    $querySelect = "SELECT `id`, `name`, `dataAnniversary`, `dateEnd`, `customer`, `userRt`, `userRa`, `vmStatus` FROM `vm` WHERE vmStatus = 2 OR vmStatus = 3";
+    $querySelect = "SELECT `id`,`name`,`dateAnniversary`,`dateEnd`,`customer`,`userRa`,`userRt`,`vmStatus` FROM `vm` WHERE vmStatus = 2 OR vmStatus = 3";
 
     return  executeQuerySelect($querySelect);
 }

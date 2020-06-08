@@ -144,6 +144,7 @@ function displayManagementUser()
 
 function renewalTest(){
     require_once 'model/vmManager.php';
+    require_once 'model/mailSender.php';
     // Get all VM from dataBase
     $allVm = getAllVmForCheckSendingMail();
 
@@ -170,7 +171,7 @@ function renewalTest(){
         }
     }
 
-    echo '<script>alert("'.$advertMail.' e-mails d\'avertissement sont partit.<br>'.$nonrenewalMail.' e-mails de non renouvellements sont partis.");</script>';
+    echo '<script>alert("'.$advertMail.' vérification pour des e-mails d\'avertissement ont été effectuée.<br>'.$nonrenewalMail.' e-mails de non renouvellements sont partis.");</script>';
 
     displayManagementUser();
 }
