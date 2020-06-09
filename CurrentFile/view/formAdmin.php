@@ -435,10 +435,16 @@ ob_start();
                         <?php
                         $i = 0;
                         foreach($clusterData as $value){
-                            if($i == 0){
+                            if($i == 0 && !isset($_SESSION['formRequest']['editCluster']))
+                            {
                                 echo "<option selected>" . $value['name'] . "</option>";
                             }
-                            else{
+                            elseif(isset($_SESSION['formRequest']['editCluster']) && $value['name'] == $_SESSION['formRequest']['editCluster'])
+                            {
+                                echo "<option selected>" . $value['name'] . "</option>";
+                            }
+                            else
+                            {
                                 echo "<option>" . $value['name'] . "</option>";
                             }
                             $i++;
@@ -497,12 +503,18 @@ ob_start();
                     <select class="form-control form form" id="editCriticity" name="editCriticity"
                             aria-describedby="criticityHelp">
                         <?php
-                        $criticityNames = array("1", "2", "3");
-                        for ($i = 0; $i < 3; $i++) {
-                            if ($dataVM[0]['criticity'] == $criticityNames[$i]) {
-                                echo "<option selected>" . $criticityNames[$i] . "</option>";
-                            } else {
-                                echo "<option>" . $criticityNames[$i] . "</option>";
+                        for ($i = 1; $i <= 3; $i++) {
+                            if($i == 1 && !isset($_SESSION['formRequest']['editCriticity']))
+                            {
+                                echo "<option selected>" . $i . "</option>";
+                            }
+                            elseif(isset($_SESSION['formRequest']['editCriticity']) && $i == $_SESSION['formRequest']['editCriticity'])
+                            {
+                                echo "<option selected>" . $i . "</option>";
+                            }
+                            else
+                            {
+                                echo "<option>" . $i . "</option>";
                             }
                         }
                         ?>
