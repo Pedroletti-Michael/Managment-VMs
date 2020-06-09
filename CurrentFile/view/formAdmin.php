@@ -435,10 +435,16 @@ ob_start();
                         <?php
                         $i = 0;
                         foreach($clusterData as $value){
-                            if($i == 0){
+                            if($i == 0 && !isset($_SESSION['formRequest']['editCluster']))
+                            {
                                 echo "<option selected>" . $value['name'] . "</option>";
                             }
-                            else{
+                            elseif(isset($_SESSION['formRequest']['editCluster']) && $value['name'] == $_SESSION['formRequest']['editCluster'])
+                            {
+                                echo "<option selected>" . $value['name'] . "</option>";
+                            }
+                            else
+                            {
                                 echo "<option>" . $value['name'] . "</option>";
                             }
                             $i++;
@@ -449,7 +455,7 @@ ob_start();
                 <!--Date anniversary-->
                 <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                     <label for="inputEndDate" class="font-weight-bold">Date d'anniversaire</label>
-                    <input type="date" min="<?= date("Y-m-d"); ?>" class="form-control form form" id="editDateAnniversary" name="editDateAnniversary" aria-describedby="anniversaryDateHelp">
+                    <input type="date" min="<?= date("Y-m-d"); ?>" class="form-control form form" id="editDateAnniversary" name="editDateAnniversary" value="<?php if(isset($_SESSION['formRequest']['editDateAnniversary'])){echo($_SESSION['formRequest']['editDateAnniversary']);} ?>" aria-describedby="anniversaryDateHelp">
                 </div>
             </div>
 
@@ -457,12 +463,12 @@ ob_start();
                 <!--IP-->
                 <div class="form-group w-50 float-left pr-4" id="responsiveDisplay">
                     <label for="editIP" class="font-weight-bold">IP</label>
-                    <input class="form-control form form" id="editIP" name="editIP" aria-describedby="ipHelp">
+                    <input class="form-control form form" id="editIP" name="editIP" value="<?php if(isset($_SESSION['formRequest']['editIP'])){echo($_SESSION['formRequest']['editIP']);} ?>" aria-describedby="ipHelp">
                 </div>
                 <!--dnsName-->
                 <div class="form-group w-50 float-right pl-4" id="responsiveDisplay">
                     <label for="inputEndDate" class="font-weight-bold">Nom DNS</label>
-                    <input class="form-control form form" id="editDnsName" name="editDnsName" aria-describedby="dnsNameHelp">
+                    <input class="form-control form form" id="editDnsName" name="editDnsName" value="<?php if(isset($_SESSION['formRequest']['editDnsName'])){echo($_SESSION['formRequest']['editDnsName']);} ?>" aria-describedby="dnsNameHelp">
                 </div>
             </div>
 
@@ -497,12 +503,18 @@ ob_start();
                     <select class="form-control form form" id="editCriticity" name="editCriticity"
                             aria-describedby="criticityHelp">
                         <?php
-                        $criticityNames = array("1", "2", "3");
-                        for ($i = 0; $i < 3; $i++) {
-                            if ($dataVM[0]['criticity'] == $criticityNames[$i]) {
-                                echo "<option selected>" . $criticityNames[$i] . "</option>";
-                            } else {
-                                echo "<option>" . $criticityNames[$i] . "</option>";
+                        for ($i = 1; $i <= 3; $i++) {
+                            if($i == 1 && !isset($_SESSION['formRequest']['editCriticity']))
+                            {
+                                echo "<option selected>" . $i . "</option>";
+                            }
+                            elseif(isset($_SESSION['formRequest']['editCriticity']) && $i == $_SESSION['formRequest']['editCriticity'])
+                            {
+                                echo "<option selected>" . $i . "</option>";
+                            }
+                            else
+                            {
+                                echo "<option>" . $i . "</option>";
                             }
                         }
                         ?>
