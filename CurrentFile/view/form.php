@@ -407,6 +407,19 @@ ob_start();
 
             <label class="form-check-label font-weight-bold" for="domainEINET">Domaine EINET</label>
             <small id="domainEINETHelp" class="form-text text-muted">Pour serveur Windows uniquement</small>
+
+            <script>
+                if (document.getElementById('osTypeFormControlSelect').value === "Windows") {
+                    document.getElementById("linux").style.display = "none";
+                    document.getElementById("windows").style.display = "block";
+                    document.getElementById("domainEINET").disabled = false;
+                } else if (document.getElementById('osTypeFormControlSelect').value === "Linux") {
+                    document.getElementById("windows").style.display = "none";
+                    document.getElementById("linux").style.display = "block";
+                    document.getElementById("domainEINET").checked = false;
+                    document.getElementById("domainEINET").disabled = true;
+                }
+            </script>
         </div>
         <!--Security-->
         <div class="form-group">

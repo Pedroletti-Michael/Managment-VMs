@@ -126,7 +126,9 @@ function formVM($formVMRequest)
 
     if(isset($formVMRequest['inputEndDate']) && $formVMRequest['inputEndDate'] != null || $formVMRequest['inputEndDate'] != '')
     {
-        if (strtotime($formVMRequest['inputComissioningDate']) > strtotime($formVMRequest['inputEndDate']) || strtotime($formVMRequest['inputComissioningDate']) < strtotime('now'))
+        $today = date('Y-m-d');
+        $now = strtotime($today);
+        if (strtotime($formVMRequest['inputComissioningDate']) > strtotime($formVMRequest['inputEndDate']) || strtotime($formVMRequest['inputComissioningDate']) < $now)
         {
             $errorForm = true;
             $_SESSION['formRequest'] = $formVMRequest;
@@ -289,7 +291,9 @@ function formVMAdmin($formVMAdminRequest)
 
     if(isset($formVMAdminRequest['inputEndDate']) && $formVMAdminRequest['inputEndDate'] != null || $formVMAdminRequest['inputEndDate'] != '')
     {
-        if (strtotime($formVMAdminRequest['inputComissioningDate']) > strtotime($formVMAdminRequest['inputEndDate']) || strtotime($formVMAdminRequest['inputComissioningDate']) < strtotime('now'))
+        $today = date('Y-m-d');
+        $now = strtotime($today);
+        if (strtotime($formVMAdminRequest['inputComissioningDate']) > strtotime($formVMAdminRequest['inputEndDate']) || strtotime($formVMAdminRequest['inputComissioningDate']) < $now)
         {
             $errorForm = true;
             $_SESSION['formRequest'] = $formVMAdminRequest;
