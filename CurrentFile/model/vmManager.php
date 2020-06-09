@@ -1027,6 +1027,26 @@ function countUserRenewalVM($userId){
     return $resultSelect[0][0];
 }
 
+/**
+ * Get all userRt and CLuster of all VM. With these data we can tests if an user need to be into a specific group of user
+ */
+function getUserRtAndCluster(){
+    require_once 'model/dbConnector.php';
+    $strSep = '\'';
+
+    $querySelect = "SELECT `id`, `cluster`, `userRt` FROM `vm` WHERE vmStatus = 2 OR vmStatus = 3";
+
+    $resultSelect = executeQuerySelect($querySelect);
+
+    $i = 0;
+    foreach($resultSelect as $value){
+        $resultSelect[$i]['cluster'] = getCluster($value['cluster']);
+        $resultSelect[$i]['userRt'] = getNameAndSurnameUser($value['userRt']);
+    }
+
+    return $resultSelect;
+}
+
 class CSV{
     static function export($allVM,$filename){
         header('Content-Type: text/csv;');
