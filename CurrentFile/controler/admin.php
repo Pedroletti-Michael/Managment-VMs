@@ -751,11 +751,21 @@ function editOS($osName)
 
     if(isset($osName['add']))
     {
-        if(isset($osName['txtOSAdd']) && $osName['txtOSAdd'] != null && isset($osName['typeOSAdd']) && $osName['typeOSAdd'] != null)
+        if(isset($osName['txtOSAdd']) && $osName['txtOSAdd'] != null && isset($osName['typeOSAdd']) && $osName['typeOSAdd'] != null && isset($osName['$osCommendable']) && $osName['$osCommendable'] != null)
         {
             $nameOS = $osName['txtOSAdd'];
             $typeOS = $osName['typeOSAdd'];
-            addOS($nameOS,$typeOS);
+            $osCommendable = $osName['$osCommendable'];
+
+            if($osCommendable == true)
+            {
+                $osCommendable = 0;
+            }
+            else
+            {
+                $osCommendable = 1;
+            }
+            addOS($nameOS,$typeOS, $osCommendable);
         }
     }
     elseif(isset($osName['delete']))
@@ -807,13 +817,23 @@ function editOS($osName)
     }
     elseif(isset($osName['modify']))
     {
-        if(isset($osName['valueOSMod']) && $osName['valueOSMod'] != null && isset($osName['txtOSMod']) && $osName['txtOSMod'] != null && isset($osName['typeOSMod']) && $osName['typeOSMod'] != null)
+        if(isset($osName['valueOSMod']) && $osName['valueOSMod'] != null && isset($osName['txtOSMod']) && $osName['txtOSMod'] != null && isset($osName['typeOSMod']) && $osName['typeOSMod'] != null && isset($osName['$osCommendable']) && $osName['$osCommendable'] != null)
         {
             $nameOS = $osName['valueOSMod'];
             $newName = $osName['txtOSMod'];
             $newType = $osName['typeOSMod'];
+            $osCommendable = $osName['$osCommendable'];
             $textOs = "";
             $length = strlen($nameOS);
+
+            if($osCommendable == true)
+            {
+                $osCommendable = 0;
+            }
+            else
+            {
+                $osCommendable = 1;
+            }
 
             for($count = 0; $count < $length; $count++)
             {
@@ -826,7 +846,7 @@ function editOS($osName)
                     break;
                 }
             }
-            modifyOS($textOs,$newName,$newType);
+            modifyOS($textOs,$newName,$newType, $osCommendable);
         }
     }
     displayFormManagement($arrayToDisplay);

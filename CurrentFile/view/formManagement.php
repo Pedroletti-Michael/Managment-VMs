@@ -300,6 +300,10 @@ ob_start();
                                 <option>Linux</option>
                             </select>
                             <input type="text" class="form-control float-left mb-1 w-100 responsiveDisplay" id="txtOSAdd" name="txtOSAdd" placeholder="Version">
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="$osCommendable" name="$osCommendable">
+                                <label class="form-check-label font-weight-bold" for="$osCommendable">OS commandable ?</label>
+                            </div>
                         </div>
 
                         <div class="modal-footer">
@@ -328,6 +332,10 @@ ob_start();
                                 <option>Linux</option>
                             </select>
                             <input type="text" class="form-control float-left mb-1 w-100 responsiveDisplay" id="txtOSMod" name="txtOSMod" placeholder="Nouvelle valeur">
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="$osCommendable" name="$osCommendable">
+                                <label class="form-check-label font-weight-bold" for="$osCommendable">OS commandable ?</label>
+                            </div>
                         </div>
 
                         <div class="modal-footer">

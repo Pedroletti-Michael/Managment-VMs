@@ -103,10 +103,10 @@ function dispayOsUncommendable(){
     return executeQuery($query);
 }
 
-function addOS($nameOS,$typeOS){
+function addOS($nameOS,$typeOS, $osCommendable){
     $strSep = '\'';
 
-    $query = "INSERT INTO os (osName,osType) VALUES (".$strSep.$nameOS.$strSep.",".$strSep.$typeOS.$strSep.")";
+    $query = "INSERT INTO os (osName,osType,statusCommendable) VALUES (".$strSep.$nameOS.$strSep.",".$strSep.$typeOS.$strSep.",".$strSep.$osCommendable.$strSep.")";
     return executeQuery($query);
 }
 
@@ -115,8 +115,8 @@ function deleteOS($nameOS){
     return executeQuery($query);
 }
 
-function modifyOS($nameOS,$newName,$newType){
-    $query = "UPDATE `os` SET `osName` = '$newName', `osType` = '$newType' WHERE `os`.`osName` = '$nameOS';";
+function modifyOS($nameOS,$newName,$newType, $osCommendable){
+    $query = "UPDATE `os` SET `osName` = '$newName', `osType` = '$newType', `statusCommendable` = '$osCommendable' WHERE `os`.`osName` = '$nameOS';";
     return executeQuery($query);
 }
 
