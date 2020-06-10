@@ -96,9 +96,11 @@ function formVM($formVMRequest)
 
     foreach ($allVmName as $name)
     {
-        if($formVMRequest['inputVMName'] == $name)
+        $name['name'] = strtolower($name['name']);
+        if($formVMRequest['inputVMName'] == $name['name'])
         {
             $name = true;
+            break;
         }
     }
 
@@ -261,9 +263,11 @@ function formVMAdmin($formVMAdminRequest)
 
     foreach ($allVmName as $name)
     {
-        if($formVMAdminRequest['inputVMName'] == $name)
+        $name['name'] = strtolower($name['name']);
+        if($formVMAdminRequest['inputVMName'] == $name['name'])
         {
             $name = true;
+            break;
         }
     }
 
