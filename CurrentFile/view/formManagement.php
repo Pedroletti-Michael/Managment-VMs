@@ -255,7 +255,7 @@ ob_start();
                     <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#addOS">Ajouter</button>
                 </div>
                 <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3" id="responsiveDisplay">
-                    <button type="button" class="btn btn-primary w-100 mb-0" data-toggle="modal" data-target="#modifyOS">Modifier</button>
+                    <button type="button" class="btn btn-primary w-100 mb-0" data-toggle="modal" data-target="#modifyOS" onclick="checkCommendableOS()">Modifier</button>
                 </div>
                 <div class="float-left w-33 responsiveDisplay pl-1 mb-3" id="responsiveDisplay">
                     <button type="button" class="btn btn-danger w-100 mb-70-px" data-toggle="modal" data-target="#deleteOS">Supprimer</button>
@@ -301,8 +301,8 @@ ob_start();
                             </select>
                             <input type="text" class="form-control float-left mb-1 w-100 responsiveDisplay" id="txtOSAdd" name="txtOSAdd" placeholder="Version">
                             <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="$osCommendable" name="$osCommendable">
-                                <label class="form-check-label font-weight-bold" for="$osCommendable">OS commandable ?</label>
+                                <input type="checkbox" class="form-check-input" id="osCommendableAdd" name="osCommendableAdd">
+                                <label class="form-check-label font-weight-bold" for="osCommendableAdd">OS commandable ?</label>
                             </div>
                         </div>
 
@@ -333,27 +333,34 @@ ob_start();
                             </select>
                             <input type="text" class="form-control float-left mb-1 w-100 responsiveDisplay" id="txtOSMod" name="txtOSMod" placeholder="Nouvelle valeur">
                             <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="$osCommendable" name="$osCommendable">
-                                <label class="form-check-label font-weight-bold" for="$osCommendable">OS commandable ?</label>
+                                <input type="checkbox" class="form-check-input" id="osCommendableMod" name="osCommendableMod">
+                                <label class="form-check-label font-weight-bold" for="osCommendableMod">OS commandable ?</label>
                             </div>
                         </div>
 
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary mx-auto responsiveDisplay" value="modify" name="modify" id="modify">Confirmer</button>
                         </div>
-
                             <script>
                                 $("#valueOSDel tr").click(function(){
                                     $(this).addClass('selected').siblings().removeClass('selected');
-                                    var table = document.getElementById("valueOSDel");
-                                    var td = table.getElementsByTagName("td");
                                     var firstValue =$(this).find('td:first').html();
                                     var secondValue =$(this).find('td:nth-child(2)').html();
                                     var thirdValue =$(this).find('td:last').html();
-                                    alert(firstValue + " " + secondValue + " " + thirdValue);
+
+                                    if(thirdValue === 0)
+                                    {
+                                        document.getElementById("osCommendableMod").checked = true;
+                                    }
+                                    else
+                                    {
+                                        document.getElementById("osCommendableMod").checked = false;
+                                    }
+
                                     document.getElementById("valueOSDel").value = firstValue + " " + secondValue;
                                     document.getElementById("valueOSToDelete").value = firstValue + " " + secondValue;
                                     $("#textDelOS").html('Êtes-vous sûr de vouloir supprimer le champ : <b>' + firstValue + " " + secondValue + '<b/> ?');
+
                                     getSelectedOSToDelete();getSelectedOSToDisplayOnModify();
                                 });
 
@@ -391,7 +398,6 @@ ob_start();
                                     $("#textModOs").html('Modifier le champ <b>' + selectedValue + '</b> en :');
                                 }
                             </script>
-
                         </div>
                     </form>
                 </div>
