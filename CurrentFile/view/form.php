@@ -19,7 +19,7 @@ ob_start();
             var name = document.getElementById("inputVMName").value;
 
             for (i = 0; i < vmNames.length; i++){
-                if(vmNames[i] == name){
+                if(vmNames[i].toLowerCase() == name.toLowerCase()){
                     result = true;
                 }
             }

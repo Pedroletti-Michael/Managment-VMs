@@ -93,6 +93,7 @@ function formVM($formVMRequest)
     $errorForm = false;
     $allVmName = getVmName();
     $nameResult = false;
+    $name = false;
 
     foreach ($allVmName as $name)
     {
@@ -102,6 +103,12 @@ function formVM($formVMRequest)
             $name = true;
             break;
         }
+    }
+
+    if($name){
+        $errorForm = true;
+        $_SESSION['formRequest'] = $formVMRequest;
+        displayForm();
     }
 
     if($formVMRequest['inputTMName'] == null || $formVMRequest['inputRAName'] == null)
@@ -260,6 +267,7 @@ function formVMAdmin($formVMAdminRequest)
     $errorForm = false;
     $allVmName = getVmName();
     $nameResult = false;
+    $name = false;
 
     foreach ($allVmName as $name)
     {
@@ -269,6 +277,12 @@ function formVMAdmin($formVMAdminRequest)
             $name = true;
             break;
         }
+    }
+
+    if($name){
+        $errorForm = true;
+        $_SESSION['formRequest'] = $formVMAdminRequest;
+        displayFormAdmin();
     }
 
     if($formVMAdminRequest['inputTMName'] == null || $formVMAdminRequest['inputRAName'] == null)
