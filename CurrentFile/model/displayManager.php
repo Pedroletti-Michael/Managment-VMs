@@ -43,7 +43,7 @@ function getEntityAssociateToVM(){
 function displayBDD_OSNameWhereWindows(){
     $strSep = '\'';
 
-    $query = "SELECT osName FROM os WHERE status = 0 AND osType = ". $strSep."Windows".$strSep;
+    $query = "SELECT osName FROM os WHERE status = 0 AND statusCommendable = 0 AND osType = ". $strSep."Windows".$strSep;
 
     $result = array();
     array_push($result, "Windows");
@@ -55,7 +55,31 @@ function displayBDD_OSNameWhereWindows(){
 function displayBDD_OSNameWhereLinux(){
     $strSep = '\'';
 
-    $query = "SELECT osName FROM os WHERE status = 0 AND osType = ". $strSep."Linux".$strSep;
+    $query = "SELECT osName FROM os WHERE status = 0 AND statusCommendable = 0 AND osType = ". $strSep."Linux".$strSep;
+
+    $result = array();
+    array_push($result, "Linux / Ubuntu");
+    array_push($result, executeQuery($query));
+
+    return $result;
+}
+
+function displayBDD_OSNameWhereWindowsUncommendable(){
+    $strSep = '\'';
+
+    $query = "SELECT osName FROM os WHERE status = 0 AND statusCommendable = 1 AND osType = ". $strSep."Windows".$strSep;
+
+    $result = array();
+    array_push($result, "Windows");
+    array_push($result, executeQuery($query));
+
+    return $result;
+}
+
+function displayBDD_OSNameWhereLinuxUncommendable(){
+    $strSep = '\'';
+
+    $query = "SELECT osName FROM os WHERE status = 0 AND statusCommendable = 1 AND osType = ". $strSep."Linux".$strSep;
 
     $result = array();
     array_push($result, "Linux / Ubuntu");
@@ -65,7 +89,12 @@ function displayBDD_OSNameWhereLinux(){
 }
 
 function displayBDD_OS(){
-    $query = "SELECT osName, osType FROM os WHERE status = 0";
+    $query = "SELECT osName, osType FROM os WHERE status = 0 AND statusCommendable = 0";
+    return executeQuery($query);
+}
+
+function dispayOsUncommendable(){
+    $query = "SELECT osName, osType FROM os WHERE status = 0 AND statusCommendable = 1";
     return executeQuery($query);
 }
 
