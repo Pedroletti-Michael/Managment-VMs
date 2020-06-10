@@ -345,8 +345,11 @@ ob_start();
                             <script>
                                 $("#valueOSDel tr").click(function(){
                                     $(this).addClass('selected').siblings().removeClass('selected');
-                                    var firstValue =$(this).find('td:first').html();
-                                    var secondValue =$(this).find('td:last').html();
+                                    var table = document.getElementById("valueOsDel");
+                                    var td = table.getElementsByTagName("td");
+                                    var firstValue = td[0];
+                                    var secondValue = td[1];
+                                    var thirdValue = td[2];
                                     document.getElementById("valueOSDel").value = firstValue + " " + secondValue;
                                     document.getElementById("valueOSToDelete").value = firstValue + " " + secondValue;
                                     $("#textDelOS").html('Êtes-vous sûr de vouloir supprimer le champ : <b>' + firstValue + " " + secondValue + '<b/> ?');
