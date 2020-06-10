@@ -114,11 +114,23 @@ function createSession($userEmail)
 }
 
 function testSessionTime(){
-    if($_SESSION['sessionTime'] + 3600 > strtotime(date("Y-m-d H:i:s"))){
+    if(isset($_SESSION['sessionTime']) == false || $_SESSION['sessionTime'] + 3600 < strtotime(date("Y-m-d H:i:s"))){
         signOut();
+        return true;
     }
     else{
         $_SESSION['sessionTime'] = strtotime(date("Y-m-d H:i:s"));
+        if(isset($_SESSION['userType']) && $_SESSION['userType'] == 1)
+        {
+            $_SESSION['countConfirmationVM'] = countConfirmationVM();
+            $_SESSION['countRenewalVM'] = countRenewalVM();
+        }
+        else
+        {
+            $_SESSION['countConfirmationVM'] = countUserConfirmationVM($_SESSION['userId']);
+            $_SESSION['countRenewalVM'] = countUserRenewalVM($_SESSION['userId']);
+        }
+        return false;
     }
 }
 
