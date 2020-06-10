@@ -173,7 +173,8 @@ function displayDetailsVM($idVM)
                 if($_SESSION['userEmail'] == $dataVM[0]['customer'] || $_SESSION['userEmail'] == $dataVM[0]['userRt'] || $_SESSION['userEmail'] == $dataVM[0]['userRa'])
                 {
                     $entityNames = displayBDD_Entity();
-                    $osNames = displayBDD_OS();
+                    $osNames = displayOsCommendable();
+                    
                     $windowsData = displayBDD_OSNameWhereWindows();
                     $linuxData = displayBDD_OSNameWhereLinux();
                     $snapshotPolicy = displayBSS_Snapshots();
