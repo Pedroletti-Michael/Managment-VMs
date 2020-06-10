@@ -89,6 +89,11 @@ function displayBDD_OSNameWhereLinuxUncommendable(){
 }
 
 function displayBDD_OS(){
+    $query = "SELECT osName, osType, statusCommendable FROM os WHERE status = 0";
+    return executeQuery($query);
+}
+
+function displayOsCommendable(){
     $query = "SELECT osName, osType FROM os WHERE status = 0 AND statusCommendable = 0";
     return executeQuery($query);
 }
