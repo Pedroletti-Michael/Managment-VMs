@@ -247,7 +247,7 @@ ob_start();
                 <table id="valueOSDel" name="valueOSDel" class="w-100 table table-hover rounded">
                     <?php
                     foreach ($osNames as $value) {
-                        echo "<tr><td class='formManagement'>".$value['osType']."</td><td class='formManagement'>".$value['osName']."</td></tr>";
+                        echo "<tr><td class='formManagement'>".$value['osType']."</td><td class='formManagement'>".$value['osName']."</td><td class='formManagement'>".$value['statusCommendable']."</td></tr>";
                     }
                     ?>
                 </table>
@@ -345,11 +345,12 @@ ob_start();
                             <script>
                                 $("#valueOSDel tr").click(function(){
                                     $(this).addClass('selected').siblings().removeClass('selected');
-                                    var table = document.getElementById("valueOsDel");
+                                    var table = document.getElementById("valueOSDel");
                                     var td = table.getElementsByTagName("td");
-                                    var firstValue = td[0];
-                                    var secondValue = td[1];
-                                    var thirdValue = td[2];
+                                    var firstValue =$(this).find('td:first').html();
+                                    var secondValue =$(this).find('td:nth-child(2)').html();
+                                    var thirdValue =$(this).find('td:last').html();
+                                    alert(firstValue + " " + secondValue + " " + thirdValue);
                                     document.getElementById("valueOSDel").value = firstValue + " " + secondValue;
                                     document.getElementById("valueOSToDelete").value = firstValue + " " + secondValue;
                                     $("#textDelOS").html('Êtes-vous sûr de vouloir supprimer le champ : <b>' + firstValue + " " + secondValue + '<b/> ?');
