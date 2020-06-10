@@ -19,6 +19,7 @@ if(isset($_GET['action']))
 {
     $action = $_GET['action'];
     require_once 'model/vmManager.php';
+    testSessionTime();
     if($_SESSION['userType'] == 1)
     {
         $_SESSION['countConfirmationVM'] = countConfirmationVM();
