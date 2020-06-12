@@ -103,6 +103,10 @@ function formVM($formVMRequest)
             $name = true;
             break;
         }
+        else
+        {
+            $name = false;
+        }
     }
 
     if($name){
@@ -276,6 +280,10 @@ function formVMAdmin($formVMAdminRequest)
         {
             $name = true;
             break;
+        }
+        else
+        {
+            $name = false;
         }
     }
 
