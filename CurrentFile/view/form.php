@@ -515,9 +515,11 @@ ob_start();
 
                 if(checkbxTest == true){
                     document.getElementById("snapshotsFormControlSelect").selectedIndex = 3;
-                    document.getElementById("snapshotsFormControlSelect").disabled = true;
+                    //document.getElementById("snapshotsFormControlSelect").disabled = true;
+                    //document.getElementById("snapshotsFormControlSelect").value = "Aucun : Pas de snapshot";
                     document.getElementById("backupFormControlSelect").selectedIndex = 3;
-                    document.getElementById("backupFormControlSelect").disabled = true;
+                    //document.getElementById("backupFormControlSelect").disabled = true;
+                    //document.getElementById("backupFormControlSelect").value = "Aucun : Pas de backup";
                 }else{
                     document.getElementById("snapshotsFormControlSelect").selectedIndex = 0;
                     document.getElementById("snapshotsFormControlSelect").disabled = false;

@@ -796,6 +796,8 @@ ob_start();
                                             echo '255,165,69,0.7';
                                         } elseif ($value['vmStatus'] == 3) {
                                             echo '233,48,48,0.7';
+                                        } elseif ($value['vmStatus'] == 4) {
+                                            echo '118,13,154,0.7';
                                         } else {
                                             echo '90,90,90,0.7';
                                         } ?>); border-color: rgba(<?php if ($value['vmStatus'] == 2) {
@@ -804,6 +806,8 @@ ob_start();
                                             echo '255,165,69,0.7';
                                         } elseif ($value['vmStatus'] == 3) {
                                             echo '233,48,48,0.7';
+                                        } elseif ($value['vmStatus'] == 4) {
+                                            echo '118,13,154,0.7';
                                         } else {
                                             echo '90,90,90,0.7';
                                         } ?>);"><strong>+</strong></button>
@@ -1346,6 +1350,8 @@ ob_start();
                                             echo '255,165,69,0.7';
                                         } elseif ($value['vmStatus'] == 3) {
                                             echo '233,48,48,0.7';
+                                        } elseif ($value['vmStatus'] == 4) {
+                                            echo '118,13,154,0.7';
                                         } else {
                                             echo '90,90,90,0.7';
                                         } ?>); border-color: rgba(<?php if ($value['vmStatus'] == 2) {
@@ -1354,6 +1360,8 @@ ob_start();
                                             echo '255,165,69,0.7';
                                         } elseif ($value['vmStatus'] == 3) {
                                             echo '233,48,48,0.7';
+                                        } elseif ($value['vmStatus'] == 4) {
+                                            echo '118,13,154,0.7';
                                         } else {
                                             echo '90,90,90,0.7';
                                         } ?>);"><strong>+</strong></button>
@@ -1893,6 +1901,8 @@ ob_start();
                                             echo '255,165,69,0.7';
                                         } elseif ($value['vmStatus'] == 3) {
                                             echo '233,48,48,0.7';
+                                        } elseif ($value['vmStatus'] == 4) {
+                                            echo '118,13,154,0.7';
                                         } else {
                                             echo '90,90,90,0.7';
                                         } ?>); border-color: rgba(<?php if ($value['vmStatus'] == 2) {
@@ -1901,6 +1911,8 @@ ob_start();
                                             echo '255,165,69,0.7';
                                         } elseif ($value['vmStatus'] == 3) {
                                             echo '233,48,48,0.7';
+                                        } elseif ($value['vmStatus'] == 4) {
+                                            echo '118,13,154,0.7';
                                         } else {
                                             echo '90,90,90,0.7';
                                         } ?>);"><strong>+</strong></button>
@@ -2440,6 +2452,8 @@ ob_start();
                                             echo '255,165,69,0.7';
                                         } elseif ($value['vmStatus'] == 3) {
                                             echo '233,48,48,0.7';
+                                        } elseif ($value['vmStatus'] == 4) {
+                                            echo '118,13,154,0.7';
                                         } else {
                                             echo '90,90,90,0.7';
                                         } ?>); border-color: rgba(<?php if ($value['vmStatus'] == 2) {
@@ -2448,6 +2462,8 @@ ob_start();
                                             echo '255,165,69,0.7';
                                         } elseif ($value['vmStatus'] == 3) {
                                             echo '233,48,48,0.7';
+                                        } elseif ($value['vmStatus'] == 4) {
+                                            echo '118,13,154,0.7';
                                         } else {
                                             echo '90,90,90,0.7';
                                         } ?>);"><strong>+</strong></button>
@@ -2987,6 +3003,8 @@ ob_start();
                                             echo '255,165,69,0.7';
                                         } elseif ($value['vmStatus'] == 3) {
                                             echo '233,48,48,0.7';
+                                        } elseif ($value['vmStatus'] == 4) {
+                                            echo '118,13,154,0.7';
                                         } else {
                                             echo '90,90,90,0.7';
                                         } ?>); border-color: rgba(<?php if ($value['vmStatus'] == 2) {
@@ -2995,6 +3013,8 @@ ob_start();
                                             echo '255,165,69,0.7';
                                         } elseif ($value['vmStatus'] == 3) {
                                             echo '233,48,48,0.7';
+                                        } elseif ($value['vmStatus'] == 4) {
+                                            echo '118,13,154,0.7';
                                         } else {
                                             echo '90,90,90,0.7';
                                         } ?>);"><strong>+</strong></button>
