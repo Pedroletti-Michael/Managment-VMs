@@ -711,6 +711,7 @@ function editEntity($entityName)
                 if($idEntity[0]['entity_id'] == $entityAssiociatedToVM['entity_id'])
                 {
                     $isEntityAssociated = true;
+                    break;
                 }
                 else
                 {
