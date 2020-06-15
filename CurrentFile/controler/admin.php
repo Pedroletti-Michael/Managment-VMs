@@ -756,13 +756,13 @@ function editOS($osName)
             $nameOS = $osName['txtOSAdd'];
             $typeOS = $osName['typeOSAdd'];
 
-            if($osName['osCommendableAdd'] == "on")
+            if(!isset($osName['osCommendableAdd']))
             {
-                $osName['osCommendableAdd'] = 0;
+                $osName['osCommendableAdd'] = 1;
             }
             else
             {
-                $osName['osCommendableAdd'] = 1;
+                $osName['osCommendableAdd'] = 0;
             }
             addOS($nameOS,$typeOS, $osName['osCommendableAdd']);
         }
@@ -824,13 +824,13 @@ function editOS($osName)
             $textOs = "";
             $length = strlen($nameOS);
 
-            if($osName['osCommendableMod'] == "on")
+            if(!isset($osName['osCommendableMod']))
             {
-                $osName['osCommendableMod'] = 0;
+                $osName['osCommendableMod'] = 1;
             }
             else
             {
-                $osName['osCommendableMod'] = 1;
+                $osName['osCommendableMod'] = 0;
             }
 
             for($count = 0; $count < $length; $count++)
