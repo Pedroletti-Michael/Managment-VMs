@@ -751,21 +751,20 @@ function editOS($osName)
 
     if(isset($osName['add']))
     {
-        if(isset($osName['txtOSAdd']) && $osName['txtOSAdd'] != null && isset($osName['typeOSAdd']) && $osName['typeOSAdd'] != null && isset($osName['osCommendableAdd']) && $osName['osCommendableAdd'] != null)
+        if(isset($osName['txtOSAdd']) && $osName['txtOSAdd'] != null && isset($osName['typeOSAdd']) && $osName['typeOSAdd'] != null)
         {
             $nameOS = $osName['txtOSAdd'];
             $typeOS = $osName['typeOSAdd'];
-            $osCommendable = $osName['osCommendableAdd'];
 
-            if($osCommendable == true)
+            if($osName['osCommendableAdd'] == "on")
             {
-                $osCommendable = 0;
+                $osName['osCommendableAdd'] = 0;
             }
             else
             {
-                $osCommendable = 1;
+                $osName['osCommendableAdd'] = 1;
             }
-            addOS($nameOS,$typeOS, $osCommendable);
+            addOS($nameOS,$typeOS, $osName['osCommendableAdd']);
         }
     }
     elseif(isset($osName['delete']))
@@ -817,22 +816,21 @@ function editOS($osName)
     }
     elseif(isset($osName['modify']))
     {
-        if(isset($osName['valueOSMod']) && $osName['valueOSMod'] != null && isset($osName['txtOSMod']) && $osName['txtOSMod'] != null && isset($osName['typeOSMod']) && $osName['typeOSMod'] != null && isset($osName['osCommendableMod']) && $osName['osCommendableMod'] != null)
+        if(isset($osName['valueOSMod']) && $osName['valueOSMod'] != null && isset($osName['txtOSMod']) && $osName['txtOSMod'] != null && isset($osName['typeOSMod']) && $osName['typeOSMod'] != null)
         {
             $nameOS = $osName['valueOSMod'];
             $newName = $osName['txtOSMod'];
             $newType = $osName['typeOSMod'];
-            $osCommendable = $osName['osCommendableMod'];
             $textOs = "";
             $length = strlen($nameOS);
 
-            if($osCommendable == true)
+            if($osName['osCommendableMod'] == "on")
             {
-                $osCommendable = 0;
+                $osName['osCommendableMod'] = 0;
             }
             else
             {
-                $osCommendable = 1;
+                $osName['osCommendableMod'] = 1;
             }
 
             for($count = 0; $count < $length; $count++)
@@ -846,7 +844,7 @@ function editOS($osName)
                     break;
                 }
             }
-            modifyOS($textOs,$newName,$newType, $osCommendable);
+            modifyOS($textOs,$newName,$newType, $osName['osCommendableMod']);
         }
     }
     displayFormManagement($arrayToDisplay);
