@@ -5,6 +5,11 @@
  * Description : Contains all functions related to the admin view
  */
 
+/**
+ * Get and display all VM created
+ *
+ * @param $vmFilter = sorts the VMs according to the value contained in this variable
+ */
 function displayAllVM($searchFilter,$vmFilter = "all")
 {
     if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
@@ -93,6 +98,9 @@ function displayAllVM($searchFilter,$vmFilter = "all")
     }
 }
 
+/**
+ * Get and display all confirmed VM
+ */
 function displayConfirmationVM()
 {
     if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
@@ -122,6 +130,9 @@ function displayConfirmationVM()
     }
 }
 
+/**
+ * Get and display all VM who need to be renewal
+ */
 function displayRenewalVM()
 {
     if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
@@ -154,6 +165,11 @@ function displayRenewalVM()
     }
 }
 
+/**
+ * Display the details form where we can update the VM selected
+ *
+ * @param $idVM = contains the id of the VM selected
+ */
 function displayDetailsVM($idVM)
 {
     if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
@@ -260,6 +276,11 @@ function displayDetailsVM($idVM)
     }
 }
 
+/**
+ * Update the datas of the VM selected  since the details form
+ *
+ * @param $vmInformation = The datas's form details VM (POST)
+ */
 function updateVM($vmInformation)
 {
     require_once "model/vmManager.php";
@@ -421,6 +442,11 @@ function updateVM($vmInformation)
     }
 }
 
+/**
+ * Accept the VM who need to be confirmed and update the VM selected datas
+ *
+ * @param $vmInformation = The datas's form details VM (POST)
+ */
 function vmAccepted($vmInformation)
 {
     require_once "model/vmManager.php";
@@ -565,6 +591,11 @@ function vmAccepted($vmInformation)
     }
 }
 
+/**
+ * Refuse the VM who need to be confirmed
+ *
+ * @param $reason = Refuse the VM
+ */
 function vmRefused($reason = null)
 {
     $vmStatus = false;
@@ -593,6 +624,9 @@ function vmRefused($reason = null)
     }
 }
 
+/**
+ * Accept the VM to be Renewwal (who is nearly arrive to the end date).
+ */
 function renewwalAccepted()
 {
     $vmStatus = false;
@@ -617,6 +651,9 @@ function renewwalAccepted()
     }
 }
 
+/**
+ * Refuse the VM to be Renewwal
+ */
 function renewwalRefused()
 {
     $vmStatus = false;
@@ -684,6 +721,11 @@ function displayFormManagement($arrayToDisplay)
     }
 }
 
+/**
+ * Do some actions like add / modify / delete on entity
+ *
+ * @param $entityName = entity's form (POST)
+ */
 function editEntity($entityName)
 {
     $arrayToDisplay = $_SESSION['gestionFormArray'];
@@ -744,6 +786,11 @@ function editEntity($entityName)
     displayFormManagement($arrayToDisplay);
 }
 
+/**
+ * Do some actions like add / modify / delete on OS
+ *
+ * @param $osName = OS's form (POST)
+ */
 function editOS($osName)
 {
     $arrayToDisplay = $_SESSION['gestionFormArray'];
@@ -851,6 +898,11 @@ function editOS($osName)
     displayFormManagement($arrayToDisplay);
 }
 
+/**
+ * Do some actions like add / modify / delete on snapshots
+ *
+ * @param $snapshotsName = snapshots's form (POST)
+ */
 function editSnapshots($snapshotsName)
 {
     $arrayToDisplay = $_SESSION['gestionFormArray'];
@@ -940,6 +992,11 @@ function editSnapshots($snapshotsName)
     displayFormManagement($arrayToDisplay);
 }
 
+/**
+ * Do some actions like add / modify / delete on backup
+ *
+ * @param $backupName = backup's form (POST)
+ */
 function editBackup($backupName)
 {
     $arrayToDisplay = $_SESSION['gestionFormArray'];
@@ -1029,6 +1086,11 @@ function editBackup($backupName)
     displayFormManagement($arrayToDisplay);
 }
 
+/**
+ * Display the research view
+ *
+ * @param $inputResearch = the element to be research
+ */
 function displayResearch($inputResearch)
 {
     if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
@@ -1047,6 +1109,12 @@ function displayResearch($inputResearch)
     }
 }
 
+/**
+ * Modify the status after the VM is renewal
+ *
+ * @param $idVM = contains the id of the Vm selected
+ * @param $status = the status of the Vm selected
+ */
 function modifyStatusAfterRenewal($idVM, $status)
 {
     if($status)
@@ -1079,6 +1147,9 @@ function modifyStatusAfterRenewal($idVM, $status)
     }
 }
 
+/**
+ * Export all VM in a excel file
+ */
 function exportToExcel()
 {
     require_once "model/vmManager.php";
@@ -1087,6 +1158,9 @@ function exportToExcel()
     exportVMToExcel($allVM);
 }
 
+/**
+ * Display the alert management view
+ */
 function displayAlertManagementPage()
 {
     if(isset($_SESSION['userType']))
@@ -1111,6 +1185,11 @@ function displayAlertManagementPage()
     }
 }
 
+/**
+ * Save the modifications make on alert
+ *
+ * @param $data = contains the modifications to make on alert
+ */
 function saveAlertModification($data)
 {
     if(isset($data['adminMail']))
@@ -1143,6 +1222,11 @@ function saveAlertModification($data)
     }
 }
 
+/**
+ * Save the modifications make on mails
+ *
+ * @param $data = contains the modifications to make on mails
+ */
 function saveContentMail($data)
 {
     if(isset($data['requestMail']))

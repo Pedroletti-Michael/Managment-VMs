@@ -7,7 +7,7 @@
 
 session_start();
 
-// Require all controler files
+// Require all controler's files
 $files = glob(__DIR__.'/controler/*.php');
 foreach ($files as $file)
 {
