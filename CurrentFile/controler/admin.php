@@ -946,6 +946,7 @@ function editSnapshots($snapshotsName)
                 if($idSnapshot[0]['snapshot_id'] == $snapshotAssociatedToVM['snapshot_id'])
                 {
                     $isSnapshotAssociated = true;
+                    break;
                 }
                 else
                 {
@@ -1040,6 +1041,7 @@ function editBackup($backupName)
                 if($idBackup[0]['backup_id'] == $backupAssociatedToVM['backup_id'])
                 {
                     $isBackupAssociated = true;
+                    break;
                 }
                 else
                 {
