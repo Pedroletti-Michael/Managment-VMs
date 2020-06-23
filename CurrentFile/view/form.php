@@ -516,9 +516,9 @@ ob_start();
                 }
 
                 if(checkbxTest == true){
-                    document.getElementById("snapshotsFormControlSelect").selectedIndex = 3;
+                    document.getElementById("snapshotsFormControlSelect").selectedIndex = "Aucun : Pas de backup";
                     document.getElementById("snapshotsFormControlSelect").disabled = true;
-                    document.getElementById("backupFormControlSelect").selectedIndex = 3;
+                    document.getElementById("backupFormControlSelect").selectedIndex = "Aucun : Pas de snapshot";
                     document.getElementById("backupFormControlSelect").disabled = true;
                 }else{
                     document.getElementById("snapshotsFormControlSelect").selectedIndex = 0;

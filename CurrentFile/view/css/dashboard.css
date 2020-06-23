@@ -1,17 +1,14 @@
 body {
     font-size: .875rem;
-    font-family: AppleGothic, "Century Gothic", CenturyGothic, Century Gothic !important;
+    font-family: AppleGothic, "CenturyGothic", CenturyGothic !important;
     /*font-family: "Century Gothic"!important;*/
 }
 
 @font-face {
-    font-family: AppleGothic, "Century Gothic", CenturyGothic, Century Gothic !important;
-    /*src: url("../font/Century-Gothic_9791.ttf") format("truetype") !important;*/
+    font-family: AppleGothic, "CenturyGothic", CenturyGothic !important;
+    src: url("../font/Century-Gothic_9791.ttf") format("truetype") !important;*/
 }
 
-:root{
-    font-family: AppleGothic, "Century Gothic", CenturyGothic, Century Gothic !important;
-}
 
 .feather {
     width: 16px;
