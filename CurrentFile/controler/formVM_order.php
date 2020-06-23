@@ -211,6 +211,14 @@ function formVM($formVMRequest)
 
     $formVMRequest['inputVMName'] = strtoupper($formVMRequest['inputVMName']);
 
+    if($formVMRequest['snapshotsFormControlSelect'] == '' || $formVMRequest['snapshotsFormControlSelect'] == null){
+        $formVMRequest['snapshotsFormControlSelect'] = $formVMRequest['emptySnapshotValue'];
+    }
+
+    if($formVMRequest['backupFormControlSelect'] == '' || $formVMRequest['backupFormControlSelect'] == null){
+        $formVMRequest['backupFormControlSelect'] = $formVMRequest['emptyBackupValue'];
+    }
+
     if(addVMToDB($formVMRequest))
     {
         require_once 'model/mailSender.php';
