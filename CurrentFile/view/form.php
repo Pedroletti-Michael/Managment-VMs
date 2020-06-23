@@ -376,6 +376,7 @@ ob_start();
                 }
                 ?>
             </select>
+            <input type="hidden" name="emptySnapshotValue" value="Aucun : Pas de snapshot">
             <small id="snapshotsHelp" class="form-text text-muted">Non disponible sur l'infrastructure de DEV</small>
         </div>
         <!--Backup-->
@@ -395,6 +396,7 @@ ob_start();
                 }
                 ?>
             </select>
+            <input type="hidden" name="emptyBackupValue" value="Aucun : Pas de backup">
             <small id="backupHelp" class="form-text text-muted">Non disponible sur l'infrastructure de DEV</small>
         </div>
         <!--Checkbox domain EINET-->
@@ -515,11 +517,9 @@ ob_start();
 
                 if(checkbxTest == true){
                     document.getElementById("snapshotsFormControlSelect").selectedIndex = 3;
-                    //document.getElementById("snapshotsFormControlSelect").disabled = true;
-                    //document.getElementById("snapshotsFormControlSelect").value = "Aucun : Pas de snapshot";
+                    document.getElementById("snapshotsFormControlSelect").disabled = true;
                     document.getElementById("backupFormControlSelect").selectedIndex = 3;
-                    //document.getElementById("backupFormControlSelect").disabled = true;
-                    //document.getElementById("backupFormControlSelect").value = "Aucun : Pas de backup";
+                    document.getElementById("backupFormControlSelect").disabled = true;
                 }else{
                     document.getElementById("snapshotsFormControlSelect").selectedIndex = 0;
                     document.getElementById("snapshotsFormControlSelect").disabled = false;

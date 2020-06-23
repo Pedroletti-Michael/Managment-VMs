@@ -5,8 +5,12 @@ body {
 }
 
 @font-face {
-    font-family: "Century Gothic", CenturyGothic, Century Gothic, AppleGothic !important;
-    src: url("../font/Century-Gothic_9791.ttf") format("truetype") !important;
+    font-family: AppleGothic, "Century Gothic", CenturyGothic, Century Gothic !important;
+    /*src: url("../font/Century-Gothic_9791.ttf") format("truetype") !important;*/
+}
+
+:root{
+    font-family: AppleGothic, "Century Gothic", CenturyGothic, Century Gothic !important;
 }
 
 .feather {
