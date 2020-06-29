@@ -373,25 +373,3 @@ function saveModificationAboutUsers($allData)
     }
     displayManagementUser();
 }
-
-function sortUserRt(){
-    require_once 'model/vmManager.php';
-    $dataToSort = getUserRtAndCluster();
-    $userProdCh = array();
-    $userProdYp = array();
-    $userDevCh = array();
-
-    foreach($dataToSort as $value){
-        $user = explode(" ", $value['name']);
-        $user = $user[1].$user[0]."@einet.ad.eivd.ch";
-        if($value['cluster']['nameSite'] == "PROD-CH"){
-            array_push($userProdCh, $user);
-        }
-        elseif($value['cluster']['nameSite'] == "PROD-YP"){
-            array_push($userProdYp, $user);
-        }
-        elseif ($value['cluster']['nameSite'] == "DEV-CH"){
-            array_push($userDevCh, $user);
-        }
-    }
-}

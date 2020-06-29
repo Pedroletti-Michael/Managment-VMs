@@ -284,7 +284,7 @@ function displayDetailsVM($idVM)
 function updateVM($vmInformation)
 {
     require_once "model/vmManager.php";
-    
+
     $_SESSION['displayModalConfirm'] = false;
     $checkTMNam = getFirstAndLastNameUser($vmInformation['inputTMName']);
     $checkRANam = getFirstAndLastNameUser($vmInformation['inputRAName']);
@@ -1276,5 +1276,18 @@ function saveContentMail($data)
     {
         $_SESSION['saveContentMail'] = false;
         displayAlertManagementPage();
+    }
+}
+
+function addUserListAd(){
+    require_once 'model/userManager.php';
+
+    if(addUserToDiffusionList()){
+        $_SESSION['diffusionListAdding'] = true;
+        displayManagementUser();
+    }
+    else{
+        $_SESSION['diffusionListAdding'] = false;
+        displayManagementUser();
     }
 }

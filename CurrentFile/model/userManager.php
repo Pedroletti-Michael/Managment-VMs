@@ -314,6 +314,60 @@ function verificationUserFromDb(){
     return true;
 }
 
+function addUserToDiffusionList(){
+    putenv('LDAPTLS_REQCERT=never');
+    $result = null;
+
+    $ds=ldap_connect("ldaps://einet.ad.eivd.ch:636");
+
+    ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+    ldap_set_option($ds, LDAP_OPT_REFERRALS, 0);
+
+    require_once 'model/encryption.php';
+    $uncodePwd = decrypt("mkHndhU83csnUia.Dhjc73jhSExwK1NVcCo=");
+
+    $r=ldap_bind($ds, "einetjoin@einet.ad.eivd.ch", $uncodePwd); // We need to find an way to connect. Because we need to be connected to research user
+
+    if ($ds) {
+        //$groupMembers = [0 => "CN=Pedroletti Michael,OU=SI,OU=Personnel,DC=einet,DC=ad,DC=eivd,DC=ch", 1 => "CN=Cook Théo,OU=SI,OU=Personnel,DC=einet,DC=ad,DC=eivd,DC=ch"]
+        $groupMembers = array('0' => "CN=Pedroletti Michael,OU=SI,OU=Personnel,DC=einet,DC=ad,DC=eivd,DC=ch", '1' => "CN=Cook Théo,OU=SI,OU=Personnel,DC=einet,DC=ad,DC=eivd,DC=ch");
+        $addGroup_ad['member'] = $groupMembers;
+
+        if(ldap_mod_add($ds, "CN=Responsables Techniques VM - CHE,OU=Services,OU=Groupes-Distrib,OU=Groupes,DC=einet,DC=ad,DC=eivd,DC=ch", $addGroup_ad)){
+            $returnValue = true;
+        }
+        else{
+            $returnValue = true;
+        }
+
+        ldap_close($ds);
+    }
+
+    return $returnValue;
+}
+
+function sortUserRt(){
+    require_once 'model/vmManager.php';
+    $dataToSort = getUserRtAndCluster();
+    $userProdCh = array();
+    $userProdYp = array();
+    $userDevCh = array();
+
+    foreach($dataToSort as $value){
+        $user = explode(" ", $value['name']);
+        $user = $user[1].$user[0]."@einet.ad.eivd.ch";
+        if($value['cluster']['nameSite'] == "PROD-CH"){
+            array_push($userProdCh, $user);
+        }
+        elseif($value['cluster']['nameSite'] == "PROD-YP"){
+            array_push($userProdYp, $user);
+        }
+        elseif ($value['cluster']['nameSite'] == "DEV-CH"){
+            array_push($userDevCh, $user);
+        }
+    }
+}
+
 function userRtVerification(){
     //get all user from db
 

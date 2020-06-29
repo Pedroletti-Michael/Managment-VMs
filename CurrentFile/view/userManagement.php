@@ -18,6 +18,19 @@ ob_start();
     </head>
 <body>
 
+    <?php
+        if(isset($_SESSION['diffusionListAdding'])){
+            if($_SESSION['diffusionListAdding'] == true){
+                echo'<h1>réussi</h1>';
+            }
+            elseif($_SESSION['diffusionListAdding'] == false){
+                echo'<h1>échec</h1>';
+            }
+            unset($_SESSION['diffusionListAdding']);
+        }
+    ?>
+
+
     <!--Refresh user of db-->
     <a href="index.php?action=refreshUser">
         <button type="button" class="btn btn-primary mb-1 mt-1 responsiveDisplay">
@@ -34,6 +47,12 @@ ob_start();
     <a onclick="sortTableUser()">
         <button type="button" class="btn btn-primary mb-1 mt-1 responsiveDisplay" id="btnSort">
             Trier les noms (Z-A)
+        </button>
+    </a>
+    <!--Button for test to add user into diffusion list in AD-->
+    <a href="index.php?action=addUserListAd">
+        <button type="button" class="btn btn-primary mb-1 mt-1 responsiveDisplay">
+            List AD
         </button>
     </a>
     <input type="button" value="Retour en haut" id="navButton" class="btn btn-primary rounded-0 w-150-px position-fixed mt-1" style="right: 0.25rem;visibility: hidden" OnClick="goTo()">

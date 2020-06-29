@@ -27,11 +27,11 @@ if(isset($_GET['action']))
             displayHome();
             break;
         case 'signIn':
-            if(testSessionTime()){break;}
+            //if(testSessionTime()){break;}
             displaySignIn();
             break;
         case 'signOut':
-            if(testSessionTime()){break;}
+            //if(testSessionTime()){break;}
             signOut();
             break;
         case 'RequestLogin':
@@ -173,9 +173,13 @@ if(isset($_GET['action']))
             if(testSessionTime()){break;}
             renewalTest();
             break;
+        case 'addUserListAd':
+            addUserListAd();
+            break;
         default:
             if(testSessionTime()){break;}
             displayHome();
+            break;
     }
 }
 else
