@@ -89,9 +89,9 @@ function changeBodyTable(n){
     renewalVm = document.getElementById("allRenewalVmBody");
     deletedVm = document.getElementById("allDeletedVmBody");
 
-
     switch(n){
         case 0:
+            active = 0;
             allVm.hidden = false;
             validatedVm.hidden = true;
             confirmationVm.hidden = true;
@@ -99,6 +99,7 @@ function changeBodyTable(n){
             deletedVm.hidden = true;
             break;
         case 1:
+            active = 1;
             allVm.hidden = true;
             validatedVm.hidden = false;
             confirmationVm.hidden = true;
@@ -106,6 +107,7 @@ function changeBodyTable(n){
             deletedVm.hidden = true;
             break;
         case 2:
+            active = 2;
             allVm.hidden = true;
             validatedVm.hidden = true;
             confirmationVm.hidden = false;
@@ -113,6 +115,7 @@ function changeBodyTable(n){
             deletedVm.hidden = true;
             break;
         case 3:
+            active = 3;
             allVm.hidden = true;
             validatedVm.hidden = true;
             confirmationVm.hidden = true;
@@ -120,6 +123,7 @@ function changeBodyTable(n){
             deletedVm.hidden = true;
             break;
         case 4:
+            active = 4;
             allVm.hidden = true;
             validatedVm.hidden = true;
             confirmationVm.hidden = true;
@@ -127,12 +131,34 @@ function changeBodyTable(n){
             deletedVm.hidden = false;
             break;
         default:
+            active = 1;
             allVm.hidden = true;
             validatedVm.hidden = false;
             confirmationVm.hidden = true;
             renewalVm.hidden = true;
             deletedVm.hidden = true;
             break;
+    }
+    document.getElementById("allVMFilterButton").style.backgroundColor ="#6c757d";
+    document.getElementById("inUseVMFilterButton").style.backgroundColor ="#6c757d";
+    document.getElementById("toBeConfirmedVMFilterButton").style.backgroundColor ="#6c757d";
+    document.getElementById("renewableVMFilterButton").style.backgroundColor ="#6c757d";
+    document.getElementById("deletedVMFilterButton").style.backgroundColor ="#6c757d";
+
+    if (n == 0){
+        document.getElementById("allVMFilterButton").style.backgroundColor ="#5a6268";
+    }
+    if (n == 1){
+        document.getElementById("inUseVMFilterButton").style.backgroundColor ="#5a6268";
+    }
+    if (n == 2){
+        document.getElementById("toBeConfirmedVMFilterButton").style.backgroundColor ="#5a6268";
+    }
+    if (n == 3){
+        document.getElementById("renewableVMFilterButton").style.backgroundColor ="#5a6268";
+    }
+    if (n == 4){
+        document.getElementById("deletedVMFilterButton").style.backgroundColor ="#5a6268";
     }
 }
 
