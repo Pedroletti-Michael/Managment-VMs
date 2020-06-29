@@ -186,13 +186,11 @@ ob_start();
                         cluster
                     </button>
                     <button name="btnRowFilter" id="dateStart" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left"
-                            onclick="filterRow('dateStart')">
+                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('dateStart')">
                         dateStart
                     </button>
                     <button name="btnRowFilter" style="background-color: #dc3545" id="dateAnniversary" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left"
-                            onclick="filterRow('dateAnniversary')">
+                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('dateAnniversary')">
                         dateAnniversary
                     </button>
                     <button name="btnRowFilter" id="dateEnd" type="button"
@@ -212,8 +210,7 @@ ob_start();
                         dnsName
                     </button>
                     <button name="btnRowFilter" style="background-color: #dc3545" id="redundance" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left"
-                            onclick="filterRow('redundance')">
+                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('redundance')">
                         redundance
                     </button>
                     <button name="btnRowFilter" id="usage" type="button"
@@ -221,8 +218,7 @@ ob_start();
                         usageType
                     </button>
                     <button name="btnRowFilter" style="background-color: #dc3545" id="criticity" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left"
-                            onclick="filterRow('criticity')">
+                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('criticity')">
                         criticity
                     </button>
                     <button name="btnRowFilter" id="cpu" type="button"
@@ -289,7 +285,7 @@ ob_start();
             </div>
             <!--Export VM to Excel-->
             <a href="index.php?action=exportToExcel">
-                <button type="button" class="btn btn-success w-100 rounded-0 mb-0 text-left">
+                <button type="button" class="btn btn-success w-100 rounded-0 mb-5 text-left">
                     Exporter
                 </button>
             </a>
