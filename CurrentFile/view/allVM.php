@@ -86,7 +86,7 @@ ob_start();
                 <div class="w-100">
                     <!--All VM-->
                     <a onclick="changeBodyTable(0)">
-                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left">
+                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left"id="allVMFilterButton">
                             <span class="badge badge-primary" id="numberOfVM"> </span>
                             Toutes les VM
                         </button>
@@ -95,7 +95,7 @@ ob_start();
                 <div class="w-100">
                     <!--Confirmed VM-->
                     <a onclick="changeBodyTable(1)">
-                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left">
+                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" id="inUseVMFilterButton">
                             <span class="badge"
                                   style="background-color: rgba(40,167,69,0.7); border-color: rgba(40,167,69,0.7);"
                                   id="numberOfConfirmedVM"> </span>
@@ -106,7 +106,7 @@ ob_start();
                 <div class="w-100">
                     <!--VM who need to be confirmed-->
                     <a onclick="changeBodyTable(2)">
-                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left">
+                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" id="toBeConfirmedVMFilterButton">
                             <span class="badge"
                                   style="background-color: rgba(255,165,69,0.7); border-color: rgba(255,165,69,0.7);"
                                   id="numberOfToBeConfirmedVM"> </span>
@@ -117,7 +117,7 @@ ob_start();
                 <div class="w-100">
                     <!--VM to renew-->
                     <a onclick="changeBodyTable(3)">
-                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left">
+                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" id="renewableVMFilterButton">
                             <span class="badge"
                                   style="background-color: rgba(233,48,48,0.7); border-color: rgba(233,48,48,0.7);"
                                   id="numberOfRenewalVM"> </span>
@@ -128,7 +128,7 @@ ob_start();
                 <div class="w-100">
                     <!--Deleted VM-->
                     <a onclick="changeBodyTable(4)">
-                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left">
+                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" id="deletedVMFilterButton">
                             <span class="badge"
                                   style="background-color: rgba(90,90,90,0.7); border-color: rgba(90,90,90,0.7);"
                                   id="numberOfDeletedVM"> </span>

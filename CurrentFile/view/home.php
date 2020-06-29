@@ -121,7 +121,7 @@ ob_start();
                         <a onclick="changeBodyTable(0)">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" id="allVMFilterButton">
                                 <span class="badge badge-primary" id="numberOfVM"> </span>
-                                Toutes les VM
+                                Toutes mes VM
                             </button>
                         </a>
                     </div>
