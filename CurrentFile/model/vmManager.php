@@ -61,8 +61,8 @@ function addVMToDB($formVMRequest)
 
     $strSep = '\'';
 
-    $query = "INSERT INTO vm (name, cluster, dateStart, dateAnniversary, dateEnd, description, ip, dnsName, redundance, usageType, cpu, ram, disk, descriptionDisk, network, domain, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id) 
-  
+    $query = "INSERT INTO vm (name, cluster, dateStart, dateAnniversary, dateEnd, description, ip, dnsName, redundance, usageType, cpu, ram, disk, descriptionDisk, network, domain, comment, datacenter, customer, userRa, userRt, entity_id, os_id, snapshot_id, backup_id, cost_id)
+
               VALUES(
               ".$strSep.$vmName.$strSep.",";
     if($cluster == 'null' || $cluster == null){
@@ -1042,6 +1042,8 @@ function getUserRtAndCluster(){
     foreach($resultSelect as $value){
         $resultSelect[$i]['cluster'] = getCluster($value['cluster']);
         $resultSelect[$i]['userRt'] = getNameAndSurnameUser($value['userRt']);
+        echo '<script>alert("'.$resultSelect[$i]['userRt'].'");</script>';
+        $i++;
     }
 
     return $resultSelect;

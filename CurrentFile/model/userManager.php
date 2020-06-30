@@ -329,8 +329,28 @@ function addUserToDiffusionList(){
     $r=ldap_bind($ds, "einetjoin@einet.ad.eivd.ch", $uncodePwd); // We need to find an way to connect. Because we need to be connected to research user
 
     if ($ds) {
-        //$groupMembers = [0 => "CN=Pedroletti Michael,OU=SI,OU=Personnel,DC=einet,DC=ad,DC=eivd,DC=ch", 1 => "CN=Cook Théo,OU=SI,OU=Personnel,DC=einet,DC=ad,DC=eivd,DC=ch"]
         $groupMembers = array('0' => "CN=Pedroletti Michael,OU=SI,OU=Personnel,DC=einet,DC=ad,DC=eivd,DC=ch", '1' => "CN=Cook Théo,OU=SI,OU=Personnel,DC=einet,DC=ad,DC=eivd,DC=ch");
+        //NON FONCTIONNEL $groupMembers = array('0' => "CN=Pedroletti Michael,OU=Personnel,DC=einet,DC=ad,DC=eivd,DC=ch", '1' => "CN=Cook Théo,OU=Personnel,DC=einet,DC=ad,DC=eivd,DC=ch");
+
+        $usersToManage = sortUserRt();
+
+        foreach($usersToManage as $user){
+            //Récupérer le chemin complet ou son stocker les différents user
+            $sr = ldap_search($ds, "ou=personnel,dc=einet,dc=ad,dc=eivd,dc=ch", $user[2]);
+
+            $info = ldap_get_entries($ds, $sr);
+
+            $message = 'variables : '. count($info);
+
+            $newUser = '';
+            foreach ($info as $user){
+                $newUser = $user['distinguishedname'][0];
+            }
+
+            echo '<script>alert("'. $newUser[0] .' et '.$user['2'].'");</script>';
+        }
+
+
         $addGroup_ad['member'] = $groupMembers;
 
         if(ldap_mod_add($ds, "CN=Responsables Techniques VM - CHE,OU=Services,OU=Groupes-Distrib,OU=Groupes,DC=einet,DC=ad,DC=eivd,DC=ch", $addGroup_ad)){
@@ -355,23 +375,20 @@ function sortUserRt(){
 
     foreach($dataToSort as $value){
         $user = explode(" ", $value['name']);
-        $user = $user[1].$user[0]."@einet.ad.eivd.ch";
+        $firstName = $user[1];
+        $lastName = $user[0];
+        $mail = $user[1].".".$user[0]."@heig-vd.ch";
+        echo '<script>alert("'.$mail.'")</script>';
         if($value['cluster']['nameSite'] == "PROD-CH"){
-            array_push($userProdCh, $user);
+            array_push($userProdCh, array($firstName, $lastName, $mail));
         }
         elseif($value['cluster']['nameSite'] == "PROD-YP"){
-            array_push($userProdYp, $user);
+            array_push($userProdYp, array($firstName, $lastName, $mail));
         }
         elseif ($value['cluster']['nameSite'] == "DEV-CH"){
-            array_push($userDevCh, $user);
+            array_push($userDevCh, array($firstName, $lastName, $mail));
         }
     }
-}
 
-function userRtVerification(){
-    //get all user from db
-
-    //get all userRt and cluster from requestVm in db
-
-    //compare
+    return array("0" => $userProdCh, "1" => $userProdYp, "2" => $userDevCh);
 }
