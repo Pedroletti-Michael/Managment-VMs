@@ -120,7 +120,7 @@ ob_start();
                         <!--All VM-->
                         <a onclick="changeBodyTable(0)">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" id="allVMFilterButton">
-                                <span class="badge badge-primary" id="numberOfVM"> </span>
+                                <span class="badge badge-dark" id="numberOfVM"> </span>
                                 Toutes mes VM
                             </button>
                         </a>
@@ -129,9 +129,7 @@ ob_start();
                         <!--Confirmed VM-->
                         <a onclick="changeBodyTable(1)">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" id="inUseVMFilterButton">
-                            <span class="badge"
-                                  style="background-color: rgba(40,167,69,0.7); border-color: rgba(40,167,69,0.7);"
-                                  id="numberOfConfirmedVM"> </span>
+                            <span class="badge badge-success" id="numberOfConfirmedVM"> </span>
                                 VM en service
                             </button>
                         </a>
@@ -140,9 +138,7 @@ ob_start();
                         <!--VM who need to be confirmed-->
                         <a onclick="changeBodyTable(2)">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" id="toBeConfirmedVMFilterButton">
-                            <span class="badge"
-                                  style="background-color: rgba(255,165,69,0.7); border-color: rgba(255,165,69,0.7);"
-                                  id="numberOfToBeConfirmedVM"> </span>
+                            <span class="badge badge-primary" id="numberOfToBeConfirmedVM"> </span>
                                 VM à confirmer
                             </button>
                         </a>
@@ -151,9 +147,7 @@ ob_start();
                         <!--VM to renew-->
                         <a onclick="changeBodyTable(3)">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" id="renewableVMFilterButton">
-                            <span class="badge"
-                                  style="background-color: rgba(233,48,48,0.7); border-color: rgba(233,48,48,0.7);"
-                                  id="numberOfRenewalVM"> </span>
+                            <span class="badge badge-warning" id="numberOfRenewalVM"> </span>
                                 VM à renouveler
                             </button>
                         </a>
@@ -162,9 +156,7 @@ ob_start();
                         <!--Deleted VM-->
                         <a onclick="changeBodyTable(4)">
                             <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" id="deletedVMFilterButton">
-                            <span class="badge"
-                                  style="background-color: rgba(90,90,90,0.7); border-color: rgba(90,90,90,0.7);"
-                                  id="numberOfDeletedVM"> </span>
+                            <span class="badge badge-secondary" id="numberOfDeletedVM"> </span>
                                 VM supprimées
                             </button>
                         </a>
@@ -816,21 +808,21 @@ ob_start();
                             <a href="index.php?action=detailsVM&id=<?php echo $value['id'] ?>">
                                 <button type="button" class="btn btn-primary"
                                         style="background-color: rgba(<?php if ($value['vmStatus'] == 2) {
-                                            echo '40,167,69,0.7';
+                                            echo '40,167,69,0.7'; //Green -> in use
                                         } elseif ($value['vmStatus'] == 0) {
-                                            echo '255,165,69,0.7';
+                                            echo '51,153,255,0.7'; //Blue -> to be confirmed
                                         } elseif ($value['vmStatus'] == 3) {
-                                            echo '233,48,48,0.7';
+                                            echo '255,165,69,0.7'; //Orange -> renewable
                                         } else {
-                                            echo '90,90,90,0.7';
+                                            echo '90,90,90,0.7'; //Grey (default)
                                         } ?>); border-color: rgba(<?php if ($value['vmStatus'] == 2) {
-                                            echo '40,167,69,0.7';
+                                            echo '40,167,69,0.7'; //Green -> in use
                                         } elseif ($value['vmStatus'] == 0) {
-                                            echo '255,165,69,0.7';
+                                            echo '51,153,255,0.7'; //Blue -> to be confirmed
                                         } elseif ($value['vmStatus'] == 3) {
-                                            echo '233,48,48,0.7';
+                                            echo '255,165,69,0.7'; //Orange -> renewable
                                         } else {
-                                            echo '90,90,90,0.7';
+                                            echo '90,90,90,0.7'; //Grey (default)
                                         } ?>);"><strong>+</strong></button>
                             </a>
                         </div>
@@ -1366,21 +1358,21 @@ ob_start();
                             <a href="index.php?action=detailsVM&id=<?php echo $value['id'] ?>">
                                 <button type="button" class="btn btn-primary"
                                         style="background-color: rgba(<?php if ($value['vmStatus'] == 2) {
-                                            echo '40,167,69,0.7';
+                                            echo '40,167,69,0.7'; //Green -> in use
                                         } elseif ($value['vmStatus'] == 0) {
-                                            echo '255,165,69,0.7';
+                                            echo '51,153,255,0.7'; //Blue -> to be confirmed
                                         } elseif ($value['vmStatus'] == 3) {
-                                            echo '233,48,48,0.7';
+                                            echo '255,165,69,0.7'; //Orange -> renewable
                                         } else {
-                                            echo '90,90,90,0.7';
+                                            echo '90,90,90,0.7'; //Grey (default)
                                         } ?>); border-color: rgba(<?php if ($value['vmStatus'] == 2) {
-                                            echo '40,167,69,0.7';
+                                            echo '40,167,69,0.7'; //Green -> in use
                                         } elseif ($value['vmStatus'] == 0) {
-                                            echo '255,165,69,0.7';
+                                            echo '51,153,255,0.7'; //Blue -> to be confirmed
                                         } elseif ($value['vmStatus'] == 3) {
-                                            echo '233,48,48,0.7';
+                                            echo '255,165,69,0.7'; //Orange -> renewable
                                         } else {
-                                            echo '90,90,90,0.7';
+                                            echo '90,90,90,0.7'; //Grey (default)
                                         } ?>);"><strong>+</strong></button>
                             </a>
                         </div>
@@ -1913,21 +1905,21 @@ ob_start();
                             <a href="index.php?action=detailsVM&id=<?php echo $value['id'] ?>">
                                 <button type="button" class="btn btn-primary"
                                         style="background-color: rgba(<?php if ($value['vmStatus'] == 2) {
-                                            echo '40,167,69,0.7';
+                                            echo '40,167,69,0.7'; //Green -> in use
                                         } elseif ($value['vmStatus'] == 0) {
-                                            echo '255,165,69,0.7';
+                                            echo '51,153,255,0.7'; //Blue -> to be confirmed
                                         } elseif ($value['vmStatus'] == 3) {
-                                            echo '233,48,48,0.7';
+                                            echo '255,165,69,0.7'; //Orange -> renewable
                                         } else {
-                                            echo '90,90,90,0.7';
+                                            echo '90,90,90,0.7'; //Grey (default)
                                         } ?>); border-color: rgba(<?php if ($value['vmStatus'] == 2) {
-                                            echo '40,167,69,0.7';
+                                            echo '40,167,69,0.7'; //Green -> in use
                                         } elseif ($value['vmStatus'] == 0) {
-                                            echo '255,165,69,0.7';
+                                            echo '51,153,255,0.7'; //Blue -> to be confirmed
                                         } elseif ($value['vmStatus'] == 3) {
-                                            echo '233,48,48,0.7';
+                                            echo '255,165,69,0.7'; //Orange -> renewable
                                         } else {
-                                            echo '90,90,90,0.7';
+                                            echo '90,90,90,0.7'; //Grey (default)
                                         } ?>);"><strong>+</strong></button>
                             </a>
                         </div>
@@ -2460,21 +2452,21 @@ ob_start();
                             <a href="index.php?action=detailsVM&id=<?php echo $value['id'] ?>">
                                 <button type="button" class="btn btn-primary"
                                         style="background-color: rgba(<?php if ($value['vmStatus'] == 2) {
-                                            echo '40,167,69,0.7';
+                                            echo '40,167,69,0.7'; //Green -> in use
                                         } elseif ($value['vmStatus'] == 0) {
-                                            echo '255,165,69,0.7';
+                                            echo '51,153,255,0.7'; //Blue -> to be confirmed
                                         } elseif ($value['vmStatus'] == 3) {
-                                            echo '233,48,48,0.7';
+                                            echo '255,165,69,0.7'; //Orange -> renewable
                                         } else {
-                                            echo '90,90,90,0.7';
+                                            echo '90,90,90,0.7'; //Grey (default)
                                         } ?>); border-color: rgba(<?php if ($value['vmStatus'] == 2) {
-                                            echo '40,167,69,0.7';
+                                            echo '40,167,69,0.7'; //Green -> in use
                                         } elseif ($value['vmStatus'] == 0) {
-                                            echo '255,165,69,0.7';
+                                            echo '51,153,255,0.7'; //Blue -> to be confirmed
                                         } elseif ($value['vmStatus'] == 3) {
-                                            echo '233,48,48,0.7';
+                                            echo '255,165,69,0.7'; //Orange -> renewable
                                         } else {
-                                            echo '90,90,90,0.7';
+                                            echo '90,90,90,0.7'; //Grey (default)
                                         } ?>);"><strong>+</strong></button>
                             </a>
                         </div>
@@ -3007,21 +2999,21 @@ ob_start();
                             <a href="index.php?action=detailsVM&id=<?php echo $value['id'] ?>">
                                 <button type="button" class="btn btn-primary"
                                         style="background-color: rgba(<?php if ($value['vmStatus'] == 2) {
-                                            echo '40,167,69,0.7';
+                                            echo '40,167,69,0.7'; //Green -> in use
                                         } elseif ($value['vmStatus'] == 0) {
-                                            echo '255,165,69,0.7';
+                                            echo '51,153,255,0.7'; //Blue -> to be confirmed
                                         } elseif ($value['vmStatus'] == 3) {
-                                            echo '233,48,48,0.7';
+                                            echo '255,165,69,0.7'; //Orange -> renewable
                                         } else {
-                                            echo '90,90,90,0.7';
+                                            echo '90,90,90,0.7'; //Grey (default)
                                         } ?>); border-color: rgba(<?php if ($value['vmStatus'] == 2) {
-                                            echo '40,167,69,0.7';
+                                            echo '40,167,69,0.7'; //Green -> in use
                                         } elseif ($value['vmStatus'] == 0) {
-                                            echo '255,165,69,0.7';
+                                            echo '51,153,255,0.7'; //Blue -> to be confirmed
                                         } elseif ($value['vmStatus'] == 3) {
-                                            echo '233,48,48,0.7';
+                                            echo '255,165,69,0.7'; //Orange -> renewable
                                         } else {
-                                            echo '90,90,90,0.7';
+                                            echo '90,90,90,0.7'; //Grey (default)
                                         } ?>);"><strong>+</strong></button>
                             </a>
                         </div>
