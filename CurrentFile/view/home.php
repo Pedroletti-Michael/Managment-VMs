@@ -352,7 +352,7 @@ ob_start();
         </div>
 
         <table class="table table-hover allVM" id="allVmBody" hidden>
-            <thead class="thead-dark sticky-top">
+            <thead class="thead-dark sticky-top" style="z-index: 1!important;">
             <tr>
                 <th name="goToButton" scope="col" style="min-width: 88px;" onclick="sortTablePlus(0, 0)">Statut
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
@@ -902,7 +902,7 @@ ob_start();
         </table>
 
         <table class="table table-hover allVM" id="allValidatedVmBody">
-            <thead class="thead-dark sticky-top">
+            <thead class="thead-dark sticky-top" style="z-index: 1!important;">
             <tr>
                 <th name="goToButton" scope="col" style="min-width: 88px;" onclick="sortTablePlus(0, 0)">Statut
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
@@ -1449,7 +1449,7 @@ ob_start();
         </table>
 
         <table class="table table-hover allVM" id="allConfirmationVmBody" hidden>
-            <thead class="thead-dark sticky-top">
+            <thead class="thead-dark sticky-top" style="z-index: 1!important;">
             <tr>
                 <th name="goToButton" scope="col" style="min-width: 88px;" onclick="sortTablePlus(0, 0)">Statut
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
@@ -1996,7 +1996,7 @@ ob_start();
         </table>
 
         <table class="table table-hover allVM" id="allRenewalVmBody" hidden>
-            <thead class="thead-dark sticky-top">
+            <thead class="thead-dark sticky-top" style="z-index: 1!important;">
             <tr>
                 <th name="goToButton" scope="col" style="min-width: 88px;" onclick="sortTablePlus(0, 0)">Statut
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
@@ -2543,7 +2543,7 @@ ob_start();
         </table>
 
         <table class="table table-hover allVM" id="allDeletedVmBody" hidden>
-            <thead class="thead-dark sticky-top">
+            <thead class="thead-dark sticky-top" style="z-index: 1!important;">
             <tr>
                 <th name="goToButton" scope="col" style="min-width: 88px;" onclick="sortTablePlus(0, 0)">Statut
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
