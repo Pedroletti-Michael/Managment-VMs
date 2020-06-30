@@ -96,7 +96,7 @@ ob_start();
     ?>
     <form method="post" action="../index.php?action=home">
         <!------------- Btn Filtrer ------------>
-        <button type="button" class="btn btn-primary rounded-0 w-150-px position-fixed mt-1" style="right: 0.25rem;"
+        <button type="button" class="btn btn-primary rounded-0 w-150-px position-fixed mt-1" style="right: 0.25rem;z-index: 2!important;"
                 onclick="openRightMenu()">
             Filtres
             <svg class="bi bi-filter-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
