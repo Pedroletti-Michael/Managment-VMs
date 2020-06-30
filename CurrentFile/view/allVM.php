@@ -120,6 +120,15 @@ ob_start();
                     </a>
                 </div>
                 <div class="w-100">
+                    <!--VM non renew-->
+                    <a onclick="changeBodyTable(5)">
+                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" id="nonRenewableVMFilterButton">
+                            <span class="badge badge-danger" id="numberOfNonRenewalVM"> </span>
+                            VM non renouvelées
+                        </button>
+                    </a>
+                </div>
+                <div class="w-100">
                     <!--Deleted VM-->
                     <a onclick="changeBodyTable(4)">
                         <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" id="deletedVMFilterButton">
