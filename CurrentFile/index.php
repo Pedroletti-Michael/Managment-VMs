@@ -44,7 +44,7 @@ if(isset($_GET['action']))
         case 'formAdmin':
             if(testSessionTime()){break;}
             displayFormAdmin();
-            break;
+            break; 
         case 'RequestVM':
             if(testSessionTime()){break;}
             formVM($_POST);
