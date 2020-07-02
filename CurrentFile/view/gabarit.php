@@ -412,7 +412,7 @@
             <?php else : ?>
             <a id="hidden_16"></a><a id="hidden_6"></a><a id="hidden_7"></a><a id="hidden_8"></a><a id="hidden_9"></a><a id="hidden_10"></a><a id="hidden_11"></a><a id="hidden_12"></a><a id="hidden_13"></a><a id="hidden_14"></a><a id="hidden_15"></a>
             <?php endif; ?>
-                <a href="https://heig-vd.ch/" style="z-index: 99999">
+                <a href="./https://heig-vd.ch/" style="z-index: 99999">
                     <img src="../images/VRAI-LOGO.png" class="mb-5 mt-5" style="width: 52px; height: auto;z-index: 99999">
                 </a>
             <!----------------- mailto:helpdesk@heig-vd.ch ---------------->
@@ -428,7 +428,7 @@
             </a>
             <!----------------- Version ---------------->
             <div class="w-100 pt-5 pl-2 " style="height: 40px;bottom: 10px!important">
-                <a class="text-decoration-none text-light" id="hidden_18">Version : 0.611</a>
+                <a class="text-decoration-none text-light" id="hidden_18">Version : 0.615</a>
             </div>
         </div>
 <?php endif; ?>
