@@ -256,6 +256,12 @@ function displayDetailsVM($idVM)
                 require_once 'model/userManager.php';
                 $users = getAllUsers();
 
+                $ownerVm = false;
+
+                if($_SESSION['userEmail'] == $dataVM[0]['customer'] || $_SESSION['userEmail'] == $dataVM[0]['userRt'] || $_SESSION['userEmail'] == $dataVM[0]['userRa']){
+                    $ownerVm = true;
+                }
+
                 $_SESSION['idVM'] = $idVM;
 
                 $_GET['action'] = "detailsVM";
