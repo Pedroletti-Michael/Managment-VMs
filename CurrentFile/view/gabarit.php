@@ -274,19 +274,19 @@
                     </svg>
                     <?php
                     if(isset($_SESSION['countRenewalVM'])){
-                        echo '<span class="badge badge-light mr-1" style="font-size: 13px" id="hidden_15">'. $_SESSION['countRenewalVM'] .'</span>';
+                        echo '<span class="badge badge-light mr-1" style="font-size: 13px" id="hidden_4">'. $_SESSION['countRenewalVM'] .'</span>';
                     }
                     ?>
-                    <a href="index.php?action=renewalVM" class="text-decoration-none text-light" id="hidden_4">Renouvellements</a>
+                    <a href="index.php?action=renewalVM" class="text-decoration-none text-light" id="hidden_5">Renouvellements</a>
                 </div>
             </a>
             <?php else : ?>
-            <a id="hidden_4"></a>
+            <a id="hidden_5"></a><a id="hidden_4"></a>
             <?php endif; ?>
 
             <!--------------- Admins views ----------------->
             <?php if(isset($_SESSION['userType']) && $_SESSION['userType']==1 || $_SESSION['userType']==2):?>
-            <div class="w-100 pt-2" style="height: 40px;" id="hidden_5">
+            <div class="w-100 pt-2" style="height: 40px;" id="hidden_6">
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">
                     <span>Gestion</span>
                 </h6>
@@ -302,7 +302,7 @@
                                 <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
                                 <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
                             </svg>
-                            <a href="index.php?action=allVM" class="text-decoration-none text-light" id="hidden_6">Inventaire VM</a>
+                            <a href="index.php?action=allVM" class="text-decoration-none text-light" id="hidden_7">Inventaire VM</a>
                         </div>
                 </a>
 
@@ -319,10 +319,10 @@
                             </svg>
                             <?php
                             if(isset($_SESSION['countConfirmationVM'])){
-                                echo '<span class="badge badge-light mr-1" style="font-size: 13px" id="hidden_18">'. $_SESSION['countConfirmationVM'] .'</span>';
+                                echo '<span class="badge badge-light mr-1" style="font-size: 13px" id="hidden_8">'. $_SESSION['countConfirmationVM'] .'</span>';
                             }
                             ?>
-                            <a href="index.php?action=confirmationVM" class="text-decoration-none text-light" id="hidden_7">Demandes</a>
+                            <a href="index.php?action=confirmationVM" class="text-decoration-none text-light" id="hidden_9">Demandes</a>
                         </div>
                 </a>
                 <!---- renewalVM (admin) ----->
@@ -338,15 +338,15 @@
                             </svg>
                             <?php
                             if(isset($_SESSION['countRenewalVM'])){
-                                echo '<span class="badge badge-light mr-1" style="font-size: 13px" id="hidden_16">'. $_SESSION['countRenewalVM'] .'</span>';
+                                echo '<span class="badge badge-light mr-1" style="font-size: 13px" id="hidden_10">'. $_SESSION['countRenewalVM'] .'</span>';
                             }
                             ?>
-                            <a href="index.php?action=renewalVM" class="text-decoration-none text-light" id="hidden_8">Renouvellements</a>
+                            <a href="index.php?action=renewalVM" class="text-decoration-none text-light" id="hidden_11">Renouvellements</a>
                         </div>
                 </a>
 
 
-                <div class="w-100 pt-2" style="height: 40px;" id="hidden_9">
+                <div class="w-100 pt-2" style="height: 40px;" id="hidden_12">
                     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">
                         <span>Admin</span>
                     </h6>
@@ -363,7 +363,7 @@
                                 <path fill-rule="evenodd" d="M4 1h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H4z"/>
                                 <path fill-rule="evenodd" d="M4.5 10.5A.5.5 0 0 1 5 10h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
                             </svg>
-                            <a href="index.php?action=formAdmin" class="text-decoration-none text-light" id="hidden_10">Formulaire administrateur</a>
+                            <a href="index.php?action=formAdmin" class="text-decoration-none text-light" id="hidden_13">Formulaire administrateur</a>
                         </div>
                 </a>
                 <!----------------- formManagement ---------------->
@@ -376,7 +376,7 @@
                             <svg class="bi bi-wrench pb-1 mr-1" width="2em" height="2em" viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364L.102 2.223zm13.37 9.019L13 11l-.471.242-.529.026-.287.445-.445.287-.026.529L11 13l.242.471.026.529.445.287.287.445.529.026L13 15l.471-.242.529-.026.287-.445.445-.287.026-.529L15 13l-.242-.471-.026-.529-.445-.287-.287-.445-.529-.026z"/>
                             </svg>
-                            <a href="index.php?action=formManagement" class="text-decoration-none text-light" id="hidden_11">Gestion du formulaire</a>
+                            <a href="index.php?action=formManagement" class="text-decoration-none text-light" id="hidden_14">Gestion du formulaire</a>
                         </div>
                 </a>
                 <!----------------- displayManagementUser ---------------->
@@ -389,7 +389,7 @@
                             <svg class="bi bi-people pb-1 mr-1" width="2em" height="2em" viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.995-.944v-.002.002zM7.022 13h7.956a.274.274 0 0 0 .014-.002l.008-.002c-.002-.264-.167-1.03-.76-1.72C13.688 10.629 12.718 10 11 10c-1.717 0-2.687.63-3.24 1.276-.593.69-.759 1.457-.76 1.72a1.05 1.05 0 0 0 .022.004zm7.973.056v-.002.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10c-1.668.02-2.615.64-3.16 1.276C1.163 11.97 1 12.739 1 13h3c0-1.045.323-2.086.92-3zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
                             </svg>
-                            <a href="index.php?action=displayManagementUser" class="text-decoration-none text-light" id="hidden_12">Gestion des utilisateurs</a>
+                            <a href="index.php?action=displayManagementUser" class="text-decoration-none text-light" id="hidden_15">Gestion des utilisateurs</a>
                         </div>
                 </a>
                 <!----------------- displayAlertManagementPage ---------------->
@@ -406,11 +406,11 @@
                                 <path fill-rule="evenodd" d="M11.646 14.146a.5.5 0 0 1 .708 0l1 1a.5.5 0 0 1-.708.708l-1-1a.5.5 0 0 1 0-.708zm-7.292 0a.5.5 0 0 0-.708 0l-1 1a.5.5 0 0 0 .708.708l1-1a.5.5 0 0 0 0-.708zM5.5.5A.5.5 0 0 1 6 0h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"/>
                                 <path d="M7 1h2v2H7V1z"/>
                             </svg>
-                            <a href="index.php?action=displayAlertManagementPage" class="text-decoration-none text-light" id="hidden_13">Gestion des alertes</a>
+                            <a href="index.php?action=displayAlertManagementPage" class="text-decoration-none text-light" id="hidden_16">Gestion des alertes</a>
                         </div>
                 </a>
             <?php else : ?>
-            <a id="hidden_5"></a><a id="hidden_6"></a><a id="hidden_7"></a><a id="hidden_8"></a><a id="hidden_9"></a><a id="hidden_10"></a><a id="hidden_11"></a><a id="hidden_12"></a><a id="hidden_13"></a><a id="hidden_16"></a><a id="hidden_18"></a>
+            <a id="hidden_16"></a><a id="hidden_6"></a><a id="hidden_7"></a><a id="hidden_8"></a><a id="hidden_9"></a><a id="hidden_10"></a><a id="hidden_11"></a><a id="hidden_12"></a><a id="hidden_13"></a><a id="hidden_14"></a><a id="hidden_15"></a>
             <?php endif; ?>
                 <a href="https://heig-vd.ch/" style="z-index: 99999">
                     <img src="../images/VRAI-LOGO.png" class="mb-5 mt-5" style="width: 52px; height: auto;z-index: 99999">
@@ -423,12 +423,12 @@
                         <path fill-rule="evenodd" d="M.071 4.243a.5.5 0 01.686-.172L8 8.417l7.243-4.346a.5.5 0 01.514.858L8 9.583.243 4.93a.5.5 0 01-.172-.686z" clip-rule="evenodd"/>
                         <path d="M6.752 8.932l.432-.252-.504-.864-.432.252.504.864zm-6 3.5l6-3.5-.504-.864-6 3.5.504.864zm8.496-3.5l-.432-.252.504-.864.432.252-.504.864zm6 3.5l-6-3.5.504-.864 6 3.5-.504.864z"/>
                     </svg>
-                    <a class="text-decoration-none text-light" href="mailto:helpdesk@heig-vd.ch?subject=Plateforme GVM : [Titre de votre message]" id="hidden_14">Contactez-nous</a>
+                    <a class="text-decoration-none text-light" href="mailto:helpdesk@heig-vd.ch?subject=Plateforme GVM : [Titre de votre message]" id="hidden_17">Contactez-nous</a>
                 </div>
             </a>
             <!----------------- Version ---------------->
             <div class="w-100 pt-5 pl-2 " style="height: 40px;bottom: 10px!important">
-                <a class="text-decoration-none text-light" id="hidden_17">Version : 0.611</a>
+                <a class="text-decoration-none text-light" id="hidden_18">Version : 0.611</a>
             </div>
         </div>
 <?php endif; ?>
