@@ -1042,7 +1042,6 @@ function getUserRtAndCluster(){
     foreach($resultSelect as $value){
         $resultSelect[$i]['cluster'] = getCluster($value['cluster']);
         $resultSelect[$i]['userRt'] = getNameAndSurnameUser($value['userRt']);
-        echo '<script>alert("'.$resultSelect[$i]['userRt'].'");</script>';
         $i++;
     }
 

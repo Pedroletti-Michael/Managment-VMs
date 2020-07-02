@@ -329,35 +329,55 @@ function addUserToDiffusionList(){
     $r=ldap_bind($ds, "einetjoin@einet.ad.eivd.ch", $uncodePwd); // We need to find an way to connect. Because we need to be connected to research user
 
     if ($ds) {
-        $groupMembers = array('0' => "CN=Pedroletti Michael,OU=SI,OU=Personnel,DC=einet,DC=ad,DC=eivd,DC=ch", '1' => "CN=Cook Théo,OU=SI,OU=Personnel,DC=einet,DC=ad,DC=eivd,DC=ch");
+
         //NON FONCTIONNEL $groupMembers = array('0' => "CN=Pedroletti Michael,OU=Personnel,DC=einet,DC=ad,DC=eivd,DC=ch", '1' => "CN=Cook Théo,OU=Personnel,DC=einet,DC=ad,DC=eivd,DC=ch");
 
-        $usersToManage = sortUserRt();
+        $tableToManage = sortUserRt();
 
-        foreach($usersToManage as $user){
-            //Récupérer le chemin complet ou son stocker les différents user
-            $sr = ldap_search($ds, "ou=personnel,dc=einet,dc=ad,dc=eivd,dc=ch", $user[2]);
+        //echo '<script>alert("'. print_r($tableToManage) .'");</script>';
+        $i = 0;
+        foreach ($tableToManage as $usersToManage){
+            $groupMembers = array();
+            //echo '<script>alert("'. print_r($usersToManage) .'");</script>';
+            foreach($usersToManage as $user){
+                //echo '<script>alert("'. print_r($user) .'");</script>';
+                $CN = "CN=".$user[1]." ".$user[0];
+                //echo '<script>alert("'. $messageas .'");</script>';
+                //Récupérer le chemin complet ou son stocker les différents user
+                //"CN=".$user[0]." ".$user[1].",OU=SI,OU=Personnel,DC=einet,DC=ad,DC=eivd,DC=ch"
+                $sr = ldap_search($ds, "ou=personnel,dc=einet,dc=ad,dc=eivd,dc=ch", $CN);
 
-            $info = ldap_get_entries($ds, $sr);
+                $info = ldap_get_entries($ds, $sr);
 
-            $message = 'variables : '. count($info);
-
-            $newUser = '';
-            foreach ($info as $user){
-                $newUser = $user['distinguishedname'][0];
+                $newUser = $info[0]['distinguishedname'][0];
+                if($newUser != '' || $newUser != null){
+                    array_push($groupMembers, $newUser);
+                }
             }
+            $addGroup_ad['member'] = $groupMembers;
+            echo '<script>alert("'. print_r($groupMembers) .'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\nadasdasdasdasdasdasdasd");</script>';
 
-            echo '<script>alert("'. $newUser[0] .' et '.$user['2'].'");</script>';
-        }
-
-
-        $addGroup_ad['member'] = $groupMembers;
-
-        if(ldap_mod_add($ds, "CN=Responsables Techniques VM - CHE,OU=Services,OU=Groupes-Distrib,OU=Groupes,DC=einet,DC=ad,DC=eivd,DC=ch", $addGroup_ad)){
-            $returnValue = true;
-        }
-        else{
-            $returnValue = true;
+            if($i == 0){
+                if(ldap_mod_add($ds, "CN=Responsables Techniques VM - CHE,OU=Services,OU=Groupes-Distrib,OU=Groupes,DC=einet,DC=ad,DC=eivd,DC=ch", $addGroup_ad)){
+                    $returnValue = true;
+                    echo '<script>alert("CHE SUCCESS");</script>';
+                }
+                else{
+                    $returnValue = false;
+                    echo '<script>alert("CHE FAIL");</script>';
+                }
+            }
+            elseif ($i == 1){
+                if(ldap_mod_add($ds, "CN=Responsables Techniques VM - YPA,OU=Services,OU=Groupes-Distrib,OU=Groupes,DC=einet,DC=ad,DC=eivd,DC=ch", $addGroup_ad)){
+                    $returnValue = true;
+                    echo '<script>alert("YPA SUCCESS");</script>';
+                }
+                else{
+                    $returnValue = false;
+                    echo '<script>alert("YPA FAIL");</script>';
+                }
+            }
+            $i++;
         }
 
         ldap_close($ds);
@@ -371,24 +391,55 @@ function sortUserRt(){
     $dataToSort = getUserRtAndCluster();
     $userProdCh = array();
     $userProdYp = array();
-    $userDevCh = array();
 
     foreach($dataToSort as $value){
-        $user = explode(" ", $value['name']);
-        $firstName = $user[1];
-        $lastName = $user[0];
-        $mail = $user[1].".".$user[0]."@heig-vd.ch";
-        echo '<script>alert("'.$mail.'")</script>';
-        if($value['cluster']['nameSite'] == "PROD-CH"){
-            array_push($userProdCh, array($firstName, $lastName, $mail));
+        $info = array();
+        $firstName = $value['userRt'][0][1];
+        array_push($info, $firstName);
+        $lastName = $value['userRt'][0][0];
+        array_push($info, $lastName);
+        $mail = $value['userRt'][0][1].".".$value['userRt'][0][0]."@heig-vd.ch";
+        array_push($info, $mail);
+
+
+        if($value['cluster']['nameSite'] == "Cheseaux"){
+            if(count($userProdCh) == 0){
+                array_push($userProdCh, $info);
+            }
+            else{
+                $res = true;
+                foreach ($userProdCh as $user){
+                    if($user[2] == $info[2]){
+                        $res = false;
+                    }
+                }
+                if($res){
+                    array_push($userProdCh, $info);
+                }
+            }
         }
-        elseif($value['cluster']['nameSite'] == "PROD-YP"){
-            array_push($userProdYp, array($firstName, $lastName, $mail));
-        }
-        elseif ($value['cluster']['nameSite'] == "DEV-CH"){
-            array_push($userDevCh, array($firstName, $lastName, $mail));
+        elseif($value['cluster']['nameSite'] == "Y-Parc"){
+            if(count($userProdYp) == 0){
+                array_push($userProdYp, $info);
+            }
+            else{
+                $res = true;
+                foreach ($userProdYp as $user){
+                    if($user[2] == $info[2]){
+                        $res = false;
+                    }
+                }
+                if($res){
+                    array_push($userProdYp, $info);
+                }
+            }
+
         }
     }
 
-    return array("0" => $userProdCh, "1" => $userProdYp, "2" => $userDevCh);
+    $returnTable = array();
+    array_push($returnTable,$userProdCh);
+    array_push($returnTable,$userProdYp);
+
+    return $returnTable;
 }
