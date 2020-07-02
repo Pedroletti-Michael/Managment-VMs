@@ -110,6 +110,7 @@
 .w3-card-4,.w3-hover-shadow:hover{box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19)}
 .w3-animate-right{position:relative;animation:animateright 0.4s}@keyframes animateright{from{right:-300px;opacity:0} to{right:0;opacity:1}}
 .w3-animate-bottom{position:relative;animation:animatebottom 0.8s}@keyframes animatebottom{from{bottom:-90%;opacity:0;} to{bottom:0;opacity:1;}}
+.w3-animate-left{position:relative;animation:animateleft 0.4s}@keyframes animateleft{from{left:-300px;opacity:0} to{left:0;opacity:1}}
 
 /* ------------------------------------------- Responsive correction -------------------------------------------------*/
 @media screen and (min-width: 1050px) {
@@ -180,9 +181,6 @@
 @media screen and (max-width: 1050px){
     .display-laptop{
         display: none!important;
-    }
-    .display-1000{
-        display: inline-block!important;
     }
     #responsiveDisplay{
         width: 100%!important;

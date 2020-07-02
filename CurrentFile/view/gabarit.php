@@ -211,397 +211,222 @@
         </div>
     </div>
 </nav>
-<!-------------------------- Gabarit max-width : 1000px ------------------------------->
-<nav class="display-1000 navbar navbar-dark header-top fixed-top flex-lg-nowrap p-0 shadow w-100 navbar-expand-lg" style="background-color: #e30613;flex-wrap: nowrap !important; height: 48px">
-    <div class="logo-responsive navbar-brand mr-0 p-0 font-weight-bold float-left" href="#" style="font-family: 'Century Gothic'">
-        <img src="../images/VRAI-LOGO.png" style="height: 48px; width: auto">
-        <a class="text-decoration-none ml-1" href="index.php?action=home" style="color: white; font-size: 11px">Gestion VM</a>
-    </div>
-    <form method="post" action="../index.php?action=research" class="btn-group search-responsive float-left" style="padding-top: 5px">
-        <input class="form-control form-control-light" style="width: calc(100%-50px)" name="inputResearch" type="text" placeholder="Recherche" aria-label="Recherche">
-        <button type="submit" class="btn btn-success rounded-0" style="width: 30px" <?php if(!isset($_SESSION['userType']) && $_SESSION == null){echo 'disabled'; } ?>>></button>
-    </form>
-    <div class="signIn-responsive float-right text-center float-left align-items-center" style="height: 48px;">
-        <span class="navbar-toggler-icon float-right" style="margin: 14px" onclick="openNav()"></span>
-    </div>
-    <div id="mySidenav" class="sidenav">
-        <!----------------- signIn ---------------->
-        <?php if ($_GET['action'] == "signIn"): ?>
-            <?php if(isset($_SESSION['userType'])): ?>
-                <a href="index.php?action=signOut" class="alert-link active float-right pr-4">Déconnexion</a>
-            <?php else : ?>
-                <a href="index.php?action=signIn" class="alert-link active float-right pr-4">Se connecter</a>
-            <?php endif; ?>
-        <?php else : ?>
-            <?php if(isset($_SESSION['userType'])): ?>
-                <a href="index.php?action=signOut" class="float-right pr-4">Déconnexion</a>
-            <?php else : ?>
-                <a href="index.php?action=signIn" class="float-right pr-4">Se connecter</a>
-            <?php endif; ?>
-        <?php endif; ?>
-        <a class="title">Mon compte</a>
-        <!----------------- home ---------------->
-        <?php if ($_GET['action'] == "home"): ?>
-            <a href="index.php?action=home" class="alert-link active">Mes VM</a>
-        <?php else : ?>
-            <a href="index.php?action=home">Mes VM</a>
-        <?php endif; ?>
-        <!----------------- form ---------------->
-        <?php if ($_GET['action'] == "form"): ?>
-            <a class="alert-link active" href="index.php?action=form">Formulaire</a>
-        <?php else : ?>
-            <a href="index.php?action=form">Formulaire</a>
-        <?php endif; ?>
-        <!----------------- renewalVM ---------------->
-        <?php if ($_SESSION['userType'] != 1): ?>
-            <?php if ($_GET['action'] == "renewalVM"): ?>
-                <a href="index.php?action=renewalVM" class="alert-link active">
-                    <?php
-                    if(isset($_SESSION['countRenewalVM'])){
-                        echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
-                    }
-                    ?>
-                    Renouvellements
-                </a>
-            <?php else : ?>
-                <a href="index.php?action=renewalVM">
-                    <?php
-                    if(isset($_SESSION['countRenewalVM'])){
-                        echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
-                    }
-                    ?>
-                    Renouvellements
-                </a>
-            <?php endif; ?>
-        <?php endif; ?>
-
-        <?php if(isset($_SESSION['userType']) && $_SESSION['userType']==1 || $_SESSION['userType']==2):?>
-            <?php if($_SESSION['userType']==2) :?>
-                <a class="title">Gestion</a>
-                <!----------------- allVM ---------------->
-                <?php if ($_GET['action'] == "allVM"): ?>
-                    <a href="index.php?action=allVM" class="alert-link active">Inventaire VM</a>
-                <?php else : ?>
-                    <a href="index.php?action=allVM">Inventaire VM</a>
-                <?php endif; ?>
-            <?php else : ?>
-                <a class="title">Gestion</a>
-                <!----------------- allVM ---------------->
-                <?php if ($_GET['action'] == "allVM"): ?>
-                    <a href="index.php?action=allVM" class="alert-link active">Inventaire VM</a>
-                <?php else : ?>
-                    <a href="index.php?action=allVM">Inventaire VM</a>
-                <?php endif; ?>
-                <!----------------- confirmationVM ---------------->
-                <?php if ($_GET['action'] == "confirmationVM"): ?>
-                    <a href="index.php?action=confirmationVM" class="alert-link active">
-                        <?php
-                        if(isset($_SESSION['countConfirmationVM'])){
-                        echo '<span class="badge badge-light mr-1">'. $_SESSION['countConfirmationVM'] .'</span>';
-                        }
-                        ?>
-                        Demandes
-                    </a>
-                <?php else : ?>
-                    <a href="index.php?action=confirmationVM">
-                        <?php
-                        if(isset($_SESSION['countConfirmationVM'])){
-                            echo '<span class="badge badge-light mr-1">'. $_SESSION['countConfirmationVM'] .'</span>';
-                        }
-                        ?>
-                        Demandes
-                    </a>
-                <?php endif; ?>
-                <!----------------- renewalVM ---------------->
-                <?php if ($_GET['action'] == "renewalVM"): ?>
-                    <a href="index.php?action=renewalVM" class="alert-link active">
-                        <?php
-                        if(isset($_SESSION['countRenewalVM'])){
-                            echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
-                        }
-                        ?>
-                        Renouvellements
-                    </a>
-                <?php else : ?>
-                    <a href="index.php?action=renewalVM">
-                        <?php
-                        if(isset($_SESSION['countRenewalVM'])){
-                            echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
-                        }
-                        ?>
-                        Renouvellements
-                    </a>
-                <?php endif; ?>
-
-                <a class="title">Admin</a>
-                <!----------------- formAdmin ---------------->
-                <?php if ($_GET['action'] == "formAdmin"): ?>
-                    <a class="alert-link active" href="index.php?action=formAdmin">Formulaire administrateur</a>
-                <?php else : ?>
-                    <a href="index.php?action=formAdmin">Formulaire administrateur</a>
-                <?php endif; ?>
-                <!----------------- formManagement ---------------->
-                <?php if ($_GET['action'] == "formManagement"): ?>
-                    <a class="alert-link active" href="index.php?action=formManagement&array=entity">Gestion du formulaire</a>
-                <?php else : ?>
-                    <a href="index.php?action=formManagement&array=entity">Gestion du formulaire</a>
-                <?php endif; ?>
-                <!----------------- updateUser ---------------->
-                <?php if ($_GET['action'] == "displayManagementUser"): ?>
-                    <a class="alert-link active" href="index.php?action=displayManagementUser">Gestion des utilisateurs</a>
-                <?php else : ?>
-                    <a href="index.php?action=displayManagementUser">Gestion des utilisateurs</a>
-                <?php endif; ?>
-                <!----------------- alertManagement ---------------->
-                <?php if ($_GET['action'] == "displayAlertManagementPage"): ?>
-                    <a class="alert-link active" href="index.php?action=displayAlertManagementPage">Gestion des alertes</a>
-                <?php else : ?>
-                    <a href="index.php?action=displayAlertManagementPage">Gestion des alertes</a>
-                <?php endif; ?>
-            <?php endif; ?>
-        <?php endif; ?>
-        <div class="mt-4 mb-5">
-            <a href="mailto:helpdesk@heig-vd.ch?subject=Plateforme GVM : [Titre de votre message]">Contactez-nous</a>
+<!-------------------------- Gabarit desktop  ------------------------------->
+    <div class="d-inline-block w-100 fixed-top p-0 shadow" style="background-color: #e30613; height: 48px;">
+        <div class="float-left mt-2 ml-2" type="button" onclick="openLeftMenu()">
+            <svg width="35px" height="35px" viewBox="0 0 16 16" class="bi bi-list" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+        </div>
+        <div class="float-right text-center mr-3" style="margin-top: 0.9rem !important;">
+            <h6><a class="responsive-phone-hidden text-decoration-none" href="index.php?action=signOut" style="color: white;">Déconnexion</a></h6>
+        </div>
+        <div class="m-auto text-center h-100" style="width: 125px">
+            <h4 class="m-auto font-weight-bold text-white" style="margin-top: 0.5rem!important">Gestion VM</h4>
         </div>
     </div>
-</nav>
-<!-------------------------- Template ------------------------------->
-<nav class="display-laptop navbar navbar-dark header-top fixed-top flex-lg-nowrap p-0 shadow w-100 navbar-expand-lg" style="background-color: #e30613;flex-wrap: nowrap !important; ">
-    <div class="logo-responsive navbar-brand mr-0 p-0" href="#">
-        <img src="../images/VRAI-LOGO.png" style="height: 48px; width: auto">
-        <a class="text-decoration-none ml-2" href="index.php?action=home" style="color: white; margin-top: 13px!important;">Gestion VM</a>
-        <span class="responsive-menu-min navbar-toggler-icon float-right m-0 mr-3" style="margin-top: 13px!important;" onclick="Sidebar()"></span>
-    </div>
-    <!------ Search ------->
-    <form method="post" action="../index.php?action=research" class="btn-group search-responsive">
-        <input class="form-control form-control-light" style="width: calc(100%-120px)" name="inputResearch" type="text" placeholder="Recherche" aria-label="Recherche">
-        <button type="submit" class="btn btn-success rounded-0" style="width: 120px" <?php if(!isset($_SESSION['userType']) && $_SESSION == null){echo 'disabled'; } ?>>Rechercher</button>
-    </form>
-    <!------ Sign In / Sign Out ------->
-    <div class="signIn-responsive float-right text-center">
-        <?php if(isset($_SESSION['userType'])): ?>
-            <a class="nav-link responsive-phone-hidden" href="index.php?action=signOut" style="color: white">Déconnexion</a>
-        <?php else : ?>
-            <a class="nav-link responsive-phone-hidden" href="index.php?action=signIn" style="color: white">Se connecter</a>
-        <?php endif; ?>
-    </div>
-</nav>
-
-<div class="responsive-menu-max container-fluid">
-    <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-dark sidebar" style="max-width: 200px">
-            <div class="sidebar-sticky border-right border-light">
+        <!-- Sidebar -->
+        <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:block;left:0;z-index: 950; top: 48px; width: 200px; transition: width 0.5s" id="leftMenu">
+            <div class="w-100 pt-2" style="height: 40px;" id="hidden_1">
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">
                     <span>Mon Compte</span>
                 </h6>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <?php if ($_GET['action'] == "home"): ?>
-                        <a class="nav-link active" href="index.php?action=home">
-                            <?php else : ?>
-                            <a class="nav-link" href="index.php?action=home">
-                                <?php endif; ?>
-                                <svg class="bi bi-house pb-1 mr-1" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-                                    <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
-                                </svg>
-                                Mes VM
-                            </a>
-                    </li>
-                </ul>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <?php if ($_GET['action'] == "form"): ?>
-                        <a class="nav-link active" href="index.php?action=form">
-                            <?php else : ?>
-                            <a class="nav-link" href="index.php?action=form">
-                                <?php endif; ?>
-                                <svg class="bi bi-file-text pb-1 mr-1" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M4 1h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H4z"/>
-                                    <path fill-rule="evenodd" d="M4.5 10.5A.5.5 0 0 1 5 10h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
-                                </svg>
-                                Formulaire
-                            </a>
-                    </li>
-                </ul>
-                <?php if ($_SESSION['userType'] != 1): ?>
-                <ul class="nav flex-column  mb-2">
-                    <li class="nav-item">
-                        <?php if ($_GET['action'] == "renewalVM"): ?>
-                        <a class="nav-link active" href="index.php?action=renewalVM">
-                            <?php else : ?>
-                            <a class="nav-link" href="index.php?action=renewalVM">
-                                <?php endif; ?>
-                                <?php
-                                if(isset($_SESSION['countRenewalVM'])){
-                                    echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
-                                }
-                                else{
-                                    echo '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>';
-                                }
-                                ?>
-                                Renouvellements
-                            </a>
-                    </li>
-                </ul>
-                <?php endif; ?>
-                <?php if(isset($_SESSION['userType']) && $_SESSION['userType']==1 || $_SESSION['userType']==2):?>
-                    <?php if($_SESSION['userType']==2) : ?>
-                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                            <span>Gestion</span>
-                        </h6>
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <?php if ($_GET['action'] == "allVM"): ?>
-                                <a class="nav-link active" href="index.php?action=allVM">
-                                    <?php else : ?>
-                                    <a class="nav-link" href="index.php?action=allVM">
-                                        <?php endif; ?>
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                        Inventaire VM
-                                    </a>
-                            </li>
-                        </ul>
-                    <?php else : ?>
-                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                            <span>Gestion</span>
-                        </h6>
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <?php if ($_GET['action'] == "allVM"): ?>
-                                <a class="nav-link active" href="index.php?action=allVM">
-                                    <?php else : ?>
-                                    <a class="nav-link" href="index.php?action=allVM">
-                                        <?php endif; ?>
-                                        <svg class="bi bi-house pb-1 mr-1" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-                                            <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
-                                        </svg>
-                                        Inventaire VM
-                                    </a>
-                            </li>
-                        </ul>
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <?php if ($_GET['action'] == "confirmationVM"): ?>
-                                <a class="nav-link active" href="index.php?action=confirmationVM">
-                                    <?php else : ?>
-                                    <a class="nav-link" href="index.php?action=confirmationVM">
-                                        <?php endif; ?>
-                                        <?php
-                                        if(isset($_SESSION['countConfirmationVM'])){
-                                            echo '<span class="badge badge-light mr-1">'. $_SESSION['countConfirmationVM'] .'</span>';
-                                        }
-                                        else{
-                                            echo '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>';
-                                        }
-                                        ?>
-                                        Demandes
-                                    </a>
-                            </li>
-                        </ul>
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <?php if ($_GET['action'] == "renewalVM"): ?>
-                                <a class="nav-link active" href="index.php?action=renewalVM">
-                                    <?php else : ?>
-                                    <a class="nav-link" href="index.php?action=renewalVM">
-                                        <?php endif; ?>
-                                        <?php
-                                        if(isset($_SESSION['countRenewalVM'])){
-                                            echo '<span class="badge badge-light mr-1">'. $_SESSION['countRenewalVM'] .'</span>';
-                                        }
-                                        else{
-                                            echo '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>';
-                                        }
-                                        ?>
-                                        Renouvellements
-                                    </a>
-                            </li>
-                        </ul>
-                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                            <span>Admin</span>
-                        </h6>
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <?php if ($_GET['action'] == "formAdmin"): ?>
-                                <a class="nav-link active" href="index.php?action=formAdmin">
-                                    <?php else : ?>
-                                    <a class="nav-link" href="index.php?action=formAdmin">
-                                        <?php endif; ?>
-                                        <svg class="bi bi-file-text pb-1 mr-1" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M4 1h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H4z"/>
-                                            <path fill-rule="evenodd" d="M4.5 10.5A.5.5 0 0 1 5 10h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
-                                        </svg>
-                                        Formulaire administrateur
-                                    </a>
-                            </li>
-                        </ul>
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <?php if ($_GET['action'] == "formManagement"): ?>
-                                <a class="nav-link active" href="index.php?action=formManagement&array=entity">
-                                    <?php else : ?>
-                                    <a class="nav-link" href="index.php?action=formManagement&array=entity">
-                                        <?php endif; ?>
-                                        <svg class="bi bi-wrench pb-1 mr-1" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364L.102 2.223zm13.37 9.019L13 11l-.471.242-.529.026-.287.445-.445.287-.026.529L11 13l.242.471.026.529.445.287.287.445.529.026L13 15l.471-.242.529-.026.287-.445.445-.287.026-.529L15 13l-.242-.471-.026-.529-.445-.287-.287-.445-.529-.026z"/>
-                                        </svg>
-                                        Gestion du formulaire
-                                    </a>
-                            </li>
-                        </ul>
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <?php if ($_GET['action'] == "displayManagementUser"): ?>
-                                <a class="nav-link active" href="index.php?action=displayManagementUser">
-                                    <?php else : ?>
-                                    <a class="nav-link" href="index.php?action=displayManagementUser">
-                                        <?php endif; ?>
-                                        <svg class="bi bi-people pb-1 mr-1" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.995-.944v-.002.002zM7.022 13h7.956a.274.274 0 0 0 .014-.002l.008-.002c-.002-.264-.167-1.03-.76-1.72C13.688 10.629 12.718 10 11 10c-1.717 0-2.687.63-3.24 1.276-.593.69-.759 1.457-.76 1.72a1.05 1.05 0 0 0 .022.004zm7.973.056v-.002.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10c-1.668.02-2.615.64-3.16 1.276C1.163 11.97 1 12.739 1 13h3c0-1.045.323-2.086.92-3zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
-                                        </svg>
-                                        Gestion des utilisateurs
-                                    </a>
-                            </li>
-                        </ul>
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <?php if ($_GET['action'] == "displayAlertManagementPage"): ?>
-                                <a class="nav-link active" href="index.php?action=displayAlertManagementPage">
-                                    <?php else : ?>
-                                    <a class="nav-link" href="index.php?action=displayAlertManagementPage">
-                                        <?php endif; ?>
-                                        <svg class="bi bi-alarm pb-1 mr-1" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M8 15A6 6 0 1 0 8 3a6 6 0 0 0 0 12zm0 1A7 7 0 1 0 8 2a7 7 0 0 0 0 14z"/>
-                                            <path fill-rule="evenodd" d="M8 4.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.053.224l-1.5 3a.5.5 0 1 1-.894-.448L7.5 8.882V5a.5.5 0 0 1 .5-.5z"/>
-                                            <path d="M.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z"/>
-                                            <path fill-rule="evenodd" d="M11.646 14.146a.5.5 0 0 1 .708 0l1 1a.5.5 0 0 1-.708.708l-1-1a.5.5 0 0 1 0-.708zm-7.292 0a.5.5 0 0 0-.708 0l-1 1a.5.5 0 0 0 .708.708l1-1a.5.5 0 0 0 0-.708zM5.5.5A.5.5 0 0 1 6 0h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"/>
-                                            <path d="M7 1h2v2H7V1z"/>
-                                        </svg>
-                                        Gestion des alertes
-                                    </a>
-                            </li>
-                        </ul>
-                    <?php endif; ?>
-                <?php endif; ?>
-                <ul class="nav flex-column mt-5 mb-5">
-                    <li class="nav-item">
-                        <a class="nav-link" href="mailto:helpdesk@heig-vd.ch?subject=Plateforme GVM : [Titre de votre message]">
-                            <svg class="bi bi-envelope pb-1 mr-1" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M14 3H2a1 1 0 00-1 1v8a1 1 0 001 1h12a1 1 0 001-1V4a1 1 0 00-1-1zM2 2a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2H2z" clip-rule="evenodd"/>
-                                <path fill-rule="evenodd" d="M.071 4.243a.5.5 0 01.686-.172L8 8.417l7.243-4.346a.5.5 0 01.514.858L8 9.583.243 4.93a.5.5 0 01-.172-.686z" clip-rule="evenodd"/>
-                                <path d="M6.752 8.932l.432-.252-.504-.864-.432.252.504.864zm-6 3.5l6-3.5-.504-.864-6 3.5.504.864zm8.496-3.5l-.432-.252.504-.864.432.252-.504.864zm6 3.5l-6-3.5.504-.864 6 3.5-.504.864z"/>
-                            </svg>
-                            Contactez-nous
-                        </a>
-                    </li>
-                </ul>
             </div>
-        </nav>
-    </div>
-</div>
-<?php endif;?>
+            <!----------------- home ---------------->
+            <a href="index.php?action=home" class="text-decoration-none text-light">
+                <?php if ($_GET['action'] == "home"): ?>
+                    <div class="w-100 pt-2 pl-2" style="height: 40px;">
+                <?php else : ?>
+                    <div class="w-100 pt-2 pl-2" style="height: 40px;">
+                <?php endif; ?>
+                        <svg class="bi bi-house pb-1 mr-1" width="2em" height="2em" viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                            <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                        </svg>
+                        <a href="index.php?action=home" class="text-decoration-none text-light" id="hidden_2">Mes VM</a>
+                    </div>
+            </a>
+            <!----------------- form ---------------->
+            <a href="index.php?action=form" class="text-decoration-none text-light">
+                <?php if ($_GET['action'] == "form"): ?>
+                    <div class="w-100 pt-2 pl-2" style="height: 40px;">
+                <?php else : ?>
+                    <div class="w-100 pt-2 pl-2" style="height: 40px;">
+                <?php endif; ?>
+                        <svg class="bi bi-file-text pb-1 mr-1" width="2em" height="2em" viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4 1h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H4z"/>
+                            <path fill-rule="evenodd" d="M4.5 10.5A.5.5 0 0 1 5 10h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                        <a href="index.php?action=form" class="text-decoration-none text-light" id="hidden_3">Formulaire</a>
+                    </div>
+            </a>
+            <!----------------- renewalVM (user) ---------------->
+            <?php if ($_SESSION['userType'] != 1): ?>
+            <a href="index.php?action=renewalVM" class="text-decoration-none text-light">
+            <?php if ($_GET['action'] == "renewalVM"): ?>
+                <div class="w-100 pt-2 pl-2" style="height: 40px;">
+            <?php else : ?>
+                <div class="w-100 pt-2 pl-2" style="height: 40px;">
+            <?php endif; ?>
+                    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-clockwise pb-1 mr-1" fill="white" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/>
+                        <path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    <?php
+                    if(isset($_SESSION['countRenewalVM'])){
+                        echo '<span class="badge badge-light mr-1" style="font-size: 13px">'. $_SESSION['countRenewalVM'] .'</span>';
+                    }
+                    ?>
+                    <a href="index.php?action=renewalVM" class="text-decoration-none text-light" id="hidden_4">Renouvellements</a>
+                </div>
+            </a>
+            <?php else : ?>
+            <a id="hidden_4"></a>
+            <?php endif; ?>
+
+            <!--------------- Admins views ----------------->
+            <?php if(isset($_SESSION['userType']) && $_SESSION['userType']==1 || $_SESSION['userType']==2):?>
+            <div class="w-100 pt-2" style="height: 40px;" id="hidden_5">
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">
+                    <span>Gestion</span>
+                </h6>
+            </div>
+                <!---- allVM ----->
+                <a href="index.php?action=allVM" class="text-decoration-none text-light">
+                    <?php if ($_GET['action'] == "allVM"): ?>
+                        <div class="w-100 pt-2 pl-2" style="height: 40px;">
+                    <?php else : ?>
+                        <div class="w-100 pt-2 pl-2" style="height: 40px;">
+                    <?php endif; ?>
+                            <svg class="bi bi-house pb-1 mr-1" width="2em" height="2em" viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                                <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                            </svg>
+                            <a href="index.php?action=allVM" class="text-decoration-none text-light" id="hidden_6">Inventaire VM</a>
+                        </div>
+                </a>
+
+                <!---- confirmationVM ----->
+                <a href="index.php?action=confirmationVM" class="text-decoration-none text-light">
+                    <?php if ($_GET['action'] == "confirmationVM"): ?>
+                        <div class="w-100 pt-2 pl-2" style="height: 40px;">
+                    <?php else : ?>
+                        <div class="w-100 pt-2 pl-2" style="height: 40px;">
+                    <?php endif; ?>
+                            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-files pb-1 mr-1" fill="white" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M3 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3z"/>
+                                <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2z"/>
+                            </svg>
+                            <?php
+                            if(isset($_SESSION['countConfirmationVM'])){
+                                echo '<span class="badge badge-light mr-1" style="font-size: 13px" id="hidden_15">'. $_SESSION['countConfirmationVM'] .'</span>';
+                            }
+                            ?>
+                            <a href="index.php?action=confirmationVM" class="text-decoration-none text-light" id="hidden_7">Demandes</a>
+                        </div>
+                </a>
+                <!---- renewalVM (admin) ----->
+                <a href="index.php?action=confirmationVM" class="text-decoration-none text-light">
+                    <?php if ($_GET['action'] == "renewalVM"): ?>
+                        <div class="w-100 pt-2 pl-2" style="height: 40px;">
+                    <?php else : ?>
+                        <div class="w-100 pt-2 pl-2" style="height: 40px;">
+                    <?php endif; ?>
+                            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-clockwise pb-1 mr-1" fill="white" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/>
+                                <path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                            <?php
+                            if(isset($_SESSION['countRenewalVM'])){
+                                echo '<span class="badge badge-light mr-1" style="font-size: 13px" id="hidden_16">'. $_SESSION['countRenewalVM'] .'</span>';
+                            }
+                            ?>
+                            <a href="index.php?action=renewalVM" class="text-decoration-none text-light" id="hidden_8">Renouvellements</a>
+                        </div>
+                </a>
+
+
+                <div class="w-100 pt-2" style="height: 40px;" id="hidden_9">
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">
+                        <span>Admin</span>
+                    </h6>
+                </div>
+
+                <!----------------- formAdmin ---------------->
+                <a href="index.php?action=formAdmin" class="text-decoration-none text-light">
+                    <?php if ($_GET['action'] == "formAdmin"): ?>
+                        <div class="w-100 pt-2 pl-2" style="height: 40px;">
+                    <?php else : ?>
+                        <div class="w-100 pt-2 pl-2" style="height: 40px;">
+                    <?php endif; ?>
+                            <svg class="bi bi-file-text pb-1 mr-1" width="2em" height="2em" viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4 1h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H4z"/>
+                                <path fill-rule="evenodd" d="M4.5 10.5A.5.5 0 0 1 5 10h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
+                            </svg>
+                            <a href="index.php?action=formAdmin" class="text-decoration-none text-light" id="hidden_10">Formulaire administrateur</a>
+                        </div>
+                </a>
+                <!----------------- formManagement ---------------->
+                <a href="index.php?action=formManagement" class="text-decoration-none text-light">
+                    <?php if ($_GET['action'] == "formManagement"): ?>
+                        <div class="w-100 pt-2 pl-2" style="height: 40px;">
+                    <?php else : ?>
+                        <div class="w-100 pt-2 pl-2" style="height: 40px;">
+                    <?php endif; ?>
+                            <svg class="bi bi-wrench pb-1 mr-1" width="2em" height="2em" viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364L.102 2.223zm13.37 9.019L13 11l-.471.242-.529.026-.287.445-.445.287-.026.529L11 13l.242.471.026.529.445.287.287.445.529.026L13 15l.471-.242.529-.026.287-.445.445-.287.026-.529L15 13l-.242-.471-.026-.529-.445-.287-.287-.445-.529-.026z"/>
+                            </svg>
+                            <a href="index.php?action=formManagement" class="text-decoration-none text-light" id="hidden_11">Gestion du formulaire</a>
+                        </div>
+                </a>
+                <!----------------- displayManagementUser ---------------->
+                <a href="index.php?action=displayManagementUser" class="text-decoration-none text-light">
+                    <?php if ($_GET['action'] == "displayManagementUser"): ?>
+                        <div class="w-100 pt-2 pl-2" style="height: 40px;">
+                    <?php else : ?>
+                        <div class="w-100 pt-2 pl-2" style="height: 40px;">
+                    <?php endif; ?>
+                            <svg class="bi bi-people pb-1 mr-1" width="2em" height="2em" viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.995-.944v-.002.002zM7.022 13h7.956a.274.274 0 0 0 .014-.002l.008-.002c-.002-.264-.167-1.03-.76-1.72C13.688 10.629 12.718 10 11 10c-1.717 0-2.687.63-3.24 1.276-.593.69-.759 1.457-.76 1.72a1.05 1.05 0 0 0 .022.004zm7.973.056v-.002.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10c-1.668.02-2.615.64-3.16 1.276C1.163 11.97 1 12.739 1 13h3c0-1.045.323-2.086.92-3zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+                            </svg>
+                            <a href="index.php?action=displayManagementUser" class="text-decoration-none text-light" id="hidden_12">Gestion des utilisateurs</a>
+                        </div>
+                </a>
+                <!----------------- displayAlertManagementPage ---------------->
+                <a href="index.php?action=displayAlertManagementPage" class="text-decoration-none text-light">
+                    <?php if ($_GET['action'] == "displayAlertManagementPage"): ?>
+                        <div class="w-100 pt-2 pl-2" style="height: 40px;">
+                    <?php else : ?>
+                        <div class="w-100 pt-2 pl-2" style="height: 40px;">
+                    <?php endif; ?>
+                            <svg class="bi bi-alarm pb-1 mr-1" width="2em" height="2em" viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 15A6 6 0 1 0 8 3a6 6 0 0 0 0 12zm0 1A7 7 0 1 0 8 2a7 7 0 0 0 0 14z"/>
+                                <path fill-rule="evenodd" d="M8 4.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.053.224l-1.5 3a.5.5 0 1 1-.894-.448L7.5 8.882V5a.5.5 0 0 1 .5-.5z"/>
+                                <path d="M.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z"/>
+                                <path fill-rule="evenodd" d="M11.646 14.146a.5.5 0 0 1 .708 0l1 1a.5.5 0 0 1-.708.708l-1-1a.5.5 0 0 1 0-.708zm-7.292 0a.5.5 0 0 0-.708 0l-1 1a.5.5 0 0 0 .708.708l1-1a.5.5 0 0 0 0-.708zM5.5.5A.5.5 0 0 1 6 0h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"/>
+                                <path d="M7 1h2v2H7V1z"/>
+                            </svg>
+                            <a href="index.php?action=displayAlertManagementPage" class="text-decoration-none text-light" id="hidden_13">Gestion des alertes</a>
+                        </div>
+                </a>
+
+            <?php endif; ?>
+                <a href="https://heig-vd.ch/" style="z-index: 99999">
+                    <img src="../images/VRAI-LOGO.png" class="mb-5 mt-5" style="width: 52px; height: auto;z-index: 99999">
+                </a>
+            <!----------------- mailto:helpdesk@heig-vd.ch ---------------->
+            <a class="text-decoration-none text-light" href="mailto:helpdesk@heig-vd.ch?subject=Plateforme GVM : [Titre de votre message]">
+                <div class="w-100 pt-2 pl-2" style="height: 40px;">
+                    <svg class="bi bi-envelope pb-1 mr-1" width="2em" height="2em" viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M14 3H2a1 1 0 00-1 1v8a1 1 0 001 1h12a1 1 0 001-1V4a1 1 0 00-1-1zM2 2a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2H2z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M.071 4.243a.5.5 0 01.686-.172L8 8.417l7.243-4.346a.5.5 0 01.514.858L8 9.583.243 4.93a.5.5 0 01-.172-.686z" clip-rule="evenodd"/>
+                        <path d="M6.752 8.932l.432-.252-.504-.864-.432.252.504.864zm-6 3.5l6-3.5-.504-.864-6 3.5.504.864zm8.496-3.5l-.432-.252.504-.864.432.252-.504.864zm6 3.5l-6-3.5.504-.864 6 3.5-.504.864z"/>
+                    </svg>
+                    <a class="text-decoration-none text-light" href="mailto:helpdesk@heig-vd.ch?subject=Plateforme GVM : [Titre de votre message]" id="hidden_14">Contactez-nous</a>
+                </div>
+            </a>
+        </div>
+<?php endif; ?>
 <main id="main" role="main" class="padding-left h-100 w-100 mt-5">
     <?= $contenu; ?>
 </main>

@@ -13,10 +13,10 @@ ob_start();
     <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Sign In- HEIG-VD</title>
+        <title>Sign In - HEIG-VD</title>
     </head>
-    <body class="responsive-phone-bg">
-    <div class="mr-auto ml-auto mb-auto responsive-phone" style="width: 700px; margin-top: 17%">
+    <body class="responsive-phone-bg fixed-top">
+    <div class="mr-auto ml-auto responsive-phone" style="width: 700px; margin-top: 17%;">
         <div class="d-inline-block bg-light m-auto">
             <div class="p-2">
                 <img src="../images/logo-gabarit.png" class="w-100 h-auto" ">
