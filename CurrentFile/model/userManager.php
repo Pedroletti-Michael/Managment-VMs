@@ -279,8 +279,6 @@ function verificationUserFromDb(){
 
     if ($ds) {
         // Get all user from ou=Personnel
-        $filter = "(uid=*)";
-
         $sr = ldap_search($ds, "ou=personnel,dc=einet,dc=ad,dc=eivd,dc=ch", "samaccountname=*");
 
         $info = ldap_get_entries($ds, $sr);
@@ -317,6 +315,8 @@ function verificationUserFromDb(){
 function addUserToDiffusionList(){
     putenv('LDAPTLS_REQCERT=never');
     $result = null;
+    $cheConfirmation = "";
+    $ypaConfirmation = "";
 
     $ds=ldap_connect("ldaps://einet.ad.eivd.ch:636");
 
@@ -330,58 +330,112 @@ function addUserToDiffusionList(){
 
     if ($ds) {
 
-        //NON FONCTIONNEL $groupMembers = array('0' => "CN=Pedroletti Michael,OU=Personnel,DC=einet,DC=ad,DC=eivd,DC=ch", '1' => "CN=Cook Théo,OU=Personnel,DC=einet,DC=ad,DC=eivd,DC=ch");
+        $sr = ldap_search($ds, "OU=Services,OU=Groupes-Distrib,OU=Groupes,DC=einet,DC=ad,DC=eivd,DC=ch", "CN=Responsables Techniques VM - CHE");
 
+        $infoCHE = ldap_get_entries($ds, $sr);
+
+        $actualMembersCHE = $infoCHE[0]['member'];
+
+        $sr = ldap_search($ds, "OU=Services,OU=Groupes-Distrib,OU=Groupes,DC=einet,DC=ad,DC=eivd,DC=ch", "CN=Responsables Techniques VM - YPA");
+
+        $infoYPA = ldap_get_entries($ds, $sr);
+
+        $actualMembersYPA = $infoYPA[0]['member'];
+
+        //Récupère les listes d'utilisateurs trier par site
         $tableToManage = sortUserRt();
 
-        //echo '<script>alert("'. print_r($tableToManage) .'");</script>';
         $i = 0;
+        //Boucle permettant de séparer chaque liste de site
         foreach ($tableToManage as $usersToManage){
             $groupMembers = array();
-            //echo '<script>alert("'. print_r($usersToManage) .'");</script>';
+
+            //Boucle foreach afin de traiter chaque utilisateur de chaque site
             foreach($usersToManage as $user){
-                //echo '<script>alert("'. print_r($user) .'");</script>';
+                //Crée le nom commun (CN) de l'utilisateur que l'on doit traiter
                 $CN = "CN=".$user[1]." ".$user[0];
-                //echo '<script>alert("'. $messageas .'");</script>';
-                //Récupérer le chemin complet ou son stocker les différents user
-                //"CN=".$user[0]." ".$user[1].",OU=SI,OU=Personnel,DC=einet,DC=ad,DC=eivd,DC=ch"
+
+                //Récupère les infos (depuis l'AD) sur l'utilisateur sélectionner
                 $sr = ldap_search($ds, "ou=personnel,dc=einet,dc=ad,dc=eivd,dc=ch", $CN);
 
                 $info = ldap_get_entries($ds, $sr);
 
+                //Récupération du chemin complet de l'utilisateur
                 $newUser = $info[0]['distinguishedname'][0];
+
+                //Vérification pour savoir si l'utilisateur est déjà présent dans la liste que nous sommes actuellement de traiter
                 if($newUser != '' || $newUser != null){
-                    array_push($groupMembers, $newUser);
+                    $resMember = true;
+                    if($i == 0){
+                        foreach ($actualMembersCHE as $actualMember){
+                            if($actualMember == $newUser){
+                                $resMember = false;
+                            }
+                        }
+                    }
+                    elseif ($i == 1){
+                        foreach ($actualMembersYPA as $actualMember){
+                            if($actualMember == $newUser){
+                                $resMember = false;
+                            }
+                        }
+                    }
+
+                    //Si l'utilisateur n'est pas présent dans la liste actuellement traitée, l'utilisateur est ajouté aux tableaux
+                    if($resMember){
+                        array_push($groupMembers, $newUser);
+                    }
                 }
             }
-            $addGroup_ad['member'] = $groupMembers;
-            echo '<script>alert("'. print_r($groupMembers) .'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\nadasdasdasdasdasdasdasd");</script>';
 
+            //Préparation de l'ajout des utilisateurs à la liste
+            $addGroup_ad['member'] = $groupMembers;
+
+            $countMembers = count($groupMembers);
+
+            //Ajout des utilisateurs avec confirmation de succès ou de fails des requêtes
             if($i == 0){
-                if(ldap_mod_add($ds, "CN=Responsables Techniques VM - CHE,OU=Services,OU=Groupes-Distrib,OU=Groupes,DC=einet,DC=ad,DC=eivd,DC=ch", $addGroup_ad)){
-                    $returnValue = true;
-                    echo '<script>alert("CHE SUCCESS");</script>';
+                if($countMembers != 0){
+                    if(ldap_mod_add($ds, "CN=Responsables Techniques VM - CHE,OU=Services,OU=Groupes-Distrib,OU=Groupes,DC=einet,DC=ad,DC=eivd,DC=ch", $addGroup_ad)){
+                        $returnValue = true;
+                        $cheConfirmation = "Requêtes CHE réussites. ";
+                    }
+                    else{
+                        $returnValue = false;
+                        $cheConfirmation = "Requêtes CHE échecs. ";
+                    }
                 }
                 else{
-                    $returnValue = false;
-                    echo '<script>alert("CHE FAIL");</script>';
+                    $returnValue = true;
+                    $cheConfirmation = "0 nouveau membre ajouté, pour le site Cheseaux. ";
                 }
             }
             elseif ($i == 1){
-                if(ldap_mod_add($ds, "CN=Responsables Techniques VM - YPA,OU=Services,OU=Groupes-Distrib,OU=Groupes,DC=einet,DC=ad,DC=eivd,DC=ch", $addGroup_ad)){
-                    $returnValue = true;
-                    echo '<script>alert("YPA SUCCESS");</script>';
+                if($countMembers != 0){
+                    if(ldap_mod_add($ds, "CN=Responsables Techniques VM - YPA,OU=Services,OU=Groupes-Distrib,OU=Groupes,DC=einet,DC=ad,DC=eivd,DC=ch", $addGroup_ad)){
+                        $returnValue = true;
+                        $ypaConfirmation = "Requêtes YPA réussites.";
+                    }
+                    else{
+                        $returnValue = false;
+                        $ypaConfirmation = "Requêtes YPA échecs.";
+                    }
                 }
                 else{
-                    $returnValue = false;
-                    echo '<script>alert("YPA FAIL");</script>';
+                    $returnValue = true;
+                    $ypaConfirmation = "0 nouveau membre ajouté, pour le site Y-Parc.";
                 }
             }
+
             $i++;
         }
 
         ldap_close($ds);
     }
+
+    $confirmationMessage = $cheConfirmation . " " . $ypaConfirmation;
+
+    echo '<script>alert("'.$confirmationMessage.'")</script>';
 
     return $returnValue;
 }
