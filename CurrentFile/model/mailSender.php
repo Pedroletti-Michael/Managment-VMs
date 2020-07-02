@@ -568,8 +568,8 @@ function nonrenewalMailAdvert($userMail, $requestName, $rtMail, $raMail){
     $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 
     // Additional headers
-    $headers .= 'To: '. $userMail ."\r\n";
-    $headers .= 'BCC: '.$rtMail."\r\n";
+    $headers .= 'To: '. $raMail ."\r\n";
+    $headers .= 'BCC: '.$rtMail.";$userMail;$administratorMail\r\n";
     $headers .= 'From: '.$jsonData['sender']."\r\n";
 
     if(sendMail($to, $subject, $message, $headers)){
