@@ -425,6 +425,10 @@
                     <a class="text-decoration-none text-light" href="mailto:helpdesk@heig-vd.ch?subject=Plateforme GVM : [Titre de votre message]" id="hidden_14">Contactez-nous</a>
                 </div>
             </a>
+            <!----------------- Version ---------------->
+            <div class="w-100 pt-5 pl-2 " style="height: 40px;bottom: 10px!important">
+                <a class="text-decoration-none text-light" id="hidden_17">Version : 0.611</a>
+            </div>
         </div>
 <?php endif; ?>
 <main id="main" role="main" class="padding-left h-100 w-100 mt-5">

@@ -190,14 +190,14 @@ function closeRightMenu() {
 function openLeftMenu() {
     if (flag == 0){
         document.getElementById("leftMenu").style.width = "200px";
-        for(var i = 1 ; i < 17 ; i++){
+        for(var i = 1 ; i < 18 ; i++){
             document.getElementById('hidden_'+i).style.display = "inline";
         }
         document.getElementsByClassName("bi")
         flag = 1;
     }else{
         document.getElementById("leftMenu").style.width = "52px";
-        for(var e = 1 ; e < 17 ; e++){
+        for(var e = 1 ; e < 18 ; e++){
             document.getElementById('hidden_' + e).style.display = "none";
         }
         flag = 0;
