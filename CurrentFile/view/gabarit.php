@@ -274,7 +274,7 @@
                     </svg>
                     <?php
                     if(isset($_SESSION['countRenewalVM'])){
-                        echo '<span class="badge badge-light mr-1" style="font-size: 13px">'. $_SESSION['countRenewalVM'] .'</span>';
+                        echo '<span class="badge badge-light mr-1" style="font-size: 13px" id="hidden_15">'. $_SESSION['countRenewalVM'] .'</span>';
                     }
                     ?>
                     <a href="index.php?action=renewalVM" class="text-decoration-none text-light" id="hidden_4">Renouvellements</a>
@@ -319,7 +319,7 @@
                             </svg>
                             <?php
                             if(isset($_SESSION['countConfirmationVM'])){
-                                echo '<span class="badge badge-light mr-1" style="font-size: 13px" id="hidden_15">'. $_SESSION['countConfirmationVM'] .'</span>';
+                                echo '<span class="badge badge-light mr-1" style="font-size: 13px" id="hidden_18">'. $_SESSION['countConfirmationVM'] .'</span>';
                             }
                             ?>
                             <a href="index.php?action=confirmationVM" class="text-decoration-none text-light" id="hidden_7">Demandes</a>
@@ -409,7 +409,8 @@
                             <a href="index.php?action=displayAlertManagementPage" class="text-decoration-none text-light" id="hidden_13">Gestion des alertes</a>
                         </div>
                 </a>
-
+            <?php else : ?>
+            <a id="hidden_5"></a><a id="hidden_6"></a><a id="hidden_7"></a><a id="hidden_8"></a><a id="hidden_9"></a><a id="hidden_10"></a><a id="hidden_11"></a><a id="hidden_12"></a><a id="hidden_13"></a><a id="hidden_16"></a><a id="hidden_18"></a>
             <?php endif; ?>
                 <a href="https://heig-vd.ch/" style="z-index: 99999">
                     <img src="../images/VRAI-LOGO.png" class="mb-5 mt-5" style="width: 52px; height: auto;z-index: 99999">
