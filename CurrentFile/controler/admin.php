@@ -78,6 +78,7 @@ function displayAllVM($searchFilter,$vmFilter = "all")
                     $allConfirmationVM = getConfirmationVM();
                     $allRenewalVM = getRenewalVM();
                     $allDeletedVM = getDeletedOrUnrenewalVM();
+                    $allNonRenewalVm = getNonRenewalVm();
                     $allVM = getAllVM();
                     $allVmName = getAllVmNameAndId();
 
@@ -172,6 +173,7 @@ function displayRenewalVM()
  */
 function displayDetailsVM($idVM)
 {
+    $ownerVm = false;
     if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
         switch ($_SESSION['userType'])
@@ -256,9 +258,9 @@ function displayDetailsVM($idVM)
                 require_once 'model/userManager.php';
                 $users = getAllUsers();
 
-                $ownerVm = false;
+                $completeName = getUserCompleteName($_SESSION['userId']);
 
-                if($_SESSION['userEmail'] == $dataVM[0]['customer'] || $_SESSION['userEmail'] == $dataVM[0]['userRt'] || $_SESSION['userEmail'] == $dataVM[0]['userRa']){
+                if($_SESSION['userEmail'] == $dataVM[0]['customer'] || $completeName[0][0]." ".$completeName[0][1] == $dataVM[0]['userRt']){
                     $ownerVm = true;
                 }
 

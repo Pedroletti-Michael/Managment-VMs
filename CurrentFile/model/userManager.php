@@ -230,6 +230,12 @@ function getAllUserId(){
     return executeQuery($query);
 }
 
+function getUserCompleteName($userId){
+    $query = "SELECT lastname, firstname FROM user WHERE user_id = ".$userId;
+
+    return executeQuery($query);
+}
+
 /**
  * Update the type of the user.
  * If $type == true, update type of the user into an admin

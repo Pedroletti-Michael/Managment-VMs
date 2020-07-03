@@ -118,7 +118,7 @@ ob_start();
                 <input type="vmName" class="form-control form form" value="<?php echo $dataVM[0]['name'] ?>"
                        id="inputVMName" name="inputVMName" aria-describedby="vmNameHelp" maxlength="15"
                        style="text-transform: uppercase" onkeyup="checkName()" required
-                       <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {echo "readonly";} ?>>
+                       <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType']) {echo "readonly";} ?>>
                 <small id="vmNameHelp" class="form-text text-muted">15 caractères maximum. Lettres, chiffres et trait d'union uniquement (Exemple : DPT-VM01)</small>
             </div>
             <!--Name of the requester-->
@@ -136,7 +136,7 @@ ob_start();
                     <label for="cpu" class="font-weight-bold">CPU<a style="color: red"> *</a></label>
                     <input type="number" class="form-control form form" value="<?php echo $dataVM[0]['cpu'] ?>"
                            id="inputCPU" name="inputCPU" aria-describedby="cpuHelp" min="1" max="99"
-                           required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                           required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType']) {
                         echo "readonly";
                     } ?>>
                 </div>
@@ -145,7 +145,7 @@ ob_start();
                     <label for="RAM" class="font-weight-bold mr-2">RAM (GB)<a style="color: red"> *</a></label>
                     <input type="number" class="form-control form form mr-3" value="<?php echo $dataVM[0]['ram'] ?>"
                            id="inputRAM" name="inputRAM" aria-describedby="ramHelp" min="1" max="256"
-                           required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                           required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType']) {
                         echo "readonly";
                     } ?>>
                 </div>
@@ -158,7 +158,7 @@ ob_start();
                             <input type="number" class="form-control form form w-25 float-left"
                                    value="<?php echo $dataVM[0]['disk'] ?>" id="inputSSD" name="inputSSD"
                                    aria-describedby="ssdHelp" min="20" max="1000"
-                                   required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                                   required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
                                 echo "readonly";
                             } ?>>
                         </div>
@@ -166,7 +166,7 @@ ob_start();
                             <input type="text" class="form-control form form w-75 float-right"
                                    value="<?php echo $dataVM[0]['descriptionDisk'] ?>" id="infoSSD" name="infoSSD"
                                    aria-describedby="ssdHelp"
-                                   placeholder="Exemple : Disque 1: 50 GB / Disque 2 : 100GB" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                                   placeholder="Exemple : Disque 1: 50 GB / Disque 2 : 100GB" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
                                 echo "readonly";
                             } ?>>
                         </div>
@@ -181,11 +181,11 @@ ob_start();
                     <input type="text" class="form-control form form" value="<?php echo $dataVM[0]['userRt'] ?>"
                            id="inputTMNam" name="inputTMNam" aria-describedby="tmNameHelp"
                            placeholder="Entrer une adresse de messagerie" required
-                           onkeyup="searchFunctionTm()" <?php if ($_SESSION['userType'] == 2) {
+                           onkeyup="searchFunctionTm()" <?php if ($_SESSION['userType'] == 2 && $ownerVm != true) {
                         echo "readonly";
                     } ?>>
                     <small id="inputTMNameHelp" class="form-text text-muted">Personne qui va gérer la VM</small>
-                    <?php if ($_SESSION['userType'] != 2) : ?>
+                    <?php if ($_SESSION['userType'] == 2 && $ownerVm == true || $_SESSION['userType'] != 2) : ?>
                         <ul id="tmNameUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
                             <?php
                             $id = 'liTm';
@@ -210,13 +210,13 @@ ob_start();
                     <input type="text" class="form-control form form" value="<?php echo $dataVM[0]['userRa'] ?>"
                            id="inputRANam" name="inputRANam" aria-describedby="raNameHelp"
                            placeholder="Entrer une adresse de messagerie" required
-                           onkeyup="searchFunctionRa()" <?php if ($_SESSION['userType'] == 2) {
+                           onkeyup="searchFunctionRa()" <?php if ($_SESSION['userType'] == 2 && $ownerVm != true) {
                         echo "readonly";
                     } ?>>
                     <small id="raNameHelp" class="form-text text-muted">Direction, Doyen , Directeur d'institut ou Chef
                         de service
                     </small>
-                    <?php if ($_SESSION['userType'] != 2) : ?>
+                    <?php if ($_SESSION['userType'] == 2 && $ownerVm == true || $_SESSION['userType'] != 2) : ?>
                         <ul id="raNameUl" class="border border-light searchBoxUser list-group list-group-flush mt-2">
                             <?php
                             $id = 'liRa';
@@ -245,7 +245,7 @@ ob_start();
                     <div class="pr-2">
                         <select class="form-control w-50 float-left" id="osTypeFormControlSelect"
                                 name="osTypeFormControlSelect" onchange="checkOS(this.value)"
-                                required <?php if ($_SESSION['userType'] == 2) {
+                                required <?php if ($_SESSION['userType'] == 2 && $ownerVm != true) {
                             echo "readonly";
                         } ?>>
                             <?php
@@ -264,7 +264,7 @@ ob_start();
                         <select class="form-control w-50 float-right"
                                 id="windows" <?php if ($dataVM[0]['os_id'][1] == "Linux") {
                             echo 'style="display: none;"';
-                        } ?> name="osFormNameControlSelectWin" required <?php if ($_SESSION['userType'] == 2) {
+                        } ?> name="osFormNameControlSelectWin" required <?php if ($_SESSION['userType'] == 2 && $ownerVm != true) {
                             echo "readonly";
                         } ?>>
                             <?php
@@ -283,7 +283,7 @@ ob_start();
                         <select class="form-control w-50 float-right"
                                 id="linux" <?php if ($dataVM[0]['os_id'][1] == "Windows") {
                             echo 'style="display: none;"';
-                        } ?> name="osFormNameControlSelectLin" required <?php if ($_SESSION['userType'] == 2) {
+                        } ?> name="osFormNameControlSelectLin" required <?php if ($_SESSION['userType'] == 2 && $ownerVm != true) {
                             echo "readonly";
                         } ?>>
                             <?php
@@ -307,7 +307,7 @@ ob_start();
                 <label for="disFormControlSelect" class="font-weight-bold">Département / Institution / Service<a
                             style="color: red"> *</a></label>
                 <select class="form-control" id="disFormControlSelect" name="disFormControlSelect"
-                        required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                        required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
                     echo "readonly";
                 } ?>>
                     <?php
@@ -331,7 +331,7 @@ ob_start();
                 <label for="networkFormControlSelect" class="font-weight-bold">Réseau<a style="color: red">
                         *</a></label>
                 <select class="form-control" id="networkFormControlSelect" name="networkFormControlSelect"
-                        required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                        required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
                     echo "readonly";
                 } ?>>
                     <?php
@@ -356,7 +356,7 @@ ob_start();
                        value="<?php echo $dataVM[0]['dateStart'] ?>" id="inputComissioningDate"
                        name="inputComissioningDate" aria-describedby="comissioningDateHelp"
                        placeholder="Entrer un nom ou une addresse de messagerie"
-                       required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                       required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
                     echo "readonly";
                 } ?>>
                 <small id="comissioningDateHelp" class="form-text text-muted">Délai de 7 jours après validation</small>
@@ -374,7 +374,7 @@ ob_start();
                                    class="form-check-input" <?php if ($dataVM[0]['usageType'] == "Academique") {
                                 echo "checked";
                             } ?> id="Academique"
-                                   name="Academique" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                                   name="Academique" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
                                 echo "readonly";
                             } ?>>
                             <label class="form-check-label" for="Academique">Académique</label>
@@ -385,7 +385,7 @@ ob_start();
                                    class="form-check-input" <?php if ($dataVM[0]['usageType'] == "RaD") {
                                 echo "checked";
                             } ?> id="RaD"
-                                   name="RaD" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                                   name="RaD" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
                                 echo "readonly";
                             } ?>>
                             <label class="form-check-label" for="RaD">Ra&D</label>
@@ -397,7 +397,7 @@ ob_start();
                                    class="form-check-input" <?php if ($dataVM[0]['usageType'] == "Operationnel") {
                                 echo "checked";
                             } ?> id="Operationnel"
-                                   name="Operationnel" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                                   name="Operationnel" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
                                 echo "readonly";
                             } ?>>
                             <label class="form-check-label" for="Operationnel">Opérationnel - Production</label>
@@ -408,7 +408,7 @@ ob_start();
                                    class="form-check-input" <?php if ($dataVM[0]['usageType'] == "Test") {
                                 echo "checked";
                             } ?> id="Test"
-                                   name="Test" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                                   name="Test" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
                                 echo "readonly";
                             } ?>>
                             <label class="form-check-label" for="Test">Test - Dev</label>
@@ -425,7 +425,7 @@ ob_start();
                                class="form-check-input" <?php if ($dataVM[0]['usageType'] == "Academique") {
                             echo "checked";
                         } ?> id="Academique"
-                               name="Academique" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                               name="Academique" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
                             echo "readonly";
                         } ?>>
                         <label class="form-check-label" for="Academique">Académique</label>
@@ -436,7 +436,7 @@ ob_start();
                                class="form-check-input" <?php if ($dataVM[0]['usageType'] == "RaD") {
                             echo "checked";
                         } ?> id="RaD"
-                               name="RaD" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                               name="RaD" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
                             echo "readonly";
                         } ?>>
                         <label class="form-check-label" for="RaD">Ra&D</label>
@@ -448,7 +448,7 @@ ob_start();
                                class="form-check-input" <?php if ($dataVM[0]['usageType'] == "Operationnel") {
                             echo "checked";
                         } ?> id="Operationnel"
-                               name="Operationnel" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                               name="Operationnel" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
                             echo "readonly";
                         } ?>>
                         <label class="form-check-label" for="Operationnel">Opérationnel - Production</label>
@@ -459,7 +459,7 @@ ob_start();
                                class="form-check-input" <?php if ($dataVM[0]['usageType'] == "Test") {
                             echo "checked";
                         } ?> id="Test"
-                               name="Test" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                               name="Test" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
                             echo "readonly";
                         } ?>>
                         <label class="form-check-label" for="Test">Test - Dev</label>
@@ -473,7 +473,7 @@ ob_start();
                 <label for="inputEndDate" class="font-weight-bold">Date de fin</label>
                 <input type="date" class="form-control form form" value="<?php echo $dataVM[0]['dateEnd'] ?>"
                        id="inputEndDate" name="inputEndDate" aria-describedby="EndDateHelp"
-                       placeholder="Entrer un nom ou une addresse de messagerie" <?php if ($_SESSION['userType'] == 2) {
+                       placeholder="Entrer un nom ou une addresse de messagerie" <?php if ($_SESSION['userType'] == 2 && $ownerVm != true) {
                     echo "readonly";
                 } ?>>
                 <small id="EndDateHelp" class="form-text text-muted">Date de fin du projet, à laquelle la VM peut être
@@ -488,7 +488,7 @@ ob_start();
         <div class="form-group">
             <label for="objective" class="font-weight-bold">Description<a style="color: red"> *</a></label>
             <textarea class="form-control" rows="5" id="objective" maxlength="1000" name="objective"
-                      required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                      required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
                 echo "readonly";
             } ?>><?php echo $dataVM[0]['description'] ?></textarea>
             <small id="objectiveHelp" class="form-text text-muted">But du projet</small>
@@ -498,7 +498,7 @@ ob_start();
             <label for="snapshotsFormControlSelect" class="font-weight-bold">Snapshots<a style="color: red">
                     *</a></label>
             <select class="form-control" id="snapshotsFormControlSelect" name="snapshotsFormControlSelect"
-                    required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                    required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
                 echo "readonly";
             } ?>>
                 <?php
@@ -517,7 +517,7 @@ ob_start();
         <div class="form-group">
             <label for="backupFormControlSelect" class="font-weight-bold">Backup<a style="color: red"> *</a></label>
             <select class="form-control" id="backupFormControlSelect" name="backupFormControlSelect"
-                    required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                    required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
                 echo "readonly";
             } ?>>
                 <?php
@@ -538,7 +538,7 @@ ob_start();
             <input type="checkbox" class="form-check-input" <?php if ($dataVM[0]['domain'] == 1) {
                 echo "checked";
             } ?> id="domainEINET"
-                   name="domainEINET" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                   name="domainEINET" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
                 echo "readonly";
             } ?>>
             <label class="form-check-label font-weight-bold" for="domainEINET">Domaine EINET</label>
@@ -549,7 +549,7 @@ ob_start();
             <input type="checkbox" disabled="disabled" class="form-check-input" <?php if ($dataVM[0]['domain'] == 1) {
                 echo "checked";
             } ?> id="domainEINET"
-                   name="domainEINET" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                   name="domainEINET" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
                 echo "readonly";
             } ?>>
             <label class="form-check-label font-weight-bold" for="domainEINET">Domaine EINET</label>
@@ -560,7 +560,7 @@ ob_start();
         <div class="form-group">
             <label for="securityFormControlSelect" class="font-weight-bold">Sécurité<a style="color: red"> *</a></label>
             <select class="form-control" id="securityFormControlSelect" name="securityFormControlSelect"
-                    required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                    required <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
                 echo "readonly";
             } ?>>
                 <?php
@@ -582,7 +582,7 @@ ob_start();
         <div class="form-group">
             <label for="ti" class="font-weight-bold">Informations techniques</label>
             <textarea class="form-control" rows="5" id="ti" name="ti"
-                      maxlength="1000" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2 && $ownerVm != true) {
+                      maxlength="1000" <?php if ($_SESSION['userType'] == 0 || $_SESSION['userType'] == 2) {
                 echo "readonly";
             } ?>><?php echo $dataVM[0]['comment'] ?></textarea>
             <small id="tiHelp" class="form-text text-muted">Règles firewall, type de compte, justification DMZ ou

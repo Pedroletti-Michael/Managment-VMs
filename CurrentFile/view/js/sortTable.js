@@ -15,6 +15,9 @@ function sortTable(n, whichTable) {
         else if(document.getElementById("allRenewalVmBody").hidden == false){
             table = document.getElementById("allRenewalVmBody");
         }
+        else if(document.getElementById("allNonRenewalVmBody") == false){
+            table = document.getElementById("allNonRenewalVmBody");
+        }
         else if(document.getElementById("allDeletedVmBody").hidden == false){
             table = document.getElementById("allDeletedVmBody");
         }
@@ -93,6 +96,9 @@ function sortNumberTable(n, whichTable) {
         else if(document.getElementById("allRenewalVmBody").hidden == false){
             table = document.getElementById("allRenewalVmBody");
         }
+        else if(document.getElementById("allNonRenewalVmBody") == false){
+            table = document.getElementById("allNonRenewalVmBody");
+        }
         else if(document.getElementById("allDeletedVmBody").hidden == false){
             table = document.getElementById("allDeletedVmBody");
         }
@@ -168,6 +174,9 @@ function sortTablePlus(n, which){
         }
         else if(document.getElementById("allRenewalVmBody").hidden == false){
             table = document.getElementById("allRenewalVmBody");
+        }
+        else if(document.getElementById("allNonRenewalVmBody") == false){
+            table = document.getElementById("allNonRenewalVmBody");
         }
         else if(document.getElementById("allDeletedVmBody").hidden == false){
             table = document.getElementById("allDeletedVmBody");
