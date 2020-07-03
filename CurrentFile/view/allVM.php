@@ -3102,6 +3102,7 @@ ob_start();
     var vmConfirmed = 0;
     var vmToBeConfirmed = 0;
     var vmRenew = 0;
+    var vmNonRenewal = 0;
     var vmDeleted = 0;
     for (i = 0; i < allVm.length; i++) {
         switch (allVm[i]['vmStatus']) {
@@ -3114,6 +3115,9 @@ ob_start();
             case '3':
                 vmRenew++;
                 break;
+            case '4':
+                vmNonRenewal++;
+                break;
             case '5':
                 vmDeleted++;
                 break;
@@ -3123,6 +3127,7 @@ ob_start();
     document.getElementById("numberOfConfirmedVM").textContent = vmConfirmed;
     document.getElementById("numberOfToBeConfirmedVM").innerText = vmToBeConfirmed;
     document.getElementById("numberOfRenewalVM").innerHTML = vmRenew;
+    document.getElementById("numberOfNonRenewalVM").innerHTML = vmNonRenewal;
     document.getElementById("numberOfDeletedVM").innerHTML = vmDeleted;
 </script>
 <?php
