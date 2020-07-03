@@ -6,9 +6,6 @@
     -ms-user-select: none;
     user-select: none;
 }
-.display-1000{
-    display: none!important;
-}
 .display-phone{
     display: none!important;
 }
@@ -87,6 +84,57 @@
 .w-75-m{
     width: 75% !important;
 }
+
+/* ---------------------- Research bar -------------------------- */
+.searchbar{
+    margin-top: 0.25rem;
+    height: 40px;
+    background-color: #353b48;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+.search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 30px;
+    transition: width 0.4s linear;
+}
+
+.searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 300px;
+    caret-color:red;
+    transition: width 0.4s linear;
+}
+
+.searchbar:hover > .search_icon{
+    background: white;
+    color: red;
+}
+#searchBar:hover #hide_title #hide_signIn{
+    visibility: hidden;
+}
+
+
+
+.search_icon{
+    height: 30px;
+    width: 30px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:white;
+    text-decoration:none;
+}
+
+
 /* ----------------------------------- select2 ---------------------------------*/
 .select2-container--default .select2-selection--multiple{
     border: 1px solid #ced4da!important;

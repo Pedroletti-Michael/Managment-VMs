@@ -189,17 +189,26 @@ function closeRightMenu() {
 
 function openLeftMenu() {
     if (flag == 0){
-        document.getElementById("leftMenu").style.width = "200px";
+        document.getElementById("leftMenu").style.width = "230px";
         for(var i = 1 ; i < 19 ; i++){
             document.getElementById('hidden_'+i).style.display = "inline";
         }
-        document.getElementsByClassName("bi")
+        for(var e = 1 ; e < 12 ; e++){
+            document.getElementById('icons_'+e).style.width = "2em";
+            document.getElementById('icons_'+e).style.height = "2em";
+        }
+        document.getElementById("logo-heig").style.width = "65px";
         flag = 1;
     }else{
-        document.getElementById("leftMenu").style.width = "52px";
+        document.getElementById("leftMenu").style.width = "60px";
         for(var e = 1 ; e < 19 ; e++){
             document.getElementById('hidden_' + e).style.display = "none";
         }
+        for(var i = 1 ; i < 12 ; i++){
+            document.getElementById('icons_'+i).style.width = "2.5em";
+            document.getElementById('icons_'+i).style.height = "2.5em";
+        }
+        document.getElementById("logo-heig").style.width = "60px";
         flag = 0;
     }
 }
