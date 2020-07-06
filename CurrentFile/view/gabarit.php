@@ -242,7 +242,7 @@
                         </svg>
                     </a></h6>
             </div>
-            <div class="m-auto text-center h-100" style="width: 125px" id="hide_title">
+            <div class="m-auto text-center h-100" style="width: 150px" id="hide_title">
                 <h4 class="m-auto font-weight-bold text-white" style="margin-top: 0.6rem!important">Gestion VM</h4>
             </div>
         </div>
@@ -456,9 +456,9 @@
         </div>
     </nav>
 <?php endif; ?>
-<main id="main" role="main" class="padding-left h-100 w-100 mt-5">
-    <?= $contenu; ?>
-</main>
+    <main id="main" role="main" class="mt-5 w3-animate-right padding-left" style="transition: padding-left 0.5s;">
+        <?= $contenu; ?>
+    </main>
 </body>
 
 </html>

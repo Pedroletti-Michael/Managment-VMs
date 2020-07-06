@@ -190,6 +190,7 @@ function closeRightMenu() {
 function openLeftMenu() {
     if (flag == 0){
         document.getElementById("leftMenu").style.width = "230px";
+        document.getElementById("main").style.paddingLeft = "230px";
         for(var i = 1 ; i < 19 ; i++){
             document.getElementById('hidden_'+i).style.display = "inline";
         }
@@ -201,6 +202,7 @@ function openLeftMenu() {
         flag = 1;
     }else{
         document.getElementById("leftMenu").style.width = "60px";
+        document.getElementById("main").style.paddingLeft = "60px";
         for(var e = 1 ; e < 19 ; e++){
             document.getElementById('hidden_' + e).style.display = "none";
         }
