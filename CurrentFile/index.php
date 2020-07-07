@@ -182,7 +182,12 @@ if(isset($_GET['action']))
             renewalTest();
             break;
         case 'addUserListAd':
+            if(testSessionTime()){break;}
             addUserListAd();
+            break;
+        case 'deleteVm':
+            if(testSessionTime()){break;}
+            deleteVm($_POST['idVm']);
             break;
         default:
             if(testSessionTime()){break;}

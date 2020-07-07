@@ -1299,3 +1299,16 @@ function addUserListAd(){
         displayManagementUser();
     }
 }
+
+function deleteVm($idVm){
+    require_once 'model/vmManager.php';
+
+    $redundances = getRedundance();
+
+    if(count($redundances) != 0){
+        //RETURN INVENTORY VM AND MAKE A MODAL WITH ALL THE NAME OF THE REDUNDANCE AND MAYBE A BUTTON
+    }
+    else{
+        //DELETE VM
+    }
+}

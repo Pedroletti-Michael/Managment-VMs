@@ -3543,6 +3543,23 @@ ob_start();
                               clip-rule="evenodd"/>
                     </svg>
                 </th>
+                <th style="min-width: 95px;" name="DELETE" scope="col">DELETE
+                    <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
+                         xmlns="http://www.w3.org/2000/svg" id="23_none_all">
+                        <path fill-rule="evenodd"
+                              d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
+                    </svg>
+                    <svg class="bi bi-chevron-up" style="display: none;" width="18" height="18" viewBox="0 0 16 16"
+                         fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="23_up_all">
+                        <path fill-rule="evenodd"
+                              d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+                    </svg>
+                    <svg class="bi bi-chevron-down" style="display: none;" width="18" height="18" viewBox="0 0 16 16"
+                         fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="23_down_all">
+                        <path fill-rule="evenodd"
+                              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </th>
             </tr>
             </thead>
             <!--allDeletedVmBody-->
@@ -3643,6 +3660,7 @@ ob_start();
                         style="min-width: 100px"><?php echo $value['os_id']['1'] . " " . $value['os_id'][0] ?></td>
                     <td name="snapshot" style="min-width: 130px"><?php echo $value['snapshot_id']['1'] ?></td>
                     <td name="backup" style="display: none;min-width: 120px"><?php echo $value['backup_id']['1'] ?></td>
+                    <td name="delete"><a href="index.php?action=deleteVm&idVm=<?php echo $value['id'] ?>" style="text-decoration: none">delete</a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

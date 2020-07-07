@@ -1070,6 +1070,9 @@ function getUserRtAndCluster(){
     return $resultSelect;
 }
 
+/**
+ * Function who return all place where the idVm is used like a redundance
+ */
 function getRedundance($idVm){
     require_once 'model/dbConnector.php';
     $strSep = '\'';
