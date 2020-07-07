@@ -358,7 +358,7 @@ ob_start();
         <table class="table table-hover allVM" id="allVmBody" hidden>
             <thead class="thead-dark sticky-top" style="z-index: 1!important;">
             <tr>
-                <th name="goToButton" scope="col" style="min-width: 88px;" onclick="sortTablePlus(0, 0)">Statut
+                <th name="goToButton" scope="col" style="min-width: 90px;" onclick="sortTablePlus(0, 0)">Statut
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="0_none_all">
                         <path fill-rule="evenodd"
@@ -548,7 +548,7 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="min-width: 100px;" name="criticity" scope="col" onclick="sortTable(14, 0)">
+                <th style="min-width: 110px;" name="criticity" scope="col" onclick="sortTable(14, 0)">
                     criticity
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="14_none_all">
