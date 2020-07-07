@@ -11,7 +11,7 @@ function displayIntoInputTm(idNb, value) {
 }
 
 function displayIntoInputRedundance(value) {
-    document.getElementById("editRedundance").value = value;
+    document.getElementById("editRedundance").value = " " + value;
 }
 
 function searchFunctionRa() {
