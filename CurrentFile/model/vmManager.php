@@ -1070,6 +1070,25 @@ function getUserRtAndCluster(){
     return $resultSelect;
 }
 
+function getRedundance($idVm){
+    //TODO
+    require_once 'model/dbConnector.php';
+    $strSep = '\'';
+
+    $querySelect = "SELECT `id`, `cluster`, `userRt` FROM `vm` WHERE vmStatus = 2 OR vmStatus = 3";
+
+    $resultSelect = executeQuerySelect($querySelect);
+
+    $i = 0;
+    foreach($resultSelect as $value){
+        $resultSelect[$i]['cluster'] = getCluster($value['cluster']);
+        $resultSelect[$i]['userRt'] = getNameAndSurnameUser($value['userRt']);
+        $i++;
+    }
+
+    return $resultSelect;
+}
+
 class CSV{
     static function export($allVM,$filename){
         header('Content-Type: text/csv;');
