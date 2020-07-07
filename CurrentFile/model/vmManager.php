@@ -1071,22 +1071,14 @@ function getUserRtAndCluster(){
 }
 
 function getRedundance($idVm){
-    //TODO
     require_once 'model/dbConnector.php';
     $strSep = '\'';
 
-    $querySelect = "SELECT `id`, `cluster`, `userRt` FROM `vm` WHERE vmStatus = 2 OR vmStatus = 3";
+    $querySelect = "SELECT name FROM vm WHERE redundance LIKE '% ".$idVm.";%'";
 
     $resultSelect = executeQuerySelect($querySelect);
 
-    $i = 0;
-    foreach($resultSelect as $value){
-        $resultSelect[$i]['cluster'] = getCluster($value['cluster']);
-        $resultSelect[$i]['userRt'] = getNameAndSurnameUser($value['userRt']);
-        $i++;
-    }
-
-    return $resultSelect;
+    return $resultSelect[0][0];
 }
 
 class CSV{

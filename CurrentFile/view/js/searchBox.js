@@ -188,7 +188,7 @@ function getValue(where) {
             a = li[i].title;
 
             if(a === options[y].textContent){
-                txtValue += options[y].value + ";";
+                txtValue += " " + options[y].value + ";";
                 break;
             }
         }
