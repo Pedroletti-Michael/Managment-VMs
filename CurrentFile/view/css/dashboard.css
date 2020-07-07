@@ -1,14 +1,7 @@
 body {
     font-size: .875rem;
-    font-family: AppleGothic, "CenturyGothic", CenturyGothic !important;
-    /*font-family: "Century Gothic"!important;*/
+    font-family: Dubai, "Dubai"!important;
 }
-
-@font-face {
-    font-family: AppleGothic, "CenturyGothic", CenturyGothic !important;
-    src: url("../font/Century-Gothic_9791.ttf") format("truetype") !important;
-}
-
 
 .feather {
     width: 16px;
