@@ -30,14 +30,14 @@
 <?php if (isset($_SESSION['userType'])): ?>
 <!-------------------------- Gabarit for phones ------------------------------->
 <nav class="display-phone w-100">
-    <button type="button" class="rounded-circle bg-dark m-auto fixed-bottom w3-center" style="height: 55px; width: 55px;bottom: 10px!important;" onclick="closePhoneMenu()" id="buttonClose">
+    <button type="button" class="rounded-circle bg-dark m-auto fixed-bottom center_icon" style="height: 55px; width: 55px;bottom: 10px!important;" onclick="closePhoneMenu()" id="buttonClose">
         <svg class="bi bi-x m-auto" width="40px" height="40px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: lightgray;">
             <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
             <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
         </svg>
     </button>
-    <button type="button" class="rounded-circle bg-dark m-auto fixed-bottom" style="height: 55px; width: 55px;bottom: 10px!important;" onclick="openPhoneMenu()" id="buttonOpen">
-        <svg class="bi bi-filter mt-1" width="40px" height="40px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: lightgray;">
+    <button type="button" class="rounded-circle bg-dark m-auto fixed-bottom center_icon" style="height: 55px; width: 55px;bottom: 10px!important;" onclick="openPhoneMenu()" id="buttonOpen">
+        <svg class="bi bi-filter" width="40px" height="40px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: lightgray;">
             <path fill-rule="evenodd" d="M6 10.5a.5.5 0 01.5-.5h3a.5.5 0 010 1h-3a.5.5 0 01-.5-.5zm-2-3a.5.5 0 01.5-.5h7a.5.5 0 010 1h-7a.5.5 0 01-.5-.5zm-2-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
         </svg>
     </button>
@@ -216,9 +216,17 @@
 <!-------------------------- Gabarit desktop  ------------------------------->
     <nav class="display-1000 display-laptop">
         <div class="d-inline-block w-100 fixed-top p-0 shadow" style="background-color: #e30613; height: 48px;">
+            <!---------- Menu burger ---------------->
             <div class="float-left mt-2 ml-2 pl-1" type="button" onclick="openLeftMenu()">
                 <svg width="35px" height="35px" viewBox="0 0 16 16" class="bi bi-list" fill="white" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+            </div>
+
+            <!--------------- Icone notification ------------------>
+            <div class="float-left mt-2 pt-1 ml-2 pl-1" type="button">
+                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-bell-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
                 </svg>
             </div>
             <div class="ml-2 float-left">
@@ -451,7 +459,7 @@
             </a>
             <!----------------- Version ---------------->
             <div class="w-100 pt-5 pl-2 " style="height: 40px;bottom: 10px!important">
-                <a class="text-decoration-none text-light" id="hidden_18">Version : 0.625</a>
+                <a class="text-decoration-none text-light" id="hidden_18" href="https://github.com/Pedroletti-Michael/Managment-VMs">Version : 0.632</a>
             </div>
         </div>
     </nav>
