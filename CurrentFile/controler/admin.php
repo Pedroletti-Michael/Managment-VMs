@@ -10,7 +10,7 @@
  *
  * @param $vmFilter = sorts the VMs according to the value contained in this variable
  */
-function displayAllVM($searchFilter,$vmFilter = "all")
+function displayAllVM($searchFilter = 0,$vmFilter = "all")
 {
     if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
@@ -1303,12 +1303,23 @@ function addUserListAd(){
 function deleteVm($idVm){
     require_once 'model/vmManager.php';
 
-    $redundances = getRedundance();
+    $redundances = getRedundance($idVm);
+
+    echo "ID VM : ".$idVm;
+    echo print_r($redundances);
 
     if(count($redundances) != 0){
-        //RETURN INVENTORY VM AND MAKE A MODAL WITH ALL THE NAME OF THE REDUNDANCE AND MAYBE A BUTTON
+        $nameOfRedundances = "";
+        foreach ($redundances as $redundance){
+            $nameOfRedundances += $redundance;
+        }
+        $_SESSION['vmAlwaysUsed'] = $redundances;
     }
     else{
-        //DELETE VM
+        deleteSpecifiedVm($idVm);
+        echo '<script>alert("Suppression réussie");</script>';
+        $_SESSION['deleteVmSuccessfully'] = true;
     }
+
+    displayAllVM();
 }

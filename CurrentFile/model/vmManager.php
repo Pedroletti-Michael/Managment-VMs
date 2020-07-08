@@ -1077,11 +1077,31 @@ function getRedundance($idVm){
     require_once 'model/dbConnector.php';
     $strSep = '\'';
 
-    $querySelect = "SELECT name FROM vm WHERE redundance LIKE '% ".$idVm.";%'";
+    $querySelect = "SELECT name FROM vm WHERE redundance LIKE ".$strSep."% ".$idVm.";%".$strSep;
 
     $resultSelect = executeQuerySelect($querySelect);
 
-    return $resultSelect[0][0];
+    return $resultSelect;
+}
+
+/**
+ * This function used to delete one specified vm from the table "vm"
+ * @param $idVm = id of the pointed vm
+ */
+function deleteSpecifiedVm($idVm){
+    require_once 'model/dbConnector.php';
+    $strSep = '\'';
+
+    $querySelect = "DELETE FROM `vm` WHERE id = ".$strSep.$idVm.$strSep;
+
+    $resultSelect = executeQuerySelect($querySelect);
+
+    if($resultSelect === true){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 class CSV{

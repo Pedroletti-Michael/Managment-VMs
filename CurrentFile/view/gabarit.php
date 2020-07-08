@@ -1,5 +1,5 @@
 <?php
-
+    $version = "0.637";
 ?>
 <!DOCTYPE html>
 <html>
@@ -459,7 +459,7 @@
             </a>
             <!----------------- Version ---------------->
             <div class="w-100 pt-5 pl-2 " style="height: 40px;bottom: 10px!important">
-                <a class="text-decoration-none text-light" id="hidden_18" href="https://github.com/Pedroletti-Michael/Managment-VMs">Version : 0.632</a>
+                <a class="text-decoration-none text-light" id="hidden_18" href="https://github.com/Pedroletti-Michael/Managment-VMs">Version : <?= $version; ?></a>
             </div>
         </div>
     </nav>

@@ -187,7 +187,7 @@ if(isset($_GET['action']))
             break;
         case 'deleteVm':
             if(testSessionTime()){break;}
-            deleteVm($_POST['idVm']);
+            deleteVm($_GET['idVm']);
             break;
         default:
             if(testSessionTime()){break;}
