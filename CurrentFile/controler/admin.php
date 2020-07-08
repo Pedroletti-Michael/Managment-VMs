@@ -1307,18 +1307,20 @@ function deleteVm($idVm){
 
     echo "ID VM : ".$idVm;
     echo print_r($redundances);
+    $nameOfRedundances = "";
 
     if(count($redundances) != 0){
-        $nameOfRedundances = "";
+        $nameOfRedundances = $nameOfRedundances."Nous ne pouvons pas supprimé cette VM, car cette machine est utilisée comme redondance ".count($redundances)." fois. Voici le(s) nom(s) de VM qui utilise(nt) la VM sélectionnée : ";
+
         foreach ($redundances as $redundance){
-            $nameOfRedundances += $redundance;
+            $nameOfRedundances = $nameOfRedundances.$redundance['name']. " ";
         }
-        $_SESSION['vmAlwaysUsed'] = $redundances;
+
+        $_SESSION['deleteVmInformation'] = $nameOfRedundances;
     }
     else{
         deleteSpecifiedVm($idVm);
-        echo '<script>alert("Suppression réussie");</script>';
-        $_SESSION['deleteVmSuccessfully'] = true;
+        $_SESSION['deleteVmInformation'] = false;
     }
 
     displayAllVM();

@@ -16,6 +16,7 @@ ob_start();
         <title>Gestion VM - HEIG-VD</title>
     </head>
 <body>
+    <script>alert("<?= print_r($_SESSION['deleteVmInformation']); ?>")</script>
 
 <!--Confirmation update VM modal)-->
 <?php if (isset($_SESSION['displayModalErrorMail']) && $_SESSION['displayModalErrorMail'] == true) : ?>
@@ -38,6 +39,30 @@ ob_start();
     </div>
     <script>$('.modal').modal('show')</script>
     <?php unset($_SESSION['displayModalErrorMail']); endif; ?>
+
+<!--Confirmation delete VM modal)-->
+<?php if (isset($_SESSION['deleteVmInformation'])) : ?>
+    <div class="modal fade" id="displayModalErrorDelete" tabindex="-1" role="dialog"
+         aria-labelledby="displayModalErrorDelete" aria-hidden="true">
+        <div class="modal-dialog m-auto w-470-px" role="document" style="top: 45%;">
+            <div class="modal-content w-100">
+                <div class="modal-body">
+                    <div class="w-100">
+                        <?php if($_SESSION['deleteVmInformation'][0] == false) :?>
+                            <h6 class="float-left pt-2 text-center">La suppression de la VM c'est bien passée.</h6>
+                        <?php else : ?>
+                            <h6 class="float-left pt-2 text-center"><?= print_r($_SESSION['deleteVmInformation']); ?></h6>
+                        <?php endif; ?>
+                        <button type="submit" class="btn btn-success float-right btn-close-phone" data-dismiss="modal">
+                            Fermer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>$('.modal').modal('show')</script>
+<?php unset($_SESSION['deleteVmInformation']); endif; ?>
 
 <!--Confirmation update VM modal)-->
 <?php if (isset($_SESSION['displayModalConfirm']) && $_SESSION['displayModalConfirm'] == true) : ?>
@@ -86,7 +111,8 @@ ob_start();
                 <div class="w-100">
                     <!--All VM-->
                     <a onclick="changeBodyTable(0)">
-                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" id="allVMFilterButton">
+                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left"
+                                id="allVMFilterButton">
                             <span class="badge badge-dark" id="numberOfVM"> </span>
                             Toutes mes VM
                         </button>
@@ -95,7 +121,8 @@ ob_start();
                 <div class="w-100">
                     <!--Confirmed VM-->
                     <a onclick="changeBodyTable(1)">
-                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" id="inUseVMFilterButton">
+                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left"
+                                id="inUseVMFilterButton">
                             <span class="badge badge-success" id="numberOfConfirmedVM"> </span>
                             VM en service
                         </button>
@@ -104,7 +131,8 @@ ob_start();
                 <div class="w-100">
                     <!--VM who need to be confirmed-->
                     <a onclick="changeBodyTable(2)">
-                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" id="toBeConfirmedVMFilterButton">
+                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left"
+                                id="toBeConfirmedVMFilterButton">
                             <span class="badge badge-primary" id="numberOfToBeConfirmedVM"> </span>
                             VM à confirmer
                         </button>
@@ -113,7 +141,8 @@ ob_start();
                 <div class="w-100">
                     <!--VM to renew-->
                     <a onclick="changeBodyTable(3)">
-                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" id="renewableVMFilterButton">
+                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left"
+                                id="renewableVMFilterButton">
                             <span class="badge badge-warning" id="numberOfRenewalVM"> </span>
                             VM à renouveler
                         </button>
@@ -122,7 +151,8 @@ ob_start();
                 <div class="w-100">
                     <!--VM non renew-->
                     <a onclick="changeBodyTable(5)">
-                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" id="nonRenewableVMFilterButton">
+                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left"
+                                id="nonRenewableVMFilterButton">
                             <span class="badge badge-danger" id="numberOfNonRenewalVM"> </span>
                             VM non renouvelées
                         </button>
@@ -131,7 +161,8 @@ ob_start();
                 <div class="w-100">
                     <!--Deleted VM-->
                     <a onclick="changeBodyTable(4)">
-                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left" id="deletedVMFilterButton">
+                        <button type="button" class="btn btn-secondary w-100 rounded-0 mb-0 text-left"
+                                id="deletedVMFilterButton">
                             <span class="badge badge-secondary" id="numberOfDeletedVM"> </span>
                             VM supprimées
                         </button>
@@ -389,7 +420,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 120px" name="dateStart" scope="col" onclick="sortTable(4, 0)">dateStart
+                <th style="display: none; min-width: 120px" name="dateStart" scope="col" onclick="sortTable(4, 0)">
+                    dateStart
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="4_none_all">
                         <path fill-rule="evenodd"
@@ -441,7 +473,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 130px" name="desc" scope="col" onclick="sortTable(9, 0)">description
+                <th style="display: none; min-width: 130px" name="desc" scope="col" onclick="sortTable(9, 0)">
+                    description
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="9_none_all">
                         <path fill-rule="evenodd"
@@ -511,7 +544,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 126px;" name="usage" scope="col" onclick="sortTable(13, 0)">usageType
+                <th style="display: none; min-width: 126px;" name="usage" scope="col" onclick="sortTable(13, 0)">
+                    usageType
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="13_none_all">
                         <path fill-rule="evenodd"
@@ -580,7 +614,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 80px;" name="disk" scope="col" onclick="sortNumberTable(17, 0)">disk
+                <th style="display: none; min-width: 80px;" name="disk" scope="col" onclick="sortNumberTable(17, 0)">
+                    disk
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="17_none_all">
                         <path fill-rule="evenodd"
@@ -631,7 +666,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 115px;" name="comment" scope="col" onclick="sortTable(20, 0)">comment
+                <th style="display: none; min-width: 115px;" name="comment" scope="col" onclick="sortTable(20, 0)">
+                    comment
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="20_none_all">
                         <path fill-rule="evenodd"
@@ -648,7 +684,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 110px;" name="customer" scope="col" onclick="sortTable(21, 0)">customer
+                <th style="display: none; min-width: 110px;" name="customer" scope="col" onclick="sortTable(21, 0)">
+                    customer
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="21_none_all">
                         <path fill-rule="evenodd"
@@ -757,7 +794,8 @@ ob_start();
                               clip-rule="evenodd"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 140px" name="backup" scope="col" onclick="sortTable(27, 0)">backup_id
+                <th style="display: none; min-width: 140px" name="backup" scope="col" onclick="sortTable(27, 0)">
+                    backup_id
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="27_none_all">
                         <path fill-rule="evenodd"
@@ -883,7 +921,8 @@ ob_start();
                     <td name="os"
                         style="min-width: 100px"><?php echo $value['os_id']['1'] . " " . $value['os_id'][0] ?></td>
                     <td name="snapshot" style="min-width: 130px"><?php echo $value['snapshot_id']['1'] ?></td>
-                    <td style="display: none;" name="backup" style="min-width: 120px"><?php echo $value['backup_id']['1'] ?></td>
+                    <td style="display: none;" name="backup"
+                        style="min-width: 120px"><?php echo $value['backup_id']['1'] ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
@@ -943,7 +982,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 120px" name="dateStart" scope="col" onclick="sortTable(4, 0)">dateStart
+                <th style="display: none; min-width: 120px" name="dateStart" scope="col" onclick="sortTable(4, 0)">
+                    dateStart
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="4_none_all">
                         <path fill-rule="evenodd"
@@ -995,7 +1035,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 130px" name="desc" scope="col" onclick="sortTable(9, 0)">description
+                <th style="display: none; min-width: 130px" name="desc" scope="col" onclick="sortTable(9, 0)">
+                    description
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="9_none_all">
                         <path fill-rule="evenodd"
@@ -1065,7 +1106,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 126px;" name="usage" scope="col" onclick="sortTable(13, 0)">usageType
+                <th style="display: none; min-width: 126px;" name="usage" scope="col" onclick="sortTable(13, 0)">
+                    usageType
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="13_none_all">
                         <path fill-rule="evenodd"
@@ -1134,7 +1176,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 80px;" name="disk" scope="col" onclick="sortNumberTable(17, 0)">disk
+                <th style="display: none; min-width: 80px;" name="disk" scope="col" onclick="sortNumberTable(17, 0)">
+                    disk
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="17_none_all">
                         <path fill-rule="evenodd"
@@ -1185,7 +1228,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 115px;" name="comment" scope="col" onclick="sortTable(20, 0)">comment
+                <th style="display: none; min-width: 115px;" name="comment" scope="col" onclick="sortTable(20, 0)">
+                    comment
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="20_none_all">
                         <path fill-rule="evenodd"
@@ -1202,7 +1246,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 110px;" name="customer" scope="col" onclick="sortTable(21, 0)">customer
+                <th style="display: none; min-width: 110px;" name="customer" scope="col" onclick="sortTable(21, 0)">
+                    customer
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="21_none_all">
                         <path fill-rule="evenodd"
@@ -1311,7 +1356,8 @@ ob_start();
                               clip-rule="evenodd"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 140px" name="backup" scope="col" onclick="sortTable(27, 0)">backup_id
+                <th style="display: none; min-width: 140px" name="backup" scope="col" onclick="sortTable(27, 0)">
+                    backup_id
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="27_none_all">
                         <path fill-rule="evenodd"
@@ -1434,7 +1480,8 @@ ob_start();
                     <td name="os"
                         style="min-width: 100px"><?php echo $value['os_id']['1'] . " " . $value['os_id'][0] ?></td>
                     <td name="snapshot" style="min-width: 130px"><?php echo $value['snapshot_id']['1'] ?></td>
-                    <td name="backup" style="display: none; min-width: 120px"><?php echo $value['backup_id']['1'] ?></td>
+                    <td name="backup"
+                        style="display: none; min-width: 120px"><?php echo $value['backup_id']['1'] ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
@@ -1494,7 +1541,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 120px" name="dateStart" scope="col" onclick="sortTable(4, 0)">dateStart
+                <th style="display: none; min-width: 120px" name="dateStart" scope="col" onclick="sortTable(4, 0)">
+                    dateStart
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="4_none_all">
                         <path fill-rule="evenodd"
@@ -1546,7 +1594,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 130px" name="desc" scope="col" onclick="sortTable(9, 0)">description
+                <th style="display: none; min-width: 130px" name="desc" scope="col" onclick="sortTable(9, 0)">
+                    description
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="9_none_all">
                         <path fill-rule="evenodd"
@@ -1616,7 +1665,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 126px;" name="usage" scope="col" onclick="sortTable(13, 0)">usageType
+                <th style="display: none; min-width: 126px;" name="usage" scope="col" onclick="sortTable(13, 0)">
+                    usageType
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="13_none_all">
                         <path fill-rule="evenodd"
@@ -1685,7 +1735,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 80px;" name="disk" scope="col" onclick="sortNumberTable(17, 0)">disk
+                <th style="display: none; min-width: 80px;" name="disk" scope="col" onclick="sortNumberTable(17, 0)">
+                    disk
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="17_none_all">
                         <path fill-rule="evenodd"
@@ -1736,7 +1787,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 115px;" name="comment" scope="col" onclick="sortTable(20, 0)">comment
+                <th style="display: none; min-width: 115px;" name="comment" scope="col" onclick="sortTable(20, 0)">
+                    comment
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="20_none_all">
                         <path fill-rule="evenodd"
@@ -1753,7 +1805,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 110px;" name="customer" scope="col" onclick="sortTable(21, 0)">customer
+                <th style="display: none; min-width: 110px;" name="customer" scope="col" onclick="sortTable(21, 0)">
+                    customer
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="21_none_all">
                         <path fill-rule="evenodd"
@@ -1862,7 +1915,8 @@ ob_start();
                               clip-rule="evenodd"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 140px" name="backup" scope="col" onclick="sortTable(27, 0)">backup_id
+                <th style="display: none; min-width: 140px" name="backup" scope="col" onclick="sortTable(27, 0)">
+                    backup_id
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="27_none_all">
                         <path fill-rule="evenodd"
@@ -1985,7 +2039,8 @@ ob_start();
                     <td name="os"
                         style="min-width: 100px"><?php echo $value['os_id']['1'] . " " . $value['os_id'][0] ?></td>
                     <td name="snapshot" style="min-width: 130px"><?php echo $value['snapshot_id']['1'] ?></td>
-                    <td name="backup" style="display: none; min-width: 120px"><?php echo $value['backup_id']['1'] ?></td>
+                    <td name="backup"
+                        style="display: none; min-width: 120px"><?php echo $value['backup_id']['1'] ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
@@ -2045,7 +2100,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 120px" name="dateStart" scope="col" onclick="sortTable(4, 0)">dateStart
+                <th style="display: none; min-width: 120px" name="dateStart" scope="col" onclick="sortTable(4, 0)">
+                    dateStart
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="4_none_all">
                         <path fill-rule="evenodd"
@@ -2097,7 +2153,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 130px" name="desc" scope="col" onclick="sortTable(9, 0)">description
+                <th style="display: none; min-width: 130px" name="desc" scope="col" onclick="sortTable(9, 0)">
+                    description
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="9_none_all">
                         <path fill-rule="evenodd"
@@ -2167,7 +2224,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 126px;" name="usage" scope="col" onclick="sortTable(13, 0)">usageType
+                <th style="display: none; min-width: 126px;" name="usage" scope="col" onclick="sortTable(13, 0)">
+                    usageType
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="13_none_all">
                         <path fill-rule="evenodd"
@@ -2236,7 +2294,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 80px;" name="disk" scope="col" onclick="sortNumberTable(17, 0)">disk
+                <th style="display: none; min-width: 80px;" name="disk" scope="col" onclick="sortNumberTable(17, 0)">
+                    disk
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="17_none_all">
                         <path fill-rule="evenodd"
@@ -2287,7 +2346,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 115px;" name="comment" scope="col" onclick="sortTable(20, 0)">comment
+                <th style="display: none; min-width: 115px;" name="comment" scope="col" onclick="sortTable(20, 0)">
+                    comment
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="20_none_all">
                         <path fill-rule="evenodd"
@@ -2304,7 +2364,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 110px;" name="customer" scope="col" onclick="sortTable(21, 0)">customer
+                <th style="display: none; min-width: 110px;" name="customer" scope="col" onclick="sortTable(21, 0)">
+                    customer
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="21_none_all">
                         <path fill-rule="evenodd"
@@ -2413,7 +2474,8 @@ ob_start();
                               clip-rule="evenodd"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 140px" name="backup" scope="col" onclick="sortTable(27, 0)">backup_id
+                <th style="display: none; min-width: 140px" name="backup" scope="col" onclick="sortTable(27, 0)">
+                    backup_id
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="27_none_all">
                         <path fill-rule="evenodd"
@@ -2536,7 +2598,8 @@ ob_start();
                     <td name="os"
                         style="min-width: 100px"><?php echo $value['os_id']['1'] . " " . $value['os_id'][0] ?></td>
                     <td name="snapshot" style="min-width: 130px"><?php echo $value['snapshot_id']['1'] ?></td>
-                    <td name="backup" style="display: none; min-width: 120px"><?php echo $value['backup_id']['1'] ?></td>
+                    <td name="backup"
+                        style="display: none; min-width: 120px"><?php echo $value['backup_id']['1'] ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
@@ -2597,7 +2660,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 120px" name="dateStart" scope="col" onclick="sortTable(4, 0)">dateStart
+                <th style="display: none; min-width: 120px" name="dateStart" scope="col" onclick="sortTable(4, 0)">
+                    dateStart
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="4_none_all">
                         <path fill-rule="evenodd"
@@ -2649,7 +2713,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 130px" name="desc" scope="col" onclick="sortTable(9, 0)">description
+                <th style="display: none; min-width: 130px" name="desc" scope="col" onclick="sortTable(9, 0)">
+                    description
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="9_none_all">
                         <path fill-rule="evenodd"
@@ -2719,7 +2784,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 126px;" name="usage" scope="col" onclick="sortTable(13, 0)">usageType
+                <th style="display: none; min-width: 126px;" name="usage" scope="col" onclick="sortTable(13, 0)">
+                    usageType
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="13_none_all">
                         <path fill-rule="evenodd"
@@ -2788,7 +2854,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 80px;" name="disk" scope="col" onclick="sortNumberTable(17, 0)">disk
+                <th style="display: none; min-width: 80px;" name="disk" scope="col" onclick="sortNumberTable(17, 0)">
+                    disk
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="17_none_all">
                         <path fill-rule="evenodd"
@@ -2839,7 +2906,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 115px;" name="comment" scope="col" onclick="sortTable(20, 0)">comment
+                <th style="display: none; min-width: 115px;" name="comment" scope="col" onclick="sortTable(20, 0)">
+                    comment
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="20_none_all">
                         <path fill-rule="evenodd"
@@ -2856,7 +2924,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 110px;" name="customer" scope="col" onclick="sortTable(21, 0)">customer
+                <th style="display: none; min-width: 110px;" name="customer" scope="col" onclick="sortTable(21, 0)">
+                    customer
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="21_none_all">
                         <path fill-rule="evenodd"
@@ -2965,7 +3034,8 @@ ob_start();
                               clip-rule="evenodd"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 140px" name="backup" scope="col" onclick="sortTable(27, 0)">backup_id
+                <th style="display: none; min-width: 140px" name="backup" scope="col" onclick="sortTable(27, 0)">
+                    backup_id
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="27_none_all">
                         <path fill-rule="evenodd"
@@ -3088,13 +3158,12 @@ ob_start();
                     <td name="os"
                         style="min-width: 100px"><?php echo $value['os_id']['1'] . " " . $value['os_id'][0] ?></td>
                     <td name="snapshot" style="min-width: 130px"><?php echo $value['snapshot_id']['1'] ?></td>
-                    <td name="backup" style="display: none; min-width: 120px"><?php echo $value['backup_id']['1'] ?></td>
+                    <td name="backup"
+                        style="display: none; min-width: 120px"><?php echo $value['backup_id']['1'] ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
         </table>
-
-
 
 
         <table class="table table-hover allVM" id="allDeletedVmBody" hidden>
@@ -3151,7 +3220,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 120px" name="dateStart" scope="col" onclick="sortTable(4, 0)">dateStart
+                <th style="display: none; min-width: 120px" name="dateStart" scope="col" onclick="sortTable(4, 0)">
+                    dateStart
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="4_none_all">
                         <path fill-rule="evenodd"
@@ -3203,7 +3273,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 130px" name="desc" scope="col" onclick="sortTable(9, 0)">description
+                <th style="display: none; min-width: 130px" name="desc" scope="col" onclick="sortTable(9, 0)">
+                    description
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="9_none_all">
                         <path fill-rule="evenodd"
@@ -3273,7 +3344,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 126px;" name="usage" scope="col" onclick="sortTable(13, 0)">usageType
+                <th style="display: none; min-width: 126px;" name="usage" scope="col" onclick="sortTable(13, 0)">
+                    usageType
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="13_none_all">
                         <path fill-rule="evenodd"
@@ -3342,7 +3414,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 80px;" name="disk" scope="col" onclick="sortNumberTable(17, 0)">disk
+                <th style="display: none; min-width: 80px;" name="disk" scope="col" onclick="sortNumberTable(17, 0)">
+                    disk
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="17_none_all">
                         <path fill-rule="evenodd"
@@ -3393,7 +3466,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 115px;" name="comment" scope="col" onclick="sortTable(20, 0)">comment
+                <th style="display: none; min-width: 115px;" name="comment" scope="col" onclick="sortTable(20, 0)">
+                    comment
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="20_none_all">
                         <path fill-rule="evenodd"
@@ -3410,7 +3484,8 @@ ob_start();
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 110px;" name="customer" scope="col" onclick="sortTable(21, 0)">customer
+                <th style="display: none; min-width: 110px;" name="customer" scope="col" onclick="sortTable(21, 0)">
+                    customer
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="21_none_all">
                         <path fill-rule="evenodd"
@@ -3519,7 +3594,8 @@ ob_start();
                               clip-rule="evenodd"/>
                     </svg>
                 </th>
-                <th style="display: none; min-width: 140px" name="backup" scope="col" onclick="sortTable(27, 0)">backup_id
+                <th style="display: none; min-width: 140px" name="backup" scope="col" onclick="sortTable(27, 0)">
+                    backup_id
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="27_none_all">
                         <path fill-rule="evenodd"
@@ -3660,7 +3736,8 @@ ob_start();
                         style="min-width: 100px"><?php echo $value['os_id']['1'] . " " . $value['os_id'][0] ?></td>
                     <td name="snapshot" style="min-width: 130px"><?php echo $value['snapshot_id']['1'] ?></td>
                     <td name="backup" style="display: none;min-width: 120px"><?php echo $value['backup_id']['1'] ?></td>
-                    <td name="delete"><a href="index.php?action=deleteVm&idVm=<?php echo $value['id'] ?>" style="text-decoration: none">delete</a></td>
+                    <td name="delete"><a href="index.php?action=deleteVm&idVm=<?php echo $value['id'] ?>"
+                                         style="text-decoration: none">delete</a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
