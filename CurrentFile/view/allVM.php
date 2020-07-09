@@ -18,7 +18,7 @@ ob_start();
         <title>Gestion VM - HEIG-VD</title>
     </head>
 <body>
-<div class="alert alert-success alert-dismissible fade show">
+<div class="alert alert-success alert-dismissible fade show mb-0">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <strong>Réussite!</strong> La suppresion de la VM c'est bien passée.
 </div>
