@@ -12,11 +12,16 @@ ob_start();
         <script rel="javascript" src="../view/js/jquery.js"></script>
         <script rel="javascript" src="../view/js/script.js"></script>
         <script rel="javascript" src="../view/js/searchBox.js"></script>
+        <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.bundle.js"></script>
+        <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
         <meta charset="UTF-8">
         <title>Gestion VM - HEIG-VD</title>
     </head>
 <body>
-    <script>alert("<?= print_r($_SESSION['deleteVmInformation']); ?>")</script>
+<div class="alert alert-success alert-dismissible fade show">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Réussite!</strong> La suppresion de la VM c'est bien passée.
+</div>
 
 <!--Confirmation update VM modal)-->
 <?php if (isset($_SESSION['displayModalErrorMail']) && $_SESSION['displayModalErrorMail'] == true) : ?>
@@ -42,26 +47,17 @@ ob_start();
 
 <!--Confirmation delete VM modal)-->
 <?php if (isset($_SESSION['deleteVmInformation'])) : ?>
-    <div class="modal fade" id="displayModalErrorDelete" tabindex="-1" role="dialog"
-         aria-labelledby="displayModalErrorDelete" aria-hidden="true">
-        <div class="modal-dialog m-auto w-470-px" role="document" style="top: 45%;">
-            <div class="modal-content w-100">
-                <div class="modal-body">
-                    <div class="w-100">
-                        <?php if($_SESSION['deleteVmInformation'][0] == false) :?>
-                            <h6 class="float-left pt-2 text-center">La suppression de la VM c'est bien passée.</h6>
-                        <?php else : ?>
-                            <h6 class="float-left pt-2 text-center"><?= print_r($_SESSION['deleteVmInformation']); ?></h6>
-                        <?php endif; ?>
-                        <button type="submit" class="btn btn-success float-right btn-close-phone" data-dismiss="modal">
-                            Fermer
-                        </button>
-                    </div>
-                </div>
-            </div>
+    <?php if($_SESSION['deleteVmInformation'][0] == false) :?>
+        <div class="alert alert-success alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Réussite!</strong> La suppresion de la VM c'est bien passée.
         </div>
-    </div>
-    <script>$('.modal').modal('show')</script>
+    <?php else : ?>
+        <div class="alert alert-warning alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Attention!</strong> <?= print_r($_SESSION['deleteVmInformation']); ?>
+        </div>
+    <?php endif; ?>
 <?php unset($_SESSION['deleteVmInformation']); endif; ?>
 
 <!--Confirmation update VM modal)-->
@@ -3746,6 +3742,20 @@ ob_start();
     </div>
 </form>
 <script>
+    /**
+    window.setTimeout(function () {
+        $(".alert-success").fadeTo(500, 0).slideUp(500, function () {
+            $(this).remove();
+        });
+    }, 5000);*/
+
+    window.setTimeout(function () {
+        $(".alert-warning").fadeTo(500, 0).slideUp(500, function () {
+            $(this).remove();
+        });
+    }, 5000);
+
+
     var allVm = <?= json_encode($allVM); ?>;
     var i;
     var allVmCount = allVm.length;
