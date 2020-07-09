@@ -1,5 +1,10 @@
 <?php
-    $version = "0.637";
+    if(isset($_SESSION['versionSite'])){
+        $version = "0.".$_SESSION['versionSite'];
+    }
+    else{
+        $version = "0.000";
+    }
 ?>
 <!DOCTYPE html>
 <html>
