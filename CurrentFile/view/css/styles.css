@@ -134,8 +134,8 @@
 }
 
 .center_icon{
-    justify-content: center;
-    align-items: center;
+    justify-content: center!important;
+    align-items: center!important;
 }
 
 .search_icon{
