@@ -111,6 +111,9 @@ function createSession($userEmail)
         $_SESSION['countConfirmationVM'] = countUserConfirmationVM($_SESSION['userId']);
         $_SESSION['countRenewalVM'] = countUserRenewalVM($_SESSION['userId']);
     }
+
+    require_once 'model/notificationPushManager.php';
+    addNotificationPush("une connexion réussi");
 }
 
 function testSessionTime(){

@@ -1304,9 +1304,6 @@ function deleteVm($idVm){
     require_once 'model/vmManager.php';
 
     $redundances = getRedundance($idVm);
-
-    echo "ID VM : ".$idVm;
-    echo print_r($redundances);
     $nameOfRedundances = "";
 
     if(count($redundances) != 0){
