@@ -8,6 +8,9 @@ function getJsonData($n) {
     if($n == 0){
         $file = 'data/alertManagementData.json';
     }
+    elseif ($n == 9){
+        $file = 'data/notificationPush.json';
+    }
     else{
         $file = 'data/mailContent.json';
     }
@@ -19,6 +22,9 @@ function saveJsonData($dataToWrite, $n, $newFile = null) {
     if($newFile == null){
         if($n == 0){
             $file = 'data/alertManagementData.json';
+        }
+        elseif ($n == 9){
+            $file = 'data/notificationPush.json';
         }
         else{
             $file = 'data/mailContent.json';

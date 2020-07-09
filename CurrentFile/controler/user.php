@@ -96,13 +96,6 @@ function createSession($userEmail)
 
     $_SESSION['sessionTime'] = strtotime(date("Y-m-d H:i:s"));
 
-    require_once 'model/VersionControl/Git.php';
-    $git = new VersionControl_Git('../');
-    $commits = 0;
-    $commits = $git->getCommits();
-
-    $_SESSION['versionSite'] = $commits;
-
     $_SESSION['userType'] = getUserType($userEmail);
     $_SESSION['userId'] = getUserId($userEmail);
 
