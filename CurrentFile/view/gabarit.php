@@ -1,10 +1,5 @@
 <?php
-    if(isset($_SESSION['versionSite'])){
-        $version = "0.".$_SESSION['versionSite'];
-    }
-    else{
-        $version = "0.000";
-    }
+    $version = "0.641";
 ?>
 <!DOCTYPE html>
 <html>
@@ -469,7 +464,11 @@
         </div>
     </nav>
 <?php endif; ?>
-    <main id="main" role="main" class="mt-5 padding-left" style="transition: padding-left 0.5s;">
+<?php if ($_GET['action'] == "signIn"): ?>
+<main id="main" role="main">
+        <?php else: ?>
+<main id="main" role="main" class="mt-5 padding-left" style="transition: padding-left 0.5s;">
+        <?php endif; ?>
         <?= $contenu; ?>
     </main>
 </body>

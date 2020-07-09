@@ -39,6 +39,11 @@
     color: black;
     text-decoration: none;
 }
+.align-center-signIn{
+    top: calc(50% - 225px);
+    left: calc(50% - 307px);
+    position: absolute;
+}
 .search-responsive{
     width: calc(100% - 200px - 130px)!important;
 }
@@ -356,6 +361,11 @@
     #main{
         margin-top: -21px!important;
         margin-bottom: 70px;
+    }
+    .align-center-signIn{
+        width: 100%!important;
+        top: 10%;
+        left: 0%;
     }
     .menu-phone-selected{
         text-decoration: underline red!important;
