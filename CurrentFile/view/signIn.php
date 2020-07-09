@@ -15,9 +15,8 @@ ob_start();
         <meta charset="UTF-8">
         <title>Sign In - HEIG-VD</title>
     </head>
-    <body class="responsive-phone-bg fixed-top">
-    <div class="mr-auto ml-auto responsive-phone" style="width: 700px; margin-top: 17%;">
-        <div class="d-inline-block bg-light m-auto">
+    <body>
+        <div class="d-inline-block bg-light align-center-signIn">
             <div class="p-2">
                 <img src="../images/logo-gabarit.png" class="w-100 h-auto" ">
             </div>
@@ -45,11 +44,9 @@ ob_start();
                             echo "<div style='color: red'>Veuillez renseigner tous les champs !</div>";
                         }
                     ?>
-                    </div>
                 </form>
             </div>
         </div>
-    </div>
     </body>
 <?php
 

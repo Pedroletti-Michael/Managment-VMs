@@ -464,7 +464,11 @@
         </div>
     </nav>
 <?php endif; ?>
-    <main id="main" role="main" class="mt-5 padding-left" style="transition: padding-left 0.5s;">
+<?php if ($_GET['action'] == "signIn"): ?>
+<main id="main" role="main">
+        <?php else: ?>
+<main id="main" role="main" class="mt-5 padding-left" style="transition: padding-left 0.5s;">
+        <?php endif; ?>
         <?= $contenu; ?>
     </main>
 </body>
