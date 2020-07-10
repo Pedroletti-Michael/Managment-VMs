@@ -978,6 +978,16 @@ function getVmName(){
     return $resultSelect;
 }
 
+function getVmNameById($idVm){
+    require_once 'model/dbConnector.php';
+    $strSep = '\'';
+    $query = "SELECT `name` FROM `vm` WHERE `id` = ".$strSep.$idVm.$strSep;
+
+    $resultSelect = executeQuerySelect($query);
+
+    return $resultSelect[0][0];
+}
+
 function getAllVmForCheckSendingMail(){
     $strSep = '\'';
     $querySelect = "SELECT `id`,`name`,`dateAnniversary`,`dateEnd`,`customer`,`userRa`,`userRt`,`vmStatus` FROM `vm` WHERE vmStatus = 2 OR vmStatus = 3";

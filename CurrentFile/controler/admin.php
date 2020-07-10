@@ -415,6 +415,9 @@ function updateVM($vmInformation)
 
     if(updateVMInformation($vmInformation, $_SESSION['idVM']))
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("une modification de la VM ".$vmInformation['inputVMName']);
+
         if($_SESSION['userType'] == 0)
         {
             displayHome();
@@ -432,6 +435,9 @@ function updateVM($vmInformation)
     }
     else
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("une tentative de modification de la VM ".$vmInformation['inputVMName']." c\'est mal passé");
+
         if($_SESSION['userType'] == 0)
         {
             displayHome();
@@ -584,16 +590,22 @@ function vmAccepted($vmInformation)
 
     if(updateStatusVM($_SESSION['idVM'], $vmStatus, null, $vmInformation) == 2 && updateVMInformation($vmInformation, $_SESSION['idVM']))
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("une acceptation de la VM ".$vmInformation['inputVMName']);
         $_SESSION['displayModalConfirm'] = true;
         displayAllVM("","");
     }
     elseif(updateStatusVM($_SESSION['idVM'], $vmStatus, null, $vmInformation) == 1 && updateVMInformation($vmInformation, $_SESSION['idVM']))
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("une acceptation de la VM ".$vmInformation['inputVMName']." mais une erreur dans l'envoie de mail est survenu");
         $_SESSION['displayModalErrorMail'] = true;
         displayAllVM("","");
     }
     else
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("une tentative d'acceptation de la VM ".$vmInformation['inputVMName']." mais cela a échoué");
         $_SESSION['displayErrorModification'] = true;
         displayDetailsVM($_SESSION['idVM']);
     }
@@ -617,16 +629,22 @@ function vmRefused($reason = null)
 
     if(updateStatusVM($_SESSION['idVM'], $vmStatus, $reason) == 2)
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("un refus pour la VM ".getVmNameById($_SESSION['idVM']));
         $_SESSION['$displayModalConfirm'] = true;
         displayAllVM("");
     }
     elseif(updateStatusVM($_SESSION['idVM'], $vmStatus, $reason) == 1)
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("un refus pour la VM ".getVmNameById($_SESSION['idVM'])." une erreur dans l'envoi du mail est survenu");
         $_SESSION['displayModalErrorMail'] = true;
         displayAllVM("");
     }
     else
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("une tentative de refus pour la VM ".getVmNameById($_SESSION['idVM'])." mais ce ne c'est pas passé correctement");
         $_SESSION['displayErrorModification'] = true;
         displayDetailsVM($_SESSION['idVM']);
     }
@@ -644,16 +662,22 @@ function renewwalAccepted()
 
     if(updateStatusVM($_SESSION['idVM'], $vmStatus) == 2)
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("un renouvellement pour la VM ".getVmNameById($_SESSION['idVM']));
         $_SESSION['$displayModalConfirm'] = true;
         displayAllVM("");
     }
     elseif(updateStatusVM($_SESSION['idVM'], $vmStatus) == 1)
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("un renouvellement pour la VM ".getVmNameById($_SESSION['idVM'])." mais l'envoi de mail c'est mal passé");
         $_SESSION['displayModalErrorMail'] = true;
         displayAllVM("");
     }
     else
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("une tentative de renouvellement pour la VM ".getVmNameById($_SESSION['idVM'])." mais une erreur est survenu lors du processus");
         $_SESSION['displayErrorModification'] = true;
         displayDetailsVM($_SESSION['idVM']);
     }
@@ -670,16 +694,22 @@ function renewwalRefused()
 
     if(updateStatusVM($_SESSION['idVM'], $vmStatus) == 2)
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("un refus pour le renouvellement de la VM ".getVmNameById($_SESSION['idVM']));
         $_SESSION['$displayModalConfirm'] = true;
         displayAllVM("");
     }
     elseif(updateStatusVM($_SESSION['idVM'], $vmStatus) == 1)
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("un refus pour le renouvellement de la VM ".getVmNameById($_SESSION['idVM'])." une erreur est survenue lors de l'envoi du mail");
         $_SESSION['displayModalErrorMail'] = true;
         displayAllVM("");
     }
     else
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("une tentative de refus pour le renouvellement de la VM ".getVmNameById($_SESSION['idVM'])." mais une erreur est survenue");
         $_SESSION['displayErrorModification'] = true;
         displayDetailsVM($_SESSION['idVM']);
     }
@@ -746,6 +776,8 @@ function editEntity($entityName)
         {
             $nameEntity = $entityName['txtEntityAdd'];
             addEntity($nameEntity);
+            require_once 'model/notificationPushManager.php';
+            addNotificationPush("un ajout d'une entité dont le nom est : ".$nameEntity);
         }
     }
     if(isset($entityName['delete']))
@@ -778,6 +810,8 @@ function editEntity($entityName)
             else
             {
                 deleteEntity($nameEntity);
+                require_once 'model/notificationPushManager.php';
+                addNotificationPush("une suppression d'une entité dont le nom est : ".$nameEntity);
             }
 
         }
@@ -789,6 +823,8 @@ function editEntity($entityName)
             $nameEntity = $entityName['valueEntityMod'];
             $newName = $entityName['txtEntityMod'];
             modifyEntity($nameEntity,$newName);
+            require_once 'model/notificationPushManager.php';
+            addNotificationPush("une modification du nom de l'entité anciennement : ".$nameEntity." à : ".$newName);
         }
     }
     displayFormManagement($arrayToDisplay);
@@ -821,6 +857,14 @@ function editOS($osName)
                 $osName['osCommendableAdd'] = 0;
             }
             addOS($nameOS,$typeOS, $osName['osCommendableAdd']);
+            require_once 'model/notificationPushManager.php';
+            if($osName['osCommendableAdd'] == 1){
+                addNotificationPush("un ajout d'un os nom : ".$nameOS." type : ".$typeOS." commendable : non");
+            }
+            else{
+                addNotificationPush("un ajout d'un os nom : ".$nameOS." type : ".$typeOS." commendable : oui");
+            }
+
         }
     }
     elseif(isset($osName['delete']))
@@ -866,6 +910,8 @@ function editOS($osName)
                 else
                 {
                     deleteOS($textOs);
+                    require_once 'model/notificationPushManager.php';
+                    addNotificationPush("une suppression d'un os dont le nom est : ".$nameOS);
                 }
             }
         }
@@ -901,6 +947,8 @@ function editOS($osName)
                 }
             }
             modifyOS($textOs,$newName,$newType, $osName['osCommendableMod']);
+            require_once 'model/notificationPushManager.php';
+            addNotificationPush("une modification d'un os dont le nom était : ".$osName." est devenu : ".$newName." le type est devenu : ".$newType);
         }
     }
     displayFormManagement($arrayToDisplay);
@@ -924,6 +972,8 @@ function editSnapshots($snapshotsName)
             $typeSnapshots= $snapshotsName['typeSnapAdd'];
             $policySnapshots = $snapshotsName['txtSnapAdd'];
             addSnapshots($typeSnapshots,$policySnapshots);
+            require_once 'model/notificationPushManager.php';
+            addNotificationPush("un ajout d'un nouveau type de snapshot nom : ".$typeSnapshots." policy : ".$policySnapshots);
         }
     }
     elseif(isset($snapshotsName['delete']))
@@ -971,6 +1021,8 @@ function editSnapshots($snapshotsName)
             else
             {
                 deleteSnapshots($typeSnapshots);
+                require_once 'model/notificationPushManager.php';
+                addNotificationPush("une suppresion d'un type de snapshot son nom : ".$typeSnapshots);
             }
         }
     }
@@ -996,6 +1048,8 @@ function editSnapshots($snapshotsName)
                 }
             }
             modifySnapshots($typeSnapshots,$newPolicy,$newType);
+            require_once 'model/notificationPushManager.php';
+            addNotificationPush("une modification d'un type de snapshot son ancien nom : ".$typeSnapshots." son nouveau nom : ".$newType." nouvelle policy : ".$newPolicy);
         }
     }
     displayFormManagement($arrayToDisplay);
@@ -1019,6 +1073,8 @@ function editBackup($backupName)
             $typeBackup= $backupName['typeBackupAdd'];
             $policyBackup = $backupName['txtBackupAdd'];
             addBackup($typeBackup,$policyBackup);
+            require_once 'model/notificationPushManager.php';
+            addNotificationPush("ajout d'un nouveau type de backup, son nom : ".$typeBackup." sa policy : ".$policyBackup);
         }
     }
     elseif(isset($backupName['delete']))
@@ -1066,6 +1122,8 @@ function editBackup($backupName)
             else
             {
                 deleteBackup($typeBackup);
+                require_once 'model/notificationPushManager.php';
+                addNotificationPush("suppresion d'un type de backup, son nom : ".$typeBackup);
             }
         }
     }
@@ -1091,6 +1149,8 @@ function editBackup($backupName)
                 }
             }
             modifyBackup($typeBackup,$newPolicy,$newType);
+            require_once 'model/notificationPushManager.php';
+            addNotificationPush("modification d'un type de backup, son ancien nom : ".$typeBackup." son nouveau nom : ".$newType." sa nouvelle policy : ".$newPolicy);
         }
     }
     displayFormManagement($arrayToDisplay);
@@ -1108,6 +1168,8 @@ function displayResearch($inputResearch)
         require_once 'model/vmManager.php';
         require_once 'model/dbConnector.php';
         $researchResult = researchVm($inputResearch);
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("une recherche voici la recherche : ".$inputResearch);
 
         //display searchResultView
         require 'view/searchResult.php';
@@ -1142,16 +1204,22 @@ function modifyStatusAfterRenewal($idVM, $status)
 
     if($result == 2)
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("un renouvellement pour la VM : ".getVmNameById($idVM['id']));
         $_SESSION['$displayModalConfirm'] = true;
         displayAllVM("");
     }
     elseif($result == 1)
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("un renouvellement pour la VM : ".getVmNameById($idVM['id'])." mais une erreur est survenue lors de l'envoi des mails");
         $_SESSION['displayModalErrorMail'] = true;
         displayAllVM("");
     }
     else
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("une tentative de renouvellement pour la VM : ".getVmNameById($idVM['id'])." mais une erreur est survenue lors du processus");
         $_SESSION['displayErrorModification'] = true;
         displayDetailsVM($idVM['id']);
     }
@@ -1166,6 +1234,8 @@ function exportToExcel()
     $allVM = getAllVM();
 
     exportVMToExcel($allVM);
+    require_once 'model/notificationPushManager.php';
+    addNotificationPush("un export de VM");
 }
 
 /**
@@ -1216,17 +1286,23 @@ function saveAlertModification($data)
 
         if(saveJsonData($tableToSave, 0))
         {
+            require_once 'model/notificationPushManager.php';
+            addNotificationPush("des modifications apportées aux gestionnaire des alertes");
             $_SESSION['saveAlertModification'] = 1;
             displayAlertManagementPage();
         }
         else
         {
+            require_once 'model/notificationPushManager.php';
+            addNotificationPush("une tentative de modification des données du gestionnaire des alertes, qui n'a pas abouti");
             $_SESSION['saveAlertModification'] = false;
             displayAlertManagementPage();
         }
     }
     else
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("une tentative de modification des données du gestionnaire des alertes, qui n'a pas abouti (tableau manquant)");
         $_SESSION['saveAlertModification'] = false;
         displayAlertManagementPage();
     }
@@ -1271,17 +1347,23 @@ function saveContentMail($data)
 
         if(saveJsonData($tableToSave, 1))
         {
+            require_once 'model/notificationPushManager.php';
+            addNotificationPush("des modifications sur le contenu des e-mails");
             $_SESSION['saveContentMail'] = 1;
             displayAlertManagementPage();
         }
         else
         {
+            require_once 'model/notificationPushManager.php';
+            addNotificationPush("une tentative de modification sur le contenu des e-mails, qui n'a pas abouti");
             $_SESSION['saveContentMail'] = false;
             displayAlertManagementPage();
         }
     }
     else
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("une tentative de modification sur le contenu des e-mails, qui n'a pas abouti (tableau manquant)");
         $_SESSION['saveContentMail'] = false;
         displayAlertManagementPage();
     }
@@ -1291,10 +1373,14 @@ function addUserListAd(){
     require_once 'model/userManager.php';
 
     if(addUserToDiffusionList()){
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("une vérification pour l'ajout des utilisateurs dans les bonnes listes de diffusions");
         $_SESSION['diffusionListAdding'] = true;
         displayManagementUser();
     }
     else{
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("une tentative de vérification pour l'ajout des utilisateurs dans les bonnes listes de diffusions, qui n'a pas abouti");
         $_SESSION['diffusionListAdding'] = false;
         displayManagementUser();
     }
@@ -1307,6 +1393,8 @@ function deleteVm($idVm){
     $nameOfRedundances = "";
 
     if(count($redundances) != 0){
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("une tentative de suppresion de la VM : ".getVmNameById($idVm)." mais la VM était utilisée comme redondance par d'autre VM");
         $nameOfRedundances = $nameOfRedundances."Nous ne pouvons pas supprimé cette VM, car cette machine est utilisée comme redondance ".count($redundances)." fois. Voici le(s) nom(s) de VM qui utilise(nt) la VM sélectionnée : ";
 
         foreach ($redundances as $redundance){
@@ -1316,6 +1404,8 @@ function deleteVm($idVm){
         $_SESSION['deleteVmInformation'] = $nameOfRedundances;
     }
     else{
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("une suppression d'une VM dont le nom était : ".getVmNameById($idVm));
         deleteSpecifiedVm($idVm);
         $_SESSION['deleteVmInformation'] = false;
     }

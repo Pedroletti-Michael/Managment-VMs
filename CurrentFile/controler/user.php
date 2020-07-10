@@ -197,6 +197,9 @@ function renewalTest(){
         }
     }
 
+    require_once 'model/notificationPushManager.php';
+    addNotificationPush("une vérification pour l'envoi des e-mails d\'avertissement pour le renouvellement des VM");
+
     echo '<script>alert("'.$advertMail.' vérification pour des e-mails d\'avertissement ont été effectuée.<br>'.$nonrenewalMail.' e-mails de non renouvellements sont partis.");</script>';
 
     displayManagementUser();
@@ -217,6 +220,9 @@ function refreshUser(){
     {
         displayManagementUser();
     }
+
+    require_once 'model/notificationPushManager.php';
+    addNotificationPush("une vérification de la liste des users via l'annuaire");
 }
 
 /**
@@ -230,11 +236,13 @@ function saveModificationAboutUsers($allData)
     require_once 'model/userManager.php';
     $allUsers = getAllUsers();
 
+    //get the right list of user, depend on sorting method
     if(isset($allData['usersAfterAsc']) && isset($allData['usersViewerAfterAsc']))
     {
         $adminFromForm = explode(";", $allData['usersAfterAsc']);
         $viewerFromForm = explode(";", $allData['usersViewerAfterAsc']);
 
+        //part used to check if we need to upgrade an user to administrator
         foreach($adminFromForm as $adminForm)
         {
             foreach($allUsers as $user)
@@ -243,12 +251,16 @@ function saveModificationAboutUsers($allData)
                 {
                     if($user['type'] == 0 || $user['type'] == 2)
                     {
+                        $userName = getUserCompleteName($user['user_id']);
                         updateType($user['user_id'], true);
+                        require_once 'model/notificationPushManager.php';
+                        addNotificationPush("passer le compte de ".$userName[0]." ".$userName[1]." en tant qu'administrateur");
                     }
                 }
             }
         }
 
+        //part used to check if we need to upgrade an user to viewer
         foreach($viewerFromForm as $viewerForm)
         {
             foreach($allUsers as $user)
@@ -257,7 +269,10 @@ function saveModificationAboutUsers($allData)
                 {
                     if($user['type'] == 0 || $user['type'] == 1)
                     {
+                        $userName = getUserCompleteName($user['user_id']);
                         updateType($user['user_id'], 2);
+                        require_once 'model/notificationPushManager.php';
+                        addNotificationPush("passer le compte de ".$userName[0]." ".$userName[1]." en tant que viewer");
                     }
                 }
             }
@@ -265,6 +280,7 @@ function saveModificationAboutUsers($allData)
 
         $adminFromDb = getAllAdmin();
 
+        //part used to check if we need to downgrade an administrator to user
         foreach($adminFromDb as $adminDb)
         {
             $res = false;
@@ -278,12 +294,16 @@ function saveModificationAboutUsers($allData)
 
             if(!$res)
             {
+                $userName = getUserCompleteName($adminDb['user_id']);
                 updateType($adminDb['user_id'], false);
+                require_once 'model/notificationPushManager.php';
+                addNotificationPush("passer le compte de ".$userName[0]." ".$userName[1]." en tant que simple utilisateur");
             }
         }
 
         $viewerFromDb = getAllViewer();
 
+        //part used to check if we need to downgrade an viewer to user
         foreach($viewerFromDb as $viewerDb)
         {
             $res = false;
@@ -298,7 +318,10 @@ function saveModificationAboutUsers($allData)
 
             if(!$res)
             {
+                $userName = getUserCompleteName($viewerDb['user_id']);
                 updateType($viewerDb['user_id'], false);
+                require_once 'model/notificationPushManager.php';
+                addNotificationPush("passer le compte de ".$userName[0]." ".$userName[1]." en tant que simple utilisateur");
             }
         }
     }
@@ -315,7 +338,10 @@ function saveModificationAboutUsers($allData)
                 {
                     if($user['type'] == 0 || $user['type'] == 2)
                     {
+                        $userName = getUserCompleteName($user['user_id']);
                         updateType($user['user_id'], true);
+                        require_once 'model/notificationPushManager.php';
+                        addNotificationPush("passer le compte de ".$userName[0]." ".$userName[1]." en tant qu'administrateur");
                     }
                 }
             }
@@ -329,7 +355,10 @@ function saveModificationAboutUsers($allData)
                 {
                     if($user['type'] == 0 || $user['type'] == 1)
                     {
+                        $userName = getUserCompleteName($user['user_id']);
                         updateType($user['user_id'], 2);
+                        require_once 'model/notificationPushManager.php';
+                        addNotificationPush("passer le compte de ".$userName[0]." ".$userName[1]." en tant que viewer");
                     }
                 }
             }
@@ -351,7 +380,10 @@ function saveModificationAboutUsers($allData)
 
             if(!$res)
             {
+                $userName = getUserCompleteName($adminDb['user_id']);
                 updateType($adminDb['user_id'], false);
+                require_once 'model/notificationPushManager.php';
+                addNotificationPush("passer le compte de ".$userName[0]." ".$userName[1]." en tant que simple utilisateur");
             }
         }
 
@@ -370,7 +402,10 @@ function saveModificationAboutUsers($allData)
             }
             if(!$res)
             {
+                $userName = getUserCompleteName($viewerDb['user_id']);
                 updateType($viewerDb['user_id'], false);
+                require_once 'model/notificationPushManager.php';
+                addNotificationPush("passer le compte de ".$userName[0]." ".$userName[1]." en tant que simple utilisateur");
             }
         }
     }
