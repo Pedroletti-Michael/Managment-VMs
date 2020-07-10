@@ -221,6 +221,9 @@ function formVM($formVMRequest)
 
     if(addVMToDB($formVMRequest))
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("un ajout d'une nouvelle demande pour une VM dont le nom est : ".$formVMRequest['inputVMName']);
+
         require_once 'model/mailSender.php';
         $vmFromDb = getVmNameAndIdByName($formVMRequest['inputVMName']);
 
@@ -399,6 +402,9 @@ function formVMAdmin($formVMAdminRequest)
 
     if(addVMToDB($formVMAdminRequest))
     {
+        require_once 'model/notificationPushManager.php';
+        addNotificationPush("un ajout d'une nouvelle demande pour une VM, depuis le formulaire admin, dont le nom est : ".$formVMRequest['inputVMName']);
+
         require_once 'model/mailSender.php';
         $vmFromDb = getVmNameAndIdByName($formVMAdminRequest['inputVMName']);
 

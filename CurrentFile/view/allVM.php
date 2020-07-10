@@ -18,10 +18,6 @@ ob_start();
         <title>Gestion VM - HEIG-VD</title>
     </head>
 <body>
-<div class="alert alert-success alert-dismissible fade show mb-0">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>Réussite!</strong> La suppresion de la VM c'est bien passée.
-</div>
 
 <!--Confirmation update VM modal)-->
 <?php if (isset($_SESSION['displayModalErrorMail']) && $_SESSION['displayModalErrorMail'] == true) : ?>
@@ -48,12 +44,12 @@ ob_start();
 <!--Confirmation delete VM modal)-->
 <?php if (isset($_SESSION['deleteVmInformation'])) : ?>
     <?php if($_SESSION['deleteVmInformation'][0] == false) :?>
-        <div class="alert alert-success alert-dismissible fade show">
+        <div class="alert alert-success alert-dismissible fade show mb-0">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <strong>Réussite!</strong> La suppresion de la VM c'est bien passée.
         </div>
     <?php else : ?>
-        <div class="alert alert-warning alert-dismissible fade show">
+        <div class="alert alert-warning alert-dismissible fade show mb-0">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <strong>Attention!</strong> <?= print_r($_SESSION['deleteVmInformation']); ?>
         </div>
@@ -3742,12 +3738,11 @@ ob_start();
     </div>
 </form>
 <script>
-    /**
     window.setTimeout(function () {
         $(".alert-success").fadeTo(500, 0).slideUp(500, function () {
             $(this).remove();
         });
-    }, 5000);*/
+    }, 5000);
 
     window.setTimeout(function () {
         $(".alert-warning").fadeTo(500, 0).slideUp(500, function () {
