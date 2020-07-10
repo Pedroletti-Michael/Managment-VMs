@@ -51,5 +51,9 @@ function getFiveNotificationPush(){
 }
 
 function getAllNotificationPush(){
+    require_once 'model/jsonConnector.php';
+    $actualJsonData = getJsonData(9);
+    $actualNotificationPush = $actualJsonData['notifications'];
 
+    return $actualNotificationPush;
 }
