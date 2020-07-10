@@ -215,6 +215,13 @@ function openLeftMenu() {
     }
 }
 
+function clickOnTheRing() {
+    document.getElementById("menu_notifs").style.visibility = "visible";
+}
+function mouseLeaveNotifMenu() {
+    document.getElementById("menu_notifs").style.visibility = "hidden";
+}
+
 function openPhoneMenu() {
     document.getElementById("phoneMenu").style.display = "block";
     document.getElementById("buttonOpen").style.display = "none";

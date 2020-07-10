@@ -1,5 +1,5 @@
 <?php
-    $version = '0.647';
+    $version = '0.652';
 ?>
 <!DOCTYPE html>
 <html>
@@ -225,25 +225,34 @@
             </div>
 
             <!--------------- Icone notification ------------------>
-            <div class="float-left mt-2 pt-1 ml-2 pl-1 w3-dropdown-hover" type="button">
+            <div class="float-left mt-2 pt-1 ml-2 pl-1 w3-dropdown-hover h-100" type="button" onclick="clickOnTheRing()" onmouseleave="mouseLeaveNotifMenu()">
                 <!------------ Notifications ------------------>
-                <div class="menu-notifs w3-dropdown-content w3-padding bg-light p-2 rounded border border-dark" id="menu_notifs">
-                    <div class="w-100 border-bottom border-dark text-center pb-1">
+                <div class="menu-notifs w3-dropdown-content bg-dark p-2 text-white" id="menu_notifs" style="visibility: hidden;">
+                    <div class="w-100 text-center pb-1 title-notif">
                         <a><strong>Notifications</strong></a>
                     </div>
-                    <div class="w-100 notif">
+                    <div class="w-100 notif btn-group-vertical text-left">
                         Je me suis suicidé
                     </div>
-                    <div class="w-100 notif">
+                    <div class="w-100 notif btn-group-vertical text-left">
                         Lol t'es trop drôle
                     </div>
+                    <div class="w-100 notif btn-group-vertical text-left">
+                        Je me suis suicidé
+                    </div>
+                    <div class="w-100 notif btn-group-vertical text-left">
+                        Lol t'es trop drôle
+                    </div>
+                    <div class="w-100 notif btn-group-vertical text-left">
+                        Je me suis suicidé
+                    </div>
+                    <div class="mt-1"><a href="okok" class="text-decoration-none text-white"><strong>Voir toutes les notifications</strong></a></div>
                 </div>
-
-                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-bell-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-bell-fill mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
                 </svg>
             </div>
-            <div class="ml-2 float-left">
+            <div class="float-left">
                 <!-- Search form -->
                 <div class="d-flex justify-content-center ml-2">
                     <form method="post" action="../index.php?action=research">
