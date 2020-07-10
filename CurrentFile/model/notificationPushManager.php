@@ -30,8 +30,13 @@ function addNotificationPush($action = "unknow"){
     $actualJsonData['id'] = $actualJsonData['id'] + 1;
 
 
-    for($i = 0; $i < 200; $i++){
-        array_push($actualJsonData['notifications'], $actualNotificationPush[$actualJsonData['id']-$i]);
+    if($actualJsonData['id'] > 200){
+        for($i = 0; $i < 200; $i++){
+            array_push($actualJsonData['notifications'], $actualNotificationPush[$actualJsonData['id']-$i]);
+        }
+    }
+    else{
+        $actualJsonData['notifications'] = $actualNotificationPush;
     }
 
     return saveJsonData($actualJsonData, 9);
