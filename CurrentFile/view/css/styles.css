@@ -39,26 +39,32 @@
     color: black;
     text-decoration: none;
 }
+.title-notif{
+    border-bottom: 2px solid aliceblue;
+}
 .menu-notifs{
-    transition: opacity 0.4s;
+    transition: opacity 0.6s;
     -webkit-animation-name: fadeInOpacity;
     animation-name: fadeInOpacity;
     -webkit-animation-iteration-count: 1;
     animation-iteration-count: 1;
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
-    -webkit-animation-duration: 0.4s;
-    animation-duration: 0.4s;
-    top: 45px;
-    width: 300px;
-    height: 350px;
+    -webkit-animation-duration: 0.6s;
+    animation-duration: 0.6s;
+    top: 40px;
+    width: 320px;
+    height: 395px;
     z-index: 99999;
+    border: 2px solid #506E8A;
 }
 .notif{
     height: 64px;
-    border-bottom: 2px solid grey;
-    justify-items: center;
-    align-content: center;
+    border-bottom: 1px solid aliceblue;
+
+}
+.notif:hover{
+    background-color: #63707c!important;
 }
 
 .align-center-signIn{
@@ -205,9 +211,9 @@
 .w3-animate-bottom{position:relative;animation:animatebottom 0.8s}@keyframes animatebottom{from{bottom:-90%;opacity:0;} to{bottom:0;opacity:1;}}
 .w3-animate-left{position:relative;animation:animateleft 0.4s}@keyframes animateleft{from{left:-300px;opacity:0} to{left:0;opacity:1}}
 .w3-animate-top{position:relative;animation:animatetop 0.8s}@keyframes animatetop{from{top:-90%;opacity:0;} to{top:0;opacity:1;}}
-.w3-dropdown-click,.w3-dropdown-hover{position:relative;display:inline-block;cursor:pointer}
-.w3-dropdown-hover:hover .w3-dropdown-content{display: block;opacity:100%;}
-.w3-dropdown-content{display: none;opacity:0%;}
+.w3-dropdown-click,.w3-dropdown-hover{position:relative;display:inline-block;cursor:pointer;}
+.w3-dropdown-hover:hover .w3-dropdown-content{opacity:100%;}
+.w3-dropdown-content{visibility: hidden;opacity:0%;}
 .w3-dropdown-content{cursor:auto;color:#000;background-color:#fff;opacity:0%;position:absolute;min-width:160px;margin:0;padding:0;z-index:1}
 /* ------------------------------------------- Responsive correction -------------------------------------------------*/
 @media screen and (min-width: 1050px) {
