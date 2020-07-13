@@ -215,11 +215,11 @@ function openLeftMenu() {
     }
 }
 
-function clickOnTheRing() {
-    document.getElementById("menu_notifs").style.visibility = "visible";
+function openNotifMenu() {
+    document.getElementById("menu_notifs").style.display = "block";
 }
-function mouseLeaveNotifMenu() {
-    document.getElementById("menu_notifs").style.visibility = "hidden";
+function closeNotifMenu() {
+    document.getElementById("menu_notifs").style.display = "none";
 }
 
 function openPhoneMenu() {

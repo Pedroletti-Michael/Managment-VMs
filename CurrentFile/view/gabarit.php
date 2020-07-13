@@ -225,11 +225,17 @@
             </div>
 
             <!--------------- Icone notification ------------------>
-            <div class="float-left mt-2 pt-1 ml-2 pl-1 w3-dropdown-hover h-100" type="button" onclick="clickOnTheRing()" onmouseleave="mouseLeaveNotifMenu()">
+            <div class="float-left mt-2 pt-1 ml-2 pl-1 w3-dropdown-hover h-100">
                 <!------------ Notifications ------------------>
-                <div class="menu-notifs w3-dropdown-content bg-dark p-2 text-white" id="menu_notifs" style="visibility: hidden;">
+                <div class="menu-notifs w3-dropdown-content bg-dark p-2 text-white" id="menu_notifs" style="display: none;">
                     <div class="w-100 text-center pb-1 title-notif">
                         <a><strong>Notifications</strong></a>
+                        <div class="float-right" type="button" onclick="closeNotifMenu()">
+                            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-x position-static float-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="margin-top: -0.3em;">
+                                <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
+                                <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
+                            </svg>
+                        </div>
                     </div>
                     <div class="w-100 notif btn-group-vertical text-left">
                         Je me suis suicidé
@@ -248,9 +254,11 @@
                     </div>
                     <div class="mt-1"><a href="okok" class="text-decoration-none text-white"><strong>Voir toutes les notifications</strong></a></div>
                 </div>
-                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-bell-fill mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
-                </svg>
+                <div type="button" onclick="openNotifMenu()">
+                    <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-bell-fill mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+                    </svg>
+                </div>
             </div>
             <div class="float-left">
                 <!-- Search form -->
