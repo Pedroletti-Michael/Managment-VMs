@@ -23,73 +23,30 @@ ob_start();
 
     <!--Confirmation command VM modal)-->
     <?php if (isset($_SESSION['$displayModalConfirm']) && $_SESSION['$displayModalConfirm'] == true) : ?>
-        <div class="modal fade" id="confirmationCommandVM" tabindex="-1" role="dialog"
-             aria-labelledby="confirmationCommandVM" aria-hidden="true">
-            <div class="modal-dialog m-auto w-470-px" role="document" style="top: 45%;">
-                <div class="modal-content w-100">
-                    <div class="modal-body">
-                        <div class="w-100">
-                            <h6 class="float-left pt-2 text-center">Un e-mail de confirmation a été envoyé à vous et au
-                                responsable technique de la VM</h6>
-                            <button type="submit" class="btn btn-success float-right btn-close-phone"
-                                    data-dismiss="modal">Fermer
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="alert alert-success alert-dismissible fade show mb-0">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Réussite!</strong> Un e-mail de confirmation a été envoyé à vous et au
+            responsable technique de la VM.
         </div>
-        <script>$('.modal').modal('show')</script>
         <?php unset($_SESSION['$displayModalConfirm']); endif; ?>
     <!--Modal send mail failed-->
     <?php if (isset($_SESSION['displayModalConfirmationFailed']) && $_SESSION['displayModalConfirmationFailed']) : ?>
-        <div class="modal fade" id="confirmationMailFailed" tabindex="-1" role="dialog"
-             aria-labelledby="confirmationMailFailed" aria-hidden="true">
-            <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-                <div class="modal-content text-center">
-                    <div class="modal-header modal-danger justify-content-center">
-                        <h5>Échec envoi e-mail</h5>
-                    </div>
-
-                    <div class="modal-body">
-                        <h6>L’e-mail de confirmation n’a pas été envoyé. Contactez le <a
-                                    href="mailto:helpdesk@heig-vd.ch?subject=Demande de VM : Erreur lors de la confirmation">helpdesk</a>.
-                        </h6>
-
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger mx-auto responsiveDisplay" data-dismiss="modal">
-                            Fermer
-                        </button>
-                    </div>
-                </div>
-            </div>
+        <div class="alert alert-warning alert-dismissible fade show mb-0">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Attention!</strong> Échec de l'envoi de l'e-mail.<br>L’e-mail de confirmation n’a pas été envoyé. Contactez le <a
+                    href="mailto:helpdesk@heig-vd.ch?subject=Demande de VM : Erreur lors de la confirmation">helpdesk</a>.
         </div>
-        <script>$('.modal').modal('show')</script>
         <?php
         unset($_SESSION['displayModalConfirmationFailed']);
     endif;
     ?>
     <!--Modal request failed-->
     <?php if (isset($_SESSION['displayModalRequestFailed']) && $_SESSION['displayModalRequestFailed']) : ?>
-        <div class="modal fade" id="requestFailed" tabindex="-1" role="dialog" aria-labelledby="requestFailed"
-             aria-hidden="true">
-            <div class="modal-dialog m-auto w-470-px" role="document" style="top: 45%;">
-                <div class="modal-content w-100">
-                    <div class="modal-body">
-                        <div class="w-100">
-                            <h6 class="float-left pt-2 text-center">Nous rencontrons actuellement un problème. Nous ne
-                                pouvons donc prendre en compte votre commande. Veuillez réessayer plus tard.</h6>
-                            <button type="submit" class="btn btn-success float-right btn-close-phone"
-                                    data-dismiss="modal">Fermer
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="alert alert-warning alert-dismissible fade show mb-0">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Attention!</strong> Nous rencontrons actuellement un problème. Nous ne
+            pouvons donc prendre en compte votre commande. Veuillez réessayer plus tard.
         </div>
-        <script>$('.modal').modal('show')</script>
         <?php
         unset($_SESSION['displayModalRequestFailed']);
     endif;

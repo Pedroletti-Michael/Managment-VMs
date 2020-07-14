@@ -19,53 +19,40 @@ ob_start();
 <body>
 <!--Confirmation for content mail save-->
 <?php if (isset($_SESSION['saveContentMail'])) : ?>
-    <div class="modal fade" id="saveContentMail" tabindex="-1" role="dialog"
-         aria-labelledby="saveContentMail" aria-hidden="true">
-        <div class="modal-dialog m-auto w-470-px" role="document" style="top: 45%;">
-            <div class="modal-content w-100">
-                <div class="modal-body">
-                    <div class="w-100">
-                        <h6 class="float-left pt-2 text-center">
-                            <?php if ($_SESSION['saveContentMail'] == 1) {
-                                echo 'Modifications enregistrées.';
-                            } else {
-                                echo 'Nous avons rencontré un problème lors de la sauvegarde des modifications apportées aux contenus des mails. Veuillez contactez le support.';
-                            } ?>
-                        </h6>
-                        <button type="submit" class="btn btn-success float-right btn-close-phone" data-dismiss="modal">
-                            Fermer
-                        </button>
-                    </div>
-                </div>
-            </div>
+    <?php if ($_SESSION['saveContentMail'] == 1) {
+        echo '
+        <div class="alert alert-success alert-dismissible fade show mb-0">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Réussite!</strong> Modifications enregistrées.
         </div>
-    </div>
-    <script>$('.modal').modal('show')</script>
+        ';
+    } else {
+        echo '
+        <div class="alert alert-warning alert-dismissible fade show mb-0">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Attention!</strong> Nous avons rencontré un problème lors de la sauvegarde des modifications apportées aux contenus des mails. Veuillez contactez le support.
+        </div>
+        ';
+    } ?>
     <?php unset($_SESSION['saveContentMail']); endif; ?>
+
 <!--Confirmation for save mail-->
 <?php if (isset($_SESSION['saveAlertModification'])) : ?>
-    <div class="modal fade" id="saveAlertModification" tabindex="-1" role="dialog"
-         aria-labelledby="saveAlertModification" aria-hidden="true">
-        <div class="modal-dialog m-auto w-470-px" role="document" style="top: 45%;">
-            <div class="modal-content w-100">
-                <div class="modal-body">
-                    <div class="w-100">
-                        <h6 class="float-left pt-2 text-center">
-                            <?php if ($_SESSION['saveAlertModification'] == 1) {
-                                echo 'La sauvegarde des modifications apportées aux e-mails c\'est effectué correctement.';
-                            } else {
-                                echo 'Nous avons rencontré un problème lors de la sauvegarde des modifications apportées aux e-mails. Veuillez contactez le support.';
-                            } ?>
-                        </h6>
-                        <button type="submit" class="btn btn-success float-right btn-close-phone" data-dismiss="modal">
-                            Fermer
-                        </button>
-                    </div>
-                </div>
-            </div>
+    <?php if ($_SESSION['saveAlertModification'] == 1) {
+        echo '
+        <div class="alert alert-success alert-dismissible fade show mb-0">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Réussite!</strong> La sauvegarde des modifications apportées aux e-mails c\'est effectué correctement.
         </div>
-    </div>
-    <script>$('.modal').modal('toggle')</script>
+        ';
+    } else {
+        echo '
+        <div class="alert alert-warning alert-dismissible fade show mb-0">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Attention!</strong> Nous avons rencontré un problème lors de la sauvegarde des modifications apportées aux e-mails. Veuillez contactez le support.
+        </div>
+        ';
+    } ?>
     <?php unset($_SESSION['saveAlertModification']); endif; ?>
 
 

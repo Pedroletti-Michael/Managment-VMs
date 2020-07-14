@@ -21,10 +21,20 @@ ob_start();
     <?php
         if(isset($_SESSION['diffusionListAdding'])){
             if($_SESSION['diffusionListAdding'] == true){
-                echo'<h1>réussi</h1>';
+                echo'
+                    <div class="alert alert-success alert-dismissible fade show mb-0">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Réussite!</strong>
+                    </div>
+                ';
             }
             elseif($_SESSION['diffusionListAdding'] == false){
-                echo'<h1>échec</h1>';
+                echo'
+                    <div class="alert alert-warning alert-dismissible fade show mb-0">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Attention!</strong> Échec!
+                    </div>
+                ';
             }
             unset($_SESSION['diffusionListAdding']);
         }
