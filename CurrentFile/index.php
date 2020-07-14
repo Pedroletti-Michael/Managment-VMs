@@ -28,6 +28,8 @@ if(isset($_GET['action']))
     $action = $_GET['action'];
     require_once 'model/vmManager.php';
 
+    getFiveNotifAndActualiseList();
+
     switch ($action)
     {
         case 'home':

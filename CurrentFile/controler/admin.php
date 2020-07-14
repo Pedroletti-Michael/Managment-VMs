@@ -1412,3 +1412,7 @@ function deleteVm($idVm){
 
     displayAllVM();
 }
+
+function getFiveNotifAndActualiseList(){
+    $_SESSION['fiveNotifications'] = getFiveNotificationPush();
+}

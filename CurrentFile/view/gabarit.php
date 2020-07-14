@@ -1,5 +1,5 @@
 <?php
-    $version = '0.652';
+    $version = '0.659';
 ?>
 <!DOCTYPE html>
 <html>
@@ -238,21 +238,16 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="w-100 notif btn-group-vertical text-left">
-                        Je me suis suicidé
-                    </div>
-                    <div class="w-100 notif btn-group-vertical text-left">
-                        Lol t'es trop drôle
-                    </div>
-                    <div class="w-100 notif btn-group-vertical text-left">
-                        Je me suis suicidé
-                    </div>
-                    <div class="w-100 notif btn-group-vertical text-left">
-                        Lol t'es trop drôle
-                    </div>
-                    <div class="w-100 notif btn-group-vertical text-left">
-                        Je me suis suicidé
-                    </div>
+                    <?php
+                        foreach ($_SESSION['fiveNotifications'] as $notif){
+                            echo '
+                            <div class="w-100 notif btn-group-vertical text-left">
+                                '.$notif.'
+                            </div>
+                            ';
+                        }
+
+                    ?>
                     <div class="mt-1"><a href="okok" class="text-decoration-none text-white"><strong>Voir toutes les notifications</strong></a></div>
                 </div>
                 <div type="button" onclick="openNotifMenu()">
