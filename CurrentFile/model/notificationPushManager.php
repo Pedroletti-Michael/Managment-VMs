@@ -50,7 +50,7 @@ function getFiveNotificationPush(){
     $theFiveNotifications = array();
 
     for($i = 0; $i < 5; $i++){
-        array_push($theFiveNotifications, $actualNotificationPush[$actualJsonData['id'] - $i]);
+        array_push($theFiveNotifications, $actualNotificationPush[$actualJsonData['id'] - $i - 1]);
     }
     return $theFiveNotifications;
 }

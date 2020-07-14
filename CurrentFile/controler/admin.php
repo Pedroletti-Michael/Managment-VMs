@@ -1414,5 +1414,6 @@ function deleteVm($idVm){
 }
 
 function getFiveNotifAndActualiseList(){
+    require_once 'model/notificationPushManager.php';
     $_SESSION['fiveNotifications'] = getFiveNotificationPush();
 }
