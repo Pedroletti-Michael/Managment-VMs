@@ -191,6 +191,9 @@ if(isset($_GET['action']))
             if(testSessionTime()){break;}
             deleteVm($_GET['idVm']);
             break;
+        case 'viewAllNotification':
+            if(testSessionTime()){break;}
+            viewAllNotification();
         default:
             if(testSessionTime()){break;}
             displayHome();
