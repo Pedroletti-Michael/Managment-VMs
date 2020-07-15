@@ -110,10 +110,6 @@ function filterRow(caseName){
     btnFilterRow = document.getElementsByName("btnRowFilter");
 
     if(caseName == "displayAll"){
-        for(i = 0; i < btnFilterRow.length; i++){
-            btnFilterRow[i].style.backgroundColor = "#007bff";
-        }
-
         for(i = 0; i < th.length; i++){
             th[i].style.display = "";
         }
@@ -122,10 +118,6 @@ function filterRow(caseName){
         }
     }
     else if(caseName == "hideAll"){
-        for(i = 0; i < btnFilterRow.length; i++){
-            btnFilterRow[i].style.backgroundColor = "#dc3545";
-        }
-
         for(i = 0; i < th.length; i++){
             if(th[i].name == "goToButton"){
                 th[i].style.display = "";
@@ -155,13 +147,11 @@ function filterRow(caseName){
             for(i = 0; i < row.length; i++){
                 row[i].style.display = "";
             }
-            button.style.backgroundColor = "#007bff";
         }
         else{
             for(i = 0; i < row.length; i++){
                 row[i].style.display = "none";
             }
-            button.style.backgroundColor = "#dc3545";
         }
     }
 }

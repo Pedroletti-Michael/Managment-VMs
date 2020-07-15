@@ -1,5 +1,5 @@
 <?php
-    $version = '0.659';
+    $version = '0.652';
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,7 +23,6 @@
     <script rel="javascript" src="../view/js/script.js"></script>
     <script rel="javascript" src="../view/js/searchBox.js"></script>
     <script rel="javascript" src="../view/js/sortTable.js"></script>
-    <script rel="javascript" src="../view/js/alert.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 </head>
@@ -226,7 +225,6 @@
             </div>
 
             <!--------------- Icone notification ------------------>
-            <?php if($_SESSION['userType'] == 1) :?>
             <div class="float-left mt-2 pt-1 ml-2 pl-1 w3-dropdown-hover h-100">
                 <!------------ Notifications ------------------>
                 <div class="menu-notifs w3-dropdown-content bg-dark p-2 text-white" id="menu_notifs" style="display: none;">
@@ -239,16 +237,21 @@
                             </svg>
                         </div>
                     </div>
-                    <?php
-                        foreach ($_SESSION['fiveNotifications'] as $notif){
-                            echo '
-                            <div class="w-100 notif btn-group-vertical text-left">
-                                '.$notif.'
-                            </div>
-                            ';
-                        }
-
-                    ?>
+                    <div class="w-100 notif btn-group-vertical text-left">
+                        Je me suis suicidé
+                    </div>
+                    <div class="w-100 notif btn-group-vertical text-left">
+                        Lol t'es trop drôle
+                    </div>
+                    <div class="w-100 notif btn-group-vertical text-left">
+                        Je me suis suicidé
+                    </div>
+                    <div class="w-100 notif btn-group-vertical text-left">
+                        Lol t'es trop drôle
+                    </div>
+                    <div class="w-100 notif btn-group-vertical text-left">
+                        Je me suis suicidé
+                    </div>
                     <div class="mt-1"><a href="okok" class="text-decoration-none text-white"><strong>Voir toutes les notifications</strong></a></div>
                 </div>
                 <div type="button" onclick="openNotifMenu()">
@@ -257,7 +260,6 @@
                     </svg>
                 </div>
             </div>
-            <?php endif; ?>
             <div class="float-left">
                 <!-- Search form -->
                 <div class="d-flex justify-content-center ml-2">
@@ -319,7 +321,7 @@
                     </div>
             </a>
             <!----------------- renewalVM (user) ---------------->
-            <?php if ($_SESSION['userType'] != 1): ?>
+            <?php if ($_SESSION['userType'] != 1 || 2): ?>
             <a href="index.php?action=renewalVM" class="text-decoration-none text-light">
             <?php if ($_GET['action'] == "renewalVM"): ?>
                 <div class="w-100 pt-2 pl-2" style="height: 40px;">
