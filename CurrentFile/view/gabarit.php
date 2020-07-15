@@ -226,7 +226,7 @@
             </div>
 
             <!--------------- Icone notification ------------------>
-            <?php if($_SESSION['userType'] == 1) ?>
+            <?php if($_SESSION['userType'] == 1) : ?>
             <div class="float-left mt-2 pt-1 ml-2 pl-1 w3-dropdown-hover h-100">
                 <!------------ Notifications ------------------>
                 <div class="menu-notifs w3-dropdown-content bg-dark p-2 text-white" id="menu_notifs" style="display: none;">
