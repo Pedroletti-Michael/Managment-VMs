@@ -55,7 +55,7 @@ ob_start();
                 <input type="vmName" class="form-control form form" id="inputVMName" name="inputVMName" aria-describedby="vmNameHelp" maxlength="15" placeholder="Exemple : DPT-VM01" required onkeyup="checkName()" value="<?php if(isset($_SESSION['formRequest']['inputVMName'])){echo($_SESSION['formRequest']['inputVMName']);} ?>">
                 <small id="vmNameHelp" class="form-text text-muted">15 caractères maximum. Lettres, chiffres et trait d'union uniquement</small>
 
-                <div class="alert alert-warning w-100 align-middle text-center mt-2 mb-0" id="alertVmName" style="display: none;">
+                <div class="alert alert-danger w-100 align-middle text-center mt-2 mb-0" id="alertVmName" style="display: none;">
                     <strong>Attention!</strong> Ce nom est déjà utilisé. Veuillez en utiliser un autre !
                 </div>
             </div>
