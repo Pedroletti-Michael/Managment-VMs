@@ -127,160 +127,154 @@ ob_start();
                 </button>
                 <div class="collapse" id="collapseFields">
                     <div name="btnRowFilter" id="name" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left">
+                         class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         name
                         <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
                     </div>
-                    <button name="btnRowFilter" style="background-color: #dc3545" id="cluster" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('cluster')">
+                    <button name="btnRowFilter" id="cluster" type="button"
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         cluster
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('cluster')">
                     </button>
-                    <button name="btnRowFilter" style="background-color: #dc3545" id="dateStart" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left">
+                    <button name="btnRowFilter" id="dateStart" type="button"
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         dateStart
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('dateStart')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('dateStart')">
 
                     </button>
-                    <button name="btnRowFilter" style="background-color: #dc3545" id="dateAnniversary" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left">
+                    <button name="btnRowFilter" id="dateAnniversary" type="button"
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         dateAnniversary
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('dateAnniversary')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('dateAnniversary')">
 
                     </button>
-                    <button name="btnRowFilter" style="background-color: #dc3545" id="dateEnd" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left">
+                    <button name="btnRowFilter" id="dateEnd" type="button"
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         dateEnd
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('dateEnd')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('dateEnd')">
 
                     </button>
-                    <button name="btnRowFilter" style="background-color: #dc3545" id="desc" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('desc')">
+                    <button name="btnRowFilter" id="desc" type="button"
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         description
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('desc')">
 
                     </button>
-                    <button name="btnRowFilter" style="background-color: #dc3545" id="ip" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('ip')">
+                    <button name="btnRowFilter" id="ip" type="button"
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         ip
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('ip')">
 
                     </button>
-                    <button name="btnRowFilter" style="background-color: #dc3545" id="dnsName" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('dnsName')">
+                    <button name="btnRowFilter" id="dnsName" type="button"
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         dnsName
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('dnsName')">
 
                     </button>
-                    <button name="btnRowFilter" style="background-color: #dc3545" id="redundance" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left"
-                            onclick="filterRow('redundance')">
+                    <button name="btnRowFilter" id="redundance" type="button"
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         redundance
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('redundance')">
 
                     </button>
-                    <button name="btnRowFilter" style="background-color: #dc3545" id="usage" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('usage')">
+                    <button name="btnRowFilter" id="usage" type="button"
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         usageType
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('usage')">
 
                     </button>
                     <button name="btnRowFilter" id="criticity" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left"
-                            onclick="filterRow('criticity')">
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         criticity
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('criticity')" checked>
 
                     </button>
-                    <button name="btnRowFilter" style="background-color: #dc3545" id="cpu" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('cpu')">
+                    <button name="btnRowFilter" id="cpu" type="button"
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         cpu
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('cpu')">
 
                     </button>
-                    <button name="btnRowFilter" style="background-color: #dc3545" id="ram" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('ram')">
+                    <button name="btnRowFilter" id="ram" type="button"
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         ram
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('ram')">
 
                     </button>
-                    <button name="btnRowFilter" style="background-color: #dc3545" id="disk" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('disk')">
+                    <button name="btnRowFilter" id="disk" type="button"
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         disk
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('disk')">
 
                     </button>
                     <button name="btnRowFilter" id="network" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('network')">
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         network
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('network')" checked>
 
                     </button>
-                    <button name="btnRowFilter" style="background-color: #dc3545" id="domain" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('domain')">
+                    <button name="btnRowFilter" id="domain" type="button"
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         domain
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('domain')">
 
                     </button>
-                    <button name="btnRowFilter" style="background-color: #dc3545" id="comment" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('comment')">
+                    <button name="btnRowFilter" id="comment" type="button"
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         comment
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('comment')">
 
                     </button>
-                    <button name="btnRowFilter" style="background-color: #dc3545" id="customer" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('customer')">
+                    <button name="btnRowFilter" id="customer" type="button"
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         customer
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('customer')">
 
                     </button>
-                    <button name="btnRowFilter" style="background-color: #dc3545" id="Ra" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('Ra')">
+                    <button name="btnRowFilter" id="Ra" type="button"
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         userRa
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('Ra')">
 
                     </button>
                     <button name="btnRowFilter" id="Rt" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('Rt')">
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         userRt
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('Rt')" checked>
 
                     </button>
                     <button name="btnRowFilter" id="entity" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('entity')">
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         entity_id
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('entity')" checked>
 
                     </button>
                     <button name="btnRowFilter" id="os" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('os')">
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         os_id
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('os')" checked>
 
                     </button>
                     <button name="btnRowFilter" id="snapshot" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('snapshot')">
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         snapshot_id
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('snapshot')" checked>
 
                     </button>
-                    <button name="btnRowFilter" style="background-color: #dc3545" id="backup" type="button"
-                            class="btn btn-primary w-100 rounded-0 mb-0 border-0 text-left" onclick="filterRow('backup')">
+                    <button name="btnRowFilter" id="backup" type="button"
+                            class="btn btn-light w-100 rounded-0 mb-0 border-0 text-left">
                         backup_id
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
+                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('backup')">
 
                     </button>
                     <button id="" type="button" class="btn btn-secondary w-100 rounded-0 mb-0 border-0 text-left"
                             onclick="filterRow('displayAll')">
-                        tout afficher
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
-
+                        tout cocher
                     </button>
                     <button id="" type="button" class="btn btn-secondary w-100 rounded-0 mb-0 border-0 text-left"
                             onclick="filterRow('hideAll')">
-                        tout enlever
-                        <input type="checkbox" class="float-right" id="name" name="btnRowFilter" style="margin-top: .35rem!important;" onclick="filterRow('name')" checked>
-
+                        tout décocher
                     </button>
                 </div>
             </div>
