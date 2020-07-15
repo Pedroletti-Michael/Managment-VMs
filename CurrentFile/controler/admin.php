@@ -1417,3 +1417,10 @@ function getFiveNotifAndActualiseList(){
     require_once 'model/notificationPushManager.php';
     $_SESSION['fiveNotifications'] = getFiveNotificationPush();
 }
+
+function viewAllNotification(){
+    require_once 'model/notificationPushManager.php';
+    $allNotif = getAllNotificationPush();
+
+    require 'view/notificationManager.php';
+}

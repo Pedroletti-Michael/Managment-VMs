@@ -194,6 +194,7 @@ if(isset($_GET['action']))
         case 'viewAllNotification':
             if(testSessionTime()){break;}
             viewAllNotification();
+            break;
         default:
             if(testSessionTime()){break;}
             displayHome();
