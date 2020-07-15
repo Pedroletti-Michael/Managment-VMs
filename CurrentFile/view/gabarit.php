@@ -283,7 +283,7 @@
             </div>
         </div>
         <!-- Sidebar -->
-        <div class="w3-sidebar w3-bar-block w3-card w3-animate-left border-right border-light" style="display:block;left:0;z-index: 950; top: 48px; width: 240px; transition: width 0.5s" id="leftMenu">
+        <div class="w3-sidebar w3-bar-block w3-card w3-animate-left border-right border-light position-fixed" style="display:block;left:0;z-index: 950; top: 48px; width: 240px; transition: width 0.5s" id="leftMenu">
             <div class="w-100 pt-2" style="height: 40px;" id="hidden_1">
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">
                     <span>Mon Compte</span>
