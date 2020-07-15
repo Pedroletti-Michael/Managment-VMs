@@ -26,38 +26,38 @@ ob_start();
     <form method="post" action="../index.php?action=formManagement">
         <div class="btn-group btn-group-toggle w-100-responsive" data-toggle="buttons">
             <?php if ($arrayToDisplay == "entity"): ?>
-                <a href="../index.php?action=formManagement&array=entity" class="btn btn-secondary active" >
+                <a href="../index.php?action=formManagement&array=entity" class="btn btn-light active border border-primary" >
                     <input type="radio" name="options" id="option1" checked> Entity
                 </a>
             <?php else : ?>
-                <a href="../index.php?action=formManagement&array=entity" class="btn btn-secondary" >
+                <a href="../index.php?action=formManagement&array=entity" class="btn border border-primary" >
                     <input type="radio" name="options" id="option1"> Entity
                 </a>
             <?php endif; ?>
             <?php if ($arrayToDisplay == "os"): ?>
-                <a href="../index.php?action=formManagement&array=os" class="btn btn-secondary active">
+                <a href="../index.php?action=formManagement&array=os" class="btn btn-light active border border-primary">
                     <input type="radio" name="options" id="option2" checked> OS
                 </a>
             <?php else : ?>
-                <a href="../index.php?action=formManagement&array=os" class="btn btn-secondary">
+                <a href="../index.php?action=formManagement&array=os" class="btn border border-primary">
                     <input type="radio" name="options" id="option2"> OS
                 </a>
             <?php endif; ?>
             <?php if ($arrayToDisplay == "snapshots"): ?>
-                <a href="../index.php?action=formManagement&array=snapshots" class="btn btn-secondary active">
+                <a href="../index.php?action=formManagement&array=snapshots" class="btn btn-light active border border-primary">
                     <input type="radio" name="options" id="option3" checked> Snapshots
                 </a>
             <?php else : ?>
-                <a href="../index.php?action=formManagement&array=snapshots" class="btn btn-secondary">
+                <a href="../index.php?action=formManagement&array=snapshots" class="btn border border-primary">
                     <input type="radio" name="options" id="option3"> Snapshots
                 </a>
             <?php endif; ?>
             <?php if ($arrayToDisplay == "backup"): ?>
-                <a href="../index.php?action=formManagement&array=backup" class="btn btn-secondary active">
+                <a href="../index.php?action=formManagement&array=backup" class="btn btn-light active border border-primary">
                     <input type="radio" name="options" id="option4" checked> Backup
                 </a>
             <?php else : ?>
-                <a href="../index.php?action=formManagement&array=backup" class="btn btn-secondary">
+                <a href="../index.php?action=formManagement&array=backup" class="btn border border-primary">
                     <input type="radio" name="options" id="option4"> Backup
                 </a>
             <?php endif; ?>
