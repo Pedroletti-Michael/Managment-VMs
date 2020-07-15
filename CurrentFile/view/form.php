@@ -347,7 +347,7 @@ ob_start();
                 <input type="date" min="<?= strtotime(date("Y-m-d").'+ 1 DAY'); ?>" class="form-control form form" id="inputEndDate" name="inputEndDate" value="<?php if(isset($_SESSION['formRequest']['inputEndDate'])){echo($_SESSION['formRequest']['inputEndDate']);} ?>" aria-describedby="EndDateHelp" onchange="checkField('alertEndDate')" placeholder="Entrer un nom ou une addresse de messagerie">
                 <small id="EndDateHelp" class="form-text text-muted">Date de fin du projet, à laquelle la VM peut être arrêtée puis supprimée.</small>
                 <small id="EndDateHelp" class="form-text text-muted">S'il n'y a pas d'échéance, une demande de renouvellement sera envoyée tous les 6 mois.</small>
-                <div class="alert alert-warning w-100 align-middle text-center mt-2 mb-0" id="alertEndDate" style="display: none;">
+                <div class="alert alert-danger w-100 align-middle text-center mt-2 mb-0" id="alertEndDate" style="display: none;">
                     <strong>Attention!</strong> La date de fin doit être plus grande que la date de début !
                 </div>
             </div>
