@@ -20,13 +20,15 @@ ob_start();
     <div class="table-responsive-xl">
         <table class="table table-hover allVM" id="tableInventoryUser" >
             <thead class="thead-dark sticky-top">
-            <tr>,
+            <tr>
+                <th name="number" scope="col">Nombres</th>
                 <th name="status" scope="col">Notifications</th>
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($allNotif as $notif): ?>
+            <?php $i = 1; foreach ($allNotif as $notif): ?>
                 <tr>
+                    <td name="number"><?php echo $i; $i++; ?></td>
                     <td name="notif"><?= $notif; ?></td>
                 </tr>
             <?php endforeach;?>

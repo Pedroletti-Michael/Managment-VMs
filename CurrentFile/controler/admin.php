@@ -1395,7 +1395,7 @@ function deleteVm($idVm){
     if(count($redundances) != 0){
         require_once 'model/notificationPushManager.php';
         addNotificationPush("une tentative de suppresion de la VM : ".getVmNameById($idVm)." mais la VM était utilisée comme redondance par d'autre VM");
-        $nameOfRedundances = $nameOfRedundances."Nous ne pouvons pas supprimé cette VM, car cette machine est utilisée comme redondance ".count($redundances)." fois. Voici le(s) nom(s) de VM qui utilise(nt) la VM sélectionnée : ";
+        $nameOfRedundances = $nameOfRedundances."Cette VM ne peut pas être supprimée, elle est utilisée comme redondance ".count($redundances)." fois. Voici le(s) nom(s) de VM qui utilise(nt) la VM sélectionnée : ";
 
         foreach ($redundances as $redundance){
             $nameOfRedundances = $nameOfRedundances.$redundance['name']. " ";

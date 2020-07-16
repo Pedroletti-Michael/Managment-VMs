@@ -134,6 +134,7 @@
                 <?php else : ?>
                     <a href="index.php?action=allVM" class="text-decoration-none"><h5 class="color-lightgrey">Inventaire VM</h5></a>
                 <?php endif; ?>
+            
                 <!----------------- confirmationVM ---------------->
                 <?php if ($_GET['action'] == "confirmationVM"): ?>
                     <a href="index.php?action=confirmationVM" class="alert-link active text-decoration-none">

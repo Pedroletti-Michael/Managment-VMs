@@ -305,6 +305,40 @@ ob_start();
         </a>
     </div>
 
+    <!--OS Modal Window Filter-->
+    <div class="modal fade" id="modalSnapshot" tabindex="-1" role="dialog" aria-labelledby="modalSnapshot"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="w-100 p-3">
+                    <div class="w-50 float-left p-1">
+                        <button type="button" class="btn btn-primary w-100 h-33"
+                                onclick="filterForInventoryVm('Gold', 26)">
+                            <h5>Gold</h5>
+                        </button>
+                        <button type="button" class="btn btn-primary w-100 h-33"
+                                onclick="filterForInventoryVm('Silver', 26)">
+                            <h5>Silver</h5>
+                        </button>
+                        <button type="button" class="btn btn-primary w-100 h-33"
+                                onclick="filterForInventoryVm('Bronze', 26)">
+                            <h5>Bronze</h5>
+                        </button>
+                    </div>
+                    <div class="w-50 float-right p-1">
+                        <button type="button" class="btn btn-primary w-100 h-33"
+                                onclick="filterForInventoryVm('Aucun', 26)">
+                            <h5>Aucun</h5>
+                        </button>
+                        <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('', 26)">
+                            <h5>Tous</h5>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!--Snapshot Modal Window-->
     <div class="modal fade" id="modalSnapshot" tabindex="-1" role="dialog" aria-labelledby="modalSnapshot"
          aria-hidden="true">
@@ -3629,7 +3663,7 @@ ob_start();
                               clip-rule="evenodd"/>
                     </svg>
                 </th>
-                <th style="min-width: 95px;" name="DELETE" scope="col">DELETE
+                <th style="min-width: 95px;" name="delete" scope="col">Supprimer
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg" id="23_none_all">
                         <path fill-rule="evenodd"
@@ -3747,7 +3781,7 @@ ob_start();
                     <td name="snapshot" style="min-width: 130px"><?php echo $value['snapshot_id']['1'] ?></td>
                     <td name="backup" style="display: none;min-width: 120px"><?php echo $value['backup_id']['1'] ?></td>
                     <td name="delete"><a href="index.php?action=deleteVm&idVm=<?php echo $value['id'] ?>"
-                                         style="text-decoration: none">delete</a></td>
+                                         style="text-decoration: none">supprimer</a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

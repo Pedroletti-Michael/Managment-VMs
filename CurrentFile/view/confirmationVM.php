@@ -28,6 +28,7 @@ ob_start();
             <th scope="col">ram</th>
             <th scope="col">disk</th>
             <th scope="col">network</th>
+            <th scope="col">customer</th>
             <th scope="col">userRt</th>
             <th scope="col">entity_id</th>
         </tr>
@@ -48,6 +49,7 @@ ob_start();
                <td><?php echo $value['ram']?></td>
                <td><?php echo $value['disk']?></td>
                <td><?php echo $value['network']?></td>
+               <td><?php echo $value['customer']?></td>
                <td><?php echo $value['userRt']?></td>
                <td><?php echo $value['entity_id']?></td>
             </tr>
