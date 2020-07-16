@@ -319,7 +319,7 @@
                     </div>
             </a>
             <!----------------- renewalVM (user) ---------------->
-            <?php if ($_SESSION['userType'] != 1 || 2): ?>
+            <?php if ($_SESSION['userType'] != (1 || 2)): ?>
             <a href="index.php?action=renewalVM" class="text-decoration-none text-light">
             <?php if ($_GET['action'] == "renewalVM"): ?>
                 <div class="w-100 pt-2 pl-2" style="height: 40px;">
