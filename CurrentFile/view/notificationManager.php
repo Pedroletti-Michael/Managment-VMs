@@ -18,7 +18,7 @@ ob_start();
 </head>
 <body>
     <div class="table-responsive-xl">
-        <table class="table table-hover allVM" id="tableInventoryUser" >
+        <table class="table table-hover allVM fixed-top-phone" id="tableInventoryUser" >
             <thead class="thead-dark sticky-top">
             <tr>
                 <th name="number" scope="col">Nombres</th>

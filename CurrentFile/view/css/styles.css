@@ -51,7 +51,7 @@
 }
 .notif{
     height: 64px;
-    border-bottom: 1px solid aliceblue;
+    border-bottom: 1px solid aliceblue;s
 }
 .notif:hover{
     background-color: #63707c!important;
@@ -412,5 +412,9 @@
     }
     .btn-close-phone{
         width: 100%;
+    }
+    .fixed-top-phone{
+        top: 0px;
+        position: fixed;
     }
 }

@@ -1,101 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="08803907-db91-4299-bfbe-ecbb0032d7c0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
-    <ignored path="../.idea/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="08803907-db91-4299-bfbe-ecbb0032d7c0" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="41" selection-start-line="41" selection-end-line="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/displayManager.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-842" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/encryption.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/model/userManager.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="739">
-              <caret line="132" selection-start-line="132" selection-end-line="132" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/dbConnector.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="50" selection-start-line="50" selection-end-line="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controler/formVM_order.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="79" selection-start-line="79" selection-end-line="79" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/vmManager.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1122">
-              <caret line="72" column="41" lean-forward="true" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/view/form.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="21" column="33" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="33" />
-              <folding>
-                <element signature="e#5476#5481#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/mailSender.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="654">
-              <caret line="81" column="49" selection-start-line="81" selection-start-column="49" selection-end-line="81" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+  <component name="ComposerSettings">
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -105,83 +18,26 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>inputAMna</find>
-      <find>input</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/model/mailSender.php" />
-        <option value="$PROJECT_DIR$/model/userManager.php" />
-        <option value="$PROJECT_DIR$/model/vmManager.php" />
-      </list>
-    </option>
-  </component>
-  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpServers">
     <servers>
       <server host="localhost" id="200f23c7-ae25-4bcd-92af-44d58a5f374d" name="localhost" port="9921" />
     </servers>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="820" />
-    <option name="y" value="-8" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
-  </component>
   <component name="ProjectId" id="1Z1IRsuifHpGQ8FBRNJPQMKLYH1" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="CurrentFile" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CurrentFile" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CurrentFile" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CurrentFile" type="462c0819:PsiDirectoryNode" />
-              <item name="controler" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CurrentFile" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CurrentFile" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CurrentFile" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CurrentFile" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.idea" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../php/php.exe" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -190,19 +46,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="vcs.Perforce" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
   </component>
   <component name="RunManager">
     <configuration name="Gestion-vm" type="PhpBuiltInWebServerConfigurationType" factoryName="PHP Built-in Web Server" document_root="$PROJECT_DIR$" port="9921">
@@ -210,7 +54,7 @@
     </configuration>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>C:\Users\theoc\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -230,119 +74,80 @@
       <workItem from="1585315135422" duration="1278000" />
       <workItem from="1585555779225" duration="3124000" />
       <workItem from="1585569368835" duration="9049000" />
+      <workItem from="1594029118725" duration="6332000" />
+      <workItem from="1594109089719" duration="1326000" />
+      <workItem from="1594110659222" duration="437000" />
+      <workItem from="1594111197708" duration="4583000" />
+      <workItem from="1594125112202" duration="3636000" />
+      <workItem from="1594282522607" duration="5337000" />
+      <workItem from="1594293837261" duration="11271000" />
+      <workItem from="1594362046320" duration="1981000" />
+      <workItem from="1594365271751" duration="4253000" />
+      <workItem from="1594389303461" duration="3529000" />
+      <workItem from="1594623704288" duration="1271000" />
+      <workItem from="1594628486509" duration="1406000" />
+      <workItem from="1594646891241" duration="4802000" />
+      <workItem from="1594708565681" duration="8440000" />
+      <workItem from="1594798004747" duration="4555000" />
+      <workItem from="1594878490907" duration="10047000" />
+      <workItem from="1594966384918" duration="2448000" />
+      <workItem from="1594972131188" duration="1981000" />
     </task>
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22341000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11513859" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.3997833" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50053304" side_tool="true" weight="0.3997833" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
-    </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11513859" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
-    </layout-to-restore>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="3547" y="-62" key="#PHP" timestamp="1584000755461">
-      <screen x="1920" y="-361" width="2560" height="1410" />
-    </state>
-    <state x="3547" y="-62" key="#PHP/0.0.1536.834/4480.-372.2560.1410/1920.-361.2560.1410@1920.-361.2560.1410" timestamp="1584000755461" />
-    <state x="3294" y="2" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584000763272">
-      <screen x="1920" y="-361" width="2560" height="1410" />
-    </state>
-    <state x="3294" y="2" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834/4480.-372.2560.1410/1920.-361.2560.1410@1920.-361.2560.1410" timestamp="1584000763272" />
-    <state x="2290" y="94" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584020266653">
-      <screen x="1920" y="-361" width="2560" height="1410" />
-    </state>
-    <state x="2290" y="94" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834/1920.-361.2560.1410/4480.-372.2560.1410@1920.-361.2560.1410" timestamp="1584020266653" />
-    <state x="2980" y="98" key="FileChooserDialogImpl" timestamp="1584089973094">
-      <screen x="1920" y="-361" width="2560" height="1410" />
-    </state>
-    <state x="2980" y="98" key="FileChooserDialogImpl/0.0.1536.834/4480.-372.2560.1410/1920.-361.2560.1410@1920.-361.2560.1410" timestamp="1584089973094" />
-    <state width="1493" height="38" key="GridCell.Tab.0.bottom" timestamp="1584351516718">
+    <state x="348" y="69" key="#CLI_Interpreters" timestamp="1594111365365">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="2517" height="403" key="GridCell.Tab.0.bottom/0.0.1536.834/1920.-361.2560.1410/4480.-372.2560.1410@1920.-361.2560.1410" timestamp="1584028770643" />
-    <state width="1493" height="38" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1584351516718" />
-    <state width="1493" height="38" key="GridCell.Tab.0.center" timestamp="1584351516718">
+    <state x="348" y="69" key="#CLI_Interpreters/0.0.1536.834@0.0.1536.834" timestamp="1594111365365" />
+    <state x="517" y="253" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog" timestamp="1594109403396">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="2517" height="403" key="GridCell.Tab.0.center/0.0.1536.834/1920.-361.2560.1410/4480.-372.2560.1410@1920.-361.2560.1410" timestamp="1584028770643" />
-    <state width="1493" height="38" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1584351516718" />
-    <state width="1493" height="38" key="GridCell.Tab.0.left" timestamp="1584351516718">
+    <state x="517" y="253" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog/0.0.1536.834@0.0.1536.834" timestamp="1594109403396" />
+    <state x="549" y="158" key="FileChooserDialogImpl" timestamp="1594111360741">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="2517" height="403" key="GridCell.Tab.0.left/0.0.1536.834/1920.-361.2560.1410/4480.-372.2560.1410@1920.-361.2560.1410" timestamp="1584028770643" />
-    <state width="1493" height="38" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1584351516718" />
-    <state width="1493" height="38" key="GridCell.Tab.0.right" timestamp="1584351516718">
+    <state x="549" y="158" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1594111360741" />
+    <state width="1877" height="136" key="GridCell.Tab.0.bottom" timestamp="1594910257273">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="136" key="GridCell.Tab.0.bottom/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1594910257273" />
+    <state width="745" height="2" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1594306838842" />
+    <state width="1877" height="136" key="GridCell.Tab.0.center" timestamp="1594910257272">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="136" key="GridCell.Tab.0.center/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1594910257272" />
+    <state width="745" height="2" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1594306838842" />
+    <state width="1877" height="136" key="GridCell.Tab.0.left" timestamp="1594910257272">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="136" key="GridCell.Tab.0.left/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1594910257272" />
+    <state width="745" height="2" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1594306838842" />
+    <state width="1877" height="136" key="GridCell.Tab.0.right" timestamp="1594910257273">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="136" key="GridCell.Tab.0.right/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1594910257273" />
+    <state width="745" height="2" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1594306838842" />
+    <state x="277" y="59" key="SettingsEditor" timestamp="1594111366604">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="2517" height="403" key="GridCell.Tab.0.right/0.0.1536.834/1920.-361.2560.1410/4480.-372.2560.1410@1920.-361.2560.1410" timestamp="1584028770643" />
-    <state width="1493" height="38" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1584351516718" />
-    <state x="3674" y="270" key="NewPhpFileDialog" timestamp="1584084227796">
-      <screen x="1920" y="-361" width="2560" height="1410" />
-    </state>
-    <state x="3674" y="270" key="NewPhpFileDialog/0.0.1536.834/4480.-372.2560.1410/1920.-361.2560.1410@1920.-361.2560.1410" timestamp="1584084227796" />
-    <state x="3341" y="-11" key="SettingsEditor" timestamp="1584000831582">
-      <screen x="1920" y="-361" width="2560" height="1410" />
-    </state>
-    <state x="3341" y="-11" key="SettingsEditor/0.0.1536.834/4480.-372.2560.1410/1920.-361.2560.1410@1920.-361.2560.1410" timestamp="1584000831582" />
-    <state x="586" y="312" key="com.intellij.ide.util.TipDialog" timestamp="1584351906423">
+    <state x="277" y="59" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1594111366604" />
+    <state x="465" y="241" key="com.intellij.ide.util.TipDialog" timestamp="1594109089195">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="2896" y="167" key="com.intellij.ide.util.TipDialog/0.0.1536.834/4480.-372.2560.1410/1920.-361.2560.1410@1920.-361.2560.1410" timestamp="1584083656181" />
-    <state x="586" y="312" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1584351906423" />
-    <state x="2856" y="152" key="run.anything.popup" timestamp="1584111592802">
-      <screen x="1920" y="-361" width="2560" height="1410" />
+    <state x="465" y="241" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1594109089195" />
+    <state x="578" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1594390246570">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="2856" y="152" key="run.anything.popup/0.0.1536.834/4480.-372.2560.1410/1920.-361.2560.1410@1920.-361.2560.1410" timestamp="1584111592802" />
-    <state x="2863" y="-44" width="672" height="678" key="search.everywhere.popup" timestamp="1584091331308">
-      <screen x="1920" y="-361" width="2560" height="1410" />
+    <state x="578" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1594390246570" />
+    <state x="539" y="195" width="840" height="854" key="search.everywhere.popup" timestamp="1594647049035">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="2863" y="-44" width="672" height="678" key="search.everywhere.popup/0.0.1536.834/4480.-372.2560.1410/1920.-361.2560.1410@1920.-361.2560.1410" timestamp="1584091331308" />
+    <state x="539" y="195" width="840" height="854" key="search.everywhere.popup/-1920.0.1536.840/0.0.1920.1050@0.0.1920.1050" timestamp="1594647049035" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1594306524101" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -354,88 +159,5 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/controler/user.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view/signIn.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="569">
-          <caret line="50" column="8" selection-start-line="50" selection-end-line="50" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/displayManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-842" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/encryption.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/mailSender.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="654">
-          <caret line="81" column="49" selection-start-line="81" selection-start-column="49" selection-end-line="81" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/dbManager.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view/form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="21" column="33" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="33" />
-          <folding>
-            <element signature="e#5476#5481#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/dbConnector.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="50" selection-start-line="50" selection-end-line="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controler/formVM_order.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/vmManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="72" column="41" lean-forward="true" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/userManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="739">
-          <caret line="132" selection-start-line="132" selection-end-line="132" />
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>
