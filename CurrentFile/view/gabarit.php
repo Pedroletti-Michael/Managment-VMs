@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 <?php
     $version = '0.652';
 ?>
@@ -504,7 +503,6 @@
 </body>
 
 </html>
-=======
 <?php
     $version = '0.652';
 ?>
@@ -1015,4 +1013,3 @@
 </body>
 
 </html>
->>>>>>> Stashed changes
