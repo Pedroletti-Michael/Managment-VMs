@@ -306,34 +306,33 @@ ob_start();
     </div>
 
     <!--OS Modal Window Filter-->
-    <div class="modal fade" id="modalSnapshot" tabindex="-1" role="dialog" aria-labelledby="modalSnapshot"
+    <div class="modal fade" id="modalOS" tabindex="-1" role="dialog" aria-labelledby="modalOS"
          aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="w-100 p-3">
-                    <div class="w-50 float-left p-1">
-                        <button type="button" class="btn btn-primary w-100 h-33"
-                                onclick="filterForInventoryVm('Gold', 26)">
-                            <h5>Gold</h5>
-                        </button>
-                        <button type="button" class="btn btn-primary w-100 h-33"
-                                onclick="filterForInventoryVm('Silver', 26)">
-                            <h5>Silver</h5>
-                        </button>
-                        <button type="button" class="btn btn-primary w-100 h-33"
-                                onclick="filterForInventoryVm('Bronze', 26)">
-                            <h5>Bronze</h5>
-                        </button>
-                    </div>
-                    <div class="w-50 float-right p-1">
-                        <button type="button" class="btn btn-primary w-100 h-33"
-                                onclick="filterForInventoryVm('Aucun', 26)">
-                            <h5>Aucun</h5>
-                        </button>
-                        <button type="button" class="btn btn-primary w-100 h-33" onclick="filterForInventoryVm('', 26)">
-                            <h5>Tous</h5>
-                        </button>
-                    </div>
+                <div class="w-50 p-3">
+                    <?php
+                        foreach ($allOs as $os){
+                            echo '
+                            <button type="button" class="btn btn-primary w-100 h-33"
+                                    onclick="filterForInventoryVm(\''. $os['osType'] . ' ' . $os['osName'] .'\', 25)">
+                                <h5>'. $os['osType'] . ' ' . $os['osName'] .'</h5>
+                            </button>
+                            ';
+                        }
+                    ?>
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('Gold', 25)">
+                        <h5>Gold</h5>
+                    </button>
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('Silver', 25)">
+                        <h5>Silver</h5>
+                    </button>
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('Bronze', 25)">
+                        <h5>Bronze</h5>
+                    </button>
                 </div>
             </div>
         </div>
