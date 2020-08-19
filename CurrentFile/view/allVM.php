@@ -12,8 +12,6 @@ ob_start();
         <script rel="javascript" src="../view/js/jquery.js"></script>
         <script rel="javascript" src="../view/js/script.js"></script>
         <script rel="javascript" src="../view/js/searchBox.js"></script>
-        <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.bundle.js"></script>
-        <script rel="javascript" src="../view/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
         <meta charset="UTF-8">
         <title>Gestion VM - HEIG-VD</title>
     </head>
@@ -299,10 +297,170 @@ ob_start();
         </div>
         <!--Export VM to Excel-->
         <a href="index.php?action=exportToExcel">
-            <button type="button" class="btn btn-success w-100 rounded-0 mb-0 text-left">
+            <button type="button" class="btn btn-success w-100 rounded-0 mb-5 text-left">
                 Exporter
             </button>
         </a>
+    </div>
+
+
+    <!--MODAL WINDOW FOR FILTER VM BY FIELD-->
+    <!--Entity Modal Window Filter-->
+    <div class="modal fade" id="modalEntity" tabindex="-1" role="dialog" aria-labelledby="modalEntity"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="w-50 p-3">
+                    <?php
+                    foreach ($allEntity as $entity){
+                        echo '
+                            <button type="button" class="btn btn-primary w-100 h-33"
+                                    onclick="filterForInventoryVm(\''. $entity['entityName'] .'\', 24)">
+                                <h5>'. $entity['entityName'] .'</h5>
+                            </button>
+                            ';
+                    }
+                    ?>
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('', 24)">
+                        <h5>Tous</h5>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Domain Modal Window Filter-->
+    <div class="modal fade" id="modalDomain" tabindex="-1" role="dialog" aria-labelledby="modalDomain"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="w-50 p-3">
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('oui', 19)">
+                        <h5>oui</h5>
+                    </button>
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('non', 19)">
+                        <h5>non</h5>
+                    </button>
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('', 19)">
+                        <h5>Tous</h5>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Network Modal Window Filter-->
+    <div class="modal fade" id="modalNetwork" tabindex="-1" role="dialog" aria-labelledby="modalNetwork"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="w-50 p-3">
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('LAN', 18)">
+                        <h5>LAN</h5>
+                    </button>
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('DMZ', 18)">
+                        <h5>DMZ</h5>
+                    </button>
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('DMZ avec adressage privé', 18)">
+                        <h5>DMZ avec adressage privé</h5>
+                    </button>
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('', 18)">
+                        <h5>Tous</h5>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Usage Type Modal Window Filter-->
+    <div class="modal fade" id="modalUsageType" tabindex="-1" role="dialog" aria-labelledby="modalUsageType"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="w-50 p-3">
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('Academique', 13)">
+                        <h5>Académique</h5>
+                    </button>
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('Operationnel', 13)">
+                        <h5>Opérationnel - Production</h5>
+                    </button>
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('RaD', 13)">
+                        <h5>RaD</h5>
+                    </button>
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('Test', 13)">
+                        <h5>Test - Dev</h5>
+                    </button>
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('', 13)">
+                        <h5>Tous</h5>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Cluster Modal Window Filter-->
+    <div class="modal fade" id="modalCluster" tabindex="-1" role="dialog" aria-labelledby="modalCluster"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="w-50 p-3">
+                    <?php
+                    foreach ($allCluster as $cluster){
+                        echo '
+                            <button type="button" class="btn btn-primary w-100 h-33"
+                                    onclick="filterForInventoryVm(\''. $cluster['name'] .'\', 2)">
+                                <h5>'. $cluster['name'] .'</h5>
+                            </button>
+                            ';
+                    }
+                    ?>
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('', 2)">
+                        <h5>Tous</h5>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Criticity Modal Window Filter-->
+    <div class="modal fade" id="modalCriticity" tabindex="-1" role="dialog" aria-labelledby="modalCriticity"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="w-50 p-3">
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('', 14)">
+                        <h5>Tous</h5>
+                    </button>
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('1', 14)">
+                        <h5>1</h5>
+                    </button>
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('2', 14)">
+                        <h5>2</h5>
+                    </button>
+                    <button type="button" class="btn btn-primary w-100 h-33"
+                            onclick="filterForInventoryVm('3', 14)">
+                        <h5>3</h5>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!--OS Modal Window Filter-->
@@ -322,16 +480,8 @@ ob_start();
                         }
                     ?>
                     <button type="button" class="btn btn-primary w-100 h-33"
-                            onclick="filterForInventoryVm('Gold', 25)">
-                        <h5>Gold</h5>
-                    </button>
-                    <button type="button" class="btn btn-primary w-100 h-33"
-                            onclick="filterForInventoryVm('Silver', 25)">
-                        <h5>Silver</h5>
-                    </button>
-                    <button type="button" class="btn btn-primary w-100 h-33"
-                            onclick="filterForInventoryVm('Bronze', 25)">
-                        <h5>Bronze</h5>
+                            onclick="filterForInventoryVm('', 25)">
+                        <h5>Tous</h5>
                     </button>
                 </div>
             </div>
@@ -461,6 +611,13 @@ ob_start();
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="2_down_all">
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalCluster">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
                     </svg>
                 </th>
                 <th style="display: none; min-width: 120px" name="dateStart" scope="col" onclick="sortTable(4, 0)">
@@ -604,6 +761,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalUsageType">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th style="min-width: 100px;" name="criticity" scope="col" onclick="sortTable(14, 0)">
                     criticity
@@ -621,6 +785,13 @@ ob_start();
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="14_down_all">
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalCriticity">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
                     </svg>
                 </th>
                 <th style="display: none; min-width: 75px;" name="cpu" scope="col" onclick="sortNumberTable(15, 0)">cpu
@@ -691,6 +862,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalNetwork">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th style="display: none; min-width: 107px;" name="domain" scope="col" onclick="sortTable(19, 0)">domain
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
@@ -707,6 +885,13 @@ ob_start();
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="19_down_all">
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalDomain">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
                     </svg>
                 </th>
                 <th style="display: none; min-width: 115px;" name="comment" scope="col" onclick="sortTable(20, 0)">
@@ -795,6 +980,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalEntity">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th name="os" style="min-width: 90px" scope="col" onclick="sortTable(25, 0)">os_id
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
@@ -811,6 +1003,13 @@ ob_start();
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="25_down_all">
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalOS">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
                     </svg>
                 </th>
                 <th style="min-width: 145px" name="snapshot" scope="col" onclick="sortTable(26, 0)">snapshot_id
@@ -1024,6 +1223,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalCluster">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th style="display: none; min-width: 120px" name="dateStart" scope="col" onclick="sortTable(4, 0)">
                     dateStart
@@ -1166,6 +1372,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalUsageType">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th style="min-width: 100px;" name="criticity" scope="col" onclick="sortTable(14, 0)">
                     criticity
@@ -1183,6 +1396,13 @@ ob_start();
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="14_down_all">
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalCriticity">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
                     </svg>
                 </th>
                 <th style="display: none; min-width: 75px;" name="cpu" scope="col" onclick="sortNumberTable(15, 0)">cpu
@@ -1253,6 +1473,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalNetwork">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th style="display: none; min-width: 107px;" name="domain" scope="col" onclick="sortTable(19, 0)">domain
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
@@ -1269,6 +1496,13 @@ ob_start();
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="19_down_all">
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalDomain">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
                     </svg>
                 </th>
                 <th style="display: none; min-width: 115px;" name="comment" scope="col" onclick="sortTable(20, 0)">
@@ -1357,6 +1591,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalEntity">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th name="os" style="min-width: 90px" scope="col" onclick="sortTable(25, 0)">os_id
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
@@ -1373,6 +1614,13 @@ ob_start();
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="25_down_all">
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalOS">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
                     </svg>
                 </th>
                 <th style="min-width: 145px" name="snapshot" scope="col" onclick="sortTable(26, 0)">snapshot_id
@@ -1583,6 +1831,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalCluster">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th style="display: none; min-width: 120px" name="dateStart" scope="col" onclick="sortTable(4, 0)">
                     dateStart
@@ -1725,6 +1980,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalUsageType">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th style="min-width: 100px;" name="criticity" scope="col" onclick="sortTable(14, 0)">
                     criticity
@@ -1742,6 +2004,13 @@ ob_start();
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="14_down_all">
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalCriticity">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
                     </svg>
                 </th>
                 <th style="display: none; min-width: 75px;" name="cpu" scope="col" onclick="sortNumberTable(15, 0)">cpu
@@ -1812,6 +2081,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalNetwork">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th style="display: none; min-width: 107px;" name="domain" scope="col" onclick="sortTable(19, 0)">domain
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
@@ -1828,6 +2104,13 @@ ob_start();
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="19_down_all">
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalDomain">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
                     </svg>
                 </th>
                 <th style="display: none; min-width: 115px;" name="comment" scope="col" onclick="sortTable(20, 0)">
@@ -1916,6 +2199,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalEntity">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th name="os" style="min-width: 90px" scope="col" onclick="sortTable(25, 0)">os_id
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
@@ -1932,6 +2222,13 @@ ob_start();
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="25_down_all">
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalOS">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
                     </svg>
                 </th>
                 <th style="min-width: 145px" name="snapshot" scope="col" onclick="sortTable(26, 0)">snapshot_id
@@ -2142,6 +2439,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalCluster">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th style="display: none; min-width: 120px" name="dateStart" scope="col" onclick="sortTable(4, 0)">
                     dateStart
@@ -2284,6 +2588,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalUsageType">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th style="min-width: 100px;" name="criticity" scope="col" onclick="sortTable(14, 0)">
                     criticity
@@ -2301,6 +2612,13 @@ ob_start();
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="14_down_all">
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalCriticity">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
                     </svg>
                 </th>
                 <th style="display: none; min-width: 75px;" name="cpu" scope="col" onclick="sortNumberTable(15, 0)">cpu
@@ -2371,6 +2689,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalNetwork">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th style="display: none; min-width: 107px;" name="domain" scope="col" onclick="sortTable(19, 0)">domain
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
@@ -2387,6 +2712,13 @@ ob_start();
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="19_down_all">
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalDomain">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
                     </svg>
                 </th>
                 <th style="display: none; min-width: 115px;" name="comment" scope="col" onclick="sortTable(20, 0)">
@@ -2475,6 +2807,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalEntity">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th name="os" style="min-width: 90px" scope="col" onclick="sortTable(25, 0)">os_id
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
@@ -2491,6 +2830,13 @@ ob_start();
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="25_down_all">
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalOS">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
                     </svg>
                 </th>
                 <th style="min-width: 145px" name="snapshot" scope="col" onclick="sortTable(26, 0)">snapshot_id
@@ -2702,6 +3048,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalCluster">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th style="display: none; min-width: 120px" name="dateStart" scope="col" onclick="sortTable(4, 0)">
                     dateStart
@@ -2844,6 +3197,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalUsageType">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th style="min-width: 100px;" name="criticity" scope="col" onclick="sortTable(14, 0)">
                     criticity
@@ -2861,6 +3221,13 @@ ob_start();
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="14_down_all">
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalCriticity">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
                     </svg>
                 </th>
                 <th style="display: none; min-width: 75px;" name="cpu" scope="col" onclick="sortNumberTable(15, 0)">cpu
@@ -2931,6 +3298,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalNetwork">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th style="display: none; min-width: 107px;" name="domain" scope="col" onclick="sortTable(19, 0)">domain
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
@@ -2947,6 +3321,13 @@ ob_start();
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="19_down_all">
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalDomain">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
                     </svg>
                 </th>
                 <th style="display: none; min-width: 115px;" name="comment" scope="col" onclick="sortTable(20, 0)">
@@ -3035,6 +3416,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalEntity">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th name="os" style="min-width: 90px" scope="col" onclick="sortTable(25, 0)">os_id
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
@@ -3051,6 +3439,13 @@ ob_start();
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="25_down_all">
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalOS">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
                     </svg>
                 </th>
                 <th style="min-width: 145px" name="snapshot" scope="col" onclick="sortTable(26, 0)">snapshot_id
@@ -3262,6 +3657,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalCluster">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th style="display: none; min-width: 120px" name="dateStart" scope="col" onclick="sortTable(4, 0)">
                     dateStart
@@ -3404,6 +3806,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalUsageType">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th style="min-width: 100px;" name="criticity" scope="col" onclick="sortTable(14, 0)">
                     criticity
@@ -3421,6 +3830,13 @@ ob_start();
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="14_down_all">
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalCriticity">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
                     </svg>
                 </th>
                 <th style="display: none; min-width: 75px;" name="cpu" scope="col" onclick="sortNumberTable(15, 0)">cpu
@@ -3491,6 +3907,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalNetwork">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th style="display: none; min-width: 107px;" name="domain" scope="col" onclick="sortTable(19, 0)">domain
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
@@ -3507,6 +3930,13 @@ ob_start();
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="19_down_all">
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalDomain">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
                     </svg>
                 </th>
                 <th style="display: none; min-width: 115px;" name="comment" scope="col" onclick="sortTable(20, 0)">
@@ -3595,6 +4025,13 @@ ob_start();
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalEntity">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
+                    </svg>
                 </th>
                 <th name="os" style="min-width: 90px" scope="col" onclick="sortTable(25, 0)">os_id
                     <svg class="bi bi-chevron-expand" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"
@@ -3611,6 +4048,13 @@ ob_start();
                          fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="25_down_all">
                         <path fill-rule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    <svg type="button" class="bi bi-justify float-right mt-1" width="1em" height="1em"
+                         viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-toggle="modal"
+                         data-target="#modalOS">
+                        <path fill-rule="evenodd"
+                              d="M2 12.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                              clip-rule="evenodd"/>
                     </svg>
                 </th>
                 <th style="min-width: 145px" name="snapshot" scope="col" onclick="sortTable(26, 0)">snapshot_id

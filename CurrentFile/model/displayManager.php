@@ -13,6 +13,11 @@ function displayBDD_Entity(){
     return executeQuery($query);
 }
 
+function displayBDD_Entity_StatusOn(){
+    $query = "SELECT entityName FROM entity where status = 0";
+    return executeQuery($query);
+}
+
 function addEntity($nameEntity){
     $strSep = '\'';
 

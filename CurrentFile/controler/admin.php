@@ -83,6 +83,8 @@ function displayAllVM($searchFilter = 0,$vmFilter = "all")
                     $allVM = getAllVM();
                     $allVmName = getAllVmNameAndId();
                     $allOs = displayBDD_OS();
+                    $allCluster = getClusters();
+                    $allEntity = displayBDD_Entity_StatusOn();
 
                     $_GET['action'] = "allVM";
                     require 'view/allVM.php';
