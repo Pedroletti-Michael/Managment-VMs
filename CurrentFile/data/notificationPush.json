@@ -1,5 +1,5 @@
 {
-    "id": 25,
+    "id": 29,
     "notifications": [
         "admin admin étant connecté comme administrateur à fait une connexion réussi, à 06:23:16 2020-07-10",
         "admin admin étant connecté comme administrateur à fait une connexion réussi, à 11:12:13 2020-07-10",
@@ -821,6 +821,10 @@
         "admin admin étant connecté comme administrateur à fait une connexion réussi, à 06:50:55 2020-07-17",
         "admin admin étant connecté comme administrateur à fait une connexion réussi, à 07:39:44 2020-07-17",
         "admin admin étant connecté comme administrateur à fait une connexion réussi, à 08:49:20 2020-07-17",
-        "admin admin étant connecté comme administrateur à fait une connexion réussi, à 08:50:42 2020-07-17"
+        "admin admin étant connecté comme administrateur à fait une connexion réussi, à 08:50:42 2020-07-17",
+        "admin admin étant connecté comme administrateur à fait une connexion réussi, à 07:37:53 2020-08-19",
+        "admin admin étant connecté comme administrateur à fait une connexion réussi, à 09:52:22 2020-08-19",
+        "admin admin étant connecté comme administrateur à fait passer le compte de Array  en tant que simple utilisateur, à 09:57:22 2020-08-19",
+        "admin admin étant connecté comme administrateur à fait une connexion réussi, à 06:17:23 2020-08-20"
     ]
 }
