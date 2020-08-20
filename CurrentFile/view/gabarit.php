@@ -1,5 +1,5 @@
 <?php
-    $version = '0.652';
+    $version = '0.683';
 ?>
 <!DOCTYPE html>
 <html>
@@ -319,7 +319,7 @@
                     </div>
             </a>
             <!----------------- renewalVM (user) ---------------->
-            <?php if ($_SESSION['userType'] != (1 || 2)): ?>
+            <?php if ($_SESSION['userType'] != (1)): ?>
             <a href="index.php?action=renewalVM" class="text-decoration-none text-light">
             <?php if ($_GET['action'] == "renewalVM"): ?>
                 <div class="w-100 pt-2 pl-2" style="height: 40px;">
@@ -363,7 +363,7 @@
                             <a href="index.php?action=allVM" class="text-decoration-none text-light w3-animate-right" id="hidden_7">Inventaire VM</a>
                         </div>
                 </a>
-
+            <?php if(isset($_SESSION['userType']) && $_SESSION['userType']==1):?>
                 <!---- confirmationVM ----->
                 <a href="index.php?action=confirmationVM" class="text-decoration-none text-light">
                     <?php if ($_GET['action'] == "confirmationVM"): ?>
@@ -470,6 +470,7 @@
             <?php else : ?>
                 <a id="hidden_16"></a><a id="hidden_6"></a><a id="hidden_7"></a><a id="hidden_8"></a><a id="hidden_9"></a><a id="hidden_10"></a><a id="hidden_11"></a><a id="hidden_12"></a><a id="hidden_13"></a><a id="hidden_14"></a><a id="hidden_15"></a>
                 <a id="icons_4"></a><a id="icons_5"></a><a id="icons_6"></a><a id="icons_7"></a><a id="icons_8"></a><a id="icons_9"></a><a id="icons_10"></a>
+            <?php endif; ?>
             <?php endif; ?>
             <!-- Logo HEIG-VD -->
                 <a href="https://heig-vd.ch/" style="z-index: 99999">
