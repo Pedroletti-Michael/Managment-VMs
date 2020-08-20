@@ -157,7 +157,7 @@ if(isset($_GET['action']))
             break;
         case 'exportToExcel':
             if(testSessionTime()){break;}
-            exportToExcel();
+            exportToExcel($_GET);
             break;
         case 'displayManagementUser':
             if(testSessionTime()){break;}

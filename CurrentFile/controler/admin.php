@@ -1232,10 +1232,15 @@ function modifyStatusAfterRenewal($idVM, $status)
 /**
  * Export all VM in a excel file
  */
-function exportToExcel()
+function exportToExcel($get)
 {
     require_once "model/vmManager.php";
-    $allVM = getAllVM();
+    if(isset($get['exportType']) && $get['exportType'] == "user"){
+        $allVM = getUserVM($_SESSION['userId']);
+    }
+    else{
+        $allVM = getAllVM();
+    }
 
     exportVMToExcel($allVM);
     require_once 'model/notificationPushManager.php';
