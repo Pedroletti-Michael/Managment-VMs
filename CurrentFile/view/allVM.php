@@ -522,42 +522,6 @@ $thead = "
         <title>Gestion VM - HEIG-VD</title>
     </head>
 <body>
-
-<!--Confirmation update VM modal)-->
-<?php if (isset($_SESSION['displayModalErrorMail']) && $_SESSION['displayModalErrorMail'] == true) : ?>
-    <div class="alert alert-warning alert-dismissible fade show mb-0">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Attention!</strong> Nous rencontrons actuellement quelques problèmes, les
-        mails de confirmation ne se sont donc pas envoyé. Veuillez contacter le support
-        informatique.
-    </div>
-    <?php unset($_SESSION['displayModalErrorMail']); endif; ?>
-
-
-<!--Confirmation delete VM modal)-->
-<?php if (isset($_SESSION['deleteVmInformation'])) : ?>
-    <?php if($_SESSION['deleteVmInformation'][0] == false) :?>
-        <div class="alert alert-success alert-dismissible fade show mb-0">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Réussite!</strong> La suppresion de la VM c'est bien passée.
-        </div>
-    <?php else : ?>
-        <div class="alert alert-warning alert-dismissible fade show mb-0">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Attention!</strong> <?= print_r($_SESSION['deleteVmInformation']); ?>
-        </div>
-    <?php endif; ?>
-<?php unset($_SESSION['deleteVmInformation']); endif; ?>
-
-<!--Confirmation update VM modal)-->
-<?php if (isset($_SESSION['displayModalConfirm']) && $_SESSION['displayModalConfirm'] == true) : ?>
-    <div class="alert alert-success alert-dismissible fade show mb-0">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Réussite!</strong> La demande est validée.
-    </div>
-    <?php unset($_SESSION['displayModalConfirm']); endif; ?>
-
-
 <form method="post" action="../index.php?action=allVM">
     <!------------- Btn Filtrer ------------>
     <button type="button" class="btn btn-primary rounded-0 w-150-px position-fixed mt-1" style="right: 0.25rem;"
@@ -808,7 +772,6 @@ $thead = "
             </button>
         </a>
     </div>
-
 
     <!--MODAL WINDOW FOR FILTER VM BY FIELD-->
     <!--Entity Modal Window Filter-->
@@ -1062,9 +1025,9 @@ $thead = "
         </div>
     </div>
 
-
     <div style="height: 47px"></div>
     <div class="table-responsive-xl">
+
         <table class="table table-hover allVM" id="allVmBody" hidden>
             <?= $thead; ?>
             <!--AllVM-->
@@ -1492,7 +1455,6 @@ $thead = "
             </tbody>
         </table>
 
-
         <table class="table table-hover allVM" id="allNonRenewalVmBody" hidden>
             <?= $thead; ?>
             <!--allNonRenewalVm-->
@@ -1598,7 +1560,6 @@ $thead = "
             <?php endforeach; ?>
             </tbody>
         </table>
-
 
         <table class="table table-hover allVM" id="allDeletedVmBody" hidden>
             <?= $thead; ?>

@@ -49,31 +49,6 @@ ob_start();
     </script>
 </head>
 <body>
-    <!--Error no user selected for Rt or Ra (modal)-->
-    <?php if(isset($_SESSION['displayModalNoUserSelected']) && $_SESSION['displayModalNoUserSelected'] == true) :?>
-        <div class="alert alert-warning alert-dismissible fade show mb-0">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Attention!</strong> Responsable technique ou administratif non sélectionné
-        </div>
-    <?php unset($_SESSION['displayModalNoUserSelected']); endif; ?>
-
-    <!--Confirmation update VM modal)-->
-    <?php if (isset($_SESSION['$displayModalConfirm']) && $_SESSION['$displayModalConfirm'] == true) : ?>
-        <div class="alert alert-success alert-dismissible fade show mb-0">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Réussite!</strong> Les modifications ont été enregistrées
-        </div>
-    <?php unset($_SESSION['$displayModalConfirm']); endif; ?>
-
-    <!--Error update data VM-->
-    <?php if (isset($_SESSION['displayErrorModification']) && $_SESSION['displayErrorModification'] == true) : ?>
-        <div class="alert alert-warning alert-dismissible fade show mb-0">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Attention!</strong> Une erreur est survenu lors de la mise à jour des
-            données de votre VM. Veuillez réessayer.
-        </div>
-    <?php unset($_SESSION['displayErrorModification']); endif; ?>
-
 <div class="container-fluid pt-3 mb-3">
     <h3 class="text-center border border-danger border-left-0 border-right-0 border-top-0 pb-3">Tous les détails de la
         VM</h3>

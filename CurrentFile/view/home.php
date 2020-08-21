@@ -20,37 +20,6 @@ ob_start();
 </head>
 <body>
 <div class="table-responsive-xl">
-
-    <!--Confirmation command VM modal)-->
-    <?php if (isset($_SESSION['$displayModalConfirm']) && $_SESSION['$displayModalConfirm'] == true) : ?>
-        <div class="alert alert-success alert-dismissible fade show mb-0">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Réussite!</strong> Un e-mail de confirmation a été envoyé à vous et au
-            responsable technique de la VM.
-        </div>
-        <?php unset($_SESSION['$displayModalConfirm']); endif; ?>
-    <!--Modal send mail failed-->
-    <?php if (isset($_SESSION['displayModalConfirmationFailed']) && $_SESSION['displayModalConfirmationFailed']) : ?>
-        <div class="alert alert-warning alert-dismissible fade show mb-0">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Attention!</strong> Échec de l'envoi de l'e-mail.<br>L’e-mail de confirmation n’a pas été envoyé. Contactez le <a
-                    href="mailto:helpdesk@heig-vd.ch?subject=Demande de VM : Erreur lors de la confirmation">helpdesk</a>.
-        </div>
-        <?php
-        unset($_SESSION['displayModalConfirmationFailed']);
-    endif;
-    ?>
-    <!--Modal request failed-->
-    <?php if (isset($_SESSION['displayModalRequestFailed']) && $_SESSION['displayModalRequestFailed']) : ?>
-        <div class="alert alert-warning alert-dismissible fade show mb-0">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Attention!</strong> Nous rencontrons actuellement un problème. Nous ne
-            pouvons donc prendre en compte votre commande. Veuillez réessayer plus tard.
-        </div>
-        <?php
-        unset($_SESSION['displayModalRequestFailed']);
-    endif;
-    ?>
     <form method="post" action="../index.php?action=home">
         <!------------- Btn Filtrer ------------>
         <button type="button" class="btn btn-primary rounded-0 w-150-px position-fixed mt-1" style="right: 0.25rem;z-index: 2!important;"
@@ -285,6 +254,7 @@ ob_start();
                 </button>
             </a>
         </div>
+
         <div class="pb-5"><!-- DONT DELETE THAT /!\ --> </div>
         <!--Snapshot Modal Window-->
         <div class="modal fade" id="modalSnapshot" tabindex="-1" role="dialog" aria-labelledby="modalSnapshot"

@@ -17,45 +17,6 @@ ob_start();
     <title>Gestion VM - HEIG-VD</title>
 </head>
 <body>
-<!--Confirmation for content mail save-->
-<?php if (isset($_SESSION['saveContentMail'])) : ?>
-    <?php if ($_SESSION['saveContentMail'] == 1) {
-        echo '
-        <div class="alert alert-success alert-dismissible fade show mb-0">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Réussite!</strong> Modifications enregistrées.
-        </div>
-        ';
-    } else {
-        echo '
-        <div class="alert alert-warning alert-dismissible fade show mb-0">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Attention!</strong> Nous avons rencontré un problème lors de la sauvegarde des modifications apportées aux contenus des mails. Veuillez contactez le support.
-        </div>
-        ';
-    } ?>
-    <?php unset($_SESSION['saveContentMail']); endif; ?>
-
-<!--Confirmation for save mail-->
-<?php if (isset($_SESSION['saveAlertModification'])) : ?>
-    <?php if ($_SESSION['saveAlertModification'] == 1) {
-        echo '
-        <div class="alert alert-success alert-dismissible fade show mb-0">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Réussite!</strong> La sauvegarde des modifications apportées aux e-mails c\'est effectué correctement.
-        </div>
-        ';
-    } else {
-        echo '
-        <div class="alert alert-warning alert-dismissible fade show mb-0">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Attention!</strong> Nous avons rencontré un problème lors de la sauvegarde des modifications apportées aux e-mails. Veuillez contactez le support.
-        </div>
-        ';
-    } ?>
-    <?php unset($_SESSION['saveAlertModification']); endif; ?>
-
-
 <div class="container-fluid pt-3">
     <h3 class="text-center border border-danger border-left-0 border-right-0 border-top-0 pb-3">Gestionnaire des
         alertes</h3>

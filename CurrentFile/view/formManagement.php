@@ -64,32 +64,6 @@ ob_start();
         </div>
     </form>
 
-    <!--Modal error element already associated to a VM -->
-    <?php if (isset($_SESSION['displayModalEntityAssociated']) && $_SESSION['displayModalEntityAssociated'] == true) : ?>
-        <div class="alert alert-warning alert-dismissible fade show mb-0">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Attention!</strong> Cette entité étant asossiée avec une VM, vous ne pouvez pas la supprimer.
-        </div>
-    <?php unset($_SESSION['displayModalEntityAssociated']); ?>
-    <?php elseif (isset($_SESSION['displayModalOSAssociated']) && $_SESSION['displayModalOSAssociated'] == true) : ?>
-        <div class="alert alert-warning alert-dismissible fade show mb-0">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Attention!</strong> Cet OS étant asossié avec une VM, vous ne pouvez pas le supprimer.
-        </div>
-    <?php unset($_SESSION['displayModalOSAssociated']); ?>
-    <?php elseif (isset($_SESSION['displayModalSnapshotAssociated']) && $_SESSION['displayModalSnapshotAssociated'] == true) : ?>
-        <div class="alert alert-warning alert-dismissible fade show mb-0">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Attention!</strong> Cette snapshot étant asossiée avec une VM, vous ne pouvez pas la supprimer.
-        </div>
-    <?php unset($_SESSION['displayModalSnapshotAssociated']); ?>
-    <?php elseif (isset($_SESSION['displayModalBackupAssociated']) && $_SESSION['displayModalBackupAssociated'] == true) : ?>
-        <div class="alert alert-warning alert-dismissible fade show mb-0">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Attention!</strong> Cette backup étant asossiée avec une VM, vous ne pouvez pas la supprimer.
-        </div>
-    <?php unset($_SESSION['displayModalBackupAssociated']);endif; ?>
-
     <!--Entity-->
     <?php if($arrayToDisplay == "entity") :?>
         <form method="post" action="../index.php?action=editEntity">

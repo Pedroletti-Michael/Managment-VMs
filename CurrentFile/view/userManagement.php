@@ -17,30 +17,6 @@ ob_start();
         <title>Gestion VM - HEIG-VD</title>
     </head>
 <body>
-
-    <?php
-        if(isset($_SESSION['diffusionListAdding'])){
-            if($_SESSION['diffusionListAdding'] == true){
-                echo'
-                    <div class="alert alert-success alert-dismissible fade show mb-0">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong>Réussite!</strong>
-                    </div>
-                ';
-            }
-            elseif($_SESSION['diffusionListAdding'] == false){
-                echo'
-                    <div class="alert alert-warning alert-dismissible fade show mb-0">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong>Attention!</strong> Échec!
-                    </div>
-                ';
-            }
-            unset($_SESSION['diffusionListAdding']);
-        }
-    ?>
-
-
     <!--Refresh user of db-->
     <a href="index.php?action=refreshUser">
         <button type="button" class="btn btn-primary mb-1 mt-1 responsiveDisplay">
