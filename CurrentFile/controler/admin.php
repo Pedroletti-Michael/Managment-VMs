@@ -75,12 +75,38 @@ function displayAllVM($searchFilter = 0,$vmFilter = "all")
                     require_once 'model/dbConnector.php';
                     require_once 'model/displayManager.php';
 
-                    $allValidatedVM = getValidatedVM();
-                    $allConfirmationVM = getConfirmationVM();
-                    $allRenewalVM = getRenewalVM();
-                    $allDeletedVM = getDeletedOrUnrenewalVM();
-                    $allNonRenewalVm = getNonRenewalVm();
+                    $allValidatedVM = array();
+                    $allConfirmationVM = array();
+                    $allRenewalVM = array();
+                    $allDeletedVM = array();
+                    $allNonRenewalVm = array();
                     $allVM = getAllVM();
+
+                    foreach($allVM as $vm){
+                        switch ($vm['vmStatus']){
+                            case 0:
+                                array_push($allConfirmationVM, $vm);
+                                break;
+                            case 1:
+                                break;
+                            case 2:
+                                array_push($allValidatedVM, $vm);
+                                break;
+                            case 3:
+                                array_push($allRenewalVM, $vm);
+                                break;
+                            case 4:
+                                array_push($allNonRenewalVm, $vm);
+                                break;
+                            case 5:
+                                array_push($allDeletedVM, $vm);
+                                break;
+                            default:
+                                array_push($allConfirmationVM, $vm);
+                        }
+                    }
+
+
                     $allVmName = getAllVmNameAndId();
                     $allOs = displayBDD_OS();
                     $allCluster = getClusters();
