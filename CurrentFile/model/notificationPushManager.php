@@ -5,7 +5,7 @@
  * Description : File used to manage all function used to make a notification, get a notification, etc...
  */
 
-function addNotificationPush($action = "unknow"){
+function addNotificationPush($action = "inconnue"){
     require_once 'model/userManager.php';
     require_once 'model/jsonConnector.php';
     $user = getUserCompleteName($_SESSION['userId']);
