@@ -1,9 +1,9 @@
 <?php
 /**
-* Author : Thomas Huguet
-* CreationFile date : 17.03.2020
-* Description : Contains all functions related to the user
-**/
+ * Author : Thomas Huguet
+ * CreationFile date : 17.03.2020
+ * Description : Contains all functions related to the user
+ **/
 
 /**
  * Get datas user's VMs to display the user's VMs at the home page
@@ -50,40 +50,66 @@ function displaySignIn()
  */
 function login($loginRequest)
 {
-  if (isset($loginRequest['userLogin']) && $loginRequest['userLogin'] != null && isset($loginRequest['userPassword']) && $loginRequest['userPassword'] != null)
-     {
-         $userLogin= $loginRequest['userLogin'];
-         $userPwd = $loginRequest['userPassword'];
+    if (isset($loginRequest['userLogin']) && $loginRequest['userLogin'] != null && isset($loginRequest['userPassword']) && $loginRequest['userPassword'] != null)
+    {
+        $userLogin= $loginRequest['userLogin'];
+        $userPwd = $loginRequest['userPassword'];
 
-         require_once "model/userManager.php";
-         $userEmail = userLogin($userLogin, $userPwd);
+        require_once "model/userManager.php";
+        $userEmail = userLogin($userLogin, $userPwd);
 
-         if ($userEmail!=null || $userEmail!=false)
-         {
-             createSession($userEmail);
+        if ($userEmail!=null && $userEmail!=false && $_SESSION['loginNumber'] != 2)
+        {
+            createSession($userEmail);
 
-             if(isset($_SESSION['actionUser']) && $_SESSION['actionUser'] == "detailsVM")
-             {
-                 displayDetailsVM($_SESSION['idVM']);
-             }
-             else
-             {
-                 displayHome();
-             }
-         }
-         else
-         {
-             $_GET['action'] = "signIn";
-             $_POST['error'] = "credentials";
-             require "view/signIn.php";
-         }
-     }
-     else
-     {
-         $_GET['action'] = "signIn";
-         $_POST['error'] = "fieldEmpty";
-         require "view/signIn.php";
-     }
+            if(isset($_SESSION['actionUser']) && $_SESSION['actionUser'] == "detailsVM")
+            {
+                displayDetailsVM($_SESSION['idVM']);
+            }
+            else
+            {
+                displayHome();
+            }
+        }
+        else
+        {
+            if(isset($_SESSION['loginNumber'])){
+                if($_SESSION['loginNumber'] >= 2){
+                    $date = new DateTime();
+                    if(isset($_SESSION['loginFail']) && $_SESSION['loginFail'] != null && $_SESSION['loginFail'] != false){
+                        if($_SESSION['loginFail']+300 <= $date->getTimestamp()){
+                            unset($_SESSION['loginFail']);
+                            unset($_SESSION['loginNumber']);
+                            unset($_SESSION['loginLeftTime']);
+                        }
+                        else{
+                            $_SESSION['loginLeftTime'] = ($_SESSION['loginFail']+300) - $date->getTimestamp();
+                        }
+                    }
+                    else{
+                        $_SESSION['loginFail'] = $date->getTimestamp();
+                        $_SESSION['loginLeftTime'] = $date->getTimestamp() - $_SESSION['loginFail'];
+                    }
+                }
+                else{
+                    $_SESSION['loginNumber'] ++;
+                }
+            }
+            else{
+                $_SESSION['loginNumber'] = 1;
+            }
+
+            $_GET['action'] = "signIn";
+            $_POST['error'] = "credentials";
+            require "view/signIn.php";
+        }
+    }
+    else
+    {
+        $_GET['action'] = "signIn";
+        $_POST['error'] = "fieldEmpty";
+        require "view/signIn.php";
+    }
 }
 
 /**

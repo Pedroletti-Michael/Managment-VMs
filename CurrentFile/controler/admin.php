@@ -106,7 +106,6 @@ function displayAllVM($searchFilter = 0,$vmFilter = "all")
                         }
                     }
 
-
                     $allVmName = getAllVmNameAndId();
                     $allOs = displayBDD_OS();
                     $allCluster = getClusters();
