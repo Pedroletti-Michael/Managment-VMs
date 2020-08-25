@@ -33,18 +33,20 @@ ob_start();
                         <div class="input-group mb-2 mr-sm-2">
                             <input type="password" class="form-control w-100" id="userPassword" name="userPassword" placeholder="Mot de passe" required>
                         </div>
+                        <?php
+                        if(isset($_POST['error']) && $_POST['error'] == "credentials"){
+                            echo "<div style='color: red' class=\"font-weight-bold\">Indentifiant ou mot de passe invalide.</div>";
+                        }
+                        if(isset($_SESSION['loginFail'])){
+                        echo "<div style='color: red' id='timeLeft' class=\"font-weight-bold\"></div>";
+                        }
+                        ?>
                         <div class="w-100 mb-2"><a>Un problème pour vous connecter ? Contactez le <a href="mailto:helpdesk@heig-vd.ch?subject=Plateforme GVM : [Titre de votre message]">helpdesk</a></a></div>
                         <button type="submit" class="input-group btn btn-success w-auto m-auto w3-center" id="connectionButton">Connexion</button>
                     </div>
                     <?php
-                        if(isset($_POST['error']) && $_POST['error'] == "credentials"){
-                            echo "<div style='color: red'>Indentifiant ou mot de passe invalide.</div>";
-                        }
                         if(isset($_POST['error']) && $_POST['error'] == "fieldEmpty"){
                             echo "<div style='color: red'>Veuillez renseigner tous les champs !</div>";
-                        }
-                        if(isset($_SESSION['loginFail'])){
-                            echo "<div style='color: red' id='timeLeft'></div>";
                         }
                     ?>
                 </form>
