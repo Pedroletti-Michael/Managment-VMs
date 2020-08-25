@@ -143,13 +143,6 @@ function formVM($formVMRequest)
         $formVMRequest['inputEndDate'] = null;
     }
 
-    if($errorForm == true)
-    {
-        $_SESSION['formRequest'] = $formVMRequest;
-        displayForm();
-        exit();
-    }
-
     if(isset($formVMRequest['Academique']))
     {
         $formVMRequest['usingVM'] = "Academique";
@@ -211,7 +204,13 @@ function formVM($formVMRequest)
         $formVMRequest['backupFormControlSelect'] = $formVMRequest['emptyBackupValue'];
     }
 
-    if(addVMToDB($formVMRequest))
+    if($errorForm == true)
+    {
+        $_SESSION['formRequest'] = $formVMRequest;
+        displayForm();
+        exit();
+    }
+    elseif(addVMToDB($formVMRequest))
     {
         require_once 'model/notificationPushManager.php';
         addNotificationPush("un ajout d'une nouvelle demande pour une VM dont le nom est : ".$formVMRequest['inputVMName']);
