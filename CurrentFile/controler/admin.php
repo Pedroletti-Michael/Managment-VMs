@@ -14,111 +14,60 @@ function displayAllVM($searchFilter = 0,$vmFilter = "all")
 {
     if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
-        if(isset($vmFilter['vmFilter']) && $vmFilter['vmFilter'] != null)
+        switch ($_SESSION['userType'])
         {
-            switch ($_SESSION['userType'])
-            {
-                case 0:
-                    require_once 'controler/user.php';
-                    displayHome();
-                    break;
-                case 2:
-                case 1:
-                    require_once 'model/vmManager.php';
-                    $allVmName = getAllVmNameAndId();
+            case 0:
+                displayHome();
+                break;
+            case 2:
+            case 1:
+                require_once 'model/vmManager.php';
+                require_once 'model/dbConnector.php';
+                require_once 'model/displayManager.php';
 
-                    if($vmFilter['vmFilter'] == "all")
-                    {
-                        $checkFilter = "all";
-                        $allVM = getAllVM();
-                    }
-                    elseif($vmFilter['vmFilter'] == "confirmed")
-                    {
-                        $checkFilter = "confirmed";
-                        $allVM = getValidatedVM();
-                    }
-                    elseif($vmFilter['vmFilter'] == "confirmation")
-                    {
-                        $checkFilter = "confirmation";
-                        $allVM = getConfirmationVM();
-                    }
-                    elseif($vmFilter['vmFilter'] == "renewal")
-                    {
-                        $checkFilter = "renewal";
-                        $allVM = getRenewalVM();
-                    }
-                    elseif($vmFilter['vmFilter'] == "deleted")
-                    {
-                        $checkFilter = "deleted";
-                        $allVM = getDeletedOrUnrenewalVM();
-                    }
+                $allValidatedVM = array();
+                $allConfirmationVM = array();
+                $allRenewalVM = array();
+                $allDeletedVM = array();
+                $allNonRenewalVm = array();
+                $allVM = getAllVM();
 
-                    $_GET['action'] = "allVM";
-                    require 'view/allVM.php';
-                    break;
-                default:
-                    $_GET['action'] = "signIn";
-                    require 'view/signIn.php';
-                    break;
-            }
-        }
-        else
-        {
-            switch ($_SESSION['userType'])
-            {
-                case 0:
-                    displayHome();
-                    break;
-                case 2:
-                case 1:
-                    require_once 'model/vmManager.php';
-                    require_once 'model/dbConnector.php';
-                    require_once 'model/displayManager.php';
-
-                    $allValidatedVM = array();
-                    $allConfirmationVM = array();
-                    $allRenewalVM = array();
-                    $allDeletedVM = array();
-                    $allNonRenewalVm = array();
-                    $allVM = getAllVM();
-
-                    foreach($allVM as $vm){
-                        switch ($vm['vmStatus']){
-                            case 0:
-                                array_push($allConfirmationVM, $vm);
-                                break;
-                            case 1:
-                                break;
-                            case 2:
-                                array_push($allValidatedVM, $vm);
-                                break;
-                            case 3:
-                                array_push($allRenewalVM, $vm);
-                                break;
-                            case 4:
-                                array_push($allNonRenewalVm, $vm);
-                                break;
-                            case 5:
-                                array_push($allDeletedVM, $vm);
-                                break;
-                            default:
-                                array_push($allConfirmationVM, $vm);
-                        }
+                foreach($allVM as $vm){
+                    switch ($vm['vmStatus']){
+                        case 0:
+                            array_push($allConfirmationVM, $vm);
+                            break;
+                        case 1:
+                            break;
+                        case 2:
+                            array_push($allValidatedVM, $vm);
+                            break;
+                        case 3:
+                            array_push($allRenewalVM, $vm);
+                            break;
+                        case 4:
+                            array_push($allNonRenewalVm, $vm);
+                            break;
+                        case 5:
+                            array_push($allDeletedVM, $vm);
+                            break;
+                        default:
+                            array_push($allConfirmationVM, $vm);
                     }
+                }
 
-                    $allVmName = getAllVmNameAndId();
-                    $allOs = displayBDD_OS();
-                    $allCluster = getClusters();
-                    $allEntity = displayBDD_Entity_StatusOn();
+                $allVmName = getAllVmNameAndId();
+                $allOs = displayBDD_OS();
+                $allCluster = getClusters();
+                $allEntity = displayBDD_Entity_StatusOn();
 
-                    $_GET['action'] = "allVM";
-                    require 'view/allVM.php';
-                    break;
-                default:
-                    $_GET['action'] = "signIn";
-                    require 'view/signIn.php';
-                    break;
-            }
+                $_GET['action'] = "allVM";
+                require 'view/allVM.php';
+                break;
+            default:
+                $_GET['action'] = "signIn";
+                require 'view/signIn.php';
+                break;
         }
     }
     else
