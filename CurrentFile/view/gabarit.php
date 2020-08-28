@@ -28,6 +28,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 </head>
 <body>
+
 <?php if (isset($_SESSION['userType'])): ?>
 <!-------------------------- Gabarit for phones ------------------------------->
 <nav class="display-phone w-100">
@@ -230,27 +231,32 @@
             <?php if($_SESSION['userType'] == 1) : ?>
             <div class="float-left mt-2 pt-1 ml-2 pl-1 w3-dropdown-hover h-100">
                 <!------------ Notifications ------------------>
-                <div class="menu-notifs w3-dropdown-content bg-dark p-2 text-white" id="menu_notifs" style="display: none;">
-                    <div class="w-100 text-center pb-1 title-notif">
-                        <a><strong>Notifications</strong></a>
-                        <div class="float-right" type="button" onclick="closeNotifMenu()">
-                            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-x position-static float-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="margin-top: -0.3em;">
-                                <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
-                                <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <?php
+                <div class="wrapper" id="menu_notifs" style="display: none;">
+                    <div class="notifications">
+                        <?php
                         foreach ($_SESSION['fiveNotifications'] as $notif){
                             echo '
-                                <div class="w-100 notif btn-group-vertical text-left">
-                                    '.$notif.'
+                        <div class="notifications__item">
+                            <div class="notifications__item__content">
+                                <span class="notifications__item__message">'.$notif.'</span>
+                            </div>
+                            <div class="notifications__item__avatar">
+                                <img src="../images/VRAI-LOGO.png" />
+                            </div>
+                            <div>
+                                <div class="notifications__item__option archive">
+                                    <a href="index.php?action=viewAllNotification">
+                                      <i class="fas fa-plus pt-1" style="color: whitesmoke"></i>
+                                    </a>
                                 </div>
-                            ';
-                        }
-                    ?>
-                    <div class="mt-1"><a href="index.php?action=viewAllNotification" class="text-decoration-none text-white"><strong>Voir toutes les notifications</strong></a></div>
+                            </div>
+                        </div>
+                        ';
+                            }
+                        ?>
+                    </div>
                 </div>
+
                 <div type="button" onclick="openNotifMenu()">
                     <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-bell-fill mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
@@ -501,7 +507,7 @@
 <main id="main" role="main" class="mt-5 padding-left" style="transition: padding-left 0.5s;">
         <?php endif; ?>
 
-        <div class="container-fluid pt-3">
+        <div class="container-fluid">
             <!--home.php-->
                 <!--Confirmation command VM modal)-->
                 <?php if (isset($_SESSION['$displayModalConfirm']) && $_SESSION['$displayModalConfirm'] == true) : ?>

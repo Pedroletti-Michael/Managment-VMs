@@ -2,6 +2,7 @@ flag = 0;
 val = "Windows";
 var today = new Date();
 var flag = 1;
+var flagNotif = 0;
 
 function Sidebar() {
     if(flag == 1){
@@ -216,10 +217,13 @@ function openLeftMenu() {
 }
 
 function openNotifMenu() {
-    document.getElementById("menu_notifs").style.display = "block";
-}
-function closeNotifMenu() {
-    document.getElementById("menu_notifs").style.display = "none";
+    if (flagNotif == 0){
+        document.getElementById("menu_notifs").style.display = "block";
+        flagNotif = 1;
+    }else if (flagNotif == 1){
+        document.getElementById("menu_notifs").style.display = "none";
+        flagNotif = 0;
+    }
 }
 
 function openPhoneMenu() {
@@ -233,3 +237,66 @@ function closePhoneMenu() {
     document.getElementById("buttonOpen").style.display = "block";
     document.getElementById("buttonClose").style.display = "none";
 }
+
+
+(function(){
+
+    /*
+    * Get all the buttons actions
+    */
+    let optionBtns = document.querySelectorAll( '.js-option' );
+
+    for(var i = 0; i < optionBtns.length; i++ ) {
+
+        /*
+        * When click to a button
+        */
+        optionBtns[i].addEventListener( 'click', function ( e ){
+
+            var notificationCard = this.parentNode.parentNode;
+            var clickBtn = this;
+            /*
+            * Execute the delete or Archive animation
+            */
+            requestAnimationFrame( function(){
+
+                archiveOrDelete( clickBtn, notificationCard );
+
+                /*
+                * Add transition
+                * That smoothly remove the blank space
+                * Leaves by the deleted notification card
+                */
+                window.setTimeout( function( ){
+                    requestAnimationFrame( function() {
+                        notificationCard.style.transition = 'all .4s ease';
+                        notificationCard.style.height = 0;
+                        notificationCard.style.margin = 0;
+                        notificationCard.style.padding = 0;
+                    });
+
+                    /*
+                    * Delete definitely the animation card
+                    */
+                    window.setTimeout( function( ){
+                        notificationCard.parentNode.removeChild( notificationCard );
+                    }, 1500 );
+                }, 1500 );
+            });
+        })
+    }
+
+    /*
+    * Function that adds
+    * delete or archive class
+    * To a notification card
+    */
+    var archiveOrDelete = function( clickBtn, notificationCard ){
+        if( clickBtn.classList.contains( 'archive' ) ){
+            notificationCard.classList.add( 'archive' );
+        } else if( clickBtn.classList.contains( 'delete' ) ){
+            notificationCard.classList.add( 'delete' );
+        }
+    }
+
+})()
