@@ -711,6 +711,8 @@ function displayFormManagement($arrayToDisplay)
     $osNames = displayBDD_OS();
     $snapshotPolicy = displayBSS_Snapshots();
     $backupPolicy = displayBSS_Backup();
+    $clusterInformation = getClusterAndSiteName();
+    $siteInformation = getSiteInformation();
 
     if(isset($_SESSION['userType']) && $_SESSION['userType'] != null)
     {
@@ -1133,6 +1135,108 @@ function editBackup($backupName)
     }
     displayFormManagement($arrayToDisplay);
 }
+
+/**
+ * Do some actions like add / modify / delete on cluster
+ *
+ * @param editCluster = cluster's form (POST)
+ */
+function editCluster($clusterName)
+{
+    $arrayToDisplay = $_SESSION['gestionFormArray'];
+    $isClusterAssociated = false;
+    require_once 'model/displayManager.php';
+
+    if(isset($clusterName['add']))
+    {
+        if(isset($clusterName['typeClusterAdd']) && $clusterName['typeClusterAdd'] != null && isset($clusterName['txtClusterAdd']) && $clusterName['txtClusterAdd'] != null)
+        {
+            $nameCluster= $clusterName['typeClusterAdd'];
+            $siteName = $clusterName['txtClusterAdd'];
+            addCluster($nameCluster,$siteName);
+            require_once 'model/notificationPushManager.php';
+            addNotificationPush("ajout d'un nouveau cluster, son nom : ".$nameCluster." emplacement : ".$siteName);
+        }
+    }
+    elseif(isset($clusterName['delete']))
+    {
+        if(isset($clusterName['valueClusterToDelete']) && $clusterName['valueClusterToDelete'] != null)
+        {
+            $nameCluster = $clusterName['valueClusterToDelete'];
+            $typeBackup = "";
+            $length = strlen($nameCluster);
+
+            for($count = 0; $count < $length; $count++)
+            {
+                if($nameCluster[$count] !== " ")
+                {
+                    $typeBackup = "$typeBackup"."$nameCluster[$count]";
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            $backupsAssociatedToVM = getBackupAssociateToVM();
+            $idBackup = getIdBackup($typeBackup);
+
+            foreach($backupsAssociatedToVM as $backupAssociatedToVM)
+            {
+                if($idBackup[0]['backup_id'] == $backupAssociatedToVM['backup_id'])
+                {
+                    $isBackupAssociated = true;
+                    break;
+                }
+                else
+                {
+                    $isBackupAssociated = false;
+                }
+            }
+
+            if($isBackupAssociated == true)
+            {
+                $_SESSION['displayModalBackupAssociated'] = true;
+                displayFormManagement("backup");
+                exit;
+            }
+            else
+            {
+                deleteBackup($typeBackup);
+                require_once 'model/notificationPushManager.php';
+                addNotificationPush("suppresion d'un type de backup, son nom : ".$typeBackup);
+            }
+        }
+    }
+    elseif(isset($clusterName['modify']))
+    {
+        if(isset($clusterName['valueBackupMod']) && $clusterName['valueBackupMod'] != null && isset($clusterName['txtBackupMod']) && $clusterName['txtBackupMod'] != null &&isset($clusterName['typeBackupMod']) && $clusterName['typeBackupMod'] != null)
+        {
+            $nameBackup = $clusterName['valueBackupMod'];
+            $newPolicy = $clusterName['txtBackupMod'];
+            $newType = $clusterName['typeBackupMod'];
+            $typeBackup = "";
+            $length = strlen($nameBackup);
+
+            for($count = 0; $count < $length; $count++)
+            {
+                if($nameBackup[$count] !== " ")
+                {
+                    $typeBackup = "$typeBackup"."$nameBackup[$count]";
+                }
+                else
+                {
+                    break;
+                }
+            }
+            modifyBackup($typeBackup,$newPolicy,$newType);
+            require_once 'model/notificationPushManager.php';
+            addNotificationPush("modification d'un type de backup, son ancien nom : ".$typeBackup." son nouveau nom : ".$newType." sa nouvelle policy : ".$newPolicy);
+        }
+    }
+    displayFormManagement($arrayToDisplay);
+}
+
 
 /**
  * Display the research view

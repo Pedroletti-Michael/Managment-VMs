@@ -61,6 +61,24 @@ ob_start();
                     <input type="radio" name="options" id="option4"> Backup
                 </a>
             <?php endif; ?>
+            <?php if ($arrayToDisplay == "cluster"): ?>
+                <a href="../index.php?action=formManagement&array=cluster" class="btn btn-light active border border-primary">
+                    <input type="radio" name="options" id="option5" checked> Cluster
+                </a>
+            <?php else : ?>
+                <a href="../index.php?action=formManagement&array=cluster" class="btn border border-primary">
+                    <input type="radio" name="options" id="option5"> Cluster
+                </a>
+            <?php endif; ?>
+            <?php if ($arrayToDisplay == "site"): ?>
+                <a href="../index.php?action=formManagement&array=site" class="btn btn-light active border border-primary">
+                    <input type="radio" name="options" id="option5" checked> Site
+                </a>
+            <?php else : ?>
+                <a href="../index.php?action=formManagement&array=site" class="btn border border-primary">
+                    <input type="radio" name="options" id="option5"> Site
+                </a>
+            <?php endif; ?>
         </div>
     </form>
 
@@ -614,6 +632,270 @@ ob_start();
                             </script>
 
                         </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--Backup-->
+    <?php elseif($arrayToDisplay == "cluster") :?>
+        <form method="post" action="../index.php?action=editCluster">
+            <div class="form-group mt-2" name="formulaire" id="form_Cluster">
+                <table id="valueClusterDel" name="valueClusterDel" class="w-100 table table-hover rounded">
+                    <?php
+                    foreach ($clusterInformation as $value) {
+                        echo "<tr><td class='formManagement'>".$value[0]."</td><td class='formManagement'>".$value[1]."</td></tr>";
+                    }
+                    ?>
+                </table>
+
+                <div class="float-left w-33 responsiveDisplay pr-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#addCluster">Ajouter</button>
+                </div>
+                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-primary w-100 mb-0" data-toggle="modal" data-target="#modifyCluster">Modifier</button>
+                </div>
+                <div class="float-left w-33 responsiveDisplay pl-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-danger w-100 mb-70-px" data-toggle="modal" data-target="#deleteCluster">Supprimer</button>
+                </div>
+
+                <!--Cluster (delete modal)-->
+                <div class="modal fade" id="deleteCluster" tabindex="-1" role="dialog" aria-labelledby="deleteCluster" aria-hidden="true">
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <div class="modal-content text-center">
+                            <div class="modal-header modal-danger justify-content-center">
+                                <h5>Supprimer <b>Cluster</b></h5>
+                            </div>
+
+                            <div class="modal-body">
+                                <h6 id="textDelCluster">Aucun champ n'a été sélectionné</h6>
+
+                                <input type="text" id="valueClusterToDelete" name="valueClusterToDelete" hidden>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-danger mx-auto responsiveDisplay" value="delete" name="delete" id="delete">Confirmer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+        <!--Cluster (add modal)-->
+        <div class="modal fade" id="addCluster" tabindex="-1" role="dialog" aria-labelledby="addCluster" aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header modal-success justify-content-center">
+                        <h5>Ajouter <b>Cluster</b></h5>
+                    </div>
+
+                    <form method="post" action="../index.php?action=editCluster">
+                        <div class="modal-body">
+                            <input type="text" class="form-control float-left mb-2 w-100 responsiveDisplay" id="typeClusterAdd" name="typeClusterAdd" placeholder="Nom">
+                            <select class="form-control float-left mb-2 w-100 responsiveDisplay" id="txtClusterAdd" name="txtClusterAdd">
+                                <?php
+                                foreach ($siteInformation as $site){
+                                    echo'<option>'.$site['name'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success mx-auto responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--Cluster (modify modal)-->
+        <div class="modal fade" id="modifyCluster" tabindex="-1" role="dialog" aria-labelledby="modifyCluster" aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header modal-primary justify-content-center">
+                        <h5>Modifier <b>Cluster</b></h5>
+                    </div>
+
+                    <form method="post" action="../index.php?action=editCluster">
+                        <div class="modal-body">
+                            <input type="text" id="valueClusterMod" name="valueClusterMod" hidden>
+
+                            <h6 id="textModCluster">Aucun champ n'a été sélectionné</h6>
+                            <input type="text" class="form-control float-left mb-2 w-100 responsiveDisplay" id="typeClusterMod" name="typeClusterMod" placeholder="Nouvelle valeur">
+                            <select class="form-control float-left mb-2 w-100 responsiveDisplay" id="txtClusterMod" name="txtClusterMod">
+                                <?php
+                                foreach ($siteInformation as $site){
+                                    echo'<option>'.$site['name'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary mx-auto responsiveDisplay" value="modify" name="modify" id="modify">Confirmer</button>
+                        </div>
+
+                        <script>
+                            $("#valueClusterDel tr").click(function(){
+                                $(this).addClass('selected').siblings().removeClass('selected');
+                                var firstValue =$(this).find('td:first').html();
+                                var secondValue =$(this).find('td:last').html();
+                                document.getElementById("valueClusterDel").value = firstValue + " " + secondValue;
+                                document.getElementById("valueClusterToDelete").value = firstValue + " " + secondValue;
+                                $("#textDelCluster").html('Êtes-vous sûr de vouloir supprimer le champ : <b>' + firstValue + " " + secondValue + '<b/> ?');
+                                getSelectedClusterToDelete();getSelectedClusterToDisplayOnModify();
+                            });
+
+                            function getSelectedClusterToDelete()
+                            {
+                                var elementToDelete = document.getElementById("valueClusterDel").value;
+                                return elementToDelete;
+                            }
+
+                            function getSelectedClusterToDisplayOnModify()
+                            {
+                                var selectedValue = document.getElementById("valueClusterDel").value;
+                                var typeClusterMod = "";
+                                var txtClusterMod = "";
+
+                                for(var count = 0; count < selectedValue.length; count++)
+                                {
+                                    if(selectedValue[count] !== " ")
+                                    {
+                                        typeClusterMod = typeClusterMod + selectedValue[count];
+                                    }
+                                    else
+                                    {
+                                        for(count += 1; count < selectedValue.length; count++)
+                                        {
+                                            txtClusterMod = txtClusterMod + selectedValue[count];
+                                        }
+                                        break;
+                                    }
+                                }
+                                document.getElementById("valueClusterMod").value = selectedValue;
+                                document.getElementById("typeClusterMod").value = typeClusterMod;
+                                document.getElementById("txtClusterrMod").value = txtClusterMod;
+                                $("#textModCluster").html('Modifier le champ <b>' + selectedValue + '</b> en :');
+                            }
+                        </script>
+
+                </div>
+                </form>
+            </div>
+        </div>
+        </div>
+
+    <?php elseif($arrayToDisplay == "site") :?>
+        <form method="post" action="../index.php?action=editSite">
+            <div class="form-group mt-2" name="formulaire" id="form_Site">
+                <table id="valueSiteDel" name="valueSiteDel" class="w-100 table table-hover rounded">
+                    <?php
+                    foreach ($siteInformation as $value) {
+                        echo "<tr><td class='formManagement'>".$value['name']."</td></tr>";
+                    }
+                    ?>
+                </table>
+                <div class="float-left w-33 responsiveDisplay pr-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#addSite">Ajouter</button>
+                </div>
+                <div class="float-left w-33 responsiveDisplay pr-1 pl-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-primary w-100 mb-0" data-toggle="modal" data-target="#modifySite">Modifier</button>
+                </div>
+                <div class="float-left w-33 responsiveDisplay pl-1 mb-3" id="responsiveDisplay">
+                    <button type="button" class="btn btn-danger w-100 mb-70-px" data-toggle="modal" data-target="#deleteSite">Supprimer</button>
+                </div>
+
+                <!--Site (delete modal)-->
+                <div class="modal fade" id="deleteSite" tabindex="-1" role="dialog" aria-labelledby="deleteSite" aria-hidden="true">
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <div class="modal-content text-center">
+                            <div class="modal-header modal-danger justify-content-center">
+                                <h5>Supprimer <b>Site</b></h5>
+                            </div>
+
+                            <div class="modal-body">
+                                <h6 id="textDelSite">Aucun champ n'a été sélectionné</h6>
+
+                                <input type="text" id="valueSiteToDelete" name="valueSiteToDelete" hidden>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-danger mx-auto responsiveDisplay" value="delete" name="delete" id="delete">Confirmer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!--Site (add modal)-->
+        <div class="modal fade" id="addSite" tabindex="-1" role="dialog" aria-labelledby="addSite" aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header modal-success justify-content-center">
+                        <h5>Ajouter <b>Site</b></h5>
+                    </div>
+
+                    <form method="post" action="../index.php?action=editSite">
+                        <div class="modal-body">
+                            <input type="text" class="form-control responsiveDisplay" id="txtSiteAdd" name="txtSiteAdd" placeholder="Site">
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success mx-auto responsiveDisplay" value="add" name="add" id="add">Confirmer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--Site (modify modal)-->
+        <div class="modal fade" id="modifySite" tabindex="-1" role="dialog" aria-labelledby="modifySite" aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header modal-primary justify-content-center">
+                        <h5>Modifier <b>Entity</b></h5>
+                    </div>
+
+                    <form method="post" action="../index.php?action=editSite">
+                        <div class="modal-body">
+                            <input type="text" id="valueSiteMod" name="valueSiteMod" hidden>
+
+                            <h6 id="textModSite" class="float-left">Aucun champ n'a été sélectionné</h6>
+                            <input type="text" class="form-control responsiveDisplay" id="txtSiteMod" name="txtSiteMod" placeholder="Nouvelle valeur">
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary mx-auto responsiveDisplay" value="modify" name="modify" id="modify">Confirmer</button>
+                        </div>
+
+                        <script>
+                            $("#valueSiteDel tr").click(function(){
+                                $(this).addClass('selected').siblings().removeClass('selected');
+                                var value=$(this).find('td:first').html();
+                                document.getElementById("valueSiteDel").value = value;
+                                document.getElementById("valueSiteToDelete").value = value;
+                                getSelectedSiteToDisplayOnModify();getSelectedSiteToDisplayOnDelete();
+                            });
+
+                            function getSelectedSiteToDisplayOnDelete()
+                            {
+                                var selectedValue = document.getElementById("valueSiteDel").value;
+
+                                $("#textDelSite").html('Êtes-vous sûr de vouloir supprimer le champ : <b>' + selectedValue + '<b/> ?');
+                            }
+
+                            function getSelectedSiteToDisplayOnModify()
+                            {
+                                var selectedValue = document.getElementById("valueSiteDel").value;
+                                document.getElementById("valueSiteMod").value = selectedValue;
+                                document.getElementById("txtSiteMod").value = selectedValue;
+                                $("#textModSite").html('Changer le champ <b>' + selectedValue + '</b> en :');
+                            }
+                        </script>
                     </form>
                 </div>
             </div>

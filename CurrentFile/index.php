@@ -147,6 +147,14 @@ if(isset($_GET['action']))
             if(testSessionTime()){break;}
             editBackup($_POST);
             break;
+        case 'editCluster':
+            if(testSessionTime()){break;}
+            editCluster($_POST);
+            break;
+        case 'editSite':
+            if(testSessionTime()){break;}
+            editSite($_POST);
+            break;
         case 'research':
             if(testSessionTime()){break;}
             displayResearch($_POST['inputResearch']);

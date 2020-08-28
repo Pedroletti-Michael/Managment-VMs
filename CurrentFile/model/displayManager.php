@@ -201,7 +201,7 @@ function getBackupAssociateToVM(){
 
 
 /**
- *
+ * Here we have all function we use for getInformation about cluster
  */
 function getClusters(){
     $strSep = '\'';
@@ -212,6 +212,43 @@ function getClusters(){
 
     return $result;
 }
+
+function getClusterAndSiteName(){
+    $strSep = '\'';
+
+    $query = "SELECT cluster.name, site.name FROM site INNER JOIN cluster ON site.id = cluster.id_site WHERE cluster.status = 0";
+
+    $result = executeQuery($query);
+
+    return $result;
+}
+
+function addCluster($clusterName, $siteName){
+    $strSep = '\'';
+
+    $query = "SELECT id FROM site WHERE name = ".$strSep.$siteName.$strSep;
+    $result = executeQuery($query);
+    $idSite = $result[0]['id'];
+
+    $query = "INSERT INTO cluster (`name`, `id_site`) VALUES (".$strSep.$clusterName.$strSep.", ".$strSep.$idSite.$strSep.")";
+    return executeQuery($query);
+}
+
+
+/**
+ * Here we have all function we use for get information about site
+ */
+function getSiteInformation(){
+    $strSep = '\'';
+
+    $query = "SELECT name FROM `site` WHERE status = 0";
+
+    $result = executeQuery($query);
+
+    return $result;
+}
+
+
 
 /********************** Columns **************************/
 /**
