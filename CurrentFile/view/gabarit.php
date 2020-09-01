@@ -239,18 +239,18 @@
                         <div class="notifications__item">
                             <div class="notifications__item__content">
                                 <span class="notifications__item__message">'.$notif.'</span>
-                            </div>
-                            <div>
-                                <div class="notifications__item__option archive">
-                                    <a href="index.php?action=viewAllNotification">
-                                      <i class="fas fa-plus pt-1" style="color: whitesmoke"></i>
-                                    </a>
-                                </div>
-                            </div>
+                            </div>                        
                         </div>
                         ';
                             }
                         ?>
+                        <a href="index.php?action=viewAllNotification">
+                            <div class="notifications__item bg-success text-center" style="height: calc( 105px / 2 )">
+                                <div class="notifications__item__content">
+                                    <i class="fas fa-plus pt-1" style="color: whitesmoke"></i>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
 

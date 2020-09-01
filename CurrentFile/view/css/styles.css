@@ -95,7 +95,7 @@
     height: 100%;
 }
 
-.notifications__item__content { width: calc( 100% - 105px ); }
+.notifications__item__content { width: 100%; }
 .notifications__item__title,
 .notifications__item__message { display: block; }
 
